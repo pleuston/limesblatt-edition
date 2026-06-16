@@ -9,7 +9,7 @@ Eine **statische digitale Edition** des *Limesblatt* (1892–1903) — der „Mi
 ## Was diese Edition enthält
 - **8 Bände** (Bd. 1–8, 1892–1903), 497 Seiten als diplomatischer OCR-Volltext.
 - **IIIF-Faksimile** je Seite über das Manifest der UB Heidelberg (Deep-Zoom via OpenSeadragon).
-- **Personen-, Orts- und Streckenregister:** Personen (43) mit GND/Wikidata, **Porträts**, Korrespondenz (Kalliope, mit Briefzahlen) und Nachlass; Orte (17, mit Karte) mit Kastelltyp, ORL-Nummer, **EDH-Inschriften** und **Ausgräber**; Strecken (15) mit ihren Kastellen und Kommissaren.
+- **Personen-, Orts- und Streckenregister:** Personen (43) mit GND/Wikidata, **Porträts**, Korrespondenz (Kalliope, mit Briefzahlen) und Nachlass; Orte (17, mit **nach Limes-Abschnitt filterbarer Karte**) mit Kastelltyp, ORL-Nummer, **EDH-Inschriften** und **Ausgräber**; Strecken (15) mit ihren Kastellen, Kommissaren und „Auf der Karte zeigen".
 - **Personen ↔ Orte verknüpft** über die Ausgräber-Relation (wer welches Kastell grub, in beide Richtungen). Register und Volltext sind **bidirektional verlinkt** (Eintrag → Fundstellen und zurück).
 - **Inline-Auszeichnung** von Personen/Orten im Text (heuristisch, `@cert="low"`), verlinkt in die Register.
 - **Clientseitige Volltextsuche** über alle Seiten.

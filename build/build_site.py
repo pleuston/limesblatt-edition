@@ -175,7 +175,7 @@ def persons_page(persons, occ, digs):
             f'Korrespondenz, Nachlass, ausgegrabene Kastelle und Volltext-Fundstellen.</p>'
             f'<div class="cards">{"".join(cards)}</div>')
 
-def places_page(places, occ, pname):
+def places_page(places, occ, pname, str_by_id):
     feats, cards = [], []
     for pl in sorted(places, key=lambda r: r["name"]):
         I = pl["idno"]
@@ -201,17 +201,18 @@ def places_page(places, occ, pname):
         cards.append(f'<article class="card" id="{pl["id"]}">{img}<div class="cbody">'
                      f'<h3>{html.escape(pl["name"])}</h3><div class="role">{meta}</div>{links}{"".join(extra)}</div></article>')
         if pl["geo"]:
-            feats.append({"name": pl["name"], "lat": float(pl["geo"][0]), "lng": float(pl["geo"][1]), "orl": html.escape(I.get("ORL",""))})
+            sid = pl.get("strecke_id", "")
+            ab = str_by_id.get(sid, {}).get("abschnitt", "") if sid else ""
+            feats.append({"name": pl["name"], "lat": float(pl["geo"][0]), "lng": float(pl["geo"][1]),
+                          "orl": html.escape(I.get("ORL","")), "id": pl["id"],
+                          "strecke": pl.get("strecke_name",""), "strecke_id": sid, "abschnitt": ab})
     head = '<link rel="stylesheet" href="../assets/leaflet.css"><script src="../assets/leaflet.js"></script>'
-    body = (f'<h1>Ortsregister</h1><p class="meta">{len(places)} verortete Orte — Karte, Normdaten, '
-            f'Kastelltyp, Ausgräber, Inschriften und Volltext-Fundstellen.</p><div id="map"></div>'
+    body = (f'<h1>Ortsregister</h1><p class="meta">{len(places)} verortete Orte — Karte (nach Limes-Abschnitt '
+            f'filterbar), Normdaten, Kastelltyp, Ausgräber, Inschriften und Volltext-Fundstellen.</p>'
+            f'<div id="facets"></div><div id="map"></div>'
             f'<div class="cards">{"".join(cards)}</div>'
-            f'<script>var F={json.dumps(feats)};'
-            'var map=L.map("map").setView([49.5,9.4],7);'
-            'L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,'
-            'attribution:"© OpenStreetMap"}).addTo(map);'
-            'F.forEach(function(f){L.circleMarker([f.lat,f.lng],{radius:6,color:"#7a1f1f",'
-            'fillColor:"#b33",fillOpacity:.8}).addTo(map).bindPopup("<b>"+f.name+"</b>"+(f.orl?"<br>"+f.orl:""));});</script>')
+            f'<script>var MAPDATA={{"feats":{json.dumps(feats)}}};</script>'
+            f'<script src="../assets/map.js"></script>')
     return body, head
 
 def strecken_page(strecken, str_forts, persons):
@@ -223,6 +224,7 @@ def strecken_page(strecken, str_forts, persons):
         komm = [p for p in persons if p.get("strecke") and p["strecke"].lower() in hay]
         meta = " · ".join(x for x in [html.escape(s["verlauf"]), html.escape(s["region"]), html.escape(s["abschnitt"])] if x)
         extra = f'<div class="x">⛏️ Kastelle: {fl}</div>'
+        if forts: extra += f'<div class="x">🗺️ <a href="places.html?strecke={s["id"]}">Auf der Karte zeigen</a></div>'
         if komm:
             extra += '<div class="x">👤 Kommissar (Region): ' + ", ".join(
                 f'<a href="persons.html#{p["id"]}">{html.escape(p["name"])}</a>' for p in komm) + '</div>'
@@ -277,6 +279,7 @@ def main():
     persons = load_register(os.path.join(REPO,"registers","persons.xml"), "person")
     places  = load_register(os.path.join(REPO,"registers","places.xml"), "place")
     strecken = load_strecken(os.path.join(REPO,"registers","strecken.xml"))
+    str_by_id = {s["id"]: s for s in strecken}
     pname = {p["id"]: p["name"] for p in persons}
     digs, str_forts = defaultdict(list), defaultdict(list)   # Person→Orte (Ausgräber), Strecke→Orte
     for pl in places:
@@ -302,7 +305,7 @@ def main():
     json.dump(corpus, open(os.path.join(DOCS,"data","search.json"),"w",encoding="utf-8"), ensure_ascii=False)
 
     open(os.path.join(DOCS,"register","persons.html"),"w",encoding="utf-8").write(page("Personenregister", persons_page(persons, occ, digs), 1))
-    plb, plh = places_page(places, occ, pname)
+    plb, plh = places_page(places, occ, pname, str_by_id)
     open(os.path.join(DOCS,"register","places.html"),"w",encoding="utf-8").write(page("Ortsregister", plb, 1, plh))
     open(os.path.join(DOCS,"register","strecken.html"),"w",encoding="utf-8").write(page("Strecken", strecken_page(strecken, str_forts, persons), 1))
     ib, ih = index_page(volumes)
