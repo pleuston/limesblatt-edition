@@ -20,6 +20,7 @@ ul.vols{columns:2;gap:2rem} ul.vols li{margin:.2rem 0}
 .pb{margin:1rem 0 .2rem;color:var(--accent);font-variant:small-caps;font-size:.82rem;cursor:pointer;border-top:1px dotted var(--line);padding-top:.5rem}
 .pb:hover{background:#f3eee3} .pb:target{background:#fff3cd;outline:2px solid #e0c200;scroll-margin-top:3.6rem} .gap{color:var(--muted);font-style:italic}
 .ent{text-decoration:none;border-bottom:1px dotted} .persName{color:#5a3a8a} .placeName{color:#1f5a4a}
+.ent.placeName.dare{color:#3f6f7a;border-bottom-style:dashed}
 .alias{color:var(--muted);font-size:.82rem}
 /* Suche */
 #q{width:100%;font:inherit;padding:.5rem .7rem;border:1px solid var(--line);border-radius:4px}
@@ -35,6 +36,7 @@ table.reg th{font-size:.85rem;color:var(--muted);text-transform:uppercase;letter
 #facets .focusnote{flex-basis:100%;background:#fff8e6;border:1px solid #e0c200;border-radius:4px;padding:.2rem .5rem}
 .leaflet-popup-content{font:14px/1.45 Georgia,serif}
 .sites{columns:230px;list-style:none;padding:0;margin:.4rem 0;font-size:.86rem} .sites li{break-inside:avoid;margin:.12rem 0}
+.sites li:target{background:#fff8e6;outline:2px solid #e0c200;border-radius:3px}
 details>summary{cursor:pointer;font-weight:bold;margin:.5rem 0 .2rem;font-size:.95rem}
 td.beleg{font-size:.85rem;line-height:1.7} td.beleg a{display:inline-block;margin:0 .05rem}
 /* Register-Karten */

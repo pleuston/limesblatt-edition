@@ -12,7 +12,7 @@ Eine **statische digitale Edition** des *Limesblatt* (1892–1903) — der „Mi
 - **Personen-, Orts- und Streckenregister:** Personen (43) mit GND/Wikidata, **Porträts**, Korrespondenz (Kalliope, mit Briefzahlen) und Nachlass; Orte (17, mit **nach Limes-Abschnitt filterbarer Karte**) mit Kastelltyp, ORL-Nummer, **EDH-Inschriften** und **Ausgräber**; Strecken (15) mit ihren Kastellen, Kommissaren und „Auf der Karte zeigen".
 - **Personen ↔ Orte verknüpft** über die Ausgräber-Relation (wer welches Kastell grub, in beide Richtungen). Register und Volltext sind **bidirektional verlinkt** (Eintrag → Fundstellen und zurück).
 - **Karte mit Ebenen:** die benannten Kastelle (nach Limes-Abschnitt filterbar), der **Limesverlauf** und die **weiteren Limesstellen** — Türme, Kleinkastelle und Lager *zwischen* den Kastellen (aus DARE, 204; gegen die benannten Kastelle entdoppelt) — als zuschaltbare Layer.
-- **Inline-Auszeichnung** von Personen/Orten im Text (heuristisch, `@cert="low"`), verlinkt in die Register.
+- **Inline-Auszeichnung** im Lesetext: Personen, benannte Kastelle *und* die kleinen DARE-Limesstellen (heuristisch, `@cert="low"`) — verlinkt ins Register bzw. in die Stellenliste (die beim Sprung automatisch aufklappt).
 - **Clientseitige Volltextsuche** über alle Seiten.
 
 ## Wie sie entstanden ist (token-frei)

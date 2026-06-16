@@ -83,5 +83,13 @@
     if (fc) fc.insertAdjacentHTML("afterbegin",
       '<div class="focusnote">Fokus: <b>' + (nm || focus) + '</b> · <a href="places.html">alle Orte zeigen</a></div>');
   }
+  // Inline-Tag-Sprung in eine <details>-Liste: Sektion aufklappen + hinscrollen
+  function openDetails() {
+    if (!location.hash) return;
+    var el = document.getElementById(location.hash.slice(1));
+    var d = el && el.closest && el.closest("details");
+    if (d) { d.open = true; el.scrollIntoView(); }
+  }
+  openDetails(); window.addEventListener("hashchange", openDetails);
   setTimeout(function () { map.invalidateSize(); }, 250);
 })();

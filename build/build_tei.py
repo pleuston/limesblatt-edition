@@ -33,6 +33,10 @@ DIGLIT   = "https://digi.ub.uni-heidelberg.de/diglit/{slug}"
 # Häufige Wörter / Mehrdeutiges, die NICHT als Personennamen getaggt werden
 STOP = {"Mauer","Stein","Limes","Kastell","Strecke","Graben","Turm","Bericht","Provinz",
         "Anlage","Fundament","Abschnitt","Wall","Kommission","Funde"}
+GENERIC = {"alteburg","altenburg","altes","oberburg","schanz","kapelle","kirche","mauer","graben",
+           "heide","feld","muehle","mühle","strasse","straße","wiese","brücke","bruecke","steinbruch",
+           "taunus","odenwald","wetterau","wetteraukreis","spessart","hunsrück","hunsrueck","neckar",
+           "schwäbisch","fränkisch","oberer","unterer","grosser","großer","kleiner","römer","römisch"}
 
 def slug(s):
     s = unicodedata.normalize("NFKD", s).encode("ascii","ignore").decode()
@@ -109,7 +113,7 @@ def load_places(vault):
     return out
 
 # ---------- Inline-Tag-Terme ----------
-def build_terms(persons, places):
+def build_terms(persons, places, dare, corpus_low=""):
     """term(exakte Schreibung) -> (kind, xmlid); nur eindeutige, distinkte Terme."""
     psn, plc = {}, {}
     for p in persons:
@@ -125,6 +129,18 @@ def build_terms(persons, places):
         if len(ids) == 1: terms[s] = ("p", ids[0])     # mehrdeutige Nachnamen (z.B. Jacobi) auslassen
     for t, ids in plc.items():
         if len(ids) == 1 and t not in terms: terms[t] = ("pl", ids[0])
+    # DARE-Kleinorte: spezifische, eindeutige Tokens, die nicht schon (Person/benannter Ort) belegt sind
+    dterm = {}
+    for f in dare:
+        src = f.get("name", "") + " " + re.sub(r'^\*', '', f.get("ancient", ""))
+        for tok in re.split(r"[\s/\-–,()]+", src):
+            tok = tok.strip()
+            if len(tok) >= 6 and tok[:1].isalpha() and tok.lower() not in GENERIC and tok not in terms:
+                dterm.setdefault(tok, set()).add(f.get("id"))
+    for tok, ids in dterm.items():
+        if len(ids) == 1 and tok not in terms:
+            if corpus_low and corpus_low.count(tok.lower()) > 40: continue   # zu häufig = Region/Gattungswort
+            terms[tok] = ("dare", next(iter(ids)))
     # längere Terme zuerst matchen
     return dict(sorted(terms.items(), key=lambda kv: -len(kv[0])))
 
@@ -140,8 +156,11 @@ def tag_text(text, terms):
     res, pos, n = [], 0, 0
     for st, en, kind, xid in chosen:
         res.append(escape(text[pos:st]))
-        tag = "persName" if kind == "p" else "placeName"
-        res.append(f'<{tag} ref="#{xid}" cert="low">{escape(text[st:en])}</{tag}>')
+        if kind == "dare":
+            res.append(f'<placeName ref="dare:{xid}" cert="low">{escape(text[st:en])}</placeName>')
+        else:
+            tag = "persName" if kind == "p" else "placeName"
+            res.append(f'<{tag} ref="#{xid}" cert="low">{escape(text[st:en])}</{tag}>')
         pos = en; n += 1
     res.append(escape(text[pos:]))
     return "".join(res), n
@@ -271,7 +290,7 @@ def write_geo(vault, places, outdir):
     lines = [f for f in load("limes.geojson") if f.get("geometry", {}).get("type") in ("LineString", "MultiLineString")]
     json.dump({"type": "FeatureCollection", "features": lines},
               open(os.path.join(outdir, "limes-line.geojson"), "w", encoding="utf-8"), ensure_ascii=False)
-    return len(feats), len(lines)
+    return len(feats), len(lines), [ft["properties"] for ft in feats]
 
 # ---------- Band-XML ----------
 def header(slug_, label):
@@ -324,8 +343,10 @@ def main():
     write_persons(persons, os.path.join(REPO, "registers", "persons.xml"))
     write_places(places,  os.path.join(REPO, "registers", "places.xml"))
     write_strecken(strecken, os.path.join(REPO, "registers", "strecken.xml"))
-    ngeo, nline = write_geo(vault, places, os.path.join(REPO, "geo"))
-    terms = build_terms(persons, places)
+    ngeo, nline, dareprops = write_geo(vault, places, os.path.join(REPO, "geo"))
+    corpus_low = " ".join(open(f, encoding="utf-8").read()
+                          for f in glob.glob(os.path.join(vault, "tools", ".cache", "limesblatt*", "*.txt"))).lower()
+    terms = build_terms(persons, places, dareprops, corpus_low)
     pids = {p["id"] for p in persons}
     dig = sum(1 for pl in places if pl["diggers"])
     dig_ok = sum(1 for pl in places for d in pl["diggers"] if d in pids)

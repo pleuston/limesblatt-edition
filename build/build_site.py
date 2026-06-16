@@ -31,7 +31,10 @@ def render_page(inner):
         tag, xid, txt = m.group(1), m.group(2), m.group(3)
         cls, reg = ("persName","persons") if tag=="persName" else ("placeName","places")
         return f'<a class="ent {cls}" href="../register/{reg}.html#{xid}" title="{cls}">{txt}</a>'
-    body = re.sub(r'<(persName|placeName) ref="#([^"]+)"[^>]*>(.*?)</\1>', ent, inner, flags=re.S)
+    body = re.sub(r'<placeName ref="dare:([^"]+)"[^>]*>(.*?)</placeName>',
+                  lambda m: f'<a class="ent placeName dare" href="../register/places.html#dare_{m.group(1)}" title="weitere Limesstelle (DARE)">{m.group(2)}</a>',
+                  inner, flags=re.S)
+    body = re.sub(r'<(persName|placeName) ref="#([^"]+)"[^>]*>(.*?)</\1>', ent, body, flags=re.S)
     return body  # bereits <p>…</p>
 
 def load_volume(path):
@@ -43,7 +46,8 @@ def load_volume(path):
         tok, inner = m.group(1), m.group(2).strip()
         pages.append({"tok": tok, "html": render_page(inner),
                       "text": unesc(strip_tags(inner)).strip(),
-                      "ents": re.findall(r'ref="#([^"]+)"', inner)})
+                      "ents": re.findall(r'ref="#([^"]+)"', inner),
+                      "dents": re.findall(r'ref="dare:([^"]+)"', inner)})
     return {"nr": nr, "slug": slug, "label": LABELS.get(nr, f"Bd. {nr}"), "pages": pages}
 
 def load_register(path, tag):
@@ -226,7 +230,7 @@ def places_page(places, occ, pname, str_by_id, sites, site_hits):
             if hh:
                 lk = ", ".join(f'<a href="../volumes/bd{v}.html#pb-{html.escape(t)}">{v}/{html.escape(t)}</a>' for v, t in hh[:3])
                 vt = f' · 📄 {len(hh)}× ({lk}{" +"+str(len(hh)-3) if len(hh) > 3 else ""})'
-            lis.append(f'<li>{html.escape(p.get("name", "?"))}{anc}{dare}{foc}{vt}</li>')
+            lis.append(f'<li id="dare_{did}">{html.escape(p.get("name", "?"))}{anc}{dare}{foc}{vt}</li>')
         secs.append(f'<details><summary>{tlabel.get(t, t)} ({len(items)})</summary><ul class="sites">{"".join(lis)}</ul></details>')
     nvt = sum(1 for s in sites if site_hits.get(s.get("properties",{}).get("id")))
     sites_html = (f'<h2 id="weitere">Weitere Limesstellen — {len(sites)} (DARE)</h2>'
@@ -330,12 +334,17 @@ def main():
         if pl.get("strecke_id"): str_forts[pl["strecke_id"]].append(pl)
 
     occ, seen = defaultdict(list), set()      # Entität → [(Band, Token)], aus den TEI-Inline-Tags
+    dare_hits, dseen = defaultdict(list), set()
     for v in volumes:
         for p in v["pages"]:
             for eid in p["ents"]:
                 key = (eid, v["nr"], p["tok"])
                 if key not in seen:
                     seen.add(key); occ[eid].append((v["nr"], p["tok"]))
+            for did in p["dents"]:
+                key = (did, v["nr"], p["tok"])
+                if key not in dseen:
+                    dseen.add(key); dare_hits[did].append((v["nr"], p["tok"]))
 
     corpus = []
     for v in volumes:
@@ -346,30 +355,10 @@ def main():
                                          "label":v["label"],"text":p["text"]})
     json.dump(corpus, open(os.path.join(DOCS,"data","search.json"),"w",encoding="utf-8"), ensure_ascii=False)
 
-    # DARE-Kleinorte heuristisch an den Volltext binden (Toponym-Match, token-frei)
-    GENERIC = {"alteburg","altenburg","altes","oberburg","schanz","kapelle","kirche","mauer","graben",
-               "heide","feld","muehle","mühle","strasse","straße","wiese","brücke","bruecke","steinbruch"}
-    def site_terms(p):
-        out = set()
-        for src in (p.get("name",""), re.sub(r'^\*','', p.get("ancient",""))):
-            for tok in re.split(r"[\s/\-–,()]+", src or ""):
-                tok = tok.strip()
-                if len(tok) >= 6 and tok[:1].isalpha() and tok.lower() not in GENERIC: out.add(tok.lower())
-        return out
-    pages_low = [(c["vol"], c["tok"], c["text"].lower()) for c in corpus]
-    site_hits = {}
-    for f in sites:
-        p = f.get("properties", {}); ts = list(site_terms(p))
-        if not ts: continue
-        best = None
-        for x in ts:                          # spezifischsten Term wählen (= wenigste Treffer)
-            hh = [(v, t) for v, t, low in pages_low if x in low]
-            if hh and (best is None or len(hh) < len(best)): best = hh
-        if best: site_hits[p.get("id")] = best
-    print(f"DARE-Kleinorte mit Volltext-Treffern: {len(site_hits)}/{len(sites)}")
+    print(f"DARE-Inline-Tags im Lesetext: {len(dare_hits)}/{len(sites)} Stellen verlinkt")
 
     open(os.path.join(DOCS,"register","persons.html"),"w",encoding="utf-8").write(page("Personenregister", persons_page(persons, occ, digs), 1))
-    plb, plh = places_page(places, occ, pname, str_by_id, sites, site_hits)
+    plb, plh = places_page(places, occ, pname, str_by_id, sites, dare_hits)
     open(os.path.join(DOCS,"register","places.html"),"w",encoding="utf-8").write(page("Ortsregister", plb, 1, plh))
     open(os.path.join(DOCS,"register","strecken.html"),"w",encoding="utf-8").write(page("Strecken", strecken_page(strecken, str_forts, persons, pname), 1))
     ib, ih = index_page(volumes)
