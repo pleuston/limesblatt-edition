@@ -18,7 +18,7 @@ ul.vols{columns:2;gap:2rem} ul.vols li{margin:.2rem 0}
 .osdnav button{font:inherit;font-size:.85rem;padding:.2rem .7rem;cursor:pointer;background:#fff;border:1px solid var(--line);border-radius:3px}
 .text{max-height:80vh;overflow:auto;padding-right:.4rem} .text p{margin:.3rem 0;text-align:justify;hyphens:auto}
 .pb{margin:1rem 0 .2rem;color:var(--accent);font-variant:small-caps;font-size:.82rem;cursor:pointer;border-top:1px dotted var(--line);padding-top:.5rem}
-.pb:hover{background:#f3eee3} .gap{color:var(--muted);font-style:italic}
+.pb:hover{background:#f3eee3} .pb:target{background:#fff3cd;outline:2px solid #e0c200;scroll-margin-top:3.6rem} .gap{color:var(--muted);font-style:italic}
 .ent{text-decoration:none;border-bottom:1px dotted} .persName{color:#5a3a8a} .placeName{color:#1f5a4a}
 .alias{color:var(--muted);font-size:.82rem}
 /* Suche */
@@ -30,4 +30,5 @@ table.reg{width:100%;border-collapse:collapse;font-size:.95rem}
 table.reg th,table.reg td{text-align:left;padding:.35rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}
 table.reg th{font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
 #map{height:60vh;border:1px solid var(--line);margin:.5rem 0 1rem}
+td.beleg{font-size:.85rem;line-height:1.7} td.beleg a{display:inline-block;margin:0 .05rem}
 @media(max-width:760px){.reader{grid-template-columns:1fr}.facs{position:static}#osd{height:50vh}ul.vols{columns:1}}

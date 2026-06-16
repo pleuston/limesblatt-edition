@@ -10,6 +10,8 @@ Karte) und einen clientseitigen Volltextindex (MiniSearch). Ausgabe → docs/.
     python3 build/build_site.py
 """
 import glob, html, os, re, json, shutil
+from collections import defaultdict
+from itertools import groupby
 
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(HERE)
 DOCS = os.path.join(REPO, "docs")
@@ -40,7 +42,8 @@ def load_volume(path):
     for m in re.finditer(r'<pb n="([^"]+)" facs="#f_[^"]+"/>(.*?)(?=<pb |</div>)', t, re.S):
         tok, inner = m.group(1), m.group(2).strip()
         pages.append({"tok": tok, "html": render_page(inner),
-                      "text": unesc(strip_tags(inner)).strip()})
+                      "text": unesc(strip_tags(inner)).strip(),
+                      "ents": re.findall(r'ref="#([^"]+)"', inner)})
     return {"nr": nr, "slug": slug, "label": LABELS.get(nr, f"Bd. {nr}"), "pages": pages}
 
 def load_register(path, tag):
@@ -105,7 +108,17 @@ viewer.addHandler("page", upd); viewer.addHandler("open", upd);
 </script>"""
     return body, head
 
-def persons_page(persons):
+def beleg_html(eid, occ):
+    """Rück-Links Register → Volltext-Fundstellen, gruppiert nach Band (kein NER, nur die TEI-Tags)."""
+    items = occ.get(eid, [])
+    if not items: return '<span class="meta">—</span>'
+    out = []
+    for vol, grp in groupby(items, key=lambda x: x[0]):
+        links = ", ".join(f'<a href="../volumes/bd{vol}.html#pb-{html.escape(t)}">{html.escape(t)}</a>' for _, t in grp)
+        out.append(f'Bd.&#160;{vol}: {links}')
+    return " · ".join(out)
+
+def persons_page(persons, occ):
     rows = []
     for p in sorted(persons, key=lambda r: r["name"].split()[-1]):
         dts = f'{p["birth"]}–{p["death"]}' if p["birth"] or p["death"] else ""
@@ -113,12 +126,14 @@ def persons_page(persons):
         wd  = f'<a href="https://www.wikidata.org/wiki/{p["idno"]["Wikidata"]}">WD</a>' if p["idno"].get("Wikidata") else ""
         al  = f'<br><span class="alias">{html.escape(", ".join(p["alias"]))}</span>' if p.get("alias") else ""
         rows.append(f'<tr id="{p["id"]}"><td><strong>{html.escape(p["name"])}</strong>{al}</td>'
-                    f'<td>{html.escape(dts)}</td><td>{html.escape(p["occ"])}</td><td>{gnd} {wd}</td></tr>')
-    return (f'<h1>Personenregister</h1><p class="meta">{len(persons)} Personen, mit GND/Wikidata verknüpft.</p>'
-            f'<table class="reg"><thead><tr><th>Name</th><th>Lebensdaten</th><th>Rolle</th><th>Normdaten</th></tr></thead>'
+                    f'<td>{html.escape(dts)}</td><td>{html.escape(p["occ"])}</td><td>{gnd} {wd}</td>'
+                    f'<td class="beleg">{beleg_html(p["id"], occ)}</td></tr>')
+    return (f'<h1>Personenregister</h1><p class="meta">{len(persons)} Personen, mit GND/Wikidata verknüpft. '
+            f'Spalte „Im Volltext" springt zu den Fundstellen im Limesblatt.</p>'
+            f'<table class="reg"><thead><tr><th>Name</th><th>Lebensdaten</th><th>Rolle</th><th>Normdaten</th><th>Im Volltext</th></tr></thead>'
             f'<tbody>{"".join(rows)}</tbody></table>')
 
-def places_page(places):
+def places_page(places, occ):
     feats, rows = [], []
     for pl in sorted(places, key=lambda r: r["name"]):
         wd = f'<a href="https://www.wikidata.org/wiki/{pl["idno"]["Wikidata"]}">WD</a>' if pl["idno"].get("Wikidata") else ""
@@ -126,14 +141,15 @@ def places_page(places):
         pleiades = f'<a href="https://pleiades.stoa.org/places/{pl["idno"]["Pleiades"]}">Pleiades</a>' if pl["idno"].get("Pleiades") else ""
         orl = html.escape(pl["idno"].get("ORL",""))
         rows.append(f'<tr id="{pl["id"]}"><td><strong>{html.escape(pl["name"])}</strong></td><td>{orl}</td>'
-                    f'<td>{html.escape(pl["region"])}</td><td>{wd} {gz} {pleiades}</td></tr>')
+                    f'<td>{html.escape(pl["region"])}</td><td>{wd} {gz} {pleiades}</td>'
+                    f'<td class="beleg">{beleg_html(pl["id"], occ)}</td></tr>')
         if pl["geo"]:
             feats.append({"name": pl["name"], "lat": float(pl["geo"][0]), "lng": float(pl["geo"][1]),
                           "orl": orl, "wd": pl["idno"].get("Wikidata","")})
     head = '<link rel="stylesheet" href="../assets/leaflet.css"><script src="../assets/leaflet.js"></script>'
     body = (f'<h1>Ortsregister</h1><p class="meta">{len(places)} verortete Orte (Kastelle/Hinterland), '
             f'Geo + Wikidata/iDAI-Gazetteer/Pleiades/ORL.</p><div id="map"></div>'
-            f'<table class="reg"><thead><tr><th>Ort</th><th>ORL</th><th>Provinz</th><th>Normdaten</th></tr></thead>'
+            f'<table class="reg"><thead><tr><th>Ort</th><th>ORL</th><th>Provinz</th><th>Normdaten</th><th>Im Volltext</th></tr></thead>'
             f'<tbody>{"".join(rows)}</tbody></table>'
             f'<script>var F={json.dumps(feats)};'
             'var map=L.map("map").setView([49.5,9.4],7);'
@@ -188,6 +204,14 @@ def main():
     persons = load_register(os.path.join(REPO,"registers","persons.xml"), "person")
     places  = load_register(os.path.join(REPO,"registers","places.xml"), "place")
 
+    occ, seen = defaultdict(list), set()      # Entität → [(Band, Token)], aus den TEI-Inline-Tags
+    for v in volumes:
+        for p in v["pages"]:
+            for eid in p["ents"]:
+                key = (eid, v["nr"], p["tok"])
+                if key not in seen:
+                    seen.add(key); occ[eid].append((v["nr"], p["tok"]))
+
     corpus = []
     for v in volumes:
         b, h = vol_page(v)
@@ -197,8 +221,8 @@ def main():
                                          "label":v["label"],"text":p["text"]})
     json.dump(corpus, open(os.path.join(DOCS,"data","search.json"),"w",encoding="utf-8"), ensure_ascii=False)
 
-    open(os.path.join(DOCS,"register","persons.html"),"w",encoding="utf-8").write(page("Personenregister", persons_page(persons), 1))
-    plb, plh = places_page(places)
+    open(os.path.join(DOCS,"register","persons.html"),"w",encoding="utf-8").write(page("Personenregister", persons_page(persons, occ), 1))
+    plb, plh = places_page(places, occ)
     open(os.path.join(DOCS,"register","places.html"),"w",encoding="utf-8").write(page("Ortsregister", plb, 1, plh))
     ib, ih = index_page(volumes)
     open(os.path.join(DOCS,"index.html"),"w",encoding="utf-8").write(page("Startseite", ib, 0, ih))
