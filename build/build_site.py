@@ -175,7 +175,7 @@ def persons_page(persons, occ, digs):
             f'Korrespondenz, Nachlass, ausgegrabene Kastelle und Volltext-Fundstellen.</p>'
             f'<div class="cards">{"".join(cards)}</div>')
 
-def places_page(places, occ, pname, str_by_id, sites):
+def places_page(places, occ, pname, str_by_id, sites, site_hits):
     feats, cards = [], []
     for pl in sorted(places, key=lambda r: r["name"]):
         I = pl["idno"]
@@ -221,12 +221,19 @@ def places_page(places, occ, pname, str_by_id, sites):
             did = html.escape(str(p.get("id", "")))
             dare = f' · <a href="https://imperium.ahlfeldt.se/places/{did}">DARE</a>' if did else ""
             foc = f' <a href="#map" onclick="focusSite(\'{did}\')" title="auf der Karte zeigen">📍</a>' if did else ""
-            lis.append(f'<li>{html.escape(p.get("name", "?"))}{anc}{dare}{foc}</li>')
+            hh = site_hits.get(p.get("id"), [])
+            vt = ""
+            if hh:
+                lk = ", ".join(f'<a href="../volumes/bd{v}.html#pb-{html.escape(t)}">{v}/{html.escape(t)}</a>' for v, t in hh[:3])
+                vt = f' · 📄 {len(hh)}× ({lk}{" +"+str(len(hh)-3) if len(hh) > 3 else ""})'
+            lis.append(f'<li>{html.escape(p.get("name", "?"))}{anc}{dare}{foc}{vt}</li>')
         secs.append(f'<details><summary>{tlabel.get(t, t)} ({len(items)})</summary><ul class="sites">{"".join(lis)}</ul></details>')
+    nvt = sum(1 for s in sites if site_hits.get(s.get("properties",{}).get("id")))
     sites_html = (f'<h2 id="weitere">Weitere Limesstellen — {len(sites)} (DARE)</h2>'
                   '<p class="meta">Türme, Kleinkastelle und Lager <i>zwischen</i> den benannten Kastellen, '
-                  'je mit DARE-Datensatz und 📍 Karten-Fokus. Gazetteer-Stellen ohne RLK-Wachtposten-Nr. '
-                  '(diese ist über die <a href="../index.html#suche">Volltextsuche</a> auffindbar).</p>'
+                  f'je mit DARE-Datensatz, 📍 Karten-Fokus und — bei {nvt} Stellen — 📄 <b>heuristischen '
+                  'Volltext-Treffern</b> (Toponym-Abgleich auf Fraktur-OCR; nicht jede Nennung meint zwingend '
+                  'diese Stelle). Gazetteer-Stellen ohne RLK-Wachtposten-Nr.</p>'
                   + "".join(secs)) if sites else ""
     head = '<link rel="stylesheet" href="../assets/leaflet.css"><script src="../assets/leaflet.js"></script>'
     body = (f'<h1>Ortsregister</h1><p class="meta">{len(places)} benannte Kastelle (Karten unten) plus '
@@ -339,8 +346,30 @@ def main():
                                          "label":v["label"],"text":p["text"]})
     json.dump(corpus, open(os.path.join(DOCS,"data","search.json"),"w",encoding="utf-8"), ensure_ascii=False)
 
+    # DARE-Kleinorte heuristisch an den Volltext binden (Toponym-Match, token-frei)
+    GENERIC = {"alteburg","altenburg","altes","oberburg","schanz","kapelle","kirche","mauer","graben",
+               "heide","feld","muehle","mühle","strasse","straße","wiese","brücke","bruecke","steinbruch"}
+    def site_terms(p):
+        out = set()
+        for src in (p.get("name",""), re.sub(r'^\*','', p.get("ancient",""))):
+            for tok in re.split(r"[\s/\-–,()]+", src or ""):
+                tok = tok.strip()
+                if len(tok) >= 6 and tok[:1].isalpha() and tok.lower() not in GENERIC: out.add(tok.lower())
+        return out
+    pages_low = [(c["vol"], c["tok"], c["text"].lower()) for c in corpus]
+    site_hits = {}
+    for f in sites:
+        p = f.get("properties", {}); ts = list(site_terms(p))
+        if not ts: continue
+        best = None
+        for x in ts:                          # spezifischsten Term wählen (= wenigste Treffer)
+            hh = [(v, t) for v, t, low in pages_low if x in low]
+            if hh and (best is None or len(hh) < len(best)): best = hh
+        if best: site_hits[p.get("id")] = best
+    print(f"DARE-Kleinorte mit Volltext-Treffern: {len(site_hits)}/{len(sites)}")
+
     open(os.path.join(DOCS,"register","persons.html"),"w",encoding="utf-8").write(page("Personenregister", persons_page(persons, occ, digs), 1))
-    plb, plh = places_page(places, occ, pname, str_by_id, sites)
+    plb, plh = places_page(places, occ, pname, str_by_id, sites, site_hits)
     open(os.path.join(DOCS,"register","places.html"),"w",encoding="utf-8").write(page("Ortsregister", plb, 1, plh))
     open(os.path.join(DOCS,"register","strecken.html"),"w",encoding="utf-8").write(page("Strecken", strecken_page(strecken, str_forts, persons, pname), 1))
     ib, ih = index_page(volumes)
