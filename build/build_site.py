@@ -175,7 +175,7 @@ def persons_page(persons, occ, digs):
             f'Korrespondenz, Nachlass, ausgegrabene Kastelle und Volltext-Fundstellen.</p>'
             f'<div class="cards">{"".join(cards)}</div>')
 
-def places_page(places, occ, pname, str_by_id):
+def places_page(places, occ, pname, str_by_id, sites):
     feats, cards = [], []
     for pl in sorted(places, key=lambda r: r["name"]):
         I = pl["idno"]
@@ -206,33 +206,64 @@ def places_page(places, occ, pname, str_by_id):
             feats.append({"name": pl["name"], "lat": float(pl["geo"][0]), "lng": float(pl["geo"][1]),
                           "orl": html.escape(I.get("ORL","")), "id": pl["id"],
                           "strecke": pl.get("strecke_name",""), "strecke_id": sid, "abschnitt": ab})
+    # Liste der weiteren Limesstellen (DARE), gruppiert nach Typ
+    by_type = {}
+    for s in sites:
+        p = s.get("properties", {}); by_type.setdefault(p.get("type", "?"), []).append(p)
+    tlabel = {"fortlet/tower": "Türme &amp; Kleinkastelle", "fort": "Forts / Kastelle", "camp": "Lager"}
+    secs = []
+    for t in ["fortlet/tower", "fort", "camp"]:
+        items = sorted(by_type.get(t, []), key=lambda p: p.get("name", ""))
+        if not items: continue
+        lis = []
+        for p in items:
+            anc = f' <i>{html.escape(p["ancient"])}</i>' if p.get("ancient") else ""
+            did = html.escape(str(p.get("id", "")))
+            dare = f' · <a href="https://imperium.ahlfeldt.se/places/{did}">DARE</a>' if did else ""
+            foc = f' <a href="#map" onclick="focusSite(\'{did}\')" title="auf der Karte zeigen">📍</a>' if did else ""
+            lis.append(f'<li>{html.escape(p.get("name", "?"))}{anc}{dare}{foc}</li>')
+        secs.append(f'<details><summary>{tlabel.get(t, t)} ({len(items)})</summary><ul class="sites">{"".join(lis)}</ul></details>')
+    sites_html = (f'<h2 id="weitere">Weitere Limesstellen — {len(sites)} (DARE)</h2>'
+                  '<p class="meta">Türme, Kleinkastelle und Lager <i>zwischen</i> den benannten Kastellen, '
+                  'je mit DARE-Datensatz und 📍 Karten-Fokus. Gazetteer-Stellen ohne RLK-Wachtposten-Nr. '
+                  '(diese ist über die <a href="../index.html#suche">Volltextsuche</a> auffindbar).</p>'
+                  + "".join(secs)) if sites else ""
     head = '<link rel="stylesheet" href="../assets/leaflet.css"><script src="../assets/leaflet.js"></script>'
-    body = (f'<h1>Ortsregister</h1><p class="meta">{len(places)} benannte Kastelle (Karten unten) — '
-            f'auf der Karte zuschaltbar: der <b>Limesverlauf</b> und die <b>weiteren Limesstellen</b> '
-            f'(Türme / Kleinkastelle / Lager zwischen den Kastellen, aus DARE). Filter nach Limes-Abschnitt.</p>'
+    body = (f'<h1>Ortsregister</h1><p class="meta">{len(places)} benannte Kastelle (Karten unten) plus '
+            f'{len(sites)} weitere Limesstellen — auf der Karte zuschaltbar: der <b>Limesverlauf</b> und die '
+            f'<b>weiteren Limesstellen</b> (Türme / Kleinkastelle / Lager, DARE). Filter nach Limes-Abschnitt.</p>'
             f'<div id="facets"></div><div id="map"></div>'
             f'<div class="cards">{"".join(cards)}</div>'
+            f'{sites_html}'
             f'<script>var MAPDATA={{"feats":{json.dumps(feats)}}};</script>'
             f'<script src="../assets/map.js"></script>')
     return body, head
 
-def strecken_page(strecken, str_forts, persons):
+def strecken_page(strecken, str_forts, persons, pname):
     cards = []
     for s in strecken:
         forts = str_forts.get(s["id"], [])
         fl = ", ".join(f'<a href="places.html#{f["id"]}">{html.escape(f["name"])}</a>' for f in forts) or '<span class="meta">—</span>'
         hay = (s["name"] + s["region"] + s["verlauf"] + s["abschnitt"]).lower()
         komm = [p for p in persons if p.get("strecke") and p["strecke"].lower() in hay]
+        dig_ids = []
+        for f in forts:
+            for d in f.get("diggers", []):
+                if d in pname and d not in dig_ids: dig_ids.append(d)
         meta = " · ".join(x for x in [html.escape(s["verlauf"]), html.escape(s["region"]), html.escape(s["abschnitt"])] if x)
         extra = f'<div class="x">⛏️ Kastelle: {fl}</div>'
         if forts: extra += f'<div class="x">🗺️ <a href="places.html?strecke={s["id"]}">Auf der Karte zeigen</a></div>'
-        if komm:
-            extra += '<div class="x">👤 Kommissar (Region): ' + ", ".join(
-                f'<a href="persons.html#{p["id"]}">{html.escape(p["name"])}</a>' for p in komm) + '</div>'
+        bet = []
+        if komm: bet.append("Kommissar (Region): " + ", ".join(
+            f'<a href="persons.html#{p["id"]}">{html.escape(p["name"])}</a>' for p in komm))
+        if dig_ids: bet.append("Ausgräber: " + ", ".join(
+            f'<a href="persons.html#{d}">{html.escape(pname[d])}</a>' for d in dig_ids))
+        if bet: extra += '<div class="x">👤 Beteiligte — ' + " · ".join(bet) + '</div>'
         cards.append(f'<article class="card wide" id="{s["id"]}"><div class="cbody">'
                      f'<h3>{html.escape(s["name"])}</h3><div class="role">{meta}</div>{extra}</div></article>')
-    return (f'<h1>Strecken</h1><p class="meta">{len(strecken)} Limes-Abschnitte mit ihren Kastellen und '
-            f'(regional zugeordneten) Streckenkommissaren.</p><div class="cards">{"".join(cards)}</div>')
+    return (f'<h1>Strecken</h1><p class="meta">{len(strecken)} Limes-Abschnitte mit Kastellen sowie den '
+            f'beteiligten Personen (Streckenkommissare regional zugeordnet, Ausgräber aus den Kastellen).</p>'
+            f'<div class="cards">{"".join(cards)}</div>')
 
 def index_page(volumes):
     lis = "".join(f'<li><a href="volumes/bd{v["nr"]}.html">{html.escape(v["label"])}</a> '
@@ -283,6 +314,8 @@ def main():
     strecken = load_strecken(os.path.join(REPO,"registers","strecken.xml"))
     str_by_id = {s["id"]: s for s in strecken}
     pname = {p["id"]: p["name"] for p in persons}
+    sp = os.path.join(REPO,"geo","sites.geojson")
+    sites = json.load(open(sp,encoding="utf-8")).get("features",[]) if os.path.exists(sp) else []
     digs, str_forts = defaultdict(list), defaultdict(list)   # Person→Orte (Ausgräber), Strecke→Orte
     for pl in places:
         for d in pl.get("diggers", []):
@@ -307,9 +340,9 @@ def main():
     json.dump(corpus, open(os.path.join(DOCS,"data","search.json"),"w",encoding="utf-8"), ensure_ascii=False)
 
     open(os.path.join(DOCS,"register","persons.html"),"w",encoding="utf-8").write(page("Personenregister", persons_page(persons, occ, digs), 1))
-    plb, plh = places_page(places, occ, pname, str_by_id)
+    plb, plh = places_page(places, occ, pname, str_by_id, sites)
     open(os.path.join(DOCS,"register","places.html"),"w",encoding="utf-8").write(page("Ortsregister", plb, 1, plh))
-    open(os.path.join(DOCS,"register","strecken.html"),"w",encoding="utf-8").write(page("Strecken", strecken_page(strecken, str_forts, persons), 1))
+    open(os.path.join(DOCS,"register","strecken.html"),"w",encoding="utf-8").write(page("Strecken", strecken_page(strecken, str_forts, persons, pname), 1))
     ib, ih = index_page(volumes)
     open(os.path.join(DOCS,"index.html"),"w",encoding="utf-8").write(page("Startseite", ib, 0, ih))
     print(f"docs/: index + {len(volumes)} Bände + 3 Register (Personen {len(persons)}, Orte {len(places)}, "

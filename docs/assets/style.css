@@ -34,6 +34,8 @@ table.reg th{font-size:.85rem;color:var(--muted);text-transform:uppercase;letter
 #facets label{cursor:pointer;white-space:nowrap} #facets .dot{font-size:1.1em}
 #facets .focusnote{flex-basis:100%;background:#fff8e6;border:1px solid #e0c200;border-radius:4px;padding:.2rem .5rem}
 .leaflet-popup-content{font:14px/1.45 Georgia,serif}
+.sites{columns:230px;list-style:none;padding:0;margin:.4rem 0;font-size:.86rem} .sites li{break-inside:avoid;margin:.12rem 0}
+details>summary{cursor:pointer;font-weight:bold;margin:.5rem 0 .2rem;font-size:.95rem}
 td.beleg{font-size:.85rem;line-height:1.7} td.beleg a{display:inline-block;margin:0 .05rem}
 /* Register-Karten */
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:1rem;margin-top:1rem}

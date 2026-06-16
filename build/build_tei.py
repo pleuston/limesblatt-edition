@@ -265,7 +265,7 @@ def write_geo(vault, places, outdir):
         if near(lat, lng): continue
         p = f.get("properties", {})
         feats.append({"type": "Feature", "geometry": {"type": "Point", "coordinates": [lng, lat]},
-            "properties": {"name": fix_moji(p.get("name", "")), "ancient": fix_moji(p.get("ancient", "")), "type": p.get("type", "")}})
+            "properties": {"id": p.get("id", ""), "name": fix_moji(p.get("name", "")), "ancient": fix_moji(p.get("ancient", "")), "type": p.get("type", "")}})
     json.dump({"type": "FeatureCollection", "features": feats},
               open(os.path.join(outdir, "sites.geojson"), "w", encoding="utf-8"), ensure_ascii=False)
     lines = [f for f in load("limes.geojson") if f.get("geometry", {}).get("type") in ("LineString", "MultiLineString")]

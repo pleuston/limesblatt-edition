@@ -49,19 +49,26 @@
 
   // 3) Weitere Limesstellen (DARE): Türme/Kleinkastelle/Lager zwischen den Kastellen
   var dareColor = { camp: "#8a8a8a", fort: "#8a6d3b" };  // sonst (fortlet/tower):
-  var siteLayer = L.layerGroup();
+  var siteLayer = L.layerGroup(), siteById = {};
   fetch("../data/sites.geojson").then(function (r) { return r.json(); }).then(function (gj) {
     L.geoJSON(gj, {
       pointToLayer: function (feat, latlng) {
         var p = feat.properties || {}, col = dareColor[p.type] || "#3f6f7a";
-        return L.circleMarker(latlng, { radius: 3, weight: 1, color: col, fillColor: col, fillOpacity: .65 })
-          .bindPopup("<b>" + (p.name || "") + "</b>" + (p.ancient ? "<br><i>" + p.ancient + "</i>" : "") +
-                     (p.type ? "<br>" + p.type : ""));
+        var pop = "<b>" + (p.name || "") + "</b>" + (p.ancient ? "<br><i>" + p.ancient + "</i>" : "") +
+          (p.type ? "<br>" + p.type : "") +
+          (p.id ? '<br><a href="https://imperium.ahlfeldt.se/places/' + p.id + '">DARE</a>' : "");
+        var mk = L.circleMarker(latlng, { radius: 3, weight: 1, color: col, fillColor: col, fillOpacity: .65 }).bindPopup(pop);
+        if (p.id) siteById[p.id] = mk;
+        return mk;
       }
     }).addTo(siteLayer);
-    var n = (gj.features || []).length;
-    addToggle("weitere Limesstellen · DARE (" + n + ")", "#3f6f7a", "○", siteLayer, true);
+    addToggle("weitere Limesstellen · DARE (" + (gj.features || []).length + ")", "#3f6f7a", "○", siteLayer, true);
   }).catch(function () {});
+  window.focusSite = function (id) {
+    var m = siteById[id]; if (!m) return false;
+    if (!map.hasLayer(siteLayer)) siteLayer.addTo(map);
+    map.setView(m.getLatLng(), 12); m.openPopup(); return false;
+  };
 
   // ?strecke= Fokus (nur benannte Kastelle)
   var focus = new URLSearchParams(location.search).get("strecke");
