@@ -250,7 +250,7 @@ def places_page(places, occ, pname, str_by_id, sites, site_hits):
             f'<script src="../assets/map.js"></script>')
     return body, head
 
-def strecken_page(strecken, str_forts, persons, pname):
+def strecken_page(strecken, str_forts, persons, pname, strecke_sites):
     cards = []
     for s in strecken:
         forts = str_forts.get(s["id"], [])
@@ -263,6 +263,13 @@ def strecken_page(strecken, str_forts, persons, pname):
                 if d in pname and d not in dig_ids: dig_ids.append(d)
         meta = " · ".join(x for x in [html.escape(s["verlauf"]), html.escape(s["region"]), html.escape(s["abschnitt"])] if x)
         extra = f'<div class="x">⛏️ Kastelle: {fl}</div>'
+        ds, seen_n = [], set()
+        for x in sorted(strecke_sites.get(s["id"], []), key=lambda x: x.get("name", "")):
+            n = x.get("name", "?")
+            if n not in seen_n: seen_n.add(n); ds.append(x)
+        if ds:
+            shown = ", ".join(f'<a href="places.html#dare_{html.escape(str(x.get("id","")))}">{html.escape(x.get("name","?"))}</a>' for x in ds[:24])
+            extra += f'<div class="x">○ Türme/Stellen (DARE, {len(ds)}): {shown}{" +"+str(len(ds)-24) if len(ds) > 24 else ""}</div>'
         if forts: extra += f'<div class="x">🗺️ <a href="places.html?strecke={s["id"]}">Auf der Karte zeigen</a></div>'
         bet = []
         if komm: bet.append("Kommissar (Region): " + ", ".join(
@@ -272,8 +279,10 @@ def strecken_page(strecken, str_forts, persons, pname):
         if bet: extra += '<div class="x">👤 Beteiligte — ' + " · ".join(bet) + '</div>'
         cards.append(f'<article class="card wide" id="{s["id"]}"><div class="cbody">'
                      f'<h3>{html.escape(s["name"])}</h3><div class="role">{meta}</div>{extra}</div></article>')
-    return (f'<h1>Strecken</h1><p class="meta">{len(strecken)} Limes-Abschnitte mit Kastellen sowie den '
-            f'beteiligten Personen (Streckenkommissare regional zugeordnet, Ausgräber aus den Kastellen).</p>'
+    return (f'<h1>Strecken</h1><p class="meta">{len(strecken)} Limes-Abschnitte mit Kastellen, beteiligten '
+            f'Personen (Kommissare regional, Ausgräber aus den Kastellen) und den DARE-Stellen entlang der Linie. '
+            f'Letztere sind dem <i>nächstgelegenen verankerten Kastell</i> (≤ ~22 km) zugeordnet — Abschnitte ohne '
+            f'eigenes Kastell bleiben hier leer (ihre Stellen erscheinen weiter auf der Karte und im Ortsregister).</p>'
             f'<div class="cards">{"".join(cards)}</div>')
 
 def index_page(volumes):
@@ -327,6 +336,24 @@ def main():
     pname = {p["id"]: p["name"] for p in persons}
     sp = os.path.join(REPO,"geo","sites.geojson")
     sites = json.load(open(sp,encoding="utf-8")).get("features",[]) if os.path.exists(sp) else []
+    # DARE-Stelle → Strecke des nächstgelegenen (strecke-verankerten) Kastells (cos-gewichtet, Cap ~40 km)
+    anchors = []
+    for pl in places:
+        if pl.get("strecke_id") and len(pl.get("geo") or []) == 2:
+            try: la, lo = float(pl["geo"][0]), float(pl["geo"][1]); anchors.append((la, lo, pl["strecke_id"]))
+            except ValueError: pass
+    dare_strecke, strecke_sites = {}, defaultdict(list)
+    for f in sites:
+        g = f.get("geometry", {}); pr = f.get("properties", {})
+        if g.get("type") != "Point" or not anchors: continue
+        lo, la = g["coordinates"][:2]
+        best, bd = None, 1e9
+        for ala, alo, sid in anchors:
+            d = (la - ala) ** 2 + (lo - alo) ** 2 * 0.42
+            if d < bd: bd, best = d, sid
+        if best is not None and bd <= 0.20 ** 2:        # ~22 km: nur konfident nahe Stellen
+            dare_strecke[pr.get("id")] = best; strecke_sites[best].append(pr)
+    print(f"DARE-Stellen einer Strecke zugeordnet: {len(dare_strecke)}/{len(sites)} ({len(strecke_sites)} Strecken)")
     digs, str_forts = defaultdict(list), defaultdict(list)   # Person→Orte (Ausgräber), Strecke→Orte
     for pl in places:
         for d in pl.get("diggers", []):
@@ -360,7 +387,7 @@ def main():
     open(os.path.join(DOCS,"register","persons.html"),"w",encoding="utf-8").write(page("Personenregister", persons_page(persons, occ, digs), 1))
     plb, plh = places_page(places, occ, pname, str_by_id, sites, dare_hits)
     open(os.path.join(DOCS,"register","places.html"),"w",encoding="utf-8").write(page("Ortsregister", plb, 1, plh))
-    open(os.path.join(DOCS,"register","strecken.html"),"w",encoding="utf-8").write(page("Strecken", strecken_page(strecken, str_forts, persons, pname), 1))
+    open(os.path.join(DOCS,"register","strecken.html"),"w",encoding="utf-8").write(page("Strecken", strecken_page(strecken, str_forts, persons, pname, strecke_sites), 1))
     ib, ih = index_page(volumes)
     open(os.path.join(DOCS,"index.html"),"w",encoding="utf-8").write(page("Startseite", ib, 0, ih))
     print(f"docs/: index + {len(volumes)} Bände + 3 Register (Personen {len(persons)}, Orte {len(places)}, "
