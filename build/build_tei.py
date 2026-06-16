@@ -13,7 +13,7 @@ Diplomatische, unkorrigierte Wiedergabe der Fraktur-OCR; Inline-Eigennamen trage
 
     python3 build/build_tei.py [--vault /pfad/zum/limes]
 """
-import argparse, glob, os, re, sys, unicodedata
+import argparse, glob, json, os, re, sys, unicodedata
 from xml.sax.saxutils import escape, quoteattr
 
 HERE  = os.path.dirname(os.path.abspath(__file__))
@@ -238,6 +238,41 @@ def write_strecken(strecken, path):
     L.append('</listPlace></standOff></TEI>')
     open(path, "w", encoding="utf-8").write("\n".join(L))
 
+def fix_moji(s):
+    if s and ("Ã" in s or "Â" in s):
+        for enc in ("cp1252", "latin-1"):
+            try: return s.encode(enc).decode("utf-8")
+            except Exception: pass
+    return s
+
+def write_geo(vault, places, outdir):
+    """Aus dem Vault: DARE-Limesstellen (Türme/Kleinkastelle/Lager zwischen den Kastellen,
+    entdoppelt gegen die benannten Kastelle) + Limesverlauf-Linie → geo/*.geojson."""
+    os.makedirs(outdir, exist_ok=True)
+    named = []
+    for pl in places:
+        try: lat, lng = pl["geo"].split(); named.append((float(lat), float(lng)))
+        except Exception: pass
+    near = lambda la, lo: any(abs(la-a) < 0.006 and abs(lo-b) < 0.006 for a, b in named)
+    def load(fn):
+        try: return json.load(open(os.path.join(vault, "tools", fn), encoding="utf-8")).get("features", [])
+        except Exception: return []
+    feats = []
+    for f in load("limes_dare.geojson"):
+        g = f.get("geometry", {})
+        if g.get("type") != "Point": continue
+        lng, lat = g["coordinates"][:2]
+        if near(lat, lng): continue
+        p = f.get("properties", {})
+        feats.append({"type": "Feature", "geometry": {"type": "Point", "coordinates": [lng, lat]},
+            "properties": {"name": fix_moji(p.get("name", "")), "ancient": fix_moji(p.get("ancient", "")), "type": p.get("type", "")}})
+    json.dump({"type": "FeatureCollection", "features": feats},
+              open(os.path.join(outdir, "sites.geojson"), "w", encoding="utf-8"), ensure_ascii=False)
+    lines = [f for f in load("limes.geojson") if f.get("geometry", {}).get("type") in ("LineString", "MultiLineString")]
+    json.dump({"type": "FeatureCollection", "features": lines},
+              open(os.path.join(outdir, "limes-line.geojson"), "w", encoding="utf-8"), ensure_ascii=False)
+    return len(feats), len(lines)
+
 # ---------- Band-XML ----------
 def header(slug_, label):
     return f"""<teiHeader><fileDesc>
@@ -289,6 +324,7 @@ def main():
     write_persons(persons, os.path.join(REPO, "registers", "persons.xml"))
     write_places(places,  os.path.join(REPO, "registers", "places.xml"))
     write_strecken(strecken, os.path.join(REPO, "registers", "strecken.xml"))
+    ngeo, nline = write_geo(vault, places, os.path.join(REPO, "geo"))
     terms = build_terms(persons, places)
     pids = {p["id"] for p in persons}
     dig = sum(1 for pl in places if pl["diggers"])
@@ -297,6 +333,7 @@ def main():
     print(f"Ausgräber: {dig} Kastelle verknüpft ({dig_ok} Personen-Refs aufgelöst) | "
           f"Porträts: {sum(1 for p in persons if p['portrait'])}P/{sum(1 for pl in places if pl['portrait'])}O | "
           f"EDH-Zahlen: {sum(1 for pl in places if pl['edh'])} | Strecke-Refs: {sum(1 for pl in places if pl['strecke_id'])}")
+    print(f"Geo: {ngeo} DARE-Stellen (entdoppelt) + {nline} Verlaufslinie(n) → geo/")
     tot = 0
     for slug_, label, nr in WORKS:
         if not os.path.isdir(os.path.join(vault, "tools", ".cache", slug_)):

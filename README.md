@@ -11,6 +11,7 @@ Eine **statische digitale Edition** des *Limesblatt* (1892–1903) — der „Mi
 - **IIIF-Faksimile** je Seite über das Manifest der UB Heidelberg (Deep-Zoom via OpenSeadragon).
 - **Personen-, Orts- und Streckenregister:** Personen (43) mit GND/Wikidata, **Porträts**, Korrespondenz (Kalliope, mit Briefzahlen) und Nachlass; Orte (17, mit **nach Limes-Abschnitt filterbarer Karte**) mit Kastelltyp, ORL-Nummer, **EDH-Inschriften** und **Ausgräber**; Strecken (15) mit ihren Kastellen, Kommissaren und „Auf der Karte zeigen".
 - **Personen ↔ Orte verknüpft** über die Ausgräber-Relation (wer welches Kastell grub, in beide Richtungen). Register und Volltext sind **bidirektional verlinkt** (Eintrag → Fundstellen und zurück).
+- **Karte mit Ebenen:** die benannten Kastelle (nach Limes-Abschnitt filterbar), der **Limesverlauf** und die **weiteren Limesstellen** — Türme, Kleinkastelle und Lager *zwischen* den Kastellen (aus DARE, 204; gegen die benannten Kastelle entdoppelt) — als zuschaltbare Layer.
 - **Inline-Auszeichnung** von Personen/Orten im Text (heuristisch, `@cert="low"`), verlinkt in die Register.
 - **Clientseitige Volltextsuche** über alle Seiten.
 
@@ -42,4 +43,4 @@ python3 build/build_site.py
 - Eine Kachel = eine **Doppelseite**; `<pb n="…">` führt das gedruckte Seiten-/Kachel-Token (Faksimile-treu).
 
 ## Dank
-Faksimiles: **UB Heidelberg** (IIIF). Normdaten: **GND/DNB**, **Wikidata**, **iDAI.gazetteer (DAI)**, **Pleiades**. Viewer: OpenSeadragon, Leaflet, MiniSearch.
+Faksimiles: **UB Heidelberg** (IIIF). Normdaten: **GND/DNB**, **Wikidata**, **iDAI.gazetteer (DAI)**, **Pleiades**. Limesstellen & -verlauf: **DARE** (Digital Atlas of the Roman Empire, CC BY) und **OpenStreetMap** (ODbL). Viewer: OpenSeadragon, Leaflet, MiniSearch.

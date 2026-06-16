@@ -207,8 +207,9 @@ def places_page(places, occ, pname, str_by_id):
                           "orl": html.escape(I.get("ORL","")), "id": pl["id"],
                           "strecke": pl.get("strecke_name",""), "strecke_id": sid, "abschnitt": ab})
     head = '<link rel="stylesheet" href="../assets/leaflet.css"><script src="../assets/leaflet.js"></script>'
-    body = (f'<h1>Ortsregister</h1><p class="meta">{len(places)} verortete Orte — Karte (nach Limes-Abschnitt '
-            f'filterbar), Normdaten, Kastelltyp, Ausgräber, Inschriften und Volltext-Fundstellen.</p>'
+    body = (f'<h1>Ortsregister</h1><p class="meta">{len(places)} benannte Kastelle (Karten unten) — '
+            f'auf der Karte zuschaltbar: der <b>Limesverlauf</b> und die <b>weiteren Limesstellen</b> '
+            f'(Türme / Kleinkastelle / Lager zwischen den Kastellen, aus DARE). Filter nach Limes-Abschnitt.</p>'
             f'<div id="facets"></div><div id="map"></div>'
             f'<div class="cards">{"".join(cards)}</div>'
             f'<script>var MAPDATA={{"feats":{json.dumps(feats)}}};</script>'
@@ -274,6 +275,7 @@ def main():
     # TEI/Register zum Download/Reuse mitkopieren
     for f in glob.glob(os.path.join(REPO,"tei","*.xml")): shutil.copy(f, os.path.join(DOCS,"tei"))
     for f in glob.glob(os.path.join(REPO,"registers","*.xml")): shutil.copy(f, os.path.join(DOCS,"registers"))
+    for f in glob.glob(os.path.join(REPO,"geo","*.geojson")): shutil.copy(f, os.path.join(DOCS,"data"))
 
     volumes = sorted((load_volume(f) for f in glob.glob(os.path.join(REPO,"tei","*.xml"))), key=lambda v: v["nr"])
     persons = load_register(os.path.join(REPO,"registers","persons.xml"), "person")
