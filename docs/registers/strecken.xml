@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="register-strecken"><teiHeader><fileDesc>
+<titleStmt><title>Streckenregister — Limesblatt-Edition</title></titleStmt>
+<publicationStmt><availability status="free"><licence target="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</licence></availability></publicationStmt>
+<sourceDesc><p>Generiert aus dem RLK-Vault-Frontmatter (Orte/Strecken/).</p></sourceDesc>
+</fileDesc></teiHeader><standOff><listPlace>
+<place type="strecke" xml:id="str_strecke_01_rheinbrohlbad_ems">
+<placeName>Strecke 01 – Rheinbrohl–Bad Ems</placeName>
+<desc type="verlauf">Rheinbrohl–Bad Ems</desc>
+<region>Preußen (Rheinprovinz) / Hessen-Nassau</region>
+<desc type="abschnitt">Obergermanischer Limes</desc>
+<idno type="nummer">1</idno>
+</place>
+<place type="strecke" xml:id="str_strecke_02_bad_emsadolfseck">
+<placeName>Strecke 02 – Bad Ems–Adolfseck</placeName>
+<desc type="verlauf">Bad Ems–Adolfseck</desc>
+<region>Hessen-Nassau</region>
+<desc type="abschnitt">Obergermanischer Limes</desc>
+<idno type="nummer">2</idno>
+</place>
+<place type="strecke" xml:id="str_strecke_03_adolfseckkopperner_tal">
+<placeName>Strecke 03 – Adolfseck–Köpperner Tal</placeName>
+<desc type="verlauf">Adolfseck–Köpperner Tal</desc>
+<region>Taunus, Hessen-Nassau</region>
+<desc type="abschnitt">Obergermanischer Limes</desc>
+<idno type="nummer">3</idno>
+</place>
+<place type="strecke" xml:id="str_strecke_04_kopperner_talmarkobel">
+<placeName>Strecke 04 – Köpperner Tal–Marköbel</placeName>
+<desc type="verlauf">Köpperner Tal–Marköbel</desc>
+<region>Wetterau, Hessen / Hessen-Nassau</region>
+<desc type="abschnitt">Obergermanischer Limes</desc>
+<idno type="nummer">4</idno>
+</place>
+<place type="strecke" xml:id="str_strecke_05_markobelgro_krotzenburg">
+<placeName>Strecke 05 – Marköbel–Groß-Krotzenburg</placeName>
+<desc type="verlauf">Marköbel–Groß-Krotzenburg</desc>
+<region>Hessen-Nassau</region>
+<desc type="abschnitt">Obergermanischer Limes</desc>
+<idno type="nummer">5</idno>
+</place>
+<place type="strecke" xml:id="str_strecke_06_main_linie_seligenstadtmiltenberg">
+<placeName>Strecke 06 – Main-Linie (Seligenstadt–Miltenberg)</placeName>
+<desc type="verlauf">Seligenstadt–Miltenberg</desc>
+<region>Hessen / Bayern</region>
+<desc type="abschnitt">Obergermanischer Limes</desc>
+<idno type="nummer">6</idno>
+</place>
+<place type="strecke" xml:id="str_strecke_07_miltenbergrehberg">
+<placeName>Strecke 07 – Miltenberg–Rehberg</placeName>
+<desc type="verlauf">Miltenberg–Rehberg</desc>
+<region>Bayern / Baden</region>
+<desc type="abschnitt">Obergermanischer Limes</desc>
+<idno type="nummer">7</idno>
+</place>
+<place type="strecke" xml:id="str_strecke_08_rehbergjagsthausen_odenwaldlinie">
+<placeName>Strecke 08 – Rehberg–Jagsthausen (Odenwaldlinie)</placeName>
+<desc type="verlauf">Rehberg–Jagsthausen</desc>
+<region>Baden / Württemberg</region>
+<desc type="abschnitt">Obergermanischer Limes</desc>
+<idno type="nummer">8</idno>
+</place>
+<place type="strecke" xml:id="str_strecke_09_jagsthausenhaghof">
+<placeName>Strecke 09 – Jagsthausen–Haghof</placeName>
+<desc type="verlauf">Jagsthausen–Haghof</desc>
+<region>Württemberg</region>
+<desc type="abschnitt">Obergermanischer Limes</desc>
+<idno type="nummer">9</idno>
+</place>
+<place type="strecke" xml:id="str_strecke_10_worthbad_wimpfen_altere_odenwaldlinie">
+<placeName>Strecke 10 – Wörth–Bad Wimpfen (Ältere Odenwaldlinie)</placeName>
+<desc type="verlauf">Wörth–Bad Wimpfen</desc>
+<region>Bayern / Baden</region>
+<desc type="abschnitt">Obergermanischer Limes</desc>
+<idno type="nummer">10</idno>
+</place>
+<place type="strecke" xml:id="str_strecke_11_bad_wimpfenkongen_neckarlinie">
+<placeName>Strecke 11 – Bad Wimpfen–Köngen (Neckarlinie)</placeName>
+<desc type="verlauf">Bad Wimpfen–Köngen</desc>
+<region>Württemberg</region>
+<desc type="abschnitt">Obergermanischer Limes</desc>
+<idno type="nummer">11</idno>
+</place>
+<place type="strecke" xml:id="str_strecke_12_haghoflorchaalenmonchsroth">
+<placeName>Strecke 12 – Haghof–Lorch–Aalen–Mönchsroth</placeName>
+<desc type="verlauf">Haghof–Lorch–Aalen–Mönchsroth</desc>
+<region>Württemberg</region>
+<desc type="abschnitt">Raetischer Limes</desc>
+<idno type="nummer">12</idno>
+</place>
+<place type="strecke" xml:id="str_strecke_13_monchsrothgunzenhausen">
+<placeName>Strecke 13 – Mönchsroth–Gunzenhausen</placeName>
+<desc type="verlauf">Mönchsroth–Gunzenhausen</desc>
+<region>Bayern</region>
+<desc type="abschnitt">Raetischer Limes</desc>
+<idno type="nummer">13</idno>
+</place>
+<place type="strecke" xml:id="str_strecke_14_gunzenhausenkipfenberg">
+<placeName>Strecke 14 – Gunzenhausen–Kipfenberg</placeName>
+<desc type="verlauf">Gunzenhausen–Kipfenberg</desc>
+<region>Bayern</region>
+<desc type="abschnitt">Raetischer Limes</desc>
+<idno type="nummer">14</idno>
+</place>
+<place type="strecke" xml:id="str_strecke_15_kipfenbergeining">
+<placeName>Strecke 15 – Kipfenberg–Eining</placeName>
+<desc type="verlauf">Kipfenberg–Eining</desc>
+<region>Bayern</region>
+<desc type="abschnitt">Raetischer Limes</desc>
+<idno type="nummer">15</idno>
+</place>
+</listPlace></standOff></TEI>

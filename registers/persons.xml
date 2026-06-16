@@ -10,6 +10,8 @@
 <death when="1943"/>
 <occupation>Archäologe</occupation>
 <idno type="GND">120459930</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd120459930.html</idno>
+<note type="nachlass">Stadtarchiv Hannover</note>
 </person>
 <person xml:id="p_christian_ernst_hanelmann">
 <persName>Christian Ernst Hanßelmann</persName>
@@ -20,6 +22,12 @@
 <occupation>Pionier der wissenschaftlichen Limesforschung</occupation>
 <idno type="GND">118979221</idno>
 <idno type="Wikidata">Q1079435</idno>
+<residence>Öhringen (Hohenlohe)</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Hansselmann%2C%20Christian%20Ernst.jpg?width=400</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd118979221.html</idno>
+<idno type="Kalliope">118979221</idno>
+<note type="briefe" n="4/4"/>
+<note type="nachlass">Münchner Stadtbibliothek / Monacensia</note>
 </person>
 <person xml:id="p_eduard_anthes">
 <persName>Eduard Anthes</persName>
@@ -27,6 +35,7 @@
 <death when="1922"/>
 <occupation>Prähistoriker</occupation>
 <idno type="GND">116312696</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116312696.html</idno>
 </person>
 <person xml:id="p_eduard_paulus">
 <persName>Eduard Paulus</persName>
@@ -37,6 +46,12 @@
 <occupation>Württembergischer Vertreter bei der Heidelberger Konferenz 1890</occupation>
 <idno type="GND">116066342</idno>
 <idno type="Wikidata">Q98794</idno>
+<residence>Stuttgart</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Paulus%20eduard%20juengere.jpg?width=400</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116066342.html</idno>
+<idno type="Kalliope">116066342</idno>
+<note type="briefe" n="307/525"/>
+<note type="nachlass">Deutsches Literaturarchiv Marbach, Archiv</note>
 </person>
 <person xml:id="p_emil_ritterling">
 <persName>Emil Ritterling</persName>
@@ -47,6 +62,11 @@
 <occupation>Streckenkommissar der RLK, ORL-Autor</occupation>
 <idno type="GND">116573589</idno>
 <idno type="Wikidata">Q110295</idno>
+<residence>Wiesbaden, Taunus</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Emil%20Ritterling01.jpg?width=400</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116573589.html</idno>
+<idno type="Kalliope">116573589</idno>
+<note type="briefe" n="12/0"/>
 </person>
 <person xml:id="p_ernst_fabricius">
 <persName>Ernst Fabricius</persName>
@@ -55,6 +75,11 @@
 <occupation>Archäologischer Dirigent der RLK ab 1902; Haupt-Herausgeber des ORL</occupation>
 <idno type="GND">116369957</idno>
 <idno type="Wikidata">Q91901</idno>
+<residence>Universität Freiburg im Breisgau</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Ernst%20Fabricius%20-%20Arch%C3%A4ologe.jpg?width=400</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116369957.html</idno>
+<idno type="Kalliope">116369957</idno>
+<note type="briefe" n="52/2"/>
 </person>
 <person xml:id="p_ernst_wagner">
 <persName>Ernst Wagner</persName>
@@ -64,6 +89,11 @@
 <occupation>Badischer Vertreter bei der Heidelberger Konferenz 1890, RLK-Mitglied</occupation>
 <idno type="GND">103148442</idno>
 <idno type="Wikidata">Q1360482</idno>
+<residence>Karlsruhe</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Ernst%20Wagner%20Archaeologist.jpg?width=400</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd103148442.html</idno>
+<idno type="Kalliope">103148442</idno>
+<note type="briefe" n="28/2"/>
 </person>
 <person xml:id="p_ernst_von_herzog">
 <persName>Ernst von Herzog</persName>
@@ -72,6 +102,13 @@
 <occupation>Streckenkommissar Württemberg der RLK 1892–1911</occupation>
 <idno type="GND">116762314</idno>
 <idno type="Wikidata">Q1358647</idno>
+<residence>Universität Tübingen</residence>
+<state type="strecke"><label>Württemberg</label></state>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Ernst%20Herzog.jpg?width=400</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116762314.html</idno>
+<idno type="Kalliope">116762314</idno>
+<note type="briefe" n="25/8"/>
+<note type="nachlass">Deutsches Literaturarchiv Marbach, Archiv</note>
 </person>
 <person xml:id="p_felix_hettner">
 <persName>Felix Hettner</persName>
@@ -80,6 +117,11 @@
 <occupation>Erster archäologischer Dirigent der RLK 1892–1902</occupation>
 <idno type="GND">116779209</idno>
 <idno type="Wikidata">Q1403518</idno>
+<residence>Rheinisches Landesmuseum Trier</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116779209.html</idno>
+<idno type="Kalliope">116779209</idno>
+<note type="briefe" n="66/8"/>
+<note type="nachlass">Universitäts- und Landesbibliothek Bonn</note>
 </person>
 <person xml:id="p_friedrich_althoff">
 <persName>Friedrich Althoff</persName>
@@ -88,6 +130,12 @@
 <occupation>Preußischer Wissenschaftsorganisator, RLK-Mitglied ab 1892</occupation>
 <idno type="GND">118644890</idno>
 <idno type="Wikidata">Q108423</idno>
+<residence>Berlin</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Fredrich%20Althoff.jpg?width=400</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd118644890.html</idno>
+<idno type="Kalliope">118644890</idno>
+<note type="briefe" n="306/203"/>
+<note type="nachlass">Staatsbibliothek zu Berlin. Handschriftenabteilung</note>
 </person>
 <person xml:id="p_friedrich_drexel">
 <persName>Friedrich Drexel</persName>
@@ -97,6 +145,10 @@
 <occupation>ORL-Autor, Direktor der RGK</occupation>
 <idno type="GND">116219866</idno>
 <idno type="Wikidata">Q18020298</idno>
+<residence>Freiburg im Breisgau, Frankfurt am Main</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116219866.html</idno>
+<idno type="Kalliope">116219866</idno>
+<note type="briefe" n="41/1"/>
 </person>
 <person xml:id="p_friedrich_kofler">
 <persName>Friedrich Kofler</persName>
@@ -106,6 +158,10 @@
 <occupation>Hessischer Streckenkommissar der Reichs-Limeskommission</occupation>
 <idno type="GND">117530824</idno>
 <idno type="Wikidata">Q1460478</idno>
+<residence>Bad Homburg / Hessen</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd117530824.html</idno>
+<idno type="Kalliope">117530824</idno>
+<note type="briefe" n="0/0"/>
 </person>
 <person xml:id="p_friedrich_leonhard">
 <persName>Friedrich Leonhard</persName>
@@ -113,6 +169,7 @@
 <birth when="1868"/>
 <death when="1937"/>
 <occupation>ORL-Autor und Mitredaktor, Streckenbearbeiter für Bayern</occupation>
+<residence>Bayern / Berlin</residence>
 </person>
 <person xml:id="p_friedrich_ohlenschlager">
 <persName>Friedrich Ohlenschlager</persName>
@@ -120,6 +177,8 @@
 <death when="1916"/>
 <occupation>Klassischer Philologe</occupation>
 <idno type="GND">117111368</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd117111368.html</idno>
+<note type="nachlass">Bayerische Staatsbibliothek</note>
 </person>
 <person xml:id="p_friedrich_zollmann">
 <persName>Friedrich Zollmann</persName>
@@ -129,6 +188,10 @@
 <occupation>Früher Kartograf des Limes</occupation>
 <idno type="GND">130833568</idno>
 <idno type="Wikidata">Q1463506</idno>
+<residence>Gotha, Weimar</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd130833568.html</idno>
+<idno type="Kalliope">130833568</idno>
+<note type="briefe" n="2/0"/>
 </person>
 <person xml:id="p_georg_loeschcke">
 <persName>Georg Loeschcke</persName>
@@ -136,6 +199,8 @@
 <death when="1915"/>
 <occupation>Archäologe</occupation>
 <idno type="GND">117155896</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd117155896.html</idno>
+<note type="nachlass">Universitäts- und Landesbibliothek Bonn</note>
 </person>
 <person xml:id="p_georg_wolff">
 <persName>Georg Wolff</persName>
@@ -145,6 +210,10 @@
 <occupation>Streckenkommissar der RLK, Wetterau-Forscher, ORL-Autor</occupation>
 <idno type="GND">117440647</idno>
 <idno type="Wikidata">Q1506482</idno>
+<residence>Frankfurt am Main, Wetterau</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd117440647.html</idno>
+<idno type="Kalliope">117440647</idno>
+<note type="briefe" n="5/0"/>
 </person>
 <person xml:id="p_gustav_sixt">
 <persName>Gustav Sixt</persName>
@@ -152,6 +221,7 @@
 <death when="1904"/>
 <occupation>Pädagoge</occupation>
 <idno type="GND">10151106X</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd10151106X.html</idno>
 </person>
 <person xml:id="p_heinrich_eidam">
 <persName>Heinrich Eidam</persName>
@@ -161,6 +231,10 @@
 <occupation>Streckenkommissar der RLK für den raetischen Limes (Bereich Gunzenhausen–Weißenburg)</occupation>
 <idno type="GND">117497908</idno>
 <idno type="Wikidata">Q1597131</idno>
+<residence>Gunzenhausen, Weißenburg (Bayern)</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd117497908.html</idno>
+<idno type="Kalliope">117497908</idno>
+<note type="briefe" n="3/0"/>
 </person>
 <person xml:id="p_heinrich_jacobi">
 <persName>Heinrich Jacobi</persName>
@@ -169,6 +243,11 @@
 <occupation>Streckenkommissar; Direktor des Saalburg-Museums; Grabungsleiter Kastell Zugmantel</occupation>
 <idno type="GND">118957236</idno>
 <idno type="Wikidata">Q1597855</idno>
+<residence>Römerkastell Saalburg; Bad Homburg vor der Höhe</residence>
+<state type="strecke"><label>Taunus</label></state>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd118957236.html</idno>
+<idno type="Kalliope">118957236</idno>
+<note type="briefe" n="4/0"/>
 </person>
 <person xml:id="p_heinrich_nissen">
 <persName>Heinrich Nissen</persName>
@@ -177,6 +256,11 @@
 <occupation>Preußischer Vertreter bei der Heidelberger Konferenz 1890, Mitbegründer der RLK</occupation>
 <idno type="GND">117022829</idno>
 <idno type="Wikidata">Q75757</idno>
+<residence>Bonn</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/K%C3%BCppers%20Nissen%20Bonn.jpg?width=400</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd117022829.html</idno>
+<idno type="Kalliope">117022829</idno>
+<note type="briefe" n="95/0"/>
 </person>
 <person xml:id="p_heinrich_steimle">
 <persName>Heinrich Steimle</persName>
@@ -184,6 +268,8 @@
 <death when="1907"/>
 <occupation>Streckenkommissar Württemberg (Strecke 12); Grabungsleiter Kastell Aalen</occupation>
 <idno type="Wikidata">Q1565759</idno>
+<residence>Württemberg / Kastell Aalen</residence>
+<state type="strecke"><label>Württemberg (Strecke 12)</label></state>
 </person>
 <person xml:id="p_heinrich_von_brunn">
 <persName>Heinrich von Brunn</persName>
@@ -192,6 +278,12 @@
 <occupation>Stellvertretender Vorsitzender der RLK; Mommsens Schlüsselkontakt für die Heidelberger Konferenz 1890</occupation>
 <idno type="GND">116777273</idno>
 <idno type="Wikidata">Q63044</idno>
+<residence>Universität München; Glyptothek München</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Heinrich%20Brunn%20-%20Imagines%20philologorum.jpg?width=400</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116777273.html</idno>
+<idno type="Kalliope">116777273</idno>
+<note type="briefe" n="617/7470"/>
+<note type="nachlass">Bayerische Staatsbibliothek</note>
 </person>
 <person xml:id="p_johann_alexander_doderlein">
 <persName>Johann Alexander Döderlein</persName>
@@ -201,6 +293,11 @@
 <occupation>Erster wissenschaftlicher Limes-Interpret</occupation>
 <idno type="GND">121988511</idno>
 <idno type="Wikidata">Q49698</idno>
+<residence>Weißenburg am Sand (Franken)</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Johann%20Alexander%20D%C3%B6derlein.jpg?width=400</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd121988511.html</idno>
+<idno type="Kalliope">121988511</idno>
+<note type="briefe" n="2/0"/>
 </person>
 <person xml:id="p_johannes_aventinus">
 <persName>Johannes Aventinus</persName>
@@ -211,6 +308,11 @@
 <occupation>Frühneuzeitlicher Limes-Erstdokumentierer</occupation>
 <idno type="GND">11850522X</idno>
 <idno type="Wikidata">Q61140</idno>
+<residence>Bayern (Abensberg, München, Regensburg)</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Johannes%20Aventinus.png?width=400</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd11850522X.html</idno>
+<idno type="Kalliope">11850522X</idno>
+<note type="briefe" n="15/0"/>
 </person>
 <person xml:id="p_karl_august_von_cohausen">
 <persName>Karl August von Cohausen</persName>
@@ -219,6 +321,12 @@
 <occupation>Pionier der Limesforschung, preußisches RLK-Mitglied 1892</occupation>
 <idno type="GND">116627824</idno>
 <idno type="Wikidata">Q1730391</idno>
+<residence>Wiesbaden / Saalburg</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Karl%20August%20von%20Cohausen%202.jpg?width=400</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116627824.html</idno>
+<idno type="Kalliope">116627824</idno>
+<note type="briefe" n="20/5"/>
+<note type="nachlass">Freies Deutsches Hochstift - Frankfurter Goethe-Museum</note>
 </person>
 <person xml:id="p_karl_popp">
 <persName>Karl Popp</persName>
@@ -227,6 +335,7 @@
 <birth when="1825"/>
 <death when="1905"/>
 <occupation>Bayerisches Mitglied im geschäftsführenden Ausschuss der RLK ab 1892</occupation>
+<residence>Bayern / München</residence>
 </person>
 <person xml:id="p_karl_schumacher">
 <persName>Karl Schumacher</persName>
@@ -235,6 +344,12 @@
 <occupation>Streckenkommissar Baden der RLK; erster Direktor des RGZM Mainz</occupation>
 <idno type="GND">118795597</idno>
 <idno type="Wikidata">Q99568</idno>
+<residence>Römisch-Germanisches Zentralmuseum Mainz</residence>
+<state type="strecke"><label>Baden</label></state>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd118795597.html</idno>
+<idno type="Kalliope">118795597</idno>
+<note type="briefe" n="19/13"/>
+<note type="nachlass">Universitätsbibliothek Heidelberg</note>
 </person>
 <person xml:id="p_karl_zangemeister">
 <persName>Karl Zangemeister</persName>
@@ -243,6 +358,12 @@
 <occupation>Leiter des geschäftsführenden Ausschusses der RLK; Archivar und Epigraphiker</occupation>
 <idno type="GND">116964022</idno>
 <idno type="Wikidata">Q1733509</idno>
+<residence>Universitätsbibliothek Heidelberg</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Karl%20Zangemeister%20%28HeidICON%2053043%29%20%28cropped%29.jpg?width=400</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116964022.html</idno>
+<idno type="Kalliope">116964022</idno>
+<note type="briefe" n="205/94"/>
+<note type="nachlass">Universitätsbibliothek Heidelberg</note>
 </person>
 <person xml:id="p_konrad_miller">
 <persName>Konrad Miller</persName>
@@ -250,6 +371,7 @@
 <death when="1933"/>
 <occupation>Kartograf</occupation>
 <idno type="GND">117043486</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd117043486.html</idno>
 </person>
 <person xml:id="p_louis_jacobi">
 <persName>Louis Jacobi</persName>
@@ -258,6 +380,13 @@
 <occupation>Streckenkommissar Taunus; Erforschung und Rekonstruktion des Kastells Saalburg</occupation>
 <idno type="GND">11703861X</idno>
 <idno type="Wikidata">Q1871745</idno>
+<residence>Bad Homburg vor der Höhe; Saalburg</residence>
+<state type="strecke"><label>Taunus</label></state>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Louis%20Jacobi.jpg?width=400</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd11703861X.html</idno>
+<idno type="Kalliope">11703861X</idno>
+<note type="briefe" n="5/5"/>
+<note type="nachlass">Staatsbibliothek zu Berlin. Handschriftenabteilung</note>
 </person>
 <person xml:id="p_ludwig_pallat">
 <persName>Ludwig Pallat</persName>
@@ -265,6 +394,8 @@
 <death when="1946"/>
 <occupation>Archäologe</occupation>
 <idno type="GND">118739042</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd118739042.html</idno>
+<note type="nachlass">Niedersächsische Staats- und Universitätsbibliothek Göttingen</note>
 </person>
 <person xml:id="p_oscar_von_sarwey">
 <persName>Oscar von Sarwey</persName>
@@ -273,6 +404,10 @@
 <occupation>Militärischer Dirigent der RLK ab 1892; Mitherausgeber des ORL</occupation>
 <idno type="GND">116810068</idno>
 <idno type="Wikidata">Q2033044</idno>
+<residence>Reichs-Limeskommission (Berlin / Stuttgart)</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116810068.html</idno>
+<idno type="Kalliope">116810068</idno>
+<note type="briefe" n="5/1"/>
 </person>
 <person xml:id="p_otto_von_bismarck">
 <persName>Otto von Bismarck</persName>
@@ -283,6 +418,11 @@
 <occupation>Politischer Gegenspieler Mommsens; Entzug der Rückendeckung blockierte frühe Reichslösung</occupation>
 <idno type="GND">11851136X</idno>
 <idno type="Wikidata">Q8442</idno>
+<residence>Berlin / Friedrichsruh</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/BismarckArbeitszimmer1886.jpg?width=400</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd11851136X.html</idno>
+<idno type="Kalliope">11851136X</idno>
+<note type="briefe" n="305/84"/>
 </person>
 <person xml:id="p_robert_bodewig">
 <persName>Robert Bodewig</persName>
@@ -292,6 +432,10 @@
 <occupation>Streckenkommissar der RLK für den unteren Lahn-Limes, ORL-Autor</occupation>
 <idno type="GND">120260948</idno>
 <idno type="Wikidata">Q1557997</idno>
+<residence>Lahnstein, Koblenz-Region</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd120260948.html</idno>
+<idno type="Kalliope">120260948</idno>
+<note type="briefe" n="0/0"/>
 </person>
 <person xml:id="p_rudolf_virchow">
 <persName>Rudolf Virchow</persName>
@@ -300,6 +444,12 @@
 <occupation>Parlamentarischer Fürsprecher der RLK-Finanzierung 1892</occupation>
 <idno type="GND">118627198</idno>
 <idno type="Wikidata">Q76432</idno>
+<residence>Berlin</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Rudolf%20Ludwig%20Karl%20Virchow.%20Photograph%20by%20J.%20C.%20Schaarw%C3%A4chte%20Wellcome%20V0027292.jpg?width=400</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd118627198.html</idno>
+<idno type="Kalliope">118627198</idno>
+<note type="briefe" n="183/20"/>
+<note type="nachlass">Staatsbibliothek zu Berlin. Handschriftenabteilung</note>
 </person>
 <person xml:id="p_suzana_matesic">
 <persName>Suzana Matešić</persName>
@@ -308,6 +458,10 @@
 <occupation>Geschäftsführerin der Deutschen Limeskommission</occupation>
 <idno type="GND">1075777887</idno>
 <idno type="Wikidata">Q137006619</idno>
+<residence>Bad Homburg vor der Höhe (Römerkastell Saalburg)</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd1075777887.html</idno>
+<idno type="Kalliope">1075777887</idno>
+<note type="briefe" n="0/0"/>
 </person>
 <person xml:id="p_theodor_mommsen">
 <persName>Theodor Mommsen</persName>
@@ -317,6 +471,12 @@
 <occupation>Vorsitzender der Reichs-Limeskommission</occupation>
 <idno type="GND">118583425</idno>
 <idno type="Wikidata">Q25351</idno>
+<residence>Berlin</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Theodor%20Mommsen%202.jpg?width=400</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd118583425.html</idno>
+<idno type="Kalliope">118583425</idno>
+<note type="briefe" n="2073/1096"/>
+<note type="nachlass">Deutsches Literaturarchiv Marbach, Archiv</note>
 </person>
 <person xml:id="p_udo_recker">
 <persName>Udo Recker</persName>
@@ -325,6 +485,10 @@
 <occupation>Landesarchäologe Hessen, Vorsitzender der Deutschen Limeskommission</occupation>
 <idno type="GND">1136592598</idno>
 <idno type="Wikidata">Q15296238</idno>
+<residence>Wiesbaden (hessenARCHÄOLOGIE)</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd1136592598.html</idno>
+<idno type="Kalliope">1136592598</idno>
+<note type="briefe" n="0/0"/>
 </person>
 <person xml:id="p_wilhelm_conrady">
 <persName>Wilhelm Conrady</persName>
@@ -333,6 +497,11 @@
 <occupation>Streckenkommissar am Odenwaldlimes der RLK</occupation>
 <idno type="GND">11897775X</idno>
 <idno type="Wikidata">Q1320170</idno>
+<residence>Miltenberg / Odenwaldlimes</residence>
+<state type="strecke"><label>Odenwaldlimes</label></state>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd11897775X.html</idno>
+<idno type="Kalliope">11897775X</idno>
+<note type="briefe" n="1/0"/>
 </person>
 <person xml:id="p_wilhelm_kohl">
 <persName>Wilhelm Kohl</persName>
@@ -340,6 +509,7 @@
 <death when="1898"/>
 <occupation>Archäologe</occupation>
 <idno type="GND">120633116</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd120633116.html</idno>
 </person>
 <person xml:id="p_wilhelm_oechelhauser">
 <persName>Wilhelm Oechelhäuser</persName>
@@ -348,6 +518,11 @@
 <occupation>Parlamentarischer Gegner des preußisch geleiteten Limes-Projekts 1882</occupation>
 <idno type="GND">118735977</idno>
 <idno type="Wikidata">Q2574378</idno>
+<residence>Dessau / Berlin</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Wilhelm%20Oechelh%C3%A4user.jpg?width=400</idno>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd118735977.html</idno>
+<idno type="Kalliope">118735977</idno>
+<note type="briefe" n="31/1"/>
 </person>
 <person xml:id="p_wilhelm_soldan">
 <persName>Wilhelm Soldan</persName>
@@ -356,5 +531,9 @@
 <occupation>Hessisches RLK-Mitglied, Streckenbearbeiter für Hessen und Rheinprovinz</occupation>
 <idno type="GND">136159877</idno>
 <idno type="Wikidata">Q1684637</idno>
+<residence>Darmstadt</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd136159877.html</idno>
+<idno type="Kalliope">136159877</idno>
+<note type="briefe" n="0/0"/>
 </person>
 </listPerson></standOff></TEI>

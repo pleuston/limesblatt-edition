@@ -31,4 +31,15 @@ table.reg th,table.reg td{text-align:left;padding:.35rem .5rem;border-bottom:1px
 table.reg th{font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
 #map{height:60vh;border:1px solid var(--line);margin:.5rem 0 1rem}
 td.beleg{font-size:.85rem;line-height:1.7} td.beleg a{display:inline-block;margin:0 .05rem}
+/* Register-Karten */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:1rem;margin-top:1rem}
+.card{display:flex;gap:.8rem;border:1px solid var(--line);border-radius:6px;padding:.8rem;background:#fff;scroll-margin-top:3.6rem}
+.card.wide{grid-column:1/-1}
+.card:target{outline:2px solid #e0c200;background:#fff8e6}
+.card .portrait{width:74px;height:94px;object-fit:cover;border-radius:4px;flex:0 0 auto;background:#eee}
+.card .cbody{min-width:0;flex:1}
+.card h3{margin:.1rem 0;font-size:1.05rem} .card .dts{color:var(--muted);font-weight:normal;font-size:.85rem}
+.card .role{color:var(--muted);font-size:.88rem;margin:.25rem 0}
+.card .links{font-size:.85rem;margin:.3rem 0} .card .x{font-size:.85rem;margin:.25rem 0;line-height:1.5}
+.card .alias{color:var(--muted);font-size:.82rem;font-style:italic}
 @media(max-width:760px){.reader{grid-template-columns:1fr}.facs{position:static}#osd{height:50vh}ul.vols{columns:1}}

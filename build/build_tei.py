@@ -38,6 +38,9 @@ def slug(s):
     s = unicodedata.normalize("NFKD", s).encode("ascii","ignore").decode()
     return re.sub(r"[^a-z0-9]+","_", s.lower()).strip("_")
 
+def wikilinks(s):
+    return [m.split("|")[0].strip() for m in re.findall(r"\[\[([^\]]+?)\]\]", s or "") if m.strip()]
+
 # ---------- Frontmatter ----------
 def frontmatter(path):
     t = open(path, encoding="utf-8").read()
@@ -75,22 +78,34 @@ def load_persons(vault):
             "aliases": fm.get("aliases", []) if isinstance(fm.get("aliases"), list) else [],
             "gnd": fm.get("gnd",""), "wikidata": fm.get("wikidata",""),
             "birth": fm.get("geboren",""), "death": fm.get("gestorben",""),
-            "role": fm.get("rolle","") or (fm.get("funktion",[""])[0] if isinstance(fm.get("funktion"),list) and fm.get("funktion") else "")})
+            "role": fm.get("rolle","") or (fm.get("funktion",[""])[0] if isinstance(fm.get("funktion"),list) and fm.get("funktion") else ""),
+            "residence": fm.get("wirkungsort",""), "portrait": fm.get("bild",""),
+            "biografie": fm.get("biografie",""), "nachlass": fm.get("nachlass",""),
+            "strecke": fm.get("strecke",""),
+            "briefe_von": fm.get("briefe_von",""), "briefe_an": fm.get("briefe_an","")})
     return out
 
 def load_places(vault):
     out = []
     for p in sorted(glob.glob(os.path.join(vault, "Orte", "**", "*.md"), recursive=True)):
+        txt = open(p, encoding="utf-8").read()
         fm = frontmatter(p)
         geo = geo_of(fm)
         if not geo: continue                      # Strecken/Monument ohne Punkt überspringen
         name = os.path.basename(p)[:-3]
         term = re.sub(r"^(Klein)?[Kk]astell\s+", "", name)
         term = re.sub(r"\s*\([^)]*\)", "", term).strip()
+        diggers = ["p_" + slug(t) for t in wikilinks(fm.get("ausgraeber",""))]
+        sname = (wikilinks(fm.get("strecke","")) or [""])[0]
+        edh = re.search(r"(\d+)\s+Inschriften", txt)
         out.append({"id": "pl_" + slug(name), "name": name, "term": term, "geo": geo,
             "wikidata": fm.get("wikidata",""), "gazetteer": fm.get("gazetteer",""),
             "pleiades": fm.get("pleiades",""), "orl": fm.get("orl_nr",""),
-            "region": fm.get("provinz","")})
+            "region": fm.get("provinz",""), "typ": fm.get("typ",""),
+            "ort_modern": fm.get("ort_modern",""), "portrait": fm.get("bild",""),
+            "diggers": diggers, "strecke_name": sname,
+            "strecke_id": ("str_" + slug(sname)) if sname else "",
+            "edh": edh.group(1) if edh else ""})
     return out
 
 # ---------- Inline-Tag-Terme ----------
@@ -157,6 +172,14 @@ def write_persons(persons, path):
         if p["role"]:  L.append(f'<occupation>{escape(p["role"])}</occupation>')
         if p["gnd"]:      L.append(f'<idno type="GND">{escape(str(p["gnd"]))}</idno>')
         if p["wikidata"]: L.append(f'<idno type="Wikidata">{escape(str(p["wikidata"]))}</idno>')
+        if p["residence"]: L.append(f'<residence>{escape(p["residence"])}</residence>')
+        if p["strecke"]:   L.append(f'<state type="strecke"><label>{escape(p["strecke"])}</label></state>')
+        if p["portrait"]:  L.append(f'<idno type="portrait">{escape(p["portrait"])}</idno>')
+        if p["biografie"]: L.append(f'<idno type="DeutscheBiographie">{escape(p["biografie"])}</idno>')
+        if (p["briefe_von"] or p["briefe_an"]) and p["gnd"]:
+            L.append(f'<idno type="Kalliope">{escape(str(p["gnd"]))}</idno>')
+            L.append(f'<note type="briefe" n="{escape(str(p["briefe_von"] or 0))}/{escape(str(p["briefe_an"] or 0))}"/>')
+        if p["nachlass"]:  L.append(f'<note type="nachlass">{escape(p["nachlass"])}</note>')
         L.append('</person>')
     L.append('</listPerson></standOff></TEI>')
     open(path, "w", encoding="utf-8").write("\n".join(L))
@@ -171,12 +194,46 @@ def write_places(places, path):
     for pl in places:
         L.append(f'<place xml:id="{pl["id"]}">')
         L.append(f'<placeName>{escape(pl["name"])}</placeName>')
+        if pl["ort_modern"]: L.append(f'<placeName type="modern">{escape(pl["ort_modern"])}</placeName>')
         if pl["geo"]: L.append(f'<location><geo>{escape(pl["geo"])}</geo></location>')
         if pl["region"]:    L.append(f'<region>{escape(pl["region"])}</region>')
         if pl["wikidata"]:  L.append(f'<idno type="Wikidata">{escape(str(pl["wikidata"]))}</idno>')
         if pl["gazetteer"]: L.append(f'<idno type="iDAI-Gazetteer">{escape(str(pl["gazetteer"]))}</idno>')
         if pl["pleiades"]:  L.append(f'<idno type="Pleiades">{escape(str(pl["pleiades"]))}</idno>')
         if pl["orl"]:       L.append(f'<idno type="ORL">{escape(str(pl["orl"]))}</idno>')
+        if pl["typ"]:       L.append(f'<trait type="kastelltyp"><desc>{escape(pl["typ"])}</desc></trait>')
+        if pl["portrait"]:  L.append(f'<idno type="portrait">{escape(pl["portrait"])}</idno>')
+        if pl["diggers"]:   L.append(f'<relation name="excavatedBy" passive="{escape(" ".join("#"+d for d in pl["diggers"]))}"/>')
+        if pl["strecke_id"]: L.append(f'<note type="strecke" corresp="#{pl["strecke_id"]}">{escape(pl["strecke_name"])}</note>')
+        if pl["edh"]:       L.append(f'<note type="edh" n="{escape(pl["edh"])}"/>')
+        L.append('</place>')
+    L.append('</listPlace></standOff></TEI>')
+    open(path, "w", encoding="utf-8").write("\n".join(L))
+
+def load_strecken(vault):
+    out = []
+    for p in sorted(glob.glob(os.path.join(vault, "Orte", "Strecken", "*.md"))):
+        fm = frontmatter(p); name = os.path.basename(p)[:-3]
+        out.append({"id": "str_" + slug(name), "name": name, "nummer": fm.get("nummer",""),
+            "verlauf": fm.get("verlauf",""), "region": fm.get("region",""), "abschnitt": fm.get("abschnitt","")})
+    try: out.sort(key=lambda s: int(s["nummer"]))
+    except (ValueError, TypeError): pass
+    return out
+
+def write_strecken(strecken, path):
+    L = ['<?xml version="1.0" encoding="UTF-8"?>',
+         '<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="register-strecken"><teiHeader><fileDesc>',
+         '<titleStmt><title>Streckenregister — Limesblatt-Edition</title></titleStmt>',
+         '<publicationStmt><availability status="free"><licence target="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</licence></availability></publicationStmt>',
+         '<sourceDesc><p>Generiert aus dem RLK-Vault-Frontmatter (Orte/Strecken/).</p></sourceDesc>',
+         '</fileDesc></teiHeader><standOff><listPlace>']
+    for s in strecken:
+        L.append(f'<place type="strecke" xml:id="{s["id"]}">')
+        L.append(f'<placeName>{escape(s["name"])}</placeName>')
+        if s["verlauf"]:   L.append(f'<desc type="verlauf">{escape(s["verlauf"])}</desc>')
+        if s["region"]:    L.append(f'<region>{escape(s["region"])}</region>')
+        if s["abschnitt"]: L.append(f'<desc type="abschnitt">{escape(s["abschnitt"])}</desc>')
+        if s["nummer"]:    L.append(f'<idno type="nummer">{escape(str(s["nummer"]))}</idno>')
         L.append('</place>')
     L.append('</listPlace></standOff></TEI>')
     open(path, "w", encoding="utf-8").write("\n".join(L))
@@ -226,12 +283,20 @@ def main():
     if not os.path.isdir(os.path.join(vault, "tools", ".cache")):
         sys.exit(f"OCR-Cache fehlt unter {vault}/tools/.cache — erst `python3 tools/limesblatt_ocr.py` im Vault laufen lassen.")
     persons, places = load_persons(vault), load_places(vault)
+    strecken = load_strecken(vault)
     os.makedirs(os.path.join(REPO, "registers"), exist_ok=True)
     os.makedirs(os.path.join(REPO, "tei"), exist_ok=True)
     write_persons(persons, os.path.join(REPO, "registers", "persons.xml"))
     write_places(places,  os.path.join(REPO, "registers", "places.xml"))
+    write_strecken(strecken, os.path.join(REPO, "registers", "strecken.xml"))
     terms = build_terms(persons, places)
-    print(f"Register: {len(persons)} Personen, {len(places)} Orte | Inline-Terme: {len(terms)}")
+    pids = {p["id"] for p in persons}
+    dig = sum(1 for pl in places if pl["diggers"])
+    dig_ok = sum(1 for pl in places for d in pl["diggers"] if d in pids)
+    print(f"Register: {len(persons)} Personen, {len(places)} Orte, {len(strecken)} Strecken | Inline-Terme: {len(terms)}")
+    print(f"Ausgräber: {dig} Kastelle verknüpft ({dig_ok} Personen-Refs aufgelöst) | "
+          f"Porträts: {sum(1 for p in persons if p['portrait'])}P/{sum(1 for pl in places if pl['portrait'])}O | "
+          f"EDH-Zahlen: {sum(1 for pl in places if pl['edh'])} | Strecke-Refs: {sum(1 for pl in places if pl['strecke_id'])}")
     tot = 0
     for slug_, label, nr in WORKS:
         if not os.path.isdir(os.path.join(vault, "tools", ".cache", slug_)):

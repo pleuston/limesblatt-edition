@@ -58,10 +58,32 @@ def load_register(path, tag):
             rec["alias"] = [unesc(a) for a in re.findall(r'<persName type="alias">([^<]+)<', blk)]
             rec["birth"] = g(r'<birth when="([^"]+)"'); rec["death"] = g(r'<death when="([^"]+)"')
             rec["occ"] = g(r'<occupation>([^<]+)<')
+            rec["residence"] = g(r'<residence>([^<]+)<')
+            rec["strecke"] = g(r'<state type="strecke"><label>([^<]+)<')
+            rec["briefe"] = g(r'<note type="briefe" n="([^"]+)"')
+            rec["nachlass"] = g(r'<note type="nachlass">([^<]+)<')
         else:
             geo = g(r'<geo>([^<]+)<'); rec["geo"] = geo.split() if geo else []
             rec["region"] = g(r'<region>([^<]+)<')
+            rec["modern"] = g(r'<placeName type="modern">([^<]+)<')
+            rec["typ"] = g(r'<trait type="kastelltyp"><desc>([^<]+)<')
+            rec["edh"] = g(r'<note type="edh" n="([^"]+)"')
+            rec["strecke_id"] = g(r'<note type="strecke" corresp="#([^"]+)"')
+            rec["strecke_name"] = g(r'<note type="strecke"[^>]*>([^<]+)<')
+            dg = g(r'excavatedBy" passive="([^"]+)"')
+            rec["diggers"] = [d[1:] for d in dg.split()] if dg else []
         out.append(rec)
+    return out
+
+def load_strecken(path):
+    t = open(path, encoding="utf-8").read(); out = []
+    for m in re.finditer(r'<place type="strecke" xml:id="([^"]+)">(.*?)</place>', t, re.S):
+        xid, blk = m.group(1), m.group(2)
+        def g(p):
+            mm = re.search(p, blk, re.S); return unesc(mm.group(1)) if mm else ""
+        out.append({"id": xid, "name": g(r'<placeName>([^<]+)<'), "nummer": g(r'<idno type="nummer">([^<]+)<'),
+            "verlauf": g(r'<desc type="verlauf">([^<]+)<'), "region": g(r'<region>([^<]+)<'),
+            "abschnitt": g(r'<desc type="abschnitt">([^<]+)<')})
     return out
 
 # ---------- HTML-Shell ----------
@@ -72,7 +94,7 @@ def page(title, body, depth=0, head=""):
 <title>{html.escape(title)} — Limesblatt-Edition</title>
 <link rel="stylesheet" href="{up}assets/style.css">{head}</head><body>
 <header><a class="home" href="{up}index.html">📕 Limesblatt-Edition</a>
-<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}index.html#suche">Suche</a></nav></header>
+<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}index.html#suche">Suche</a></nav></header>
 <main>{body}</main>
 <footer>Diplomatische OCR-Edition des <em>Limesblatt</em> (1892–1903) · Text &amp; Register
 <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · Seitenbilder © UB Heidelberg
@@ -118,39 +140,72 @@ def beleg_html(eid, occ):
         out.append(f'Bd.&#160;{vol}: {links}')
     return " · ".join(out)
 
-def persons_page(persons, occ):
-    rows = []
-    for p in sorted(persons, key=lambda r: r["name"].split()[-1]):
-        dts = f'{p["birth"]}–{p["death"]}' if p["birth"] or p["death"] else ""
-        gnd = f'<a href="https://d-nb.info/gnd/{p["idno"]["GND"]}">GND</a>' if p["idno"].get("GND") else ""
-        wd  = f'<a href="https://www.wikidata.org/wiki/{p["idno"]["Wikidata"]}">WD</a>' if p["idno"].get("Wikidata") else ""
-        al  = f'<br><span class="alias">{html.escape(", ".join(p["alias"]))}</span>' if p.get("alias") else ""
-        rows.append(f'<tr id="{p["id"]}"><td><strong>{html.escape(p["name"])}</strong>{al}</td>'
-                    f'<td>{html.escape(dts)}</td><td>{html.escape(p["occ"])}</td><td>{gnd} {wd}</td>'
-                    f'<td class="beleg">{beleg_html(p["id"], occ)}</td></tr>')
-    return (f'<h1>Personenregister</h1><p class="meta">{len(persons)} Personen, mit GND/Wikidata verknüpft. '
-            f'Spalte „Im Volltext" springt zu den Fundstellen im Limesblatt.</p>'
-            f'<table class="reg"><thead><tr><th>Name</th><th>Lebensdaten</th><th>Rolle</th><th>Normdaten</th><th>Im Volltext</th></tr></thead>'
-            f'<tbody>{"".join(rows)}</tbody></table>')
+def links_line(parts):
+    return ('<div class="links">' + " · ".join(p for p in parts if p) + '</div>') if any(parts) else ""
 
-def places_page(places, occ):
-    feats, rows = [], []
+def persons_page(persons, occ, digs):
+    cards = []
+    for p in sorted(persons, key=lambda r: r["name"].split()[-1]):
+        I = p["idno"]
+        dts = f' <span class="dts">({html.escape(p["birth"])}–{html.escape(p["death"])})</span>' if p["birth"] or p["death"] else ""
+        al  = f'<div class="alias">alias {html.escape(", ".join(p["alias"]))}</div>' if p.get("alias") else ""
+        meta = " · ".join(x for x in [html.escape(p["occ"]),
+                 ("Wirkungsort: " + html.escape(p["residence"])) if p.get("residence") else "",
+                 ("Streckenkommissar: " + html.escape(p["strecke"])) if p.get("strecke") else ""] if x)
+        kal = ""
+        if I.get("Kalliope"):
+            br = f' ({html.escape(p["briefe"])} Briefe)' if p.get("briefe") else ""
+            kal = f'<a href="https://kalliope-verbund.info/gnd/{html.escape(I["Kalliope"])}">Kalliope{br}</a>'
+        links = links_line([
+            f'<a href="https://d-nb.info/gnd/{html.escape(I["GND"])}">GND</a>' if I.get("GND") else "",
+            f'<a href="https://www.wikidata.org/wiki/{html.escape(I["Wikidata"])}">Wikidata</a>' if I.get("Wikidata") else "",
+            f'<a href="{html.escape(I["DeutscheBiographie"])}">Dt. Biographie</a>' if I.get("DeutscheBiographie") else "", kal])
+        extra = []
+        if p.get("nachlass"): extra.append(f'<div class="x">🗄️ Nachlass: {html.escape(p["nachlass"])}</div>')
+        forts = digs.get(p["id"], [])
+        if forts:
+            extra.append('<div class="x">⛏️ Ausgegraben: ' + ", ".join(
+                f'<a href="places.html#{f["id"]}">{html.escape(f["name"])}</a>' for f in forts) + '</div>')
+        bel = beleg_html(p["id"], occ)
+        if "—" not in bel: extra.append(f'<div class="x">📄 Im Volltext: {bel}</div>')
+        img = f'<img class="portrait" src="{html.escape(I["portrait"])}" alt="" loading="lazy">' if I.get("portrait") else ""
+        cards.append(f'<article class="card" id="{p["id"]}">{img}<div class="cbody">'
+                     f'<h3>{html.escape(p["name"])}{dts}</h3>{al}<div class="role">{meta}</div>{links}{"".join(extra)}</div></article>')
+    return (f'<h1>Personenregister</h1><p class="meta">{len(persons)} Personen — Normdaten, Porträts, '
+            f'Korrespondenz, Nachlass, ausgegrabene Kastelle und Volltext-Fundstellen.</p>'
+            f'<div class="cards">{"".join(cards)}</div>')
+
+def places_page(places, occ, pname):
+    feats, cards = [], []
     for pl in sorted(places, key=lambda r: r["name"]):
-        wd = f'<a href="https://www.wikidata.org/wiki/{pl["idno"]["Wikidata"]}">WD</a>' if pl["idno"].get("Wikidata") else ""
-        gz = f'<a href="https://gazetteer.dainst.org/place/{pl["idno"]["iDAI-Gazetteer"]}">iDAI</a>' if pl["idno"].get("iDAI-Gazetteer") else ""
-        pleiades = f'<a href="https://pleiades.stoa.org/places/{pl["idno"]["Pleiades"]}">Pleiades</a>' if pl["idno"].get("Pleiades") else ""
-        orl = html.escape(pl["idno"].get("ORL",""))
-        rows.append(f'<tr id="{pl["id"]}"><td><strong>{html.escape(pl["name"])}</strong></td><td>{orl}</td>'
-                    f'<td>{html.escape(pl["region"])}</td><td>{wd} {gz} {pleiades}</td>'
-                    f'<td class="beleg">{beleg_html(pl["id"], occ)}</td></tr>')
+        I = pl["idno"]
+        meta = " · ".join(x for x in [
+            ("heute " + html.escape(pl["modern"])) if pl.get("modern") else "",
+            html.escape(pl.get("typ","")), html.escape(I.get("ORL","")), html.escape(pl.get("region",""))] if x)
+        links = links_line([
+            f'<a href="https://www.wikidata.org/wiki/{html.escape(I["Wikidata"])}">Wikidata</a>' if I.get("Wikidata") else "",
+            f'<a href="https://gazetteer.dainst.org/place/{html.escape(I["iDAI-Gazetteer"])}">iDAI-Gazetteer</a>' if I.get("iDAI-Gazetteer") else "",
+            f'<a href="https://pleiades.stoa.org/places/{html.escape(I["Pleiades"])}">Pleiades</a>' if I.get("Pleiades") else ""])
+        extra = []
+        dg = [d for d in pl.get("diggers", []) if d in pname]
+        if dg:
+            extra.append('<div class="x">⛏️ Ausgräber: ' + ", ".join(
+                f'<a href="persons.html#{d}">{html.escape(pname[d])}</a>' for d in dg) + '</div>')
+        if pl.get("strecke_id"):
+            extra.append(f'<div class="x">🛤️ <a href="strecken.html#{pl["strecke_id"]}">{html.escape(pl.get("strecke_name",""))}</a></div>')
+        if pl.get("edh"):
+            extra.append(f'<div class="x">🪦 {html.escape(pl["edh"])} Inschriften (<a href="https://edh.ub.uni-heidelberg.de/">EDH</a>)</div>')
+        bel = beleg_html(pl["id"], occ)
+        if "—" not in bel: extra.append(f'<div class="x">📄 Im Volltext: {bel}</div>')
+        img = f'<img class="portrait" src="{html.escape(I["portrait"])}" alt="" loading="lazy">' if I.get("portrait") else ""
+        cards.append(f'<article class="card" id="{pl["id"]}">{img}<div class="cbody">'
+                     f'<h3>{html.escape(pl["name"])}</h3><div class="role">{meta}</div>{links}{"".join(extra)}</div></article>')
         if pl["geo"]:
-            feats.append({"name": pl["name"], "lat": float(pl["geo"][0]), "lng": float(pl["geo"][1]),
-                          "orl": orl, "wd": pl["idno"].get("Wikidata","")})
+            feats.append({"name": pl["name"], "lat": float(pl["geo"][0]), "lng": float(pl["geo"][1]), "orl": html.escape(I.get("ORL",""))})
     head = '<link rel="stylesheet" href="../assets/leaflet.css"><script src="../assets/leaflet.js"></script>'
-    body = (f'<h1>Ortsregister</h1><p class="meta">{len(places)} verortete Orte (Kastelle/Hinterland), '
-            f'Geo + Wikidata/iDAI-Gazetteer/Pleiades/ORL.</p><div id="map"></div>'
-            f'<table class="reg"><thead><tr><th>Ort</th><th>ORL</th><th>Provinz</th><th>Normdaten</th><th>Im Volltext</th></tr></thead>'
-            f'<tbody>{"".join(rows)}</tbody></table>'
+    body = (f'<h1>Ortsregister</h1><p class="meta">{len(places)} verortete Orte — Karte, Normdaten, '
+            f'Kastelltyp, Ausgräber, Inschriften und Volltext-Fundstellen.</p><div id="map"></div>'
+            f'<div class="cards">{"".join(cards)}</div>'
             f'<script>var F={json.dumps(feats)};'
             'var map=L.map("map").setView([49.5,9.4],7);'
             'L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,'
@@ -158,6 +213,23 @@ def places_page(places, occ):
             'F.forEach(function(f){L.circleMarker([f.lat,f.lng],{radius:6,color:"#7a1f1f",'
             'fillColor:"#b33",fillOpacity:.8}).addTo(map).bindPopup("<b>"+f.name+"</b>"+(f.orl?"<br>"+f.orl:""));});</script>')
     return body, head
+
+def strecken_page(strecken, str_forts, persons):
+    cards = []
+    for s in strecken:
+        forts = str_forts.get(s["id"], [])
+        fl = ", ".join(f'<a href="places.html#{f["id"]}">{html.escape(f["name"])}</a>' for f in forts) or '<span class="meta">—</span>'
+        hay = (s["name"] + s["region"] + s["verlauf"] + s["abschnitt"]).lower()
+        komm = [p for p in persons if p.get("strecke") and p["strecke"].lower() in hay]
+        meta = " · ".join(x for x in [html.escape(s["verlauf"]), html.escape(s["region"]), html.escape(s["abschnitt"])] if x)
+        extra = f'<div class="x">⛏️ Kastelle: {fl}</div>'
+        if komm:
+            extra += '<div class="x">👤 Kommissar (Region): ' + ", ".join(
+                f'<a href="persons.html#{p["id"]}">{html.escape(p["name"])}</a>' for p in komm) + '</div>'
+        cards.append(f'<article class="card wide" id="{s["id"]}"><div class="cbody">'
+                     f'<h3>{html.escape(s["name"])}</h3><div class="role">{meta}</div>{extra}</div></article>')
+    return (f'<h1>Strecken</h1><p class="meta">{len(strecken)} Limes-Abschnitte mit ihren Kastellen und '
+            f'(regional zugeordneten) Streckenkommissaren.</p><div class="cards">{"".join(cards)}</div>')
 
 def index_page(volumes):
     lis = "".join(f'<li><a href="volumes/bd{v["nr"]}.html">{html.escape(v["label"])}</a> '
@@ -171,8 +243,9 @@ IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen
 <input id="q" type="search" placeholder="z. B. Saalburg, Entschädigung, Mommsen …" autocomplete="off">
 <div id="res"></div></section>
 <h2>Bände</h2><ul class="vols">{lis}</ul>
-<h2>Register</h2><ul><li><a href="register/persons.html">Personenregister</a></li>
-<li><a href="register/places.html">Ortsregister (mit Karte)</a></li></ul>
+<h2>Register</h2><ul><li><a href="register/persons.html">Personenregister</a> — mit Porträts, Normdaten, Korrespondenz, ausgegrabenen Kastellen</li>
+<li><a href="register/places.html">Ortsregister</a> — mit Karte, Kastelltyp, Ausgräber, Inschriften</li>
+<li><a href="register/strecken.html">Strecken</a> — die 15 Limes-Abschnitte mit Kastellen &amp; Kommissaren</li></ul>
 <p class="meta">Abgeleitet aus dem (privaten) Forschungs-Vault zur <a href="https://github.com/pleuston/limes">Reichs-Limeskommission</a>.
 Edition/Code: <a href="https://github.com/pleuston/limesblatt-edition">GitHub</a>.</p>
 <script>
@@ -203,6 +276,13 @@ def main():
     volumes = sorted((load_volume(f) for f in glob.glob(os.path.join(REPO,"tei","*.xml"))), key=lambda v: v["nr"])
     persons = load_register(os.path.join(REPO,"registers","persons.xml"), "person")
     places  = load_register(os.path.join(REPO,"registers","places.xml"), "place")
+    strecken = load_strecken(os.path.join(REPO,"registers","strecken.xml"))
+    pname = {p["id"]: p["name"] for p in persons}
+    digs, str_forts = defaultdict(list), defaultdict(list)   # Person→Orte (Ausgräber), Strecke→Orte
+    for pl in places:
+        for d in pl.get("diggers", []):
+            if d in pname: digs[d].append(pl)
+        if pl.get("strecke_id"): str_forts[pl["strecke_id"]].append(pl)
 
     occ, seen = defaultdict(list), set()      # Entität → [(Band, Token)], aus den TEI-Inline-Tags
     for v in volumes:
@@ -221,13 +301,14 @@ def main():
                                          "label":v["label"],"text":p["text"]})
     json.dump(corpus, open(os.path.join(DOCS,"data","search.json"),"w",encoding="utf-8"), ensure_ascii=False)
 
-    open(os.path.join(DOCS,"register","persons.html"),"w",encoding="utf-8").write(page("Personenregister", persons_page(persons, occ), 1))
-    plb, plh = places_page(places, occ)
+    open(os.path.join(DOCS,"register","persons.html"),"w",encoding="utf-8").write(page("Personenregister", persons_page(persons, occ, digs), 1))
+    plb, plh = places_page(places, occ, pname)
     open(os.path.join(DOCS,"register","places.html"),"w",encoding="utf-8").write(page("Ortsregister", plb, 1, plh))
+    open(os.path.join(DOCS,"register","strecken.html"),"w",encoding="utf-8").write(page("Strecken", strecken_page(strecken, str_forts, persons), 1))
     ib, ih = index_page(volumes)
     open(os.path.join(DOCS,"index.html"),"w",encoding="utf-8").write(page("Startseite", ib, 0, ih))
-    print(f"docs/: index + {len(volumes)} Bände + 2 Register · Suchindex {len(corpus)} Seiten · "
-          f"{len(persons)} Personen, {len(places)} Orte")
+    print(f"docs/: index + {len(volumes)} Bände + 3 Register (Personen {len(persons)}, Orte {len(places)}, "
+          f"Strecken {len(strecken)}) · Suchindex {len(corpus)} Seiten · Ausgräber-Links {sum(len(v) for v in digs.values())}")
 
 if __name__ == "__main__":
     main()

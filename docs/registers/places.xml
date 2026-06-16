@@ -6,126 +6,208 @@
 </fileDesc></teiHeader><standOff><listPlace>
 <place xml:id="pl_heidelberg_in_romischer_zeit">
 <placeName>Heidelberg in römischer Zeit</placeName>
+<placeName type="modern">Heidelberg</placeName>
 <location><geo>49.4150825 8.6839274</geo></location>
 <region>Obergermanien</region>
 <idno type="Wikidata">Q1594006</idno>
+<note type="edh" n="71"/>
 </place>
 <place xml:id="pl_kastell_aalen">
 <placeName>Kastell Aalen</placeName>
+<placeName type="modern">Aalen</placeName>
 <location><geo>48.835579 10.08472</geo></location>
 <region>Raetien</region>
 <idno type="Wikidata">Q1660247</idno>
 <idno type="Pleiades">118537</idno>
 <idno type="ORL">ORL 66</idno>
+<trait type="kastelltyp"><desc>Alenkastell</desc></trait>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Arch%C3%A4ologischer%20Park%20Reiterkastell%20Aalen.%2003.jpg?width=400</idno>
+<relation name="excavatedBy" passive="#p_heinrich_steimle"/>
+<note type="strecke" corresp="#str_strecke_12_haghoflorchaalenmonchsroth">Strecke 12 – Haghof–Lorch–Aalen–Mönchsroth</note>
 </place>
 <place xml:id="pl_kastell_eining">
 <placeName>Kastell Eining</placeName>
+<placeName type="modern">Eining (Ortsteil von Neustadt an der Donau)</placeName>
 <location><geo>48.8503 11.7708</geo></location>
 <region>Raetien</region>
 <idno type="Wikidata">Q1735352</idno>
 <idno type="iDAI-Gazetteer">2047393</idno>
 <idno type="ORL">ORL 75</idno>
+<trait type="kastelltyp"><desc>Kohortenkastell</desc></trait>
+<note type="strecke" corresp="#str_strecke_15_kipfenbergeining">Strecke 15 – Kipfenberg–Eining</note>
+<note type="edh" n="61"/>
 </place>
 <place xml:id="pl_kastell_hesselbach">
 <placeName>Kastell Hesselbach</placeName>
+<placeName type="modern">Oberzent (Ortsteil Hesselbach)</placeName>
 <location><geo>49.57625 9.09055556</geo></location>
 <region>Obergermanien</region>
 <idno type="Wikidata">Q1411006</idno>
 <idno type="ORL">ORL 50</idno>
+<trait type="kastelltyp"><desc>Numeruskastell</desc></trait>
+<relation name="excavatedBy" passive="#p_karl_schumacher"/>
+<note type="strecke" corresp="#str_strecke_10_worthbad_wimpfen_altere_odenwaldlinie">Strecke 10 – Wörth–Bad Wimpfen (Ältere Odenwaldlinie)</note>
+<note type="edh" n="1"/>
 </place>
 <place xml:id="pl_kastell_jagsthausen">
 <placeName>Kastell Jagsthausen</placeName>
+<placeName type="modern">Jagsthausen</placeName>
 <location><geo>49.3109 9.46917</geo></location>
 <region>Obergermanien</region>
 <idno type="Wikidata">Q1735380</idno>
 <idno type="iDAI-Gazetteer">2045676</idno>
 <idno type="ORL">ORL 39</idno>
+<trait type="kastelltyp"><desc>Kohortenkastell</desc></trait>
+<relation name="excavatedBy" passive="#p_ernst_von_herzog"/>
+<note type="strecke" corresp="#str_strecke_08_rehbergjagsthausen_odenwaldlinie">Strecke 08 – Rehberg–Jagsthausen (Odenwaldlinie)</note>
+<note type="edh" n="35"/>
 </place>
 <place xml:id="pl_kastell_niederbieber">
 <placeName>Kastell Niederbieber</placeName>
+<placeName type="modern">Neuwied (Ortsteil Niederbieber)</placeName>
 <location><geo>50.467025 7.47194722</geo></location>
 <region>Obergermanien</region>
 <idno type="Wikidata">Q1735398</idno>
 <idno type="iDAI-Gazetteer">2110580</idno>
 <idno type="ORL">ORL 1a</idno>
+<trait type="kastelltyp"><desc>Kohortenkastell</desc></trait>
+<relation name="excavatedBy" passive="#p_emil_ritterling #p_robert_bodewig"/>
+<note type="strecke" corresp="#str_strecke_01_rheinbrohlbad_ems">Strecke 01 – Rheinbrohl–Bad Ems</note>
+<note type="edh" n="38"/>
 </place>
 <place xml:id="pl_kastell_oberscheidental">
 <placeName>Kastell Oberscheidental</placeName>
+<placeName type="modern">Mudau (Ortsteil Scheidental)</placeName>
 <location><geo>49.5064 9.15278</geo></location>
 <region>Obergermanien</region>
 <idno type="Wikidata">Q1735404</idno>
 <idno type="ORL">ORL 52</idno>
+<trait type="kastelltyp"><desc>Kohortenkastell</desc></trait>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/201102121253a%20ORL%2051%20Oberscheidental%20PPD%20rechter%20Turm%20Gel%C3%A4ndestufe.jpg?width=400</idno>
+<relation name="excavatedBy" passive="#p_karl_schumacher"/>
+<note type="strecke" corresp="#str_strecke_10_worthbad_wimpfen_altere_odenwaldlinie">Strecke 10 – Wörth–Bad Wimpfen (Ältere Odenwaldlinie)</note>
+<note type="edh" n="15"/>
 </place>
 <place xml:id="pl_kastell_osterburken">
 <placeName>Kastell Osterburken</placeName>
+<placeName type="modern">Osterburken</placeName>
 <location><geo>49.42753 9.42364</geo></location>
 <region>Obergermanien</region>
 <idno type="Wikidata">Q1243550</idno>
 <idno type="ORL">ORL 40</idno>
+<trait type="kastelltyp"><desc>Kohortenkastell</desc></trait>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/200909161109MEZ%20Modell%20Osterburken%2C%20R%C3%B6mermuseum%20Osterburken.jpg?width=400</idno>
+<relation name="excavatedBy" passive="#p_karl_schumacher"/>
+<note type="strecke" corresp="#str_strecke_08_rehbergjagsthausen_odenwaldlinie">Strecke 08 – Rehberg–Jagsthausen (Odenwaldlinie)</note>
+<note type="edh" n="132"/>
 </place>
 <place xml:id="pl_kastell_saalburg">
 <placeName>Kastell Saalburg</placeName>
+<placeName type="modern">Bad Homburg vor der Höhe</placeName>
 <location><geo>50.2715 8.56666</geo></location>
 <region>Obergermanien</region>
 <idno type="Wikidata">Q542329</idno>
 <idno type="iDAI-Gazetteer">2049257</idno>
 <idno type="ORL">ORL 11</idno>
+<trait type="kastelltyp"><desc>Kohortenkastell</desc></trait>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Saalburg%20Main%20Gate%20%28Porta%20Praetoria%29.jpg?width=400</idno>
+<relation name="excavatedBy" passive="#p_louis_jacobi #p_heinrich_jacobi"/>
+<note type="strecke" corresp="#str_strecke_03_adolfseckkopperner_tal">Strecke 03 – Adolfseck–Köpperner Tal</note>
+<note type="edh" n="59"/>
 </place>
 <place xml:id="pl_kastell_trennfurt">
 <placeName>Kastell Trennfurt</placeName>
+<placeName type="modern">Klingenberg am Main (Ortsteil Trennfurt)</placeName>
 <location><geo>49.77763 9.17791</geo></location>
 <region>Obergermanien</region>
 <idno type="Wikidata">Q32064050</idno>
 <idno type="ORL">ORL 37</idno>
+<trait type="kastelltyp"><desc>Kohortenkastell</desc></trait>
+<relation name="excavatedBy" passive="#p_karl_zangemeister"/>
+<note type="strecke" corresp="#str_strecke_06_main_linie_seligenstadtmiltenberg">Strecke 06 – Main-Linie (Seligenstadt–Miltenberg)</note>
+<note type="edh" n="1"/>
 </place>
 <place xml:id="pl_kastell_weienburg">
 <placeName>Kastell Weißenburg</placeName>
+<placeName type="modern">Weißenburg in Bayern</placeName>
 <location><geo>49.0308 10.9625</geo></location>
 <region>Raetien</region>
 <idno type="Wikidata">Q638525</idno>
 <idno type="ORL">ORL 72</idno>
+<trait type="kastelltyp"><desc>Alenkastell</desc></trait>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Wei%C3%9Fenburg%20Rekonstruktionsversuch.jpg?width=400</idno>
+<relation name="excavatedBy" passive="#p_heinrich_eidam"/>
+<note type="strecke" corresp="#str_strecke_14_gunzenhausenkipfenberg">Strecke 14 – Gunzenhausen–Kipfenberg</note>
+<note type="edh" n="30"/>
 </place>
 <place xml:id="pl_kastell_welzheim">
 <placeName>Kastell Welzheim</placeName>
+<placeName type="modern">Welzheim</placeName>
 <location><geo>48.87122 9.64224</geo></location>
 <region>Obergermanien</region>
 <idno type="Wikidata">Q1735441</idno>
 <idno type="ORL">ORL 45 / ORL 45a</idno>
+<trait type="kastelltyp"><desc>Kohortenkastell</desc></trait>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Ostkastell%20Welzheim%20Westtor%202014.JPG?width=400</idno>
+<relation name="excavatedBy" passive="#p_ernst_von_herzog"/>
+<note type="strecke" corresp="#str_strecke_09_jagsthausenhaghof">Strecke 09 – Jagsthausen–Haghof</note>
+<note type="edh" n="8"/>
 </place>
 <place xml:id="pl_kastell_zugmantel">
 <placeName>Kastell Zugmantel</placeName>
+<placeName type="modern">Taunusstein-Orlen</placeName>
 <location><geo>50.18977 8.20364</geo></location>
 <region>Obergermanien</region>
 <idno type="Wikidata">Q1727277</idno>
 <idno type="iDAI-Gazetteer">2049474</idno>
 <idno type="ORL">ORL 8</idno>
+<trait type="kastelltyp"><desc>Kohortenkastell</desc></trait>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Taunusstein%20-%20Limes%20Wachturm.jpg?width=400</idno>
+<relation name="excavatedBy" passive="#p_louis_jacobi"/>
+<note type="strecke" corresp="#str_strecke_03_adolfseckkopperner_tal">Strecke 03 – Adolfseck–Köpperner Tal</note>
+<note type="edh" n="16"/>
 </place>
 <place xml:id="pl_kastell_ohringen">
 <placeName>Kastell Öhringen</placeName>
+<placeName type="modern">Öhringen</placeName>
 <location><geo>49.205444444444446 9.497397222222222</geo></location>
 <region>Obergermanien</region>
 <idno type="Wikidata">Q86069877</idno>
 <idno type="ORL">ORL 42 / ORL 42a</idno>
+<trait type="kastelltyp"><desc>Kohortenkastell</desc></trait>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Wolf%20-%20Westkastell%20bei%20%C3%96hringen%20-%20Fundberichte%2019%2C%201911%2C%20Taf%20VII%20-%20CIL%2013%2C%2011757.jpg?width=400</idno>
+<relation name="excavatedBy" passive="#p_ernst_von_herzog"/>
+<note type="strecke" corresp="#str_strecke_09_jagsthausenhaghof">Strecke 09 – Jagsthausen–Haghof</note>
+<note type="edh" n="39"/>
 </place>
 <place xml:id="pl_kleinkastell_neuwirtshaus">
 <placeName>Kleinkastell Neuwirtshaus</placeName>
+<placeName type="modern">Hanau (Ortsteil Großauheim/Wolfgang)</placeName>
 <location><geo>50.1112 8.9829</geo></location>
 <region>Obergermanien</region>
 <idno type="Wikidata">Q1746886</idno>
 <idno type="iDAI-Gazetteer">2103585</idno>
+<trait type="kastelltyp"><desc>Kleinkastell</desc></trait>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Kleinkastell%20Neuwirtshaus.jpg?width=400</idno>
+<note type="strecke" corresp="#str_strecke_03_adolfseckkopperner_tal">Strecke 03 – Adolfseck–Köpperner Tal</note>
 </place>
 <place xml:id="pl_lopodunum_ladenburg">
 <placeName>Lopodunum (Ladenburg)</placeName>
+<placeName type="modern">Ladenburg</placeName>
 <location><geo>49.4716 8.61118</geo></location>
 <region>Obergermanien</region>
 <idno type="Wikidata">Q1869794</idno>
 <idno type="iDAI-Gazetteer">2046091</idno>
+<note type="edh" n="118"/>
 </place>
 <place xml:id="pl_nida_heddernheim">
 <placeName>Nida (Heddernheim)</placeName>
+<placeName type="modern">Frankfurt am Main – Stadtteil Heddernheim</placeName>
 <location><geo>50.1541 8.63774</geo></location>
 <region>Obergermanien</region>
 <idno type="Wikidata">Q834452</idno>
 <idno type="iDAI-Gazetteer">2049139</idno>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Frankfurt%20am%20Main%2C%20Nida-%20roman%20well%201.jpg?width=400</idno>
+<note type="edh" n="110"/>
 </place>
 </listPlace></standOff></TEI>
