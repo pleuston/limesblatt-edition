@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="register-persons"><teiHeader><fileDesc>
+<titleStmt><title>Personenregister — Limesblatt-Edition</title></titleStmt>
+<publicationStmt><availability status="free"><licence target="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</licence></availability></publicationStmt>
+<sourceDesc><p>Generiert aus dem RLK-Vault-Frontmatter (Personen/); Normdaten GND/Wikidata.</p></sourceDesc>
+</fileDesc></teiHeader><standOff><listPerson>
+<person xml:id="p_carl_schuchhardt">
+<persName>Carl Schuchhardt</persName>
+<birth when="1859"/>
+<death when="1943"/>
+<occupation>Archäologe</occupation>
+<idno type="GND">120459930</idno>
+</person>
+<person xml:id="p_christian_ernst_hanelmann">
+<persName>Christian Ernst Hanßelmann</persName>
+<persName type="alias">Hanßelmann</persName>
+<persName type="alias">Hansselmann</persName>
+<birth when="1699"/>
+<death when="1776"/>
+<occupation>Pionier der wissenschaftlichen Limesforschung</occupation>
+<idno type="GND">118979221</idno>
+<idno type="Wikidata">Q1079435</idno>
+</person>
+<person xml:id="p_eduard_anthes">
+<persName>Eduard Anthes</persName>
+<birth when="1859"/>
+<death when="1922"/>
+<occupation>Prähistoriker</occupation>
+<idno type="GND">116312696</idno>
+</person>
+<person xml:id="p_eduard_paulus">
+<persName>Eduard Paulus</persName>
+<persName type="alias">Eduard Paulus der Jüngere</persName>
+<persName type="alias">Eduard von Paulus</persName>
+<birth when="1837"/>
+<death when="1907"/>
+<occupation>Württembergischer Vertreter bei der Heidelberger Konferenz 1890</occupation>
+<idno type="GND">116066342</idno>
+<idno type="Wikidata">Q98794</idno>
+</person>
+<person xml:id="p_emil_ritterling">
+<persName>Emil Ritterling</persName>
+<persName type="alias">Ernst Ritterling</persName>
+<persName type="alias">Ritterling</persName>
+<birth when="1861"/>
+<death when="1928"/>
+<occupation>Streckenkommissar der RLK, ORL-Autor</occupation>
+<idno type="GND">116573589</idno>
+<idno type="Wikidata">Q110295</idno>
+</person>
+<person xml:id="p_ernst_fabricius">
+<persName>Ernst Fabricius</persName>
+<birth when="1857"/>
+<death when="1942"/>
+<occupation>Archäologischer Dirigent der RLK ab 1902; Haupt-Herausgeber des ORL</occupation>
+<idno type="GND">116369957</idno>
+<idno type="Wikidata">Q91901</idno>
+</person>
+<person xml:id="p_ernst_wagner">
+<persName>Ernst Wagner</persName>
+<persName type="alias">Ernst Hermann Wagner</persName>
+<birth when="1832"/>
+<death when="1920"/>
+<occupation>Badischer Vertreter bei der Heidelberger Konferenz 1890, RLK-Mitglied</occupation>
+<idno type="GND">103148442</idno>
+<idno type="Wikidata">Q1360482</idno>
+</person>
+<person xml:id="p_ernst_von_herzog">
+<persName>Ernst von Herzog</persName>
+<birth when="1834"/>
+<death when="1911"/>
+<occupation>Streckenkommissar Württemberg der RLK 1892–1911</occupation>
+<idno type="GND">116762314</idno>
+<idno type="Wikidata">Q1358647</idno>
+</person>
+<person xml:id="p_felix_hettner">
+<persName>Felix Hettner</persName>
+<birth when="1851"/>
+<death when="1902"/>
+<occupation>Erster archäologischer Dirigent der RLK 1892–1902</occupation>
+<idno type="GND">116779209</idno>
+<idno type="Wikidata">Q1403518</idno>
+</person>
+<person xml:id="p_friedrich_althoff">
+<persName>Friedrich Althoff</persName>
+<birth when="1839"/>
+<death when="1908"/>
+<occupation>Preußischer Wissenschaftsorganisator, RLK-Mitglied ab 1892</occupation>
+<idno type="GND">118644890</idno>
+<idno type="Wikidata">Q108423</idno>
+</person>
+<person xml:id="p_friedrich_drexel">
+<persName>Friedrich Drexel</persName>
+<persName type="alias">Drexel</persName>
+<birth when="1885"/>
+<death when="1930"/>
+<occupation>ORL-Autor, Direktor der RGK</occupation>
+<idno type="GND">116219866</idno>
+<idno type="Wikidata">Q18020298</idno>
+</person>
+<person xml:id="p_friedrich_kofler">
+<persName>Friedrich Kofler</persName>
+<persName type="alias">Fritz Kofler</persName>
+<birth when="1830"/>
+<death when="1910"/>
+<occupation>Hessischer Streckenkommissar der Reichs-Limeskommission</occupation>
+<idno type="GND">117530824</idno>
+<idno type="Wikidata">Q1460478</idno>
+</person>
+<person xml:id="p_friedrich_leonhard">
+<persName>Friedrich Leonhard</persName>
+<persName type="alias">Fritz Leonhard</persName>
+<birth when="1868"/>
+<death when="1937"/>
+<occupation>ORL-Autor und Mitredaktor, Streckenbearbeiter für Bayern</occupation>
+</person>
+<person xml:id="p_friedrich_ohlenschlager">
+<persName>Friedrich Ohlenschlager</persName>
+<birth when="1840"/>
+<death when="1916"/>
+<occupation>Klassischer Philologe</occupation>
+<idno type="GND">117111368</idno>
+</person>
+<person xml:id="p_friedrich_zollmann">
+<persName>Friedrich Zollmann</persName>
+<persName type="alias">Zollmann</persName>
+<birth when="1690"/>
+<death when="1762"/>
+<occupation>Früher Kartograf des Limes</occupation>
+<idno type="GND">130833568</idno>
+<idno type="Wikidata">Q1463506</idno>
+</person>
+<person xml:id="p_georg_loeschcke">
+<persName>Georg Loeschcke</persName>
+<birth when="1852"/>
+<death when="1915"/>
+<occupation>Archäologe</occupation>
+<idno type="GND">117155896</idno>
+</person>
+<person xml:id="p_georg_wolff">
+<persName>Georg Wolff</persName>
+<persName type="alias">Wolff</persName>
+<birth when="1845"/>
+<death when="1929"/>
+<occupation>Streckenkommissar der RLK, Wetterau-Forscher, ORL-Autor</occupation>
+<idno type="GND">117440647</idno>
+<idno type="Wikidata">Q1506482</idno>
+</person>
+<person xml:id="p_gustav_sixt">
+<persName>Gustav Sixt</persName>
+<birth when="1856"/>
+<death when="1904"/>
+<occupation>Pädagoge</occupation>
+<idno type="GND">10151106X</idno>
+</person>
+<person xml:id="p_heinrich_eidam">
+<persName>Heinrich Eidam</persName>
+<persName type="alias">Eidam</persName>
+<birth when="1849"/>
+<death when="1934"/>
+<occupation>Streckenkommissar der RLK für den raetischen Limes (Bereich Gunzenhausen–Weißenburg)</occupation>
+<idno type="GND">117497908</idno>
+<idno type="Wikidata">Q1597131</idno>
+</person>
+<person xml:id="p_heinrich_jacobi">
+<persName>Heinrich Jacobi</persName>
+<birth when="1866"/>
+<death when="1946"/>
+<occupation>Streckenkommissar; Direktor des Saalburg-Museums; Grabungsleiter Kastell Zugmantel</occupation>
+<idno type="GND">118957236</idno>
+<idno type="Wikidata">Q1597855</idno>
+</person>
+<person xml:id="p_heinrich_nissen">
+<persName>Heinrich Nissen</persName>
+<birth when="1839"/>
+<death when="1912"/>
+<occupation>Preußischer Vertreter bei der Heidelberger Konferenz 1890, Mitbegründer der RLK</occupation>
+<idno type="GND">117022829</idno>
+<idno type="Wikidata">Q75757</idno>
+</person>
+<person xml:id="p_heinrich_steimle">
+<persName>Heinrich Steimle</persName>
+<birth when="1846"/>
+<death when="1907"/>
+<occupation>Streckenkommissar Württemberg (Strecke 12); Grabungsleiter Kastell Aalen</occupation>
+<idno type="Wikidata">Q1565759</idno>
+</person>
+<person xml:id="p_heinrich_von_brunn">
+<persName>Heinrich von Brunn</persName>
+<birth when="1822"/>
+<death when="1894"/>
+<occupation>Stellvertretender Vorsitzender der RLK; Mommsens Schlüsselkontakt für die Heidelberger Konferenz 1890</occupation>
+<idno type="GND">116777273</idno>
+<idno type="Wikidata">Q63044</idno>
+</person>
+<person xml:id="p_johann_alexander_doderlein">
+<persName>Johann Alexander Döderlein</persName>
+<persName type="alias">Döderlein</persName>
+<birth when="1675"/>
+<death when="1745"/>
+<occupation>Erster wissenschaftlicher Limes-Interpret</occupation>
+<idno type="GND">121988511</idno>
+<idno type="Wikidata">Q49698</idno>
+</person>
+<person xml:id="p_johannes_aventinus">
+<persName>Johannes Aventinus</persName>
+<persName type="alias">Johann Turmair</persName>
+<persName type="alias">Johann Georg Turmair</persName>
+<birth when="1477"/>
+<death when="1534"/>
+<occupation>Frühneuzeitlicher Limes-Erstdokumentierer</occupation>
+<idno type="GND">11850522X</idno>
+<idno type="Wikidata">Q61140</idno>
+</person>
+<person xml:id="p_karl_august_von_cohausen">
+<persName>Karl August von Cohausen</persName>
+<birth when="1812"/>
+<death when="1894"/>
+<occupation>Pionier der Limesforschung, preußisches RLK-Mitglied 1892</occupation>
+<idno type="GND">116627824</idno>
+<idno type="Wikidata">Q1730391</idno>
+</person>
+<person xml:id="p_karl_popp">
+<persName>Karl Popp</persName>
+<persName type="alias">Karl von Popp</persName>
+<persName type="alias">Ritter von Popp</persName>
+<birth when="1825"/>
+<death when="1905"/>
+<occupation>Bayerisches Mitglied im geschäftsführenden Ausschuss der RLK ab 1892</occupation>
+</person>
+<person xml:id="p_karl_schumacher">
+<persName>Karl Schumacher</persName>
+<birth when="1860"/>
+<death when="1934"/>
+<occupation>Streckenkommissar Baden der RLK; erster Direktor des RGZM Mainz</occupation>
+<idno type="GND">118795597</idno>
+<idno type="Wikidata">Q99568</idno>
+</person>
+<person xml:id="p_karl_zangemeister">
+<persName>Karl Zangemeister</persName>
+<birth when="1837"/>
+<death when="1902"/>
+<occupation>Leiter des geschäftsführenden Ausschusses der RLK; Archivar und Epigraphiker</occupation>
+<idno type="GND">116964022</idno>
+<idno type="Wikidata">Q1733509</idno>
+</person>
+<person xml:id="p_konrad_miller">
+<persName>Konrad Miller</persName>
+<birth when="1844"/>
+<death when="1933"/>
+<occupation>Kartograf</occupation>
+<idno type="GND">117043486</idno>
+</person>
+<person xml:id="p_louis_jacobi">
+<persName>Louis Jacobi</persName>
+<birth when="1836"/>
+<death when="1910"/>
+<occupation>Streckenkommissar Taunus; Erforschung und Rekonstruktion des Kastells Saalburg</occupation>
+<idno type="GND">11703861X</idno>
+<idno type="Wikidata">Q1871745</idno>
+</person>
+<person xml:id="p_ludwig_pallat">
+<persName>Ludwig Pallat</persName>
+<birth when="1867"/>
+<death when="1946"/>
+<occupation>Archäologe</occupation>
+<idno type="GND">118739042</idno>
+</person>
+<person xml:id="p_oscar_von_sarwey">
+<persName>Oscar von Sarwey</persName>
+<birth when="1837"/>
+<death when="1912"/>
+<occupation>Militärischer Dirigent der RLK ab 1892; Mitherausgeber des ORL</occupation>
+<idno type="GND">116810068</idno>
+<idno type="Wikidata">Q2033044</idno>
+</person>
+<person xml:id="p_otto_von_bismarck">
+<persName>Otto von Bismarck</persName>
+<persName type="alias">Fürst Bismarck</persName>
+<persName type="alias">Otto Eduard Leopold von Bismarck-Schönhausen</persName>
+<birth when="1815"/>
+<death when="1898"/>
+<occupation>Politischer Gegenspieler Mommsens; Entzug der Rückendeckung blockierte frühe Reichslösung</occupation>
+<idno type="GND">11851136X</idno>
+<idno type="Wikidata">Q8442</idno>
+</person>
+<person xml:id="p_robert_bodewig">
+<persName>Robert Bodewig</persName>
+<persName type="alias">Bodewig</persName>
+<birth when="1857"/>
+<death when="1923"/>
+<occupation>Streckenkommissar der RLK für den unteren Lahn-Limes, ORL-Autor</occupation>
+<idno type="GND">120260948</idno>
+<idno type="Wikidata">Q1557997</idno>
+</person>
+<person xml:id="p_rudolf_virchow">
+<persName>Rudolf Virchow</persName>
+<birth when="1821"/>
+<death when="1902"/>
+<occupation>Parlamentarischer Fürsprecher der RLK-Finanzierung 1892</occupation>
+<idno type="GND">118627198</idno>
+<idno type="Wikidata">Q76432</idno>
+</person>
+<person xml:id="p_suzana_matesic">
+<persName>Suzana Matešić</persName>
+<persName type="alias">Matesic</persName>
+<persName type="alias">Matešić</persName>
+<occupation>Geschäftsführerin der Deutschen Limeskommission</occupation>
+<idno type="GND">1075777887</idno>
+<idno type="Wikidata">Q137006619</idno>
+</person>
+<person xml:id="p_theodor_mommsen">
+<persName>Theodor Mommsen</persName>
+<persName type="alias">Christian Matthias Theodor Mommsen</persName>
+<birth when="1817"/>
+<death when="1903"/>
+<occupation>Vorsitzender der Reichs-Limeskommission</occupation>
+<idno type="GND">118583425</idno>
+<idno type="Wikidata">Q25351</idno>
+</person>
+<person xml:id="p_udo_recker">
+<persName>Udo Recker</persName>
+<persName type="alias">Recker</persName>
+<birth when="1967"/>
+<occupation>Landesarchäologe Hessen, Vorsitzender der Deutschen Limeskommission</occupation>
+<idno type="GND">1136592598</idno>
+<idno type="Wikidata">Q15296238</idno>
+</person>
+<person xml:id="p_wilhelm_conrady">
+<persName>Wilhelm Conrady</persName>
+<birth when="1829"/>
+<death when="1903"/>
+<occupation>Streckenkommissar am Odenwaldlimes der RLK</occupation>
+<idno type="GND">11897775X</idno>
+<idno type="Wikidata">Q1320170</idno>
+</person>
+<person xml:id="p_wilhelm_kohl">
+<persName>Wilhelm Kohl</persName>
+<birth when="1848"/>
+<death when="1898"/>
+<occupation>Archäologe</occupation>
+<idno type="GND">120633116</idno>
+</person>
+<person xml:id="p_wilhelm_oechelhauser">
+<persName>Wilhelm Oechelhäuser</persName>
+<birth when="1820"/>
+<death when="1902"/>
+<occupation>Parlamentarischer Gegner des preußisch geleiteten Limes-Projekts 1882</occupation>
+<idno type="GND">118735977</idno>
+<idno type="Wikidata">Q2574378</idno>
+</person>
+<person xml:id="p_wilhelm_soldan">
+<persName>Wilhelm Soldan</persName>
+<birth when="1842"/>
+<death when="1905"/>
+<occupation>Hessisches RLK-Mitglied, Streckenbearbeiter für Hessen und Rheinprovinz</occupation>
+<idno type="GND">136159877</idno>
+<idno type="Wikidata">Q1684637</idno>
+</person>
+</listPerson></standOff></TEI>

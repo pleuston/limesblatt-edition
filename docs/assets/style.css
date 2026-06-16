@@ -1,0 +1,33 @@
+:root{--ink:#1c1a17;--bg:#faf8f4;--accent:#7a1f1f;--muted:#6b6359;--line:#e2dccf}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.6 Georgia,"Times New Roman",serif;color:var(--ink);background:var(--bg)}
+header{position:sticky;top:0;z-index:10;display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;align-items:baseline;
+  padding:.6rem 1.2rem;background:#fff;border-bottom:1px solid var(--line)}
+header .home{font-weight:bold;text-decoration:none;color:var(--accent);font-size:1.1rem}
+header nav{font-size:.92rem;color:var(--muted)} header nav a{color:var(--muted)}
+a{color:var(--accent)} a:hover{text-decoration:underline}
+main{max-width:980px;margin:0 auto;padding:1.2rem}
+h1{font-size:1.7rem;margin:.2rem 0 .6rem} h2{margin-top:1.6rem;border-bottom:1px solid var(--line);padding-bottom:.2rem}
+.lede{font-size:1.1rem;color:#33302b} .meta{color:var(--muted);font-size:.9rem}
+footer{max-width:980px;margin:2rem auto;padding:1rem 1.2rem;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+ul.vols{columns:2;gap:2rem} ul.vols li{margin:.2rem 0}
+/* Reader */
+.reader{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start}
+.facs{position:sticky;top:3.2rem} #osd{width:100%;height:72vh;background:#222;border:1px solid var(--line)}
+.osdnav{display:flex;justify-content:space-between;align-items:center;padding:.4rem 0;font-size:.9rem}
+.osdnav button{font:inherit;font-size:.85rem;padding:.2rem .7rem;cursor:pointer;background:#fff;border:1px solid var(--line);border-radius:3px}
+.text{max-height:80vh;overflow:auto;padding-right:.4rem} .text p{margin:.3rem 0;text-align:justify;hyphens:auto}
+.pb{margin:1rem 0 .2rem;color:var(--accent);font-variant:small-caps;font-size:.82rem;cursor:pointer;border-top:1px dotted var(--line);padding-top:.5rem}
+.pb:hover{background:#f3eee3} .gap{color:var(--muted);font-style:italic}
+.ent{text-decoration:none;border-bottom:1px dotted} .persName{color:#5a3a8a} .placeName{color:#1f5a4a}
+.alias{color:var(--muted);font-size:.82rem}
+/* Suche */
+#q{width:100%;font:inherit;padding:.5rem .7rem;border:1px solid var(--line);border-radius:4px}
+#res{margin-top:.6rem} #res .hit{display:inline-block;margin-top:.5rem;font-weight:bold}
+#res span{color:var(--muted);font-size:.9rem}
+/* Register */
+table.reg{width:100%;border-collapse:collapse;font-size:.95rem}
+table.reg th,table.reg td{text-align:left;padding:.35rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}
+table.reg th{font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+#map{height:60vh;border:1px solid var(--line);margin:.5rem 0 1rem}
+@media(max-width:760px){.reader{grid-template-columns:1fr}.facs{position:static}#osd{height:50vh}ul.vols{columns:1}}

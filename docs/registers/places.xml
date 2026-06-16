@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="register-places"><teiHeader><fileDesc>
+<titleStmt><title>Ortsregister — Limesblatt-Edition</title></titleStmt>
+<publicationStmt><availability status="free"><licence target="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</licence></availability></publicationStmt>
+<sourceDesc><p>Generiert aus dem RLK-Vault-Frontmatter (Orte/); Normdaten Wikidata/iDAI-Gazetteer/Pleiades/ORL, Geo aus location.</p></sourceDesc>
+</fileDesc></teiHeader><standOff><listPlace>
+<place xml:id="pl_heidelberg_in_romischer_zeit">
+<placeName>Heidelberg in römischer Zeit</placeName>
+<location><geo>49.4150825 8.6839274</geo></location>
+<region>Obergermanien</region>
+<idno type="Wikidata">Q1594006</idno>
+</place>
+<place xml:id="pl_kastell_aalen">
+<placeName>Kastell Aalen</placeName>
+<location><geo>48.835579 10.08472</geo></location>
+<region>Raetien</region>
+<idno type="Wikidata">Q1660247</idno>
+<idno type="Pleiades">118537</idno>
+<idno type="ORL">ORL 66</idno>
+</place>
+<place xml:id="pl_kastell_eining">
+<placeName>Kastell Eining</placeName>
+<location><geo>48.8503 11.7708</geo></location>
+<region>Raetien</region>
+<idno type="Wikidata">Q1735352</idno>
+<idno type="iDAI-Gazetteer">2047393</idno>
+<idno type="ORL">ORL 75</idno>
+</place>
+<place xml:id="pl_kastell_hesselbach">
+<placeName>Kastell Hesselbach</placeName>
+<location><geo>49.57625 9.09055556</geo></location>
+<region>Obergermanien</region>
+<idno type="Wikidata">Q1411006</idno>
+<idno type="ORL">ORL 50</idno>
+</place>
+<place xml:id="pl_kastell_jagsthausen">
+<placeName>Kastell Jagsthausen</placeName>
+<location><geo>49.3109 9.46917</geo></location>
+<region>Obergermanien</region>
+<idno type="Wikidata">Q1735380</idno>
+<idno type="iDAI-Gazetteer">2045676</idno>
+<idno type="ORL">ORL 39</idno>
+</place>
+<place xml:id="pl_kastell_niederbieber">
+<placeName>Kastell Niederbieber</placeName>
+<location><geo>50.467025 7.47194722</geo></location>
+<region>Obergermanien</region>
+<idno type="Wikidata">Q1735398</idno>
+<idno type="iDAI-Gazetteer">2110580</idno>
+<idno type="ORL">ORL 1a</idno>
+</place>
+<place xml:id="pl_kastell_oberscheidental">
+<placeName>Kastell Oberscheidental</placeName>
+<location><geo>49.5064 9.15278</geo></location>
+<region>Obergermanien</region>
+<idno type="Wikidata">Q1735404</idno>
+<idno type="ORL">ORL 52</idno>
+</place>
+<place xml:id="pl_kastell_osterburken">
+<placeName>Kastell Osterburken</placeName>
+<location><geo>49.42753 9.42364</geo></location>
+<region>Obergermanien</region>
+<idno type="Wikidata">Q1243550</idno>
+<idno type="ORL">ORL 40</idno>
+</place>
+<place xml:id="pl_kastell_saalburg">
+<placeName>Kastell Saalburg</placeName>
+<location><geo>50.2715 8.56666</geo></location>
+<region>Obergermanien</region>
+<idno type="Wikidata">Q542329</idno>
+<idno type="iDAI-Gazetteer">2049257</idno>
+<idno type="ORL">ORL 11</idno>
+</place>
+<place xml:id="pl_kastell_trennfurt">
+<placeName>Kastell Trennfurt</placeName>
+<location><geo>49.77763 9.17791</geo></location>
+<region>Obergermanien</region>
+<idno type="Wikidata">Q32064050</idno>
+<idno type="ORL">ORL 37</idno>
+</place>
+<place xml:id="pl_kastell_weienburg">
+<placeName>Kastell Weißenburg</placeName>
+<location><geo>49.0308 10.9625</geo></location>
+<region>Raetien</region>
+<idno type="Wikidata">Q638525</idno>
+<idno type="ORL">ORL 72</idno>
+</place>
+<place xml:id="pl_kastell_welzheim">
+<placeName>Kastell Welzheim</placeName>
+<location><geo>48.87122 9.64224</geo></location>
+<region>Obergermanien</region>
+<idno type="Wikidata">Q1735441</idno>
+<idno type="ORL">ORL 45 / ORL 45a</idno>
+</place>
+<place xml:id="pl_kastell_zugmantel">
+<placeName>Kastell Zugmantel</placeName>
+<location><geo>50.18977 8.20364</geo></location>
+<region>Obergermanien</region>
+<idno type="Wikidata">Q1727277</idno>
+<idno type="iDAI-Gazetteer">2049474</idno>
+<idno type="ORL">ORL 8</idno>
+</place>
+<place xml:id="pl_kastell_ohringen">
+<placeName>Kastell Öhringen</placeName>
+<location><geo>49.205444444444446 9.497397222222222</geo></location>
+<region>Obergermanien</region>
+<idno type="Wikidata">Q86069877</idno>
+<idno type="ORL">ORL 42 / ORL 42a</idno>
+</place>
+<place xml:id="pl_kleinkastell_neuwirtshaus">
+<placeName>Kleinkastell Neuwirtshaus</placeName>
+<location><geo>50.1112 8.9829</geo></location>
+<region>Obergermanien</region>
+<idno type="Wikidata">Q1746886</idno>
+<idno type="iDAI-Gazetteer">2103585</idno>
+</place>
+<place xml:id="pl_lopodunum_ladenburg">
+<placeName>Lopodunum (Ladenburg)</placeName>
+<location><geo>49.4716 8.61118</geo></location>
+<region>Obergermanien</region>
+<idno type="Wikidata">Q1869794</idno>
+<idno type="iDAI-Gazetteer">2046091</idno>
+</place>
+<place xml:id="pl_nida_heddernheim">
+<placeName>Nida (Heddernheim)</placeName>
+<location><geo>50.1541 8.63774</geo></location>
+<region>Obergermanien</region>
+<idno type="Wikidata">Q834452</idno>
+<idno type="iDAI-Gazetteer">2049139</idno>
+</place>
+</listPlace></standOff></TEI>

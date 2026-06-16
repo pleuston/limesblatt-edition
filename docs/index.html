@@ -1,0 +1,37 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Startseite — Limesblatt-Edition</title>
+<link rel="stylesheet" href="assets/style.css"><script src="assets/minisearch.min.js"></script></head><body>
+<header><a class="home" href="index.html">📕 Limesblatt-Edition</a>
+<nav><a href="index.html">Bände</a> · <a href="register/persons.html">Personen</a> · <a href="register/places.html">Orte</a> · <a href="index.html#suche">Suche</a></nav></header>
+<main><h1>Limesblatt — digitale Edition</h1>
+<p class="lede">Die <em>Mitteilungen der Streckenkommissare bei der Reichs-Limeskommission</em>
+(1892–1903): die laufenden Feldberichte der Limesforschung, als diplomatische OCR-Edition mit
+IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen- und Ortsregistern.</p>
+<section id="suche"><h2>Volltextsuche</h2>
+<input id="q" type="search" placeholder="z. B. Saalburg, Entschädigung, Mommsen …" autocomplete="off">
+<div id="res"></div></section>
+<h2>Bände</h2><ul class="vols"><li><a href="volumes/bd1.html">Bd. 1 (1892/93)</a> <span class="meta">— 85 Seiten</span></li><li><a href="volumes/bd2.html">Bd. 2 (1893/94)</a> <span class="meta">— 78 Seiten</span></li><li><a href="volumes/bd3.html">Bd. 3 (1894/95)</a> <span class="meta">— 73 Seiten</span></li><li><a href="volumes/bd4.html">Bd. 4 (1896)</a> <span class="meta">— 57 Seiten</span></li><li><a href="volumes/bd5.html">Bd. 5 (1897)</a> <span class="meta">— 57 Seiten</span></li><li><a href="volumes/bd6.html">Bd. 6 (1897/98)</a> <span class="meta">— 65 Seiten</span></li><li><a href="volumes/bd7.html">Bd. 7 (1898/1902)</a> <span class="meta">— 65 Seiten</span></li><li><a href="volumes/bd8.html">Bd. 8 (1903)</a> <span class="meta">— 17 Seiten</span></li></ul>
+<h2>Register</h2><ul><li><a href="register/persons.html">Personenregister</a></li>
+<li><a href="register/places.html">Ortsregister (mit Karte)</a></li></ul>
+<p class="meta">Abgeleitet aus dem (privaten) Forschungs-Vault zur <a href="https://github.com/pleuston/limes">Reichs-Limeskommission</a>.
+Edition/Code: <a href="https://github.com/pleuston/limesblatt-edition">GitHub</a>.</p>
+<script>
+fetch("data/search.json").then(r=>r.json()).then(docs=>{
+ var ms=new MiniSearch({fields:["text"],storeFields:["vol","tok","label"]}); ms.addAll(docs);
+ var q=document.getElementById("q"),res=document.getElementById("res");
+ q.addEventListener("input",function(){
+  var v=q.value.trim(); if(v.length<3){res.innerHTML="";return;}
+  var hits=ms.search(v,{prefix:true,fuzzy:.1}).slice(0,40);
+  res.innerHTML=hits.length?hits.map(function(h){
+    var t=h.text||""; var i=t.toLowerCase().indexOf(v.toLowerCase());
+    var sn=i<0?t.slice(0,140):t.slice(Math.max(0,i-50),i+90);
+    return '<a class="hit" href="volumes/bd'+h.vol+'.html#pb-'+h.tok+'">'+h.label+', S. '+h.tok+'</a> <span>…'+
+      sn.replace(/</g,"&lt;")+'…</span>';}).join(""):"<p class=meta>keine Treffer</p>";
+ });
+});
+</script></main>
+<footer>Diplomatische OCR-Edition des <em>Limesblatt</em> (1892–1903) · Text &amp; Register
+<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · Seitenbilder © UB Heidelberg
+(<a href="http://rightsstatements.org/vocab/InC/1.0/">In Copyright</a>, via IIIF verlinkt) ·
+<a href="https://github.com/pleuston/limesblatt-edition">Quellcode &amp; TEI</a></footer></body></html>
