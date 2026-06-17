@@ -85,7 +85,7 @@ def load_persons(vault):
             "role": fm.get("rolle","") or (fm.get("funktion",[""])[0] if isinstance(fm.get("funktion"),list) and fm.get("funktion") else ""),
             "residence": fm.get("wirkungsort",""), "portrait": fm.get("bild",""),
             "biografie": fm.get("biografie",""), "nachlass": fm.get("nachlass",""),
-            "strecke": fm.get("strecke",""),
+            "vitae": fm.get("vitae",""), "strecke": fm.get("strecke",""),
             "briefe_von": fm.get("briefe_von",""), "briefe_an": fm.get("briefe_an","")})
     return out
 
@@ -198,6 +198,7 @@ def write_persons(persons, path):
         if p["strecke"]:   L.append(f'<state type="strecke"><label>{escape(p["strecke"])}</label></state>')
         if p["portrait"]:  L.append(f'<idno type="portrait">{escape(p["portrait"])}</idno>')
         if p["biografie"]: L.append(f'<idno type="DeutscheBiographie">{escape(p["biografie"])}</idno>')
+        if p.get("vitae"): L.append(f'<idno type="Propylaeum-VITAE">{escape(p["vitae"])}</idno>')
         if (p["briefe_von"] or p["briefe_an"]) and p["gnd"]:
             L.append(f'<idno type="Kalliope">{escape(str(p["gnd"]))}</idno>')
             L.append(f'<note type="briefe" n="{escape(str(p["briefe_von"] or 0))}/{escape(str(p["briefe_an"] or 0))}"/>')

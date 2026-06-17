@@ -49,6 +49,7 @@
 <residence>Stuttgart</residence>
 <idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Paulus%20eduard%20juengere.jpg?width=400</idno>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116066342.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/38993/view</idno>
 <idno type="Kalliope">116066342</idno>
 <note type="briefe" n="307/525"/>
 <note type="nachlass">Deutsches Literaturarchiv Marbach, Archiv</note>
@@ -65,6 +66,7 @@
 <residence>Wiesbaden, Taunus</residence>
 <idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Emil%20Ritterling01.jpg?width=400</idno>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116573589.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/3097/view</idno>
 <idno type="Kalliope">116573589</idno>
 <note type="briefe" n="12/0"/>
 </person>
@@ -78,6 +80,7 @@
 <residence>Universität Freiburg im Breisgau</residence>
 <idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Ernst%20Fabricius%20-%20Arch%C3%A4ologe.jpg?width=400</idno>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116369957.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/12108/view</idno>
 <idno type="Kalliope">116369957</idno>
 <note type="briefe" n="52/2"/>
 </person>
@@ -92,6 +95,7 @@
 <residence>Karlsruhe</residence>
 <idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Ernst%20Wagner%20Archaeologist.jpg?width=400</idno>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd103148442.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/14812/view</idno>
 <idno type="Kalliope">103148442</idno>
 <note type="briefe" n="28/2"/>
 </person>
@@ -106,6 +110,7 @@
 <state type="strecke"><label>Württemberg</label></state>
 <idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Ernst%20Herzog.jpg?width=400</idno>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116762314.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/18710/view</idno>
 <idno type="Kalliope">116762314</idno>
 <note type="briefe" n="25/8"/>
 <note type="nachlass">Deutsches Literaturarchiv Marbach, Archiv</note>
@@ -119,6 +124,7 @@
 <idno type="Wikidata">Q1403518</idno>
 <residence>Rheinisches Landesmuseum Trier</residence>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116779209.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/3378/view</idno>
 <idno type="Kalliope">116779209</idno>
 <note type="briefe" n="66/8"/>
 <note type="nachlass">Universitäts- und Landesbibliothek Bonn</note>
@@ -147,6 +153,7 @@
 <idno type="Wikidata">Q18020298</idno>
 <residence>Freiburg im Breisgau, Frankfurt am Main</residence>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116219866.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/17163/view</idno>
 <idno type="Kalliope">116219866</idno>
 <note type="briefe" n="41/1"/>
 </person>
@@ -160,6 +167,7 @@
 <idno type="Wikidata">Q1460478</idno>
 <residence>Bad Homburg / Hessen</residence>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd117530824.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/17591/view</idno>
 <idno type="Kalliope">117530824</idno>
 <note type="briefe" n="0/0"/>
 </person>
@@ -212,6 +220,7 @@
 <idno type="Wikidata">Q1506482</idno>
 <residence>Frankfurt am Main, Wetterau</residence>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd117440647.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/17861/view</idno>
 <idno type="Kalliope">117440647</idno>
 <note type="briefe" n="5/0"/>
 </person>
@@ -233,6 +242,7 @@
 <idno type="Wikidata">Q1597131</idno>
 <residence>Gunzenhausen, Weißenburg (Bayern)</residence>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd117497908.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/18163/view</idno>
 <idno type="Kalliope">117497908</idno>
 <note type="briefe" n="3/0"/>
 </person>
@@ -246,6 +256,7 @@
 <residence>Römerkastell Saalburg; Bad Homburg vor der Höhe</residence>
 <state type="strecke"><label>Taunus</label></state>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd118957236.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/18322/view</idno>
 <idno type="Kalliope">118957236</idno>
 <note type="briefe" n="4/0"/>
 </person>
@@ -259,6 +270,7 @@
 <residence>Bonn</residence>
 <idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/K%C3%BCppers%20Nissen%20Bonn.jpg?width=400</idno>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd117022829.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/17855/view</idno>
 <idno type="Kalliope">117022829</idno>
 <note type="briefe" n="95/0"/>
 </person>
@@ -270,6 +282,7 @@
 <idno type="Wikidata">Q1565759</idno>
 <residence>Württemberg / Kastell Aalen</residence>
 <state type="strecke"><label>Württemberg (Strecke 12)</label></state>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/18153/view</idno>
 </person>
 <person xml:id="p_heinrich_von_brunn">
 <persName>Heinrich von Brunn</persName>
@@ -281,6 +294,7 @@
 <residence>Universität München; Glyptothek München</residence>
 <idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Heinrich%20Brunn%20-%20Imagines%20philologorum.jpg?width=400</idno>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116777273.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/12251/view</idno>
 <idno type="Kalliope">116777273</idno>
 <note type="briefe" n="617/7470"/>
 <note type="nachlass">Bayerische Staatsbibliothek</note>
@@ -324,6 +338,7 @@
 <residence>Wiesbaden / Saalburg</residence>
 <idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Karl%20August%20von%20Cohausen%202.jpg?width=400</idno>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116627824.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/15170/view</idno>
 <idno type="Kalliope">116627824</idno>
 <note type="briefe" n="20/5"/>
 <note type="nachlass">Freies Deutsches Hochstift - Frankfurter Goethe-Museum</note>
@@ -347,6 +362,7 @@
 <residence>Römisch-Germanisches Zentralmuseum Mainz</residence>
 <state type="strecke"><label>Baden</label></state>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd118795597.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/6410/view</idno>
 <idno type="Kalliope">118795597</idno>
 <note type="briefe" n="19/13"/>
 <note type="nachlass">Universitätsbibliothek Heidelberg</note>
@@ -361,6 +377,7 @@
 <residence>Universitätsbibliothek Heidelberg</residence>
 <idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Karl%20Zangemeister%20%28HeidICON%2053043%29%20%28cropped%29.jpg?width=400</idno>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116964022.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/40670/view</idno>
 <idno type="Kalliope">116964022</idno>
 <note type="briefe" n="205/94"/>
 <note type="nachlass">Universitätsbibliothek Heidelberg</note>
@@ -384,6 +401,7 @@
 <state type="strecke"><label>Taunus</label></state>
 <idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Louis%20Jacobi.jpg?width=400</idno>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd11703861X.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/18158/view</idno>
 <idno type="Kalliope">11703861X</idno>
 <note type="briefe" n="5/5"/>
 <note type="nachlass">Staatsbibliothek zu Berlin. Handschriftenabteilung</note>
@@ -447,6 +465,7 @@
 <residence>Berlin</residence>
 <idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Rudolf%20Ludwig%20Karl%20Virchow.%20Photograph%20by%20J.%20C.%20Schaarw%C3%A4chte%20Wellcome%20V0027292.jpg?width=400</idno>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd118627198.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/10004/view</idno>
 <idno type="Kalliope">118627198</idno>
 <note type="briefe" n="183/20"/>
 <note type="nachlass">Staatsbibliothek zu Berlin. Handschriftenabteilung</note>
@@ -474,6 +493,7 @@
 <residence>Berlin</residence>
 <idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Theodor%20Mommsen%202.jpg?width=400</idno>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd118583425.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/8202/view</idno>
 <idno type="Kalliope">118583425</idno>
 <note type="briefe" n="2073/1096"/>
 <note type="nachlass">Deutsches Literaturarchiv Marbach, Archiv</note>
@@ -500,6 +520,7 @@
 <residence>Miltenberg / Odenwaldlimes</residence>
 <state type="strecke"><label>Odenwaldlimes</label></state>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd11897775X.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/18165/view</idno>
 <idno type="Kalliope">11897775X</idno>
 <note type="briefe" n="1/0"/>
 </person>
@@ -533,6 +554,7 @@
 <idno type="Wikidata">Q1684637</idno>
 <residence>Darmstadt</residence>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd136159877.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/38298/view</idno>
 <idno type="Kalliope">136159877</idno>
 <note type="briefe" n="0/0"/>
 </person>

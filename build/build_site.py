@@ -163,7 +163,8 @@ def persons_page(persons, occ, digs):
         links = links_line([
             f'<a href="https://d-nb.info/gnd/{html.escape(I["GND"])}">GND</a>' if I.get("GND") else "",
             f'<a href="https://www.wikidata.org/wiki/{html.escape(I["Wikidata"])}">Wikidata</a>' if I.get("Wikidata") else "",
-            f'<a href="{html.escape(I["DeutscheBiographie"])}">Dt. Biographie</a>' if I.get("DeutscheBiographie") else "", kal])
+            f'<a href="{html.escape(I["DeutscheBiographie"])}">Dt. Biographie</a>' if I.get("DeutscheBiographie") else "",
+            f'<a href="{html.escape(I["Propylaeum-VITAE"])}">Propylaeum-VITAE</a>' if I.get("Propylaeum-VITAE") else "", kal])
         extra = []
         if p.get("nachlass"): extra.append(f'<div class="x">🗄️ Nachlass: {html.escape(p["nachlass"])}</div>')
         forts = digs.get(p["id"], [])
