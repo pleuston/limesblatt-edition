@@ -169,6 +169,9 @@ def tag_text(text, terms):
 def tokens(vault, slug_):
     d = os.path.join(vault, "tools", ".cache", slug_)
     toks = [os.path.basename(f)[:-4] for f in glob.glob(os.path.join(d, "*.txt"))]
+    # Color-Check-/Beilage-Tafel je Band raus (Token = Zahl+Buchstabe, z.B. 311a);
+    # Front-Matter (0000a–d, mit 0 beginnend) bleibt erhalten.
+    toks = [t for t in toks if not re.match(r'^[1-9]\d*[a-z]+$', t)]
     nondig = sorted(t for t in toks if not t.isdigit())
     dig    = sorted((t for t in toks if t.isdigit()), key=int)
     return nondig + dig, d

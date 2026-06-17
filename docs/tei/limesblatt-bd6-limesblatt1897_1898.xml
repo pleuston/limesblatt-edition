@@ -14,7 +14,6 @@
 <encodingDesc><editorialDecl><p>Diplomatische, unkorrigierte Wiedergabe der Fraktur-OCR (ALTO, UB Heidelberg). Ein <gi>pb</gi> je IIIF-Kachel (Doppelseite). Heuristisch erkannte Eigennamen tragen <att>cert</att>="low" und verweisen auf die Register.</p></editorialDecl></encodingDesc>
 </teiHeader>
 <facsimile>
-<surface xml:id="f_807a" n="807a"><graphic url="https://digi.ub.uni-heidelberg.de/iiif/2/limesblatt1897_1898%3A807a.jpg/full/max/0/default.jpg"/></surface>
 <surface xml:id="f_681" n="681"><graphic url="https://digi.ub.uni-heidelberg.de/iiif/2/limesblatt1897_1898%3A681.jpg/full/max/0/default.jpg"/></surface>
 <surface xml:id="f_683" n="683"><graphic url="https://digi.ub.uni-heidelberg.de/iiif/2/limesblatt1897_1898%3A683.jpg/full/max/0/default.jpg"/></surface>
 <surface xml:id="f_685" n="685"><graphic url="https://digi.ub.uni-heidelberg.de/iiif/2/limesblatt1897_1898%3A685.jpg/full/max/0/default.jpg"/></surface>
@@ -81,109 +80,6 @@
 <surface xml:id="f_807" n="807"><graphic url="https://digi.ub.uni-heidelberg.de/iiif/2/limesblatt1897_1898%3A807.jpg/full/max/0/default.jpg"/></surface>
 </facsimile>
 <text><body><div type="volume">
-<pb n="807a" facs="#f_807a"/>
-<p>LIMESBLATT.
- Mitteilungen der Streckenkommissare bei der Reichslimeskommission.
- Erscheint jährlich in 5—6 Nrn. zum Preise von 3 Mark.
- Jac. Lintz, Verlagsbuchhandlung und Buchdruckerei in Trier.
- Nr. 29. Ausgegeben am 10. Juli 1898.
- Am 12. Mai dieses Jahres starb in Weissenburg am Sand Herr Apo¬ thekenbesitzer Wilhelm Kohl. Er war bei der Kommission seit ihrer Be¬
- gründung als Streckenkommissar thätig unter grossen persönlichen Opfern mit nie ermüdendem Eifer. Wir verdanken ihm eine Reihe sehr wichtiger Ent¬
- deckungen und vielfache Förderung.
- Verlust.
- 182. <placeName ref="dare:6273" cert="low">Heldenbergen</placeName>. [Erdkastell, Erd¬ lager und Niederlassung.] Vgl. Limes¬ blatt Nr. 21, 148. Im Frühjahre 1897 wurde die im vorhergehenden Herbste abgebrochene Untersuchung des Erdkastells zunächst im Parke des Frhrn. v. Leonhardi fortgesetztx). Es stellte sich heraus, dass die zuletzt gefundene nordöstliche Abbiegung der ab¬ gerundeten Nordwestecke eines mit seiner Längenachse senkrecht gegen die Nidder gerichteten Erdkastells angehörte, welches, wie die späteren Ausgrabungen ausser¬ halb des Parks bestätigt haben, vollkom¬ men rechteckige Form und bei 70 m Breite eine Länge von 95 m (von der Graben¬ sohle gemessen) hatte. Es kommt dem¬ nach an Flächeninhalt den gemauerten Odenwaldkastellen und dem Erdkastell der <placeName ref="#pl_kastell_saalburg" cert="low">Saalburg</placeName> sehr nahe.
- Als Dekumanseite ist die von der Nid¬ der abgelegene westliche Schmalseite zu betrachten. Genau in ihrer Mitte lag die porta decumana, wie der Umstand beweist, dass die früher beschriebene Strasse, von der im vorigen Jahre vermutet wurde, dass sie an der Südwestecke des Kastells vorü¬ ber zur Nidder verlaufen sei, vor der 1) Dass dies möglich war, ist dem Entgegen¬ kommen des genannten Besitzers und seines Päch¬ ters, Herrn Beigeordneten Dott, zu verdanken. Bei den Arbeiten wurde auch in diesem Jahre der Streckenkommissar auf das eifrigste durch Herrn Leopold Meininger unterstützt.
- Sein Hineans ist für uns ein grosser
- Norc rade
- — CO
- —
- Kun
- — Cd
- Das
- =
- Käst
- E-
- ©
- durc
- © CD
- o
- (Ü
- den.
- =
- +-&gt; 5
- CD
- des
- — o
- k_ 5
- ser
- CÜ
- ben
- =
- xz
- jene
- — 0)
- O ?
- aufg
- tr
- 0
- erka dann
- ="
- = X
- o k_ +-J
- viele
- word
- CO
- träg^
- — s
- o i
- L_
- dem
- auffa
- = (0
- O '
- 0
- folgu
- &gt;
- sich
- O c
- Cd
- ein
- ~ in
- u. °
- o
- &gt;
- (D
- abhe
- rend
- =-
- 0 0
- k_
- 0
- der
- oö
- Lehi
- —
- der
- — CO
- □ M
- 0)
- hier führ
- =-
- o °
- 0
- gang
- — C\J
- o
- gege
- Anfs
- E-
- o ,
- 0 1
- =
- CD
- §
- = E
- — ü</p>
 <pb n="681" facs="#f_681"/>
 <p>LIMESBLATT.
  Mitteilungen der Streckenkommissare bei der Reichslimeskommission.

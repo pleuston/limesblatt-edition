@@ -7,7 +7,7 @@ Eine **statische digitale Edition** des *Limesblatt* (1892–1903) — der „Mi
 > EN — A static digital edition of the *Limesblatt* (field reports of the Imperial Limes Commission, 1892–1903): diplomatic OCR transcription in TEI-P5, IIIF page facsimiles (Heidelberg University Library), and person/place registers linked to GND, Wikidata, iDAI-Gazetteer and Pleiades. Built token-free from a research vault; rendered to a static GitHub-Pages site.
 
 ## Was diese Edition enthält
-- **8 Bände** (Bd. 1–8, 1892–1903), 497 Seiten als diplomatischer OCR-Volltext.
+- **8 Bände** (Bd. 1–8, 1892–1903), 488 Seiten als diplomatischer OCR-Volltext (Color-Check-/Beilage-Tafeln entfernt).
 - **IIIF-Faksimile** je Seite über das Manifest der UB Heidelberg (Deep-Zoom via OpenSeadragon).
 - **Personen-, Orts- und Streckenregister:** Personen (43) mit GND/Wikidata, **Porträts**, Korrespondenz (Kalliope, mit Briefzahlen) und Nachlass; Orte (17, mit **nach Limes-Abschnitt filterbarer Karte**) mit Kastelltyp, ORL-Nummer, **EDH-Inschriften** und **Ausgräber**; Strecken (15) mit ihren Kastellen, Kommissaren und „Auf der Karte zeigen".
 - **Personen ↔ Orte verknüpft** über die Ausgräber-Relation (wer welches Kastell grub, in beide Richtungen). Register und Volltext sind **bidirektional verlinkt** (Eintrag → Fundstellen und zurück).
