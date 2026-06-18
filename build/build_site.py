@@ -98,7 +98,7 @@ def page(title, body, depth=0, head=""):
 <title>{html.escape(title)} — Limesblatt-Edition</title>
 <link rel="stylesheet" href="{up}assets/style.css">{head}</head><body>
 <header><a class="home" href="{up}index.html">📕 Limesblatt-Edition</a>
-<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}index.html#suche">Suche</a></nav></header>
+<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}register/wortschatz.html">Wortschatz</a> · <a href="{up}index.html#suche">Suche</a></nav></header>
 <main>{body}</main>
 <footer>Diplomatische OCR-Edition des <em>Limesblatt</em> (1892–1903) · Text &amp; Register
 <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · Seitenbilder © UB Heidelberg
@@ -302,7 +302,8 @@ IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen
 <li><a href="register/places.html">Ortsregister</a> — mit Karte, Kastelltyp, Ausgräber, Inschriften</li>
 <li><a href="register/strecken.html">Strecken</a> — die 15 Limes-Abschnitte mit Kastellen &amp; Kommissaren</li>
 <li><a href="register/namen.html">Namen im Limesblatt</a> — vollständiger Namenindex aus dem Volltext (LLM-NER)</li>
-<li><a href="register/orte-index.html">Orte im Limesblatt</a> — vollständiger Ortsindex aus dem Volltext (LLM-NER)</li></ul>
+<li><a href="register/orte-index.html">Orte im Limesblatt</a> — vollständiger Ortsindex aus dem Volltext (LLM-NER)</li>
+<li><a href="register/wortschatz.html">Wortschatz &amp; Konkordanz</a> — diachrone Term-Statistik (1892–1903) + KWIC mit Faksimile-Sprung</li></ul>
 <p class="meta">Abgeleitet aus dem (privaten) Forschungs-Vault zur <a href="https://github.com/pleuston/limes">Reichs-Limeskommission</a>.
 Edition/Code: <a href="https://github.com/pleuston/limesblatt-edition">GitHub</a>.</p>
 <script>
@@ -376,6 +377,72 @@ def ner_index_page(items, what, valid, recon):
             f'<p class="meta"><span id="ncount">{rows}</span> angezeigt</p>'
             f'<ul id="nerlist" class="nerlist">{"".join(lis)}</ul>')
     return body, head
+
+TM_GROUPS = {  # Anzeige -> (regex, Chart-Farbe|None)
+    "Grabungsmethode": (r"(sondir\w*|sondier\w*|schnitt\w*|suchgraben\w*|durchschnitt\w*|profil\w*|anschnitt\w*|planum)", "#3060c0"),
+    "Stratigraphie":   (r"(schicht\w*|brandschicht\w*|ablagerung\w*|aufschüttung\w*)", "#7a3fae"),
+    "Holzbefund":      (r"(holz\w*|hölzern\w*|pfahl|pfähle|pfosten\w*|balken|fachwerk\w*)", "#1f7a4d"),
+    "Steinbau":        (r"(mauer\w*|fundament\w*|mörtel\w*|estrich\w*)", "#b3331a"),
+    "Funde – Sigillata":         (r"(sigillata|sigillaten)", None),
+    "Funde – Münzen":            (r"(münze\w*|münz\w*)", None),
+    "Funde – Inschrift/Stempel": (r"(inschrift\w*|ziegelstempel\w*|töpferstempel\w*|stempel\w*)", "#b07d20"),
+    "Datierung":                 (r"(datir\w*|datier\w*|chronolog\w*|zeitstellung\w*)", None),
+}
+TM_KWIC = ["sigillata", "münze", "brandschicht", "ziegelstempel", "pfosten", "fibel", "mörtel"]
+TM_YEARS = {1:"1892/93",2:"1893/94",3:"1894/95",4:"1896",5:"1897",6:"1897/98",7:"1898–1902",8:"1903"}
+
+def tm_norm(t):
+    t = t.replace("ſ","s"); t = re.sub(r"(\w)[-¬]\s*\n\s*(\w)", r"\1\2", t); return re.sub(r"\s+"," ",t)
+
+def wortschatz_page(volumes):
+    bands = sorted(volumes, key=lambda v: v["nr"]); nrs = [v["nr"] for v in bands]
+    texts = {v["nr"]: tm_norm(" ".join(p["text"] for p in v["pages"] if p.get("text"))).lower() for v in bands}
+    words = {nr: max(1, len(re.findall(r"[a-zäöüß]+", t))) for nr, t in texts.items()}
+    rates = {g: {nr: 1000.0*len(re.findall(rx, texts[nr], re.I))/words[nr] for nr in nrs} for g,(rx,c) in TM_GROUPS.items()}
+    # SVG-Liniendiagramm (nur eingefärbte Gruppen)
+    plotted = [(g,c) for g,(rx,c) in TM_GROUPS.items() if c]
+    W,H,PL,PR,PT,PB = 720,300,40,168,14,42
+    mx = max([rates[g][nr] for g,_ in plotted for nr in nrs] + [1])
+    X = lambda i: PL+(W-PL-PR)*i/(len(nrs)-1); Yv = lambda v: PT+(H-PT-PB)*(1-v/mx)
+    svg = [f'<svg viewBox="0 0 {W} {H}" class="tmchart" role="img" aria-label="Term-Häufigkeit je Band">']
+    step = max(1, round(mx/5))
+    for k in range(0, int(mx)+1, step):
+        y = Yv(k); svg.append(f'<line x1="{PL}" y1="{y:.0f}" x2="{W-PR}" y2="{y:.0f}" stroke="var(--line)"/>'
+                              f'<text x="{PL-6}" y="{y+3:.0f}" text-anchor="end" font-size="10" fill="var(--muted)">{k}</text>')
+    for i,nr in enumerate(nrs):
+        svg.append(f'<text x="{X(i):.0f}" y="{H-PB+15}" text-anchor="middle" font-size="10" fill="var(--muted)">Bd.{nr}'
+                   f'<tspan x="{X(i):.0f}" dy="11">{TM_YEARS.get(nr,"")[:4]}</tspan></text>')
+    for j,(g,col) in enumerate(plotted):
+        pts = " ".join(f"{X(i):.0f},{Yv(rates[g][nr]):.1f}" for i,nr in enumerate(nrs))
+        ly = PT+18*j
+        svg.append(f'<polyline points="{pts}" fill="none" stroke="{col}" stroke-width="2"/>'
+                   f'<line x1="{W-PR+8}" y1="{ly}" x2="{W-PR+22}" y2="{ly}" stroke="{col}" stroke-width="2"/>'
+                   f'<text x="{W-PR+26}" y="{ly+3}" font-size="11" fill="var(--ink)">{html.escape(g)}</text>')
+    svg.append('</svg>'); chart = "".join(svg)
+    th = "".join(f"<th>Bd.{nr}<br>{TM_YEARS.get(nr,'')}</th>" for nr in nrs)
+    trs = "".join(f"<tr><td>{html.escape(g)}</td>" + "".join(f"<td>{rates[g][nr]:.1f}</td>" for nr in nrs) + "</tr>" for g in TM_GROUPS)
+    table = f'<table class="reg tm"><tr><th>Term-Gruppe · je 1000 Wörter</th>{th}</tr>{trs}</table>'
+    kw = ['<h2 id="kwic">Konkordanz (KWIC)</h2><p class="meta">Jeder Beleg springt ins Faksimile. Aufklappen je Begriff.</p>']
+    for term in TM_KWIC:
+        rx = re.compile(r"(.{0,46})\b(%s\w*)\b(.{0,46})" % re.escape(term), re.I); hits = []
+        for v in bands:
+            for p in v["pages"]:
+                for m in rx.finditer(tm_norm(p.get("text") or "")):
+                    hits.append((v["nr"], p["tok"], m.group(1).strip(), m.group(2), m.group(3).strip()))
+        kw.append(f'<details><summary>{html.escape(term)} <span class="meta">({len(hits)})</span></summary><ul class="kwic">')
+        for nr,tok,l,c,r in hits[:40]:
+            kw.append(f'<li><a class="meta" href="../volumes/bd{nr}.html#pb-{html.escape(tok)}">{nr}/{html.escape(tok)}</a> '
+                      f'…{html.escape(l)} <b>{html.escape(c)}</b> {html.escape(r)}…</li>')
+        kw.append('</ul></details>')
+    tot = sum(words.values())
+    return (f'<h1>Wortschatz &amp; Konkordanz</h1>'
+            f'<p class="meta">Token-freie Textstatistik über alle 8 Bände (1892–1903; {tot:,} Wörter): thematische Term-Gruppen '
+            f'je 1000 Wörter und eine Konkordanz mit Faksimile-Sprung. Aus dem Fraktur-OCR (unkorrigiert).</p>'
+            f'<div class="tmwrap">{chart}</div>'
+            f'<h2>Term-Gruppen über die Zeit</h2>{table}'
+            f'<p class="meta">Befund: Steinbau dominiert; Holzbefund-Vokabular ist präsent und steigt mittig (Bd. 4–6); '
+            f'explizite Datierungssprache fehlt fast; „principia" kommt nicht vor (man schrieb „Prätorium").</p>'
+            + "".join(kw))
 
 def main():
     os.makedirs(os.path.join(DOCS,"volumes"), exist_ok=True)
@@ -468,6 +535,7 @@ def main():
               open(os.path.join(DOCS,"data","ner-sites.geojson"),"w",encoding="utf-8"), ensure_ascii=False)
     pm = sum(1 for v in rec_p.values() if v); om = sum(1 for v in rec_pl.values() if v and v.get("geo"))
     print(f"Volltext-Index (LLM-NER): {len(ner_p)} Namen ({pm} reconciled), {len(ner_pl)} Orte ({om} verortet → ner-sites.geojson)")
+    open(os.path.join(DOCS,"register","wortschatz.html"),"w",encoding="utf-8").write(page("Wortschatz & Konkordanz", wortschatz_page(volumes), 1))
     ib, ih = index_page(volumes)
     open(os.path.join(DOCS,"index.html"),"w",encoding="utf-8").write(page("Startseite", ib, 0, ih))
     print(f"docs/: index + {len(volumes)} Bände + 3 Register (Personen {len(persons)}, Orte {len(places)}, "
