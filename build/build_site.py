@@ -111,14 +111,25 @@ def vol_page(v, toc=None):
     tiles = [IIIF_INFO.format(slug=slug, tok=p["tok"]) for p in v["pages"]]
     idx = {p["tok"]: i for i, p in enumerate(v["pages"])}
     tmap = {}
-    for t, num, title, br in (toc or []): tmap.setdefault(t, []).append((num, title, br))
+    for t, num, title, br in (toc or []): tmap.setdefault(t, {})[num] = (title, br)
     text = []
     for i, p in enumerate(v["pages"]):
         text.append(f'<div class="pb" id="pb-{p["tok"]}" data-page="{i}" '
                     f'onclick="viewer.goToPage({i})" title="Faksimile zu S. {html.escape(p["tok"])} zeigen">— {html.escape(p["tok"])} —</div>')
-        for num, title, br in tmap.get(p["tok"], []):
-            text.append(f'<h3 class="arthead" id="art-{num}">{num}. {html.escape(title)}{(" " + html.escape(br)) if br else ""}</h3>')
-        text.append(p["html"])
+        ph = p["html"]; nums = tmap.get(p["tok"], {})
+        if nums:
+            done = set()
+            def wrap(m):                                 # Überschrift inline an ihrer echten Stelle markieren
+                n = int(m.group(1))
+                if n in nums and n not in done:
+                    done.add(n)
+                    return f'</p>\n<p class="artp"><b class="arthead" id="art-{n}">{m.group(0).strip()}</b> '
+                return m.group(0)
+            ph = TOC_PAT.sub(wrap, ph)
+            for n in nums:                               # Fallback: nicht im Fließtext gefunden → Seitenanker
+                if f'id="art-{n}"' not in ph:
+                    ph = f'<p class="artp"><b class="arthead" id="art-{n}">{n}. {html.escape(nums[n][0])}</b></p>' + ph
+        text.append(ph)
     head = ('<script src="../assets/openseadragon.min.js"></script>')
     inh = ""
     if toc:
