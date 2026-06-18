@@ -332,27 +332,44 @@ def page_links(pages, valid):
             out.append(f'<a href="../volumes/bd{vol}.html#pb-{html.escape(tok)}">{vol}/{html.escape(tok)}</a>')
     return ", ".join(out)
 
-def ner_index_page(items, what, valid):
+def ner_index_page(items, what, valid, recon):
     lab = "Namen" if what == "persons" else "Orte"
-    rows = 0; lis = []
+    rows = 0; matched = 0; lis = []
     for it in items:
         pl = page_links(it.get("pages", []), valid)
         if not pl: continue
+        nm = it["name"]; r = recon.get(nm.lower()); disp = html.escape(nm); ref = ""
         if what == "persons":
             extra = " · ".join(it.get("roles", [])[:2])
-            ref = f' <a class="meta" href="https://lobid.org/gnd/search?q={html.escape(it["name"])}&amp;format=html">GND?</a>'
+            if r and r.get("src") == "reg":                    # kuratierte RLK-Figur → interner Eintrag
+                disp = f'<a href="../register/persons.html#p_{r["slug"]}">{html.escape(nm)}</a>'
+                if r.get("gnd"): ref = f' <a class="meta" href="https://d-nb.info/gnd/{r["gnd"]}">GND</a>'
+                matched += 1
+            elif r and r.get("src") == "gnd":                  # lobid-Vollnamen-Treffer
+                t = html.escape(f'{r.get("gndName","")} {r.get("von","")}–{r.get("bis","")} · {r.get("prof","")}')
+                ref = f' <a class="meta" href="https://d-nb.info/gnd/{r["gnd"]}" title="{t}">GND ✓</a>'
+                matched += 1
+            else:
+                ref = f' <a class="meta" href="https://lobid.org/gnd/search?q={html.escape(nm)}&amp;format=html">GND?</a>'
         else:
-            extra = it.get("kind", ""); ref = ""
+            extra = it.get("kind", "")
+            if r and r.get("gazId"):                           # iDAI-Gazetteer (Authority + Koordinaten)
+                ref = f' <a class="meta" href="https://gazetteer.dainst.org/place/{r["gazId"]}">iDAI</a>'; matched += 1
+            elif r and r.get("geo"):                           # nur Koordinaten (OSM)
+                la, lo = r["geo"]
+                ref = f' <a class="meta" href="https://www.openstreetmap.org/?mlat={la}&amp;mlon={lo}#map=13/{la}/{lo}">Karte</a>'; matched += 1
         em = f' <span class="meta">· {html.escape(extra)}</span>' if extra else ""
         lc = ' class="lc"' if it.get("cert") != "high" else ""
-        lis.append(f'<li{lc}><b>{html.escape(it["name"])}</b>{em}{ref} — <span class="pgs">{pl}</span></li>')
+        lis.append(f'<li{lc}><b>{disp}</b>{em}{ref} — <span class="pgs">{pl}</span></li>')
         rows += 1
+    rec = (f'<b>{matched}</b> mit GND bzw. dem Personenregister verknüpft' if what == "persons"
+           else f'<b>{matched}</b> über iDAI-Gazetteer/Koordinaten verortet')
     head = ('<script>function nflt(q){q=q.toLowerCase();var n=0,L=document.querySelectorAll("#nerlist>li");'
             'L.forEach(function(li){var m=li.textContent.toLowerCase().indexOf(q)>=0;li.style.display=m?"":"none";if(m)n++;});'
             'document.getElementById("ncount").textContent=n;}</script>')
     body = (f'<h1>{lab} im Limesblatt</h1>'
             f'<p class="meta">{rows} {lab}, per <b>LLM-NER</b> aus dem gesamten Volltext extrahiert '
-            f'(heuristisch, Fraktur-OCR — nicht normdaten-reconciliert; <span class="lc">grau = unsichere OCR-Lesung</span>). '
+            f'(heuristisch, Fraktur-OCR; <span class="lc">grau = unsichere OCR-Lesung</span>) — token-frei {rec}. '
             f'Tippen filtert die Liste; die Zahlen springen ins Faksimile.</p>'
             f'<input type="search" placeholder="filtern… (z. B. Pfarrer, Förster, Mühle, Wald)" oninput="nflt(this.value)" '
             f'style="width:100%;padding:.5rem .7rem;border:1px solid var(--line);border-radius:4px;font:inherit">'
@@ -431,13 +448,26 @@ def main():
     open(os.path.join(DOCS,"register","strecken.html"),"w",encoding="utf-8").write(page("Strecken", strecken_page(strecken, str_forts, persons, pname, strecke_sites), 1))
     valid = {(v["nr"], p["tok"]) for v in volumes for p in v["pages"]}   # gültige Seitenanker
     nerd = os.path.join(REPO, "data")
-    ner_p  = json.load(open(os.path.join(nerd,"ner_persons.json"),encoding="utf-8")) if os.path.exists(os.path.join(nerd,"ner_persons.json")) else []
-    ner_pl = json.load(open(os.path.join(nerd,"ner_places.json"),encoding="utf-8")) if os.path.exists(os.path.join(nerd,"ner_places.json")) else []
-    nb, nh = ner_index_page(ner_p, "persons", valid)
+    def loadj(fn): return json.load(open(os.path.join(nerd,fn),encoding="utf-8")) if os.path.exists(os.path.join(nerd,fn)) else ([] if "ner_" in fn else {})
+    ner_p, ner_pl = loadj("ner_persons.json"), loadj("ner_places.json")
+    rec_p, rec_pl = loadj("recon_persons.json"), loadj("recon_places.json")
+    nb, nh = ner_index_page(ner_p, "persons", valid, rec_p)
     open(os.path.join(DOCS,"register","namen.html"),"w",encoding="utf-8").write(page("Namen im Limesblatt", nb, 1, nh))
-    ob, oh = ner_index_page(ner_pl, "places", valid)
+    ob, oh = ner_index_page(ner_pl, "places", valid, rec_pl)
     open(os.path.join(DOCS,"register","orte-index.html"),"w",encoding="utf-8").write(page("Orte im Limesblatt", ob, 1, oh))
-    print(f"Volltext-Index (LLM-NER): {len(ner_p)} Namen, {len(ner_pl)} Orte → namen.html / orte-index.html")
+    # GeoJSON der im Volltext genannten, verorteten Orte (Map-Layer)
+    nsites = []
+    for it in ner_pl:
+        r = rec_pl.get(it["name"].lower())
+        if not r or not r.get("geo"): continue
+        la, lo = r["geo"]
+        nsites.append({"type":"Feature","geometry":{"type":"Point","coordinates":[lo, la]},
+            "properties":{"name":it["name"],"kind":it.get("kind",""),"n":len(it.get("pages",[])),
+                          "gazId":r.get("gazId",""),"src":r.get("src","")}})
+    json.dump({"type":"FeatureCollection","features":nsites},
+              open(os.path.join(DOCS,"data","ner-sites.geojson"),"w",encoding="utf-8"), ensure_ascii=False)
+    pm = sum(1 for v in rec_p.values() if v); om = sum(1 for v in rec_pl.values() if v and v.get("geo"))
+    print(f"Volltext-Index (LLM-NER): {len(ner_p)} Namen ({pm} reconciled), {len(ner_pl)} Orte ({om} verortet → ner-sites.geojson)")
     ib, ih = index_page(volumes)
     open(os.path.join(DOCS,"index.html"),"w",encoding="utf-8").write(page("Startseite", ib, 0, ih))
     print(f"docs/: index + {len(volumes)} Bände + 3 Register (Personen {len(persons)}, Orte {len(places)}, "

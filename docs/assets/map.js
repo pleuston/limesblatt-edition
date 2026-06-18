@@ -64,6 +64,23 @@
     }).addTo(siteLayer);
     addToggle("weitere Limesstellen · DARE (" + (gj.features || []).length + ")", "#3f6f7a", "○", siteLayer, true);
   }).catch(function () {});
+
+  // 4) Im Volltext genannte Orte (LLM-NER, verortet via iDAI-Gazetteer / OSM) – standardmäßig aus
+  var nerLayer = L.layerGroup();
+  fetch("../data/ner-sites.geojson").then(function (r) { return r.json(); }).then(function (gj) {
+    L.geoJSON(gj, {
+      pointToLayer: function (feat, latlng) {
+        var p = feat.properties || {};
+        var pop = "<b>" + (p.name || "") + "</b>" + (p.kind ? " · " + p.kind : "") +
+          (p.n ? "<br>" + p.n + " Fundstelle(n) im Text" : "") +
+          (p.gazId ? '<br><a href="https://gazetteer.dainst.org/place/' + p.gazId + '">iDAI-Gazetteer</a>' : "") +
+          '<br><a href="orte-index.html">→ Volltext-Index</a>';
+        return L.circleMarker(latlng, { radius: 2.5, weight: 1, color: "#7a3fae", fillColor: "#b388e0", fillOpacity: .6 }).bindPopup(pop);
+      }
+    }).addTo(nerLayer);
+    addToggle("im Volltext genannte Orte · NER (" + (gj.features || []).length + ")", "#7a3fae", "◆", nerLayer, false);
+  }).catch(function () {});
+
   window.focusSite = function (id) {
     var m = siteById[id]; if (!m) return false;
     if (!map.hasLayer(siteLayer)) siteLayer.addTo(map);
