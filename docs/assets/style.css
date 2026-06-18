@@ -6,6 +6,7 @@ header{position:sticky;top:0;z-index:10;display:flex;flex-wrap:wrap;gap:.5rem 1.
 header .home{font-weight:bold;text-decoration:none;color:var(--accent);font-size:1.1rem}
 header nav{font-size:.92rem;color:var(--muted)} header nav a{color:var(--muted)}
 a{color:var(--accent)} a:hover{text-decoration:underline}
+.wip{background:#fff3cd;border-bottom:1px solid #e0c200;color:#5b4a00;font-size:.85rem;padding:.4rem 1.2rem;text-align:center}
 main{max-width:980px;margin:0 auto;padding:1.2rem}
 h1{font-size:1.7rem;margin:.2rem 0 .6rem} h2{margin-top:1.6rem;border-bottom:1px solid var(--line);padding-bottom:.2rem}
 .lede{font-size:1.1rem;color:#33302b} .meta{color:var(--muted);font-size:.9rem}
