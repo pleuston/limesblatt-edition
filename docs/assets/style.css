@@ -37,6 +37,8 @@ table.reg th{font-size:.85rem;color:var(--muted);text-transform:uppercase;letter
 .leaflet-popup-content{font:14px/1.45 Georgia,serif}
 .sites{columns:230px;list-style:none;padding:0;margin:.4rem 0;font-size:.86rem} .sites li{break-inside:avoid;margin:.12rem 0}
 .sites li:target{background:#fff8e6;outline:2px solid #e0c200;border-radius:3px}
+.nerlist{list-style:none;padding:0;font-size:.9rem} .nerlist>li{margin:0;padding:.22rem 0;border-bottom:1px solid var(--line)}
+.nerlist .pgs{font-size:.82rem} .nerlist li.lc b{color:var(--muted);font-weight:normal} .lc{color:var(--muted)}
 details>summary{cursor:pointer;font-weight:bold;margin:.5rem 0 .2rem;font-size:.95rem}
 td.beleg{font-size:.85rem;line-height:1.7} td.beleg a{display:inline-block;margin:0 .05rem}
 /* Register-Karten */

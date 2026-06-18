@@ -98,7 +98,7 @@ def page(title, body, depth=0, head=""):
 <title>{html.escape(title)} — Limesblatt-Edition</title>
 <link rel="stylesheet" href="{up}assets/style.css">{head}</head><body>
 <header><a class="home" href="{up}index.html">📕 Limesblatt-Edition</a>
-<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}index.html#suche">Suche</a></nav></header>
+<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}index.html#suche">Suche</a></nav></header>
 <main>{body}</main>
 <footer>Diplomatische OCR-Edition des <em>Limesblatt</em> (1892–1903) · Text &amp; Register
 <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · Seitenbilder © UB Heidelberg
@@ -300,7 +300,9 @@ IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen
 <h2>Bände</h2><ul class="vols">{lis}</ul>
 <h2>Register</h2><ul><li><a href="register/persons.html">Personenregister</a> — mit Porträts, Normdaten, Korrespondenz, ausgegrabenen Kastellen</li>
 <li><a href="register/places.html">Ortsregister</a> — mit Karte, Kastelltyp, Ausgräber, Inschriften</li>
-<li><a href="register/strecken.html">Strecken</a> — die 15 Limes-Abschnitte mit Kastellen &amp; Kommissaren</li></ul>
+<li><a href="register/strecken.html">Strecken</a> — die 15 Limes-Abschnitte mit Kastellen &amp; Kommissaren</li>
+<li><a href="register/namen.html">Namen im Limesblatt</a> — vollständiger Namenindex aus dem Volltext (LLM-NER)</li>
+<li><a href="register/orte-index.html">Orte im Limesblatt</a> — vollständiger Ortsindex aus dem Volltext (LLM-NER)</li></ul>
 <p class="meta">Abgeleitet aus dem (privaten) Forschungs-Vault zur <a href="https://github.com/pleuston/limes">Reichs-Limeskommission</a>.
 Edition/Code: <a href="https://github.com/pleuston/limesblatt-edition">GitHub</a>.</p>
 <script>
@@ -318,6 +320,44 @@ fetch("data/search.json").then(r=>r.json()).then(docs=>{{
  }});
 }});
 </script>"""
+    return body, head
+
+def page_links(pages, valid):
+    out = []
+    for s in pages:
+        m = re.match(r'Bd\.(\d+)\s+S\.(\S+)', s)
+        if not m: continue
+        vol, tok = int(m.group(1)), m.group(2)
+        if (vol, tok) in valid:
+            out.append(f'<a href="../volumes/bd{vol}.html#pb-{html.escape(tok)}">{vol}/{html.escape(tok)}</a>')
+    return ", ".join(out)
+
+def ner_index_page(items, what, valid):
+    lab = "Namen" if what == "persons" else "Orte"
+    rows = 0; lis = []
+    for it in items:
+        pl = page_links(it.get("pages", []), valid)
+        if not pl: continue
+        if what == "persons":
+            extra = " · ".join(it.get("roles", [])[:2])
+            ref = f' <a class="meta" href="https://lobid.org/gnd/search?q={html.escape(it["name"])}&amp;format=html">GND?</a>'
+        else:
+            extra = it.get("kind", ""); ref = ""
+        em = f' <span class="meta">· {html.escape(extra)}</span>' if extra else ""
+        lc = ' class="lc"' if it.get("cert") != "high" else ""
+        lis.append(f'<li{lc}><b>{html.escape(it["name"])}</b>{em}{ref} — <span class="pgs">{pl}</span></li>')
+        rows += 1
+    head = ('<script>function nflt(q){q=q.toLowerCase();var n=0,L=document.querySelectorAll("#nerlist>li");'
+            'L.forEach(function(li){var m=li.textContent.toLowerCase().indexOf(q)>=0;li.style.display=m?"":"none";if(m)n++;});'
+            'document.getElementById("ncount").textContent=n;}</script>')
+    body = (f'<h1>{lab} im Limesblatt</h1>'
+            f'<p class="meta">{rows} {lab}, per <b>LLM-NER</b> aus dem gesamten Volltext extrahiert '
+            f'(heuristisch, Fraktur-OCR — nicht normdaten-reconciliert; <span class="lc">grau = unsichere OCR-Lesung</span>). '
+            f'Tippen filtert die Liste; die Zahlen springen ins Faksimile.</p>'
+            f'<input type="search" placeholder="filtern… (z. B. Pfarrer, Förster, Mühle, Wald)" oninput="nflt(this.value)" '
+            f'style="width:100%;padding:.5rem .7rem;border:1px solid var(--line);border-radius:4px;font:inherit">'
+            f'<p class="meta"><span id="ncount">{rows}</span> angezeigt</p>'
+            f'<ul id="nerlist" class="nerlist">{"".join(lis)}</ul>')
     return body, head
 
 def main():
@@ -389,6 +429,15 @@ def main():
     plb, plh = places_page(places, occ, pname, str_by_id, sites, dare_hits)
     open(os.path.join(DOCS,"register","places.html"),"w",encoding="utf-8").write(page("Ortsregister", plb, 1, plh))
     open(os.path.join(DOCS,"register","strecken.html"),"w",encoding="utf-8").write(page("Strecken", strecken_page(strecken, str_forts, persons, pname, strecke_sites), 1))
+    valid = {(v["nr"], p["tok"]) for v in volumes for p in v["pages"]}   # gültige Seitenanker
+    nerd = os.path.join(REPO, "data")
+    ner_p  = json.load(open(os.path.join(nerd,"ner_persons.json"),encoding="utf-8")) if os.path.exists(os.path.join(nerd,"ner_persons.json")) else []
+    ner_pl = json.load(open(os.path.join(nerd,"ner_places.json"),encoding="utf-8")) if os.path.exists(os.path.join(nerd,"ner_places.json")) else []
+    nb, nh = ner_index_page(ner_p, "persons", valid)
+    open(os.path.join(DOCS,"register","namen.html"),"w",encoding="utf-8").write(page("Namen im Limesblatt", nb, 1, nh))
+    ob, oh = ner_index_page(ner_pl, "places", valid)
+    open(os.path.join(DOCS,"register","orte-index.html"),"w",encoding="utf-8").write(page("Orte im Limesblatt", ob, 1, oh))
+    print(f"Volltext-Index (LLM-NER): {len(ner_p)} Namen, {len(ner_pl)} Orte → namen.html / orte-index.html")
     ib, ih = index_page(volumes)
     open(os.path.join(DOCS,"index.html"),"w",encoding="utf-8").write(page("Startseite", ib, 0, ih))
     print(f"docs/: index + {len(volumes)} Bände + 3 Register (Personen {len(persons)}, Orte {len(places)}, "

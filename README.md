@@ -13,6 +13,7 @@ Eine **statische digitale Edition** des *Limesblatt* (1892–1903) — der „Mi
 - **Personen ↔ Orte verknüpft** über die Ausgräber-Relation (wer welches Kastell grub, in beide Richtungen). Register und Volltext sind **bidirektional verlinkt** (Eintrag → Fundstellen und zurück).
 - **Karte mit Ebenen:** die benannten Kastelle (nach Limes-Abschnitt filterbar), der **Limesverlauf** und die **weiteren Limesstellen** — Türme, Kleinkastelle und Lager *zwischen* den Kastellen (aus DARE, 204; gegen die benannten Kastelle entdoppelt) — als zuschaltbare Layer.
 - **Inline-Auszeichnung** im Lesetext: Personen, benannte Kastelle *und* die kleinen DARE-Limesstellen (heuristisch, `@cert="low"`) — verlinkt ins Register bzw. in die Stellenliste (die beim Sprung automatisch aufklappt).
+- **Volltext-Index (LLM-NER):** zwei vollständige, filterbare Verzeichnisse aller im Volltext genannten **Namen (~360)** und **Orte (~1000)** — per LLM-NER über alle Seiten extrahiert (heuristisch, nicht normdaten-reconciliert), je mit Seiten-Sprunglinks ins Faksimile. Damit ist der gesamte Onomastik-/Toponym-Bestand erschlossen, nicht nur die ~60 kuratierten Register-Entitäten.
 - **Clientseitige Volltextsuche** über alle Seiten.
 
 ## Wie sie entstanden ist (token-frei)
