@@ -105,7 +105,7 @@ def page(title, body, depth=0, head=""):
 (<a href="http://rightsstatements.org/vocab/InC/1.0/">In Copyright</a>, via IIIF verlinkt) ·
 <a href="https://github.com/pleuston/limesblatt-edition">Quellcode &amp; TEI</a></footer></body></html>"""
 
-def vol_page(v):
+def vol_page(v, toc=None):
     slug = v["slug"]
     teiname = f"limesblatt-bd{v['nr']}-{slug}.xml"
     tiles = [IIIF_INFO.format(slug=slug, tok=p["tok"]) for p in v["pages"]]
@@ -116,9 +116,14 @@ def vol_page(v):
                     f'onclick="viewer.goToPage({i})" title="Faksimile zu S. {html.escape(p["tok"])} zeigen">— {html.escape(p["tok"])} —</div>')
         text.append(p["html"])
     head = ('<script src="../assets/openseadragon.min.js"></script>')
+    inh = ""
+    if toc:
+        items = "".join(f'<li><a href="#pb-{html.escape(t)}">S. {html.escape(t)}</a>: <b>{html.escape(k)}</b> — {html.escape(o)}</li>' for t, k, o in toc)
+        inh = f'<details class="inhalt"><summary>Inhalt — {len(toc)} Berichte (rekonstruiert aus Bylines)</summary><ul class="toc">{items}</ul></details>'
     body = f"""<h1>Limesblatt · {html.escape(v['label'])}</h1>
 <p class="meta">IIIF-Faksimile: <a href="{IIIF_MAN.format(slug=slug)}">Manifest</a> (UB Heidelberg) ·
 TEI: <a href="../tei/{teiname}">XML</a></p>
+{inh}
 <div class="reader">
   <div class="facs"><div id="osd"></div>
     <div class="osdnav"><button onclick="viewer.goToPage(Math.max(0,viewer.currentPage()-1))">‹ vorige</button>
@@ -543,6 +548,31 @@ def wortschatz_page(volumes, attention=None):
             f'explizite Datierungssprache fehlt fast; „principia" kommt nicht vor (man schrieb „Prätorium").</p>'
             + att + analysis_sections(volumes) + "".join(kw))
 
+def build_toc(SUR, PLA):
+    """{nr: [(tok, Kommissar, Ort)]} aus Bericht-Bylines, gegen SUR/PLA validiert."""
+    CACHE = os.path.join(REPO, "..", "limes", "tools", ".cache")
+    BANDS = [("limesblatt1892_1893", 1), ("limesblatt1893_1894", 2), ("limesblatt1894_1895", 3),
+             ("limesblatt1896", 4), ("limesblatt1897", 5), ("limesblatt1897_1898", 6),
+             ("limesblatt1898_1902", 7), ("limesblatt1903", 8)]
+    if not os.path.isdir(os.path.join(CACHE, BANDS[0][0])): return {}
+    trip = re.compile(r"\b([A-ZÄÖÜ][a-zäöüß]{2,})[.,]\s+([A-ZÄÖÜ][a-zäöüß]{2,})[.,](?:\s+([A-ZÄÖÜ][a-zäöüß]{2,})[.,]?)?")
+    toc = {}
+    for slug, nr in BANDS:
+        seen, ents = set(), []
+        for fp in sorted(glob.glob(os.path.join(CACHE, slug, "*.txt"))):
+            tok = os.path.splitext(os.path.basename(fp))[0]
+            if not re.match(r'^[1-9]\d*$', tok): continue
+            txt = tm_norm(open(fp, encoding="utf-8", errors="replace").read())
+            for w1, w2, w3 in trip.findall(txt):
+                a, b, c = w1.lower(), w2.lower(), (w3 or "").lower()
+                komm = ort = None
+                if b in SUR: komm = w2; ort = w3 if c in PLA else (w1 if a in PLA else None)
+                elif a in SUR: komm = w1; ort = w2 if b in PLA else (w3 if c in PLA else None)
+                if komm and ort and (tok, komm.lower(), ort.lower()) not in seen:
+                    seen.add((tok, komm.lower(), ort.lower())); ents.append((tok, komm, ort))
+        ents.sort(key=lambda e: e[0]); toc[nr] = ents
+    return toc
+
 def main():
     os.makedirs(os.path.join(DOCS,"volumes"), exist_ok=True)
     os.makedirs(os.path.join(DOCS,"register"), exist_ok=True)
@@ -597,9 +627,13 @@ def main():
                 if key not in dseen:
                     dseen.add(key); dare_hits[did].append((v["nr"], p["tok"]))
 
+    _np = os.path.join(REPO, "data", "ner_places.json")
+    PLA = {e["name"].split("(")[0].strip().lower() for e in (json.load(open(_np, encoding="utf-8")) if os.path.exists(_np) else []) if len(e["name"]) > 3}
+    SUR = {p["name"].split()[-1].lower() for p in persons} | {"mettler", "fink", "dahm", "ludwig", "nägele", "hämmerle", "lachenmaier", "kapff", "pres"}
+    toc = build_toc(SUR, PLA)
     corpus = []
     for v in volumes:
-        b, h = vol_page(v)
+        b, h = vol_page(v, toc.get(v["nr"], []))
         open(os.path.join(DOCS,"volumes",f"bd{v['nr']}.html"),"w",encoding="utf-8").write(page(v["label"], b, 1, h))
         for p in v["pages"]:
             if p["text"]: corpus.append({"id":f"{v['nr']}-{p['tok']}","vol":v["nr"],"tok":p["tok"],
