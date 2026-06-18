@@ -75,7 +75,8 @@
           (p.n ? "<br>" + p.n + " Fundstelle(n) im Text" : "") +
           (p.gazId ? '<br><a href="https://gazetteer.dainst.org/place/' + p.gazId + '">iDAI-Gazetteer</a>' : "") +
           '<br><a href="orte-index.html">→ Volltext-Index</a>';
-        return L.circleMarker(latlng, { radius: 2.5, weight: 1, color: "#7a3fae", fillColor: "#b388e0", fillOpacity: .6 }).bindPopup(pop);
+        var rad = Math.min(10, 2 + Math.sqrt(p.n || 1));   // Radius ∝ Erwähnungsdichte
+        return L.circleMarker(latlng, { radius: rad, weight: 1, color: "#7a3fae", fillColor: "#b388e0", fillOpacity: .55 }).bindPopup(pop);
       }
     }).addTo(nerLayer);
     addToggle("im Volltext genannte Orte · NER (" + (gj.features || []).length + ")", "#7a3fae", "◆", nerLayer, false);

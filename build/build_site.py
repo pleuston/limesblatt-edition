@@ -394,7 +394,7 @@ TM_YEARS = {1:"1892/93",2:"1893/94",3:"1894/95",4:"1896",5:"1897",6:"1897/98",7:
 def tm_norm(t):
     t = t.replace("ſ","s"); t = re.sub(r"(\w)[-¬]\s*\n\s*(\w)", r"\1\2", t); return re.sub(r"\s+"," ",t)
 
-def wortschatz_page(volumes):
+def wortschatz_page(volumes, attention=None):
     bands = sorted(volumes, key=lambda v: v["nr"]); nrs = [v["nr"] for v in bands]
     texts = {v["nr"]: tm_norm(" ".join(p["text"] for p in v["pages"] if p.get("text"))).lower() for v in bands}
     words = {nr: max(1, len(re.findall(r"[a-zäöüß]+", t))) for nr, t in texts.items()}
@@ -435,6 +435,18 @@ def wortschatz_page(volumes):
                       f'…{html.escape(l)} <b>{html.escape(c)}</b> {html.escape(r)}…</li>')
         kw.append('</ul></details>')
     tot = sum(words.values())
+    att = ""
+    if attention:
+        mxa = max((a[1] for a in attention), default=1) or 1
+        bars = "".join(
+            f'<div class="attrow"><span class="attlabel" title="{html.escape(str(nm))}">{html.escape(str(nm))}</span>'
+            f'<span class="attbar" style="width:{100*tot_/mxa:.0f}%"></span>'
+            f'<span class="attval">{tot_}<span class="meta"> · {npl} Orte</span></span></div>'
+            for nm, tot_, npl in attention)
+        att = ('<h2>Aufmerksamkeit je Streckenabschnitt</h2>'
+               '<p class="meta">Summe der Volltext-Erwähnungen aller verorteten Orte, dem nächstgelegenen '
+               'Kastell-Abschnitt zugeordnet (≤ ~22 km) — welche Limes-Abschnitte im Limesblatt am meisten '
+               f'Aufmerksamkeit bekamen.</p><div class="attwrap">{bars}</div>')
     return (f'<h1>Wortschatz &amp; Konkordanz</h1>'
             f'<p class="meta">Token-freie Textstatistik über alle 8 Bände (1892–1903; {tot:,} Wörter): thematische Term-Gruppen '
             f'je 1000 Wörter und eine Konkordanz mit Faksimile-Sprung. Aus dem Fraktur-OCR (unkorrigiert).</p>'
@@ -442,7 +454,7 @@ def wortschatz_page(volumes):
             f'<h2>Term-Gruppen über die Zeit</h2>{table}'
             f'<p class="meta">Befund: Steinbau dominiert; Holzbefund-Vokabular ist präsent und steigt mittig (Bd. 4–6); '
             f'explizite Datierungssprache fehlt fast; „principia" kommt nicht vor (man schrieb „Prätorium").</p>'
-            + "".join(kw))
+            + att + "".join(kw))
 
 def main():
     os.makedirs(os.path.join(DOCS,"volumes"), exist_ok=True)
@@ -523,19 +535,28 @@ def main():
     ob, oh = ner_index_page(ner_pl, "places", valid, rec_pl)
     open(os.path.join(DOCS,"register","orte-index.html"),"w",encoding="utf-8").write(page("Orte im Limesblatt", ob, 1, oh))
     # GeoJSON der im Volltext genannten, verorteten Orte (Map-Layer)
-    nsites = []
+    nsites = []; ner_attention = defaultdict(lambda: [0, 0])   # sid -> [Erwähnungen, Orte]
     for it in ner_pl:
         r = rec_pl.get(it["name"].lower())
         if not r or not r.get("geo"): continue
-        la, lo = r["geo"]
+        la, lo = r["geo"]; m = len(it.get("pages", []))
         nsites.append({"type":"Feature","geometry":{"type":"Point","coordinates":[lo, la]},
-            "properties":{"name":it["name"],"kind":it.get("kind",""),"n":len(it.get("pages",[])),
+            "properties":{"name":it["name"],"kind":it.get("kind",""),"n":m,
                           "gazId":r.get("gazId",""),"src":r.get("src","")}})
+        if anchors:                                            # → nächstes strecke-verankertes Kastell
+            best, bd = None, 1e9
+            for ala, alo, sid in anchors:
+                d = (la - ala) ** 2 + (lo - alo) ** 2 * 0.42
+                if d < bd: bd, best = d, sid
+            if best is not None and bd <= 0.20 ** 2:
+                ner_attention[best][0] += m; ner_attention[best][1] += 1
+    attention = sorted(((str_by_id.get(sid, {}).get("name") or sid, v[0], v[1]) for sid, v in ner_attention.items()),
+                       key=lambda x: -x[1])
     json.dump({"type":"FeatureCollection","features":nsites},
               open(os.path.join(DOCS,"data","ner-sites.geojson"),"w",encoding="utf-8"), ensure_ascii=False)
     pm = sum(1 for v in rec_p.values() if v); om = sum(1 for v in rec_pl.values() if v and v.get("geo"))
     print(f"Volltext-Index (LLM-NER): {len(ner_p)} Namen ({pm} reconciled), {len(ner_pl)} Orte ({om} verortet → ner-sites.geojson)")
-    open(os.path.join(DOCS,"register","wortschatz.html"),"w",encoding="utf-8").write(page("Wortschatz & Konkordanz", wortschatz_page(volumes), 1))
+    open(os.path.join(DOCS,"register","wortschatz.html"),"w",encoding="utf-8").write(page("Wortschatz & Konkordanz", wortschatz_page(volumes, attention), 1))
     ib, ih = index_page(volumes)
     open(os.path.join(DOCS,"index.html"),"w",encoding="utf-8").write(page("Startseite", ib, 0, ih))
     print(f"docs/: index + {len(volumes)} Bände + 3 Register (Personen {len(persons)}, Orte {len(places)}, "

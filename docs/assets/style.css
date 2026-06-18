@@ -42,6 +42,9 @@ table.reg th{font-size:.85rem;color:var(--muted);text-transform:uppercase;letter
 .tmwrap{overflow-x:auto;margin:.6rem 0} .tmchart{width:100%;height:auto;min-width:560px}
 table.tm td{text-align:right} table.tm td:first-child{text-align:left;white-space:nowrap}
 ul.kwic{list-style:none;padding:.3rem 0;margin:0;font-size:.85rem} ul.kwic li{margin:.2rem 0;line-height:1.5}
+.attwrap{margin:.5rem 0} .attrow{display:flex;align-items:center;gap:.5rem;margin:.18rem 0;font-size:.85rem}
+.attlabel{flex:0 0 230px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.attbar{height:.7rem;background:var(--accent);border-radius:2px;min-width:2px} .attval{flex:0 0 auto}
 details>summary{cursor:pointer;font-weight:bold;margin:.5rem 0 .2rem;font-size:.95rem}
 td.beleg{font-size:.85rem;line-height:1.7} td.beleg a{display:inline-block;margin:0 .05rem}
 /* Register-Karten */
