@@ -80,24 +80,34 @@ def recon_person(nm, reg):
             pick = [c for c in cands if c[0].split()[0][:1].lower() == fi]
             if pick: e = pick[0][1]
         return {"slug": e["slug"], "gnd": e["gnd"], "regName": e["name"], "src": "reg"}
-    # 2) lobid GND – Vollnamen-Suche (Vorname Pflicht; Nachname-allein zu mehrdeutig)
-    if not fore: return None
-    d = fetch_j(f"https://lobid.org/gnd/search?q={urllib.parse.quote(fore + ' ' + sur)}"
-                f"&filter=type:DifferentiatedPerson&size=10&format=json", 0.34)
-    for m in d.get("member", []):
+    # 2) lobid GND
+    def qualifies(m):
         pn = m.get("preferredName", "")
-        if pn.split(",", 1)[0].strip().lower() != sur.lower(): continue   # Nachname wortgenau (kein Teilstring)
+        if pn.split(",", 1)[0].strip().lower() != sur.lower(): return None   # Nachname wortgenau
         fn = pn.split(",", 1)[1].strip() if "," in pn else ""
-        if fi and fn[:1].lower() != fi: continue                    # Vornamen-Initiale Pflicht
+        if fi and fn[:1].lower() != fi: return None                 # Vornamen-Initiale Pflicht
         try: yob = int((m.get("dateOfBirth") or ["0"])[0][:4])
         except Exception: yob = 0
-        if not (1800 <= yob <= 1882): continue                      # Autor in 1892–1903 ⇒ vor ~1882 geboren
+        if not (1800 <= yob <= 1882): return None                   # Autor 1892–1903 ⇒ vor ~1882 geb.
         profs = " ".join(o.get("label", "") for o in m.get("professionOrOccupation", []))
-        if not PROF.search(profs): continue                         # Fach/Amt-Filter gegen Fehltreffer
-        yod = (m.get("dateOfDeath") or [""])[0][:4]
-        return {"gnd": m.get("gndIdentifier"), "gndName": pn,
-                "prof": profs[:70], "von": yob, "bis": yod, "src": "gnd"}
-    return None
+        if not PROF.search(profs): return None                      # Fach/Amt-Filter
+        return {"gnd": m.get("gndIdentifier"), "gndName": pn, "prof": profs[:70],
+                "von": yob, "bis": (m.get("dateOfDeath") or [""])[0][:4], "src": "gnd"}
+    if fore:                                                        # Vollname: erster Qualifizierer
+        d = fetch_j(f"https://lobid.org/gnd/search?q={urllib.parse.quote(fore + ' ' + sur)}"
+                    f"&filter=type:DifferentiatedPerson&size=10&format=json", 0.34)
+        for m in d.get("member", []):
+            r = qualifies(m)
+            if r: return r
+        return None
+    # bloßer Nachname: nur akzeptieren, wenn genau EIN GND-Datensatz qualifiziert (eindeutig)
+    d = fetch_j(f"https://lobid.org/gnd/search?q={urllib.parse.quote(sur)}"
+                f"&filter=type:DifferentiatedPerson&size=20&format=json", 0.34)
+    uniq = {}
+    for m in d.get("member", []):
+        r = qualifies(m)
+        if r and r["gnd"]: uniq[r["gnd"]] = r
+    return next(iter(uniq.values())) if len(uniq) == 1 else None
 
 # ---------- Orte → iDAI / Nominatim ----------
 GENERIC = {'afrika','alexandria','rom','italien','gallien','germanien','britannien','asien','europa',

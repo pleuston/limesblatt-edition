@@ -174,9 +174,10 @@
 <person xml:id="p_friedrich_leonhard">
 <persName>Friedrich Leonhard</persName>
 <persName type="alias">Fritz Leonhard</persName>
-<birth when="1868"/>
-<death when="1937"/>
+<birth when="1857"/>
+<death when="1929"/>
 <occupation>ORL-Autor und Mitredaktor, Streckenbearbeiter für Bayern</occupation>
+<idno type="GND">1012283615</idno>
 <residence>Bayern / Berlin</residence>
 </person>
 <person xml:id="p_friedrich_ohlenschlager">
