@@ -121,7 +121,7 @@ def vol_page(v, toc=None):
             done = set()
             def wrap(m):                                 # Überschrift inline an ihrer echten Stelle markieren
                 n = int(m.group(1))
-                if n in nums and n not in done:
+                if n in nums and n not in done and not TOC_NOISE.match(m.group(2).strip()):
                     done.add(n)
                     return f'</p>\n<p class="artp"><b class="arthead" id="art-{n}">{m.group(0).strip()}</b> '
                 return m.group(0)
@@ -436,7 +436,7 @@ def analysis_sections(volumes):
         pg = []
         for fp in sorted(glob.glob(os.path.join(CACHE, slug, "*.txt"))):
             tok = os.path.splitext(os.path.basename(fp))[0]
-            if not re.match(r'^[1-9]\d*$', tok): continue
+            if not re.match(r'^\d+$', tok): continue
             pg.append((tok, tm_norm(open(fp, encoding="utf-8", errors="replace").read())))
         corp[label] = pg
     low = " ".join(t for _, lab in BANDS for _, t in corp[lab]).lower()
@@ -594,7 +594,7 @@ def build_toc(PLA):
     for slug, nr in BANDS:
         for fp in sorted(glob.glob(os.path.join(CACHE, slug, "*.txt"))):
             tok = os.path.splitext(os.path.basename(fp))[0]
-            if not re.match(r'^[1-9]\d*$', tok): continue
+            if not re.match(r'^\d+$', tok): continue
             txt = tm_norm(open(fp, encoding="utf-8", errors="replace").read())
             for m in TOC_PAT.finditer(txt):
                 num = int(m.group(1)); title = re.sub(r'\s+', ' ', m.group(2)).strip().rstrip(' .'); br = m.group(3) or ""
@@ -610,6 +610,7 @@ def build_toc(PLA):
     for i in anchors: accept.setdefault(cands[i][2], i)
     for a, b in zip(anchors, anchors[1:]):
         na, nb = cands[a][2], cands[b][2]
+        if nb - na > 20: continue                 # zu große Lücke → nicht füllen (sonst Fließtext-Rauschen)
         for j in range(a + 1, b):
             if na < cands[j][2] < nb: accept.setdefault(cands[j][2], j)
     toc = {}
