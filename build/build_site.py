@@ -307,9 +307,17 @@ def strecken_page(strecken, str_forts, persons, pname, strecke_sites):
             f'eigenes Kastell bleiben hier leer (ihre Stellen erscheinen weiter auf der Karte und im Ortsregister).</p>'
             f'<div class="cards">{"".join(cards)}</div>')
 
-def index_page(volumes):
-    lis = "".join(f'<li><a href="volumes/bd{v["nr"]}.html">{html.escape(v["label"])}</a> '
-                  f'<span class="meta">— {len(v["pages"])} Seiten</span></li>' for v in volumes)
+def index_page(volumes, toc=None):
+    toc = toc or {}
+    bl = []
+    for v in volumes:
+        ents = toc.get(v["nr"], [])
+        items = "".join(f'<li><a href="volumes/bd{v["nr"]}.html#art-{num}"><b>{num}.</b> {html.escape(title)}</a>'
+                        f'{(" " + html.escape(br)) if br else ""}</li>' for tok, num, title, br in ents)
+        sub = f'<ul class="toc idxtoc">{items}</ul>' if items else ""
+        bl.append(f'<li><a href="volumes/bd{v["nr"]}.html"><b>{html.escape(v["label"])}</b></a> '
+                  f'<span class="meta">— {len(v["pages"])} Seiten · {len(ents)} Berichte</span>{sub}</li>')
+    lis = "".join(bl)
     head = '<script src="assets/minisearch.min.js"></script>'
     body = f"""<h1>Limesblatt — digitale Edition</h1>
 <p class="lede">Die <em>Mitteilungen der Streckenkommissare bei der Reichs-Limeskommission</em>
@@ -318,7 +326,7 @@ IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen
 <section id="suche"><h2>Volltextsuche</h2>
 <input id="q" type="search" placeholder="z. B. Saalburg, Entschädigung, Mommsen …" autocomplete="off">
 <div id="res"></div></section>
-<h2>Bände</h2><ul class="vols">{lis}</ul>
+<h2>Bände &amp; Inhaltsverzeichnisse</h2><ul class="bandlist">{lis}</ul>
 <h2>Register</h2><ul><li><a href="register/persons.html">Personenregister</a> — mit Porträts, Normdaten, Korrespondenz, ausgegrabenen Kastellen</li>
 <li><a href="register/places.html">Ortsregister</a> — mit Karte, Kastelltyp, Ausgräber, Inschriften</li>
 <li><a href="register/strecken.html">Strecken</a> — die 15 Limes-Abschnitte mit Kastellen &amp; Kommissaren</li>
@@ -564,34 +572,49 @@ def wortschatz_page(volumes, attention=None):
             f'explizite Datierungssprache fehlt fast; „principia" kommt nicht vor (man schrieb „Prätorium").</p>'
             + att + analysis_sections(volumes) + "".join(kw))
 
-TOC_PAT   = re.compile(r"(?:^|\s)(\d{1,3})[._]\s+([A-ZÄÖÜ][A-Za-zäöüß0-9 .„“”\-]{2,55}?)\.\s*(\[[^\]]{0,70}\])?")
+TOC_PAT   = re.compile(r"(?<![A-Za-z0-9])(\d{1,3})[._]\s+([A-ZÄÖÜ][A-Za-zäöüß0-9 .„“”\-]{1,55}?)[.*)]+\s*(\[[^\]]{0,70}\])?")
 TOC_NOISE = re.compile(r"^(Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|De[cz]ember|"
-                       r"Jan|Feb|Mär|Apr|Jun|Jul|Aug|Sept|Okt|Nov|Dez|Aufl|AuB|Auli|Aull|Jahr\w*|Ausgeg\w*|Druck|Verlag|Legion|Turm)\b", re.I)
+                       r"Jan|Feb|Mär|Apr|Jun|Jul|Aug|Sept|Okt|Nov|Dez|Aufl|AuB|Auli|Aull|Jahr\w*|Ausgeg\w*|Druck|"
+                       r"Verlag|Legion|Turm|Auf|Vgl|Nr|Forts|Seite|Band|Heft)\b", re.I)
 TOC_TYP   = re.compile(r"^(Limes|Kastell|Station|Zwischenkastell|Strecke|Wachtturm|Mümling|Pfahl|Teilstrecke)", re.I)
 
 def build_toc(PLA):
-    """{nr: [(tok, Nr, Titel, Klammer)]} aus den nummerierten Bericht-Überschriften (Monotonie-Filter)."""
+    """{nr: [(tok, Nr, Titel, Klammer)]} aus den nummerierten Bericht-Überschriften.
+
+    Zwei-Pass: validierte Treffer (bekannter Ort/„Limes…"/[Klammer]) bilden als monotone
+    Folge die Anker; danach werden die Lücken zwischen Ankern mit den fehlenden Nummern
+    gefüllt (z. B. 77 zwischen 74 und 87). Daten/Unterpunkte/Register fallen heraus.
+    """
     CACHE = os.path.join(REPO, "..", "limes", "tools", ".cache")
     BANDS = [("limesblatt1892_1893", 1), ("limesblatt1893_1894", 2), ("limesblatt1894_1895", 3),
              ("limesblatt1896", 4), ("limesblatt1897", 5), ("limesblatt1897_1898", 6),
              ("limesblatt1898_1902", 7), ("limesblatt1903", 8)]
     if not os.path.isdir(os.path.join(CACHE, BANDS[0][0])): return {}
-    runmax = 0; toc = {}
+    cands = []
     for slug, nr in BANDS:
-        hits = []
         for fp in sorted(glob.glob(os.path.join(CACHE, slug, "*.txt"))):
             tok = os.path.splitext(os.path.basename(fp))[0]
             if not re.match(r'^[1-9]\d*$', tok): continue
             txt = tm_norm(open(fp, encoding="utf-8", errors="replace").read())
             for m in TOC_PAT.finditer(txt):
                 num = int(m.group(1)); title = re.sub(r'\s+', ' ', m.group(2)).strip().rstrip(' .'); br = m.group(3) or ""
-                if TOC_NOISE.match(title) or re.search(r'\d\s*$', title): continue
+                if TOC_NOISE.match(title) or len(title) < 3 or re.search(r'\d\s*$', title): continue
                 if sum(1 for w in title.split() if len(w) == 1) >= 3: continue
                 fw = title.split()[0].lower().strip(".,")
-                if not (br or fw in PLA or TOC_TYP.match(title)): continue
-                if runmax < num <= runmax + 55:
-                    hits.append((tok, num, title, br)); runmax = num
-        toc[nr] = hits
+                valid = bool(br) or bool(TOC_TYP.match(title)) or fw in PLA
+                cands.append((nr, tok, num, title, br, valid))
+    anchors = []; rm = 0
+    for i, c in enumerate(cands):
+        if c[5] and rm < c[2] <= rm + 55: anchors.append(i); rm = c[2]
+    accept = {}
+    for i in anchors: accept.setdefault(cands[i][2], i)
+    for a, b in zip(anchors, anchors[1:]):
+        na, nb = cands[a][2], cands[b][2]
+        for j in range(a + 1, b):
+            if na < cands[j][2] < nb: accept.setdefault(cands[j][2], j)
+    toc = {}
+    for num, j in sorted(accept.items(), key=lambda kv: kv[1]):
+        nr, tok, num, title, br, _ = cands[j]; toc.setdefault(nr, []).append((tok, num, title, br))
     return toc
 
 def main():
@@ -698,7 +721,7 @@ def main():
     pm = sum(1 for v in rec_p.values() if v); om = sum(1 for v in rec_pl.values() if v and v.get("geo"))
     print(f"Volltext-Index (LLM-NER): {len(ner_p)} Namen ({pm} reconciled), {len(ner_pl)} Orte ({om} verortet → ner-sites.geojson)")
     open(os.path.join(DOCS,"register","wortschatz.html"),"w",encoding="utf-8").write(page("Wortschatz & Konkordanz", wortschatz_page(volumes, attention), 1))
-    ib, ih = index_page(volumes)
+    ib, ih = index_page(volumes, toc)
     open(os.path.join(DOCS,"index.html"),"w",encoding="utf-8").write(page("Startseite", ib, 0, ih))
     print(f"docs/: index + {len(volumes)} Bände + 3 Register (Personen {len(persons)}, Orte {len(places)}, "
           f"Strecken {len(strecken)}) · Suchindex {len(corpus)} Seiten · Ausgräber-Links {sum(len(v) for v in digs.values())}")
