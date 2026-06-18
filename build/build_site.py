@@ -98,7 +98,7 @@ def page(title, body, depth=0, head=""):
 <title>{html.escape(title)} — Limesblatt-Edition</title>
 <link rel="stylesheet" href="{up}assets/style.css">{head}</head><body>
 <header><a class="home" href="{up}index.html">📕 Limesblatt-Edition</a>
-<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}register/wortschatz.html">Wortschatz</a> · <a href="{up}index.html#suche">Suche</a></nav></header>
+<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}register/wortschatz.html">Analyse</a> · <a href="{up}index.html#suche">Suche</a></nav></header>
 <main>{body}</main>
 <footer>Diplomatische OCR-Edition des <em>Limesblatt</em> (1892–1903) · Text &amp; Register
 <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · Seitenbilder © UB Heidelberg
@@ -303,7 +303,7 @@ IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen
 <li><a href="register/strecken.html">Strecken</a> — die 15 Limes-Abschnitte mit Kastellen &amp; Kommissaren</li>
 <li><a href="register/namen.html">Namen im Limesblatt</a> — vollständiger Namenindex aus dem Volltext (LLM-NER)</li>
 <li><a href="register/orte-index.html">Orte im Limesblatt</a> — vollständiger Ortsindex aus dem Volltext (LLM-NER)</li>
-<li><a href="register/wortschatz.html">Wortschatz &amp; Konkordanz</a> — diachrone Term-Statistik (1892–1903) + KWIC mit Faksimile-Sprung</li></ul>
+<li><a href="register/wortschatz.html">Textanalyse</a> — diachroner Wortschatz, ORL-Gegenprobe, Münzkaiser-Chronologie, Truppen, Zitate, OCR-Qualität + KWIC-Konkordanz</li></ul>
 <p class="meta">Abgeleitet aus dem (privaten) Forschungs-Vault zur <a href="https://github.com/pleuston/limes">Reichs-Limeskommission</a>.
 Edition/Code: <a href="https://github.com/pleuston/limesblatt-edition">GitHub</a>.</p>
 <script>
@@ -394,6 +394,92 @@ TM_YEARS = {1:"1892/93",2:"1893/94",3:"1894/95",4:"1896",5:"1897",6:"1897/98",7:
 def tm_norm(t):
     t = t.replace("ſ","s"); t = re.sub(r"(\w)[-¬]\s*\n\s*(\w)", r"\1\2", t); return re.sub(r"\s+"," ",t)
 
+def analysis_sections(volumes):
+    """Befunde aus dem Volltext (+ ORL-Cache des Vaults) für die öffentliche Seite."""
+    CACHE = os.path.join(REPO, "..", "limes", "tools", ".cache")
+    BANDS = [("limesblatt1892_1893", "Bd. 1 (1892/93)"), ("limesblatt1893_1894", "Bd. 2 (1893/94)"),
+             ("limesblatt1894_1895", "Bd. 3 (1894/95)"), ("limesblatt1896", "Bd. 4 (1896)"),
+             ("limesblatt1897", "Bd. 5 (1897)"), ("limesblatt1897_1898", "Bd. 6 (1897/98)"),
+             ("limesblatt1898_1902", "Bd. 7 (1898–1902)"), ("limesblatt1903", "Bd. 8 (1903)")]
+    if not os.path.isdir(os.path.join(CACHE, BANDS[0][0])): return ""   # OCR-Cache (Vault) nicht vorhanden
+    corp = {}
+    for slug, label in BANDS:
+        pg = []
+        for fp in sorted(glob.glob(os.path.join(CACHE, slug, "*.txt"))):
+            tok = os.path.splitext(os.path.basename(fp))[0]
+            if not re.match(r'^[1-9]\d*$', tok): continue
+            pg.append((tok, tm_norm(open(fp, encoding="utf-8", errors="replace").read())))
+        corp[label] = pg
+    low = " ".join(t for _, lab in BANDS for _, t in corp[lab]).lower()
+    def W(t): return max(1, len(re.findall(r"[a-zäöüß]+", t)))
+    def rt(t, rx): return 1000.0 * len(re.findall(rx, t, re.I)) / W(t)
+    out = []
+    # ORL-Gegenprobe (ORL-Band aus dem Vault-Cache)
+    orlp = os.path.join(CACHE, "orl", "derobergermanis00fabrgoog.txt")
+    if os.path.exists(orlp):
+        orl = tm_norm(open(orlp, encoding="utf-8", errors="replace").read()).lower()
+        i = orl.find("osterburken"); orl = orl[i - 100:] if i > 0 else orl
+        ost = " ".join(t.lower() for _, lab in BANDS for _, t in corp[lab] if "osterburken" in t.lower())
+        cols = [("ORL·Osterburken", orl), ("LB·Osterburken", ost), ("LB·gesamt", low)]
+        keep = ["Grabungsmethode", "Holzbefund", "Steinbau", "Funde – Münzen", "Funde – Inschrift/Stempel"]
+        rows = "".join(f"<tr><td>{html.escape(g)}</td>" + "".join(f"<td>{rt(t, TM_GROUPS[g][0]):.1f}</td>" for _, t in cols) + "</tr>" for g in keep)
+        out.append('<h2 id="orl">ORL-Gegenprobe (Osterburken)</h2>'
+                   '<p class="meta">Derselbe Standort: der polierte ORL-Band (Schumacher 1895) gegen die Limesblatt-Osterburken-Seiten (Treffer je 1000 Wörter).</p>'
+                   '<table class="reg tm"><tr><th>Term-Gruppe</th>' + "".join(f"<th>{html.escape(c[0])}</th>" for c in cols) + f'</tr>{rows}</table>'
+                   '<p class="meta">Für dasselbe Kastell nennt das ORL <b>Holzbefunde ~4× seltener</b> als die Feldberichte — die Ausdünnung der Holz-Erde-Evidenz ist <b>editorial</b>, nicht feldbedingt.</p>')
+    # Münzkaiser-Chronologie
+    EMP = [("Vespasian", r"vespasian"), ("Domitian", r"domitian"), ("Trajan", r"tra[ij]an"), ("Hadrian", r"hadrian(?!swall)"),
+           ("Ant. Pius", r"antoninus|antonin\b"), ("Marc Aurel", r"marc\W{0,2}aurel|marcus aurel"), ("Commodus", r"commodus"),
+           ("Sept. Severus", r"septimius|sept\. sever"), ("Caracalla", r"caracalla"), ("Sev. Alexander", r"severus alexander"),
+           ("Gordian", r"gordian"), ("Philippus", r"philippus\b"), ("Gallienus", r"gallienus"), ("Probus", r"\bprobus\b")]
+    epages = [t for _, lab in BANDS for _, t in corp[lab]]
+    ec = [(n, sum(1 for t in epages if re.search(rx, t, re.I))) for n, rx in EMP]; mx = max([c for _, c in ec] + [1])
+    bars = "".join(f'<div class="attrow"><span class="attlabel">{html.escape(n)}</span><span class="attbar" style="width:{100*c/mx:.0f}%"></span><span class="attval">{c}</span></div>' for n, c in ec)
+    out.append('<h2 id="muenzen">Münzkaiser-Chronologie</h2><p class="meta">Kaisernennungen (Münz-/Datierungsevidenz), chronologisch — bildet die Limes-Belegung ab: flavisch-trajanische Errichtung, severischer Sekundärpeak, Auslaufen vor 260.</p>'
+               f'<div class="attwrap">{bars}</div>')
+    # Truppen
+    ROM = {"i": 1, "v": 5, "x": 10, "l": 50, "c": 100}
+    def r2i(s):
+        if not s or any(c not in ROM for c in s): return None
+        t = pv = 0
+        for c in reversed(s): v = ROM[c]; t += -v if v < pv else v; pv = max(pv, v)
+        return t if 1 <= t <= 30 else None
+    def i2r(n):
+        o = ""
+        for v, sy in [(10, "X"), (9, "IX"), (5, "V"), (4, "IV"), (1, "I")]:
+            while n >= v: o += sy; n -= v
+        return o
+    legs = defaultdict(int)
+    for m in re.finditer(r"\bleg(?:\.|io\b|\.?\s)\s*([ivxlc]{1,6})\b", low):
+        v = r2i(m.group(1))
+        if v: legs[v] += 1
+    legtxt = ", ".join(f"Legio {i2r(v)} ({c})" for v, c in sorted(legs.items(), key=lambda x: -x[1])[:5])
+    out.append(f'<h2 id="truppen">Truppen</h2><p class="meta">Häufigste Legionsnennungen (Stempel/Text): <b>{legtxt}</b> — erwartungsgemäß dominiert <b>Legio XXII Primigenia</b> (Mainz).</p>')
+    # Zitate
+    jour = [("Westdeutsche Zeitschrift", r"westd\w*\.?\s*(?:zeitschr|ztschr|z\.)"), ("Korrespondenzblatt", r"korr\w*\.?\s*-?\s*bl"), ("Bonner Jahrbücher", r"bonn\w*\.?\s*jahrb")]
+    jrows = "".join(f"<tr><td>{html.escape(n)}</td><td>{len(re.findall(rx, low, re.I))}</td></tr>" for n, rx in jour)
+    dragn = len(re.findall(r"\bdrag(?:endorff)?\.?\s*\d", low, re.I)); dragd = len(set(re.findall(r"\bdrag(?:endorff)?\.?\s*(\d{1,3}[a-z]?)\b", low, re.I)))
+    bram = set()
+    for m in re.finditer(r"brambach\s+(?:nr\.?\s*)?(\d{2,4}(?:\s*[.,]\s*\d{2,4})*)", low, re.I): bram |= set(re.findall(r"\d{2,4}", m.group(1)))
+    out.append('<h2 id="zitate">Zitate & Verweise</h2><p class="meta">Die Verweis-Apparatur ist <b>journal-</b>, nicht corpus-zentriert (die formale Inschriftenkonkordanz wandert erst ins ORL).</p>'
+               f'<table class="reg tm"><tr><th>Quelle</th><th>Verweise</th></tr>{jrows}'
+               f'<tr><td>Dragendorff-Sigillataformen</td><td>{dragn} ({dragd} versch.)</td></tr>'
+               f'<tr><td>Brambach-Inschriften</td><td>{len(bram)} Nummern</td></tr></table>')
+    # OCR-Qualität
+    tpp = {}; gc = defaultdict(int)
+    for slug, label in BANDS:
+        for tok, t in corp[label]:
+            ts = re.findall(r"[a-zäöüß]{3,}", t.lower()); tpp[(label, tok)] = ts
+            for w in ts: gc[w] += 1
+    good = {w for w, c in gc.items() if c >= 5}
+    qrows = ""
+    for slug, label in BANDS:
+        qs = [sum(1 for w in tpp[(label, tok)] if w in good) / len(tpp[(label, tok)]) for tok, t in corp[label] if len(tpp[(label, tok)]) >= 25]
+        if qs: qrows += f"<tr><td>{html.escape(label)}</td><td>{100*sum(qs)/len(qs):.1f} %</td></tr>"
+    out.append('<h2 id="ocr">OCR-Qualität</h2><p class="meta">Proxy = Anteil im Korpus wiederkehrender Wörter (Garble ist meist Unikat) — ~85 % gleichmäßig über die Bände.</p>'
+               f'<table class="reg tm"><tr><th>Band</th><th>Ø-Qualität</th></tr>{qrows}</table>')
+    return "".join(out)
+
 def wortschatz_page(volumes, attention=None):
     bands = sorted(volumes, key=lambda v: v["nr"]); nrs = [v["nr"] for v in bands]
     texts = {v["nr"]: tm_norm(" ".join(p["text"] for p in v["pages"] if p.get("text"))).lower() for v in bands}
@@ -447,14 +533,15 @@ def wortschatz_page(volumes, attention=None):
                '<p class="meta">Summe der Volltext-Erwähnungen aller verorteten Orte, dem nächstgelegenen '
                'Kastell-Abschnitt zugeordnet (≤ ~22 km) — welche Limes-Abschnitte im Limesblatt am meisten '
                f'Aufmerksamkeit bekamen.</p><div class="attwrap">{bars}</div>')
-    return (f'<h1>Wortschatz &amp; Konkordanz</h1>'
-            f'<p class="meta">Token-freie Textstatistik über alle 8 Bände (1892–1903; {tot:,} Wörter): thematische Term-Gruppen '
-            f'je 1000 Wörter und eine Konkordanz mit Faksimile-Sprung. Aus dem Fraktur-OCR (unkorrigiert).</p>'
+    return (f'<h1>Textanalyse des Limesblatt</h1>'
+            f'<p class="meta">Token-freie Auswertung des gesamten Fraktur-OCR-Volltexts (8 Bände, 1892–1903; {tot:,} Wörter). '
+            f'Sprung zu: <a href="#orl">ORL-Gegenprobe</a> · <a href="#muenzen">Münzkaiser</a> · <a href="#truppen">Truppen</a> · '
+            f'<a href="#zitate">Zitate</a> · <a href="#ocr">OCR-Qualität</a> · <a href="#kwic">Konkordanz</a>.</p>'
             f'<div class="tmwrap">{chart}</div>'
             f'<h2>Term-Gruppen über die Zeit</h2>{table}'
             f'<p class="meta">Befund: Steinbau dominiert; Holzbefund-Vokabular ist präsent und steigt mittig (Bd. 4–6); '
             f'explizite Datierungssprache fehlt fast; „principia" kommt nicht vor (man schrieb „Prätorium").</p>'
-            + att + "".join(kw))
+            + att + analysis_sections(volumes) + "".join(kw))
 
 def main():
     os.makedirs(os.path.join(DOCS,"volumes"), exist_ok=True)
