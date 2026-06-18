@@ -556,6 +556,7 @@ def build_toc(SUR, PLA):
              ("limesblatt1898_1902", 7), ("limesblatt1903", 8)]
     if not os.path.isdir(os.path.join(CACHE, BANDS[0][0])): return {}
     trip = re.compile(r"\b([A-ZÄÖÜ][a-zäöüß]{2,})[.,]\s+([A-ZÄÖÜ][a-zäöüß]{2,})[.,](?:\s+([A-ZÄÖÜ][a-zäöüß]{2,})[.,]?)?")
+    byl = re.compile(r"\b[A-ZÄÖÜ][a-zäöüß]{2,}[.,]\s+([A-ZÄÖÜ][a-zäöüß]{2,})[.,]\s+(.{0,70})")
     toc = {}
     for slug, nr in BANDS:
         seen, ents = set(), []
@@ -563,13 +564,16 @@ def build_toc(SUR, PLA):
             tok = os.path.splitext(os.path.basename(fp))[0]
             if not re.match(r'^[1-9]\d*$', tok): continue
             txt = tm_norm(open(fp, encoding="utf-8", errors="replace").read())
-            for w1, w2, w3 in trip.findall(txt):
-                a, b, c = w1.lower(), w2.lower(), (w3 or "").lower()
-                komm = ort = None
-                if b in SUR: komm = w2; ort = w3 if c in PLA else (w1 if a in PLA else None)
-                elif a in SUR: komm = w1; ort = w2 if b in PLA else (w3 if c in PLA else None)
+            def add(komm, ort):
                 if komm and ort and (tok, komm.lower(), ort.lower()) not in seen:
                     seen.add((tok, komm.lower(), ort.lower())); ents.append((tok, komm, ort))
+            for w1, w2, w3 in trip.findall(txt):
+                a, b, c = w1.lower(), w2.lower(), (w3 or "").lower()
+                if b in SUR: add(w2, w3 if c in PLA else (w1 if a in PLA else None))
+                elif a in SUR: add(w1, w2 if b in PLA else (w3 if c in PLA else None))
+            for m in byl.finditer(txt):
+                if m.group(1).lower() in SUR:
+                    add(m.group(1), next((w for w in re.findall(r"[A-ZÄÖÜ][a-zäöüß]{2,}", m.group(2)) if w.lower() in PLA), None))
         ents.sort(key=lambda e: e[0]); toc[nr] = ents
     return toc
 
