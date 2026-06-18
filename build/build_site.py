@@ -110,16 +110,21 @@ def vol_page(v, toc=None):
     teiname = f"limesblatt-bd{v['nr']}-{slug}.xml"
     tiles = [IIIF_INFO.format(slug=slug, tok=p["tok"]) for p in v["pages"]]
     idx = {p["tok"]: i for i, p in enumerate(v["pages"])}
+    tmap = {}
+    for t, num, title, br in (toc or []): tmap.setdefault(t, []).append((num, title, br))
     text = []
     for i, p in enumerate(v["pages"]):
         text.append(f'<div class="pb" id="pb-{p["tok"]}" data-page="{i}" '
                     f'onclick="viewer.goToPage({i})" title="Faksimile zu S. {html.escape(p["tok"])} zeigen">— {html.escape(p["tok"])} —</div>')
+        for num, title, br in tmap.get(p["tok"], []):
+            text.append(f'<h3 class="arthead" id="art-{num}">{num}. {html.escape(title)}{(" " + html.escape(br)) if br else ""}</h3>')
         text.append(p["html"])
     head = ('<script src="../assets/openseadragon.min.js"></script>')
     inh = ""
     if toc:
-        items = "".join(f'<li><a href="#pb-{html.escape(t)}">S. {html.escape(t)}</a>: <b>{html.escape(k)}</b> — {html.escape(o)}</li>' for t, k, o in toc)
-        inh = f'<details class="inhalt"><summary>Inhalt — {len(toc)} Berichte (rekonstruiert aus Bylines)</summary><ul class="toc">{items}</ul></details>'
+        items = "".join(f'<li><a href="#art-{num}"><b>{num}.</b> {html.escape(title)}</a>{(" " + html.escape(br)) if br else ""} '
+                        f'<span class="meta">S. {html.escape(t)}</span></li>' for t, num, title, br in toc)
+        inh = f'<details class="inhalt" open><summary>Inhalt — {len(toc)} nummerierte Berichte</summary><ul class="toc">{items}</ul></details>'
     body = f"""<h1>Limesblatt · {html.escape(v['label'])}</h1>
 <p class="meta">IIIF-Faksimile: <a href="{IIIF_MAN.format(slug=slug)}">Manifest</a> (UB Heidelberg) ·
 TEI: <a href="../tei/{teiname}">XML</a></p>
@@ -548,33 +553,34 @@ def wortschatz_page(volumes, attention=None):
             f'explizite Datierungssprache fehlt fast; „principia" kommt nicht vor (man schrieb „Prätorium").</p>'
             + att + analysis_sections(volumes) + "".join(kw))
 
-def build_toc(SUR, PLA):
-    """{nr: [(tok, Kommissar, Ort)]} aus Bericht-Bylines, gegen SUR/PLA validiert."""
+TOC_PAT   = re.compile(r"(?:^|\s)(\d{1,3})[._]\s+([A-ZÄÖÜ][A-Za-zäöüß0-9 .„“”\-]{2,55}?)\.\s*(\[[^\]]{0,70}\])?")
+TOC_NOISE = re.compile(r"^(Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|De[cz]ember|"
+                       r"Jan|Feb|Mär|Apr|Jun|Jul|Aug|Sept|Okt|Nov|Dez|Aufl|AuB|Auli|Aull|Jahr\w*|Ausgeg\w*|Druck|Verlag|Legion|Turm)\b", re.I)
+TOC_TYP   = re.compile(r"^(Limes|Kastell|Station|Zwischenkastell|Strecke|Wachtturm|Mümling|Pfahl|Teilstrecke)", re.I)
+
+def build_toc(PLA):
+    """{nr: [(tok, Nr, Titel, Klammer)]} aus den nummerierten Bericht-Überschriften (Monotonie-Filter)."""
     CACHE = os.path.join(REPO, "..", "limes", "tools", ".cache")
     BANDS = [("limesblatt1892_1893", 1), ("limesblatt1893_1894", 2), ("limesblatt1894_1895", 3),
              ("limesblatt1896", 4), ("limesblatt1897", 5), ("limesblatt1897_1898", 6),
              ("limesblatt1898_1902", 7), ("limesblatt1903", 8)]
     if not os.path.isdir(os.path.join(CACHE, BANDS[0][0])): return {}
-    trip = re.compile(r"\b([A-ZÄÖÜ][a-zäöüß]{2,})[.,]\s+([A-ZÄÖÜ][a-zäöüß]{2,})[.,](?:\s+([A-ZÄÖÜ][a-zäöüß]{2,})[.,]?)?")
-    byl = re.compile(r"\b[A-ZÄÖÜ][a-zäöüß]{2,}[.,]\s+([A-ZÄÖÜ][a-zäöüß]{2,})[.,]\s+(.{0,70})")
-    toc = {}
+    runmax = 0; toc = {}
     for slug, nr in BANDS:
-        seen, ents = set(), []
+        hits = []
         for fp in sorted(glob.glob(os.path.join(CACHE, slug, "*.txt"))):
             tok = os.path.splitext(os.path.basename(fp))[0]
             if not re.match(r'^[1-9]\d*$', tok): continue
             txt = tm_norm(open(fp, encoding="utf-8", errors="replace").read())
-            def add(komm, ort):
-                if komm and ort and (tok, komm.lower(), ort.lower()) not in seen:
-                    seen.add((tok, komm.lower(), ort.lower())); ents.append((tok, komm, ort))
-            for w1, w2, w3 in trip.findall(txt):
-                a, b, c = w1.lower(), w2.lower(), (w3 or "").lower()
-                if b in SUR: add(w2, w3 if c in PLA else (w1 if a in PLA else None))
-                elif a in SUR: add(w1, w2 if b in PLA else (w3 if c in PLA else None))
-            for m in byl.finditer(txt):
-                if m.group(1).lower() in SUR:
-                    add(m.group(1), next((w for w in re.findall(r"[A-ZÄÖÜ][a-zäöüß]{2,}", m.group(2)) if w.lower() in PLA), None))
-        ents.sort(key=lambda e: e[0]); toc[nr] = ents
+            for m in TOC_PAT.finditer(txt):
+                num = int(m.group(1)); title = re.sub(r'\s+', ' ', m.group(2)).strip().rstrip(' .'); br = m.group(3) or ""
+                if TOC_NOISE.match(title) or re.search(r'\d\s*$', title): continue
+                if sum(1 for w in title.split() if len(w) == 1) >= 3: continue
+                fw = title.split()[0].lower().strip(".,")
+                if not (br or fw in PLA or TOC_TYP.match(title)): continue
+                if runmax < num <= runmax + 55:
+                    hits.append((tok, num, title, br)); runmax = num
+        toc[nr] = hits
     return toc
 
 def main():
@@ -633,8 +639,7 @@ def main():
 
     _np = os.path.join(REPO, "data", "ner_places.json")
     PLA = {e["name"].split("(")[0].strip().lower() for e in (json.load(open(_np, encoding="utf-8")) if os.path.exists(_np) else []) if len(e["name"]) > 3}
-    SUR = {p["name"].split()[-1].lower() for p in persons} | {"mettler", "fink", "dahm", "ludwig", "nägele", "hämmerle", "lachenmaier", "kapff", "pres"}
-    toc = build_toc(SUR, PLA)
+    toc = build_toc(PLA)
     corpus = []
     for v in volumes:
         b, h = vol_page(v, toc.get(v["nr"], []))
