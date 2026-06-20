@@ -574,6 +574,14 @@ def main():
     # Bericht-Nr. → Startseiten-<pb> für „Forts. zu Nr. NN": erst der strenge TOC-Report
     # (hohe Präzision), dann ergänzend ein direkter Spaltenanfang-Scan (höhere Vollständigkeit).
     reportmap = {}
+    tocj = os.path.join(vault, "tools", "toc.json")          # vollständig + token+Spalte genau
+    if os.path.exists(tocj):
+        try:
+            for r in json.load(open(tocj, encoding="utf-8")).get("reports", []):
+                if r.get("token"):
+                    reportmap.setdefault(str(r["num"]), f"pb_{r['token']}_{r.get('col') or 'a'}")
+        except Exception:
+            pass
     tocf = os.path.join(vault, "tools", ".cache", "toc_report.md")
     if os.path.exists(tocf):
         for m in re.finditer(r'- S\. (\S+): \*\*(\d+)\.\*\*', open(tocf, encoding="utf-8").read()):

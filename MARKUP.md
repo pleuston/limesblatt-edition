@@ -59,6 +59,19 @@ unter `../limes/tools/corrections/<slug>/<tok>[.<col>].txt` und werden beim Able
 (`limesblatt_ocr.apply_corrections`); echte Fehler werden token-frei via `../limes/tools/garble.py`
 gefunden (Editierdistanz 1 zu häufigem Korpuswort).
 
+### Inhaltsverzeichnis (nummerierte Feldberichte)
+
+Das Limesblatt ist *eine* fortlaufende Berichtsreihe; die Berichte tragen gedruckte Köpfe
+„`<Nr>. <Ort>. [<Thema>]`", die **nur im OCR** stehen (das IIIF-Manifest kennt bloß die physischen
+Lieferungen). `../limes/tools/toc_extract.py` erzeugt daraus `tools/toc.json` — **token-freie Basis**
+(längste monotone Nummern-Kette) **plus kuratierte Auflage** `tools/toc_curated.json` (einmalig je Band
+aus dem OCR erschlossen, wie `data/ner_*.json`), wobei jeder Eintrag **gegen das OCR seiner global
+eindeutigen Druckseite geerdet** wird (markantes Ortswort muss vorkommen, sonst `conf=low`). Ergebnis:
+**210 Berichte (Nr. 1–210), lückenlos** — 192 geerdet, 11 ohne eigene Überschrift („nur Zahlen"),
+18 unsicher. `build_site.build_toc()` rendert daraus die klickbaren Verzeichnisse je Band **und** auf der
+Startseite (`#art-<Nr>`, Köpfe inline markiert; unsichere/ohne-Titel gedämpft); `build_tei` zieht aus
+`toc.json` den `reportmap` (Nr. → Start-`<pb>`) für die „Forts. zu Nr. NN"-Querverweise.
+
 ## 4. Inline-Auszeichnung: Personen & Orte
 
 `build/gazetteer.py` vereint **drei** Quellen zu einem Begriff→Entität-Lexikon:

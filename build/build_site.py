@@ -172,7 +172,7 @@ def vol_page(v, toc=None):
     tiles = [IIIF_INFO.format(slug=slug, tok=t) for t in images]
     tokidx = {t: i for i, t in enumerate(images)}
     tmap = {}
-    for t, num, title, br in (toc or []): tmap.setdefault(t, {})[num] = (title, br)
+    for t, num, title, br, cf in (toc or []): tmap.setdefault(t, {})[num] = (title, br)
     text = []
     for img_tok, grp in groupby(v["pages"], key=lambda p: p["img_tok"]):
         cols = list(grp); i = tokidx[img_tok]
@@ -201,8 +201,7 @@ def vol_page(v, toc=None):
     head = ('<script src="../assets/openseadragon.min.js"></script>')
     inh = ""
     if toc:
-        items = "".join(f'<li><a href="#art-{num}"><b>{num}.</b> {html.escape(title)}</a>{(" " + html.escape(br)) if br else ""} '
-                        f'<span class="meta">S. {html.escape(t)}</span></li>' for t, num, title, br in toc)
+        items = toc_li(toc, "", True)
         inh = f'<details class="inhalt" open><summary>Inhalt — {len(toc)} nummerierte Berichte</summary><ul class="toc">{items}</ul></details>'
     body = f"""<h1>Limesblatt · {html.escape(v['label'])}</h1>
 <p class="meta">IIIF-Faksimile: <a href="{IIIF_MAN.format(slug=slug)}">Manifest</a> (UB Heidelberg) ·
@@ -388,8 +387,7 @@ def index_page(volumes, toc=None):
     bl = []
     for v in volumes:
         ents = toc.get(v["nr"], [])
-        items = "".join(f'<li><a href="volumes/bd{v["nr"]}.html#art-{num}"><b>{num}.</b> {html.escape(title)}</a>'
-                        f'{(" " + html.escape(br)) if br else ""}</li>' for tok, num, title, br in ents)
+        items = toc_li(ents, f'volumes/bd{v["nr"]}.html', False)
         sub = f'<ul class="toc idxtoc">{items}</ul>' if items else ""
         bl.append(f'<li><a href="volumes/bd{v["nr"]}.html"><b>{html.escape(v["label"])}</b></a> '
                   f'<span class="meta">— {len(v["pages"])} Seiten · {len(ents)} Berichte</span>{sub}</li>')
@@ -662,12 +660,25 @@ TOC_NOISE = re.compile(r"^(Januar|Februar|März|April|Mai|Juni|Juli|August|Septe
 TOC_TYP   = re.compile(r"^(Limes|Kastell|Station|Zwischenkastell|Strecke|Wachtturm|Mümling|Pfahl|Teilstrecke)", re.I)
 
 def build_toc(PLA):
-    """{nr: [(tok, Nr, Titel, Klammer)]} aus den nummerierten Bericht-Überschriften.
+    """{nr: [(tok, Nr, Titel, Klammer)]} der nummerierten Berichte.
 
-    Zwei-Pass: validierte Treffer (bekannter Ort/„Limes…"/[Klammer]) bilden als monotone
-    Folge die Anker; danach werden die Lücken zwischen Ankern mit den fehlenden Nummern
-    gefüllt (z. B. 77 zwischen 74 und 87). Daten/Unterpunkte/Register fallen heraus.
+    Primär aus dem vollständigen, geerdeten `tools/toc.json` (token-freie Basis + kuratierte
+    Auflage, erzeugt von `tools/toc_extract.py`). Rückfall auf den lokalen Anker+Lücken-Scan,
+    falls toc.json fehlt.
     """
+    tocf = os.path.join(REPO, "..", "limes", "tools", "toc.json")
+    if os.path.exists(tocf):
+        try:
+            data = json.load(open(tocf, encoding="utf-8"))
+            toc = {}
+            for r in data.get("reports", []):
+                br = f"[{r['theme']}]" if r.get("theme") else ""
+                cf = "low" if (not r.get("grounded") or not r.get("place") or r.get("conf") == "low") else r.get("conf", "medium")
+                toc.setdefault(r["nr"], []).append((str(r.get("token") or ""), r["num"], r.get("place") or "", br, cf))
+            if toc:
+                return toc
+        except Exception:
+            pass
     CACHE = os.path.join(REPO, "..", "limes", "tools", ".cache")
     BANDS = [("limesblatt1892_1893", 1), ("limesblatt1893_1894", 2), ("limesblatt1894_1895", 3),
              ("limesblatt1896", 4), ("limesblatt1897", 5), ("limesblatt1897_1898", 6),
@@ -698,8 +709,19 @@ def build_toc(PLA):
             if na < cands[j][2] < nb: accept.setdefault(cands[j][2], j)
     toc = {}
     for num, j in sorted(accept.items(), key=lambda kv: kv[1]):
-        nr, tok, num, title, br, _ = cands[j]; toc.setdefault(nr, []).append((tok, num, title, br))
+        nr, tok, num, title, br, _ = cands[j]; toc.setdefault(nr, []).append((tok, num, title, br, "medium"))
     return toc
+
+def toc_li(entries, hrefpre, with_page):
+    """TOC-Listeneinträge; leere Titel → Platzhalter, conf=low → gedämpft (ehrlich gekennzeichnet)."""
+    out = []
+    for t, num, title, br, cf in entries:
+        disp = html.escape(title) if title else '<span class="muted">[ohne eigene Überschrift]</span>'
+        cls = ' class="lowtoc"' if cf == "low" else ""
+        meta = f' <span class="meta">S. {html.escape(t)}</span>' if with_page else ""
+        out.append(f'<li{cls}><a href="{hrefpre}#art-{num}"><b>{num}.</b> {disp}</a>'
+                   f'{(" " + html.escape(br)) if br else ""}{meta}</li>')
+    return "".join(out)
 
 # ---------- Fundindex & Bibliographie (token-frei, spalten-präzise) ----------
 def scan_occ(volumes, patterns):

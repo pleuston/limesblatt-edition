@@ -65,6 +65,8 @@ details.inhalt{margin:.4rem 0;border:1px solid var(--line);border-radius:4px;pad
 ul.toc{columns:260px;list-style:none;padding:.3rem 0;margin:0;font-size:.86rem} ul.toc li{margin:.12rem 0;break-inside:avoid}
 ul.bandlist{list-style:none;padding:0} ul.bandlist>li{margin:.5rem 0 1rem}
 ul.idxtoc{columns:240px;margin:.3rem 0 0 1rem;font-size:.84rem}
+ul.toc li.lowtoc{opacity:.6} ul.toc li.lowtoc a,ul.idxtoc li.lowtoc a{text-decoration-style:dotted}
+ul.toc .muted,ul.idxtoc .muted{font-style:italic;color:var(--muted,#888)}
 p.artp{margin-top:1.2rem} b.arthead{color:var(--accent);font-size:1.02rem;scroll-margin-top:3.6rem}
 b.arthead:target{background:#fff8e6;outline:2px solid #e0c200;border-radius:3px}
 details>summary{cursor:pointer;font-weight:bold;margin:.5rem 0 .2rem;font-size:.95rem}
