@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TEI-Editor · Limesblatt-Edition</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .ed-wrap{max-width:1100px;margin:0 auto;padding:0 1rem}
+  .ed-auth,.ed-bar{display:flex;flex-wrap:wrap;gap:.5rem .8rem;align-items:center;margin:.6rem 0}
+  .ed-auth input[type=password]{flex:1;min-width:260px;font:inherit;padding:.35rem .5rem;border:1px solid var(--line);border-radius:4px}
+  .ed-bar select,.ed-bar input[type=text]{font:inherit;padding:.3rem .5rem;border:1px solid var(--line);border-radius:4px}
+  .ed-bar input#msg{flex:1;min-width:220px}
+  button.ed{font:inherit;padding:.35rem .9rem;border:1px solid var(--line);border-radius:4px;background:#fff;cursor:pointer}
+  button.ed:hover{background:#f3eee3} button.ed[disabled]{opacity:.5;cursor:not-allowed}
+  button.ed.primary{background:var(--accent,#7a5);color:#fff;border-color:var(--accent,#7a5)}
+  #editor{width:100%;height:62vh;font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+          tab-size:2;padding:.6rem;border:1px solid var(--line);border-radius:4px;white-space:pre;overflow:auto;resize:vertical}
+  .ed-status{font-size:.85rem;padding:.25rem .5rem;border-radius:4px;display:inline-block}
+  .ok{background:#e7f3e0;color:#2a5} .err{background:#fbe6e6;color:#a33} .muted{color:var(--muted,#888)}
+  .ed-note{font-size:.82rem;color:var(--muted,#888);background:#faf7f0;border:1px solid var(--line);border-radius:5px;padding:.5rem .7rem;margin:.5rem 0}
+  .ed-note code{background:#fff;padding:0 .2rem;border-radius:3px}
+  #who{font-size:.85rem}
+  a.pill{font-size:.8rem;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:.1rem .6rem}
+</style>
+</head>
+<body>
+<header><a class="home" href="index.html"><b>Limesblatt</b>-Edition</a>
+<nav><a href="index.html">Bände</a> · <a href="register/persons.html">Personen</a> · <a href="register/wortschatz.html">Analyse</a> · <span>✎ TEI-Editor</span></nav></header>
+
+<div class="ed-wrap">
+<h1>✎ TEI-Editor</h1>
+<p class="meta">Bearbeite die TEI-Quelle (<code>tei/*.xml</code>, <code>registers/*.xml</code>) direkt und speichere mit deinem GitHub-Konto. Nach dem Commit baut eine GitHub-Action die betroffene HTML-Seite neu (~1 Min.).</p>
+
+<div class="ed-note" id="setup">
+  <b>Einmalig:</b> Erstelle einen <b>fein-granularen Personal Access Token</b> →
+  <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.
+  Repository-Zugriff: <code>pleuston/limesblatt-edition</code> · Permission <b>Contents: Read and write</b>. Token unten einfügen (bleibt nur lokal im Browser, <code>localStorage</code>).
+</div>
+
+<div class="ed-auth">
+  <input type="password" id="pat" placeholder="GitHub Personal Access Token (github_pat_… / ghp_…)" autocomplete="off">
+  <button class="ed" id="login">Anmelden</button>
+  <button class="ed" id="logout" hidden>Abmelden</button>
+  <span id="who" class="muted">nicht angemeldet</span>
+</div>
+
+<div class="ed-bar" id="filebar" hidden>
+  <label>Datei: <select id="file"></select></label>
+  <button class="ed" id="load">Laden</button>
+  <span id="loadstat" class="muted"></span>
+</div>
+
+<textarea id="editor" spellcheck="false" placeholder="Lade eine Datei …" disabled></textarea>
+
+<div class="ed-bar" id="commitbar" hidden>
+  <span id="xmlstat" class="ed-status muted">—</span>
+  <input type="text" id="msg" placeholder="Commit-Beschreibung (z. B. „S. 73: OCR-Korrektur Diplom-Tabelle")">
+  <button class="ed primary" id="commit" disabled>Commit zu GitHub</button>
+  <span id="committat"></span>
+</div>
+</div>
+
+<script>
+const OWNER="pleuston", REPO="limesblatt-edition", API="https://api.github.com";
+const $=s=>document.querySelector(s);
+let TOKEN=localStorage.getItem("lb_pat")||"", CUR=null;   // CUR={path,sha}
+
+function b64decode(b){return decodeURIComponent(escape(atob(b.replace(/\n/g,""))));}
+function b64encode(t){return btoa(unescape(encodeURIComponent(t)));}
+async function gh(path,opts={}){
+  const r=await fetch(API+path,{...opts,headers:{Authorization:"Bearer "+TOKEN,Accept:"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28",...(opts.headers||{})}});
+  if(!r.ok){let m=r.status+" "+r.statusText;try{m=(await r.json()).message||m;}catch(e){} throw new Error(m);}
+  return r.status===204?null:r.json();
+}
+
+async function setLoggedIn(){
+  try{
+    const u=await gh("/user");
+    $("#who").innerHTML='angemeldet als <b>'+u.login+'</b>'; $("#who").className="";
+    $("#login").hidden=true; $("#logout").hidden=false; $("#setup").style.display="none";
+    $("#filebar").hidden=false; $("#commitbar").hidden=false;
+    await listFiles();
+  }catch(e){ $("#who").innerHTML='<span class="err">Token ungültig: '+e.message+'</span>'; }
+}
+async function listFiles(){
+  const sel=$("#file"); sel.innerHTML="";
+  for(const dir of ["tei","registers"]){
+    try{
+      const items=await gh("/repos/"+OWNER+"/"+REPO+"/contents/"+dir+"?ref=main");
+      const og=document.createElement("optgroup"); og.label=dir+"/";
+      items.filter(x=>x.name.endsWith(".xml")).sort((a,b)=>a.name.localeCompare(b.name))
+        .forEach(x=>{const o=document.createElement("option");o.value=x.path;o.textContent=x.name;og.appendChild(o);});
+      sel.appendChild(og);
+    }catch(e){}
+  }
+}
+async function loadFile(){
+  const path=$("#file").value; if(!path)return;
+  $("#loadstat").textContent="lädt …"; $("#loadstat").className="muted";
+  try{
+    const d=await gh("/repos/"+OWNER+"/"+REPO+"/contents/"+encodeURIComponent(path).replace(/%2F/g,"/")+"?ref=main");
+    CUR={path:d.path,sha:d.sha};
+    $("#editor").value=b64decode(d.content); $("#editor").disabled=false;
+    $("#loadstat").textContent="geladen ("+(d.size/1024|0)+" KB)"; checkXML();
+  }catch(e){ $("#loadstat").innerHTML='<span class="err">'+e.message+'</span>'; }
+}
+function checkXML(){
+  const t=$("#editor").value, st=$("#xmlstat");
+  if(!t.trim()){st.className="ed-status muted";st.textContent="—";$("#commit").disabled=true;return false;}
+  const doc=new DOMParser().parseFromString(t,"application/xml");
+  const err=doc.querySelector("parsererror");
+  if(err){
+    let msg=(err.textContent||"nicht wohlgeformt").replace(/\s+/g," ").trim().slice(0,120);
+    st.className="ed-status err"; st.textContent="✗ XML-Fehler: "+msg; $("#commit").disabled=true; return false;
+  }
+  // doppelte xml:id im File (häufigster Folgefehler)
+  const ids=[...t.matchAll(/xml:id="([^"]+)"/g)].map(m=>m[1]); const dup=ids.find((v,i)=>ids.indexOf(v)!==i);
+  if(dup){st.className="ed-status err";st.textContent='✗ doppelte xml:id: '+dup;$("#commit").disabled=true;return false;}
+  st.className="ed-status ok"; st.textContent="✓ wohlgeformt ("+ids.length+" xml:id)"; $("#commit").disabled=!CUR; return true;
+}
+async function commit(){
+  if(!CUR||!checkXML())return;
+  const msg=$("#msg").value.trim()||("edit "+CUR.path);
+  $("#commit").disabled=true; $("#committat").textContent="committe …";
+  try{
+    const r=await gh("/repos/"+OWNER+"/"+REPO+"/contents/"+CUR.path,{method:"PUT",
+      body:JSON.stringify({message:msg+"\n\n(via TEI-Editor)",content:b64encode($("#editor").value),sha:CUR.sha,branch:"main"})});
+    CUR.sha=r.content.sha;
+    $("#committat").innerHTML=' ✓ <a class="pill" href="'+r.commit.html_url+'" target="_blank" rel="noopener">'+r.commit.sha.slice(0,7)+'</a> — Seite wird neu gebaut (~1 Min.)';
+    $("#msg").value="";
+  }catch(e){ $("#committat").innerHTML='<span class="err">Fehler: '+e.message+'</span>'; }
+  $("#commit").disabled=false;
+}
+
+$("#pat").value=TOKEN;
+$("#login").onclick=()=>{TOKEN=$("#pat").value.trim();if(TOKEN){localStorage.setItem("lb_pat",TOKEN);setLoggedIn();}};
+$("#logout").onclick=()=>{TOKEN="";localStorage.removeItem("lb_pat");location.reload();};
+$("#load").onclick=loadFile;
+$("#editor").addEventListener("input",()=>{clearTimeout(window._t);window._t=setTimeout(checkXML,300);});
+$("#commit").onclick=commit;
+if(TOKEN)setLoggedIn();
+</script>
+</body>
+</html>

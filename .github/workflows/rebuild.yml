@@ -1,0 +1,34 @@
+name: rebuild-pages
+# Nach einer TEI-Bearbeitung (z. B. über docs/edit.html) die Bandseiten neu bauen.
+# Läuft NUR build_site.py --volumes-only — das braucht keinen privaten Vault, nur das
+# committete tei/ + data/toc.json + data/ner_places.json. Pfadfilter tei/** ⇒ der docs/-
+# Commit löst KEINEN weiteren Lauf aus (keine Schleife).
+on:
+  push:
+    paths: ["tei/**"]
+permissions:
+  contents: write
+concurrency:
+  group: rebuild-pages
+  cancel-in-progress: false
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Bandseiten aus dem (editierten) TEI neu bauen
+        run: python3 build/build_site.py --volumes-only
+      - name: Geänderte Seiten committen
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          if git diff --cached --quiet; then
+            echo "keine Änderung an docs/"
+          else
+            git commit -m "rebuild: Bandseiten aus TEI-Edit neu gebaut"
+            git push
+          fi

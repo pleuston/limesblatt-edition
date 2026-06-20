@@ -184,3 +184,21 @@ Grosskrotzenburg, „Mommsen"), wird korpusweit gematcht statt nur auf seinen NE
 ausgelassene Gattungswörter, sehr kurze Namen oder OCR-Garble. *Token-freie freq-basierte
 OCR-Autokorrektur wurde verworfen* (korrigiert legitim seltene Wörter falsch: „hören→höhen"); echte
 OCR-Fehler werden stattdessen seiten-weise per Faksimile-Re-OCR (`corrections/`) behoben.
+
+## 9. Bearbeiten im Browser (`docs/edit.html`)
+
+Ein eingebauter **TEI-Editor** erlaubt es, die Quelle direkt auf der Seite zu bearbeiten und mit dem
+eigenen GitHub-Konto zu speichern — ohne Server, ohne lokalen Build:
+
+- **Anmeldung**: ein fein-granularer **Personal Access Token** (Repo `pleuston/limesblatt-edition`,
+  *Contents: read/write*), der nur im Browser-`localStorage` bleibt. GitHub Pages ist statisch — ein
+  echter OAuth-Login bräuchte einen Proxy; der PAT ist die infrastrukturfreie Variante.
+- **Laden/Speichern** über die **GitHub Contents API** (`GET`/`PUT …/contents/<path>` mit `sha`),
+  Dateien aus `tei/` und `registers/`. Vor dem Commit prüft der Editor **Wohlgeformtheit** (`DOMParser`)
+  und **doppelte `xml:id`** — kaputtes XML lässt sich nicht committen.
+- **Live-Update**: der Pfad-gefilterte Workflow `.github/workflows/rebuild.yml` baut nach einem
+  `tei/**`-Push **nur die Bandseiten** neu — `build_site.py --volumes-only` braucht keinen privaten
+  Vault, nur das committete `tei/` + `data/toc.json` + `data/ner_places.json` — und committet das
+  regenerierte `docs/` zurück (Pfadfilter ⇒ keine Schleife). Die Änderung ist nach ~1 Min. live.
+
+Erreichbar über „✎ Bearbeiten" in der Navigation jeder Seite.

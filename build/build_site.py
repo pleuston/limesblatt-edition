@@ -155,7 +155,7 @@ def page(title, body, depth=0, head=""):
 <title>{html.escape(title)} — Limesblatt-Edition</title>
 <link rel="stylesheet" href="{up}assets/style.css">{head}</head><body>
 <header><a class="home" href="{up}index.html">📕 Limesblatt-Edition</a>
-<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/fundindex.html">Funde</a> · <a href="{up}register/inschriften.html">Inschriften</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}register/bibliographie.html">Bibliographie</a> · <a href="{up}register/rezeption.html">Rezeption</a> · <a href="{up}register/wortschatz.html">Analyse</a> · <a href="{up}index.html#suche">Suche</a></nav></header>
+<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/fundindex.html">Funde</a> · <a href="{up}register/inschriften.html">Inschriften</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}register/bibliographie.html">Bibliographie</a> · <a href="{up}register/rezeption.html">Rezeption</a> · <a href="{up}register/wortschatz.html">Analyse</a> · <a href="{up}index.html#suche">Suche</a> · <a href="{up}edit.html" title="TEI-Quelle bearbeiten (GitHub-Login)">✎&#8201;Bearbeiten</a></nav></header>
 <div class="wip">🚧 Diese digitale Edition befindet sich im <b>Aufbau</b> — Inhalte, Auszeichnung und Analysen sind unvollständig und können sich noch ändern.</div>
 <main>{body}</main>
 <footer>Diplomatische OCR-Edition des <em>Limesblatt</em> (1892–1903) · Text &amp; Register
@@ -694,8 +694,10 @@ def build_toc(PLA):
     Auflage, erzeugt von `tools/toc_extract.py`). Rückfall auf den lokalen Anker+Lücken-Scan,
     falls toc.json fehlt.
     """
-    tocf = os.path.join(REPO, "..", "limes", "tools", "toc.json")
-    if os.path.exists(tocf):
+    tocf = next((p for p in (os.path.join(REPO, "data", "toc.json"),                 # committed (CI-Rebuild)
+                              os.path.join(REPO, "..", "limes", "tools", "toc.json"))  # Vault (lokaler Build)
+                 if os.path.exists(p)), None)
+    if tocf:
         try:
             data = json.load(open(tocf, encoding="utf-8"))
             toc = {}
@@ -990,6 +992,15 @@ def main():
         for tk in re.findall(r'<surface xml:id="f_([^"]+)"', open(f, encoding="utf-8").read()):
             TOK2BAND[tk] = nr
     volumes = sorted((load_volume(f) for f in glob.glob(os.path.join(REPO,"tei","*.xml"))), key=lambda v: v["nr"])
+    if "--volumes-only" in __import__("sys").argv:   # CI-Rebuild nach TEI-Edit: nur Bandseiten aus dem (editierten) TEI
+        _np = os.path.join(REPO, "data", "ner_places.json")
+        PLA = {e["name"].split("(")[0].strip().lower() for e in (json.load(open(_np, encoding="utf-8")) if os.path.exists(_np) else []) if len(e["name"]) > 3}
+        toc = build_toc(PLA)
+        for v in volumes:
+            b, h = vol_page(v, toc.get(v["nr"], []))
+            open(os.path.join(DOCS,"volumes",f"bd{v['nr']}.html"),"w",encoding="utf-8").write(page(v["label"], b, 1, h))
+        print(f"--volumes-only: {len(volumes)} Bandseiten + tei/ neu gebaut")
+        return
     persons = load_register(os.path.join(REPO,"registers","persons.xml"), "person")
     places  = load_register(os.path.join(REPO,"registers","places.xml"), "place")
     strecken = load_strecken(os.path.join(REPO,"registers","strecken.xml"))
