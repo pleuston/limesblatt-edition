@@ -70,8 +70,8 @@ eindeutigen Druckseite geerdet** wird (markantes Ortswort, fuzzy; sonst `conf=lo
 viele Bericht-Nummern sind **als Rand-Ziffern in die Seitenpaneele** gedruckt (vom Titel gelöst,
 z. B. „…bei der Er- 5. forschung"); `margin_numerals()` belegt sie token-frei aus der ALTO-Geometrie
 (numerische Strings am Spaltenrand) und bestätigt so die Nummer auch bei verrauschtem Titel. Ergebnis:
-**210 Berichte (Nr. 1–210), lückenlos** — 197 ort-geerdet, **202/210 lokalisiert** (Ort oder Rand-Ziffer);
-11 ohne eigene Überschrift („nur Zahlen"), 8 unbelegt. `build_site.build_toc()` rendert daraus die klickbaren Verzeichnisse je Band **und** auf der
+**210 Berichte (Nr. 1–210), lückenlos** — 202 ort-geerdet, **207/210 lokalisiert** (Ort oder Rand-Ziffer);
+nur 3 unbelegt (echte kopflose Fortsetzungen ohne gedruckten Titel: Nr. 3, 15, 186). `build_site.build_toc()` rendert daraus die klickbaren Verzeichnisse je Band **und** auf der
 Startseite (`#art-<Nr>`, Köpfe inline markiert; unsichere/ohne-Titel gedämpft); `build_tei` zieht aus
 `toc.json` den `reportmap` (Nr. → Start-`<pb>`) für die „Forts. zu Nr. NN"-Querverweise.
 
