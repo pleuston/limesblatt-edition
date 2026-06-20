@@ -201,4 +201,11 @@ eigenen GitHub-Konto zu speichern — ohne Server, ohne lokalen Build:
   Vault, nur das committete `tei/` + `data/toc.json` + `data/ner_places.json` — und committet das
   regenerierte `docs/` zurück (Pfadfilter ⇒ keine Schleife). Die Änderung ist nach ~1 Min. live.
 
-Erreichbar über „✎ Bearbeiten" in der Navigation jeder Seite.
+**Seiten-Inline-Editor** (`docs/assets/pageedit.js`): jede Druckseiten-Marke im Lesefenster trägt ein
+**✎**; ein Klick öffnet genau den TEI-Abschnitt **dieser Spalte** (die `<p>`-Blöcke zwischen dieser
+`<pb>`/`<cb>` und der nächsten `<pb>`, per Regex aus der `tei/`-Datei extrahiert), lässt ihn bearbeiten,
+prüft Wohlgeformtheit und schreibt den Abschnitt zurück in dieselbe Datei (Token aus demselben
+`localStorage`). Ideal für schnelle OCR-Korrekturen direkt an der Seite — der Rest der Datei bleibt
+unberührt, der Auto-Rebuild macht die Korrektur live.
+
+Erreichbar über „✎ Bearbeiten" in der Navigation (ganze Datei) bzw. das ✎ je Druckseite (eine Spalte).

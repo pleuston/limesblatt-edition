@@ -183,6 +183,7 @@ def vol_page(v, toc=None):
                   else ("Bl. " + html.escape(p["img_tok"]) + " " + p["col"])
             mut = "" if p["type"] == "head" else " inferred"
             seg.append(f'<div class="pb{mut}" id="pb-{html.escape(p["anchor"])}" data-page="{i}" data-col="{p["col"]}" '
+                       f'data-pb="pb_{html.escape(img_tok)}_{html.escape(p["col"])}" '
                        f'onclick="viewer.goToPage({i})" title="Faksimile (Blatt {html.escape(img_tok)}) zeigen">— {lbl} —</div>')
             ph = p["html"]
             if nums:
@@ -198,7 +199,9 @@ def vol_page(v, toc=None):
             if f'id="art-{n}"' not in "".join(seg):
                 seg.insert(0, f'<p class="artp"><b class="arthead" id="art-{n}">{n}. {html.escape(nums[n][0])}</b></p>')
         text.extend(seg)
-    head = ('<script src="../assets/openseadragon.min.js"></script>')
+    head = ('<script src="../assets/openseadragon.min.js"></script>'
+            f'<script>window.TEIFILE="tei/{teiname}";</script>'
+            '<script defer src="../assets/pageedit.js"></script>')
     inh = ""
     if toc:
         items = toc_li(toc, "", True)
