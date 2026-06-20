@@ -22,11 +22,21 @@
 <bibl xml:id="bib_cil"><title>Corpus Inscriptionum Latinarum (CIL)</title><note>Corpus Inscriptionum Latinarum. Berlin, seit 1863 (bes. Bd. XIII, Germania).</note>
 <ref type="oa" target="https://cil.bbaw.de/">CIL / BBAW (OA)</ref>
 </bibl>
+<bibl xml:id="bib_orl"><title>ORL — Der obergermanisch-raetische Limes des Römerreiches</title><note>E. Fabricius, F. Hettner, O. v. Sarwey (Hrsg.), Der obergermanisch-raetische Limes des Römerreiches. 1894 ff.</note>
+<ref type="oa" target="https://archive.org/details/derobergermanis00fabrgoog">Internet Archive (OA)</ref>
+</bibl>
+<bibl xml:id="bib_ephepigr"><title>Ephemeris Epigraphica</title><note>Ephemeris Epigraphica. Corporis Inscriptionum Latinarum Supplementum. Rom/Berlin 1872 ff.</note>
+<ref type="oa" target="https://archive.org/details/ephemerisepigrap04inst">Internet Archive (OA)</ref>
+</bibl>
 <bibl xml:id="bib_cohausen"><title>A. von Cohausen, Der römische Grenzwall in Deutschland (1884)</title><note>August von Cohausen, Der römische Grenzwall in Deutschland. Wiesbaden: Kreidel, 1884.</note>
 <ref type="oa" target="https://digi.ub.uni-heidelberg.de/diglit/cohausen1884ga">UB Heidelberg (OA)</ref>
 </bibl>
 <bibl xml:id="bib_steiner"><title>P. Steiner, Römische Inschriften</title><note>P. Steiner u. a., zu rheinischen/germanischen Inschriften.</note>
 </bibl>
+<bibl xml:id="bib_becker"><title>J. Becker, Inschriften-/Limesbeiträge</title><note>J. Becker, Beiträge zur Limes- und Inschriftenforschung.</note>
+</bibl>
 <bibl xml:id="bib_tischler"><title>O. Tischler, Fibel-Typologie</title><note>Otto Tischler, zur Typologie der Fibeln (La-Tène/provinzialrömisch).</note>
+</bibl>
+<bibl xml:id="bib_haug"><title>F. Haug, Inschriften Südwestdeutschlands</title><note>Ferdinand Haug, zu den römischen Inschriften Südwestdeutschlands.</note>
 </bibl>
 </listBibl></standOff></TEI>

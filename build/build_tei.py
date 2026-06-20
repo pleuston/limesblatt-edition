@@ -51,15 +51,27 @@ BIBLIO = [
     ("bib_bonn", "Bonner Jahrbücher", "Bonner Jahrbücher (Jahrbücher des Vereins von Altertumsfreunden im Rheinlande), Bonn, seit 1842.",
      "https://journals.ub.uni-heidelberg.de/index.php/bjb", "UB Heidelberg Journals (OA)", r"Bonn\w*\.?\s*Jahrb"),
     ("bib_brambach", "W. Brambach, Corpus Inscriptionum Rhenanarum (1867)", "Wilhelm Brambach, Corpus Inscriptionum Rhenanarum. Elberfeld 1867.",
-     "https://archive.org/details/bub_gb_pbJfXWjFgP4C", "Internet Archive (OA)", r"\bBrambach\b|\bBramb\."),
+     "https://archive.org/details/bub_gb_pbJfXWjFgP4C", "Internet Archive (OA)", None),   # → CITE_RANGE
     ("bib_dragendorff", "H. Dragendorff, Terra sigillata (BJb 96/97, 1895)", "Hans Dragendorff, Terra sigillata. Ein Beitrag zur Geschichte der griechischen und römischen Keramik. Bonner Jahrbücher 96/97 (1895) 18–155.",
      "https://archive.org/details/terrasigillatae00draggoog", "Internet Archive (OA)", r"\bDrag(?:endorff)?\.?\s*\d"),
     ("bib_cil", "Corpus Inscriptionum Latinarum (CIL)", "Corpus Inscriptionum Latinarum. Berlin, seit 1863 (bes. Bd. XIII, Germania).",
-     "https://cil.bbaw.de/", "CIL / BBAW (OA)", r"\bC\.?\s?I\.?\s?L\.?\s+[IVXLC]"),
+     "https://cil.bbaw.de/", "CIL / BBAW (OA)", None),   # → CITE_RANGE (auch „Corp. III")
+    ("bib_orl", "ORL — Der obergermanisch-raetische Limes des Römerreiches", "E. Fabricius, F. Hettner, O. v. Sarwey (Hrsg.), Der obergermanisch-raetische Limes des Römerreiches. 1894 ff.",
+     "https://archive.org/details/derobergermanis00fabrgoog", "Internet Archive (OA)", r"\bO\.?\s?R\.?\s?L\b|obergerm\w*-?raet\w*\s+Limes\s+des"),
+    ("bib_ephepigr", "Ephemeris Epigraphica", "Ephemeris Epigraphica. Corporis Inscriptionum Latinarum Supplementum. Rom/Berlin 1872 ff.",
+     "https://archive.org/details/ephemerisepigrap04inst", "Internet Archive (OA)", r"\bEph(?:em)?\.?\s*[Ee]pigr"),
     ("bib_cohausen", "A. von Cohausen, Der römische Grenzwall in Deutschland (1884)", "August von Cohausen, Der römische Grenzwall in Deutschland. Wiesbaden: Kreidel, 1884.",
-     "https://digi.ub.uni-heidelberg.de/diglit/cohausen1884ga", "UB Heidelberg (OA)", None),
-    ("bib_steiner", "P. Steiner, Römische Inschriften", "P. Steiner u. a., zu rheinischen/germanischen Inschriften.", "", "", None),
-    ("bib_tischler", "O. Tischler, Fibel-Typologie", "Otto Tischler, zur Typologie der Fibeln (La-Tène/provinzialrömisch).", "", "", None),
+     "https://digi.ub.uni-heidelberg.de/diglit/cohausen1884ga", "UB Heidelberg (OA)", None),   # Autor → Personenregister
+    ("bib_steiner", "P. Steiner, Römische Inschriften", "P. Steiner u. a., zu rheinischen/germanischen Inschriften.", "", "", r"\bSteiner\b"),
+    ("bib_becker", "J. Becker, Inschriften-/Limesbeiträge", "J. Becker, Beiträge zur Limes- und Inschriftenforschung.", "", "", r"\bBecker\b"),
+    ("bib_tischler", "O. Tischler, Fibel-Typologie", "Otto Tischler, zur Typologie der Fibeln (La-Tène/provinzialrömisch).", "", "", r"\bTischler\b"),
+    ("bib_haug", "F. Haug, Inschriften Südwestdeutschlands", "Ferdinand Haug, zu den römischen Inschriften Südwestdeutschlands.", "", "", r"\bHaug\b"),
+]
+
+# Inschriftennummern → <citedRange> (1 Capture-Gruppe = die Nummer/Sigle):
+CITE_RANGE = [
+    ("bib_cil",      re.compile(r"\b(?:C\.?\s?I\.?\s?L\.?|Corp\.)\s+([IVXLC]+(?:[\s,.]+(?:[Pp]\.\s*)?\d+)*)", re.I)),
+    ("bib_brambach", re.compile(r"\bBramb(?:ach)?\.?\s+(?:Nr\.?\s*)?(\d{2,4}(?:\s*[.,]\s*\d{2,4})*)", re.I)),
 ]
 
 def slug(s):
@@ -154,32 +166,53 @@ def dare_terms(dare, taken, corpus_low=""):
     return out
 
 CITE_RX = [(bid, re.compile(rx, re.I)) for bid, _n, _f, _o, _l, rx in BIBLIO if rx]
+SELF_RX = re.compile(r"Limesbl\w*\.?\s*S\.?\s*(\d{1,4})", re.I)   # interner Selbstverweis (Seite)
+REPORT_RX = re.compile(r"(?:Forts\w*|Fortsetzung|[Vv]gl\.|siehe|s\.)\s+(?:zu\s+)?(Nr\.\s*(\d{1,3}))", re.I)  # Bericht-Querverweis
 
-def tag_page(text, terms, cites=CITE_RX):
-    """terms: {term: (kind, id, cert)}; cites: [(bibl-id, regex)] → <ref target>.
-    Markiert je Vorkommen, non-overlapping, längste zuerst.
-    Liefert (HTML, [(eid, kind, offset)]) — Offsets für den Belegindex."""
+def tag_page(text, terms, cites=CITE_RX, ranges=CITE_RANGE, selfmap=None, reportmap=None):
+    """terms: {term:(kind,id,cert)} → persName/placeName; cites → <ref target>;
+    ranges (id,regex mit 1 Gruppe) → <ref><citedRange>; selfmap {Druckseite:pb-id}
+    → interner <ref> auf „Limesblatt S. NNN". Non-overlapping, längste zuerst."""
     spans = []
     for term, (kind, xid, cert) in terms.items():
         for m in re.finditer(r"(?<![\wäöüÄÖÜß])" + re.escape(term) + r"(?![\wäöüÄÖÜß])", text):
             spans.append((m.start(), m.end(), kind, xid, cert))
-    for bid, rx in cites:                                  # bibliographische Referenzen → <ref>
+    for bid, rx in cites:
         for m in rx.finditer(text):
             spans.append((m.start(), m.end(), "bibl", bid, ""))
+    for bid, rx in ranges:                                 # Inschriftennummer → citedRange
+        for m in rx.finditer(text):
+            spans.append((m.start(), m.end(), "range", bid, (m.start(1), m.end(1))))
+    if selfmap:
+        for m in SELF_RX.finditer(text):
+            tgt = selfmap.get(int(m.group(1)))
+            if tgt:
+                spans.append((m.start(), m.end(), "self", tgt, ""))
+    if reportmap:
+        for m in REPORT_RX.finditer(text):              # nur das „Nr. NN" markieren (Gruppe 1)
+            tgt = reportmap.get(m.group(2))             # Gruppe 2 = die Bericht-Nummer
+            if tgt:
+                spans.append((m.start(1), m.end(1), "self", tgt, ""))
     spans.sort(key=lambda s: (s[0], -(s[1] - s[0])))
     chosen, last = [], -1
     for s in spans:
         if s[0] >= last: chosen.append(s); last = s[1]
     res, pos, hits = [], 0, []
-    for st, en, kind, xid, cert in chosen:
+    for st, en, kind, xid, extra in chosen:
         res.append(escape(text[pos:st]))
         if kind == "bibl":
             res.append(f'<ref type="bibl" target="#{xid}">{escape(text[st:en])}</ref>')
+        elif kind == "range":
+            g0, g1 = extra
+            res.append(f'<ref type="bibl" target="#{xid}">{escape(text[st:g0])}'
+                       f'<citedRange>{escape(text[g0:g1])}</citedRange>{escape(text[g1:en])}</ref>')
+        elif kind == "self":
+            res.append(f'<ref type="internal" target="#{xid}">{escape(text[st:en])}</ref>')
         elif kind == "dare":
-            res.append(f'<placeName ref="dare:{xid}" cert="{cert}">{escape(text[st:en])}</placeName>')
+            res.append(f'<placeName ref="dare:{xid}" cert="{extra}">{escape(text[st:en])}</placeName>')
         else:
             tag = "persName" if kind == "p" else "placeName"
-            res.append(f'<{tag} ref="#{xid}" cert="{cert}">{escape(text[st:en])}</{tag}>')
+            res.append(f'<{tag} ref="#{xid}" cert="{extra}">{escape(text[st:en])}</{tag}>')
         pos = en; hits.append((xid, kind, st))
     res.append(escape(text[pos:]))
     return "".join(res), hits
@@ -340,15 +373,15 @@ def coljson(cdir, tok):
             return None
     return None
 
-def build_volume(slug_, label, nr, vault, global_terms, token_terms, occ, outdir):
+def build_volume(slug_, label, nr, vault, global_terms, token_terms, occ, outdir, selfmap=None, reportmap=None):
     toks, cdir = tokens(vault, slug_)
     surfaces, body, npages, ntags, nempty = [], [], 0, 0, 0
 
     def tag(text, printed, col):
         """Spaltentext markieren: korpusweite Vault-Begriffe + auf dieses Token verankerte
-        NER-Begriffe; Treffer mit Offset im Belegindex sammeln."""
+        NER-Begriffe + Literatur-/Selbst-/Bericht-Verweise; Treffer mit Offset im Belegindex sammeln."""
         terms = dict(global_terms); terms.update(token_terms.get((nr, tok), {}))
-        html_, hits = tag_page(text, terms)
+        html_, hits = tag_page(text, terms, selfmap=selfmap, reportmap=reportmap)
         for eid, kind, off in hits:
             occ[eid].append([nr, tok, printed, col, off])
         return html_.replace("\n", "<lb/>"), len(hits)   # Zeilenumbrüche (Korrekturen) → <lb/>
@@ -487,12 +520,30 @@ def main():
           f"{len(ner_only)} NER-only-Entitäten ({sum(1 for e in ner_only if entities[e]['kind']=='person')}P/"
           f"{sum(1 for e in ner_only if entities[e]['kind']=='place')}O)")
     print(f"Geo: {ngeo} DARE-Stellen (entdoppelt) + {nline} Verlaufslinie(n) → geo/")
+    # Globale Druckseiten→<pb>-Karte für interne „Limesblatt S. NNN"-Selbstverweise
+    selfmap = {}
+    for slug_, label, nr in WORKS:
+        cdir = os.path.join(vault, "tools", ".cache", slug_)
+        for jf in glob.glob(os.path.join(cdir, "*.alto.json")):
+            try: cj = json.load(open(jf, encoding="utf-8"))
+            except Exception: continue
+            tk = os.path.basename(jf)[:-len(".alto.json")]
+            for c in cj.get("columns", []):
+                pn = str(c.get("printed_no", ""))
+                if pn.isdigit() and c.get("printed_src") in ("head", "inferred"):
+                    selfmap.setdefault(int(pn), f"pb_{tk}_{c['label']}")
+    # Bericht-Nr. → Startseiten-<pb> (aus dem token-freien TOC-Report) für „Forts. zu Nr. NN"
+    reportmap = {}
+    tocf = os.path.join(vault, "tools", ".cache", "toc_report.md")
+    if os.path.exists(tocf):
+        for m in re.finditer(r'- S\. (\S+): \*\*(\d+)\.\*\*', open(tocf, encoding="utf-8").read()):
+            reportmap.setdefault(m.group(2), f"pb_{m.group(1)}_a")
     occ = defaultdict(list)
     tot = 0
     for slug_, label, nr in WORKS:
         if not os.path.isdir(os.path.join(vault, "tools", ".cache", slug_)):
             print(f"  ! {slug_}: kein Cache, übersprungen"); continue
-        r = build_volume(slug_, label, nr, vault, global_terms, token_terms, occ, os.path.join(REPO, "tei"))
+        r = build_volume(slug_, label, nr, vault, global_terms, token_terms, occ, os.path.join(REPO, "tei"), selfmap, reportmap)
         tot += r["tags"]
         print(f"  {r['file']:38} {r['pages']:>4} Seiten ({r['empty']} leer), {r['tags']:>4} Inline-Tags")
     # persistierter Belegindex: Entität → Vorkommen [Band, Token, Druckseite, Spalte, Offset]

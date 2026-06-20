@@ -29,6 +29,21 @@ def _cert_of(attrs):
     m = re.search(r'cert="([^"]+)"', attrs or "")
     return m.group(1) if m else "low"
 
+TOK2BAND = {}   # IIIF-Token → Bandnr. (für bandübergreifende interne Selbstverweise)
+
+def _refsub(m):
+    """<ref> → HTML: bibliographisch (#bib_…, ggf. mit citedRange) oder intern (#pb_…)."""
+    tgt = m.group(2); inner = m.group(3).replace("<citedRange>", "").replace("</citedRange>", "")
+    if tgt.startswith("bib_"):
+        return f'<a class="ent bibl" href="../register/bibliographie.html#{tgt}" title="Literatur">{inner}</a>'
+    if tgt.startswith("pb_"):
+        b = tgt[3:]; i = b.rfind("_")
+        tk, anchor = (b[:i], f"{b[:i]}-{b[i+1:]}") if i > 0 else (b, b)
+        band = TOK2BAND.get(tk)
+        if band:
+            return f'<a class="ent xref" href="bd{band}.html#pb-{anchor}" title="Limesblatt-Selbstverweis">{inner}</a>'
+    return inner
+
 def _entsub(inner):
     """Inline-Eigennamen-Tags → HTML-Register-Links, konfidenz-gestuft (c-high/medium/low).
     Vault-IDs (p_/pl_) → kuratierte Register; NER-only-IDs (psnN_/plcN_) → Volltext-Indizes."""
@@ -44,9 +59,7 @@ def _entsub(inner):
         return f'<a class="ent {cls} c-{_cert_of(attrs)}" href="{href}" title="{cls}">{txt}</a>'
     body = re.sub(r'<placeName ref="dare:([^"]+)"([^>]*)>(.*?)</placeName>', dare, inner, flags=re.S)
     body = re.sub(r'<(persName|placeName) ref="#([^"]+)"([^>]*)>(.*?)</\1>', ent, body, flags=re.S)
-    body = re.sub(r'<ref type="bibl" target="#([^"]+)">(.*?)</ref>',          # Literaturverweis
-                  lambda m: f'<a class="ent bibl" href="../register/bibliographie.html#{m.group(1)}" title="Literatur">{m.group(2)}</a>',
-                  body, flags=re.S)
+    body = re.sub(r'<ref type="([^"]+)" target="#([^"]+)">(.*?)</ref>', _refsub, body, flags=re.S)   # Literatur/intern
     return body.replace("<lb/>", "<br>")               # Zeilenumbrüche (Inschriften/Korrekturen)
 
 def render_page(inner):
@@ -880,6 +893,10 @@ def main():
     for f in glob.glob(os.path.join(REPO,"registers","*.xml")): shutil.copy(f, os.path.join(DOCS,"registers"))
     for f in glob.glob(os.path.join(REPO,"geo","*.geojson")): shutil.copy(f, os.path.join(DOCS,"data"))
 
+    for f in glob.glob(os.path.join(REPO,"tei","*.xml")):   # Token→Band für interne Selbstverweise
+        nr = int(re.search(r'limesblatt-bd(\d+)-', os.path.basename(f)).group(1))
+        for tk in re.findall(r'<surface xml:id="f_([^"]+)"', open(f, encoding="utf-8").read()):
+            TOK2BAND[tk] = nr
     volumes = sorted((load_volume(f) for f in glob.glob(os.path.join(REPO,"tei","*.xml"))), key=lambda v: v["nr"])
     persons = load_register(os.path.join(REPO,"registers","persons.xml"), "person")
     places  = load_register(os.path.join(REPO,"registers","places.xml"), "place")

@@ -28,6 +28,7 @@ ul.vols{columns:2;gap:2rem} ul.vols li{margin:.2rem 0}
 .ent.placeName.dare{color:#3f6f7a;border-bottom-style:dashed}
 .ent.c-high{border-bottom-style:solid} .ent.c-low{border-bottom-style:dashed;opacity:.72}
 .ent.bibl{color:#7a1f1f;border-bottom:1px dotted #7a1f1f}
+.ent.xref{color:#2a5a7a;border-bottom:1px dotted #2a5a7a} .ent.xref::before{content:"↪ "}
 .nerlist li.ix{scroll-margin-top:3.6rem} .nerlist li.ix:target{background:#fff8e6;outline:2px solid #e0c200;border-radius:3px}
 .alias{color:var(--muted);font-size:.82rem}
 /* Suche */
