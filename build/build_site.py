@@ -55,9 +55,14 @@ def render_head(inner):
     """Volle-Breite-Überschrift (<head>) einer Kachel → eigene HTML-Zeile."""
     return f'<p class="colhead">{_entsub(inner.strip())}</p>'
 
+def render_span(inner):
+    """Spaltenübergreifender Fließtext-Absatz (<p rend="span">) → normaler Absatz."""
+    return f'<p class="spanpara">{_entsub(inner.strip())}</p>'
+
 PB_RE = re.compile(r'<head>(.*?)</head>'
+                   r'|<p rend="span">(.*?)</p>'
                    r'|<pb n="([^"]*)" facs="#f_([^"]+)" xml:id="pb_[^"]*?_([A-Za-z0-9]+)" type="([^"]*)"/>'
-                   r'(.*?)(?=<pb |<head>|</div>)', re.S)
+                   r'(.*?)(?=<pb |<head>|<p rend|</div>)', re.S)
 
 def load_volume(path):
     """Spalten-treues Laden: ein „Seiten"-Objekt je <pb> = je Spalte = je Druckseite.
@@ -71,7 +76,10 @@ def load_volume(path):
         if m.group(1) is not None:                      # <head>…</head> vor den Spalten sammeln
             pending_head += render_head(m.group(1))
             continue
-        printed, img_tok, col, typ, inner = m.group(2), m.group(3), m.group(4) or "a", m.group(5) or "", m.group(6).strip()
+        if m.group(2) is not None:                      # spaltenübergreifender Absatz vor den Spalten
+            pending_head += render_span(m.group(2))
+            continue
+        printed, img_tok, col, typ, inner = m.group(3), m.group(4), m.group(5) or "a", m.group(6) or "", m.group(7).strip()
         anchor = f"{img_tok}-{col}"
         pages.append({"img_tok": img_tok, "printed": printed, "col": col, "anchor": anchor, "tok": anchor,
                       "type": typ, "head": pending_head, "html": render_page(inner),

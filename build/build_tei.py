@@ -335,12 +335,17 @@ def build_volume(slug_, label, nr, vault, global_terms, token_terms, occ, outdir
                 for c in cj["columns"] if c.get("box"))
             dim = f' lrx="{pw}" lry="{ph}"' if pw and ph else ""
             surfaces.append(f'<surface xml:id="f_{tok}" n="{escape(tok)}"{dim}><graphic url="{img}"/>{zones}</surface>')
-            for h in cj.get("heads", []):                      # echte volle-Breite-Überschriften einmal vor den Spalten
+            p0 = str(cj["columns"][0].get("printed_no", tok)) if cj["columns"] else tok
+            for h in cj.get("heads", []):                      # volle-Breite-Titelzeilen einmal vor den Spalten
                 ht = (h.get("text") or "").strip()
                 if ht:
-                    tagged, n = tag(ht, str(cj["columns"][0].get("printed_no", tok)) if cj["columns"] else tok, "a")
-                    ntags += n
+                    tagged, n = tag(ht, p0, "a"); ntags += n
                     body.append(f'<head>{tagged}</head>')
+            for pr in cj.get("paras", []):                     # spaltenübergreifender Fließtext (Editorial/Vorwort)
+                pt = (pr.get("text") or "").strip()
+                if pt:
+                    tagged, n = tag(pt, p0, "a"); ntags += n
+                    body.append(f'<p rend="span">{tagged}</p>')
             for c in cj["columns"]:                            # je Spalte = eine Druckseite
                 lbl = c["label"]; printed = str(c.get("printed_no", tok))
                 body.append(f'<pb n="{escape(printed)}" facs="#f_{tok}" '
