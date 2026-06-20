@@ -673,7 +673,7 @@ def build_toc(PLA):
             toc = {}
             for r in data.get("reports", []):
                 br = f"[{r['theme']}]" if r.get("theme") else ""
-                cf = "low" if (not r.get("grounded") or not r.get("place") or r.get("conf") == "low") else r.get("conf", "medium")
+                cf = r.get("conf") or "medium"     # toc_extract setzt conf bereits aus Ort-Erdung + Rand-Ziffer
                 toc.setdefault(r["nr"], []).append((str(r.get("token") or ""), r["num"], r.get("place") or "", br, cf))
             if toc:
                 return toc

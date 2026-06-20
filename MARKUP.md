@@ -66,9 +66,12 @@ Das Limesblatt ist *eine* fortlaufende Berichtsreihe; die Berichte tragen gedruc
 Lieferungen). `../limes/tools/toc_extract.py` erzeugt daraus `tools/toc.json` — **token-freie Basis**
 (längste monotone Nummern-Kette) **plus kuratierte Auflage** `tools/toc_curated.json` (einmalig je Band
 aus dem OCR erschlossen, wie `data/ner_*.json`), wobei jeder Eintrag **gegen das OCR seiner global
-eindeutigen Druckseite geerdet** wird (markantes Ortswort muss vorkommen, sonst `conf=low`). Ergebnis:
-**210 Berichte (Nr. 1–210), lückenlos** — 192 geerdet, 11 ohne eigene Überschrift („nur Zahlen"),
-18 unsicher. `build_site.build_toc()` rendert daraus die klickbaren Verzeichnisse je Band **und** auf der
+eindeutigen Druckseite geerdet** wird (markantes Ortswort, fuzzy; sonst `conf=low`). **Dritte Ebene:**
+viele Bericht-Nummern sind **als Rand-Ziffern in die Seitenpaneele** gedruckt (vom Titel gelöst,
+z. B. „…bei der Er- 5. forschung"); `margin_numerals()` belegt sie token-frei aus der ALTO-Geometrie
+(numerische Strings am Spaltenrand) und bestätigt so die Nummer auch bei verrauschtem Titel. Ergebnis:
+**210 Berichte (Nr. 1–210), lückenlos** — 197 ort-geerdet, **202/210 lokalisiert** (Ort oder Rand-Ziffer);
+11 ohne eigene Überschrift („nur Zahlen"), 8 unbelegt. `build_site.build_toc()` rendert daraus die klickbaren Verzeichnisse je Band **und** auf der
 Startseite (`#art-<Nr>`, Köpfe inline markiert; unsichere/ohne-Titel gedämpft); `build_tei` zieht aus
 `toc.json` den `reportmap` (Nr. → Start-`<pb>`) für die „Forts. zu Nr. NN"-Querverweise.
 
