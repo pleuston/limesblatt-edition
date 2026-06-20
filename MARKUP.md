@@ -117,6 +117,14 @@ Personenregister; die Bibliographie-Seite zieht ihre Belege dafür aus dem Perso
   (Quellen: UB Heidelberg `diglit/iiif/<slug>/manifest`, archive.org `iiif.archive.org/iiif/<id>/manifest.json`).
   **Granularität: Werk-/Beispielband-Ebene** — die genaue zitierte Band-/Seitenstelle ist (noch) nicht
   erfasst, da die OCR Band/Seite der Zitate nicht zuverlässig hergibt.
+- **rezeption.html** — die **Rezeptions-/Wirkungsgeschichte**: wie das Limesblatt *außerhalb* seiner
+  Bände rezipiert wurde. Token-frei aus OA-Repositorien geharvestet (`../limes/tools/rezeption.py` →
+  `rezeption.json`): **OpenAlex** + **Crossref** (Werk-Metadaten/DOIs — u. a. Hettners Revue-épigraphique-
+  Résumés 1893/94), **archive.org** (Digitalisate/Faksimiles, verwandte Reihen), **DAI-Zenon**
+  (fachbibliographisch, best-effort HTML/COinS). Klassifiziert nach **Ära** (zeitgenössisch ≤ 1912 /
+  modern) × **Typ**; mit Block zur Limesblatt→ORL-Pipeline (Link auf die ORL-Gegenprobe) und zur
+  **Normdaten-Lücke** (kein Wikidata-/GND-Eintrag). Gegenrichtung zur Bibliographie: dort die Werke, die
+  *das Limesblatt zitiert* — hier die Belege, die *das Limesblatt zitieren*.
 - **namen.html / orte-index.html** — vollständige Volltext-Register (NER), je Eintrag mit Anker + Belegen.
 - **wortschatz.html** — diachrone Auswertung, ORL-Gegenprobe, KWIC.
 

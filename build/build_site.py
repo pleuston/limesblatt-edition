@@ -155,7 +155,7 @@ def page(title, body, depth=0, head=""):
 <title>{html.escape(title)} — Limesblatt-Edition</title>
 <link rel="stylesheet" href="{up}assets/style.css">{head}</head><body>
 <header><a class="home" href="{up}index.html">📕 Limesblatt-Edition</a>
-<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/fundindex.html">Funde</a> · <a href="{up}register/inschriften.html">Inschriften</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}register/bibliographie.html">Bibliographie</a> · <a href="{up}register/wortschatz.html">Analyse</a> · <a href="{up}index.html#suche">Suche</a></nav></header>
+<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/fundindex.html">Funde</a> · <a href="{up}register/inschriften.html">Inschriften</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}register/bibliographie.html">Bibliographie</a> · <a href="{up}register/rezeption.html">Rezeption</a> · <a href="{up}register/wortschatz.html">Analyse</a> · <a href="{up}index.html#suche">Suche</a></nav></header>
 <div class="wip">🚧 Diese digitale Edition befindet sich im <b>Aufbau</b> — Inhalte, Auszeichnung und Analysen sind unvollständig und können sich noch ändern.</div>
 <main>{body}</main>
 <footer>Diplomatische OCR-Edition des <em>Limesblatt</em> (1892–1903) · Text &amp; Register
@@ -409,6 +409,7 @@ IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen
 <li><a href="register/fundindex.html">Fundindex</a> — Fundgattungen, Münzkaiser, Sigillata-Formen &amp; Truppenstempel mit Seiten-/Spalten-Belegen</li>
 <li><a href="register/inschriften.html">Inschriften (EDH)</a> — 759 katalogisierte Inschriften der Limes-Fundorte aus der Epigraphic Database Heidelberg</li>
 <li><a href="register/bibliographie.html">Bibliographie &amp; Quellen</a> — die zitierten Werke, aufgelöst zu vollen Referenzen + Open-Access-Digitalisaten (UB Heidelberg u. a.)</li>
+<li><a href="register/rezeption.html">Rezeption &amp; Wirkungsgeschichte</a> — wie das Limesblatt außerhalb seiner Bände rezipiert wurde (token-frei aus OpenAlex/Crossref/archive.org/DAI-Zenon)</li>
 <li><a href="register/namen.html">Namen im Limesblatt</a> — vollständiges Namenregister aus dem Volltext (NER); jeder Name ist im Lesetext angeklickt verlinkt</li>
 <li><a href="register/orte-index.html">Orte im Limesblatt</a> — vollständiges Ortsregister aus dem Volltext (NER), im Lesetext verlinkt</li>
 <li><a href="register/wortschatz.html">Textanalyse</a> — diachroner Wortschatz, ORL-Gegenprobe, Münzkaiser-Chronologie, Truppen, Zitate, OCR-Qualität + KWIC-Konkordanz</li></ul>
@@ -896,6 +897,35 @@ def inscriptions_page(edh):
             f'verknüpft mit dem <a href="places.html">Ortsregister</a>.</p>'
             + "".join(secs))
 
+def reception_page(rec):
+    items = rec.get("items", []); summ = rec.get("summary", {}); nd = rec.get("normdata", {})
+    sp = summ.get("span", [None, None])
+    def row(it):
+        au = (", ".join(it.get("authors", [])[:2]) + " · ") if it.get("authors") else ""
+        return (f'<li><a href="{html.escape(it["url"])}">{html.escape(it.get("title") or "—")}</a> '
+                f'<span class="meta">{html.escape(au)}{it.get("year") or "o. J."} — {html.escape(it["type"])} '
+                f'<span class="lc">[{html.escape(" · ".join(it.get("srcs", [])))}]</span></span></li>')
+    secs = ""
+    for key, lbl in [("zeitgenössisch", "Zeitgenössische Rezeption (≤ 1912)"),
+                     ("modern", "Moderne Zitations-Nachwirkung")]:
+        lis = "".join(row(it) for it in items if it.get("era") == key)
+        if lis: secs += f'<h2>{lbl}</h2><ul class="nerlist">{lis}</ul>'
+    gap = ("<b>noch keinen eigenen Eintrag</b>" if not nd.get("wikidata_hits") and not nd.get("gnd_work_hits")
+           else f'{nd.get("wikidata_hits", 0)} Wikidata- / {nd.get("gnd_work_hits", 0)} GND-Treffer')
+    return (f'<h1>Rezeption &amp; Wirkungsgeschichte</h1>'
+            f'<p class="meta">Wie das Limesblatt <b>außerhalb</b> seiner eigenen Bände rezipiert wurde — token-frei '
+            f'aus Open-Access-Repositorien geharvestet (OpenAlex · Crossref · archive.org · DAI-Zenon). '
+            f'{summ.get("total", 0)} Belege ({sp[0]}–{sp[1]}); heuristisch, metadaten-getrieben '
+            f'(<code>tools/rezeption.py</code>).</p>'
+            f'<h2>Vom Vorbericht zum Standardwerk (Limesblatt → ORL)</h2>'
+            f'<p class="meta">Die laufenden Feldberichte des Limesblatt gingen in das definitive '
+            f'<a href="bibliographie.html#bib_orl">ORL</a> ein; die <a href="wortschatz.html#orl">ORL-Gegenprobe</a> '
+            f'zeigt, wie die ORL-Redaktion die Befunde (Holzbefunde ~4×) ausdünnte — Rezeption als editoriale Transformation.</p>'
+            f'{secs}'
+            f'<h2>Normdaten-Lücke</h2>'
+            f'<p class="meta">Bemerkenswert für die digitale Erschließung: das Limesblatt als Periodikum hat in '
+            f'<b>Wikidata</b> und der <b>GND</b> {gap} (Stand des Harvests) — ein offener Punkt seiner Rezeption.</p>')
+
 def main():
     os.makedirs(os.path.join(DOCS,"volumes"), exist_ok=True)
     os.makedirs(os.path.join(DOCS,"register"), exist_ok=True)
@@ -1016,6 +1046,10 @@ def main():
     edh = json.load(open(_edhp, encoding="utf-8")) if os.path.exists(_edhp) else {"kastelle": [], "total": 0}
     open(os.path.join(DOCS,"register","inschriften.html"),"w",encoding="utf-8").write(page("Inschriften (EDH)", inscriptions_page(edh), 1))
     print(f"EDH-Inschriften: {edh.get('total',0)} von {len(edh.get('kastelle',[]))} Fundorten → register/inschriften.html")
+    _recp = os.path.join(REPO, "..", "limes", "tools", "rezeption.json")
+    rez = json.load(open(_recp, encoding="utf-8")) if os.path.exists(_recp) else {"items": [], "summary": {}, "normdata": {}}
+    open(os.path.join(DOCS,"register","rezeption.html"),"w",encoding="utf-8").write(page("Rezeption", reception_page(rez), 1))
+    print(f"Rezeption: {rez.get('summary',{}).get('total',0)} Belege → register/rezeption.html")
     ib, ih = index_page(volumes, toc)
     open(os.path.join(DOCS,"index.html"),"w",encoding="utf-8").write(page("Startseite", ib, 0, ih))
     print(f"docs/: index + {len(volumes)} Bände + 3 Register (Personen {len(persons)}, Orte {len(places)}, "
