@@ -23,6 +23,7 @@ ul.vols{columns:2;gap:2rem} ul.vols li{margin:.2rem 0}
 .pb.inferred{color:var(--muted)} .pb.inferred::after{content:" ⟲";font-size:.8em;opacity:.5}
 .colhead{text-align:center;font-variant:small-caps;color:var(--muted);font-weight:bold;font-size:.92rem;margin:.8rem 0 .1rem}
 .spanpara{text-align:justify;hyphens:auto;margin:.5rem 0;padding:.2rem .6rem;border-left:2px solid var(--line)}
+.text p.corr{background:#f6f8f4;border-left:2px solid #9bb89b;padding:.3rem .6rem;border-radius:2px}
 .ent{text-decoration:none;border-bottom:1px dotted} .persName{color:#5a3a8a} .placeName{color:#1f5a4a}
 .ent.placeName.dare{color:#3f6f7a;border-bottom-style:dashed}
 .ent.c-high{border-bottom-style:solid} .ent.c-low{border-bottom-style:dashed;opacity:.72}

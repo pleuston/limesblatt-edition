@@ -321,7 +321,7 @@ def build_volume(slug_, label, nr, vault, global_terms, token_terms, occ, outdir
         html_, hits = tag_page(text, terms)
         for eid, kind, off in hits:
             occ[eid].append([nr, tok, printed, col, off])
-        return html_, len(hits)
+        return html_.replace("\n", "<lb/>"), len(hits)   # Zeilenumbrüche (Korrekturen) → <lb/>
 
     for tok in toks:
         img = IIIF_IMG.format(slug=slug_, tok=tok)

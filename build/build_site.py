@@ -43,7 +43,8 @@ def _entsub(inner):
         else:                         href = f'../register/{"persons" if tag=="persName" else "places"}.html#{xid}'
         return f'<a class="ent {cls} c-{_cert_of(attrs)}" href="{href}" title="{cls}">{txt}</a>'
     body = re.sub(r'<placeName ref="dare:([^"]+)"([^>]*)>(.*?)</placeName>', dare, inner, flags=re.S)
-    return re.sub(r'<(persName|placeName) ref="#([^"]+)"([^>]*)>(.*?)</\1>', ent, body, flags=re.S)
+    body = re.sub(r'<(persName|placeName) ref="#([^"]+)"([^>]*)>(.*?)</\1>', ent, body, flags=re.S)
+    return body.replace("<lb/>", "<br>")               # Zeilenumbrüche (Inschriften/Korrekturen)
 
 def render_page(inner):
     """inner = <cb/> + <p>…</p>-Block einer Spalte; Inline-Tags → HTML-Spans/Links."""
@@ -83,7 +84,7 @@ def load_volume(path):
         anchor = f"{img_tok}-{col}"
         pages.append({"img_tok": img_tok, "printed": printed, "col": col, "anchor": anchor, "tok": anchor,
                       "type": typ, "head": pending_head, "html": render_page(inner),
-                      "text": unesc(strip_tags(re.sub(r'<cb\b[^>]*/>', '', inner))).strip(),
+                      "text": unesc(strip_tags(re.sub(r'<cb\b[^>]*/>|<lb/>', ' ', inner))).strip(),
                       "ents": re.findall(r'ref="#([^"]+)"', inner),
                       "dents": re.findall(r'ref="dare:([^"]+)"', inner)})
         pending_head = ""
