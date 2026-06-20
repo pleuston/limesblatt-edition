@@ -20,6 +20,8 @@ ul.vols{columns:2;gap:2rem} ul.vols li{margin:.2rem 0}
 .text{max-height:80vh;overflow:auto;padding-right:.4rem} .text p{margin:.3rem 0;text-align:justify;hyphens:auto}
 .pb{margin:1rem 0 .2rem;color:var(--accent);font-variant:small-caps;font-size:.82rem;cursor:pointer;border-top:1px dotted var(--line);padding-top:.5rem}
 .pb:hover{background:#f3eee3} .pb:target{background:#fff3cd;outline:2px solid #e0c200;scroll-margin-top:3.6rem} .gap{color:var(--muted);font-style:italic}
+.pb.inferred{color:var(--muted)} .pb.inferred::after{content:" ⟲";font-size:.8em;opacity:.5}
+.colhead{text-align:center;font-variant:small-caps;color:var(--muted);font-weight:bold;font-size:.92rem;margin:.8rem 0 .1rem}
 .ent{text-decoration:none;border-bottom:1px dotted} .persName{color:#5a3a8a} .placeName{color:#1f5a4a}
 .ent.placeName.dare{color:#3f6f7a;border-bottom-style:dashed}
 .alias{color:var(--muted);font-size:.82rem}

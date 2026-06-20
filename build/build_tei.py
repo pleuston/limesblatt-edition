@@ -308,16 +308,56 @@ def header(slug_, label):
 <ref type="digitisate" target="{DIGLIT.format(slug=slug_)}">UB Heidelberg</ref>;
 <ref type="iiif-manifest" target="{IIIF_MAN.format(slug=slug_)}">IIIF-Manifest</ref></bibl></sourceDesc>
 </fileDesc>
-<encodingDesc><editorialDecl><p>Diplomatische, unkorrigierte Wiedergabe der Fraktur-OCR (ALTO, UB Heidelberg). Ein <gi>pb</gi> je IIIF-Kachel (Doppelseite). Heuristisch erkannte Eigennamen tragen <att>cert</att>="low" und verweisen auf die Register.</p></editorialDecl></encodingDesc>
+<encodingDesc><editorialDecl><p>Diplomatische, unkorrigierte Wiedergabe der Fraktur-OCR (ALTO, UB Heidelberg), spaltentreu aus der ALTO-Geometrie rekonstruiert. Eine <gi>surface</gi> je IIIF-Kachel (Blatt) mit <gi>zone</gi> je Spalte; im Text ein <gi>pb</gi> je <emph>Druckseite</emph> (linke Spalte = ungerade, rechte = gerade) und ein <gi>cb</gi> je Spalte. Die Druckseitenzahl (<att>n</att>) stammt aus dem Kolumnentitel (<att>type</att>="head"), sonst aus Odd/Even-Inferenz (<att>type</att>="inferred") bzw. dem Blatt-Token (<att>type</att>="token"). Heuristisch erkannte Eigennamen tragen <att>cert</att>="low" und verweisen auf die Register.</p></editorialDecl></encodingDesc>
 </teiHeader>"""
+
+def coljson(cdir, tok):
+    """Spalten-Geometrie eines Tokens (von tools/alto_layout via limesblatt_ocr.py)."""
+    p = os.path.join(cdir, f"{tok}.alto.json")
+    if os.path.exists(p):
+        try:
+            return json.load(open(p, encoding="utf-8"))
+        except Exception:
+            return None
+    return None
 
 def build_volume(slug_, label, nr, vault, terms, outdir):
     toks, cdir = tokens(vault, slug_)
     surfaces, body, npages, ntags, nempty = [], [], 0, 0, 0
     for tok in toks:
-        surfaces.append(f'<surface xml:id="f_{tok}" n="{escape(tok)}"><graphic url="{IIIF_IMG.format(slug=slug_, tok=tok)}"/></surface>')
+        img = IIIF_IMG.format(slug=slug_, tok=tok)
+        cj = coljson(cdir, tok)
+        if cj and cj.get("columns"):
+            # Eine <surface> je IIIF-Kachel + eine <zone> je Spalte (Pixelbox fürs Faksimile).
+            pw, ph = ((cj.get("page_px") or [0, 0]) + [0, 0])[:2]
+            zones = "".join(
+                f'<zone xml:id="z_{tok}_{c["label"]}" ulx="{c["box"][0]}" uly="{c["box"][1]}" '
+                f'lrx="{c["box"][2]}" lry="{c["box"][3]}" rendition="column"/>'
+                for c in cj["columns"] if c.get("box"))
+            dim = f' lrx="{pw}" lry="{ph}"' if pw and ph else ""
+            surfaces.append(f'<surface xml:id="f_{tok}" n="{escape(tok)}"{dim}><graphic url="{img}"/>{zones}</surface>')
+            for h in cj.get("heads", []):                      # echte volle-Breite-Überschriften einmal vor den Spalten
+                ht = (h.get("text") or "").strip()
+                if ht:
+                    tagged, n = tag_text(ht, terms); ntags += n
+                    body.append(f'<head>{tagged}</head>')
+            for c in cj["columns"]:                            # je Spalte = eine Druckseite
+                lbl = c["label"]
+                body.append(f'<pb n="{escape(str(c.get("printed_no", tok)))}" facs="#f_{tok}" '
+                            f'xml:id="pb_{tok}_{lbl}" type="{escape(str(c.get("printed_src", "token")))}"/>')
+                body.append(f'<cb n="{lbl}" facs="#z_{tok}_{lbl}"/>')
+                ctxt = (c.get("text") or "").strip()
+                if not ctxt:
+                    body.append('<p><gap reason="ocr-empty"/></p>'); nempty += 1
+                else:
+                    tagged, n = tag_text(ctxt, terms); ntags += n
+                    body.append(f'<p>{tagged}</p>')
+                npages += 1
+            continue
+        # Fallback: kein Spalten-JSON (kaputtes ALTO) → flacher Einzeltext, eine Spalte „a".
+        surfaces.append(f'<surface xml:id="f_{tok}" n="{escape(tok)}"><graphic url="{img}"/></surface>')
         txt = open(os.path.join(cdir, f"{tok}.txt"), encoding="utf-8").read().strip()
-        body.append(f'<pb n="{escape(tok)}" facs="#f_{tok}"/>')
+        body.append(f'<pb n="{escape(tok)}" facs="#f_{tok}" xml:id="pb_{tok}_a" type="token"/>')
         if not txt:
             body.append('<p><gap reason="ocr-empty"/></p>'); nempty += 1
         else:

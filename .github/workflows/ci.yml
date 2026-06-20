@@ -20,10 +20,16 @@ jobs:
               ids |= set(re.findall(r'xml:id="([^"]+)"', open(f, encoding="utf-8").read()))
           for f in glob.glob("tei/*.xml"):
               t = open(f, encoding="utf-8").read()
-              surf = set(re.findall(r'<surface xml:id="(f_[^"]+)"', t))
+              surf  = set(re.findall(r'<surface xml:id="(f_[^"]+)"', t))
+              zones = set(re.findall(r'<zone xml:id="(z_[^"]+)"', t))   # Spalten-Zonen
               for r in re.findall(r'ref="#([^"]+)"', t):
                   if r not in ids: print(f"DANGLING ref #{r} in {f}"); bad += 1
               for fa in re.findall(r'facs="#(f_[^"]+)"', t):
                   if fa not in surf: print(f"DANGLING facs #{fa} in {f}"); bad += 1
+              for za in re.findall(r'facs="#(z_[^"]+)"', t):           # <cb facs="#z_…"> → <zone>
+                  if za not in zones: print(f"DANGLING zone facs #{za} in {f}"); bad += 1
+              allids = re.findall(r'xml:id="([^"]+)"', t)              # pb/cb/surface/zone-IDs eindeutig
+              for xid in {i for i in allids if allids.count(i) > 1}:
+                  print(f"DUPLICATE xml:id {xid} in {f}"); bad += 1
           print("OK" if not bad else f"{bad} problems"); sys.exit(1 if bad else 0)
           PY

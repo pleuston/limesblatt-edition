@@ -24,9 +24,8 @@ def unesc(s): return html.unescape(s)
 def strip_tags(s): return re.sub(r"<[^>]+>", "", s)
 
 # ---------- TEI → HTML (eigenes, schlankes Mapping für unser bekanntes Vokabular) ----------
-def render_page(inner):
-    """inner = der <p>…</p>-Block einer Seite; Inline-Tags → HTML-Spans/Links."""
-    if "<gap" in inner: return '<p class="gap">[leere bzw. nicht erfasste Seite]</p>'
+def _entsub(inner):
+    """Inline-Eigennamen-Tags → HTML-Register-Links (für Seiten und Überschriften)."""
     def ent(m):
         tag, xid, txt = m.group(1), m.group(2), m.group(3)
         cls, reg = ("persName","persons") if tag=="persName" else ("placeName","places")
@@ -34,20 +33,42 @@ def render_page(inner):
     body = re.sub(r'<placeName ref="dare:([^"]+)"[^>]*>(.*?)</placeName>',
                   lambda m: f'<a class="ent placeName dare" href="../register/places.html#dare_{m.group(1)}" title="weitere Limesstelle (DARE)">{m.group(2)}</a>',
                   inner, flags=re.S)
-    body = re.sub(r'<(persName|placeName) ref="#([^"]+)"[^>]*>(.*?)</\1>', ent, body, flags=re.S)
-    return body  # bereits <p>…</p>
+    return re.sub(r'<(persName|placeName) ref="#([^"]+)"[^>]*>(.*?)</\1>', ent, body, flags=re.S)
+
+def render_page(inner):
+    """inner = <cb/> + <p>…</p>-Block einer Spalte; Inline-Tags → HTML-Spans/Links."""
+    inner = re.sub(r'<cb\b[^>]*/>', '', inner)          # Spaltenmarke aus dem Lesetext entfernen
+    if "<gap" in inner: return '<p class="gap">[leere bzw. nicht erfasste Seite]</p>'
+    return _entsub(inner)  # bereits <p>…</p>
+
+def render_head(inner):
+    """Volle-Breite-Überschrift (<head>) einer Kachel → eigene HTML-Zeile."""
+    return f'<p class="colhead">{_entsub(inner.strip())}</p>'
+
+PB_RE = re.compile(r'<head>(.*?)</head>'
+                   r'|<pb n="([^"]*)" facs="#f_([^"]+)" xml:id="pb_[^"]*?_([A-Za-z0-9]+)" type="([^"]*)"/>'
+                   r'(.*?)(?=<pb |<head>|</div>)', re.S)
 
 def load_volume(path):
+    """Spalten-treues Laden: ein „Seiten"-Objekt je <pb> = je Spalte = je Druckseite.
+    `img_tok` = IIIF-Kachel (Bild), `printed` = Druckseite, `col` = Spalte, `anchor` = tok-col."""
     t = open(path, encoding="utf-8").read()
     nr = int(re.search(r'limesblatt-bd(\d+)-', path).group(1))
     slug = re.search(r'limesblatt-bd\d+-(.+)\.xml', os.path.basename(path)).group(1)
-    pages = []
-    for m in re.finditer(r'<pb n="([^"]+)" facs="#f_[^"]+"/>(.*?)(?=<pb |</div>)', t, re.S):
-        tok, inner = m.group(1), m.group(2).strip()
-        pages.append({"tok": tok, "html": render_page(inner),
-                      "text": unesc(strip_tags(inner)).strip(),
+    body = (re.search(r'<body>(.*)</body>', t, re.S) or re.search(r'(.*)', t, re.S)).group(1)
+    pages, pending_head = [], ""
+    for m in PB_RE.finditer(body):
+        if m.group(1) is not None:                      # <head>…</head> vor den Spalten sammeln
+            pending_head += render_head(m.group(1))
+            continue
+        printed, img_tok, col, typ, inner = m.group(2), m.group(3), m.group(4) or "a", m.group(5) or "", m.group(6).strip()
+        anchor = f"{img_tok}-{col}"
+        pages.append({"img_tok": img_tok, "printed": printed, "col": col, "anchor": anchor, "tok": anchor,
+                      "type": typ, "head": pending_head, "html": render_page(inner),
+                      "text": unesc(strip_tags(re.sub(r'<cb\b[^>]*/>', '', inner))).strip(),
                       "ents": re.findall(r'ref="#([^"]+)"', inner),
                       "dents": re.findall(r'ref="dare:([^"]+)"', inner)})
+        pending_head = ""
     return {"nr": nr, "slug": slug, "label": LABELS.get(nr, f"Bd. {nr}"), "pages": pages}
 
 def load_register(path, tag):
@@ -109,28 +130,38 @@ def page(title, body, depth=0, head=""):
 def vol_page(v, toc=None):
     slug = v["slug"]
     teiname = f"limesblatt-bd{v['nr']}-{slug}.xml"
-    tiles = [IIIF_INFO.format(slug=slug, tok=p["tok"]) for p in v["pages"]]
-    idx = {p["tok"]: i for i, p in enumerate(v["pages"])}
+    images = []                                          # eindeutige IIIF-Kacheln (1 Bild je Blatt-Token)
+    for p in v["pages"]:
+        if p["img_tok"] not in images: images.append(p["img_tok"])
+    tiles = [IIIF_INFO.format(slug=slug, tok=t) for t in images]
+    tokidx = {t: i for i, t in enumerate(images)}
     tmap = {}
     for t, num, title, br in (toc or []): tmap.setdefault(t, {})[num] = (title, br)
     text = []
-    for i, p in enumerate(v["pages"]):
-        text.append(f'<div class="pb" id="pb-{p["tok"]}" data-page="{i}" '
-                    f'onclick="viewer.goToPage({i})" title="Faksimile zu S. {html.escape(p["tok"])} zeigen">— {html.escape(p["tok"])} —</div>')
-        ph = p["html"]; nums = tmap.get(p["tok"], {})
-        if nums:
-            done = set()
-            def wrap(m):                                 # Überschrift inline an ihrer echten Stelle markieren
-                n = int(m.group(1))
-                if n in nums and n not in done and not TOC_NOISE.match(m.group(2).strip()):
-                    done.add(n)
-                    return f'</p>\n<p class="artp"><b class="arthead" id="art-{n}">{m.group(0).strip()}</b> '
-                return m.group(0)
-            ph = TOC_PAT.sub(wrap, ph)
-            for n in nums:                               # Fallback: nicht im Fließtext gefunden → Seitenanker
-                if f'id="art-{n}"' not in ph:
-                    ph = f'<p class="artp"><b class="arthead" id="art-{n}">{n}. {html.escape(nums[n][0])}</b></p>' + ph
-        text.append(ph)
+    for img_tok, grp in groupby(v["pages"], key=lambda p: p["img_tok"]):
+        cols = list(grp); i = tokidx[img_tok]
+        if cols[0].get("head"): text.append(cols[0]["head"])
+        nums = tmap.get(img_tok, {}); done = set(); seg = []
+        for p in cols:
+            lbl = ("S. " + html.escape(p["printed"])) if p["type"] in ("head", "inferred") \
+                  else ("Bl. " + html.escape(p["img_tok"]) + " " + p["col"])
+            mut = "" if p["type"] == "head" else " inferred"
+            seg.append(f'<div class="pb{mut}" id="pb-{html.escape(p["anchor"])}" data-page="{i}" data-col="{p["col"]}" '
+                       f'onclick="viewer.goToPage({i})" title="Faksimile (Blatt {html.escape(img_tok)}) zeigen">— {lbl} —</div>')
+            ph = p["html"]
+            if nums:
+                def wrap(m):                             # Überschrift inline an ihrer echten Stelle markieren
+                    n = int(m.group(1))
+                    if n in nums and n not in done and not TOC_NOISE.match(m.group(2).strip()):
+                        done.add(n)
+                        return f'</p>\n<p class="artp"><b class="arthead" id="art-{n}">{m.group(0).strip()}</b> '
+                    return m.group(0)
+                ph = TOC_PAT.sub(wrap, ph)
+            seg.append(ph)
+        for n in nums:                                   # Fallback: nicht im Fließtext gefunden → Anker voranstellen
+            if f'id="art-{n}"' not in "".join(seg):
+                seg.insert(0, f'<p class="artp"><b class="arthead" id="art-{n}">{n}. {html.escape(nums[n][0])}</b></p>')
+        text.extend(seg)
     head = ('<script src="../assets/openseadragon.min.js"></script>')
     inh = ""
     if toc:
@@ -157,13 +188,17 @@ viewer.addHandler("page", upd); viewer.addHandler("open", upd);
     return body, head
 
 def beleg_html(eid, occ):
-    """Rück-Links Register → Volltext-Fundstellen, gruppiert nach Band (kein NER, nur die TEI-Tags)."""
+    """Rück-Links Register → Volltext-Fundstellen (Seite + Spalte), nach Band gruppiert."""
     items = occ.get(eid, [])
     if not items: return '<span class="meta">—</span>'
     out = []
     for vol, grp in groupby(items, key=lambda x: x[0]):
-        links = ", ".join(f'<a href="../volumes/bd{vol}.html#pb-{html.escape(t)}">{html.escape(t)}</a>' for _, t in grp)
-        out.append(f'Bd.&#160;{vol}: {links}')
+        seen, links = set(), []
+        for _, anchor, printed in grp:
+            if anchor in seen: continue
+            seen.add(anchor)
+            links.append(f'<a href="../volumes/bd{vol}.html#pb-{html.escape(anchor)}">{html.escape(printed)}</a>')
+        out.append(f'Bd.&#160;{vol}: {", ".join(links)}')
     return " · ".join(out)
 
 def links_line(parts):
@@ -251,7 +286,7 @@ def places_page(places, occ, pname, str_by_id, sites, site_hits):
             hh = site_hits.get(p.get("id"), [])
             vt = ""
             if hh:
-                lk = ", ".join(f'<a href="../volumes/bd{v}.html#pb-{html.escape(t)}">{v}/{html.escape(t)}</a>' for v, t in hh[:3])
+                lk = ", ".join(f'<a href="../volumes/bd{v}.html#pb-{html.escape(a)}">{v}/{html.escape(pp)}</a>' for v, a, pp in hh[:3])
                 vt = f' · 📄 {len(hh)}× ({lk}{" +"+str(len(hh)-3) if len(hh) > 3 else ""})'
             lis.append(f'<li id="dare_{did}">{html.escape(p.get("name", "?"))}{anc}{dare}{foc}{vt}</li>')
         secs.append(f'<details><summary>{tlabel.get(t, t)} ({len(items)})</summary><ul class="sites">{"".join(lis)}</ul></details>')
@@ -338,7 +373,7 @@ IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen
 Edition/Code: <a href="https://github.com/pleuston/limesblatt-edition">GitHub</a>.</p>
 <script>
 fetch("data/search.json").then(r=>r.json()).then(docs=>{{
- var ms=new MiniSearch({{fields:["text"],storeFields:["vol","tok","label"]}}); ms.addAll(docs);
+ var ms=new MiniSearch({{fields:["text"],storeFields:["vol","anchor","pp","label"]}}); ms.addAll(docs);
  var q=document.getElementById("q"),res=document.getElementById("res");
  q.addEventListener("input",function(){{
   var v=q.value.trim(); if(v.length<3){{res.innerHTML="";return;}}
@@ -346,28 +381,30 @@ fetch("data/search.json").then(r=>r.json()).then(docs=>{{
   res.innerHTML=hits.length?hits.map(function(h){{
     var t=h.text||""; var i=t.toLowerCase().indexOf(v.toLowerCase());
     var sn=i<0?t.slice(0,140):t.slice(Math.max(0,i-50),i+90);
-    return '<a class="hit" href="volumes/bd'+h.vol+'.html#pb-'+h.tok+'">'+h.label+', S. '+h.tok+'</a> <span>…'+
+    return '<a class="hit" href="volumes/bd'+h.vol+'.html#pb-'+h.anchor+'">'+h.label+', S. '+h.pp+'</a> <span>…'+
       sn.replace(/</g,"&lt;")+'…</span>';}}).join(""):"<p class=meta>keine Treffer</p>";
  }});
 }});
 </script>"""
     return body, head
 
-def page_links(pages, valid):
+def page_links(pages, tok2anchor):
+    """NER-Seitenrefs ("Bd.7 S.883") → Link auf die erste Spalte der Kachel (Token-Granularität)."""
     out = []
     for s in pages:
         m = re.match(r'Bd\.(\d+)\s+S\.(\S+)', s)
         if not m: continue
         vol, tok = int(m.group(1)), m.group(2)
-        if (vol, tok) in valid:
-            out.append(f'<a href="../volumes/bd{vol}.html#pb-{html.escape(tok)}">{vol}/{html.escape(tok)}</a>')
+        a = tok2anchor.get((vol, tok))
+        if a:
+            out.append(f'<a href="../volumes/bd{vol}.html#pb-{html.escape(a)}">{vol}/{html.escape(tok)}</a>')
     return ", ".join(out)
 
-def ner_index_page(items, what, valid, recon):
+def ner_index_page(items, what, tok2anchor, recon):
     lab = "Namen" if what == "persons" else "Orte"
     rows = 0; matched = 0; lis = []
     for it in items:
-        pl = page_links(it.get("pages", []), valid)
+        pl = page_links(it.get("pages", []), tok2anchor)
         if not pl: continue
         nm = it["name"]; r = recon.get(nm.lower()); disp = html.escape(nm); ref = ""
         if what == "persons":
@@ -660,18 +697,20 @@ def main():
             if d in pname: digs[d].append(pl)
         if pl.get("strecke_id"): str_forts[pl["strecke_id"]].append(pl)
 
-    occ, seen = defaultdict(list), set()      # Entität → [(Band, Token)], aus den TEI-Inline-Tags
+    occ, seen = defaultdict(list), set()      # Entität → [(Band, Anker, Druckseite)], aus den TEI-Inline-Tags
     dare_hits, dseen = defaultdict(list), set()
+    tok2anchor = {}                           # (Band, IIIF-Token) → erster Spaltenanker (für NER-Seitenrefs)
     for v in volumes:
         for p in v["pages"]:
+            tok2anchor.setdefault((v["nr"], p["img_tok"]), p["anchor"])
             for eid in p["ents"]:
-                key = (eid, v["nr"], p["tok"])
+                key = (eid, v["nr"], p["anchor"])
                 if key not in seen:
-                    seen.add(key); occ[eid].append((v["nr"], p["tok"]))
+                    seen.add(key); occ[eid].append((v["nr"], p["anchor"], p["printed"]))
             for did in p["dents"]:
-                key = (did, v["nr"], p["tok"])
+                key = (did, v["nr"], p["anchor"])
                 if key not in dseen:
-                    dseen.add(key); dare_hits[did].append((v["nr"], p["tok"]))
+                    dseen.add(key); dare_hits[did].append((v["nr"], p["anchor"], p["printed"]))
 
     _np = os.path.join(REPO, "data", "ner_places.json")
     PLA = {e["name"].split("(")[0].strip().lower() for e in (json.load(open(_np, encoding="utf-8")) if os.path.exists(_np) else []) if len(e["name"]) > 3}
@@ -681,8 +720,8 @@ def main():
         b, h = vol_page(v, toc.get(v["nr"], []))
         open(os.path.join(DOCS,"volumes",f"bd{v['nr']}.html"),"w",encoding="utf-8").write(page(v["label"], b, 1, h))
         for p in v["pages"]:
-            if p["text"]: corpus.append({"id":f"{v['nr']}-{p['tok']}","vol":v["nr"],"tok":p["tok"],
-                                         "label":v["label"],"text":p["text"]})
+            if p["text"]: corpus.append({"id":f"{v['nr']}-{p['anchor']}","vol":v["nr"],"anchor":p["anchor"],
+                                         "pp":p["printed"],"label":v["label"],"text":p["text"]})
     json.dump(corpus, open(os.path.join(DOCS,"data","search.json"),"w",encoding="utf-8"), ensure_ascii=False)
 
     print(f"DARE-Inline-Tags im Lesetext: {len(dare_hits)}/{len(sites)} Stellen verlinkt")
@@ -691,14 +730,13 @@ def main():
     plb, plh = places_page(places, occ, pname, str_by_id, sites, dare_hits)
     open(os.path.join(DOCS,"register","places.html"),"w",encoding="utf-8").write(page("Ortsregister", plb, 1, plh))
     open(os.path.join(DOCS,"register","strecken.html"),"w",encoding="utf-8").write(page("Strecken", strecken_page(strecken, str_forts, persons, pname, strecke_sites), 1))
-    valid = {(v["nr"], p["tok"]) for v in volumes for p in v["pages"]}   # gültige Seitenanker
     nerd = os.path.join(REPO, "data")
     def loadj(fn): return json.load(open(os.path.join(nerd,fn),encoding="utf-8")) if os.path.exists(os.path.join(nerd,fn)) else ([] if "ner_" in fn else {})
     ner_p, ner_pl = loadj("ner_persons.json"), loadj("ner_places.json")
     rec_p, rec_pl = loadj("recon_persons.json"), loadj("recon_places.json")
-    nb, nh = ner_index_page(ner_p, "persons", valid, rec_p)
+    nb, nh = ner_index_page(ner_p, "persons", tok2anchor, rec_p)
     open(os.path.join(DOCS,"register","namen.html"),"w",encoding="utf-8").write(page("Namen im Limesblatt", nb, 1, nh))
-    ob, oh = ner_index_page(ner_pl, "places", valid, rec_pl)
+    ob, oh = ner_index_page(ner_pl, "places", tok2anchor, rec_pl)
     open(os.path.join(DOCS,"register","orte-index.html"),"w",encoding="utf-8").write(page("Orte im Limesblatt", ob, 1, oh))
     # GeoJSON der im Volltext genannten, verorteten Orte (Map-Layer)
     nsites = []; ner_attention = defaultdict(lambda: [0, 0])   # sid -> [Erwähnungen, Orte]
