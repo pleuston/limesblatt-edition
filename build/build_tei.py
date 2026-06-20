@@ -14,7 +14,9 @@ Diplomatische, unkorrigierte Wiedergabe der Fraktur-OCR; Inline-Eigennamen trage
     python3 build/build_tei.py [--vault /pfad/zum/limes]
 """
 import argparse, glob, json, os, re, sys, unicodedata
+from collections import defaultdict
 from xml.sax.saxutils import escape, quoteattr
+import gazetteer
 
 HERE  = os.path.dirname(os.path.abspath(__file__))
 REPO  = os.path.dirname(HERE)
@@ -113,57 +115,44 @@ def load_places(vault):
     return out
 
 # ---------- Inline-Tag-Terme ----------
-def build_terms(persons, places, dare, corpus_low=""):
-    """term(exakte Schreibung) -> (kind, xmlid); nur eindeutige, distinkte Terme."""
-    psn, plc = {}, {}
-    for p in persons:
-        s = p["surname"]
-        if len(s) >= 5 and s not in STOP:
-            psn.setdefault(s, []).append(p["id"])
-    for pl in places:
-        t = pl["term"]
-        if len(t) >= 4:
-            plc.setdefault(t, []).append(pl["id"])
-    terms = {}
-    for s, ids in psn.items():
-        if len(ids) == 1: terms[s] = ("p", ids[0])     # mehrdeutige Nachnamen (z.B. Jacobi) auslassen
-    for t, ids in plc.items():
-        if len(ids) == 1 and t not in terms: terms[t] = ("pl", ids[0])
-    # DARE-Kleinorte: spezifische, eindeutige Tokens, die nicht schon (Person/benannter Ort) belegt sind
+def dare_terms(dare, taken, corpus_low=""):
+    """DARE-Kleinorte (Türme/Kleinkastelle): eindeutige, spezifische Tokens → ('dare', id, 'low')."""
     dterm = {}
     for f in dare:
         src = f.get("name", "") + " " + re.sub(r'^\*', '', f.get("ancient", ""))
         for tok in re.split(r"[\s/\-–,()]+", src):
             tok = tok.strip()
-            if len(tok) >= 6 and tok[:1].isalpha() and tok.lower() not in GENERIC and tok not in terms:
+            if len(tok) >= 6 and tok[:1].isalpha() and tok.lower() not in GENERIC and tok not in taken:
                 dterm.setdefault(tok, set()).add(f.get("id"))
+    out = {}
     for tok, ids in dterm.items():
-        if len(ids) == 1 and tok not in terms:
+        if len(ids) == 1 and tok not in taken:
             if corpus_low and corpus_low.count(tok.lower()) > 40: continue   # zu häufig = Region/Gattungswort
-            terms[tok] = ("dare", next(iter(ids)))
-    # längere Terme zuerst matchen
-    return dict(sorted(terms.items(), key=lambda kv: -len(kv[0])))
+            out[tok] = ("dare", next(iter(ids)), "low")
+    return out
 
-def tag_text(text, terms):
+def tag_page(text, terms):
+    """terms: {term: (kind, id, cert)}. Markiert je Vorkommen, non-overlapping, längste zuerst.
+    Liefert (HTML, [(eid, kind, offset)]) — Offsets für den Belegindex."""
     spans = []
-    for term, (kind, xid) in terms.items():
+    for term, (kind, xid, cert) in terms.items():
         for m in re.finditer(r"(?<![\wäöüÄÖÜß])" + re.escape(term) + r"(?![\wäöüÄÖÜß])", text):
-            spans.append((m.start(), m.end(), kind, xid))
-    spans.sort(key=lambda s: (s[0], -(s[1]-s[0])))
+            spans.append((m.start(), m.end(), kind, xid, cert))
+    spans.sort(key=lambda s: (s[0], -(s[1] - s[0])))
     chosen, last = [], -1
     for s in spans:
         if s[0] >= last: chosen.append(s); last = s[1]
-    res, pos, n = [], 0, 0
-    for st, en, kind, xid in chosen:
+    res, pos, hits = [], 0, []
+    for st, en, kind, xid, cert in chosen:
         res.append(escape(text[pos:st]))
         if kind == "dare":
-            res.append(f'<placeName ref="dare:{xid}" cert="low">{escape(text[st:en])}</placeName>')
+            res.append(f'<placeName ref="dare:{xid}" cert="{cert}">{escape(text[st:en])}</placeName>')
         else:
             tag = "persName" if kind == "p" else "placeName"
-            res.append(f'<{tag} ref="#{xid}" cert="low">{escape(text[st:en])}</{tag}>')
-        pos = en; n += 1
+            res.append(f'<{tag} ref="#{xid}" cert="{cert}">{escape(text[st:en])}</{tag}>')
+        pos = en; hits.append((xid, kind, st))
     res.append(escape(text[pos:]))
-    return "".join(res), n
+    return "".join(res), hits
 
 # ---------- Token-Reihenfolge ----------
 def tokens(vault, slug_):
@@ -321,9 +310,19 @@ def coljson(cdir, tok):
             return None
     return None
 
-def build_volume(slug_, label, nr, vault, terms, outdir):
+def build_volume(slug_, label, nr, vault, global_terms, token_terms, occ, outdir):
     toks, cdir = tokens(vault, slug_)
     surfaces, body, npages, ntags, nempty = [], [], 0, 0, 0
+
+    def tag(text, printed, col):
+        """Spaltentext markieren: korpusweite Vault-Begriffe + auf dieses Token verankerte
+        NER-Begriffe; Treffer mit Offset im Belegindex sammeln."""
+        terms = dict(global_terms); terms.update(token_terms.get((nr, tok), {}))
+        html_, hits = tag_page(text, terms)
+        for eid, kind, off in hits:
+            occ[eid].append([nr, tok, printed, col, off])
+        return html_, len(hits)
+
     for tok in toks:
         img = IIIF_IMG.format(slug=slug_, tok=tok)
         cj = coljson(cdir, tok)
@@ -339,18 +338,19 @@ def build_volume(slug_, label, nr, vault, terms, outdir):
             for h in cj.get("heads", []):                      # echte volle-Breite-Überschriften einmal vor den Spalten
                 ht = (h.get("text") or "").strip()
                 if ht:
-                    tagged, n = tag_text(ht, terms); ntags += n
+                    tagged, n = tag(ht, str(cj["columns"][0].get("printed_no", tok)) if cj["columns"] else tok, "a")
+                    ntags += n
                     body.append(f'<head>{tagged}</head>')
             for c in cj["columns"]:                            # je Spalte = eine Druckseite
-                lbl = c["label"]
-                body.append(f'<pb n="{escape(str(c.get("printed_no", tok)))}" facs="#f_{tok}" '
+                lbl = c["label"]; printed = str(c.get("printed_no", tok))
+                body.append(f'<pb n="{escape(printed)}" facs="#f_{tok}" '
                             f'xml:id="pb_{tok}_{lbl}" type="{escape(str(c.get("printed_src", "token")))}"/>')
                 body.append(f'<cb n="{lbl}" facs="#z_{tok}_{lbl}"/>')
                 ctxt = (c.get("text") or "").strip()
                 if not ctxt:
                     body.append('<p><gap reason="ocr-empty"/></p>'); nempty += 1
                 else:
-                    tagged, n = tag_text(ctxt, terms); ntags += n
+                    tagged, n = tag(ctxt, printed, lbl); ntags += n
                     body.append(f'<p>{tagged}</p>')
                 npages += 1
             continue
@@ -361,7 +361,7 @@ def build_volume(slug_, label, nr, vault, terms, outdir):
         if not txt:
             body.append('<p><gap reason="ocr-empty"/></p>'); nempty += 1
         else:
-            tagged, n = tag_text(txt, terms); ntags += n
+            tagged, n = tag(txt, tok, "a"); ntags += n
             body.append(f'<p>{tagged}</p>')
         npages += 1
     doc = ('<?xml version="1.0" encoding="UTF-8"?>\n'
@@ -372,6 +372,33 @@ def build_volume(slug_, label, nr, vault, terms, outdir):
     path = os.path.join(outdir, f"limesblatt-bd{nr}-{slug_}.xml")
     open(path, "w", encoding="utf-8").write(doc)
     return {"file": os.path.basename(path), "pages": npages, "empty": nempty, "tags": ntags}
+
+def write_ner(entities, ner_only, path):
+    """Leichtgewichtige Register-Stubs für NER-only-Entitäten (psnN_/plcN_) — damit jede
+    Inline-@ref auf ein xml:id auflöst (CI) und die NER-Listen wiederverwendbar bleiben."""
+    L = ['<?xml version="1.0" encoding="UTF-8"?>',
+         '<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="register-ner"><teiHeader><fileDesc>',
+         '<titleStmt><title>NER-Register (Volltext-Namen/Orte) — Limesblatt-Edition</title></titleStmt>',
+         '<publicationStmt><availability status="free"><licence target="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</licence></availability></publicationStmt>',
+         '<sourceDesc><p>Token-frei aus dem Volltext extrahierte Eigennamen (NER), die keiner kuratierten Vault-Entität entsprechen; Normdaten via lobid-GND/iDAI-Gazetteer reconciled.</p></sourceDesc>',
+         '</fileDesc></teiHeader><standOff><listPerson>']
+    for eid in sorted(e for e in ner_only if entities[e]["kind"] == "person"):
+        e = entities[eid]
+        L.append(f'<person xml:id="{eid}" type="ner" cert="{e["cert"]}"><persName>{escape(e["name"])}</persName>')
+        if e.get("roles"): L.append(f'<occupation>{escape(" · ".join(e["roles"][:2]))}</occupation>')
+        if e.get("gnd"):   L.append(f'<idno type="GND">{escape(str(e["gnd"]))}</idno>')
+        L.append('</person>')
+    L.append('</listPerson><listPlace>')
+    for eid in sorted(e for e in ner_only if entities[e]["kind"] == "place"):
+        e = entities[eid]
+        L.append(f'<place xml:id="{eid}" type="ner" cert="{e["cert"]}"><placeName>{escape(e["name"])}</placeName>')
+        if e.get("kinddetail"): L.append(f'<trait type="art"><desc>{escape(e["kinddetail"])}</desc></trait>')
+        if e.get("gazId"): L.append(f'<idno type="iDAI-Gazetteer">{escape(str(e["gazId"]))}</idno>')
+        if isinstance(e.get("geo"), list) and len(e["geo"]) == 2:
+            L.append(f'<location><geo>{e["geo"][0]} {e["geo"][1]}</geo></location>')
+        L.append('</place>')
+    L.append('</listPlace></standOff></TEI>')
+    open(path, "w", encoding="utf-8").write("\n".join(L))
 
 def main():
     ap = argparse.ArgumentParser()
@@ -384,29 +411,46 @@ def main():
     strecken = load_strecken(vault)
     os.makedirs(os.path.join(REPO, "registers"), exist_ok=True)
     os.makedirs(os.path.join(REPO, "tei"), exist_ok=True)
+    os.makedirs(os.path.join(REPO, "data"), exist_ok=True)
     write_persons(persons, os.path.join(REPO, "registers", "persons.xml"))
     write_places(places,  os.path.join(REPO, "registers", "places.xml"))
     write_strecken(strecken, os.path.join(REPO, "registers", "strecken.xml"))
     ngeo, nline, dareprops = write_geo(vault, places, os.path.join(REPO, "geo"))
     corpus_low = " ".join(open(f, encoding="utf-8").read()
                           for f in glob.glob(os.path.join(vault, "tools", ".cache", "limesblatt*", "*.txt"))).lower()
-    terms = build_terms(persons, places, dareprops, corpus_low)
-    pids = {p["id"] for p in persons}
-    dig = sum(1 for pl in places if pl["diggers"])
-    dig_ok = sum(1 for pl in places for d in pl["diggers"] if d in pids)
-    print(f"Register: {len(persons)} Personen, {len(places)} Orte, {len(strecken)} Strecken | Inline-Terme: {len(terms)}")
-    print(f"Ausgräber: {dig} Kastelle verknüpft ({dig_ok} Personen-Refs aufgelöst) | "
-          f"Porträts: {sum(1 for p in persons if p['portrait'])}P/{sum(1 for pl in places if pl['portrait'])}O | "
-          f"EDH-Zahlen: {sum(1 for pl in places if pl['edh'])} | Strecke-Refs: {sum(1 for pl in places if pl['strecke_id'])}")
+    # vorab berechnete NER + Reconciliation (statische Daten, kein LLM zur Build-Zeit)
+    def loadj(fn, dflt):
+        p = os.path.join(REPO, "data", fn)
+        return json.load(open(p, encoding="utf-8")) if os.path.exists(p) else dflt
+    ner_p, ner_pl = loadj("ner_persons.json", []), loadj("ner_places.json", [])
+    rec_p, rec_pl = loadj("recon_persons.json", {}), loadj("recon_places.json", {})
+    g = gazetteer.build(persons, places, ner_p, ner_pl, rec_p, rec_pl, STOP, GENERIC)
+    dterms = dare_terms(dareprops, set(g["global_terms"]), corpus_low)
+    global_terms = dict(sorted({**g["global_terms"], **dterms}.items(), key=lambda kv: -len(kv[0])))
+    token_terms, entities, ner_only = g["token_terms"], g["entities"], g["ner_only"]
+    write_ner(entities, ner_only, os.path.join(REPO, "registers", "ner.xml"))
+    print(f"Register: {len(persons)} Personen, {len(places)} Orte, {len(strecken)} Strecken")
+    print(f"Gazetteer: {len(global_terms)} korpusweite Begriffe (+{len(dterms)} DARE), "
+          f"{sum(len(v) for v in token_terms.values())} seiten-verankerte NER-Begriffe, "
+          f"{len(ner_only)} NER-only-Entitäten ({sum(1 for e in ner_only if entities[e]['kind']=='person')}P/"
+          f"{sum(1 for e in ner_only if entities[e]['kind']=='place')}O)")
     print(f"Geo: {ngeo} DARE-Stellen (entdoppelt) + {nline} Verlaufslinie(n) → geo/")
+    occ = defaultdict(list)
     tot = 0
     for slug_, label, nr in WORKS:
         if not os.path.isdir(os.path.join(vault, "tools", ".cache", slug_)):
             print(f"  ! {slug_}: kein Cache, übersprungen"); continue
-        r = build_volume(slug_, label, nr, vault, terms, os.path.join(REPO, "tei"))
+        r = build_volume(slug_, label, nr, vault, global_terms, token_terms, occ, os.path.join(REPO, "tei"))
         tot += r["tags"]
         print(f"  {r['file']:38} {r['pages']:>4} Seiten ({r['empty']} leer), {r['tags']:>4} Inline-Tags")
-    print(f"Σ Inline-Tags: {tot}")
+    # persistierter Belegindex: Entität → Vorkommen [Band, Token, Druckseite, Spalte, Offset]
+    meta = {eid: {"name": e["name"], "kind": e["kind"], "cert": e["cert"], "source": e["source"]}
+            for eid, e in entities.items() if eid in occ}
+    json.dump({"entities": meta, "occ": {k: occ[k] for k in occ}},
+              open(os.path.join(REPO, "data", "occurrences.json"), "w", encoding="utf-8"), ensure_ascii=False)
+    nent = len(occ); ncov = sum(1 for e in entities if e in occ)
+    print(f"Σ Inline-Tags: {tot} · Belegindex: {nent} Entitäten, {sum(len(v) for v in occ.values())} Vorkommen "
+          f"→ data/occurrences.json")
 
 if __name__ == "__main__":
     main()

@@ -12,6 +12,7 @@ Karte) und einen clientseitigen Volltextindex (MiniSearch). Ausgabe → docs/.
 import glob, html, os, re, json, shutil
 from collections import defaultdict
 from itertools import groupby
+import gazetteer
 
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(HERE)
 DOCS = os.path.join(REPO, "docs")
@@ -24,16 +25,25 @@ def unesc(s): return html.unescape(s)
 def strip_tags(s): return re.sub(r"<[^>]+>", "", s)
 
 # ---------- TEI → HTML (eigenes, schlankes Mapping für unser bekanntes Vokabular) ----------
+def _cert_of(attrs):
+    m = re.search(r'cert="([^"]+)"', attrs or "")
+    return m.group(1) if m else "low"
+
 def _entsub(inner):
-    """Inline-Eigennamen-Tags → HTML-Register-Links (für Seiten und Überschriften)."""
+    """Inline-Eigennamen-Tags → HTML-Register-Links, konfidenz-gestuft (c-high/medium/low).
+    Vault-IDs (p_/pl_) → kuratierte Register; NER-only-IDs (psnN_/plcN_) → Volltext-Indizes."""
+    def dare(m):
+        return (f'<a class="ent placeName dare c-{_cert_of(m.group(2))}" '
+                f'href="../register/places.html#dare_{m.group(1)}" title="weitere Limesstelle (DARE)">{m.group(3)}</a>')
     def ent(m):
-        tag, xid, txt = m.group(1), m.group(2), m.group(3)
-        cls, reg = ("persName","persons") if tag=="persName" else ("placeName","places")
-        return f'<a class="ent {cls}" href="../register/{reg}.html#{xid}" title="{cls}">{txt}</a>'
-    body = re.sub(r'<placeName ref="dare:([^"]+)"[^>]*>(.*?)</placeName>',
-                  lambda m: f'<a class="ent placeName dare" href="../register/places.html#dare_{m.group(1)}" title="weitere Limesstelle (DARE)">{m.group(2)}</a>',
-                  inner, flags=re.S)
-    return re.sub(r'<(persName|placeName) ref="#([^"]+)"[^>]*>(.*?)</\1>', ent, body, flags=re.S)
+        tag, xid, attrs, txt = m.group(1), m.group(2), m.group(3), m.group(4)
+        cls = "persName" if tag == "persName" else "placeName"
+        if xid.startswith("psnN_"):   href = f"../register/namen.html#{xid}"
+        elif xid.startswith("plcN_"): href = f"../register/orte-index.html#{xid}"
+        else:                         href = f'../register/{"persons" if tag=="persName" else "places"}.html#{xid}'
+        return f'<a class="ent {cls} c-{_cert_of(attrs)}" href="{href}" title="{cls}">{txt}</a>'
+    body = re.sub(r'<placeName ref="dare:([^"]+)"([^>]*)>(.*?)</placeName>', dare, inner, flags=re.S)
+    return re.sub(r'<(persName|placeName) ref="#([^"]+)"([^>]*)>(.*?)</\1>', ent, body, flags=re.S)
 
 def render_page(inner):
     """inner = <cb/> + <p>…</p>-Block einer Spalte; Inline-Tags → HTML-Spans/Links."""
@@ -171,6 +181,10 @@ def vol_page(v, toc=None):
     body = f"""<h1>Limesblatt · {html.escape(v['label'])}</h1>
 <p class="meta">IIIF-Faksimile: <a href="{IIIF_MAN.format(slug=slug)}">Manifest</a> (UB Heidelberg) ·
 TEI: <a href="../tei/{teiname}">XML</a></p>
+<p class="meta legend">Eigennamen im Text öffnen das Register · Konfidenz:
+<span class="ent persName c-high">kuratiert + Normdaten</span> ·
+<span class="ent persName c-medium">NER + Normdaten</span> ·
+<span class="ent persName c-low">nur Lesung</span> · <span class="pb inferred" style="cursor:default">Druckseite erschlossen</span></p>
 {inh}
 <div class="reader">
   <div class="facs"><div id="osd"></div>
@@ -366,8 +380,8 @@ IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen
 <h2>Register</h2><ul><li><a href="register/persons.html">Personenregister</a> — mit Porträts, Normdaten, Korrespondenz, ausgegrabenen Kastellen</li>
 <li><a href="register/places.html">Ortsregister</a> — mit Karte, Kastelltyp, Ausgräber, Inschriften</li>
 <li><a href="register/strecken.html">Strecken</a> — die 15 Limes-Abschnitte mit Kastellen &amp; Kommissaren</li>
-<li><a href="register/namen.html">Namen im Limesblatt</a> — vollständiger Namenindex aus dem Volltext (LLM-NER)</li>
-<li><a href="register/orte-index.html">Orte im Limesblatt</a> — vollständiger Ortsindex aus dem Volltext (LLM-NER)</li>
+<li><a href="register/namen.html">Namen im Limesblatt</a> — vollständiges Namenregister aus dem Volltext (NER); jeder Name ist im Lesetext angeklickt verlinkt</li>
+<li><a href="register/orte-index.html">Orte im Limesblatt</a> — vollständiges Ortsregister aus dem Volltext (NER), im Lesetext verlinkt</li>
 <li><a href="register/wortschatz.html">Textanalyse</a> — diachroner Wortschatz, ORL-Gegenprobe, Münzkaiser-Chronologie, Truppen, Zitate, OCR-Qualität + KWIC-Konkordanz</li></ul>
 <p class="meta">Abgeleitet aus dem (privaten) Forschungs-Vault zur <a href="https://github.com/pleuston/limes">Reichs-Limeskommission</a>.
 Edition/Code: <a href="https://github.com/pleuston/limesblatt-edition">GitHub</a>.</p>
@@ -427,8 +441,9 @@ def ner_index_page(items, what, tok2anchor, recon):
                 la, lo = r["geo"]
                 ref = f' <a class="meta" href="https://www.openstreetmap.org/?mlat={la}&amp;mlon={lo}#map=13/{la}/{lo}">Karte</a>'; matched += 1
         em = f' <span class="meta">· {html.escape(extra)}</span>' if extra else ""
-        lc = ' class="lc"' if it.get("cert") != "high" else ""
-        lis.append(f'<li{lc}><b>{disp}</b>{em}{ref} — <span class="pgs">{pl}</span></li>')
+        lc = ' lc' if it.get("cert") != "high" else ""
+        eid = ("psnN_" if what == "persons" else "plcN_") + gazetteer.slug(gazetteer._primary(nm)[0])
+        lis.append(f'<li id="{eid}" class="ix{lc}"><b>{disp}</b>{em}{ref} — <span class="pgs">{pl}</span></li>')
         rows += 1
     rec = (f'<b>{matched}</b> mit GND bzw. dem Personenregister verknüpft' if what == "persons"
            else f'<b>{matched}</b> über iDAI-Gazetteer/Koordinaten verortet')
