@@ -6,6 +6,7 @@ name: rebuild-pages
 on:
   push:
     paths: ["tei/**"]
+  workflow_dispatch: {}   # manueller Rebuild (Actions-Tab oder `gh workflow run rebuild-pages`)
 permissions:
   contents: write
 concurrency:
