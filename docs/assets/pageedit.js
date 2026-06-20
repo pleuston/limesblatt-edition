@@ -6,6 +6,8 @@
 (function () {
   if (!window.TEIFILE) return;
   var OWNER = "pleuston", REPO = "limesblatt-edition", API = "https://api.github.com";
+  var HINT = ' <span class="muted">Token prüfen: klassisch = Scope <code>repo</code>; fein-granular = dieses Repo + Contents: Read and write. Einrichtung unter „✎ Bearbeiten".</span>';
+  function withHint(m) { return /403|not accessible|permission|forbidden|404/i.test(m) ? m + HINT : m; }
   var b64d = function (b) { return decodeURIComponent(escape(atob((b || "").replace(/\n/g, "")))); };
   var b64e = function (t) { return btoa(unescape(encodeURIComponent(t))); };
   function token() { return localStorage.getItem("lb_pat") || ""; }
@@ -55,7 +57,7 @@
       if (!mm) { stat.textContent = "Abschnitt nicht gefunden (evtl. veraltete Seite?)"; return; }
       idx = mm.index;
       ta.value = mm[2].trim(); ta.disabled = false; stat.textContent = "TEI dieser Spalte — Text korrigieren, Tags belassen."; save.disabled = false; ta.focus();
-    } catch (e) { stat.innerHTML = '<span class="err">Fehler: ' + e.message + '</span>'; return; }
+    } catch (e) { stat.innerHTML = '<span class="err">Fehler: ' + withHint(e.message) + '</span>'; return; }
 
     save.onclick = async function () {
       var edited = "\n" + ta.value.trim() + "\n";
@@ -69,7 +71,7 @@
         });
         res.innerHTML = '✓ gespeichert (<a href="' + r.commit.html_url + '" target="_blank" rel="noopener">' + r.commit.sha.slice(0, 7) + '</a>) — die Bandseite wird in ~1 Min. neu gebaut.';
         sha = r.content.sha; xml = newxml; mm = newxml.match(new RegExp('(<pb\\b[^>]*xml:id="' + pbid + '"[^>]*/>\\s*<cb\\b[^>]*/>)([\\s\\S]*?)(?=<pb\\b|<head>|</div>)')); idx = mm ? mm.index : idx;
-      } catch (e) { res.innerHTML = '<span class="err">Fehler: ' + e.message + (("" + e.message).indexOf("409") >= 0 ? " — Seite neu laden (zwischenzeitlich geändert)." : "") + '</span>'; }
+      } catch (e) { res.innerHTML = '<span class="err">Fehler: ' + withHint(e.message) + (("" + e.message).indexOf("409") >= 0 ? " — Seite neu laden (zwischenzeitlich geändert)." : "") + '</span>'; }
       save.disabled = false;
     };
   }

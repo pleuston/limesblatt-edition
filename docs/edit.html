@@ -33,9 +33,11 @@
 <p class="meta">Bearbeite die TEI-Quelle (<code>tei/*.xml</code>, <code>registers/*.xml</code>) direkt und speichere mit deinem GitHub-Konto. Nach dem Commit baut eine GitHub-Action die betroffene HTML-Seite neu (~1 Min.).</p>
 
 <div class="ed-note" id="setup">
-  <b>Einmalig:</b> Erstelle einen <b>fein-granularen Personal Access Token</b> →
-  <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.
-  Repository-Zugriff: <code>pleuston/limesblatt-edition</code> · Permission <b>Contents: Read and write</b>. Token unten einfügen (bleibt nur lokal im Browser, <code>localStorage</code>).
+  <b>Einmalig — GitHub-Token erstellen</b> (bleibt nur lokal im Browser, <code>localStorage</code>; „not accessible" heißt fast immer: falscher/zu schwacher Token):
+  <ul style="margin:.35rem 0 0 1.1rem;padding:0">
+    <li><b>Empfohlen, einfach:</b> <a href="https://github.com/settings/tokens/new?scopes=repo&amp;description=Limesblatt-Editor" target="_blank" rel="noopener">klassischen Token mit Scope <code>repo</code> anlegen</a> → <i>Generate token</i> → <code>ghp_…</code> kopieren. (Ein Häkchen, funktioniert sicher.)</li>
+    <li><b>Alternativ, fein-granular:</b> <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">neuen Token</a> → <i>Repository access</i> = <b>Only select repositories</b> → <code>pleuston/limesblatt-edition</code> auswählen → <i>Permissions → Repository permissions → Contents</i> = <b>Read and write</b>.</li>
+  </ul>
 </div>
 
 <div class="ed-auth">
@@ -74,26 +76,33 @@ async function gh(path,opts={}){
   return r.status===204?null:r.json();
 }
 
+const HINT='<span class="muted">Prüfe den Token: <b>klassisch</b> braucht Scope <code>repo</code>; <b>fein-granular</b> muss <code>'+OWNER+'/'+REPO+'</code> auswählen <i>und</i> Permission <b>Contents: Read and write</b> setzen.</span>';
 async function setLoggedIn(){
+  $("#who").textContent="prüfe Token …"; $("#who").className="muted";
   try{
-    const u=await gh("/user");
-    $("#who").innerHTML='angemeldet als <b>'+u.login+'</b>'; $("#who").className="";
+    const repo=await gh("/repos/"+OWNER+"/"+REPO);     // Lese-/Scope-Test (Metadata ist automatisch)
+    let login=""; try{login=(await gh("/user")).login;}catch(e){}
+    $("#who").innerHTML='<span class="ok">✓ '+(login?'@'+login+' · ':'')+repo.full_name+'</span>'; $("#who").className="";
     $("#login").hidden=true; $("#logout").hidden=false; $("#setup").style.display="none";
     $("#filebar").hidden=false; $("#commitbar").hidden=false;
     await listFiles();
-  }catch(e){ $("#who").innerHTML='<span class="err">Token ungültig: '+e.message+'</span>'; }
+  }catch(e){
+    $("#login").hidden=false; $("#logout").hidden=true; $("#filebar").hidden=true; $("#commitbar").hidden=true;
+    $("#who").innerHTML='<span class="err">Token greift nicht auf '+OWNER+'/'+REPO+' ('+e.message+').</span><br>'+HINT;
+  }
 }
 async function listFiles(){
-  const sel=$("#file"); sel.innerHTML="";
+  const sel=$("#file"); sel.innerHTML=""; let any=false, err="";
   for(const dir of ["tei","registers"]){
     try{
       const items=await gh("/repos/"+OWNER+"/"+REPO+"/contents/"+dir+"?ref=main");
       const og=document.createElement("optgroup"); og.label=dir+"/";
       items.filter(x=>x.name.endsWith(".xml")).sort((a,b)=>a.name.localeCompare(b.name))
-        .forEach(x=>{const o=document.createElement("option");o.value=x.path;o.textContent=x.name;og.appendChild(o);});
+        .forEach(x=>{const o=document.createElement("option");o.value=x.path;o.textContent=x.name;og.appendChild(o);any=true;});
       sel.appendChild(og);
-    }catch(e){}
+    }catch(e){ err=e.message; }
   }
+  $("#loadstat").innerHTML = any ? "" : '<span class="err">Dateiliste leer ('+err+').</span> '+HINT;
 }
 async function loadFile(){
   const path=$("#file").value; if(!path)return;
@@ -129,7 +138,7 @@ async function commit(){
     CUR.sha=r.content.sha;
     $("#committat").innerHTML=' ✓ <a class="pill" href="'+r.commit.html_url+'" target="_blank" rel="noopener">'+r.commit.sha.slice(0,7)+'</a> — Seite wird neu gebaut (~1 Min.)';
     $("#msg").value="";
-  }catch(e){ $("#committat").innerHTML='<span class="err">Fehler: '+e.message+'</span>'; }
+  }catch(e){ $("#committat").innerHTML='<span class="err">Fehler: '+e.message+'</span>'+(/403|not accessible|permission|forbidden/i.test(e.message)?'<br>'+HINT:''); }
   $("#commit").disabled=false;
 }
 
