@@ -42,6 +42,24 @@ def _primary(name):
     return base, extra
 
 
+def _pforms(base):
+    """Personen-Oberflächenformen: „Cerialis, Spicius" → [Vollform, Nachname, „Spicius Cerialis"];
+    „Adolf Rudorff" → [Vollform, Nachname]. Fängt OCR-typische „Nachname, Vorname"-Inversion."""
+    forms = [base]
+    if "," in base:
+        sur, fore = (x.strip() for x in base.split(",", 1))
+        forms += [sur, f"{fore} {sur}".strip()]
+    else:
+        parts = base.split()
+        if len(parts) > 1:
+            forms.append(parts[-1])
+    seen, out = set(), []
+    for f in forms:
+        if f and f not in seen:
+            seen.add(f); out.append(f)
+    return out
+
+
 def _pages(pp):
     out = []
     for s in pp or []:
@@ -120,10 +138,10 @@ def build(persons, places, ner_persons, ner_places, recon_p, recon_pl, STOP, GEN
         base, extra = _primary(e["name"])
         if not base:
             continue
-        sn = base.split()[-1] if base.split() else base
-        vid = vmatch(psn_form, base, *extra) or vmatch(psn_form, sn)
+        forms = _pforms(base) + extra
+        vid = next((v for f in forms if (v := vmatch(psn_form, f))), None)
         if vid:
-            for t in [base, *extra]:
+            for t in forms:
                 scope(vid, "p", t, entities[vid]["cert"], e.get("pages", []))
             continue
         eid = "psnN_" + slug(base)
@@ -135,7 +153,7 @@ def build(persons, places, ner_persons, ner_places, recon_p, recon_pl, STOP, GEN
                                   "source": "ner", "gnd": r.get("gnd", ""), "wikidata": "",
                                   "roles": e.get("roles", [])})
         ner_only.add(eid)
-        for t in [base, *extra]:
+        for t in forms:
             scope(eid, "p", t, cert, e.get("pages", []))
 
     for e in ner_places:

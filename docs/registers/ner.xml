@@ -28,10 +28,6 @@
 <person xml:id="psnN_annianus" type="ner" cert="low"><persName>Annianus</persName>
 <occupation>Legat</occupation>
 </person>
-<person xml:id="psnN_anthes_eduard" type="ner" cert="medium"><persName>Anthes, Eduard</persName>
-<occupation>Dr.</occupation>
-<idno type="GND">116312696</idno>
-</person>
 <person xml:id="psnN_antoninus_pius" type="ner" cert="low"><persName>Antoninus Pius</persName>
 <occupation>römischer Kaiser · römischer Kaiser (Datierung Steintürme)</occupation>
 </person>
@@ -118,14 +114,6 @@
 </person>
 <person xml:id="psnN_clodius_albinus" type="ner" cert="low"><persName>Clodius Albinus</persName>
 <occupation>Römischer Kaiser (Münze Zugmantel)</occupation>
-</person>
-<person xml:id="psnN_cohausen_august_von" type="ner" cert="medium"><persName>Cohausen, August von</persName>
-<occupation>Autor 'Der Römische Grenzwall in Deutschland' · Generallieutenant; Verfasser des Grenzwallwerks, Streckenkommissar/Forscher</occupation>
-<idno type="GND">116627824</idno>
-</person>
-<person xml:id="psnN_cohausen_von" type="ner" cert="medium"><persName>Cohausen, von</persName>
-<occupation>Früherer Limesforscher (zitiert mehrfach) · Streckenkommissar (früher)</occupation>
-<idno type="GND">116627824</idno>
 </person>
 <person xml:id="psnN_cohen" type="ner" cert="low"><persName>Cohen</persName>
 <occupation>Numismatiker (Referenzwerk, 2. Aufl.)</occupation>
@@ -338,28 +326,8 @@
 <person xml:id="psnN_herpel" type="ner" cert="low"><persName>Herpel</persName>
 <occupation>Förster in Holzhausen</occupation>
 </person>
-<person xml:id="psnN_herzog_r" type="ner" cert="medium"><persName>Herzog, R</persName>
-<occupation>Streckenkommissar, Tübingen</occupation>
-<idno type="GND">116762314</idno>
-</person>
-<person xml:id="psnN_herzog_v" type="ner" cert="medium"><persName>Herzog, v</persName>
-<occupation>Kommissionsmitglied</occupation>
-<idno type="GND">116762314</idno>
-</person>
-<person xml:id="psnN_herzog_von" type="ner" cert="medium"><persName>Herzog, von</persName>
-<occupation>Professor, frühere Ausgrabung Siegelsberg</occupation>
-<idno type="GND">116762314</idno>
-</person>
 <person xml:id="psnN_hesse" type="ner" cert="low"><persName>Hesse</persName>
 <occupation>Fabrikbesitzer Frankfurt (Hessesches Kupferwerk); stellte Arbeiter zur Verfügung</occupation>
-</person>
-<person xml:id="psnN_hettner_f" type="ner" cert="medium"><persName>Hettner, F</persName>
-<occupation>Archäologischer Dirigent der Reichslimeskommission, verantwortlicher Redakteur · verantwortlicher Redakteur</occupation>
-<idno type="GND">116779209</idno>
-</person>
-<person xml:id="psnN_hettner_felix" type="ner" cert="medium"><persName>Hettner, Felix</persName>
-<occupation>Direktor, Dr. · Museumsdirektor, Prof., archäologischer Dirigent der RLK (verstorben 12. Oktober 1902)</occupation>
-<idno type="GND">116779209</idno>
 </person>
 <person xml:id="psnN_hintze_p" type="ner" cert="low"><persName>Hintze, P</persName>
 <occupation>Prof. Dr., Verfasser des Registers zu Nr. 1–35 des Limesblattes</occupation>
@@ -415,10 +383,6 @@
 </person>
 <person xml:id="psnN_jacobi_l" type="ner" cert="medium"><persName>Jacobi, L</persName>
 <occupation>Streckenkommissar (Taunus/Saalburg/Zugmantel), Entdecker des Gräbchens</occupation>
-<idno type="GND">11703861X</idno>
-</person>
-<person xml:id="psnN_jacobi_louis" type="ner" cert="medium"><persName>Jacobi, Louis</persName>
-<occupation>Streckenkommissar Taunus, Baumeister in Homburg v. d. Höhe; Autor des Berichts Nr. 60</occupation>
 <idno type="GND">11703861X</idno>
 </person>
 <person xml:id="psnN_jakob_keller" type="ner" cert="medium"><persName>Jakob Keller</persName>
@@ -493,18 +457,6 @@
 </person>
 <person xml:id="psnN_koffer" type="ner" cert="low"><persName>Koffer</persName>
 <occupation>Streckenkommissar (Friedberg, Okarben) · Streckenkommissar / Ausgräber (Butzbach)</occupation>
-</person>
-<person xml:id="psnN_kofler_f" type="ner" cert="medium"><persName>Kofler, F</persName>
-<occupation>Streckenkommissar; Autor der Berichte Nr. 67 (Echzell) und 68 (Limesstrecke Darmstadt)</occupation>
-<idno type="GND">117530824</idno>
-</person>
-<person xml:id="psnN_kohl_w" type="ner" cert="medium"><persName>Kohl, W</persName>
-<occupation>Apothekenbesitzer in Weißenburg a. S.; Autor des Berichts Nr. 57 (Sulzachthal) · Streckenkommissar / Apothekenbesitzer, Weissenburg a. S.</occupation>
-<idno type="GND">120633116</idno>
-</person>
-<person xml:id="psnN_kohl_wilhelm" type="ner" cert="medium"><persName>Kohl, Wilhelm</persName>
-<occupation>Apothekenbesitzer Weißenburg; Streckenkommissar raetischer Limes · Apothekenbesitzer, Streckenkommissar</occupation>
-<idno type="GND">120633116</idno>
 </person>
 <person xml:id="psnN_koller" type="ner" cert="low"><persName>Koller</persName>
 <occupation>Streckenkommissar, Wetterau</occupation>
@@ -623,23 +575,11 @@
 <person xml:id="psnN_michel_phil_heinrich" type="ner" cert="low"><persName>Michel, Phil. Heinrich</persName>
 <occupation>Landmann in Bogel</occupation>
 </person>
-<person xml:id="psnN_miller_k" type="ner" cert="medium"><persName>Miller, K</persName>
-<occupation>Professor</occupation>
-<idno type="GND">117043486</idno>
-</person>
-<person xml:id="psnN_miller_konrad" type="ner" cert="medium"><persName>Miller, Konrad</persName>
-<occupation>Professor, Streckenkommissar (Welzheim, Walheim, Böckingen)</occupation>
-<idno type="GND">117043486</idno>
-</person>
 <person xml:id="psnN_minor" type="ner" cert="low"><persName>Minor</persName>
 <occupation>Bürgermeister in Holzhausen</occupation>
 </person>
 <person xml:id="psnN_minucius_fatalis" type="ner" cert="low"><persName>Minucius Fatalis</persName>
 <occupation>Stifter des Merkur-Reliefs in Grosskrotzenburg (Inschrift)</occupation>
-</person>
-<person xml:id="psnN_mommsen_theodor" type="ner" cert="medium"><persName>Mommsen, Theodor</persName>
-<occupation>Historiker, Kommentator der Walldürner Inschrift · Prof. Dr., Begleiter Geländebegehung</occupation>
-<idno type="GND">118583425</idno>
 </person>
 <person xml:id="psnN_muller" type="ner" cert="low"><persName>Müller</persName>
 <occupation>Lehrer (Dambach) · Ortsvorsteher (Niederbieber)</occupation>
@@ -652,10 +592,6 @@
 </person>
 <person xml:id="psnN_octavius_severus_m" type="ner" cert="low"><persName>Octavius Severus, M</persName>
 <occupation>Römischer Centurio (Inschrift Welzheim): leg. VIII Aug., praepositus Brittonum et exploratorum</occupation>
-</person>
-<person xml:id="psnN_ohlenschlager_friedrich" type="ner" cert="medium"><persName>Ohlenschlager, Friedrich</persName>
-<occupation>Verfasser von 'Die römische Grenzmark in Bayern'; zitiert</occupation>
-<idno type="GND">117111368</idno>
 </person>
 <person xml:id="psnN_oriola_graf" type="ner" cert="low"><persName>Oriola, Graf</persName>
 <occupation>Besitzer des Marienhofes, Geldgeber für Grabungen</occupation>
@@ -673,10 +609,6 @@
 <person xml:id="psnN_paulus_der_altere" type="ner" cert="low"><persName>Paulus der Ältere</persName>
 <occupation>früher Ausgräber am Linderst</occupation>
 </person>
-<person xml:id="psnN_paulus_e" type="ner" cert="medium"><persName>Paulus, E</persName>
-<occupation>Oberstudienrat, früher Ausgräber in Aalen (1882)</occupation>
-<idno type="GND">116066342</idno>
-</person>
 <person xml:id="psnN_philippus_i" type="ner" cert="low"><persName>Philippus I</persName>
 <occupation>römischer Kaiser (Münzfund)</occupation>
 </person>
@@ -685,18 +617,6 @@
 </person>
 <person xml:id="psnN_pop" type="ner" cert="low"><persName>Pop</persName>
 <occupation>General; Besichtigung der Ausgrabungen bei Mönchsroth</occupation>
-</person>
-<person xml:id="psnN_popp_carl" type="ner" cert="low"><persName>Popp, Carl</persName>
-<occupation>General</occupation>
-</person>
-<person xml:id="psnN_popp_general" type="ner" cert="low"><persName>Popp, General</persName>
-<occupation>General</occupation>
-</person>
-<person xml:id="psnN_popp_k" type="ner" cert="low"><persName>Popp, K</persName>
-<occupation>General, Streckenkommissar · Generalmajor a.D., Oberleitung der Ausgrabungen in Faimingen; später Berichterstatter zu Irnsing</occupation>
-</person>
-<person xml:id="psnN_popp_karl" type="ner" cert="low"><persName>Popp, Karl</persName>
-<occupation>Generalmajor a. D., Mitglied des Ausschusses der Reichslimeskommission; Autor des Berichts über Hienheim</occupation>
 </person>
 <person xml:id="psnN_prescher" type="ner" cert="low"><persName>Prescher</persName>
 <occupation>Streckenkommissar (Kastell Heidenheim) · Streckenkommissar, Heidenheim</occupation>
@@ -719,10 +639,6 @@
 <person xml:id="psnN_ringler" type="ner" cert="low"><persName>Ringler</persName>
 <occupation>Bahnmeister</occupation>
 </person>
-<person xml:id="psnN_ritterling_ernst" type="ner" cert="medium"><persName>Ritterling, Ernst</persName>
-<occupation>Streckenkommissar, Berichterstatter (Kastell Niederbieber) · Streckenkommissar, Wiesbaden</occupation>
-<idno type="GND">116573589</idno>
-</person>
 <person xml:id="psnN_rossel" type="ner" cert="low"><persName>Rossel</persName>
 <occupation>Autor 'Römische Grenzwehr im Taunus' · Früherer Limesforscher (Taunus)</occupation>
 </person>
@@ -735,18 +651,6 @@
 </person>
 <person xml:id="psnN_sack" type="ner" cert="low"><persName>Sack</persName>
 <occupation>Forstwart (Wölfersheimer Wald); führte Kofler zum Steinhügel</occupation>
-</person>
-<person xml:id="psnN_sarwey_o_von" type="ner" cert="medium"><persName>Sarwey, O. von</persName>
-<occupation>verantwortlicher Redakteur / General</occupation>
-<idno type="GND">116810068</idno>
-</person>
-<person xml:id="psnN_sarwey_otto_von" type="ner" cert="medium"><persName>Sarwey, Otto von</persName>
-<occupation>Exzellenz; General; militärischer Dirigent der Reichslimesforschung · Generalleutnant Exc.; besichtigte Römerfurt am Kocher; Limes bei Butzbach</occupation>
-<idno type="GND">116810068</idno>
-</person>
-<person xml:id="psnN_sarwey_von" type="ner" cert="medium"><persName>Sarwey, von</persName>
-<occupation>Generalleutnant, militärischer Dirigent der RLK</occupation>
-<idno type="GND">116810068</idno>
 </person>
 <person xml:id="psnN_schaack" type="ner" cert="low"><persName>Schaack</persName>
 <occupation>verstorbener Lehrer, Berichterstatter über Kanalfund 1886</occupation>
@@ -790,10 +694,6 @@
 <person xml:id="psnN_schreiner" type="ner" cert="low"><persName>Schreiner</persName>
 <occupation>Schmied in Marienfels</occupation>
 </person>
-<person xml:id="psnN_schuchhardt_carl" type="ner" cert="medium"><persName>Schuchhardt, Carl</persName>
-<occupation>Museumsdirektor Dr., Hannover, Mitarbeiter RLK (Limeswall-Untersuchung)</occupation>
-<idno type="GND">120459930</idno>
-</person>
 <person xml:id="psnN_schuermans" type="ner" cert="low"><persName>Schuermans</persName>
 <occupation>Numismatiker / Stempelforscher (Referenzwerk)</occupation>
 </person>
@@ -805,10 +705,6 @@
 </person>
 <person xml:id="psnN_schulze_major" type="ner" cert="low"><persName>Schulze, Major</persName>
 <occupation>Mitwirkender bei Ausgrabungen</occupation>
-</person>
-<person xml:id="psnN_schumacher_karl" type="ner" cert="medium"><persName>Schumacher, Karl</persName>
-<occupation>Streckenkommissar · Streckenkommissar (Neckarburken/innere Linie), Fibelspezialist</occupation>
-<idno type="GND">118795597</idno>
 </person>
 <person xml:id="psnN_scriba" type="ner" cert="low"><persName>Scriba</persName>
 <occupation>Dr., Darmstadt · Redakteur einer Auflage von Knapps Werk</occupation>
@@ -831,20 +727,8 @@
 <person xml:id="psnN_singhof" type="ner" cert="low"><persName>Singhof</persName>
 <occupation>Landmann bei Marienfels/Kalteborn</occupation>
 </person>
-<person xml:id="psnN_sixt_g" type="ner" cert="medium"><persName>Sixt, G</persName>
-<occupation>Streckenkommissar (Württemberg/Oehringen–Sindringen) · Streckenkommissar Stuttgart (Limes Tolnaishof–Oehringen)</occupation>
-<idno type="GND">10151106X</idno>
-</person>
 <person xml:id="psnN_sodalis" type="ner" cert="low"><persName>Sodalis</persName>
 <occupation>Töpfer (Stempel auf Sigillata)</occupation>
-</person>
-<person xml:id="psnN_soldan_w" type="ner" cert="medium"><persName>Soldan, W</persName>
-<occupation>Geheimer Oberschulrat, Autor/Berichterstatter Taunus-Limes</occupation>
-<idno type="GND">136159877</idno>
-</person>
-<person xml:id="psnN_soldan_wilhelm" type="ner" cert="medium"><persName>Soldan, Wilhelm</persName>
-<occupation>Geh. Oberschulrat, Mitglied der Reichslimeskommission; Entdecker des 'Gräbchens' im Taunus</occupation>
-<idno type="GND">136159877</idno>
 </person>
 <person xml:id="psnN_soldau" type="ner" cert="low"><persName>Soldau</persName>
 <occupation>Geh.-Rat, Untersuchung und Restaurierung einer Villa (Hessen, Capersburg-Gebiet)</occupation>
@@ -946,10 +830,6 @@
 <person xml:id="psnN_von_sarwey_otto" type="ner" cert="low"><persName>von Sarwey, Otto</persName>
 <occupation>Verantwortlicher Redakteur Limesblatt</occupation>
 </person>
-<person xml:id="psnN_wagner_e" type="ner" cert="medium"><persName>Wagner, E</persName>
-<occupation>Altertumsforscher</occupation>
-<idno type="GND">103148442</idno>
-</person>
 <person xml:id="psnN_walther" type="ner" cert="low"><persName>Walther</persName>
 <occupation>Verfasser (Altertümer d. heidn. Vorzeit im Grossh. Hessen)</occupation>
 </person>
@@ -994,27 +874,11 @@
 <person xml:id="psnN_winterwerber" type="ner" cert="low"><persName>Winterwerber</persName>
 <occupation>Landmann in Marienfels</occupation>
 </person>
-<person xml:id="psnN_wolff_frau" type="ner" cert="medium"><persName>Wolff, Frau</persName>
-<occupation>Münzsammlerin</occupation>
-<idno type="GND">117440647</idno>
-</person>
-<person xml:id="psnN_wolff_g" type="ner" cert="medium"><persName>Wolff, G</persName>
-<occupation>Streckenkommissar, Frankfurt a. M.</occupation>
-<idno type="GND">117440647</idno>
-</person>
-<person xml:id="psnN_wolff_georg" type="ner" cert="medium"><persName>Wolff, Georg</persName>
-<occupation>Streckenkommissar, Frankfurt a. M.</occupation>
-<idno type="GND">117440647</idno>
-</person>
 <person xml:id="psnN_wrede" type="ner" cert="low"><persName>Wrede</persName>
 <occupation>Fürstliche Familie / Forstbesitzer (Herrleslohe bei Günzenhausen)</occupation>
 </person>
 <person xml:id="psnN_wust" type="ner" cert="low"><persName>Wüst</persName>
 <occupation>Lehrer in Holzhausen</occupation>
-</person>
-<person xml:id="psnN_zangemeister_karl" type="ner" cert="medium"><persName>Zangemeister, Karl</persName>
-<occupation>Geh. Hofrat, Prof., Vorsitzender des geschäftsführenden Ausschusses der RLK (verstorben 8. Juni 1902) · Geheimer Hofrat, Wissenschaftler</occupation>
-<idno type="GND">116964022</idno>
 </person>
 <person xml:id="psnN_zorn" type="ner" cert="low"><persName>Zorn</persName>
 <occupation>Mitarbeiter bei Ausgrabung (Hofheim)</occupation>
