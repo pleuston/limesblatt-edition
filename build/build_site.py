@@ -214,7 +214,8 @@ TEI: <a href="../tei/{teiname}">XML</a></p>
 <div class="reader">
   <div class="facs"><div id="osd"></div>
     <div class="osdnav"><button onclick="viewer.goToPage(Math.max(0,viewer.currentPage()-1))">‹ vorige</button>
-    <label class="synctoggle" title="Das Faksimile folgt automatisch der Druckseite im Lesetext"><input type="checkbox" id="syncscroll" checked> Faksimile folgt dem Text</label>
+    <span class="toggles"><label class="synctoggle" title="Das Faksimile folgt automatisch der Druckseite im Lesetext"><input type="checkbox" id="syncscroll" checked> Faksimile folgt</label>
+    <label class="synctoggle" title="Original-Zeilenumbrüche des Drucks zeigen (sonst fließend)"><input type="checkbox" id="linebreaks" checked> Originalzeilen</label></span>
     <span id="pgind"></span><button onclick="viewer.goToPage(Math.min({len(tiles)-1},viewer.currentPage()+1))">nächste ›</button></div></div>
   <div class="text">{''.join(text)}</div>
 </div>
@@ -245,6 +246,10 @@ viewer.addHandler("page", function(ev){{           // Faksimile bewegt → Leset
     }});
   }},{{root:pane, rootMargin:"0px 0px -82% 0px", threshold:0}});
   pane.querySelectorAll('.pb[data-page]').forEach(function(pb){{io.observe(pb);}});
+}})();
+(function(){{                                       // „Originalzeilen" ein/aus → Druck-Zeilenumbrüche zeigen/fließend
+  var lb=document.getElementById("linebreaks"), pane=document.querySelector('.reader .text');
+  if(lb&&pane){{var f=function(){{pane.classList.toggle("flow", !lb.checked);}}; lb.addEventListener("change",f); f();}}
 }})();
 </script>"""
     return body, head

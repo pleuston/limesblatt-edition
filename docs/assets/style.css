@@ -17,9 +17,11 @@ ul.vols{columns:2;gap:2rem} ul.vols li{margin:.2rem 0}
 .facs{position:sticky;top:3.2rem} #osd{width:100%;height:72vh;background:#222;border:1px solid var(--line)}
 .osdnav{display:flex;justify-content:space-between;align-items:center;padding:.4rem 0;font-size:.9rem}
 .osdnav button{font:inherit;font-size:.85rem;padding:.2rem .7rem;cursor:pointer;background:#fff;border:1px solid var(--line);border-radius:3px}
-.text{max-height:80vh;overflow:auto;padding-right:.4rem} .text p{margin:.12rem 0;text-align:justify;hyphens:auto;text-indent:1.3em}
+.text{max-height:80vh;overflow:auto;padding-right:.4rem} .text p{margin:.12rem 0;text-align:left;text-indent:1.3em}
+.text.flow p{text-align:justify;hyphens:auto} .text.flow br{display:none}   /* „fließend": Original-Zeilenumbrüche ausblenden */
 .text p.artp,.text p.spanpara,.text p.corr,.text p:first-child{text-indent:0}
 .synctoggle{font-size:.78rem;color:var(--muted);display:inline-flex;gap:.3rem;align-items:center;cursor:pointer;white-space:nowrap;user-select:none} .synctoggle input{margin:0}
+.toggles{display:flex;gap:.4rem .8rem;flex-wrap:wrap;justify-content:center}
 .pb{margin:1rem 0 .2rem;color:var(--accent);font-variant:small-caps;font-size:.82rem;cursor:pointer;border-top:1px dotted var(--line);padding-top:.5rem}
 .pb:hover{background:#f3eee3} .pb:target{background:#fff3cd;outline:2px solid #e0c200;scroll-margin-top:3.6rem} .gap{color:var(--muted);font-style:italic}
 .pb.inferred{color:var(--muted)} .pb.inferred::after{content:" ⟲";font-size:.8em;opacity:.5}

@@ -228,6 +228,43 @@ def tag_page(text, terms, cites=CITE_RX, ranges=CITE_RANGE, selfmap=None, report
     res.append(escape(text[pos:]))
     return "".join(res), hits
 
+def _structure(html, paras):
+    """Die **ganze Spalte** wird in einem Stück getaggt (volle Trefferquote, saubere
+    spalten-relative Offsets); danach Absatz-/Zeilenstruktur **nach Wort-Position** ins
+    fertige HTML einsetzen, ohne in Tags zu schneiden: `</p><p>` an Absatzgrenzen, `<lb/>`
+    an Original-Druckzeilen-Grenzen. `paras` = Absätze mit `\\n`-getrennten Druckzeilen."""
+    para_ends, line_ends, acc = set(), set(), 0
+    for pi, pr in enumerate(paras):
+        lines = pr.split("\n")
+        for li, ln in enumerate(lines):
+            acc += len(ln.split())
+            if li < len(lines) - 1:
+                line_ends.add(acc)                 # Druckzeilen-Umbruch → <lb/>
+        if pi < len(paras) - 1:
+            para_ends.add(acc)                     # Absatz-Umbruch → </p><p>
+    if not para_ends and not line_ends:
+        return html
+    out, depth, words, inword = [], 0, 0, False
+    for ch in html:
+        if ch == "<":
+            depth += 1; out.append(ch)
+        elif ch == ">":
+            depth -= 1; out.append(ch)
+        elif depth == 0 and ch.isspace():
+            if inword:
+                if words in para_ends:
+                    out.append("</p><p>")
+                elif words in line_ends:
+                    out.append("<lb/>")
+            inword = False; out.append(ch)
+        elif depth == 0:
+            if not inword:
+                inword = True; words += 1
+            out.append(ch)
+        else:
+            out.append(ch)
+    return "".join(out)
+
 # ---------- Token-Reihenfolge ----------
 def tokens(vault, slug_):
     d = os.path.join(vault, "tools", ".cache", slug_)
@@ -427,15 +464,13 @@ def build_volume(slug_, label, nr, vault, global_terms, token_terms, occ, outdir
                             f'xml:id="pb_{tok}_{lbl}" type="{escape(str(c.get("printed_src", "token")))}"/>')
                 body.append(f'<cb n="{lbl}" facs="#z_{tok}_{lbl}"/>')
                 paras = c.get("paras") or ([c["text"]] if (c.get("text") or "").strip() else [])
-                paras = [p.strip() for p in paras if p and p.strip()]
+                paras = [p for p in (x.strip() for x in paras) if p]
                 if not paras:
                     body.append('<p><gap reason="ocr-empty"/></p>'); nempty += 1
                 else:
-                    boff = 0
-                    for pr in paras:                       # ein <p> je Absatz (token-frei aus der Zeilengeometrie)
-                        tagged, n = tag(pr, printed, lbl, boff); ntags += n
-                        body.append(f'<p>{tagged}</p>')
-                        boff += len(pr) + 1
+                    flat = " ".join(p.replace("\n", " ") for p in paras)   # ganze Spalte zusammengezogen
+                    tagged, n = tag(flat, printed, lbl); ntags += n        # einmal taggen → volle Trefferquote
+                    body.append(f'<p>{_structure(tagged, paras)}</p>')     # Absätze (</p><p>) + Druckzeilen (<lb/>)
                 npages += 1
             continue
         # Fallback: kein Spalten-JSON (kaputtes ALTO) → flacher Einzeltext, eine Spalte „a".

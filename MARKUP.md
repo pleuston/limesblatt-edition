@@ -46,18 +46,23 @@ Im TEI:
   (`@type` = Herkunft der Seitenzahl: Kolumnentitel / Odd-Even-Inferenz / Token-Fallback) plus ein
   **`<cb n="a|b" facs="#z_<tok>_<a|b>"/>`**.
 - Voll-breite Überschriften → `<head>`; spaltenübergreifender Fließtext (Heft-Editorial) → `<p rend="span">`.
-- **Absätze je Spalte → ein `<p>` pro Absatz** (token-frei aus der Zeilengeometrie, `alto_layout._paragraphs`):
-  ein Absatz beginnt, wo die erste Zeile **eingerückt** ist oder eine **Rand-Ziffer** links der Satzkante
-  hängt (Bericht-Köpfe wie „3. Die Wiederaufnahme …"). Das macht jeden Bericht-/Absatzanfang im Lesetext
-  scannbar — die Köpfe stehen oft mitten in der Spalte, nicht am Seitenanfang.
-- Zeilenstruktur (Inschriften/Korrekturen): `\n` → **`<lb/>`**.
+- **Absätze je Spalte → ein `<p>` pro Absatz** + **`<lb/>` je Original-Druckzeile** (token-frei aus der
+  Zeilengeometrie, `alto_layout._paragraphs`): ein Absatz beginnt, wo die erste Zeile **eingerückt** ist
+  oder eine **Rand-Ziffer** links der Satzkante hängt (Bericht-Köpfe wie „3. Die Wiederaufnahme …"); die
+  `\n` zwischen den Zeilen werden zu `<lb/>`. So wird jeder Bericht-/Absatzanfang scannbar **und** der
+  Lesetext spiegelt die Druckzeilen (Inschriften/Korrekturen inklusive).
+- Damit die **Entity-Erkennung nicht an Zeilen-/Absatzgrenzen scheitert**, wird die **ganze Spalte am Stück
+  getaggt** (volle Trefferquote, saubere spalten-relative Offsets) und Absatz-/Zeilenstruktur danach **nach
+  Wort-Position** ins fertige HTML eingesetzt (`build_tei._structure`: `</p><p>` bzw. `<lb/>`, ohne in Tags
+  zu schneiden — ein Umbruch darf auch *innerhalb* einer mehrwortigen Entität liegen).
 
 HTML-Anker: **`#pb-<tok>-<a|b>`**; eine Referenz löst damit auf **Seite + Spalte** auf
 (z. B. eine Person auf S. 98 → `#pb-097-b`).
 
 **Synchronisiertes Scrollen:** Im Lesefenster folgt das IIIF-Faksimile automatisch der Druckseite im
 Text (IntersectionObserver auf die `<pb>`-Marken → `viewer.goToPage`) und umgekehrt (Faksimile-Navigation
-zieht den Text nach); abschaltbar per „Faksimile folgt dem Text".
+zieht den Text nach); abschaltbar per „Faksimile folgt dem Text". Ein zweiter Schalter „Originalzeilen"
+blendet die `<lb/>`-Zeilenumbrüche aus (fließender, justierter Lesesatz statt druckzeilen-treu).
 
 ## 3. Lesetext
 
