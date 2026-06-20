@@ -138,7 +138,7 @@ def page(title, body, depth=0, head=""):
 <title>{html.escape(title)} — Limesblatt-Edition</title>
 <link rel="stylesheet" href="{up}assets/style.css">{head}</head><body>
 <header><a class="home" href="{up}index.html">📕 Limesblatt-Edition</a>
-<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}register/wortschatz.html">Analyse</a> · <a href="{up}index.html#suche">Suche</a></nav></header>
+<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/fundindex.html">Funde</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}register/bibliographie.html">Bibliographie</a> · <a href="{up}register/wortschatz.html">Analyse</a> · <a href="{up}index.html#suche">Suche</a></nav></header>
 <div class="wip">🚧 Diese digitale Edition befindet sich im <b>Aufbau</b> — Inhalte, Auszeichnung und Analysen sind unvollständig und können sich noch ändern.</div>
 <main>{body}</main>
 <footer>Diplomatische OCR-Edition des <em>Limesblatt</em> (1892–1903) · Text &amp; Register
@@ -389,6 +389,8 @@ IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen
 <h2>Register</h2><ul><li><a href="register/persons.html">Personenregister</a> — mit Porträts, Normdaten, Korrespondenz, ausgegrabenen Kastellen</li>
 <li><a href="register/places.html">Ortsregister</a> — mit Karte, Kastelltyp, Ausgräber, Inschriften</li>
 <li><a href="register/strecken.html">Strecken</a> — die 15 Limes-Abschnitte mit Kastellen &amp; Kommissaren</li>
+<li><a href="register/fundindex.html">Fundindex</a> — Fundgattungen, Münzkaiser &amp; Sigillata-Formen mit Seiten-/Spalten-Belegen</li>
+<li><a href="register/bibliographie.html">Bibliographie &amp; Quellen</a> — die zitierten Werke, aufgelöst zu vollen Referenzen + Open-Access-Digitalisaten (UB Heidelberg u. a.)</li>
 <li><a href="register/namen.html">Namen im Limesblatt</a> — vollständiges Namenregister aus dem Volltext (NER); jeder Name ist im Lesetext angeklickt verlinkt</li>
 <li><a href="register/orte-index.html">Orte im Limesblatt</a> — vollständiges Ortsregister aus dem Volltext (NER), im Lesetext verlinkt</li>
 <li><a href="register/wortschatz.html">Textanalyse</a> — diachroner Wortschatz, ORL-Gegenprobe, Münzkaiser-Chronologie, Truppen, Zitate, OCR-Qualität + KWIC-Konkordanz</li></ul>
@@ -680,6 +682,122 @@ def build_toc(PLA):
         nr, tok, num, title, br, _ = cands[j]; toc.setdefault(nr, []).append((tok, num, title, br))
     return toc
 
+# ---------- Fundindex & Bibliographie (token-frei, spalten-präzise) ----------
+def scan_occ(volumes, patterns):
+    """{key: [(vol, anchor, printed), …]} — je Spalte, entdoppelt, in Bandreihenfolge."""
+    occ, seen = defaultdict(list), set()
+    for v in volumes:
+        for p in v["pages"]:
+            low = (p.get("text") or "").lower()
+            if not low: continue
+            for key, rx in patterns:
+                if rx.search(low):
+                    k = (key, v["nr"], p["anchor"])
+                    if k not in seen:
+                        seen.add(k); occ[key].append((v["nr"], p["anchor"], p["printed"]))
+    return occ
+
+def _belege(items, cap=60):
+    out = []
+    for vol, grp in groupby(items, key=lambda x: x[0]):
+        seen, links = set(), []
+        for _, a, pp in grp:
+            if a in seen: continue
+            seen.add(a); links.append((a, pp))
+        shown = ", ".join(f'<a href="../volumes/bd{vol}.html#pb-{html.escape(a)}">{html.escape(pp)}</a>' for a, pp in links[:cap])
+        more = f' <span class="meta">+{len(links) - cap}</span>' if len(links) > cap else ""
+        out.append(f'Bd.&#160;{vol}: {shown}{more}')
+    return " · ".join(out) if out else '<span class="meta">—</span>'
+
+FUND_CATS = [
+    ("Münzen", r"münz\w+|denar\w*|sesterz\w*|aureus\w*|bronzemünz\w*|silbermünz\w*"),
+    ("Terra Sigillata", r"sigillata\w*"),
+    ("Stempel (Ziegel/Töpfer)", r"stempel\w*|töpfermarke\w*"),
+    ("Inschriften & Weihesteine", r"inschrift\w*|weihestein\w*|weihinschrift\w*|meilenstein\w*|\bara\b|\baltar\w*|diplom\w*"),
+    ("Fibeln", r"fibel\w*|fibul\w*"),
+    ("Keramik & Gefäße", r"gefäss\w*|gefäß\w*|scherbe\w*|thongefäss\w*|amphor\w*|\bkrug\b|krüge\w*|schale\w*|becher\w*|\bnapf\w*|teller\w*|\btopf\b|töpfe\w*|urne\w*"),
+    ("Glas", r"\bglas\b|gläs\w*|glasscherbe\w*|glasgefäss\w*"),
+    ("Waffen & Geräte", r"lanzenspitze\w*|pfeilspitze\w*|wurfspiess\w*|schwert\w*|dolch\w*|\bbeil\b|\bmesser\b|\bnagel\b|nägel\b|schlüssel\w*|werkzeug\w*|\bgerät\w*"),
+    ("Schmuck & Tracht", r"fingerring\w*|armband\w*|armring\w*|\bperle\w*|haarnadel\w*|gewandnadel\w*|gürtel\w*|schnalle\w*"),
+    ("Bronze & Metall", r"\bbronze\w*|\beisen\w*|\bblei\b|silber\w*|\bgold\w*"),
+    ("Architektur (Hypokaust/Bad)", r"hypokaust\w*|estrich\w*|\bsäule\w*|säulen|tubul\w*|heizung\w*|badegebäude\w*|\btherme\w*|\bbrunnen\w*"),
+    ("Bestattung", r"brandgrab\w*|\bgräber\w*|\bgrab\b|bestattung\w*|aschenkiste\w*|leichenbrand\w*"),
+    ("Knochen & Tierreste", r"\bknochen\w*|tierknochen\w*|geweih\w*"),
+]
+FUND_EMP = [("Vespasian", r"vespasian"), ("Domitian", r"domitian"), ("Trajan", r"tra[ij]an(?!\w)"),
+            ("Hadrian", r"hadrian(?!swall)"), ("Antoninus Pius", r"antoninus|antonin\b"),
+            ("Marc Aurel", r"marc\W{0,2}aurel|marcus aurel"), ("Commodus", r"commodus"),
+            ("Septimius Severus", r"septimius|sept\. sever"), ("Caracalla", r"caracalla"),
+            ("Severus Alexander", r"severus alexander"), ("Gordianus", r"gordian"),
+            ("Philippus", r"philippus\b"), ("Gallienus", r"gallienus"), ("Probus", r"\bprobus\b")]
+
+def thematic_table(occ, order, head):
+    rows = "".join(f'<tr><td><b>{html.escape(lbl)}</b></td><td>{len(occ[k])}</td>'
+                   f'<td class="beleg">{_belege(occ[k])}</td></tr>'
+                   for k, lbl in order if occ.get(k))
+    return f'<table class="reg fund"><tr><th>{head}</th><th>Seiten</th><th>Belege (Seite · Spalte)</th></tr>{rows}</table>'
+
+def fundindex_page(volumes):
+    occ = scan_occ(volumes, [(k, re.compile(rx, re.I)) for k, rx in FUND_CATS])
+    emp = scan_occ(volumes, [(k, re.compile(rx, re.I)) for k, rx in FUND_EMP])
+    drag = scan_occ(volumes, [(f"Drag. {n}", re.compile(rf"\bdrag(?:endorff)?\.?\s*{n}\b", re.I)) for n in
+                              ["27", "29", "31", "32", "33", "35", "36", "37", "38", "45", "47", "49"]])
+    cat_t = thematic_table(occ, [(k, k) for k, _ in FUND_CATS], "Fundgattung")
+    emp_t = thematic_table(emp, [(k, k) for k, _ in FUND_EMP], "Münzkaiser")
+    drag_t = thematic_table(drag, [(f"Drag. {n}", f"Drag. {n}") for n in
+             ["27", "29", "31", "32", "33", "35", "36", "37", "38", "45", "47", "49"]], "Sigillata-Form")
+    body = (f'<h1>Fundindex</h1><p class="meta">Token-frei aus dem Volltext: Fundgattungen, Münzkaiser und '
+            f'Terra-Sigillata-Formen (Dragendorff) mit <b>seiten- und spaltengenauen Belegen</b> ins Faksimile. '
+            f'Heuristischer Wortabgleich auf Fraktur-OCR — Nennung ≠ stets Fund an dieser Stelle.</p>'
+            f'<h2>Fundgattungen</h2>{cat_t}'
+            f'<h2 id="muenzkaiser">Münzkaiser (Datierungsevidenz)</h2>'
+            f'<p class="meta">Bildet die Limes-Belegung ab: flavisch-trajanische Errichtung, severischer Peak, Auslaufen vor 260.</p>{emp_t}'
+            f'<h2 id="sigillata">Terra-Sigillata-Formen</h2>'
+            f'<p class="meta">Die Dragendorff-Formtypen als laufendes Datierungsraster — vgl. <a href="bibliographie.html">Dragendorff 1895</a>.</p>{drag_t}')
+    return body
+
+BIBLIO = [
+    ("Westdeutsche Zeitschrift für Geschichte und Kunst", "Westdeutsche Zeitschrift für Geschichte und Kunst (Trier 1882–1907), hrsg. F. Hettner u. K. Lamprecht.",
+     "https://digi.ub.uni-heidelberg.de/diglit/wzgk_kbl", "UB Heidelberg (OA)", r"Westd\w*\.?\s*(?:Zeitschr|Ztschr|Z\.)"),
+    ("Korrespondenzblatt der Westdeutschen Zeitschrift", "Korrespondenzblatt der Westdeutschen Zeitschrift für Geschichte und Kunst (Trier 1882–1907).",
+     "https://digi.ub.uni-heidelberg.de/diglit/wzgk_kbl", "UB Heidelberg (OA)", r"Korr\w*\.?\s*-?\s*[Bb]l"),
+    ("Bonner Jahrbücher", "Bonner Jahrbücher (Jahrbücher des Vereins von Altertumsfreunden im Rheinlande), Bonn, seit 1842.",
+     "https://journals.ub.uni-heidelberg.de/index.php/bjb", "UB Heidelberg Journals (OA)", r"Bonn\w*\.?\s*Jahrb"),
+    ("A. von Cohausen, Der römische Grenzwall in Deutschland (1884)", "August von Cohausen, Der römische Grenzwall in Deutschland. Militärische und technische Beschreibung. Wiesbaden: Kreidel, 1884.",
+     "https://digi.ub.uni-heidelberg.de/diglit/cohausen1884ga", "UB Heidelberg (OA)", r"Cohausen"),
+    ("W. Brambach, Corpus Inscriptionum Rhenanarum (1867)", "Wilhelm Brambach, Corpus Inscriptionum Rhenanarum. Elberfeld 1867.",
+     "https://archive.org/details/bub_gb_pbJfXWjFgP4C", "Internet Archive (OA)", r"\bBrambach\b|\bBramb\."),
+    ("H. Dragendorff, Terra sigillata (BJb 96/97, 1895)", "Hans Dragendorff, Terra sigillata. Ein Beitrag zur Geschichte der griechischen und römischen Keramik. Bonner Jahrbücher 96/97 (1895) 18–155.",
+     "https://archive.org/details/terrasigillatae00draggoog", "Internet Archive (OA)", r"\bDrag(?:endorff)?\.?\s*\d"),
+    ("Corpus Inscriptionum Latinarum (CIL)", "Corpus Inscriptionum Latinarum. Berlin, seit 1863 (bes. Bd. XIII, Germania).",
+     "https://cil.bbaw.de/", "CIL / BBAW (OA)", r"C\.?\s?I\.?\s?L\.?\s+[IVXLC]"),
+    ("Steiner, Römische Inschriften", "P. Steiner u. a., zu rheinischen/germanischen Inschriften.",
+     "", "", r"\bSteiner\b"),
+    ("Becker", "J. Becker, Beiträge zur Limes- und Inschriftenforschung.", "", "", r"\bBecker\b"),
+    ("O. Tischler, Fibel-Typologie", "Otto Tischler, zur Typologie der Fibeln (La-Tène/provinzialrömisch).", "", "", r"\bTischler\b"),
+    ("A. Riese", "Alexander Riese, Das rheinische Germanien in der antiken Literatur / Inschriften.", "", "", r"\bRiese\b"),
+]
+
+def bibliography_page(volumes):
+    occ = scan_occ(volumes, [(name, re.compile(rx, re.I)) for name, _, _, _, rx in BIBLIO])
+    rows = []
+    for name, full, oa, oalabel, _ in BIBLIO:
+        items = occ.get(name, [])
+        if not items: continue
+        link = f' · <a href="{oa}">{html.escape(oalabel)}</a>' if oa else ""
+        rows.append(f'<tr><td><b>{html.escape(name)}</b>{link}<div class="meta">{html.escape(full)}</div></td>'
+                    f'<td>{len(items)}</td><td class="beleg">{_belege(items, cap=40)}</td></tr>')
+    n_oa = sum(1 for n, f, oa, l, rx in BIBLIO if oa and occ.get(n))
+    body = (f'<h1>Bibliographie &amp; Quellen</h1>'
+            f'<p class="meta">Die im Limesblatt zitierte Verweis-Apparatur, token-frei extrahiert und zu vollen '
+            f'Referenzen aufgelöst — mit <b>{n_oa} Open-Access-Digitalisaten</b> (vor allem UB Heidelberg) und '
+            f'seiten-/spaltengenauen Fundstellen. Die Apparatur ist <b>journal-zentriert</b>: dominant die '
+            f'Westdeutsche Zeitschrift und ihr Korrespondenzblatt (Hettners Trierer „Hauszeitschrift", '
+            f'selber Verlag wie das Limesblatt), dazu Cohausens <i>Grenzwall</i> und das Dragendorff-Sigillataraster.</p>'
+            f'<table class="reg fund"><tr><th>Werk / Reihe (Volltext / Digitalisat)</th><th>Verweise</th><th>Belege (Seite · Spalte)</th></tr>'
+            f'{"".join(rows)}</table>')
+    return body
+
 def main():
     os.makedirs(os.path.join(DOCS,"volumes"), exist_ok=True)
     os.makedirs(os.path.join(DOCS,"register"), exist_ok=True)
@@ -785,6 +903,8 @@ def main():
     pm = sum(1 for v in rec_p.values() if v); om = sum(1 for v in rec_pl.values() if v and v.get("geo"))
     print(f"Volltext-Index (LLM-NER): {len(ner_p)} Namen ({pm} reconciled), {len(ner_pl)} Orte ({om} verortet → ner-sites.geojson)")
     open(os.path.join(DOCS,"register","wortschatz.html"),"w",encoding="utf-8").write(page("Wortschatz & Konkordanz", wortschatz_page(volumes, attention), 1))
+    open(os.path.join(DOCS,"register","fundindex.html"),"w",encoding="utf-8").write(page("Fundindex", fundindex_page(volumes), 1))
+    open(os.path.join(DOCS,"register","bibliographie.html"),"w",encoding="utf-8").write(page("Bibliographie", bibliography_page(volumes), 1))
     ib, ih = index_page(volumes, toc)
     open(os.path.join(DOCS,"index.html"),"w",encoding="utf-8").write(page("Startseite", ib, 0, ih))
     print(f"docs/: index + {len(volumes)} Bände + 3 Register (Personen {len(persons)}, Orte {len(places)}, "
