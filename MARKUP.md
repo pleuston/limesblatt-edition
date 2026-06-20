@@ -66,11 +66,15 @@ blendet die `<lb/>`-Zeilenumbrüche aus (fließender, justierter Lesesatz statt 
 
 ## 3. Lesetext
 
-Diplomatisch, unkorrigiert (Fraktur-OCR), spaltentreu geordnet und dehypheniert. Gezielte
-**Re-OCR-Korrekturen** für die wenigen unbrauchbaren Seiten (Inschriften/Tafeln) liegen versioniert
-unter `../limes/tools/corrections/<slug>/<tok>[.<col>].txt` und werden beim Ableiten eingespielt
-(`limesblatt_ocr.apply_corrections`); echte Fehler werden token-frei via `../limes/tools/garble.py`
-gefunden (Editierdistanz 1 zu häufigem Korpuswort).
+Diplomatisch, unkorrigiert (Fraktur-OCR), spaltentreu geordnet und dehypheniert. Echte Fehler-Seiten
+findet token-frei `../limes/tools/garble.py` (wort-förmig + selten + Editierdistanz 1 zu häufigem
+Korpuswort); die **schlechtesten Seiten werden am IIIF-Faksimile neu transkribiert** (LLM liest je
+Spalte das Digitalisat — wie bei den TOC-Köpfen) und liegen versioniert unter
+`../limes/tools/corrections/<slug>/<tok>[.<col>].txt`. Beim Ableiten spielt `limesblatt_ocr.apply_corrections`
+sie ein und behandelt sie **wie die Geometrie-Seiten** (`_corr_paras`: Absätze, Druckzeilen `<lb/>`,
+Silbentrennung aufgelöst). Die 14 garble-schlimmsten Seiten (verstümmelte Latein-Inschriften + Prosa)
+sind so re-OCR't → garble-Arbeitsliste **0**. *Token-freie freq-basierte Autokorrektur* wurde verworfen
+(sie verschlimmbessert legitim seltene Wörter).
 
 ### Inhaltsverzeichnis (nummerierte Feldberichte)
 
