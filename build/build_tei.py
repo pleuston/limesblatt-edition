@@ -388,13 +388,14 @@ def build_volume(slug_, label, nr, vault, global_terms, token_terms, occ, outdir
     toks, cdir = tokens(vault, slug_)
     surfaces, body, npages, ntags, nempty = [], [], 0, 0, 0
 
-    def tag(text, printed, col):
+    def tag(text, printed, col, baseoff=0):
         """Spaltentext markieren: korpusweite Vault-Begriffe + auf dieses Token verankerte
-        NER-Begriffe + Literatur-/Selbst-/Bericht-Verweise; Treffer mit Offset im Belegindex sammeln."""
+        NER-Begriffe + Literatur-/Selbst-/Bericht-Verweise; Treffer mit (spalten-relativem)
+        Offset im Belegindex sammeln. `baseoff` = Startoffset des Absatzes in der Spalte."""
         terms = dict(global_terms); terms.update(token_terms.get((nr, tok), {}))
         html_, hits = tag_page(text, terms, selfmap=selfmap, reportmap=reportmap)
         for eid, kind, off in hits:
-            occ[eid].append([nr, tok, printed, col, off])
+            occ[eid].append([nr, tok, printed, col, baseoff + off])
         return html_.replace("\n", "<lb/>"), len(hits)   # Zeilenumbrüche (Korrekturen) → <lb/>
 
     for tok in toks:
@@ -425,12 +426,16 @@ def build_volume(slug_, label, nr, vault, global_terms, token_terms, occ, outdir
                 body.append(f'<pb n="{escape(printed)}" facs="#f_{tok}" '
                             f'xml:id="pb_{tok}_{lbl}" type="{escape(str(c.get("printed_src", "token")))}"/>')
                 body.append(f'<cb n="{lbl}" facs="#z_{tok}_{lbl}"/>')
-                ctxt = (c.get("text") or "").strip()
-                if not ctxt:
+                paras = c.get("paras") or ([c["text"]] if (c.get("text") or "").strip() else [])
+                paras = [p.strip() for p in paras if p and p.strip()]
+                if not paras:
                     body.append('<p><gap reason="ocr-empty"/></p>'); nempty += 1
                 else:
-                    tagged, n = tag(ctxt, printed, lbl); ntags += n
-                    body.append(f'<p>{tagged}</p>')
+                    boff = 0
+                    for pr in paras:                       # ein <p> je Absatz (token-frei aus der Zeilengeometrie)
+                        tagged, n = tag(pr, printed, lbl, boff); ntags += n
+                        body.append(f'<p>{tagged}</p>')
+                        boff += len(pr) + 1
                 npages += 1
             continue
         # Fallback: kein Spalten-JSON (kaputtes ALTO) → flacher Einzeltext, eine Spalte „a".

@@ -46,10 +46,18 @@ Im TEI:
   (`@type` = Herkunft der Seitenzahl: Kolumnentitel / Odd-Even-Inferenz / Token-Fallback) plus ein
   **`<cb n="a|b" facs="#z_<tok>_<a|b>"/>`**.
 - Voll-breite Überschriften → `<head>`; spaltenübergreifender Fließtext (Heft-Editorial) → `<p rend="span">`.
+- **Absätze je Spalte → ein `<p>` pro Absatz** (token-frei aus der Zeilengeometrie, `alto_layout._paragraphs`):
+  ein Absatz beginnt, wo die erste Zeile **eingerückt** ist oder eine **Rand-Ziffer** links der Satzkante
+  hängt (Bericht-Köpfe wie „3. Die Wiederaufnahme …"). Das macht jeden Bericht-/Absatzanfang im Lesetext
+  scannbar — die Köpfe stehen oft mitten in der Spalte, nicht am Seitenanfang.
 - Zeilenstruktur (Inschriften/Korrekturen): `\n` → **`<lb/>`**.
 
 HTML-Anker: **`#pb-<tok>-<a|b>`**; eine Referenz löst damit auf **Seite + Spalte** auf
 (z. B. eine Person auf S. 98 → `#pb-097-b`).
+
+**Synchronisiertes Scrollen:** Im Lesefenster folgt das IIIF-Faksimile automatisch der Druckseite im
+Text (IntersectionObserver auf die `<pb>`-Marken → `viewer.goToPage`) und umgekehrt (Faksimile-Navigation
+zieht den Text nach); abschaltbar per „Faksimile folgt dem Text".
 
 ## 3. Lesetext
 

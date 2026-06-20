@@ -100,7 +100,7 @@ def load_volume(path):
         anchor = f"{img_tok}-{col}"
         pages.append({"img_tok": img_tok, "printed": printed, "col": col, "anchor": anchor, "tok": anchor,
                       "type": typ, "head": pending_head, "html": render_page(inner),
-                      "text": unesc(strip_tags(re.sub(r'<cb\b[^>]*/>|<lb/>', ' ', inner))).strip(),
+                      "text": unesc(strip_tags(re.sub(r'<cb\b[^>]*/>|<lb/>|</?p\b[^>]*>', ' ', inner))).strip(),
                       "ents": re.findall(r'ref="#([^"]+)"', inner),
                       "dents": re.findall(r'ref="dare:([^"]+)"', inner),
                       "cites": re.findall(r'target="#(bib_[^"]+)"', inner)})
@@ -214,6 +214,7 @@ TEI: <a href="../tei/{teiname}">XML</a></p>
 <div class="reader">
   <div class="facs"><div id="osd"></div>
     <div class="osdnav"><button onclick="viewer.goToPage(Math.max(0,viewer.currentPage()-1))">‹ vorige</button>
+    <label class="synctoggle" title="Das Faksimile folgt automatisch der Druckseite im Lesetext"><input type="checkbox" id="syncscroll" checked> Faksimile folgt dem Text</label>
     <span id="pgind"></span><button onclick="viewer.goToPage(Math.min({len(tiles)-1},viewer.currentPage()+1))">nächste ›</button></div></div>
   <div class="text">{''.join(text)}</div>
 </div>
@@ -222,7 +223,29 @@ var tiles = {json.dumps(tiles)};
 var viewer = OpenSeadragon({{id:"osd", prefixUrl:"", tileSources:tiles, sequenceMode:true,
   showNavigationControl:false, showSequenceControl:false, gestureSettingsMouse:{{clickToZoom:false}}}});
 function upd(){{document.getElementById("pgind").textContent=(viewer.currentPage()+1)+" / "+tiles.length;}}
-viewer.addHandler("page", upd); viewer.addHandler("open", upd);
+function syncOn(){{var b=document.getElementById("syncscroll");return !b||b.checked;}}
+var _slock=false;
+viewer.addHandler("open", upd);
+viewer.addHandler("page", function(ev){{           // Faksimile bewegt → Lesetext nachziehen
+  upd();
+  if(!syncOn()||_slock) return;
+  var pb=document.querySelector('.reader .text .pb[data-page="'+ev.page+'"]');
+  if(pb){{_slock=true; pb.scrollIntoView({{behavior:"smooth",block:"start"}}); setTimeout(function(){{_slock=false;}},700);}}
+}});
+(function(){{                                       // Lesetext gescrollt → Faksimile folgt (IntersectionObserver)
+  var pane=document.querySelector('.reader .text');
+  if(!pane||!('IntersectionObserver' in window)) return;
+  var io=new IntersectionObserver(function(es){{
+    if(!syncOn()||_slock) return;
+    es.forEach(function(e){{
+      if(e.isIntersecting){{
+        var p=parseInt(e.target.getAttribute('data-page'));
+        if(p>=0 && p!==viewer.currentPage()){{_slock=true; viewer.goToPage(p); setTimeout(function(){{_slock=false;}},350);}}
+      }}
+    }});
+  }},{{root:pane, rootMargin:"0px 0px -82% 0px", threshold:0}});
+  pane.querySelectorAll('.pb[data-page]').forEach(function(pb){{io.observe(pb);}});
+}})();
 </script>"""
     return body, head
 
