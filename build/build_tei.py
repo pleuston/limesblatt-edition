@@ -40,6 +40,28 @@ GENERIC = {"alteburg","altenburg","altes","oberburg","schanz","kapelle","kirche"
            "taunus","odenwald","wetterau","wetteraukreis","spessart","hunsrück","hunsrueck","neckar",
            "schwäbisch","fränkisch","oberer","unterer","grosser","großer","kleiner","römer","römisch"}
 
+# Bibliographie: (xml:id, Kurzname, Vollbeleg, OA-Digitalisat, OA-Label, Regex|None).
+# Regex != None → die Referenz wird im TEI-Fließtext als <ref target="#id"> markiert
+# (nur eindeutige NICHT-Personen-Referenzen, damit keine Kollision mit persName).
+BIBLIO = [
+    ("bib_westd", "Westdeutsche Zeitschrift", "Westdeutsche Zeitschrift für Geschichte und Kunst (Trier 1882–1907), hrsg. F. Hettner u. K. Lamprecht.",
+     "https://digi.ub.uni-heidelberg.de/diglit/wzgk_kbl", "UB Heidelberg (OA)", r"Westd\w*\.?\s*(?:Zeitschr|Ztschr|Z\.)"),
+    ("bib_korr", "Korrespondenzblatt der Westd. Zeitschrift", "Korrespondenzblatt der Westdeutschen Zeitschrift für Geschichte und Kunst (Trier 1882–1907).",
+     "https://digi.ub.uni-heidelberg.de/diglit/wzgk_kbl", "UB Heidelberg (OA)", r"Korr\w*\.?\s*-?\s*[Bb]l"),
+    ("bib_bonn", "Bonner Jahrbücher", "Bonner Jahrbücher (Jahrbücher des Vereins von Altertumsfreunden im Rheinlande), Bonn, seit 1842.",
+     "https://journals.ub.uni-heidelberg.de/index.php/bjb", "UB Heidelberg Journals (OA)", r"Bonn\w*\.?\s*Jahrb"),
+    ("bib_brambach", "W. Brambach, Corpus Inscriptionum Rhenanarum (1867)", "Wilhelm Brambach, Corpus Inscriptionum Rhenanarum. Elberfeld 1867.",
+     "https://archive.org/details/bub_gb_pbJfXWjFgP4C", "Internet Archive (OA)", r"\bBrambach\b|\bBramb\."),
+    ("bib_dragendorff", "H. Dragendorff, Terra sigillata (BJb 96/97, 1895)", "Hans Dragendorff, Terra sigillata. Ein Beitrag zur Geschichte der griechischen und römischen Keramik. Bonner Jahrbücher 96/97 (1895) 18–155.",
+     "https://archive.org/details/terrasigillatae00draggoog", "Internet Archive (OA)", r"\bDrag(?:endorff)?\.?\s*\d"),
+    ("bib_cil", "Corpus Inscriptionum Latinarum (CIL)", "Corpus Inscriptionum Latinarum. Berlin, seit 1863 (bes. Bd. XIII, Germania).",
+     "https://cil.bbaw.de/", "CIL / BBAW (OA)", r"\bC\.?\s?I\.?\s?L\.?\s+[IVXLC]"),
+    ("bib_cohausen", "A. von Cohausen, Der römische Grenzwall in Deutschland (1884)", "August von Cohausen, Der römische Grenzwall in Deutschland. Wiesbaden: Kreidel, 1884.",
+     "https://digi.ub.uni-heidelberg.de/diglit/cohausen1884ga", "UB Heidelberg (OA)", None),
+    ("bib_steiner", "P. Steiner, Römische Inschriften", "P. Steiner u. a., zu rheinischen/germanischen Inschriften.", "", "", None),
+    ("bib_tischler", "O. Tischler, Fibel-Typologie", "Otto Tischler, zur Typologie der Fibeln (La-Tène/provinzialrömisch).", "", "", None),
+]
+
 def slug(s):
     s = unicodedata.normalize("NFKD", s).encode("ascii","ignore").decode()
     return re.sub(r"[^a-z0-9]+","_", s.lower()).strip("_")
@@ -131,13 +153,19 @@ def dare_terms(dare, taken, corpus_low=""):
             out[tok] = ("dare", next(iter(ids)), "low")
     return out
 
-def tag_page(text, terms):
-    """terms: {term: (kind, id, cert)}. Markiert je Vorkommen, non-overlapping, längste zuerst.
+CITE_RX = [(bid, re.compile(rx, re.I)) for bid, _n, _f, _o, _l, rx in BIBLIO if rx]
+
+def tag_page(text, terms, cites=CITE_RX):
+    """terms: {term: (kind, id, cert)}; cites: [(bibl-id, regex)] → <ref target>.
+    Markiert je Vorkommen, non-overlapping, längste zuerst.
     Liefert (HTML, [(eid, kind, offset)]) — Offsets für den Belegindex."""
     spans = []
     for term, (kind, xid, cert) in terms.items():
         for m in re.finditer(r"(?<![\wäöüÄÖÜß])" + re.escape(term) + r"(?![\wäöüÄÖÜß])", text):
             spans.append((m.start(), m.end(), kind, xid, cert))
+    for bid, rx in cites:                                  # bibliographische Referenzen → <ref>
+        for m in rx.finditer(text):
+            spans.append((m.start(), m.end(), "bibl", bid, ""))
     spans.sort(key=lambda s: (s[0], -(s[1] - s[0])))
     chosen, last = [], -1
     for s in spans:
@@ -145,7 +173,9 @@ def tag_page(text, terms):
     res, pos, hits = [], 0, []
     for st, en, kind, xid, cert in chosen:
         res.append(escape(text[pos:st]))
-        if kind == "dare":
+        if kind == "bibl":
+            res.append(f'<ref type="bibl" target="#{xid}">{escape(text[st:en])}</ref>')
+        elif kind == "dare":
             res.append(f'<placeName ref="dare:{xid}" cert="{cert}">{escape(text[st:en])}</placeName>')
         else:
             tag = "persName" if kind == "p" else "placeName"
@@ -405,6 +435,22 @@ def write_ner(entities, ner_only, path):
     L.append('</listPlace></standOff></TEI>')
     open(path, "w", encoding="utf-8").write("\n".join(L))
 
+def write_bibl(path):
+    """Bibliographie-Register <listBibl> — Ziel der <ref target="#bib_…"> im Fließtext."""
+    L = ['<?xml version="1.0" encoding="UTF-8"?>',
+         '<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="register-bibl"><teiHeader><fileDesc>',
+         '<titleStmt><title>Bibliographie — Limesblatt-Edition</title></titleStmt>',
+         '<publicationStmt><availability status="free"><licence target="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</licence></availability></publicationStmt>',
+         '<sourceDesc><p>Die im Limesblatt zitierte Apparatur, aufgelöst zu Vollbelegen und Open-Access-Digitalisaten (UB Heidelberg u. a.).</p></sourceDesc>',
+         '</fileDesc></teiHeader><standOff><listBibl>']
+    for bid, name, full, oa, oal, rx in BIBLIO:
+        L.append(f'<bibl xml:id="{bid}"><title>{escape(name)}</title><note>{escape(full)}</note>')
+        if oa:
+            L.append(f'<ref type="oa" target="{escape(oa)}">{escape(oal)}</ref>')
+        L.append('</bibl>')
+    L.append('</listBibl></standOff></TEI>')
+    open(path, "w", encoding="utf-8").write("\n".join(L))
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--vault", default=os.environ.get("VAULT_ROOT", os.path.join(REPO, "..", "limes")))
@@ -434,6 +480,7 @@ def main():
     global_terms = dict(sorted({**g["global_terms"], **dterms}.items(), key=lambda kv: -len(kv[0])))
     token_terms, entities, ner_only = g["token_terms"], g["entities"], g["ner_only"]
     write_ner(entities, ner_only, os.path.join(REPO, "registers", "ner.xml"))
+    write_bibl(os.path.join(REPO, "registers", "bibliography.xml"))
     print(f"Register: {len(persons)} Personen, {len(places)} Orte, {len(strecken)} Strecken")
     print(f"Gazetteer: {len(global_terms)} korpusweite Begriffe (+{len(dterms)} DARE), "
           f"{sum(len(v) for v in token_terms.values())} seiten-verankerte NER-Begriffe, "

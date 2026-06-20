@@ -44,6 +44,9 @@ def _entsub(inner):
         return f'<a class="ent {cls} c-{_cert_of(attrs)}" href="{href}" title="{cls}">{txt}</a>'
     body = re.sub(r'<placeName ref="dare:([^"]+)"([^>]*)>(.*?)</placeName>', dare, inner, flags=re.S)
     body = re.sub(r'<(persName|placeName) ref="#([^"]+)"([^>]*)>(.*?)</\1>', ent, body, flags=re.S)
+    body = re.sub(r'<ref type="bibl" target="#([^"]+)">(.*?)</ref>',          # Literaturverweis
+                  lambda m: f'<a class="ent bibl" href="../register/bibliographie.html#{m.group(1)}" title="Literatur">{m.group(2)}</a>',
+                  body, flags=re.S)
     return body.replace("<lb/>", "<br>")               # Zeilenumbrüche (Inschriften/Korrekturen)
 
 def render_page(inner):
@@ -86,7 +89,8 @@ def load_volume(path):
                       "type": typ, "head": pending_head, "html": render_page(inner),
                       "text": unesc(strip_tags(re.sub(r'<cb\b[^>]*/>|<lb/>', ' ', inner))).strip(),
                       "ents": re.findall(r'ref="#([^"]+)"', inner),
-                      "dents": re.findall(r'ref="dare:([^"]+)"', inner)})
+                      "dents": re.findall(r'ref="dare:([^"]+)"', inner),
+                      "cites": re.findall(r'target="#(bib_[^"]+)"', inner)})
         pending_head = ""
     return {"nr": nr, "slug": slug, "label": LABELS.get(nr, f"Bd. {nr}"), "pages": pages}
 
@@ -768,47 +772,44 @@ def fundindex_page(volumes):
             f'<p class="meta">Großbuchstaben-Folgen aus dem Volltext — Töpfer-/Ziegelstempel-Legenden und Inschriftentext gemischt (heuristisch).</p>{legend_t}')
     return body
 
-BIBLIO = [
-    ("Westdeutsche Zeitschrift für Geschichte und Kunst", "Westdeutsche Zeitschrift für Geschichte und Kunst (Trier 1882–1907), hrsg. F. Hettner u. K. Lamprecht.",
-     "https://digi.ub.uni-heidelberg.de/diglit/wzgk_kbl", "UB Heidelberg (OA)", r"Westd\w*\.?\s*(?:Zeitschr|Ztschr|Z\.)"),
-    ("Korrespondenzblatt der Westdeutschen Zeitschrift", "Korrespondenzblatt der Westdeutschen Zeitschrift für Geschichte und Kunst (Trier 1882–1907).",
-     "https://digi.ub.uni-heidelberg.de/diglit/wzgk_kbl", "UB Heidelberg (OA)", r"Korr\w*\.?\s*-?\s*[Bb]l"),
-    ("Bonner Jahrbücher", "Bonner Jahrbücher (Jahrbücher des Vereins von Altertumsfreunden im Rheinlande), Bonn, seit 1842.",
-     "https://journals.ub.uni-heidelberg.de/index.php/bjb", "UB Heidelberg Journals (OA)", r"Bonn\w*\.?\s*Jahrb"),
-    ("A. von Cohausen, Der römische Grenzwall in Deutschland (1884)", "August von Cohausen, Der römische Grenzwall in Deutschland. Militärische und technische Beschreibung. Wiesbaden: Kreidel, 1884.",
-     "https://digi.ub.uni-heidelberg.de/diglit/cohausen1884ga", "UB Heidelberg (OA)", r"Cohausen"),
-    ("W. Brambach, Corpus Inscriptionum Rhenanarum (1867)", "Wilhelm Brambach, Corpus Inscriptionum Rhenanarum. Elberfeld 1867.",
-     "https://archive.org/details/bub_gb_pbJfXWjFgP4C", "Internet Archive (OA)", r"\bBrambach\b|\bBramb\."),
-    ("H. Dragendorff, Terra sigillata (BJb 96/97, 1895)", "Hans Dragendorff, Terra sigillata. Ein Beitrag zur Geschichte der griechischen und römischen Keramik. Bonner Jahrbücher 96/97 (1895) 18–155.",
-     "https://archive.org/details/terrasigillatae00draggoog", "Internet Archive (OA)", r"\bDrag(?:endorff)?\.?\s*\d"),
-    ("Corpus Inscriptionum Latinarum (CIL)", "Corpus Inscriptionum Latinarum. Berlin, seit 1863 (bes. Bd. XIII, Germania).",
-     "https://cil.bbaw.de/", "CIL / BBAW (OA)", r"C\.?\s?I\.?\s?L\.?\s+[IVXLC]"),
-    ("Steiner, Römische Inschriften", "P. Steiner u. a., zu rheinischen/germanischen Inschriften.",
-     "", "", r"\bSteiner\b"),
-    ("Becker", "J. Becker, Beiträge zur Limes- und Inschriftenforschung.", "", "", r"\bBecker\b"),
-    ("O. Tischler, Fibel-Typologie", "Otto Tischler, zur Typologie der Fibeln (La-Tène/provinzialrömisch).", "", "", r"\bTischler\b"),
-    ("A. Riese", "Alexander Riese, Das rheinische Germanien in der antiken Literatur / Inschriften.", "", "", r"\bRiese\b"),
-]
+BIB_PERSON = {"bib_cohausen": ("p_karl_august_von_cohausen", "Karl August von Cohausen")}  # Autor-Werk → Vault-Person
 
-def bibliography_page(volumes):
-    occ = scan_occ(volumes, [(name, re.compile(rx, re.I)) for name, _, _, _, rx in BIBLIO])
+def load_bibl(path):
+    if not os.path.exists(path): return []
+    t = open(path, encoding="utf-8").read(); out = []
+    for m in re.finditer(r'<bibl xml:id="([^"]+)">(.*?)</bibl>', t, re.S):
+        bid, blk = m.group(1), m.group(2)
+        ti = re.search(r'<title>([^<]+)</title>', blk); no = re.search(r'<note>([^<]+)</note>', blk)
+        oa = re.search(r'<ref type="oa" target="([^"]+)">([^<]+)</ref>', blk)
+        out.append({"id": bid, "title": unesc(ti.group(1)) if ti else bid,
+                    "note": unesc(no.group(1)) if no else "",
+                    "oa": oa.group(1) if oa else "", "oalabel": unesc(oa.group(2)) if oa else ""})
+    return out
+
+def bibliography_page(bibls, occ):
     rows = []
-    for name, full, oa, oalabel, _ in BIBLIO:
-        items = occ.get(name, [])
-        if not items: continue
-        link = f' · <a href="{oa}">{html.escape(oalabel)}</a>' if oa else ""
-        rows.append(f'<tr><td><b>{html.escape(name)}</b>{link}<div class="meta">{html.escape(full)}</div></td>'
-                    f'<td>{len(items)}</td><td class="beleg">{_belege(items, cap=40)}</td></tr>')
-    n_oa = sum(1 for n, f, oa, l, rx in BIBLIO if oa and occ.get(n))
-    body = (f'<h1>Bibliographie &amp; Quellen</h1>'
-            f'<p class="meta">Die im Limesblatt zitierte Verweis-Apparatur, token-frei extrahiert und zu vollen '
-            f'Referenzen aufgelöst — mit <b>{n_oa} Open-Access-Digitalisaten</b> (vor allem UB Heidelberg) und '
-            f'seiten-/spaltengenauen Fundstellen. Die Apparatur ist <b>journal-zentriert</b>: dominant die '
-            f'Westdeutsche Zeitschrift und ihr Korrespondenzblatt (Hettners Trierer „Hauszeitschrift", '
-            f'selber Verlag wie das Limesblatt), dazu Cohausens <i>Grenzwall</i> und das Dragendorff-Sigillataraster.</p>'
-            f'<table class="reg fund"><tr><th>Werk / Reihe (Volltext / Digitalisat)</th><th>Verweise</th><th>Belege (Seite · Spalte)</th></tr>'
+    for b in bibls:
+        items = occ.get(b["id"], [])
+        link = f' · <a href="{b["oa"]}">{html.escape(b["oalabel"])}</a>' if b["oa"] else ""
+        if items:                                          # im TEI als <ref> ausgezeichnet
+            cnt, bel = str(len(items)), _belege(items, cap=40)
+        elif b["id"] in BIB_PERSON:                        # Autor-Werk → Belege via Personenregister
+            pid, pnm = BIB_PERSON[b["id"]]; pit = occ.get(pid, [])
+            cnt = str(len(pit))
+            bel = (_belege(pit, cap=40) + f' <span class="meta">(als Autor <a href="persons.html#{pid}">{html.escape(pnm)}</a>)</span>') if pit else '<span class="meta">—</span>'
+        else:
+            cnt, bel = '·', '<span class="meta">im Text als Autor → Personenregister</span>'
+        rows.append(f'<tr id="{b["id"]}"><td><b>{html.escape(b["title"])}</b>{link}<div class="meta">{html.escape(b["note"])}</div></td>'
+                    f'<td>{cnt}</td><td class="beleg">{bel}</td></tr>')
+    n_oa = sum(1 for b in bibls if b["oa"])
+    return (f'<h1>Bibliographie &amp; Quellen</h1>'
+            f'<p class="meta">Die im Limesblatt zitierte Apparatur — <b>im TEI-Fließtext als <code>&lt;ref&gt;</code> '
+            f'ausgezeichnet</b> (Journale, Inschriftencorpora, Dragendorff-Formen) bzw. über das Personenregister '
+            f'(Autor-Werke) — aufgelöst zu vollen Referenzen mit <b>{n_oa} Open-Access-Digitalisaten</b> '
+            f'(v. a. UB Heidelberg) und seiten-/spaltengenauen Belegen. Journal-zentriert: dominant die Westdeutsche '
+            f'Zeitschrift und ihr Korrespondenzblatt (Hettners Trierer „Hauszeitschrift", selber Verlag wie das Limesblatt).</p>'
+            f'<table class="reg fund"><tr><th>Werk / Reihe (Digitalisat)</th><th>Verweise</th><th>Belege (Seite · Spalte)</th></tr>'
             f'{"".join(rows)}</table>')
-    return body
 
 # ---------- Truppen-/Töpferstempel & EDH-Inschriften ----------
 _ROM = {"i": 1, "v": 5, "x": 10, "l": 50, "c": 100, "d": 500, "m": 1000}
@@ -925,6 +926,10 @@ def main():
                 key = (did, v["nr"], p["anchor"])
                 if key not in dseen:
                     dseen.add(key); dare_hits[did].append((v["nr"], p["anchor"], p["printed"]))
+            for cid in p.get("cites", []):                # Literaturverweise (TEI <ref target>)
+                key = (cid, v["nr"], p["anchor"])
+                if key not in seen:
+                    seen.add(key); occ[cid].append((v["nr"], p["anchor"], p["printed"]))
 
     _np = os.path.join(REPO, "data", "ner_places.json")
     PLA = {e["name"].split("(")[0].strip().lower() for e in (json.load(open(_np, encoding="utf-8")) if os.path.exists(_np) else []) if len(e["name"]) > 3}
@@ -976,7 +981,8 @@ def main():
     print(f"Volltext-Index (LLM-NER): {len(ner_p)} Namen ({pm} reconciled), {len(ner_pl)} Orte ({om} verortet → ner-sites.geojson)")
     open(os.path.join(DOCS,"register","wortschatz.html"),"w",encoding="utf-8").write(page("Wortschatz & Konkordanz", wortschatz_page(volumes, attention), 1))
     open(os.path.join(DOCS,"register","fundindex.html"),"w",encoding="utf-8").write(page("Fundindex", fundindex_page(volumes), 1))
-    open(os.path.join(DOCS,"register","bibliographie.html"),"w",encoding="utf-8").write(page("Bibliographie", bibliography_page(volumes), 1))
+    bibls = load_bibl(os.path.join(REPO, "registers", "bibliography.xml"))
+    open(os.path.join(DOCS,"register","bibliographie.html"),"w",encoding="utf-8").write(page("Bibliographie", bibliography_page(bibls, occ), 1))
     _edhp = os.path.join(REPO, "..", "limes", "tools", "edh_limes.json")
     edh = json.load(open(_edhp, encoding="utf-8")) if os.path.exists(_edhp) else {"kastelle": [], "total": 0}
     open(os.path.join(DOCS,"register","inschriften.html"),"w",encoding="utf-8").write(page("Inschriften (EDH)", inscriptions_page(edh), 1))

@@ -24,6 +24,8 @@ jobs:
               zones = set(re.findall(r'<zone xml:id="(z_[^"]+)"', t))   # Spalten-Zonen
               for r in re.findall(r'ref="#([^"]+)"', t):
                   if r not in ids: print(f"DANGLING ref #{r} in {f}"); bad += 1
+              for r in re.findall(r'target="#([^"]+)"', t):           # <ref target="#bib_…"> → listBibl
+                  if r not in ids: print(f"DANGLING target #{r} in {f}"); bad += 1
               for fa in re.findall(r'facs="#(f_[^"]+)"', t):
                   if fa not in surf: print(f"DANGLING facs #{fa} in {f}"); bad += 1
               for za in re.findall(r'facs="#(z_[^"]+)"', t):           # <cb facs="#z_…"> → <zone>
