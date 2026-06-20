@@ -72,8 +72,8 @@ Korpuswort); die **schlechtesten Seiten werden am IIIF-Faksimile neu transkribie
 Spalte das Digitalisat — wie bei den TOC-Köpfen) und liegen versioniert unter
 `../limes/tools/corrections/<slug>/<tok>[.<col>].txt`. Beim Ableiten spielt `limesblatt_ocr.apply_corrections`
 sie ein und behandelt sie **wie die Geometrie-Seiten** (`_corr_paras`: Absätze, Druckzeilen `<lb/>`,
-Silbentrennung aufgelöst). Die 14 garble-schlimmsten Seiten (verstümmelte Latein-Inschriften + Prosa)
-sind so re-OCR't → garble-Arbeitsliste **0**. *Token-freie freq-basierte Autokorrektur* wurde verworfen
+Silbentrennung aufgelöst). Rund **45 garble-Seiten** in zwei Faksimile-Wellen
+(verstümmelte Latein-Inschriften + Prosa, je Spalte) sind so re-OCR't → garble-Arbeitsliste **0**. *Token-freie freq-basierte Autokorrektur* wurde verworfen
 (sie verschlimmbessert legitim seltene Wörter).
 
 ### Inhaltsverzeichnis (nummerierte Feldberichte)
@@ -170,16 +170,12 @@ Personenregister; die Bibliographie-Seite zieht ihre Belege dafür aus dem Perso
   `ref="#…"` löst auf eine Register-`xml:id`, jede `target="#…"` auf Register **oder** internen
   `<pb>`-Anker, jede `facs="#f_…"`/`#z_…` auf `<surface>`/`<zone>`; alle `xml:id` eindeutig.
 - **Vollständigkeits-Audit** (`build/audit.py`): zählt referenz-artige Spans, die noch **nicht** in
-  `<ref>/<persName>/<placeName>` stehen. Die Konvergenz-Schleife („linken, neu bauen, auditen")
-  brachte den Bestand von **168 → 6**.
+  `<ref>/<persName>/<placeName>` stehen. Die Konvergenz-Schleife brachte den Bestand von **168 → 6 → 0**:
+  das vollständige Inhaltsverzeichnis (`toc.json`) löste die 5 verbliebenen Bericht-Querverweise auf, die
+  **Faksimile-Re-OCR** der Inschriften-Seiten den letzten Brambach-Garble (`6Ü4`). **Aktuell 0 ungelinkte
+  Referenz-Indikatoren.**
 
-### Bekannte Grenzen (irreduzibler Rest = 6)
-Rein OCR-bedingt, nicht durch fehlende Auszeichnung:
-- **5** Bericht-Querverweise auf Berichte, deren Überschrift die OCR nicht eindeutig hergibt
-  (mehrdeutige „N."-Datumszeilen bzw. zu stark gegarbelte Köpfe → keine sichere Seiten-Zuordnung);
-- **1** Brambach-Nummer als OCR-Garble (`6Ü4`).
-
-Entitäts-Abdeckung: **5107 Inline-Tags / 1174 Entitäten** (vorher 3791 / 1062). Der große Sprung kommt
+Entitäts-Abdeckung: **5126 Inline-Tags / 1167 Entitäten** (vorher 3791 / 1062). Der große Sprung kommt
 aus der **korpusweiten Promotion eindeutiger, distinktiver NER-Namen** (`gazetteer.build`, Recall-Stufe):
 ein einzelnes, langes Großwort, das auf **genau eine** Entität zeigt (Abusina, Heidenheim,
 Grosskrotzenburg, „Mommsen"), wird korpusweit gematcht statt nur auf seinen NER-Beleg-Seiten;
