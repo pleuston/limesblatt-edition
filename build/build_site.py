@@ -138,7 +138,7 @@ def page(title, body, depth=0, head=""):
 <title>{html.escape(title)} — Limesblatt-Edition</title>
 <link rel="stylesheet" href="{up}assets/style.css">{head}</head><body>
 <header><a class="home" href="{up}index.html">📕 Limesblatt-Edition</a>
-<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/fundindex.html">Funde</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}register/bibliographie.html">Bibliographie</a> · <a href="{up}register/wortschatz.html">Analyse</a> · <a href="{up}index.html#suche">Suche</a></nav></header>
+<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/fundindex.html">Funde</a> · <a href="{up}register/inschriften.html">Inschriften</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}register/bibliographie.html">Bibliographie</a> · <a href="{up}register/wortschatz.html">Analyse</a> · <a href="{up}index.html#suche">Suche</a></nav></header>
 <div class="wip">🚧 Diese digitale Edition befindet sich im <b>Aufbau</b> — Inhalte, Auszeichnung und Analysen sind unvollständig und können sich noch ändern.</div>
 <main>{body}</main>
 <footer>Diplomatische OCR-Edition des <em>Limesblatt</em> (1892–1903) · Text &amp; Register
@@ -389,7 +389,8 @@ IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen
 <h2>Register</h2><ul><li><a href="register/persons.html">Personenregister</a> — mit Porträts, Normdaten, Korrespondenz, ausgegrabenen Kastellen</li>
 <li><a href="register/places.html">Ortsregister</a> — mit Karte, Kastelltyp, Ausgräber, Inschriften</li>
 <li><a href="register/strecken.html">Strecken</a> — die 15 Limes-Abschnitte mit Kastellen &amp; Kommissaren</li>
-<li><a href="register/fundindex.html">Fundindex</a> — Fundgattungen, Münzkaiser &amp; Sigillata-Formen mit Seiten-/Spalten-Belegen</li>
+<li><a href="register/fundindex.html">Fundindex</a> — Fundgattungen, Münzkaiser, Sigillata-Formen &amp; Truppenstempel mit Seiten-/Spalten-Belegen</li>
+<li><a href="register/inschriften.html">Inschriften (EDH)</a> — 759 katalogisierte Inschriften der Limes-Fundorte aus der Epigraphic Database Heidelberg</li>
 <li><a href="register/bibliographie.html">Bibliographie &amp; Quellen</a> — die zitierten Werke, aufgelöst zu vollen Referenzen + Open-Access-Digitalisaten (UB Heidelberg u. a.)</li>
 <li><a href="register/namen.html">Namen im Limesblatt</a> — vollständiges Namenregister aus dem Volltext (NER); jeder Name ist im Lesetext angeklickt verlinkt</li>
 <li><a href="register/orte-index.html">Orte im Limesblatt</a> — vollständiges Ortsregister aus dem Volltext (NER), im Lesetext verlinkt</li>
@@ -742,18 +743,29 @@ def fundindex_page(volumes):
     emp = scan_occ(volumes, [(k, re.compile(rx, re.I)) for k, rx in FUND_EMP])
     drag = scan_occ(volumes, [(f"Drag. {n}", re.compile(rf"\bdrag(?:endorff)?\.?\s*{n}\b", re.I)) for n in
                               ["27", "29", "31", "32", "33", "35", "36", "37", "38", "45", "47", "49"]])
+    leg, coh, legend = stamp_occ(volumes)
+    order = lambda d: sorted(((k, k) for k in d), key=lambda x: -len(d[x[0]]))
     cat_t = thematic_table(occ, [(k, k) for k, _ in FUND_CATS], "Fundgattung")
     emp_t = thematic_table(emp, [(k, k) for k, _ in FUND_EMP], "Münzkaiser")
     drag_t = thematic_table(drag, [(f"Drag. {n}", f"Drag. {n}") for n in
              ["27", "29", "31", "32", "33", "35", "36", "37", "38", "45", "47", "49"]], "Sigillata-Form")
-    body = (f'<h1>Fundindex</h1><p class="meta">Token-frei aus dem Volltext: Fundgattungen, Münzkaiser und '
-            f'Terra-Sigillata-Formen (Dragendorff) mit <b>seiten- und spaltengenauen Belegen</b> ins Faksimile. '
-            f'Heuristischer Wortabgleich auf Fraktur-OCR — Nennung ≠ stets Fund an dieser Stelle.</p>'
+    leg_t = thematic_table(leg, order(leg), "Legionsstempel")
+    coh_t = thematic_table(coh, order(coh), "Cohortenstempel")
+    legend_top = sorted(legend, key=lambda w: -len(legend[w]))[:25]
+    legend_t = thematic_table(legend, [(w, w) for w in legend_top], "Versal-Legende")
+    body = (f'<h1>Fundindex</h1><p class="meta">Token-frei aus dem Volltext: Fundgattungen, Münzkaiser, '
+            f'Sigillata-Formen und Truppenstempel mit <b>seiten- und spaltengenauen Belegen</b> ins Faksimile. '
+            f'Heuristischer Wortabgleich auf Fraktur-OCR — Nennung ≠ stets Fund an dieser Stelle. '
+            f'Die katalogisierte Epigraphik steht unter <a href="inschriften.html">Inschriften (EDH)</a>.</p>'
             f'<h2>Fundgattungen</h2>{cat_t}'
             f'<h2 id="muenzkaiser">Münzkaiser (Datierungsevidenz)</h2>'
             f'<p class="meta">Bildet die Limes-Belegung ab: flavisch-trajanische Errichtung, severischer Peak, Auslaufen vor 260.</p>{emp_t}'
             f'<h2 id="sigillata">Terra-Sigillata-Formen</h2>'
-            f'<p class="meta">Die Dragendorff-Formtypen als laufendes Datierungsraster — vgl. <a href="bibliographie.html">Dragendorff 1895</a>.</p>{drag_t}')
+            f'<p class="meta">Die Dragendorff-Formtypen als laufendes Datierungsraster — vgl. <a href="bibliographie.html">Dragendorff 1895</a>.</p>{drag_t}'
+            f'<h2 id="stempel">Truppenstempel</h2>'
+            f'<p class="meta">Legio-/Cohors-Nennungen (Ziegelstempel &amp; Text) — erwartungsgemäß dominiert <b>Legio XXII Primigenia</b> (Mainz).</p>{leg_t}{coh_t}'
+            f'<h2 id="legenden">Häufigste Versal-Legenden</h2>'
+            f'<p class="meta">Großbuchstaben-Folgen aus dem Volltext — Töpfer-/Ziegelstempel-Legenden und Inschriftentext gemischt (heuristisch).</p>{legend_t}')
     return body
 
 BIBLIO = [
@@ -797,6 +809,66 @@ def bibliography_page(volumes):
             f'<table class="reg fund"><tr><th>Werk / Reihe (Volltext / Digitalisat)</th><th>Verweise</th><th>Belege (Seite · Spalte)</th></tr>'
             f'{"".join(rows)}</table>')
     return body
+
+# ---------- Truppen-/Töpferstempel & EDH-Inschriften ----------
+_ROM = {"i": 1, "v": 5, "x": 10, "l": 50, "c": 100, "d": 500, "m": 1000}
+def _r2i(s):
+    s = s.lower()
+    if not s or any(c not in _ROM for c in s): return None
+    t = pv = 0
+    for c in reversed(s):
+        v = _ROM[c]; t += -v if v < pv else v; pv = max(pv, v)
+    return t if 1 <= t <= 30 else None
+def _i2r(n):
+    o = ""
+    for v, sy in [(10, "X"), (9, "IX"), (5, "V"), (4, "IV"), (1, "I")]:
+        while n >= v: o += sy; n -= v
+    return o
+
+def stamp_occ(volumes):
+    """Truppenstempel (Legio/Cohors + röm. Zahl) → Einheit; + häufigste Versal-Legenden."""
+    leg, coh, legend = defaultdict(list), defaultdict(list), defaultdict(list)
+    legrx = re.compile(r"\bleg(?:io|\.|\b)\.?\s*([ivxlc]{1,6})\b", re.I)
+    cohrx = re.compile(r"\bcoh(?:ors|orte|\.|\b)\.?\s*([ivxlc]{1,6})\b", re.I)
+    caprx = re.compile(r"\b([A-ZÄÖÜ]{4,10})\b")
+    seen = set()
+    for v in volumes:
+        for p in v["pages"]:
+            low = (p.get("text") or "").lower()
+            for rx, dst, pre in ((legrx, leg, "Legio"), (cohrx, coh, "Cohors")):
+                for m in rx.finditer(low):
+                    n = _r2i(m.group(1))
+                    if not n: continue
+                    key = f"{pre} {_i2r(n)}"; k = (key, v["nr"], p["anchor"])
+                    if k not in seen: seen.add(k); dst[key].append((v["nr"], p["anchor"], p["printed"]))
+            for m in caprx.finditer(p.get("text") or ""):     # Versal-Legenden (Stempel/Inschrift)
+                w = m.group(1)
+                if _r2i(w) or not re.search(r"[AEIOUÄÖÜ]", w): continue
+                k = (w, v["nr"], p["anchor"])
+                if k not in seen: seen.add(k); legend[w].append((v["nr"], p["anchor"], p["printed"]))
+    return leg, coh, legend
+
+def inscriptions_page(edh):
+    secs = []
+    for k in edh.get("kastelle", []):
+        pid = "pl_" + gazetteer.slug(k["note"])
+        gat = " · ".join(f"{a}: {n}" for a, n in k.get("gattungen", {}).items())
+        span = f'{k["von"]}–{k["bis"]} n. Chr.' if k.get("von") else "—"
+        rows = "".join(
+            f'<li><a href="https://edh.ub.uni-heidelberg.de/edh/inschrift/{html.escape(i["hd"])}">{html.escape(i["hd"])}</a> '
+            f'<span class="meta">{html.escape(i["art"])}{(" · " + html.escape(i["datierung"])) if i.get("datierung") else ""}</span> — '
+            f'{html.escape(i["titel"])}</li>' for i in k["inschriften"][:60])
+        more = f'<li class="lc">… +{k["n"] - 60} weitere bei EDH</li>' if k["n"] > 60 else ""
+        secs.append(f'<details><summary><a href="places.html#{pid}">{html.escape(k["label"])}</a> '
+                    f'<span class="meta">— {k["n"]} Inschriften · {span} · {html.escape(gat)}</span></summary>'
+                    f'<ul class="nerlist">{rows}{more}</ul></details>')
+    return (f'<h1>Inschriften (EDH)</h1>'
+            f'<p class="meta">{edh.get("total", 0)} Inschriften der '
+            f'<a href="https://edh.ub.uni-heidelberg.de/">Epigraphic Database Heidelberg</a> von den Limes-Fundorten — '
+            f'aus den EpiDoc-GitHub-Dumps (CC BY-SA), nach Kastell gruppiert, mit Gattung, Datierung und Direktlink ins EDH. '
+            f'Ergänzt den <a href="fundindex.html">Fundindex</a> um die katalogisierte Epigraphik; '
+            f'verknüpft mit dem <a href="places.html">Ortsregister</a>.</p>'
+            + "".join(secs))
 
 def main():
     os.makedirs(os.path.join(DOCS,"volumes"), exist_ok=True)
@@ -905,6 +977,10 @@ def main():
     open(os.path.join(DOCS,"register","wortschatz.html"),"w",encoding="utf-8").write(page("Wortschatz & Konkordanz", wortschatz_page(volumes, attention), 1))
     open(os.path.join(DOCS,"register","fundindex.html"),"w",encoding="utf-8").write(page("Fundindex", fundindex_page(volumes), 1))
     open(os.path.join(DOCS,"register","bibliographie.html"),"w",encoding="utf-8").write(page("Bibliographie", bibliography_page(volumes), 1))
+    _edhp = os.path.join(REPO, "..", "limes", "tools", "edh_limes.json")
+    edh = json.load(open(_edhp, encoding="utf-8")) if os.path.exists(_edhp) else {"kastelle": [], "total": 0}
+    open(os.path.join(DOCS,"register","inschriften.html"),"w",encoding="utf-8").write(page("Inschriften (EDH)", inscriptions_page(edh), 1))
+    print(f"EDH-Inschriften: {edh.get('total',0)} von {len(edh.get('kastelle',[]))} Fundorten → register/inschriften.html")
     ib, ih = index_page(volumes, toc)
     open(os.path.join(DOCS,"index.html"),"w",encoding="utf-8").write(page("Startseite", ib, 0, ih))
     print(f"docs/: index + {len(volumes)} Bände + 3 Register (Personen {len(persons)}, Orte {len(places)}, "
