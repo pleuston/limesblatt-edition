@@ -14,7 +14,7 @@ Diplomatische, unkorrigierte Wiedergabe der Fraktur-OCR; Inline-Eigennamen trage
     python3 build/build_tei.py [--vault /pfad/zum/limes]
 """
 import argparse, glob, json, os, re, sys, unicodedata
-from collections import defaultdict
+from collections import defaultdict, Counter
 from xml.sax.saxutils import escape, quoteattr
 import gazetteer
 
@@ -510,7 +510,33 @@ def main():
     rec_p, rec_pl = loadj("recon_persons.json", {}), loadj("recon_places.json", {})
     g = gazetteer.build(persons, places, ner_p, ner_pl, rec_p, rec_pl, STOP, GENERIC)
     dterms = dare_terms(dareprops, set(g["global_terms"]), corpus_low)
-    global_terms = dict(sorted({**g["global_terms"], **dterms}.items(), key=lambda kv: -len(kv[0])))
+    global_terms = dict({**g["global_terms"], **dterms})
+    # Bounded Fuzzy: OCR-Garble-Varianten (Editierdistanz 1) bekannter Begriffe (≥7 Zeichen),
+    # nur seltene (1–2×), eindeutige, großgeschriebene Korpus-Tokens → zusätzliche Low-Cert-Treffer.
+    ctok = Counter(re.findall(r"[A-Za-zÄÖÜäöüß]{4,}",
+                   " ".join(open(f, encoding="utf-8").read()
+                            for f in glob.glob(os.path.join(vault, "tools", ".cache", "limesblatt*", "*.txt")))))
+    low2forms = defaultdict(list)
+    for w, n in ctok.items(): low2forms[w.lower()].append((w, n))
+    known_low = {t.lower() for t in global_terms}
+    AL = "abcdefghijklmnopqrstuvwxyzäöüß"
+    def _edits1(w):
+        sp = [(w[:i], w[i:]) for i in range(len(w) + 1)]
+        return (set(a + b[1:] for a, b in sp if b) | set(a + b[1] + b[0] + b[2:] for a, b in sp if len(b) > 1)
+                | set(a + c + b[1:] for a, b in sp if b for c in AL) | set(a + c + b for a, b in sp for c in AL))
+    var2ent = {}
+    for term, (kind, eid, cert) in list(global_terms.items()):
+        if len(term) < 7 or kind == "dare": continue
+        for v in _edits1(term.lower()):
+            var2ent.setdefault(v, set()).add((kind, eid))
+    fuzz = 0
+    for v, ents in var2ent.items():
+        if len(ents) != 1 or v in known_low: continue
+        forms = [(w, n) for w, n in low2forms.get(v, []) if 1 <= n <= 2 and w[:1].isupper() and w not in global_terms]
+        if len(forms) == 1:
+            kind, eid = next(iter(ents)); global_terms[forms[0][0]] = (kind, eid, "low"); fuzz += 1
+    global_terms = dict(sorted(global_terms.items(), key=lambda kv: -len(kv[0])))
+    print(f"Fuzzy-Garble-Varianten (Editierdistanz 1, Low-Cert): {fuzz}")
     token_terms, entities, ner_only = g["token_terms"], g["entities"], g["ner_only"]
     write_ner(entities, ner_only, os.path.join(REPO, "registers", "ner.xml"))
     write_bibl(os.path.join(REPO, "registers", "bibliography.xml"))
@@ -532,12 +558,32 @@ def main():
                 pn = str(c.get("printed_no", ""))
                 if pn.isdigit() and c.get("printed_src") in ("head", "inferred"):
                     selfmap.setdefault(int(pn), f"pb_{tk}_{c['label']}")
-    # Bericht-Nr. → Startseiten-<pb> (aus dem token-freien TOC-Report) für „Forts. zu Nr. NN"
+    # Bericht-Nr. → Startseiten-<pb> für „Forts. zu Nr. NN": erst der strenge TOC-Report
+    # (hohe Präzision), dann ergänzend ein direkter Spaltenanfang-Scan (höhere Vollständigkeit).
     reportmap = {}
     tocf = os.path.join(vault, "tools", ".cache", "toc_report.md")
     if os.path.exists(tocf):
         for m in re.finditer(r'- S\. (\S+): \*\*(\d+)\.\*\*', open(tocf, encoding="utf-8").read()):
             reportmap.setdefault(m.group(2), f"pb_{m.group(1)}_a")
+    head_rx = re.compile(r'^\s*(\d{1,3})[._]\s+[A-ZÄÖÜ]')                 # „24. Walldürn …" am Spaltenanfang
+    loose_rx = re.compile(r'(?<![\d.,])(\d{1,3})[._]\s+[A-ZÄÖÜ][a-zäöü]')  # „N. Großwort" irgendwo
+    loose = defaultdict(set)
+    for slug_, label, nr in WORKS:
+        cdir = os.path.join(vault, "tools", ".cache", slug_)
+        for jf in sorted(glob.glob(os.path.join(cdir, "*.alto.json"))):
+            try: cj = json.load(open(jf, encoding="utf-8"))
+            except Exception: continue
+            tk = os.path.basename(jf)[:-len(".alto.json")]
+            for c in cj.get("columns", []):
+                txt = c.get("text") or ""
+                m = head_rx.match(txt[:40])
+                if m:
+                    reportmap.setdefault(m.group(1), f"pb_{tk}_{c['label']}")
+                for mm in loose_rx.finditer(txt):
+                    loose[mm.group(1)].add(f"pb_{tk}_{c['label']}")
+    for num, pgs in loose.items():                          # nur EINDEUTIGE lose Überschriften ergänzen
+        if num not in reportmap and len(pgs) == 1:
+            reportmap[num] = next(iter(pgs))
     occ = defaultdict(list)
     tot = 0
     for slug_, label, nr in WORKS:

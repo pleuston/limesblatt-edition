@@ -122,7 +122,8 @@ def build(persons, places, ner_persons, ner_places, recon_p, recon_pl, STOP, GEN
     ner_only = set()
 
     def scope(eid, kind, term, cert, pages):
-        if not term or len(term) < (5 if kind == "p" else 3) or _norm(term) in GENERIC or term in STOP:
+        # seiten-verankert (NER-belegte Seite) → auch kurze Nachnamen (≥4) sicher genug
+        if not term or len(term) < (4 if kind == "p" else 3) or _norm(term) in GENERIC or term in STOP:
             return
         for nr, tok in _pages(pages):
             token_terms.setdefault((nr, tok), {}).setdefault(term, (kind, eid, cert))

@@ -20,8 +20,11 @@ Eine **statische digitale Edition** des *Limesblatt* (1892–1903) — der „Mi
 ## Wie sie entstanden ist (token-frei)
 Abgeleitet aus dem (privaten) Obsidian-Forschungs-Vault zur [Reichs-Limeskommission](https://github.com/pleuston/limes). Zwei Python-Skripte (nur Standardbibliothek, keine LLM-Tokens):
 
-- `build/build_tei.py` — liest das Vault-Frontmatter (Personen/Orte) + den lokalen Limesblatt-OCR-Cache und erzeugt `tei/*.xml` (Faksimile/IIIF + `<pb>` je Kachel + Inline-Tags) sowie die Register `registers/persons.xml`, `registers/places.xml`.
+- `build/build_tei.py` — liest das Vault-Frontmatter (Personen/Orte) + den lokalen Limesblatt-OCR-Cache und erzeugt `tei/*.xml` (Faksimile/IIIF, **`<pb>` je Druckseite + `<cb>` je Spalte**, Inline-Tags für Personen/Orte/Literatur-/interne Verweise) sowie die Register `registers/persons.xml`, `places.xml`, `strecken.xml`, `ner.xml`, `bibliography.xml` und den Belegindex `data/occurrences.json`.
 - `build/build_site.py` — rendert die TEI build-zeitlich zu `docs/` (HTML + OpenSeadragon-Faksimile + Leaflet-Ortskarte + MiniSearch-Index).
+- `build/audit.py` — Vollständigkeits-Audit der Auszeichnung (Konvergenz-Schleife).
+
+**▶ Das vollständige Auszeichnungs-Modell ist in [`MARKUP.md`](MARKUP.md) dokumentiert** (Spaltenmodell, Personen/Orte mit Konfidenz, Literatur-/Selbst-/Bericht-Verweise, `<citedRange>`, Register, Sicherung).
 
 ### Neu bauen
 ```bash
