@@ -176,6 +176,28 @@ def build(persons, places, ner_persons, ner_places, recon_p, recon_pl, STOP, GEN
         ner_only.add(eid)
         scope(eid, "pl", base, cert, e.get("pages", []))
 
+    # ---- Recall-Stufe: distinktive, EINDEUTIGE Eigennamen korpusweit matchen ----
+    # NER-Entitäten werden sonst nur auf ihren Beleg-Seiten getaggt; ein eindeutiges, langes
+    # Großwort (Abusina, Heidenheim, Grosskrotzenburg, „Mommsen") ist aber korpusweit sicher.
+    # Mehrdeutige Formen (→ mehrere Entitäten, z. B. „Alteburg") bleiben seiten-verankert.
+    SINGLE = re.compile(r"^[A-ZÄÖÜ][A-Za-zäöüß]+(?:-[A-ZÄÖÜ]?[A-Za-zäöüß]+)*$")
+    form2ids = {}
+    for eid, ent in entities.items():
+        kd = "p" if ent["kind"] == "person" else "pl"
+        forms = _pforms(ent["name"]) if kd == "p" else [ent["name"]]
+        for f in (x.strip() for x in forms):
+            if f:
+                form2ids.setdefault(_norm(f), [f, kd, set()])[2].add(eid)
+    for _, (disp, kd, ids) in form2ids.items():
+        if len(ids) != 1:
+            continue                                        # mehrdeutig → seiten-verankert lassen
+        if len(disp) < (6 if kd == "p" else 7) or not SINGLE.match(disp):
+            continue
+        if disp in STOP or _norm(disp) in GENERIC:
+            continue
+        eid = next(iter(ids))
+        global_terms.setdefault(disp, (kd, eid, entities[eid]["cert"]))
+
     global_terms = dict(sorted(global_terms.items(), key=lambda kv: -len(kv[0])))
     return {"global_terms": global_terms, "token_terms": token_terms,
             "entities": entities, "ner_only": ner_only}

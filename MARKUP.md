@@ -175,6 +175,12 @@ Rein OCR-bedingt, nicht durch fehlende Auszeichnung:
   (mehrdeutige „N."-Datumszeilen bzw. zu stark gegarbelte Köpfe → keine sichere Seiten-Zuordnung);
 - **1** Brambach-Nummer als OCR-Garble (`6Ü4`).
 
-Entitäts-Abdeckung: ~74 % der NER-Personen, ~68 % der NER-Orte sind im Lesetext getaggt; der Rest sind
-bewusst ausgelassene Gattungswörter (`Alteburg`), sehr kurze Namen oder Garble — höhere Recall-Stufen
-würden Präzision kosten.
+Entitäts-Abdeckung: **5107 Inline-Tags / 1174 Entitäten** (vorher 3791 / 1062). Der große Sprung kommt
+aus der **korpusweiten Promotion eindeutiger, distinktiver NER-Namen** (`gazetteer.build`, Recall-Stufe):
+ein einzelnes, langes Großwort, das auf **genau eine** Entität zeigt (Abusina, Heidenheim,
+Grosskrotzenburg, „Mommsen"), wird korpusweit gematcht statt nur auf seinen NER-Beleg-Seiten;
+**mehrdeutige** Formen (z. B. „Alteburg" → mehrere Kastelle) bleiben seiten-verankert. Präzision-Stichprobe
+über alle Bände: 1043 Orts-Oberflächen, **1 Fehltreffer** („Alexandri"). Der ungetaggte Rest sind bewusst
+ausgelassene Gattungswörter, sehr kurze Namen oder OCR-Garble. *Token-freie freq-basierte
+OCR-Autokorrektur wurde verworfen* (korrigiert legitim seltene Wörter falsch: „hören→höhen"); echte
+OCR-Fehler werden stattdessen seiten-weise per Faksimile-Re-OCR (`corrections/`) behoben.
