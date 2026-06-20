@@ -68,6 +68,17 @@ BIBLIO = [
     ("bib_haug", "F. Haug, Inschriften Südwestdeutschlands", "Ferdinand Haug, zu den römischen Inschriften Südwestdeutschlands.", "", "", r"\bHaug\b"),
 ]
 
+# IIIF-Manifeste der OA-Digitalisate → im Leser einbettbares Faksimile (work-/Beispielband-Ebene).
+BIB_IIIF = {
+    "bib_westd":       "https://digi.ub.uni-heidelberg.de/diglit/iiif/wzgk_kbl1894/manifest",   # Korresp.-Bl. 13.1894
+    "bib_korr":        "https://digi.ub.uni-heidelberg.de/diglit/iiif/wzgk_kbl1894/manifest",
+    "bib_bonn":        "https://iiif.archive.org/iiif/bonnerjahrbcher00rheigoog/manifest.json",
+    "bib_brambach":    "https://iiif.archive.org/iiif/bub_gb_pbJfXWjFgP4C/manifest.json",
+    "bib_dragendorff": "https://iiif.archive.org/iiif/terrasigillatae00draggoog/manifest.json",
+    "bib_cohausen":    "https://digi.ub.uni-heidelberg.de/diglit/iiif/cohausen1884bd1/manifest",
+    "bib_orl":         "https://iiif.archive.org/iiif/derobergermanis00fabrgoog/manifest.json",
+}
+
 # Inschriftennummern → <citedRange> (1 Capture-Gruppe = die Nummer/Sigle):
 CITE_RANGE = [
     ("bib_cil",      re.compile(r"\b(?:C\.?\s?I\.?\s?L\.?|Corp\.)\s+([IVXLC]+(?:[\s,.]+(?:[Pp]\.\s*)?\d+)*)", re.I)),
@@ -480,6 +491,8 @@ def write_bibl(path):
         L.append(f'<bibl xml:id="{bid}"><title>{escape(name)}</title><note>{escape(full)}</note>')
         if oa:
             L.append(f'<ref type="oa" target="{escape(oa)}">{escape(oal)}</ref>')
+        if bid in BIB_IIIF:
+            L.append(f'<ref type="iiif-manifest" target="{escape(BIB_IIIF[bid])}"/>')
         L.append('</bibl>')
     L.append('</listBibl></standOff></TEI>')
     open(path, "w", encoding="utf-8").write("\n".join(L))

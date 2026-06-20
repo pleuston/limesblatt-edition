@@ -6,30 +6,37 @@
 </fileDesc></teiHeader><standOff><listBibl>
 <bibl xml:id="bib_westd"><title>Westdeutsche Zeitschrift</title><note>Westdeutsche Zeitschrift für Geschichte und Kunst (Trier 1882–1907), hrsg. F. Hettner u. K. Lamprecht.</note>
 <ref type="oa" target="https://digi.ub.uni-heidelberg.de/diglit/wzgk_kbl">UB Heidelberg (OA)</ref>
+<ref type="iiif-manifest" target="https://digi.ub.uni-heidelberg.de/diglit/iiif/wzgk_kbl1894/manifest"/>
 </bibl>
 <bibl xml:id="bib_korr"><title>Korrespondenzblatt der Westd. Zeitschrift</title><note>Korrespondenzblatt der Westdeutschen Zeitschrift für Geschichte und Kunst (Trier 1882–1907).</note>
 <ref type="oa" target="https://digi.ub.uni-heidelberg.de/diglit/wzgk_kbl">UB Heidelberg (OA)</ref>
+<ref type="iiif-manifest" target="https://digi.ub.uni-heidelberg.de/diglit/iiif/wzgk_kbl1894/manifest"/>
 </bibl>
 <bibl xml:id="bib_bonn"><title>Bonner Jahrbücher</title><note>Bonner Jahrbücher (Jahrbücher des Vereins von Altertumsfreunden im Rheinlande), Bonn, seit 1842.</note>
 <ref type="oa" target="https://journals.ub.uni-heidelberg.de/index.php/bjb">UB Heidelberg Journals (OA)</ref>
+<ref type="iiif-manifest" target="https://iiif.archive.org/iiif/bonnerjahrbcher00rheigoog/manifest.json"/>
 </bibl>
 <bibl xml:id="bib_brambach"><title>W. Brambach, Corpus Inscriptionum Rhenanarum (1867)</title><note>Wilhelm Brambach, Corpus Inscriptionum Rhenanarum. Elberfeld 1867.</note>
 <ref type="oa" target="https://archive.org/details/bub_gb_pbJfXWjFgP4C">Internet Archive (OA)</ref>
+<ref type="iiif-manifest" target="https://iiif.archive.org/iiif/bub_gb_pbJfXWjFgP4C/manifest.json"/>
 </bibl>
 <bibl xml:id="bib_dragendorff"><title>H. Dragendorff, Terra sigillata (BJb 96/97, 1895)</title><note>Hans Dragendorff, Terra sigillata. Ein Beitrag zur Geschichte der griechischen und römischen Keramik. Bonner Jahrbücher 96/97 (1895) 18–155.</note>
 <ref type="oa" target="https://archive.org/details/terrasigillatae00draggoog">Internet Archive (OA)</ref>
+<ref type="iiif-manifest" target="https://iiif.archive.org/iiif/terrasigillatae00draggoog/manifest.json"/>
 </bibl>
 <bibl xml:id="bib_cil"><title>Corpus Inscriptionum Latinarum (CIL)</title><note>Corpus Inscriptionum Latinarum. Berlin, seit 1863 (bes. Bd. XIII, Germania).</note>
 <ref type="oa" target="https://cil.bbaw.de/">CIL / BBAW (OA)</ref>
 </bibl>
 <bibl xml:id="bib_orl"><title>ORL — Der obergermanisch-raetische Limes des Römerreiches</title><note>E. Fabricius, F. Hettner, O. v. Sarwey (Hrsg.), Der obergermanisch-raetische Limes des Römerreiches. 1894 ff.</note>
 <ref type="oa" target="https://archive.org/details/derobergermanis00fabrgoog">Internet Archive (OA)</ref>
+<ref type="iiif-manifest" target="https://iiif.archive.org/iiif/derobergermanis00fabrgoog/manifest.json"/>
 </bibl>
 <bibl xml:id="bib_ephepigr"><title>Ephemeris Epigraphica</title><note>Ephemeris Epigraphica. Corporis Inscriptionum Latinarum Supplementum. Rom/Berlin 1872 ff.</note>
 <ref type="oa" target="https://archive.org/details/ephemerisepigrap04inst">Internet Archive (OA)</ref>
 </bibl>
 <bibl xml:id="bib_cohausen"><title>A. von Cohausen, Der römische Grenzwall in Deutschland (1884)</title><note>August von Cohausen, Der römische Grenzwall in Deutschland. Wiesbaden: Kreidel, 1884.</note>
 <ref type="oa" target="https://digi.ub.uni-heidelberg.de/diglit/cohausen1884ga">UB Heidelberg (OA)</ref>
+<ref type="iiif-manifest" target="https://digi.ub.uni-heidelberg.de/diglit/iiif/cohausen1884bd1/manifest"/>
 </bibl>
 <bibl xml:id="bib_steiner"><title>P. Steiner, Römische Inschriften</title><note>P. Steiner u. a., zu rheinischen/germanischen Inschriften.</note>
 </bibl>

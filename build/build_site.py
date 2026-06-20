@@ -794,9 +794,11 @@ def load_bibl(path):
         bid, blk = m.group(1), m.group(2)
         ti = re.search(r'<title>([^<]+)</title>', blk); no = re.search(r'<note>([^<]+)</note>', blk)
         oa = re.search(r'<ref type="oa" target="([^"]+)">([^<]+)</ref>', blk)
+        iiif = re.search(r'<ref type="iiif-manifest" target="([^"]+)"', blk)
         out.append({"id": bid, "title": unesc(ti.group(1)) if ti else bid,
                     "note": unesc(no.group(1)) if no else "",
-                    "oa": oa.group(1) if oa else "", "oalabel": unesc(oa.group(2)) if oa else ""})
+                    "oa": oa.group(1) if oa else "", "oalabel": unesc(oa.group(2)) if oa else "",
+                    "iiif": iiif.group(1) if iiif else ""})
     return out
 
 def bibliography_page(bibls, occ):
@@ -812,17 +814,27 @@ def bibliography_page(bibls, occ):
             bel = (_belege(pit, cap=40) + f' <span class="meta">(als Autor <a href="persons.html#{pid}">{html.escape(pnm)}</a>)</span>') if pit else '<span class="meta">—</span>'
         else:
             cnt, bel = '·', '<span class="meta">im Text als Autor → Personenregister</span>'
-        rows.append(f'<tr id="{b["id"]}"><td><b>{html.escape(b["title"])}</b>{link}<div class="meta">{html.escape(b["note"])}</div></td>'
+        iiifbtn = ""
+        if b.get("iiif"):
+            jl = b["title"].replace("'", "").replace('"', "")
+            iiifbtn = (f' · <button class="iiifbtn" onclick="openIIIF(\'{b["iiif"]}\',\'{html.escape(jl)}\')">'
+                       f'📖 Faksimile (IIIF)</button>')
+        rows.append(f'<tr id="{b["id"]}"><td><b>{html.escape(b["title"])}</b>{link}{iiifbtn}'
+                    f'<div class="meta">{html.escape(b["note"])}</div></td>'
                     f'<td>{cnt}</td><td class="beleg">{bel}</td></tr>')
-    n_oa = sum(1 for b in bibls if b["oa"])
+    n_oa = sum(1 for b in bibls if b["oa"]); n_iiif = sum(1 for b in bibls if b.get("iiif"))
     return (f'<h1>Bibliographie &amp; Quellen</h1>'
             f'<p class="meta">Die im Limesblatt zitierte Apparatur — <b>im TEI-Fließtext als <code>&lt;ref&gt;</code> '
             f'ausgezeichnet</b> (Journale, Inschriftencorpora, Dragendorff-Formen) bzw. über das Personenregister '
             f'(Autor-Werke) — aufgelöst zu vollen Referenzen mit <b>{n_oa} Open-Access-Digitalisaten</b> '
-            f'(v. a. UB Heidelberg) und seiten-/spaltengenauen Belegen. Journal-zentriert: dominant die Westdeutsche '
-            f'Zeitschrift und ihr Korrespondenzblatt (Hettners Trierer „Hauszeitschrift", selber Verlag wie das Limesblatt).</p>'
+            f'(v. a. UB Heidelberg) und seiten-/spaltengenauen Belegen. Bei <b>{n_iiif} Werken</b> lässt sich das '
+            f'Faksimile per <b>IIIF</b> direkt hier im Fenster öffnen (UB Heidelberg / archive.org; Werk-/Beispielband-Ebene). '
+            f'Journal-zentriert: dominant die Westdeutsche Zeitschrift und ihr Korrespondenzblatt.</p>'
             f'<table class="reg fund"><tr><th>Werk / Reihe (Digitalisat)</th><th>Verweise</th><th>Belege (Seite · Spalte)</th></tr>'
-            f'{"".join(rows)}</table>')
+            f'{"".join(rows)}</table>'
+            f'<div id="iiifwin"><div class="iiifbar"><span id="iiiflabel"></span>'
+            f'<button onclick="closeIIIF()">✕ schließen</button></div><div id="iiifosd"></div></div>'
+            f'<script src="../assets/openseadragon.min.js"></script><script src="../assets/iiif.js"></script>')
 
 # ---------- Truppen-/Töpferstempel & EDH-Inschriften ----------
 _ROM = {"i": 1, "v": 5, "x": 10, "l": 50, "c": 100, "d": 500, "m": 1000}

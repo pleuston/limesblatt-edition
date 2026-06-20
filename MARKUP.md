@@ -110,7 +110,13 @@ Personenregister; die Bibliographie-Seite zieht ihre Belege dafür aus dem Perso
   (Legio/Cohors + Versal-Legenden), je mit Seite+Spalte-Belegen.
 - **inschriften.html** — 759 EDH-Inschriften der Limes-Fundorte (`tools/edh_limes.py`), je Kastell mit
   Gattung, Datierung und HD-Direktlink; mit Ortsregister verknüpft.
-- **bibliographie.html** — die Apparatur aus `bibliography.xml` + Belege aus den `<ref>`-Tags.
+- **bibliographie.html** — die Apparatur aus `bibliography.xml` + Belege aus den `<ref>`-Tags. Bei
+  **7 Werken** lässt sich das zitierte OA-Digitalisat per **IIIF direkt im Fenster** öffnen
+  (`assets/iiif.js`: lädt das Manifest clientseitig, versteht IIIF Presentation v2 + v3, rendert mit
+  OpenSeadragon im Sequenz-Modus). Manifeste hängen je `<bibl>` als `<ref type="iiif-manifest">`
+  (Quellen: UB Heidelberg `diglit/iiif/<slug>/manifest`, archive.org `iiif.archive.org/iiif/<id>/manifest.json`).
+  **Granularität: Werk-/Beispielband-Ebene** — die genaue zitierte Band-/Seitenstelle ist (noch) nicht
+  erfasst, da die OCR Band/Seite der Zitate nicht zuverlässig hergibt.
 - **namen.html / orte-index.html** — vollständige Volltext-Register (NER), je Eintrag mit Anker + Belegen.
 - **wortschatz.html** — diachrone Auswertung, ORL-Gegenprobe, KWIC.
 

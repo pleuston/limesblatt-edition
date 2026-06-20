@@ -24,6 +24,13 @@ ul.vols{columns:2;gap:2rem} ul.vols li{margin:.2rem 0}
 .colhead{text-align:center;font-variant:small-caps;color:var(--muted);font-weight:bold;font-size:.92rem;margin:.8rem 0 .1rem}
 .spanpara{text-align:justify;hyphens:auto;margin:.5rem 0;padding:.2rem .6rem;border-left:2px solid var(--line)}
 .text p.corr{background:#f6f8f4;border-left:2px solid #9bb89b;padding:.3rem .6rem;border-radius:2px}
+/* eingebettetes IIIF-Faksimile zitierter Quellen */
+.iiifbtn{font:inherit;font-size:.82rem;cursor:pointer;background:#f3eee3;border:1px solid var(--line);border-radius:3px;padding:.1rem .5rem;color:var(--accent)}
+.iiifbtn:hover{background:#ece3d2}
+#iiifwin{display:none;position:fixed;inset:3vh 3vw;z-index:50;background:#fff;border:1px solid var(--line);border-radius:6px;box-shadow:0 10px 50px rgba(0,0,0,.45);flex-direction:column}
+.iiifbar{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.5rem .9rem;border-bottom:1px solid var(--line);font-weight:bold}
+.iiifbar button{font:inherit;cursor:pointer;background:#fff;border:1px solid var(--line);border-radius:3px;padding:.2rem .7rem}
+#iiifosd{flex:1;background:#222;border-radius:0 0 6px 6px}
 .ent{text-decoration:none;border-bottom:1px dotted} .persName{color:#5a3a8a} .placeName{color:#1f5a4a}
 .ent.placeName.dare{color:#3f6f7a;border-bottom-style:dashed}
 .ent.c-high{border-bottom-style:solid} .ent.c-low{border-bottom-style:dashed;opacity:.72}
