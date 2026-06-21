@@ -214,3 +214,10 @@ prüft Wohlgeformtheit und schreibt den Abschnitt zurück in dieselbe Datei (Tok
 unberührt, der Auto-Rebuild macht die Korrektur live.
 
 Erreichbar über „✎ Bearbeiten" in der Navigation (ganze Datei) bzw. das ✎ je Druckseite (eine Spalte).
+
+**Rückspielung in den Vault** (`../limes/tools/sync_edits.py`): Editor-Edits landen in `tei/`, das
+`build_tei.py` aber aus dem Vault (OCR-Cache + `corrections/`) neu erzeugt — ein lokaler Voll-Rebuild
+würde sie sonst überschreiben. Vor einem solchen Rebuild daher `git pull` in der Edition, dann
+`python3 tools/sync_edits.py --apply`: es vergleicht je Spalte den entity-freien Lesetext der Edition-`tei/`
+mit der Vault-Ableitung und legt **nur abweichende** (= hand-editierte) Spalten als
+`corrections/<slug>/<tok>.<col>.txt` ab. So werden die Edits dauerhaft und überleben jeden Rebuild.
