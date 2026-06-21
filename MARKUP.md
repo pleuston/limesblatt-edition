@@ -190,6 +190,18 @@ ausgelassene Gattungswörter, sehr kurze Namen oder OCR-Garble. *Token-freie fre
 OCR-Autokorrektur wurde verworfen* (korrigiert legitim seltene Wörter falsch: „hören→höhen"); echte
 OCR-Fehler werden stattdessen seiten-weise per Faksimile-Re-OCR (`corrections/`) behoben.
 
+**Entitäts-Recall-Audit (gesäuberte OCR) → 6100 Inline-Tags / 1382 Entitäten.** Nach dem Voll-Scan-Re-OCR
+prüfte ein Audit (`../limes/tools/entity_audit.py` + Multi-Agent-Workflow), ob auf den gesäuberten Seiten
+**alle** Eigennamen markiert sind. Weil Deutsch jedes Substantiv großschreibt, ist reine Großschreibung als
+Entitäts-Signal wertlos (12 000 Kandidaten, fast alle Gemeinwörter); der Audit trennt daher **KNOWN-MISSED**
+(Form anderswo schon getaggt, hier nicht — Recall-Loch der konservativen ≥7-Promotion-Schwelle) deterministisch
+von der **LLM-Prüfung** des Fließtexts (134 Leser → adversarische 2-Pass-Verifikation promote/page_anchor/reject
+→ Vollständigkeits-Kritik). Ergebnis: **+839 Tags**; 100 bestätigte Formen an bestehende Entitäten gebunden
+(`build/promote.json`, korpusweite Allowlist), **219 neue Entitäten** entdeckt und an `data/ner_*.json` angehängt —
+darunter zuvor **gar nicht erfasste** Landschaften wie **Taunus** (38×, im Gazetteer als GENERIC nie geprägt),
+Wetterau, Obergermanien, dutzende Flur-/Gewann- und römische Kaiser-/Inschriften-Namen. Gemeinwort-Homographe
+(„Henkel", „Knapp", „Huth") wurden per Verifikation auf seiten-verankertes Taggen zurückgestuft, statt korpusweit.
+
 ## 9. Bearbeiten im Browser (`docs/edit.html`)
 
 Ein eingebauter **TEI-Editor** erlaubt es, die Quelle direkt auf der Seite zu bearbeiten und mit dem

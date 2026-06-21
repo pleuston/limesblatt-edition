@@ -34,6 +34,8 @@
 <person xml:id="psnN_arnoldi" type="ner" cert="low"><persName>Arnoldi</persName>
 <occupation>Oberförster (Schlossau)</occupation>
 </person>
+<person xml:id="psnN_arrian" type="ner" cert="low"><persName>Arrian</persName>
+</person>
 <person xml:id="psnN_augustus" type="ner" cert="low"><persName>Augustus</persName>
 <occupation>Kaiser</occupation>
 </person>
@@ -48,6 +50,8 @@
 </person>
 <person xml:id="psnN_becker" type="ner" cert="low"><persName>Becker</persName>
 <occupation>Dr. (Wassertrüdingen) · Dr., Geheimer Oberschulrat, Darmstadt</occupation>
+</person>
+<person xml:id="psnN_belatullus" type="ner" cert="low"><persName>Belatullus</persName>
 </person>
 <person xml:id="psnN_bergmann_joseph" type="ner" cert="low"><persName>Bergmann, Joseph</persName>
 <occupation>Bauherr in Grosskrotzenburg</occupation>
@@ -86,6 +90,8 @@
 <person xml:id="psnN_buhler" type="ner" cert="low"><persName>Bühler</persName>
 <occupation>Fürstlich Hohenlohe'scher Hofrath</occupation>
 </person>
+<person xml:id="psnN_bunk" type="ner" cert="low"><persName>Bunk</persName>
+</person>
 <person xml:id="psnN_cantor_moritz" type="ner" cert="medium"><persName>Cantor, Moritz</persName>
 <occupation>Verfasser 'Die röm. Agrimensoren', Leipzig 1875; zitiert</occupation>
 <idno type="GND">116443618</idno>
@@ -95,6 +101,8 @@
 </person>
 <person xml:id="psnN_caracalla" type="ner" cert="low"><persName>Caracalla</persName>
 <occupation>Kaiser · römischer Kaiser</occupation>
+</person>
+<person xml:id="psnN_carl_wilhelm_von_gumbel" type="ner" cert="low"><persName>Carl Wilhelm von Gümbel</persName>
 </person>
 <person xml:id="psnN_cerialis_spicius" type="ner" cert="low"><persName>Cerialis, Spicius</persName>
 <occupation>Legat, Statthalter Raetiens</occupation>
@@ -115,6 +123,8 @@
 <person xml:id="psnN_clodius_albinus" type="ner" cert="low"><persName>Clodius Albinus</persName>
 <occupation>Römischer Kaiser (Münze Zugmantel)</occupation>
 </person>
+<person xml:id="psnN_cobnertus" type="ner" cert="low"><persName>Cobnertus</persName>
+</person>
 <person xml:id="psnN_cohen" type="ner" cert="low"><persName>Cohen</persName>
 <occupation>Numismatiker (Referenzwerk, 2. Aufl.)</occupation>
 </person>
@@ -124,11 +134,15 @@
 <person xml:id="psnN_constantius" type="ner" cert="low"><persName>Constantius</persName>
 <occupation>römischer Kaiser</occupation>
 </person>
+<person xml:id="psnN_costutus" type="ner" cert="low"><persName>Costutus</persName>
+</person>
 <person xml:id="psnN_dahm" type="ner" cert="low"><persName>Dahm</persName>
 <occupation>Mitautor (Wolff-Dahm, Grenzwall-Publikation) · Streckenkommissar</occupation>
 </person>
 <person xml:id="psnN_dahm_oberstleutnant" type="ner" cert="low"><persName>Dahm, Oberstleutnant</persName>
 <occupation>Streckenkommissar (Arzbach-Augst)</occupation>
+</person>
+<person xml:id="psnN_decius" type="ner" cert="low"><persName>Decius</persName>
 </person>
 <person xml:id="psnN_dessau" type="ner" cert="low"><persName>Dessau</persName>
 </person>
@@ -141,6 +155,8 @@
 <person xml:id="psnN_diehl" type="ner" cert="low"><persName>Diehl</persName>
 <occupation>Lizentiat, Dr., Gross-Gerau</occupation>
 </person>
+<person xml:id="psnN_diokletian" type="ner" cert="low"><persName>Diokletian</persName>
+</person>
 <person xml:id="psnN_domaszewski" type="ner" cert="low"><persName>Domaszewski</persName>
 </person>
 <person xml:id="psnN_domaszewski_alfred_von" type="ner" cert="medium"><persName>Domaszewski, Alfred von</persName>
@@ -150,6 +166,8 @@
 <person xml:id="psnN_domitian" type="ner" cert="low"><persName>Domitian</persName>
 <occupation>Kaiser · römischer Kaiser</occupation>
 </person>
+<person xml:id="psnN_donatus" type="ner" cert="low"><persName>Donatus</persName>
+</person>
 <person xml:id="psnN_dorow" type="ner" cert="low"><persName>Dorow</persName>
 <occupation>Herausgeber des Niederbieber-Plans (1826) · früherer Bearbeiter</occupation>
 </person>
@@ -158,6 +176,8 @@
 </person>
 <person xml:id="psnN_dragendorff" type="ner" cert="low"><persName>Dragendorff</persName>
 <occupation>Autor (Terra sigillata)</occupation>
+</person>
+<person xml:id="psnN_drusus" type="ner" cert="low"><persName>Drusus</persName>
 </person>
 <person xml:id="psnN_eichler_e" type="ner" cert="low"><persName>Eichler, E</persName>
 <occupation>Zeichner der Textabbildungen für Trierer Steindenkmäler-Publikation</occupation>
@@ -190,6 +210,8 @@
 <person xml:id="psnN_erlenmeyer" type="ner" cert="low"><persName>Erlenmeyer</persName>
 <occupation>Sanitätsrat, Besitzer Kuranstalt Rheinau (Bendorf)</occupation>
 </person>
+<person xml:id="psnN_ernst_forstemann" type="ner" cert="low"><persName>Ernst Förstemann</persName>
+</person>
 <person xml:id="psnN_eschenbrenner" type="ner" cert="low"><persName>Eschenbrenner</persName>
 <occupation>Landes-Bauinspektor</occupation>
 </person>
@@ -198,6 +220,8 @@
 </person>
 <person xml:id="psnN_eunapius" type="ner" cert="low"><persName>Eunapius</persName>
 <occupation>antiker Schriftsteller</occupation>
+</person>
+<person xml:id="psnN_faustus" type="ner" cert="low"><persName>Faustus</persName>
 </person>
 <person xml:id="psnN_feucht" type="ner" cert="low"><persName>Feucht</persName>
 <occupation>Schmied in Harsberg, Fund von Steinkugeln beim Roden</occupation>
@@ -223,6 +247,8 @@
 <person xml:id="psnN_fravitta" type="ner" cert="low"><persName>Fravitta</persName>
 <occupation>germanischer General unter Theodosius I</occupation>
 </person>
+<person xml:id="psnN_friedrich_thudichum" type="ner" cert="low"><persName>Friedrich Thudichum</persName>
+</person>
 <person xml:id="psnN_frontinus" type="ner" cert="low"><persName>Frontinus</persName>
 <occupation>antiker Schriftsteller (Strategemata)</occupation>
 </person>
@@ -232,11 +258,15 @@
 <person xml:id="psnN_gallbronner" type="ner" cert="low"><persName>Gallbronner</persName>
 <occupation>Revierförster (Mönchsroth)</occupation>
 </person>
+<person xml:id="psnN_gallienus" type="ner" cert="low"><persName>Gallienus</persName>
+</person>
 <person xml:id="psnN_gans" type="ner" cert="low"><persName>Gans</persName>
 <occupation>Forstmeister, Lokalforscher</occupation>
 </person>
 <person xml:id="psnN_garcia" type="ner" cert="low"><persName>Garcia</persName>
 <occupation>Professor, frühere Ansicht Wetterübergang des Limes</occupation>
+</person>
+<person xml:id="psnN_gareis" type="ner" cert="low"><persName>Gareis</persName>
 </person>
 <person xml:id="psnN_gartner" type="ner" cert="low"><persName>Gärtner</persName>
 <occupation>Beigeordneter in Marköbel</occupation>
@@ -306,8 +336,12 @@
 <person xml:id="psnN_hartenbach" type="ner" cert="low"><persName>Hartenbach</persName>
 <occupation>Stadtbaumeister, Öhringen, Lageplan für Limeskommission</occupation>
 </person>
+<person xml:id="psnN_hasselmann" type="ner" cert="low"><persName>Hasselmann</persName>
+</person>
 <person xml:id="psnN_haug" type="ner" cert="low"><persName>Haug</persName>
 <occupation>Forscher (Schwäbische Kronik)</occupation>
+</person>
+<person xml:id="psnN_heinrich_von_sybel" type="ner" cert="low"><persName>Heinrich von Sybel</persName>
 </person>
 <person xml:id="psnN_helmke" type="ner" cert="low"><persName>Helmke</persName>
 <occupation>Dr., Butzbach</occupation>
@@ -320,6 +354,8 @@
 </person>
 <person xml:id="psnN_henzen" type="ner" cert="low"><persName>Henzen</persName>
 </person>
+<person xml:id="psnN_herennia_etruscilla" type="ner" cert="low"><persName>Herennia Etruscilla</persName>
+</person>
 <person xml:id="psnN_herle" type="ner" cert="low"><persName>Herle</persName>
 <occupation>Herr in Kaichen, Zeuge</occupation>
 </person>
@@ -328,6 +364,8 @@
 </person>
 <person xml:id="psnN_hesse" type="ner" cert="low"><persName>Hesse</persName>
 <occupation>Fabrikbesitzer Frankfurt (Hessesches Kupferwerk); stellte Arbeiter zur Verfügung</occupation>
+</person>
+<person xml:id="psnN_hestermann" type="ner" cert="low"><persName>Hestermann</persName>
 </person>
 <person xml:id="psnN_hintze_p" type="ner" cert="low"><persName>Hintze, P</persName>
 <occupation>Prof. Dr., Verfasser des Registers zu Nr. 1–35 des Limesblattes</occupation>
@@ -370,6 +408,8 @@
 <person xml:id="psnN_iulius_septiminus_caius" type="ner" cert="low"><persName>Iulius Septiminus, Caius</persName>
 <occupation>Beneficiarier consularis (Inschrift Eisenbach)</occupation>
 </person>
+<person xml:id="psnN_iulius_silvanus" type="ner" cert="low"><persName>Iulius Silvanus</persName>
+</person>
 <person xml:id="psnN_jackle" type="ner" cert="low"><persName>Jäckle</persName>
 <occupation>Forstrat in Gleichen</occupation>
 </person>
@@ -391,16 +431,32 @@
 <person xml:id="psnN_jakobi" type="ner" cert="low"><persName>Jakobi</persName>
 <occupation>Bau-Inspektor, Homburg, Bearbeiter Limes im hohen Taunus</occupation>
 </person>
+<person xml:id="psnN_joseph_aschbach" type="ner" cert="low"><persName>Joseph Aschbach</persName>
+</person>
+<person xml:id="psnN_joseph_von_hefner" type="ner" cert="low"><persName>Joseph von Hefner</persName>
+</person>
 <person xml:id="psnN_jost" type="ner" cert="low"><persName>Jost</persName>
 <occupation>Geometer; Entdecker der Brückenpfeiler in der Nidda (1858)</occupation>
 </person>
 <person xml:id="psnN_joutz" type="ner" cert="low"><persName>Joutz</persName>
 <occupation>Bürgermeister (Butzbach) · Bürgermeister von Butzbach</occupation>
 </person>
+<person xml:id="psnN_julia_aquilia_severa" type="ner" cert="low"><persName>Julia Aquilia Severa</persName>
+</person>
+<person xml:id="psnN_julia_domna" type="ner" cert="low"><persName>Julia Domna</persName>
+</person>
+<person xml:id="psnN_julia_maesa" type="ner" cert="low"><persName>Julia Maesa</persName>
+</person>
+<person xml:id="psnN_julia_mamaea" type="ner" cert="low"><persName>Julia Mamaea</persName>
+</person>
+<person xml:id="psnN_julia_paula" type="ner" cert="low"><persName>Julia Paula</persName>
+</person>
 <person xml:id="psnN_julian" type="ner" cert="low"><persName>Julian</persName>
 <occupation>römischer Kaiser</occupation>
 </person>
 <person xml:id="psnN_julius_indus" type="ner" cert="low"><persName>Julius Indus</persName>
+</person>
+<person xml:id="psnN_jupiter" type="ner" cert="low"><persName>Jupiter</persName>
 </person>
 <person xml:id="psnN_kailee_von" type="ner" cert="low"><persName>Kailee, von</persName>
 <occupation>General</occupation>
@@ -437,6 +493,8 @@
 </person>
 <person xml:id="psnN_kellermann" type="ner" cert="low"><persName>Kellermann</persName>
 </person>
+<person xml:id="psnN_kihm" type="ner" cert="low"><persName>Kihm</persName>
+</person>
 <person xml:id="psnN_kihrn" type="ner" cert="low"><persName>Kihrn</persName>
 <occupation>Architekt, frühere Ausgrabungen Wiesbaden</occupation>
 </person>
@@ -458,6 +516,8 @@
 <person xml:id="psnN_koffer" type="ner" cert="low"><persName>Koffer</persName>
 <occupation>Streckenkommissar (Friedberg, Okarben) · Streckenkommissar / Ausgräber (Butzbach)</occupation>
 </person>
+<person xml:id="psnN_kohnen" type="ner" cert="low"><persName>Köhnen</persName>
+</person>
 <person xml:id="psnN_koller" type="ner" cert="low"><persName>Koller</persName>
 <occupation>Streckenkommissar, Wetterau</occupation>
 </person>
@@ -466,6 +526,8 @@
 </person>
 <person xml:id="psnN_konrad_von_hagen" type="ner" cert="low"><persName>Konrad von Hagen</persName>
 <occupation>Mittelalterlicher Stifter eines Klosters in loco Altenburc (Alteburg bei Arnsburg), 1151</occupation>
+</person>
+<person xml:id="psnN_konstantin" type="ner" cert="low"><persName>Konstantin</persName>
 </person>
 <person xml:id="psnN_kotier" type="ner" cert="low"><persName>Kotier</persName>
 <occupation>Forscher (römische Straße Okarben–Marienhof)</occupation>
@@ -492,6 +554,8 @@
 <person xml:id="psnN_lachmann_karl" type="ner" cert="low"><persName>Lachmann, Karl</persName>
 <occupation>Mitherausgeber der Schriften der römischen Feldmesser (Berlin 1848 und 1852)</occupation>
 </person>
+<person xml:id="psnN_latinnus" type="ner" cert="low"><persName>Latinnus</persName>
+</person>
 <person xml:id="psnN_lehner" type="ner" cert="low"><persName>Lehner</persName>
 <occupation>Streckenkommissar (Kastell Kemel, Holzhausen–Aarthal)</occupation>
 </person>
@@ -508,14 +572,20 @@
 <person xml:id="psnN_leopold_meininger" type="ner" cert="low"><persName>Leopold Meininger</persName>
 <occupation>Mitarbeiter bei Ausgrabungen Heldenbergen</occupation>
 </person>
+<person xml:id="psnN_lillus" type="ner" cert="low"><persName>Lillus</persName>
+</person>
 <person xml:id="psnN_loschcke" type="ner" cert="low"><persName>Löschcke</persName>
 <occupation>Professor · Professor, Mituntersucher Gunzenhausen</occupation>
 </person>
 <person xml:id="psnN_lotz" type="ner" cert="low"><persName>Lötz</persName>
 <occupation>Sanitätsrat; Fundstelle römischer Ziegel bei Eschersheim nachgewiesen</occupation>
 </person>
+<person xml:id="psnN_lucilla" type="ner" cert="low"><persName>Lucilla</persName>
+</person>
 <person xml:id="psnN_lucius" type="ner" cert="low"><persName>Lucius</persName>
 <occupation>Forsthaus-Besitzer am Bingenheimerweg</occupation>
+</person>
+<person xml:id="psnN_lucius_verus" type="ner" cert="low"><persName>Lucius Verus</persName>
 </person>
 <person xml:id="psnN_ludwig" type="ner" cert="low"><persName>Ludwig</persName>
 <occupation>Professor / Streckenkommissar (Mainhardt-Oehringen) · Professor, stellvertretender Streckenkommissar</occupation>
@@ -526,6 +596,10 @@
 </person>
 <person xml:id="psnN_luschcke" type="ner" cert="low"><persName>Lüschcke</persName>
 <occupation>Prof.; Streckenkommissar Rhein, Strecke Sayn–Oberbieber; Autor des Berichts Nr. 61</occupation>
+</person>
+<person xml:id="psnN_m_trautmann" type="ner" cert="low"><persName>M. Trautmann</persName>
+</person>
+<person xml:id="psnN_magetissa" type="ner" cert="low"><persName>Magetissa</persName>
 </person>
 <person xml:id="psnN_magnus_scheller" type="ner" cert="low"><persName>Magnus Scheller</persName>
 <occupation>Ausgräber (Faimingen, Auftrag der kgl. Akademie München)</occupation>
@@ -548,6 +622,8 @@
 <person xml:id="psnN_max_ihm" type="ner" cert="medium"><persName>Max Ihm</persName>
 <idno type="GND">101913885</idno>
 </person>
+<person xml:id="psnN_maximian" type="ner" cert="low"><persName>Maximian</persName>
+</person>
 <person xml:id="psnN_maximinus" type="ner" cert="low"><persName>Maximinus</persName>
 <occupation>römischer Kaiser</occupation>
 </person>
@@ -569,11 +645,15 @@
 <person xml:id="psnN_metz" type="ner" cert="low"><persName>Metz</persName>
 <occupation>Bürgermeister (Heftrich-Gebiet); stellte Acker für Ausgrabungen zur Verfügung</occupation>
 </person>
+<person xml:id="psnN_michael_zinser" type="ner" cert="low"><persName>Michael Zinser</persName>
+</person>
 <person xml:id="psnN_michel_phil_adam" type="ner" cert="low"><persName>Michel, Phil. Adam</persName>
 <occupation>Landmann in Bogel</occupation>
 </person>
 <person xml:id="psnN_michel_phil_heinrich" type="ner" cert="low"><persName>Michel, Phil. Heinrich</persName>
 <occupation>Landmann in Bogel</occupation>
+</person>
+<person xml:id="psnN_minerva" type="ner" cert="low"><persName>Minerva</persName>
 </person>
 <person xml:id="psnN_minor" type="ner" cert="low"><persName>Minor</persName>
 <occupation>Bürgermeister in Holzhausen</occupation>
@@ -583,6 +663,8 @@
 </person>
 <person xml:id="psnN_muller" type="ner" cert="low"><persName>Müller</persName>
 <occupation>Lehrer (Dambach) · Ortsvorsteher (Niederbieber)</occupation>
+</person>
+<person xml:id="psnN_nero" type="ner" cert="low"><persName>Nero</persName>
 </person>
 <person xml:id="psnN_nerva" type="ner" cert="low"><persName>Nerva</persName>
 <occupation>römischer Kaiser</occupation>
@@ -596,6 +678,8 @@
 <person xml:id="psnN_oriola_graf" type="ner" cert="low"><persName>Oriola, Graf</persName>
 <occupation>Besitzer des Marienhofes, Geldgeber für Grabungen</occupation>
 </person>
+<person xml:id="psnN_oscar_almgren" type="ner" cert="low"><persName>Oscar Almgren</persName>
+</person>
 <person xml:id="psnN_ottmer_petters" type="ner" cert="low"><persName>Ottmer Petters</persName>
 <occupation>Verleger, Heidelberg (ORL-Verlag)</occupation>
 </person>
@@ -606,8 +690,18 @@
 <person xml:id="psnN_palis" type="ner" cert="low"><persName>Palis</persName>
 <occupation>Oberstleutnant, führte Messungen durch</occupation>
 </person>
+<person xml:id="psnN_patricianus" type="ner" cert="low"><persName>Patricianus</persName>
+</person>
+<person xml:id="psnN_patruinus" type="ner" cert="low"><persName>Patruinus</persName>
+</person>
+<person xml:id="psnN_paul_hintzelmann" type="ner" cert="low"><persName>Paul Hintzelmann</persName>
+</person>
 <person xml:id="psnN_paulus_der_altere" type="ner" cert="low"><persName>Paulus der Ältere</persName>
 <occupation>früher Ausgräber am Linderst</occupation>
+</person>
+<person xml:id="psnN_pervincus" type="ner" cert="low"><persName>Pervincus</persName>
+</person>
+<person xml:id="psnN_philippus_arabs" type="ner" cert="low"><persName>Philippus Arabs</persName>
 </person>
 <person xml:id="psnN_philippus_i" type="ner" cert="low"><persName>Philippus I</persName>
 <occupation>römischer Kaiser (Münzfund)</occupation>
@@ -624,6 +718,8 @@
 <person xml:id="psnN_ptolemaeus" type="ner" cert="low"><persName>Ptolemaeus</persName>
 <occupation>Antiker Geograph (Artaunon-Identifizierung Zugmantel)</occupation>
 </person>
+<person xml:id="psnN_publius_septimius_geta" type="ner" cert="low"><persName>Publius Septimius Geta</persName>
+</person>
 <person xml:id="psnN_pupus" type="ner" cert="low"><persName>Pupus</persName>
 <occupation>Sohn des Severinus, Inschrift (OCR: Pupo)</occupation>
 </person>
@@ -638,6 +734,8 @@
 </person>
 <person xml:id="psnN_ringler" type="ner" cert="low"><persName>Ringler</persName>
 <occupation>Bahnmeister</occupation>
+</person>
+<person xml:id="psnN_robert_forrer" type="ner" cert="low"><persName>Robert Forrer</persName>
 </person>
 <person xml:id="psnN_rossel" type="ner" cert="low"><persName>Rossel</persName>
 <occupation>Autor 'Römische Grenzwehr im Taunus' · Früherer Limesforscher (Taunus)</occupation>
@@ -715,11 +813,17 @@
 <person xml:id="psnN_serotinus" type="ner" cert="low"><persName>Serotinus</persName>
 <occupation>Fabrikant (Name auf Hobeleisen vom Kastell Feldberg)</occupation>
 </person>
+<person xml:id="psnN_servandus" type="ner" cert="low"><persName>Servandus</persName>
+</person>
 <person xml:id="psnN_severinus" type="ner" cert="low"><persName>Severinus</persName>
 <occupation>Person in Votivara-Inschrift (Grosskrotzenburg)</occupation>
 </person>
 <person xml:id="psnN_severus_alexander" type="ner" cert="low"><persName>Severus Alexander</persName>
 <occupation>Röm. Kaiser; Münze gefunden im Kastell Pförring · römischer Kaiser</occupation>
+</person>
+<person xml:id="psnN_siculus_flaccus" type="ner" cert="low"><persName>Siculus Flaccus</persName>
+</person>
+<person xml:id="psnN_silvanus" type="ner" cert="low"><persName>Silvanus</persName>
 </person>
 <person xml:id="psnN_simon" type="ner" cert="low"><persName>Simon</persName>
 <occupation>Besitzer der Straubenmühle am Kocher</occupation>
@@ -753,6 +857,8 @@
 </person>
 <person xml:id="psnN_statutus" type="ner" cert="low"><persName>Statutus</persName>
 <occupation>Töpfer (Stempel auf Sigillata)</occupation>
+</person>
+<person xml:id="psnN_stehnle" type="ner" cert="low"><persName>Stehnle</persName>
 </person>
 <person xml:id="psnN_steiner" type="ner" cert="low"><persName>Steiner</persName>
 <occupation>Früherer Forscher (1835); Topographie des Maingebietes</occupation>
@@ -788,6 +894,8 @@
 <person xml:id="psnN_thassilo" type="ner" cert="low"><persName>Thassilo</persName>
 <occupation>historische Figur, Kontext 8. Jh.</occupation>
 </person>
+<person xml:id="psnN_theodor_panofka" type="ner" cert="low"><persName>Theodor Panofka</persName>
+</person>
 <person xml:id="psnN_theodosius_i" type="ner" cert="low"><persName>Theodosius I</persName>
 <occupation>römischer Kaiser</occupation>
 </person>
@@ -803,6 +911,8 @@
 <person xml:id="psnN_traian" type="ner" cert="low"><persName>Traian</persName>
 <occupation>römischer Kaiser · römischer Kaiser (Münzfund)</occupation>
 </person>
+<person xml:id="psnN_traianus" type="ner" cert="low"><persName>Traianus</persName>
+</person>
 <person xml:id="psnN_trajan" type="ner" cert="low"><persName>Trajan</persName>
 <occupation>Kaiser · Röm. Kaiser; Münze gefunden im Kastell Pförring</occupation>
 </person>
@@ -812,8 +922,14 @@
 <person xml:id="psnN_ulpius_theodorus_marcus" type="ner" cert="low"><persName>Ulpius Theodorus, Marcus</persName>
 <occupation>Oculist (Stempel: M. Ulpi Theodori crocodes)</occupation>
 </person>
+<person xml:id="psnN_valerius" type="ner" cert="low"><persName>Valerius</persName>
+</person>
+<person xml:id="psnN_vaterculus_proculus" type="ner" cert="low"><persName>Vaterculus Proculus</persName>
+</person>
 <person xml:id="psnN_vespasian" type="ner" cert="low"><persName>Vespasian</persName>
 <occupation>römischer Kaiser</occupation>
+</person>
+<person xml:id="psnN_vespasianus" type="ner" cert="low"><persName>Vespasianus</persName>
 </person>
 <person xml:id="psnN_volk" type="ner" cert="low"><persName>Volk</persName>
 <occupation>Wegebauunternehmer aus Dörscheid (Materialspender)</occupation>
@@ -824,11 +940,15 @@
 <person xml:id="psnN_von_russler_g" type="ner" cert="low"><persName>von Rüssler, G</persName>
 <occupation>Verfasser (Bäder der Grenzkastelle, Westd. Zeitschrift IX)</occupation>
 </person>
+<person xml:id="psnN_von_sarvey" type="ner" cert="low"><persName>von Sarvey</persName>
+</person>
 <person xml:id="psnN_von_sarwey_o" type="ner" cert="low"><persName>von Sarwey, O</persName>
 <occupation>Militärischer Dirigent der Reichslimeskommission, Generalleutnant z. D.</occupation>
 </person>
 <person xml:id="psnN_von_sarwey_otto" type="ner" cert="low"><persName>von Sarwey, Otto</persName>
 <occupation>Verantwortlicher Redakteur Limesblatt</occupation>
+</person>
+<person xml:id="psnN_von_susskind" type="ner" cert="low"><persName>von Süsskind</persName>
 </person>
 <person xml:id="psnN_walther" type="ner" cert="low"><persName>Walther</persName>
 <occupation>Verfasser (Altertümer d. heidn. Vorzeit im Grossh. Hessen)</occupation>
@@ -850,6 +970,8 @@
 </person>
 <person xml:id="psnN_welcker_rudolf" type="ner" cert="low"><persName>Welcker, Rudolf</persName>
 <occupation>Unterstützer des Streckenkommissars in Okarben, Frankfurt</occupation>
+</person>
+<person xml:id="psnN_weller" type="ner" cert="low"><persName>Weller</persName>
 </person>
 <person xml:id="psnN_wenzel" type="ner" cert="low"><persName>Wenzel</persName>
 <occupation>Bürgermeister (Heddernheim), unterstützte Ausgrabungen</occupation>
@@ -884,10 +1006,16 @@
 <occupation>Mitarbeiter bei Ausgrabung (Hofheim)</occupation>
 </person>
 </listPerson><listPlace>
+<place xml:id="plcN_aalbach" type="ner" cert="low"><placeName>Aalbach</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_aar" type="ner" cert="medium"><placeName>Aar</placeName>
 <trait type="art"><desc>Fluss</desc></trait>
 <idno type="iDAI-Gazetteer">2387516</idno>
 <location><geo>-26.71667 16.46667</geo></location>
+</place>
+<place xml:id="plcN_aartal" type="ner" cert="low"><placeName>Aartal</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_abtswald" type="ner" cert="low"><placeName>Abtswald</placeName>
 <trait type="art"><desc>Wald</desc></trait>
@@ -924,6 +1052,9 @@
 </place>
 <place xml:id="plcN_allstadt" type="ner" cert="low"><placeName>Allstadt</placeName>
 <trait type="art"><desc>Flur</desc></trait>
+</place>
+<place xml:id="plcN_altburg" type="ner" cert="low"><placeName>Altburg</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_altdorf" type="ner" cert="medium"><placeName>Altdorf</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -983,9 +1114,18 @@
 <place xml:id="plcN_ameisenkippel" type="ner" cert="low"><placeName>Ameisenkippel</placeName>
 <trait type="art"><desc>Berg/Flur</desc></trait>
 </place>
+<place xml:id="plcN_ammaedara" type="ner" cert="low"><placeName>Ammaedara</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_ammelbruch" type="ner" cert="medium"><placeName>Ammelbruch</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>49.09649 10.46703</geo></location>
+</place>
+<place xml:id="plcN_anavio" type="ner" cert="low"><placeName>Anavio</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_andernach" type="ner" cert="low"><placeName>Andernach</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_anhausen" type="ner" cert="medium"><placeName>Anhausen</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -1014,6 +1154,12 @@
 <place xml:id="plcN_argento_varia" type="ner" cert="low"><placeName>Argento varia</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 </place>
+<place xml:id="plcN_argentovaria" type="ner" cert="low"><placeName>Argentovaria</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_arles" type="ner" cert="low"><placeName>Arles</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_armenien" type="ner" cert="medium"><placeName>Armenien</placeName>
 <trait type="art"><desc>Region</desc></trait>
 <idno type="iDAI-Gazetteer">2043307</idno>
@@ -1026,6 +1172,12 @@
 </place>
 <place xml:id="plcN_arnsburger_wald" type="ner" cert="low"><placeName>Arnsburger Wald</placeName>
 <trait type="art"><desc>Wald</desc></trait>
+</place>
+<place xml:id="plcN_artaunon" type="ner" cert="low"><placeName>Artaunon</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_artaunum" type="ner" cert="low"><placeName>Artaunum</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_arzbach" type="ner" cert="medium"><placeName>Arzbach</placeName>
 <trait type="art"><desc>Fluss</desc></trait>
@@ -1070,6 +1222,9 @@
 <idno type="iDAI-Gazetteer">2045408</idno>
 <location><geo>48.7606 8.23975</geo></location>
 </place>
+<place xml:id="plcN_baderstrasse" type="ner" cert="low"><placeName>Bäderstrasse</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_barnholz" type="ner" cert="low"><placeName>Barnholz</placeName>
 <trait type="art"><desc>Wald</desc></trait>
 </place>
@@ -1113,6 +1268,9 @@
 <place xml:id="plcN_beichartshausen" type="ner" cert="low"><placeName>Beichartshausen</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 </place>
+<place xml:id="plcN_beienheim" type="ner" cert="low"><placeName>Beienheim</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_bellersheim" type="ner" cert="medium"><placeName>Bellersheim</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>50.45116 8.83906</geo></location>
@@ -1127,6 +1285,9 @@
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2119169</idno>
 <location><geo>50.42338 7.57564</geo></location>
+</place>
+<place xml:id="plcN_bennerpfad" type="ner" cert="low"><placeName>Bennerpfad</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_bennigen" type="ner" cert="low"><placeName>Bennigen</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -1172,6 +1333,9 @@
 <place xml:id="plcN_biebert" type="ner" cert="low"><placeName>Biebert</placeName>
 <trait type="art"><desc>Wald</desc></trait>
 </place>
+<place xml:id="plcN_biederichsgraben" type="ner" cert="low"><placeName>Biederichsgraben</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_bierstadt" type="ner" cert="medium"><placeName>Bierstadt</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2181111</idno>
@@ -1185,12 +1349,18 @@
 <place xml:id="plcN_bingenheimerweg" type="ner" cert="low"><placeName>Bingenheimerweg</placeName>
 <trait type="art"><desc>Flur</desc></trait>
 </place>
+<place xml:id="plcN_binsdorf" type="ner" cert="low"><placeName>Binsdorf</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_birkenzell" type="ner" cert="medium"><placeName>Birkenzell</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>48.99045 10.27309</geo></location>
 </place>
 <place xml:id="plcN_birkich" type="ner" cert="low"><placeName>Birkich</placeName>
 <trait type="art"><desc>Wald</desc></trait>
+</place>
+<place xml:id="plcN_birklar" type="ner" cert="low"><placeName>Birklar</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_bischofs_weiher" type="ner" cert="low"><placeName>Bischofs-Weiher</placeName>
 <trait type="art"><desc>Flur</desc></trait>
@@ -1265,6 +1435,9 @@
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>50.12701 7.76592</geo></location>
 </place>
+<place xml:id="plcN_bourges" type="ner" cert="low"><placeName>Bourges</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_brackwanghof" type="ner" cert="low"><placeName>Brackwanghof</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 </place>
@@ -1284,6 +1457,9 @@
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2049222</idno>
 <location><geo>50.95644 9.78276</geo></location>
+</place>
+<place xml:id="plcN_bremenium" type="ner" cert="low"><placeName>Bremenium</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_brenz" type="ner" cert="medium"><placeName>Brenz</placeName>
 <trait type="art"><desc>Fluss</desc></trait>
@@ -1332,6 +1508,9 @@
 <place xml:id="plcN_bulauwald" type="ner" cert="low"><placeName>Bulauwald</placeName>
 <trait type="art"><desc>Wald</desc></trait>
 </place>
+<place xml:id="plcN_burggrafenrode" type="ner" cert="low"><placeName>Burggräfenrode</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_burghof" type="ner" cert="medium"><placeName>Burghof</placeName>
 <trait type="art"><desc>Flur</desc></trait>
 <idno type="iDAI-Gazetteer">2120416</idno>
@@ -1368,6 +1547,9 @@
 <idno type="iDAI-Gazetteer">2087816</idno>
 <location><geo>50.43303 8.67358</geo></location>
 </place>
+<place xml:id="plcN_byzacena" type="ner" cert="low"><placeName>Byzacena</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_cadenbach" type="ner" cert="medium"><placeName>Cadenbach</placeName>
 <trait type="art"><desc>Fluss</desc></trait>
 <location><geo>50.35556 7.5909</geo></location>
@@ -1398,6 +1580,9 @@
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2743801</idno>
 <location><geo>42.70697 11.97717</geo></location>
+</place>
+<place xml:id="plcN_castrum_rauracense" type="ner" cert="low"><placeName>Castrum Rauracense</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_cleeberger_weg" type="ner" cert="low"><placeName>Cleeberger Weg</placeName>
 <trait type="art"><desc>Flur</desc></trait>
@@ -1471,6 +1656,9 @@
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>48.80652 10.35355</geo></location>
 </place>
+<place xml:id="plcN_dekumatenland" type="ner" cert="low"><placeName>Dekumatenland</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_denkendorf" type="ner" cert="medium"><placeName>Denkendorf</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>48.69568 9.31707</geo></location>
@@ -1482,9 +1670,15 @@
 <place xml:id="plcN_denzerwald" type="ner" cert="low"><placeName>Denzerwald</placeName>
 <trait type="art"><desc>Wald</desc></trait>
 </place>
+<place xml:id="plcN_derby" type="ner" cert="low"><placeName>Derby</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_deutenbach" type="ner" cert="medium"><placeName>Deutenbach</placeName>
 <trait type="art"><desc>Fluss</desc></trait>
 <location><geo>49.40215 11.00682</geo></location>
+</place>
+<place xml:id="plcN_deutz" type="ner" cert="low"><placeName>Deutz</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_diebeslache" type="ner" cert="low"><placeName>Diebeslache</placeName>
 <trait type="art"><desc>Wald</desc></trait>
@@ -1508,6 +1702,9 @@
 <idno type="iDAI-Gazetteer">2046764</idno>
 <location><geo>49.06942 10.31985</geo></location>
 </place>
+<place xml:id="plcN_divitia" type="ner" cert="low"><placeName>Divitia</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_dobrogea" type="ner" cert="low"><placeName>Dobrogea</placeName>
 <trait type="art"><desc>Region</desc></trait>
 </place>
@@ -1518,6 +1715,9 @@
 <trait type="art"><desc>Fluss</desc></trait>
 <idno type="iDAI-Gazetteer">2047039</idno>
 <location><geo>48.59619 10.53958</geo></location>
+</place>
+<place xml:id="plcN_donau_limes" type="ner" cert="low"><placeName>Donau-Limes</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_dorf_gull" type="ner" cert="medium"><placeName>Dorf-Güll</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -1590,6 +1790,9 @@
 <place xml:id="plcN_eckardtsweiler" type="ner" cert="low"><placeName>Eckardtsweiler</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 </place>
+<place xml:id="plcN_eckartsweiler" type="ner" cert="low"><placeName>Eckartsweiler</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_eckenheim" type="ner" cert="medium"><placeName>Eckenheim</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>50.15171 8.67975</geo></location>
@@ -1603,6 +1806,9 @@
 <place xml:id="plcN_edelmannshof" type="ner" cert="medium"><placeName>Edelmannshof</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>49.17423 9.42681</geo></location>
+</place>
+<place xml:id="plcN_egenroth" type="ner" cert="low"><placeName>Egenroth</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_ehingen" type="ner" cert="medium"><placeName>Ehingen</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -1683,6 +1889,9 @@
 <idno type="iDAI-Gazetteer">2045858</idno>
 <location><geo>49.38553 9.1906</geo></location>
 </place>
+<place xml:id="plcN_embach" type="ner" cert="low"><placeName>Embach</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_emmozheim" type="ner" cert="low"><placeName>Emmozheim</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 </place>
@@ -1707,6 +1916,9 @@
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2047180</idno>
 <location><geo>48.9925 11.36312</geo></location>
+</place>
+<place xml:id="plcN_epamanduodurum" type="ner" cert="low"><placeName>Epamanduodurum</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_eppingen" type="ner" cert="medium"><placeName>Eppingen</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -1744,6 +1956,9 @@
 <place xml:id="plcN_ernsbachtal" type="ner" cert="low"><placeName>Ernsbachtal</placeName>
 <trait type="art"><desc>Flur</desc></trait>
 </place>
+<place xml:id="plcN_ernsbethofen" type="ner" cert="low"><placeName>Ernsbethofen</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_eschborn" type="ner" cert="medium"><placeName>Eschborn</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2123684</idno>
@@ -1753,6 +1968,9 @@
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2181155</idno>
 <location><geo>50.15604 8.6577</geo></location>
+</place>
+<place xml:id="plcN_esthal" type="ner" cert="low"><placeName>Esthal</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_etzenklinge" type="ner" cert="low"><placeName>Etzenklinge</placeName>
 <trait type="art"><desc>Flur</desc></trait>
@@ -1779,8 +1997,14 @@
 <idno type="iDAI-Gazetteer">2122306</idno>
 <location><geo>48.56156 10.41006</geo></location>
 </place>
+<place xml:id="plcN_falerii" type="ner" cert="low"><placeName>Falerii</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_farberwalde" type="ner" cert="low"><placeName>Farberwalde</placeName>
 <trait type="art"><desc>Wald</desc></trait>
+</place>
+<place xml:id="plcN_faringa" type="ner" cert="low"><placeName>Faringa</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_fasslenacker" type="ner" cert="low"><placeName>Fasslenacker</placeName>
 <trait type="art"><desc>Flur</desc></trait>
@@ -1808,6 +2032,9 @@
 <place xml:id="plcN_ferbach" type="ner" cert="medium"><placeName>Ferbach</placeName>
 <trait type="art"><desc>Fluss</desc></trait>
 <location><geo>50.43315 7.66907</geo></location>
+</place>
+<place xml:id="plcN_feringa" type="ner" cert="low"><placeName>Feringa</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_feuchtwangen" type="ner" cert="medium"><placeName>Feuchtwangen</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -1842,6 +2069,12 @@
 <place xml:id="plcN_flossgasse" type="ner" cert="low"><placeName>Flossgasse</placeName>
 <trait type="art"><desc>Flur</desc></trait>
 </place>
+<place xml:id="plcN_foligno" type="ner" cert="low"><placeName>Foligno</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_fornsbach" type="ner" cert="low"><placeName>Fornsbach</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_franken_jura" type="ner" cert="low"><placeName>Franken-Jura</placeName>
 <trait type="art"><desc>Region</desc></trait>
 </place>
@@ -1864,6 +2097,9 @@
 <idno type="iDAI-Gazetteer">2089310</idno>
 <location><geo>50.1142 8.67666</geo></location>
 </place>
+<place xml:id="plcN_freiburg_i_br" type="ner" cert="low"><placeName>Freiburg i. Br</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_freiburg_im_breisgau" type="ner" cert="medium"><placeName>Freiburg im Breisgau</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2045617</idno>
@@ -1880,6 +2116,9 @@
 </place>
 <place xml:id="plcN_friedberger_burgwald" type="ner" cert="low"><placeName>Friedberger Burgwald</placeName>
 <trait type="art"><desc>Wald</desc></trait>
+</place>
+<place xml:id="plcN_friedrichshof" type="ner" cert="low"><placeName>Friedrichshof</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_friedrichsruhe" type="ner" cert="medium"><placeName>Friedrichsruhe</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -1952,6 +2191,9 @@
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>50.22775 7.75735</geo></location>
 </place>
+<place xml:id="plcN_genf" type="ner" cert="low"><placeName>Genf</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_gerau" type="ner" cert="medium"><placeName>Gerau</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2049198</idno>
@@ -1961,12 +2203,18 @@
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>49.53482 9.5043</geo></location>
 </place>
+<place xml:id="plcN_germanien" type="ner" cert="low"><placeName>Germanien</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_gernsheim" type="ner" cert="medium"><placeName>Gernsheim</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2049199</idno>
 <location><geo>49.75349 8.49014</geo></location>
 </place>
 <place xml:id="plcN_geroldshahn" type="ner" cert="low"><placeName>Geroldshahn</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_gerolfing" type="ner" cert="low"><placeName>Gerolfing</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_gesengte_hecken" type="ner" cert="low"><placeName>Gesengte Hecken</placeName>
@@ -1982,10 +2230,16 @@
 <place xml:id="plcN_gettenauer_wald" type="ner" cert="low"><placeName>Gettenauer Wald</placeName>
 <trait type="art"><desc>Wald</desc></trait>
 </place>
+<place xml:id="plcN_gickelsburg" type="ner" cert="low"><placeName>Gickelsburg</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_giessen" type="ner" cert="medium"><placeName>Giessen</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2176820</idno>
 <location><geo>50.58198 8.67022</geo></location>
+</place>
+<place xml:id="plcN_giget" type="ner" cert="low"><placeName>Giget</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_glashofen" type="ner" cert="medium"><placeName>Glashofen</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -2017,6 +2271,9 @@
 <place xml:id="plcN_gockeler" type="ner" cert="low"><placeName>Göckeler</placeName>
 <trait type="art"><desc>Flur</desc></trait>
 </place>
+<place xml:id="plcN_goetzenbach" type="ner" cert="low"><placeName>Goetzenbach</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_gogging" type="ner" cert="medium"><placeName>Gögging</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2047399</idno>
@@ -2039,6 +2296,9 @@
 <place xml:id="plcN_gotzenbach" type="ner" cert="medium"><placeName>Götzenbach</placeName>
 <trait type="art"><desc>Fluss</desc></trait>
 <location><geo>48.81034 9.69505</geo></location>
+</place>
+<place xml:id="plcN_gotzental" type="ner" cert="low"><placeName>Götzental</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_gotzingen" type="ner" cert="medium"><placeName>Götzingen</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -2090,6 +2350,9 @@
 </place>
 <place xml:id="plcN_griedeler_wald" type="ner" cert="low"><placeName>Griedeler Wald</placeName>
 <trait type="art"><desc>Wald</desc></trait>
+</place>
+<place xml:id="plcN_gro_karben" type="ner" cert="low"><placeName>Groß-Karben</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_gronau" type="ner" cert="medium"><placeName>Gronau</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -2170,10 +2433,19 @@
 <place xml:id="plcN_gundersbacher_espan" type="ner" cert="low"><placeName>Gündersbacher Espan</placeName>
 <trait type="art"><desc>Flur</desc></trait>
 </place>
+<place xml:id="plcN_gunzenausweiler" type="ner" cert="low"><placeName>Gunzenausweiler</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_gunzenhausen" type="ner" cert="medium"><placeName>Gunzenhausen</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2048313</idno>
 <location><geo>49.03639 10.92417</geo></location>
+</place>
+<place xml:id="plcN_gutersleben" type="ner" cert="low"><placeName>Gütersleben</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_hadrianswall" type="ner" cert="low"><placeName>Hadrianswall</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_hagenmuhle" type="ner" cert="medium"><placeName>Hagenmühle</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -2199,6 +2471,9 @@
 </place>
 <place xml:id="plcN_hainfeld" type="ner" cert="low"><placeName>Hainfeld</placeName>
 <trait type="art"><desc>Flur</desc></trait>
+</place>
+<place xml:id="plcN_haingrund" type="ner" cert="low"><placeName>Haingrund</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_hainhaus" type="ner" cert="medium"><placeName>Hainhaus</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -2236,6 +2511,9 @@
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2049342</idno>
 <location><geo>50.13268 8.88957</geo></location>
+</place>
+<place xml:id="plcN_hanauer_landstrasse" type="ner" cert="low"><placeName>Hanauer Landstrasse</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_hangen_deinbach" type="ner" cert="medium"><placeName>Hangen-Deinbach</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -2392,6 +2670,9 @@
 <place xml:id="plcN_hetlingen" type="ner" cert="low"><placeName>Hetlingen</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 </place>
+<place xml:id="plcN_hetschenlache" type="ner" cert="low"><placeName>Hetschenlache</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_hettinger_wald" type="ner" cert="low"><placeName>Hettinger Wald</placeName>
 <trait type="art"><desc>Wald</desc></trait>
 </place>
@@ -2417,6 +2698,9 @@
 <place xml:id="plcN_heuholz" type="ner" cert="low"><placeName>Heuholz</placeName>
 <trait type="art"><desc>Wald</desc></trait>
 </place>
+<place xml:id="plcN_heungwald" type="ner" cert="low"><placeName>Heungwald</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_hienheim" type="ner" cert="medium"><placeName>Hienheim</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2047416</idno>
@@ -2434,6 +2718,9 @@
 <place xml:id="plcN_hirschreute" type="ner" cert="low"><placeName>Hirschreute</placeName>
 <trait type="art"><desc>Wald</desc></trait>
 </place>
+<place xml:id="plcN_hispania_citerior_tarraconensis" type="ner" cert="low"><placeName>Hispania citerior Tarraconensis</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_hoch_elbert" type="ner" cert="low"><placeName>Hoch-Elbert</placeName>
 <trait type="art"><desc>Wald</desc></trait>
 </place>
@@ -2450,7 +2737,13 @@
 <idno type="iDAI-Gazetteer">2047614</idno>
 <location><geo>50.15009 11.17116</geo></location>
 </place>
+<place xml:id="plcN_hochtaunus" type="ner" cert="low"><placeName>Hochtaunus</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_hochweiel" type="ner" cert="low"><placeName>Hochweißel</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_hochweisel" type="ner" cert="low"><placeName>Hochweisel</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_hofen" type="ner" cert="medium"><placeName>Höfen</placeName>
@@ -2470,6 +2763,9 @@
 </place>
 <place xml:id="plcN_hofholz" type="ner" cert="low"><placeName>Hofholz</placeName>
 <trait type="art"><desc>Wald</desc></trait>
+</place>
+<place xml:id="plcN_hoftle" type="ner" cert="low"><placeName>Höftle</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_hohe_mark" type="ner" cert="low"><placeName>Hohe Mark</placeName>
 <trait type="art"><desc>Wald</desc></trait>
@@ -2501,6 +2797,9 @@
 <location><geo>50.43423 7.66796</geo></location>
 </place>
 <place xml:id="plcN_hohr_langenschwalbach" type="ner" cert="low"><placeName>Höhr-Langenschwalbach</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_holzdackel" type="ner" cert="low"><placeName>Holzdäckel</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_holzhausen_a_d_h" type="ner" cert="medium"><placeName>Holzhausen a. d. H</placeName>
@@ -2545,6 +2844,9 @@
 <trait type="art"><desc>Kastell</desc></trait>
 <location><geo>49.46641 9.15998</geo></location>
 </place>
+<place xml:id="plcN_honehauskastell" type="ner" cert="low"><placeName>Hönehauskastell</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_honschhecken" type="ner" cert="low"><placeName>Hönschhecken</placeName>
 <trait type="art"><desc>Flur</desc></trait>
 </place>
@@ -2554,6 +2856,9 @@
 <place xml:id="plcN_horloff" type="ner" cert="medium"><placeName>Horloff</placeName>
 <trait type="art"><desc>Fluss</desc></trait>
 <location><geo>50.49369 8.9417</geo></location>
+</place>
+<place xml:id="plcN_hornberg" type="ner" cert="low"><placeName>Hornberg</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_hufingen" type="ner" cert="medium"><placeName>Hüfingen</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -2583,6 +2888,9 @@
 <place xml:id="plcN_hunehaus" type="ner" cert="low"><placeName>Hünehaus</placeName>
 <trait type="art"><desc>Kastell</desc></trait>
 </place>
+<place xml:id="plcN_hunerstrasse" type="ner" cert="low"><placeName>Hünerstrasse</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_hungen" type="ner" cert="medium"><placeName>Hungen</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2049165</idno>
@@ -2591,6 +2899,9 @@
 <place xml:id="plcN_hunneburg" type="ner" cert="low"><placeName>Hunneburg</placeName>
 <trait type="art"><desc>Flur</desc></trait>
 </place>
+<place xml:id="plcN_hunnen_kirchhof" type="ner" cert="low"><placeName>Hunnen-Kirchhof</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_hunnenburg" type="ner" cert="medium"><placeName>Hunnenburg</placeName>
 <trait type="art"><desc>Kastell</desc></trait>
 <location><geo>48.64051 9.77038</geo></location>
@@ -2598,6 +2909,9 @@
 <place xml:id="plcN_hunnenkirchhof" type="ner" cert="medium"><placeName>Hunnenkirchhof</placeName>
 <trait type="art"><desc>Kastell</desc></trait>
 <location><geo>50.41451 8.62911</geo></location>
+</place>
+<place xml:id="plcN_hunschmaroth" type="ner" cert="low"><placeName>Hünschmaroth</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_hunzel" type="ner" cert="medium"><placeName>Hunzel</placeName>
 <trait type="art"><desc>Kastell</desc></trait>
@@ -2640,6 +2954,12 @@
 <place xml:id="plcN_ilienheimer_forst" type="ner" cert="low"><placeName>Ilienheimer Forst</placeName>
 <trait type="art"><desc>Wald</desc></trait>
 </place>
+<place xml:id="plcN_illenschwang" type="ner" cert="low"><placeName>Illenschwang</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_illyrien" type="ner" cert="low"><placeName>Illyrien</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_ilmsdorf" type="ner" cert="medium"><placeName>Ilmsdorf</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>50.92302 11.76301</geo></location>
@@ -2653,6 +2973,12 @@
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2047418</idno>
 <location><geo>48.83524 11.74464</geo></location>
+</place>
+<place xml:id="plcN_irsing" type="ner" cert="low"><placeName>Irsing</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_italien" type="ner" cert="low"><placeName>Italien</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_jagerwiese" type="ner" cert="low"><placeName>Jägerwiese</placeName>
 <trait type="art"><desc>Flur</desc></trait>
@@ -2671,6 +2997,9 @@
 <place xml:id="plcN_jagstmundung" type="ner" cert="low"><placeName>Jagstmündung</placeName>
 <trait type="art"><desc>Fluss</desc></trait>
 </place>
+<place xml:id="plcN_jagsttal" type="ner" cert="low"><placeName>Jagsttal</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_junkerath" type="ner" cert="medium"><placeName>Jünkerath</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2052117</idno>
@@ -2681,6 +3010,9 @@
 <location><geo>50.25454 8.83797</geo></location>
 </place>
 <place xml:id="plcN_kaidorf" type="ner" cert="low"><placeName>Kaidorf</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_kairouan" type="ner" cert="low"><placeName>Kairouan</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_kaiser_augst" type="ner" cert="low"><placeName>Kaiser-Augst</placeName>
@@ -2703,8 +3035,14 @@
 <place xml:id="plcN_kalte_muhle" type="ner" cert="low"><placeName>Kalte Mühle</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 </place>
+<place xml:id="plcN_kaltebach" type="ner" cert="low"><placeName>Kaltebach</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_kalteborn" type="ner" cert="low"><placeName>Kalteborn</placeName>
 <trait type="art"><desc>Flur</desc></trait>
+</place>
+<place xml:id="plcN_kaltebornsweg" type="ner" cert="low"><placeName>Kaltebornsweg</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_kapellenberg" type="ner" cert="medium"><placeName>Kapellenberg</placeName>
 <trait type="art"><desc>Berg</desc></trait>
@@ -2846,6 +3184,12 @@
 <idno type="iDAI-Gazetteer">2049342</idno>
 <location><geo>50.13268 8.88957</geo></location>
 </place>
+<place xml:id="plcN_kettenbach" type="ner" cert="low"><placeName>Kettenbach</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_kettenhofweg" type="ner" cert="low"><placeName>Kettenhofweg</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_kiesbubel" type="ner" cert="low"><placeName>Kiesbübel</placeName>
 <trait type="art"><desc>Flur</desc></trait>
 </place>
@@ -2877,6 +3221,9 @@
 <place xml:id="plcN_kirchberg_an_der_jagst" type="ner" cert="medium"><placeName>Kirchberg an der Jagst</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>49.20448 9.98173</geo></location>
+</place>
+<place xml:id="plcN_kirnach" type="ner" cert="low"><placeName>Kirnach</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_kirnachtal" type="ner" cert="low"><placeName>Kirnachtal</placeName>
 <trait type="art"><desc>Flur</desc></trait>
@@ -2927,6 +3274,9 @@
 <place xml:id="plcN_klosterwahl" type="ner" cert="low"><placeName>Klosterwahl</placeName>
 <trait type="art"><desc>Wald/Flur</desc></trait>
 </place>
+<place xml:id="plcN_klotzbach" type="ner" cert="low"><placeName>Klotzbach</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_kobern" type="ner" cert="medium"><placeName>Kobern</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2052379</idno>
@@ -2968,6 +3318,9 @@
 <place xml:id="plcN_konigseiche" type="ner" cert="medium"><placeName>Königseiche</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>48.57967 9.03625</geo></location>
+</place>
+<place xml:id="plcN_konigsfeld" type="ner" cert="low"><placeName>Königsfeld</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_konigstein" type="ner" cert="medium"><placeName>Königstein</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -3012,6 +3365,9 @@
 <place xml:id="plcN_kugelfangweg" type="ner" cert="low"><placeName>Kugelfangweg</placeName>
 <trait type="art"><desc>Flur</desc></trait>
 </place>
+<place xml:id="plcN_kuhkopf" type="ner" cert="low"><placeName>Kühkopf</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_kulbach" type="ner" cert="medium"><placeName>Külbach</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>49.39844 8.62032</geo></location>
@@ -3024,10 +3380,16 @@
 <place xml:id="plcN_kuppberger_sommerberg" type="ner" cert="low"><placeName>Küppberger Sommerberg</placeName>
 <trait type="art"><desc>Berg</desc></trait>
 </place>
+<place xml:id="plcN_kutschenweg" type="ner" cert="low"><placeName>Kutschenweg</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_lahn" type="ner" cert="medium"><placeName>Lahn</placeName>
 <trait type="art"><desc>Fluss</desc></trait>
 <idno type="iDAI-Gazetteer">2049110</idno>
 <location><geo>50.30789 7.59827</geo></location>
+</place>
+<place xml:id="plcN_lahnbachtal" type="ner" cert="low"><placeName>Lahnbachtal</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_lahngebiet" type="ner" cert="low"><placeName>Lahngebiet</placeName>
 <trait type="art"><desc>Region</desc></trait>
@@ -3137,6 +3499,12 @@
 <place xml:id="plcN_leutersthaler_hof" type="ner" cert="low"><placeName>Leutersthaler Hof</placeName>
 <trait type="art"><desc>Ort/Flur</desc></trait>
 </place>
+<place xml:id="plcN_libbach" type="ner" cert="low"><placeName>Libbach</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_lich" type="ner" cert="low"><placeName>Lich</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_lichte_platte" type="ner" cert="low"><placeName>Lichte Platte</placeName>
 <trait type="art"><desc>Flur</desc></trait>
 </place>
@@ -3158,6 +3526,9 @@
 <place xml:id="plcN_lindscheid" type="ner" cert="medium"><placeName>Lindscheid</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>50.86755 7.50486</geo></location>
+</place>
+<place xml:id="plcN_lindschied" type="ner" cert="low"><placeName>Lindschied</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_lochbach" type="ner" cert="medium"><placeName>Lochbach</placeName>
 <trait type="art"><desc>Fluss</desc></trait>
@@ -3208,6 +3579,9 @@
 <place xml:id="plcN_lutzenwiebelsbach" type="ner" cert="low"><placeName>Lützenwiebelsbach</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 </place>
+<place xml:id="plcN_lyon" type="ner" cert="low"><placeName>Lyon</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_madenburg" type="ner" cert="low"><placeName>Madenburg</placeName>
 <trait type="art"><desc>Flur</desc></trait>
 </place>
@@ -3226,6 +3600,9 @@
 </place>
 <place xml:id="plcN_mainhardter_wald" type="ner" cert="low"><placeName>Mainhardter Wald</placeName>
 <trait type="art"><desc>Wald</desc></trait>
+</place>
+<place xml:id="plcN_mainkele" type="ner" cert="low"><placeName>Mainkele</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_mainz" type="ner" cert="medium"><placeName>Mainz</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -3276,6 +3653,15 @@
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>49.22339 9.51509</geo></location>
 </place>
+<place xml:id="plcN_mattiacum" type="ner" cert="low"><placeName>Mattiacum</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_mauretanien" type="ner" cert="low"><placeName>Mauretanien</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_maxima_sequanorum" type="ner" cert="low"><placeName>Maxima Sequanorum</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_mehlhaus" type="ner" cert="low"><placeName>Mehlhaus</placeName>
 <trait type="art"><desc>Flur</desc></trait>
 </place>
@@ -3286,6 +3672,9 @@
 </place>
 <place xml:id="plcN_mesnerberg" type="ner" cert="low"><placeName>Mesnerberg</placeName>
 <trait type="art"><desc>Berg</desc></trait>
+</place>
+<place xml:id="plcN_messelbach" type="ner" cert="low"><placeName>Messelbach</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_michelsberg" type="ner" cert="medium"><placeName>Michelsberg</placeName>
 <trait type="art"><desc>Berg</desc></trait>
@@ -3305,6 +3694,9 @@
 <trait type="art"><desc>Berg</desc></trait>
 <location><geo>49.10207 10.90253</geo></location>
 </place>
+<place xml:id="plcN_mittel_lengenfeld" type="ner" cert="low"><placeName>Mittel-Lengenfeld</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_mittel_westernbach" type="ner" cert="low"><placeName>Mittel-Westernbach</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 </place>
@@ -3320,6 +3712,9 @@
 <place xml:id="plcN_moegglingen" type="ner" cert="medium"><placeName>Moegglingen</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>48.82335 9.96208</geo></location>
+</place>
+<place xml:id="plcN_moesia" type="ner" cert="low"><placeName>Moesia</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_mogglingen" type="ner" cert="medium"><placeName>Mögglingen</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -3363,6 +3758,9 @@
 <place xml:id="plcN_mumlingthal" type="ner" cert="low"><placeName>Mümlingthal</placeName>
 <trait type="art"><desc>Region</desc></trait>
 </place>
+<place xml:id="plcN_mummlinglinie" type="ner" cert="low"><placeName>Mümmlinglinie</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_munchen" type="ner" cert="medium"><placeName>München</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2767107</idno>
@@ -3384,6 +3782,12 @@
 </place>
 <place xml:id="plcN_murrthal" type="ner" cert="low"><placeName>Murrthal</placeName>
 <trait type="art"><desc>Region</desc></trait>
+</place>
+<place xml:id="plcN_muthlanger_heide" type="ner" cert="low"><placeName>Muthlanger Heide</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_muttenberg" type="ner" cert="low"><placeName>Müttenberg</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_nadelmuhle" type="ner" cert="medium"><placeName>Nadelmühle</placeName>
 <trait type="art"><desc>Ort/Mühle</desc></trait>
@@ -3421,6 +3825,9 @@
 <idno type="iDAI-Gazetteer">2045859</idno>
 <location><geo>49.37817 9.16906</geo></location>
 </place>
+<place xml:id="plcN_neckarlinie" type="ner" cert="low"><placeName>Neckarlinie</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_neckarmuhlbach" type="ner" cert="medium"><placeName>Neckarmühlbach</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>49.28297 9.13372</geo></location>
@@ -3429,6 +3836,9 @@
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2045679</idno>
 <location><geo>49.18912 9.22528</geo></location>
+</place>
+<place xml:id="plcN_nepperwald" type="ner" cert="low"><placeName>Nepperwald</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_neubinzenhausen" type="ner" cert="low"><placeName>Neubinzenhausen</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -3496,6 +3906,9 @@
 <place xml:id="plcN_nieder_weiseler_wald" type="ner" cert="low"><placeName>Nieder-Weiseler Wald</placeName>
 <trait type="art"><desc>Wald</desc></trait>
 </place>
+<place xml:id="plcN_niederalfingen" type="ner" cert="low"><placeName>Niederalfingen</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_niederberg" type="ner" cert="medium"><placeName>Niederberg</placeName>
 <trait type="art"><desc>Kastell</desc></trait>
 <idno type="iDAI-Gazetteer">2052364</idno>
@@ -3505,6 +3918,9 @@
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2049358</idno>
 <location><geo>50.19344 8.80069</geo></location>
+</place>
+<place xml:id="plcN_niederelnbach" type="ner" cert="low"><placeName>Niederelnbach</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_niederflorstadter_wald" type="ner" cert="low"><placeName>Niederflorstädter Wald</placeName>
 <trait type="art"><desc>Wald</desc></trait>
@@ -3543,6 +3959,9 @@
 <idno type="iDAI-Gazetteer">2106007</idno>
 <location><geo>48.85081 10.48951</geo></location>
 </place>
+<place xml:id="plcN_nordwetterau" type="ner" cert="low"><placeName>Nordwetterau</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_nurnberg" type="ner" cert="medium"><placeName>Nürnberg</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2047786</idno>
@@ -3573,6 +3992,9 @@
 <location><geo>50.95831 7.1975</geo></location>
 </place>
 <place xml:id="plcN_oberflorstadt" type="ner" cert="low"><placeName>Oberflorstadt</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_obergermanien" type="ner" cert="low"><placeName>Obergermanien</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_oberhessen" type="ner" cert="medium"><placeName>Oberhessen</placeName>
@@ -3640,6 +4062,9 @@
 <idno type="iDAI-Gazetteer">2287251</idno>
 <location><geo>50.20058 8.58041</geo></location>
 </place>
+<place xml:id="plcN_oberwinterthur" type="ner" cert="low"><placeName>Oberwinterthur</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_ockstadt" type="ner" cert="medium"><placeName>Ockstadt</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2049536</idno>
@@ -3647,6 +4072,8 @@
 </place>
 <place xml:id="plcN_ocksttidter_wald" type="ner" cert="low"><placeName>Ocksttidter Wald</placeName>
 <trait type="art"><desc>Wald</desc></trait>
+</place>
+<place xml:id="plcN_odenwald" type="ner" cert="low"><placeName>Odenwald</placeName>
 </place>
 <place xml:id="plcN_odenwaldlinie" type="ner" cert="low"><placeName>Odenwaldlinie</placeName>
 <trait type="art"><desc>Region</desc></trait>
@@ -3682,6 +4109,9 @@
 <place xml:id="plcN_ortshalde" type="ner" cert="low"><placeName>Ortshalde</placeName>
 <trait type="art"><desc>Wald</desc></trait>
 </place>
+<place xml:id="plcN_ostheim" type="ner" cert="low"><placeName>Ostheim</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_otterbach" type="ner" cert="medium"><placeName>Otterbach</placeName>
 <trait type="art"><desc>Fluss</desc></trait>
 <location><geo>49.4859 7.73686</geo></location>
@@ -3694,6 +4124,9 @@
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2109385</idno>
 <location><geo>48.9772 11.18796</geo></location>
+</place>
+<place xml:id="plcN_petersee" type="ner" cert="low"><placeName>Petersee</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_petterseethal" type="ner" cert="low"><placeName>Petterseethal</placeName>
 <trait type="art"><desc>Flur</desc></trait>
@@ -3718,6 +4151,9 @@
 </place>
 <place xml:id="plcN_pfahlbachtal" type="ner" cert="low"><placeName>Pfahlbachtal</placeName>
 <trait type="art"><desc>Fluss</desc></trait>
+</place>
+<place xml:id="plcN_pfahlbuck" type="ner" cert="low"><placeName>Pfahlbuck</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_pfahldobel" type="ner" cert="low"><placeName>Pfahldöbel</placeName>
 <trait type="art"><desc>Flur</desc></trait>
@@ -3795,6 +4231,12 @@
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2338718</idno>
 <location><geo>40.75164 14.48616</geo></location>
+</place>
+<place xml:id="plcN_pompelo" type="ner" cert="low"><placeName>Pompelo</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_porta_nigra" type="ner" cert="low"><placeName>Porta Nigra</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_praunheim" type="ner" cert="medium"><placeName>Praunheim</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -3913,6 +4355,9 @@
 <place xml:id="plcN_rendelstein" type="ner" cert="low"><placeName>Rendelstein</placeName>
 <trait type="art"><desc>Kastell</desc></trait>
 </place>
+<place xml:id="plcN_reussenhof" type="ner" cert="low"><placeName>Reussenhof</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_reuth_am_wald" type="ner" cert="medium"><placeName>Reuth am Wald</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>49.00571 11.15668</geo></location>
@@ -3943,6 +4388,9 @@
 <location><geo>50.51084 7.33317</geo></location>
 </place>
 <place xml:id="plcN_rheinhardsachsen" type="ner" cert="low"><placeName>Rheinhardsachsen</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_rheinland" type="ner" cert="low"><placeName>Rheinland</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_riedbohringen" type="ner" cert="medium"><placeName>Riedböhringen</placeName>
@@ -3995,6 +4443,9 @@
 <idno type="iDAI-Gazetteer">2049584</idno>
 <location><geo>50.30442 8.69072</geo></location>
 </place>
+<place xml:id="plcN_rosersmuhle" type="ner" cert="low"><placeName>Rosersmühle</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_rosskopf" type="ner" cert="medium"><placeName>Rosskopf</placeName>
 <trait type="art"><desc>Berg</desc></trait>
 <location><geo>48.0102 7.90254</geo></location>
@@ -4005,6 +4456,9 @@
 <place xml:id="plcN_roten_grund" type="ner" cert="low"><placeName>Roten Grund</placeName>
 <trait type="art"><desc>Flur</desc></trait>
 </place>
+<place xml:id="plcN_rotenbach" type="ner" cert="low"><placeName>Rotenbach</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_rotes_kreuz" type="ner" cert="medium"><placeName>Rotes Kreuz</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>49.31978 9.52607</geo></location>
@@ -4013,12 +4467,18 @@
 <trait type="art"><desc>Fluss</desc></trait>
 <location><geo>47.62919 9.95848</geo></location>
 </place>
+<place xml:id="plcN_rothenbachtal" type="ner" cert="low"><placeName>Röthenbachtal</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_roththal" type="ner" cert="low"><placeName>Roththal</placeName>
 <trait type="art"><desc>Region</desc></trait>
 </place>
 <place xml:id="plcN_rotkopf" type="ner" cert="medium"><placeName>Rotkopf</placeName>
 <trait type="art"><desc>Berg</desc></trait>
 <location><geo>50.62745 9.68168</geo></location>
+</place>
+<place xml:id="plcN_rottenburg" type="ner" cert="low"><placeName>Rottenburg</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_rottenburg_am_neckar" type="ner" cert="medium"><placeName>Rottenburg am Neckar</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -4042,6 +4502,15 @@
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2046752</idno>
 <location><geo>49.0496 10.46994</geo></location>
+</place>
+<place xml:id="plcN_rustich" type="ner" cert="low"><placeName>Rüstich</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_rutesheim" type="ner" cert="low"><placeName>Rutesheim</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_saalburgstrasse" type="ner" cert="low"><placeName>Saalburgstrasse</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_salvator" type="ner" cert="medium"><placeName>Salvator</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -4134,6 +4603,9 @@
 <place xml:id="plcN_schlussle" type="ner" cert="low"><placeName>Schlüssle</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 </place>
+<place xml:id="plcN_schnebsberg" type="ner" cert="low"><placeName>Schnebsberg</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_schnehsberg" type="ner" cert="low"><placeName>Schnehsberg</placeName>
 <trait type="art"><desc>Berg</desc></trait>
 </place>
@@ -4156,6 +4628,9 @@
 <trait type="art"><desc>Fluss</desc></trait>
 <idno type="iDAI-Gazetteer">2045895</idno>
 <location><geo>48.32406 7.97553</geo></location>
+</place>
+<place xml:id="plcN_schuttertal" type="ner" cert="low"><placeName>Schuttertal</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_schwabisch_gmund" type="ner" cert="medium"><placeName>Schwäbisch Gmünd</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -4191,9 +4666,15 @@
 <place xml:id="plcN_schweinegraben" type="ner" cert="low"><placeName>Schweinegraben</placeName>
 <trait type="art"><desc>Flur</desc></trait>
 </place>
+<place xml:id="plcN_schweiz" type="ner" cert="low"><placeName>Schweiz</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_seckach" type="ner" cert="medium"><placeName>Seckach</placeName>
 <trait type="art"><desc>Fluss</desc></trait>
 <location><geo>49.44324 9.33588</geo></location>
+</place>
+<place xml:id="plcN_seckmauern" type="ner" cert="low"><placeName>Seckmauern</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_seckmaurer_hohe" type="ner" cert="low"><placeName>Seckmaurer Höhe</placeName>
 <trait type="art"><desc>Berg</desc></trait>
@@ -4225,6 +4706,12 @@
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2049446</idno>
 <location><geo>50.04364 8.97029</geo></location>
+</place>
+<place xml:id="plcN_sennenbach" type="ner" cert="low"><placeName>Sennenbach</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_sequania" type="ner" cert="low"><placeName>Sequania</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_seulberg" type="ner" cert="medium"><placeName>Seulberg</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -4294,6 +4781,9 @@
 <idno type="iDAI-Gazetteer">2047928</idno>
 <location><geo>49.02501 12.09642</geo></location>
 </place>
+<place xml:id="plcN_starkenburg" type="ner" cert="low"><placeName>Starkenburg</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_staufen" type="ner" cert="medium"><placeName>Staufen</placeName>
 <trait type="art"><desc>Berg</desc></trait>
 <idno type="iDAI-Gazetteer">2047040</idno>
@@ -4320,6 +4810,9 @@
 <place xml:id="plcN_steinbutzenacker" type="ner" cert="low"><placeName>Steinbutzenäcker</placeName>
 <trait type="art"><desc>Flur</desc></trait>
 </place>
+<place xml:id="plcN_steinchesweg" type="ner" cert="low"><placeName>Steinchesweg</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_steinernwand" type="ner" cert="medium"><placeName>Steinernwand</placeName>
 <trait type="art"><desc>Flur/Waldabteilung</desc></trait>
 <location><geo>50.30181 8.87637</geo></location>
@@ -4327,6 +4820,12 @@
 <place xml:id="plcN_steinkopf" type="ner" cert="medium"><placeName>Steinkopf</placeName>
 <trait type="art"><desc>Berg</desc></trait>
 <location><geo>50.47814 10.01824</geo></location>
+</place>
+<place xml:id="plcN_steinkritz" type="ner" cert="low"><placeName>Steinkritz</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_steinleinsfurt" type="ner" cert="low"><placeName>Steinleinsfurt</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_stepberg" type="ner" cert="medium"><placeName>Stepberg</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -4343,6 +4842,9 @@
 <place xml:id="plcN_stockbronner_hof" type="ner" cert="medium"><placeName>Stockbronner Hof</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>49.33207 9.16574</geo></location>
+</place>
+<place xml:id="plcN_stockenburg" type="ner" cert="low"><placeName>Stöckenburg</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_stockplacken" type="ner" cert="low"><placeName>Stockplacken</placeName>
 <trait type="art"><desc>Flur</desc></trait>
@@ -4396,20 +4898,35 @@
 <place xml:id="plcN_tannwald" type="ner" cert="low"><placeName>Tannwald</placeName>
 <trait type="art"><desc>Wald</desc></trait>
 </place>
+<place xml:id="plcN_tarraco" type="ner" cert="low"><placeName>Tarraco</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_taubenlache" type="ner" cert="low"><placeName>Taubenlache</placeName>
 <trait type="art"><desc>Flur</desc></trait>
 </place>
 <place xml:id="plcN_taubus" type="ner" cert="low"><placeName>Taubus</placeName>
 <trait type="art"><desc>Region</desc></trait>
 </place>
+<place xml:id="plcN_taunuslimes" type="ner" cert="low"><placeName>Taunuslimes</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_tebessa" type="ner" cert="low"><placeName>Tebessa</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_teufelsmauer" type="ner" cert="medium"><placeName>Teufelsmauer</placeName>
 <trait type="art"><desc>Region</desc></trait>
 <location><geo>50.02235 9.65792</geo></location>
+</place>
+<place xml:id="plcN_thala" type="ner" cert="low"><placeName>Thala</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_theilenhofen" type="ner" cert="medium"><placeName>Theilenhofen</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2048333</idno>
 <location><geo>49.08695 10.81944</geo></location>
+</place>
+<place xml:id="plcN_thrakien" type="ner" cert="low"><placeName>Thrakien</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_thuringen" type="ner" cert="medium"><placeName>Thüringen</placeName>
 <trait type="art"><desc>Region</desc></trait>
@@ -4432,10 +4949,16 @@
 <place xml:id="plcN_tonnishof" type="ner" cert="low"><placeName>Tönnishof</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 </place>
+<place xml:id="plcN_toutonenstein" type="ner" cert="low"><placeName>Toutonenstein</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_trais_munzenberg" type="ner" cert="medium"><placeName>Trais-Münzenberg</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2049586</idno>
 <location><geo>50.46447 8.78651</geo></location>
+</place>
+<place xml:id="plcN_trajanssaule" type="ner" cert="low"><placeName>Trajanssäule</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_treppach" type="ner" cert="medium"><placeName>Treppach</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -4457,6 +4980,9 @@
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2052622</idno>
 <location><geo>49.70722 6.71972</geo></location>
+</place>
+<place xml:id="plcN_troas" type="ner" cert="low"><placeName>Troas</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_trompeterberg" type="ner" cert="medium"><placeName>Trompeterberg</placeName>
 <trait type="art"><desc>Berg</desc></trait>
@@ -4509,6 +5035,9 @@
 <idno type="iDAI-Gazetteer">2045669</idno>
 <location><geo>49.34531 9.43836</geo></location>
 </place>
+<place xml:id="plcN_untermain" type="ner" cert="low"><placeName>Untermain</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_untermassholderbach" type="ner" cert="medium"><placeName>Untermassholderbach</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>49.21662 9.51269</geo></location>
@@ -4517,9 +5046,15 @@
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>49.53168 10.92303</geo></location>
 </place>
+<place xml:id="plcN_unterstall" type="ner" cert="low"><placeName>Unterstall</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_unterwurmbach" type="ner" cert="medium"><placeName>Unterwurmbach</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>49.10625 10.72981</geo></location>
+</place>
+<place xml:id="plcN_ur_memmingen" type="ner" cert="low"><placeName>Ur-Memmingen</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_urselbach" type="ner" cert="medium"><placeName>Urselbach</placeName>
 <trait type="art"><desc>Fluss</desc></trait>
@@ -4536,6 +5071,9 @@
 <idno type="iDAI-Gazetteer">2049253</idno>
 <location><geo>50.3185 8.46484</geo></location>
 </place>
+<place xml:id="plcN_vallatum" type="ner" cert="low"><placeName>Vallatum</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_vallendar" type="ner" cert="medium"><placeName>Vallendar</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2052420</idno>
@@ -4543,6 +5081,9 @@
 </place>
 <place xml:id="plcN_veisternachtbach" type="ner" cert="low"><placeName>Veisternachtbach</placeName>
 <trait type="art"><desc>Fluss</desc></trait>
+</place>
+<place xml:id="plcN_vicus_aurelii" type="ner" cert="low"><placeName>Vicus Aurelii</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_vielbrunn" type="ner" cert="medium"><placeName>Vielbrunn</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -4564,7 +5105,16 @@
 <idno type="iDAI-Gazetteer">2046197</idno>
 <location><geo>48.06234 9.14333</geo></location>
 </place>
+<place xml:id="plcN_vindonissa" type="ner" cert="low"><placeName>Vindonissa</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_vitodurum" type="ner" cert="low"><placeName>Vitodurum</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_vogelbaumhecken" type="ner" cert="low"><placeName>Vogelbaumhecken</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_vogelhofe" type="ner" cert="low"><placeName>Vogelhöfe</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_vogelsberg" type="ner" cert="medium"><placeName>Vogelsberg</placeName>
@@ -4588,15 +5138,24 @@
 <idno type="iDAI-Gazetteer">2276384</idno>
 <location><geo>49.47175 9.14563</geo></location>
 </place>
+<place xml:id="plcN_waldleiningen" type="ner" cert="low"><placeName>Waldleiningen</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_waldmossingen" type="ner" cert="medium"><placeName>Waldmössingen</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2046153</idno>
 <location><geo>48.26812 8.48506</geo></location>
 </place>
+<place xml:id="plcN_waldreffen" type="ner" cert="low"><placeName>Waldreffen</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_walheim" type="ner" cert="medium"><placeName>Walheim</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2103547</idno>
 <location><geo>49.01417 9.15111</geo></location>
+</place>
+<place xml:id="plcN_wallbachmuhle" type="ner" cert="low"><placeName>Wallbachmühle</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_walldurn" type="ner" cert="medium"><placeName>Walldürn</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -4622,6 +5181,12 @@
 <trait type="art"><desc>Fluss</desc></trait>
 <location><geo>49.6284 9.1364</geo></location>
 </place>
+<place xml:id="plcN_watterbachtal" type="ner" cert="low"><placeName>Watterbachtal</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_weberleithe" type="ner" cert="low"><placeName>Weberleithe</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_wehrheim" type="ner" cert="medium"><placeName>Wehrheim</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2049261</idno>
@@ -4635,6 +5200,9 @@
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2048338</idno>
 <location><geo>49.03095 10.97221</geo></location>
+</place>
+<place xml:id="plcN_weierwaldchen" type="ner" cert="low"><placeName>Weierwäldchen</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_weiherwiesen" type="ner" cert="low"><placeName>Weiherwiesen</placeName>
 <trait type="art"><desc>Flur</desc></trait>
@@ -4678,6 +5246,9 @@
 <trait type="art"><desc>Berg</desc></trait>
 <location><geo>50.30728 8.63628</geo></location>
 </place>
+<place xml:id="plcN_wellenhof" type="ner" cert="low"><placeName>Wellenhof</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_welsbach" type="ner" cert="medium"><placeName>Welsbach</placeName>
 <trait type="art"><desc>Fluss</desc></trait>
 <location><geo>50.49151 8.76882</geo></location>
@@ -4699,10 +5270,15 @@
 <idno type="iDAI-Gazetteer">2045186</idno>
 <location><geo>49.23274 9.49651</geo></location>
 </place>
+<place xml:id="plcN_westfalen" type="ner" cert="low"><placeName>Westfalen</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_wetter" type="ner" cert="medium"><placeName>Wetter</placeName>
 <trait type="art"><desc>Fluss</desc></trait>
 <idno type="iDAI-Gazetteer">2049414</idno>
 <location><geo>50.90327 8.7237</geo></location>
+</place>
+<place xml:id="plcN_wetterau" type="ner" cert="low"><placeName>Wetterau</placeName>
 </place>
 <place xml:id="plcN_wetzelbach" type="ner" cert="medium"><placeName>Wetzelbach</placeName>
 <trait type="art"><desc>Fluss</desc></trait>
@@ -4762,6 +5338,9 @@
 <place xml:id="plcN_windlucke" type="ner" cert="low"><placeName>Windlücke</placeName>
 <trait type="art"><desc>Flur</desc></trait>
 </place>
+<place xml:id="plcN_wintersein" type="ner" cert="low"><placeName>Wintersein</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_winterthur" type="ner" cert="medium"><placeName>Winterthur</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2099126</idno>
@@ -4778,6 +5357,9 @@
 <place xml:id="plcN_wittenbach" type="ner" cert="medium"><placeName>Wittenbach</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>49.01001 10.3896</geo></location>
+</place>
+<place xml:id="plcN_wohlfahrtsschneise" type="ner" cert="low"><placeName>Wohlfahrtsschneise</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_wohnbach" type="ner" cert="medium"><placeName>Wohnbach</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -4850,6 +5432,12 @@
 <idno type="iDAI-Gazetteer">2045251</idno>
 <location><geo>47.54729 7.69331</geo></location>
 </place>
+<place xml:id="plcN_xanten" type="ner" cert="low"><placeName>Xanten</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
+<place xml:id="plcN_zama" type="ner" cert="low"><placeName>Zama</placeName>
+<trait type="art"><desc>Ort</desc></trait>
+</place>
 <place xml:id="plcN_zant" type="ner" cert="medium"><placeName>Zant</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <location><geo>49.45661 11.56188</geo></location>
@@ -4872,6 +5460,9 @@
 </place>
 <place xml:id="plcN_zimmerwald" type="ner" cert="low"><placeName>Zimmerwald</placeName>
 <trait type="art"><desc>Wald</desc></trait>
+</place>
+<place xml:id="plcN_zurich" type="ner" cert="low"><placeName>Zürich</placeName>
+<trait type="art"><desc>Ort</desc></trait>
 </place>
 <place xml:id="plcN_zurzach" type="ner" cert="medium"><placeName>Zurzach</placeName>
 <trait type="art"><desc>Ort</desc></trait>

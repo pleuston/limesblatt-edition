@@ -540,6 +540,7 @@ def write_bibl(path):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--vault", default=os.environ.get("VAULT_ROOT", os.path.join(REPO, "..", "limes")))
+    ap.add_argument("--dump-entities", action="store_true", help="Entitäts-Universum dumpen + raus")
     a = ap.parse_args()
     vault = os.path.abspath(a.vault)
     if not os.path.isdir(os.path.join(vault, "tools", ".cache")):
@@ -588,9 +589,39 @@ def main():
         forms = [(w, n) for w, n in low2forms.get(v, []) if 1 <= n <= 2 and w[:1].isupper() and w not in global_terms]
         if len(forms) == 1:
             kind, eid = next(iter(ents)); global_terms[forms[0][0]] = (kind, eid, "low"); fuzz += 1
+    # ---- kuratierte Korpus-weite Promotion (build/promote.json) ----
+    # Recall-Stufe aus dem Entitäts-Recall-Audit (tools/entity_audit.py + Workflow): Formen, die
+    # anderswo schon als Entität getaggt sind, aber unterhalb der konservativen Promotion-Schwelle
+    # (≥7 Ort/≥6 Person) lagen (z. B. „Gmünd", „Main", „Pfünz", „Jacobi"). {form:[kind,id,cert]};
+    # nur übernommen, wenn die Ziel-ID als Entität existiert. STOP-Homographe bleiben außen vor.
+    pj = os.path.join(os.path.dirname(os.path.abspath(__file__)), "promote.json")
+    prom = 0
+    if os.path.exists(pj):
+        for form, spec in json.load(open(pj, encoding="utf-8")).items():
+            kind, eid, cert = spec[0], spec[1], spec[2]
+            if form in STOP:
+                continue
+            if eid not in g["entities"]:
+                # optionaler 4. Eintrag = Name → minimale Entität prägen (z. B. GENERIC-Landschaften
+                # wie Taunus/Wetterau/Odenwald, die der Gazetteer bewusst nicht aus den NER-Listen prägt)
+                if len(spec) >= 4 and spec[3]:
+                    g["entities"][eid] = {"id": eid, "kind": "person" if kind == "p" else "place",
+                                          "name": spec[3], "cert": cert, "source": "recall"}
+                    g["ner_only"].add(eid)        # → Register-Stub (write_ner), damit @ref auflöst
+                else:
+                    continue
+            global_terms[form] = (kind, eid, cert); prom += 1
     global_terms = dict(sorted(global_terms.items(), key=lambda kv: -len(kv[0])))
-    print(f"Fuzzy-Garble-Varianten (Editierdistanz 1, Low-Cert): {fuzz}")
+    print(f"Fuzzy-Garble-Varianten (Editierdistanz 1, Low-Cert): {fuzz} · kuratierte Promotion: {prom}")
     token_terms, entities, ner_only = g["token_terms"], g["entities"], g["ner_only"]
+    if "--dump-entities" in sys.argv:
+        forms = {}
+        for t, (k, e, c) in global_terms.items(): forms.setdefault(e, []).append(t)
+        json.dump({"entities": {i: {"kind": e["kind"], "name": e["name"]} for i, e in entities.items()},
+                   "global_terms": list(global_terms), "entity_forms": forms},
+                  open(os.path.join(vault, "tools", ".cache", "gazetteer_entities.json"), "w", encoding="utf-8"),
+                  ensure_ascii=False)
+        print(f"--dump-entities: {len(entities)} Entitäten → tools/.cache/gazetteer_entities.json"); return
     write_ner(entities, ner_only, os.path.join(REPO, "registers", "ner.xml"))
     write_bibl(os.path.join(REPO, "registers", "bibliography.xml"))
     print(f"Register: {len(persons)} Personen, {len(places)} Orte, {len(strecken)} Strecken")
