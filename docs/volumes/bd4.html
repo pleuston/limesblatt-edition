@@ -161,6 +161,29 @@ viewer.addHandler("page", function(ev){           // Faksimile bewegt → Lesete
   var lb=document.getElementById("linebreaks"), pane=document.querySelector('.reader .text');
   if(lb&&pane){var f=function(){pane.classList.toggle("flow", !lb.checked);}; lb.addEventListener("change",f); f();}
 })();
+(function(){          // Fund-/Register-Sprung: ?hl=Wort → exakte Fundstelle im Lesetext markieren + anspringen
+  var hl=new URLSearchParams(location.search).get('hl'); if(!hl) return;
+  var pane=document.querySelector('.reader .text'); if(!pane) return;
+  var hlL=hl.toLowerCase();
+  var start=location.hash?document.getElementById(decodeURIComponent(location.hash.slice(1))):null;
+  var el=start?start.nextElementSibling:pane.firstElementChild, nodes=[];
+  while(el){ if(el.classList&&el.classList.contains('pb')) break; if(el.tagName==='P') nodes.push(el); el=el.nextElementSibling; }
+  if(!nodes.length) nodes=[].slice.call(pane.querySelectorAll('p'));
+  for(var i=0;i<nodes.length;i++){
+    var tw=document.createTreeWalker(nodes[i],NodeFilter.SHOW_TEXT,null), tn;
+    while((tn=tw.nextNode())){
+      var idx=tn.nodeValue.toLowerCase().indexOf(hlL);
+      if(idx>=0){
+        try{
+          var r=document.createRange(); r.setStart(tn,idx); r.setEnd(tn,idx+hl.length);
+          var mk=document.createElement('mark'); mk.className='findhl'; r.surroundContents(mk);
+          setTimeout(function(){mk.scrollIntoView({behavior:'smooth',block:'center'});},60);
+        }catch(e){}
+        return;
+      }
+    }
+  }
+})();
 </script></main>
 <footer>Diplomatische OCR-Edition des <em>Limesblatt</em> (1892–1903) · Text &amp; Register
 <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · Seitenbilder © UB Heidelberg

@@ -100,3 +100,7 @@ button.ed.primary{background:var(--accent,#7a5);color:#fff;border-color:var(--ac
 #pbwin input#pbmsg{margin-top:.5rem;font:inherit;padding:.35rem .5rem;border:1px solid var(--line);border-radius:4px}
 #pbwin .pbstat{font-size:.82rem;color:var(--muted,#888)} #pbwin #pbresult{margin-top:.4rem;font-size:.85rem}
 .err{color:#a33}
+/* Wort-genauer Fund-Sprung (?hl=) — getroffene Stelle im Lesetext hervorheben */
+mark.findhl{background:#fff3a0;color:inherit;border-radius:2px;padding:0 .05em;box-shadow:0 0 0 .15em #fff3a0;
+  scroll-margin-top:40vh;animation:findpulse 2.6s ease-out 1}
+@keyframes findpulse{0%,18%{background:#ffd83a;box-shadow:0 0 0 .25em #ffd83a}100%{background:#fff3a0;box-shadow:0 0 0 .15em #fff3a0}}

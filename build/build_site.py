@@ -12,6 +12,7 @@ Karte) und einen clientseitigen Volltextindex (MiniSearch). Ausgabe → docs/.
 import glob, html, os, re, json, shutil
 from collections import defaultdict
 from itertools import groupby
+from urllib.parse import quote
 import gazetteer
 
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(HERE)
@@ -253,6 +254,29 @@ viewer.addHandler("page", function(ev){{           // Faksimile bewegt → Leset
 (function(){{                                       // „Originalzeilen" ein/aus → Druck-Zeilenumbrüche zeigen/fließend
   var lb=document.getElementById("linebreaks"), pane=document.querySelector('.reader .text');
   if(lb&&pane){{var f=function(){{pane.classList.toggle("flow", !lb.checked);}}; lb.addEventListener("change",f); f();}}
+}})();
+(function(){{          // Fund-/Register-Sprung: ?hl=Wort → exakte Fundstelle im Lesetext markieren + anspringen
+  var hl=new URLSearchParams(location.search).get('hl'); if(!hl) return;
+  var pane=document.querySelector('.reader .text'); if(!pane) return;
+  var hlL=hl.toLowerCase();
+  var start=location.hash?document.getElementById(decodeURIComponent(location.hash.slice(1))):null;
+  var el=start?start.nextElementSibling:pane.firstElementChild, nodes=[];
+  while(el){{ if(el.classList&&el.classList.contains('pb')) break; if(el.tagName==='P') nodes.push(el); el=el.nextElementSibling; }}
+  if(!nodes.length) nodes=[].slice.call(pane.querySelectorAll('p'));
+  for(var i=0;i<nodes.length;i++){{
+    var tw=document.createTreeWalker(nodes[i],NodeFilter.SHOW_TEXT,null), tn;
+    while((tn=tw.nextNode())){{
+      var idx=tn.nodeValue.toLowerCase().indexOf(hlL);
+      if(idx>=0){{
+        try{{
+          var r=document.createRange(); r.setStart(tn,idx); r.setEnd(tn,idx+hl.length);
+          var mk=document.createElement('mark'); mk.className='findhl'; r.surroundContents(mk);
+          setTimeout(function(){{mk.scrollIntoView({{behavior:'smooth',block:'center'}});}},60);
+        }}catch(e){{}}
+        return;
+      }}
+    }}
+  }}
 }})();
 </script>"""
     return body, head
@@ -758,27 +782,32 @@ def toc_li(entries, hrefpre, with_page):
 
 # ---------- Fundindex & Bibliographie (token-frei, spalten-präzise) ----------
 def scan_occ(volumes, patterns):
-    """{key: [(vol, anchor, printed), …]} — je Spalte, entdoppelt, in Bandreihenfolge."""
+    """{key: [(vol, anchor, printed, term), …]} — je Spalte, entdoppelt; term = der konkret
+    getroffene Wortlaut (für den Wort-genauen Sprung + Highlight im Lesetext)."""
     occ, seen = defaultdict(list), set()
     for v in volumes:
         for p in v["pages"]:
-            low = (p.get("text") or "").lower()
-            if not low: continue
+            txt = p.get("text") or ""
+            if not txt: continue
             for key, rx in patterns:
-                if rx.search(low):
+                m = rx.search(txt)
+                if m:
                     k = (key, v["nr"], p["anchor"])
                     if k not in seen:
-                        seen.add(k); occ[key].append((v["nr"], p["anchor"], p["printed"]))
+                        seen.add(k); occ[key].append((v["nr"], p["anchor"], p["printed"], m.group(0)))
     return occ
 
 def _belege(items, cap=60):
     out = []
     for vol, grp in groupby(items, key=lambda x: x[0]):
         seen, links = set(), []
-        for _, a, pp in grp:
+        for it in grp:
+            a, pp = it[1], it[2]; term = it[3] if len(it) > 3 else ""
             if a in seen: continue
-            seen.add(a); links.append((a, pp))
-        shown = ", ".join(f'<a href="../volumes/bd{vol}.html#pb-{html.escape(a)}">{html.escape(pp)}</a>' for a, pp in links[:cap])
+            seen.add(a); links.append((a, pp, term))
+        shown = ", ".join(
+            f'<a href="../volumes/bd{vol}.html{("?hl=" + quote(term)) if term else ""}#pb-{html.escape(a)}">{html.escape(pp)}</a>'
+            for a, pp, term in links[:cap])
         more = f' <span class="meta">+{len(links) - cap}</span>' if len(links) > cap else ""
         out.append(f'Bd.&#160;{vol}: {shown}{more}')
     return " · ".join(out) if out else '<span class="meta">—</span>'
@@ -916,18 +945,18 @@ def stamp_occ(volumes):
     seen = set()
     for v in volumes:
         for p in v["pages"]:
-            low = (p.get("text") or "").lower()
+            txt = p.get("text") or ""
             for rx, dst, pre in ((legrx, leg, "Legio"), (cohrx, coh, "Cohors")):
-                for m in rx.finditer(low):
+                for m in rx.finditer(txt):
                     n = _r2i(m.group(1))
                     if not n: continue
                     key = f"{pre} {_i2r(n)}"; k = (key, v["nr"], p["anchor"])
-                    if k not in seen: seen.add(k); dst[key].append((v["nr"], p["anchor"], p["printed"]))
-            for m in caprx.finditer(p.get("text") or ""):     # Versal-Legenden (Stempel/Inschrift)
+                    if k not in seen: seen.add(k); dst[key].append((v["nr"], p["anchor"], p["printed"], m.group(0)))
+            for m in caprx.finditer(txt):                      # Versal-Legenden (Stempel/Inschrift)
                 w = m.group(1)
                 if _r2i(w) or not re.search(r"[AEIOUÄÖÜ]", w): continue
                 k = (w, v["nr"], p["anchor"])
-                if k not in seen: seen.add(k); legend[w].append((v["nr"], p["anchor"], p["printed"]))
+                if k not in seen: seen.add(k); legend[w].append((v["nr"], p["anchor"], p["printed"], w))
     return leg, coh, legend
 
 def inscriptions_page(edh):
