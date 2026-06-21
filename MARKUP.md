@@ -72,8 +72,13 @@ Korpuswort); die **schlechtesten Seiten werden am IIIF-Faksimile neu transkribie
 Spalte das Digitalisat — wie bei den TOC-Köpfen) und liegen versioniert unter
 `../limes/tools/corrections/<slug>/<tok>[.<col>].txt`. Beim Ableiten spielt `limesblatt_ocr.apply_corrections`
 sie ein und behandelt sie **wie die Geometrie-Seiten** (`_corr_paras`: Absätze, Druckzeilen `<lb/>`,
-Silbentrennung aufgelöst). Rund **45 garble-Seiten** in zwei Faksimile-Wellen
-(verstümmelte Latein-Inschriften + Prosa, je Spalte) sind so re-OCR't → garble-Arbeitsliste **0**. *Token-freie freq-basierte Autokorrektur* wurde verworfen
+Silbentrennung aufgelöst). Rund **270 Blatt-Token** (gut die Hälfte des Korpus) in mehreren Faksimile-Wellen
+re-OCR't — die fehlerträchtigen Seiten ∪ **alle Bericht-Kopf-Seiten**, je Spalte diplomatisch.
+Beim Voll-Scan meldeten die Agenten zugleich jeden Bericht-Kopf (Nr./Ort/Spalte); der Abgleich gegen
+`toc.json` **bestätigte 151 von 167 Kopf-Positionen** und korrigierte echte Fehlstellen (z. B. Nr. 51
+„Mümlinglinie" statt „Robern", richtige Seite). Die wenigen erhöhten garble-Werte danach sind kein
+Rückschritt, sondern **korrekt transkribierte Latein-Inschriften** (z. B. die Militärdiplom-Seiten), die
+der für deutschen Prosatext gebaute garble-Proxy als „selten" flaggt. *Token-freie freq-basierte Autokorrektur* wurde verworfen
 (sie verschlimmbessert legitim seltene Wörter).
 
 ### Inhaltsverzeichnis (nummerierte Feldberichte)
