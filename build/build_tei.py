@@ -66,6 +66,27 @@ BIBLIO = [
     ("bib_becker", "J. Becker, Inschriften-/Limesbeiträge", "J. Becker, Beiträge zur Limes- und Inschriftenforschung.", "", "", r"\bBecker\b"),
     ("bib_tischler", "O. Tischler, Fibel-Typologie", "Otto Tischler, zur Typologie der Fibeln (La-Tène/provinzialrömisch).", "", "", r"\bTischler\b"),
     ("bib_haug", "F. Haug, Inschriften Südwestdeutschlands", "Ferdinand Haug, zu den römischen Inschriften Südwestdeutschlands.", "", "", r"\bHaug\b"),
+    # --- erweiterte Zitations-Abdeckung (token-frei im OCR belegt): Zeitschriften + antike Quellen ---
+    ("bib_archanz", "Archäologischer Anzeiger", "Archäologischer Anzeiger (Beiblatt zum Jahrbuch des Deutschen Archäologischen Instituts), Berlin.",
+     "https://www.digi.ub.uni-heidelberg.de/diglit/aa", "UB Heidelberg (OA)", r"Arch\w*\.?\s*Anz"),
+    ("bib_nassau", "Annalen des Vereins für Nassauische Altertumskunde", "Annalen des Vereins für Nassauische Altertumskunde und Geschichtsforschung, Wiesbaden, seit 1830.",
+     "", "", r"Nass\w*\.?\s*Ann|Annalen[^.]{0,14}[Nn]assau"),
+    ("bib_wuertt", "Württembergische Vierteljahrshefte", "Württembergische Vierteljahrshefte für Landesgeschichte, Stuttgart, seit 1878.",
+     "", "", r"Württ\w*\.?\s*Viert"),
+    ("bib_hermes", "Hermes. Zeitschrift für classische Philologie", "Hermes. Zeitschrift für classische Philologie, Berlin, seit 1866.",
+     "", "", r"\bHermes\s+[IVXLC0-9]"),
+    ("bib_tacitus", "Tacitus (Germania / Annales / Historiae)", "P. Cornelius Tacitus, bes. Germania, Annales, Historiae (antike Quelle).",
+     "", "", r"\bTacit(?:us|i)?\b|\bTac\.\s"),
+    ("bib_ptolemaeus", "Klaudios Ptolemaios, Geographie", "Klaudios Ptolemaios, Geographike Hyphegesis (antike Quelle, bes. Buch II).",
+     "", "", r"Ptolem\w*|\bPtol\."),
+    ("bib_ammianus", "Ammianus Marcellinus", "Ammianus Marcellinus, Res gestae (antike Quelle).",
+     "", "", r"Ammian\w*"),
+    ("bib_notitia", "Notitia Dignitatum", "Notitia Dignitatum (spätantikes Staatshandbuch, bes. occ. — Limesgarnisonen).",
+     "", "", r"Notitia\s+[Dd]ign|Not\.?\s*[Dd]ign\w*"),
+    ("bib_peutinger", "Tabula Peutingeriana", "Tabula Peutingeriana (spätantike Straßenkarte).",
+     "", "", r"(?:Tab\.?\s*)?Peuting\w*"),
+    ("bib_itinant", "Itinerarium Antonini", "Itinerarium Antonini Augusti (spätantikes Straßenverzeichnis).",
+     "", "", r"Itinerar\w*|Itin\.?\s*Anton\w*"),
 ]
 
 # IIIF-Manifeste der OA-Digitalisate → im Leser einbettbares Faksimile (work-/Beispielband-Ebene).
@@ -83,6 +104,7 @@ BIB_IIIF = {
 CITE_RANGE = [
     ("bib_cil",      re.compile(r"\b(?:C\.?\s?I\.?\s?L\.?|Corp\.)\s+([IVXLC]+(?:[\s,.]+(?:[Pp]\.\s*)?\d+)*)", re.I)),
     ("bib_brambach", re.compile(r"\bBramb(?:ach)?\.?\s+(?:Nr\.?\s*)?(\d{2,4}(?:\s*[.,]\s*\d{2,4})*)", re.I)),
+    ("bib_brambach", re.compile(r"\bC\.?\s?I\.?\s?Rh\.?\s+(?:Nr\.?\s*)?(\d{2,4}(?:\s*[.,]\s*\d{2,4})*)", re.I)),
 ]
 
 def slug(s):

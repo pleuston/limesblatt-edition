@@ -46,4 +46,25 @@
 </bibl>
 <bibl xml:id="bib_haug"><title>F. Haug, Inschriften Südwestdeutschlands</title><note>Ferdinand Haug, zu den römischen Inschriften Südwestdeutschlands.</note>
 </bibl>
+<bibl xml:id="bib_archanz"><title>Archäologischer Anzeiger</title><note>Archäologischer Anzeiger (Beiblatt zum Jahrbuch des Deutschen Archäologischen Instituts), Berlin.</note>
+<ref type="oa" target="https://www.digi.ub.uni-heidelberg.de/diglit/aa">UB Heidelberg (OA)</ref>
+</bibl>
+<bibl xml:id="bib_nassau"><title>Annalen des Vereins für Nassauische Altertumskunde</title><note>Annalen des Vereins für Nassauische Altertumskunde und Geschichtsforschung, Wiesbaden, seit 1830.</note>
+</bibl>
+<bibl xml:id="bib_wuertt"><title>Württembergische Vierteljahrshefte</title><note>Württembergische Vierteljahrshefte für Landesgeschichte, Stuttgart, seit 1878.</note>
+</bibl>
+<bibl xml:id="bib_hermes"><title>Hermes. Zeitschrift für classische Philologie</title><note>Hermes. Zeitschrift für classische Philologie, Berlin, seit 1866.</note>
+</bibl>
+<bibl xml:id="bib_tacitus"><title>Tacitus (Germania / Annales / Historiae)</title><note>P. Cornelius Tacitus, bes. Germania, Annales, Historiae (antike Quelle).</note>
+</bibl>
+<bibl xml:id="bib_ptolemaeus"><title>Klaudios Ptolemaios, Geographie</title><note>Klaudios Ptolemaios, Geographike Hyphegesis (antike Quelle, bes. Buch II).</note>
+</bibl>
+<bibl xml:id="bib_ammianus"><title>Ammianus Marcellinus</title><note>Ammianus Marcellinus, Res gestae (antike Quelle).</note>
+</bibl>
+<bibl xml:id="bib_notitia"><title>Notitia Dignitatum</title><note>Notitia Dignitatum (spätantikes Staatshandbuch, bes. occ. — Limesgarnisonen).</note>
+</bibl>
+<bibl xml:id="bib_peutinger"><title>Tabula Peutingeriana</title><note>Tabula Peutingeriana (spätantike Straßenkarte).</note>
+</bibl>
+<bibl xml:id="bib_itinant"><title>Itinerarium Antonini</title><note>Itinerarium Antonini Augusti (spätantikes Straßenverzeichnis).</note>
+</bibl>
 </listBibl></standOff></TEI>
