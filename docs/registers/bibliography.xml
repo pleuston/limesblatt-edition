@@ -7,64 +7,87 @@
 <bibl xml:id="bib_westd"><title>Westdeutsche Zeitschrift</title><note>Westdeutsche Zeitschrift für Geschichte und Kunst (Trier 1882–1907), hrsg. F. Hettner u. K. Lamprecht.</note>
 <ref type="oa" target="https://digi.ub.uni-heidelberg.de/diglit/wzgk_kbl">UB Heidelberg (OA)</ref>
 <ref type="iiif-manifest" target="https://digi.ub.uni-heidelberg.de/diglit/iiif/wzgk_kbl1894/manifest"/>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=Westdeutsche%20Zeitschrift%20Geschichte">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_korr"><title>Korrespondenzblatt der Westd. Zeitschrift</title><note>Korrespondenzblatt der Westdeutschen Zeitschrift für Geschichte und Kunst (Trier 1882–1907).</note>
 <ref type="oa" target="https://digi.ub.uni-heidelberg.de/diglit/wzgk_kbl">UB Heidelberg (OA)</ref>
 <ref type="iiif-manifest" target="https://digi.ub.uni-heidelberg.de/diglit/iiif/wzgk_kbl1894/manifest"/>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=Korrespondenzblatt%20Westdeutsche%20Zeitschrift">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_bonn"><title>Bonner Jahrbücher</title><note>Bonner Jahrbücher (Jahrbücher des Vereins von Altertumsfreunden im Rheinlande), Bonn, seit 1842.</note>
 <ref type="oa" target="https://journals.ub.uni-heidelberg.de/index.php/bjb">UB Heidelberg Journals (OA)</ref>
 <ref type="iiif-manifest" target="https://iiif.archive.org/iiif/bonnerjahrbcher00rheigoog/manifest.json"/>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=Bonner%20Jahrb%C3%BCcher">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_brambach"><title>W. Brambach, Corpus Inscriptionum Rhenanarum (1867)</title><note>Wilhelm Brambach, Corpus Inscriptionum Rhenanarum. Elberfeld 1867.</note>
 <ref type="oa" target="https://archive.org/details/bub_gb_pbJfXWjFgP4C">Internet Archive (OA)</ref>
 <ref type="iiif-manifest" target="https://iiif.archive.org/iiif/bub_gb_pbJfXWjFgP4C/manifest.json"/>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=Corpus%20Inscriptionum%20Rhenanarum">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_dragendorff"><title>H. Dragendorff, Terra sigillata (BJb 96/97, 1895)</title><note>Hans Dragendorff, Terra sigillata. Ein Beitrag zur Geschichte der griechischen und römischen Keramik. Bonner Jahrbücher 96/97 (1895) 18–155.</note>
 <ref type="oa" target="https://archive.org/details/terrasigillatae00draggoog">Internet Archive (OA)</ref>
 <ref type="iiif-manifest" target="https://iiif.archive.org/iiif/terrasigillatae00draggoog/manifest.json"/>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=Dragendorff%20Terra%20sigillata">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_cil"><title>Corpus Inscriptionum Latinarum (CIL)</title><note>Corpus Inscriptionum Latinarum. Berlin, seit 1863 (bes. Bd. XIII, Germania).</note>
 <ref type="oa" target="https://cil.bbaw.de/">CIL / BBAW (OA)</ref>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=Corpus%20Inscriptionum%20Latinarum">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_orl"><title>ORL — Der obergermanisch-raetische Limes des Römerreiches</title><note>E. Fabricius, F. Hettner, O. v. Sarwey (Hrsg.), Der obergermanisch-raetische Limes des Römerreiches. 1894 ff.</note>
 <ref type="oa" target="https://archive.org/details/derobergermanis00fabrgoog">Internet Archive (OA)</ref>
 <ref type="iiif-manifest" target="https://iiif.archive.org/iiif/derobergermanis00fabrgoog/manifest.json"/>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=obergermanisch-raetische%20Limes%20R%C3%B6merreiches">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_ephepigr"><title>Ephemeris Epigraphica</title><note>Ephemeris Epigraphica. Corporis Inscriptionum Latinarum Supplementum. Rom/Berlin 1872 ff.</note>
 <ref type="oa" target="https://archive.org/details/ephemerisepigrap04inst">Internet Archive (OA)</ref>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=Ephemeris%20Epigraphica">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_cohausen"><title>A. von Cohausen, Der römische Grenzwall in Deutschland (1884)</title><note>August von Cohausen, Der römische Grenzwall in Deutschland. Wiesbaden: Kreidel, 1884.</note>
 <ref type="oa" target="https://digi.ub.uni-heidelberg.de/diglit/cohausen1884ga">UB Heidelberg (OA)</ref>
 <ref type="iiif-manifest" target="https://digi.ub.uni-heidelberg.de/diglit/iiif/cohausen1884bd1/manifest"/>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=Cohausen%20r%C3%B6mische%20Grenzwall">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_steiner"><title>P. Steiner, Römische Inschriften</title><note>P. Steiner u. a., zu rheinischen/germanischen Inschriften.</note>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=Steiner%20r%C3%B6mische%20Inschriften">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_becker"><title>J. Becker, Inschriften-/Limesbeiträge</title><note>J. Becker, Beiträge zur Limes- und Inschriftenforschung.</note>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=Becker%20r%C3%B6mische%20Inschriften">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_tischler"><title>O. Tischler, Fibel-Typologie</title><note>Otto Tischler, zur Typologie der Fibeln (La-Tène/provinzialrömisch).</note>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=Tischler%20Fibeln">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_haug"><title>F. Haug, Inschriften Südwestdeutschlands</title><note>Ferdinand Haug, zu den römischen Inschriften Südwestdeutschlands.</note>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=Haug%20r%C3%B6mische%20Inschriften">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_archanz"><title>Archäologischer Anzeiger</title><note>Archäologischer Anzeiger (Beiblatt zum Jahrbuch des Deutschen Archäologischen Instituts), Berlin.</note>
 <ref type="oa" target="https://www.digi.ub.uni-heidelberg.de/diglit/aa">UB Heidelberg (OA)</ref>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=Arch%C3%A4ologischer%20Anzeiger">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_nassau"><title>Annalen des Vereins für Nassauische Altertumskunde</title><note>Annalen des Vereins für Nassauische Altertumskunde und Geschichtsforschung, Wiesbaden, seit 1830.</note>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=Annalen%20Nassauische%20Altertumskunde">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_wuertt"><title>Württembergische Vierteljahrshefte</title><note>Württembergische Vierteljahrshefte für Landesgeschichte, Stuttgart, seit 1878.</note>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=W%C3%BCrttembergische%20Vierteljahrshefte">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_hermes"><title>Hermes. Zeitschrift für classische Philologie</title><note>Hermes. Zeitschrift für classische Philologie, Berlin, seit 1866.</note>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=Hermes%20Zeitschrift%20Philologie">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_tacitus"><title>Tacitus (Germania / Annales / Historiae)</title><note>P. Cornelius Tacitus, bes. Germania, Annales, Historiae (antike Quelle).</note>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=Tacitus%20Germania">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_ptolemaeus"><title>Klaudios Ptolemaios, Geographie</title><note>Klaudios Ptolemaios, Geographike Hyphegesis (antike Quelle, bes. Buch II).</note>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=Ptolemaeus%20Geographie">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_ammianus"><title>Ammianus Marcellinus</title><note>Ammianus Marcellinus, Res gestae (antike Quelle).</note>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=Ammianus%20Marcellinus">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_notitia"><title>Notitia Dignitatum</title><note>Notitia Dignitatum (spätantikes Staatshandbuch, bes. occ. — Limesgarnisonen).</note>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=Notitia%20Dignitatum">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_peutinger"><title>Tabula Peutingeriana</title><note>Tabula Peutingeriana (spätantike Straßenkarte).</note>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=Tabula%20Peutingeriana">Propylaeum SEARCH</ref>
 </bibl>
 <bibl xml:id="bib_itinant"><title>Itinerarium Antonini</title><note>Itinerarium Antonini Augusti (spätantikes Straßenverzeichnis).</note>
+<ref type="propylaeum" target="https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&amp;lookfor=Itinerarium%20Antonini">Propylaeum SEARCH</ref>
 </bibl>
 </listBibl></standOff></TEI>

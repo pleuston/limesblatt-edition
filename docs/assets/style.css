@@ -104,3 +104,6 @@ button.ed.primary{background:var(--accent,#7a5);color:#fff;border-color:var(--ac
 mark.findhl{background:#fff3a0;color:inherit;border-radius:2px;padding:0 .05em;box-shadow:0 0 0 .15em #fff3a0;
   scroll-margin-top:40vh;animation:findpulse 2.6s ease-out 1}
 @keyframes findpulse{0%,18%{background:#ffd83a;box-shadow:0 0 0 .25em #ffd83a}100%{background:#fff3a0;box-shadow:0 0 0 .15em #fff3a0}}
+/* Propylaeum-SEARCH-Verweis (FID Altertumswissenschaften) in der Bibliographie */
+a.propy{font-size:.82rem;white-space:nowrap;color:#2a5a7a;text-decoration:none;border-bottom:1px dotted #2a5a7a}
+a.propy:hover{background:#eef3f6}

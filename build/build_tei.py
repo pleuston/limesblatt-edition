@@ -16,6 +16,7 @@ Diplomatische, unkorrigierte Wiedergabe der Fraktur-OCR; Inline-Eigennamen trage
 import argparse, glob, json, os, re, sys, unicodedata
 from collections import defaultdict, Counter
 from xml.sax.saxutils import escape, quoteattr
+from urllib.parse import quote
 import gazetteer
 
 HERE  = os.path.dirname(os.path.abspath(__file__))
@@ -99,6 +100,39 @@ BIB_IIIF = {
     "bib_cohausen":    "https://digi.ub.uni-heidelberg.de/diglit/iiif/cohausen1884bd1/manifest",
     "bib_orl":         "https://iiif.archive.org/iiif/derobergermanis00fabrgoog/manifest.json",
 }
+
+# Propylaeum SEARCH (FID Altertumswissenschaften, UB Heidelberg) — Discovery je zitiertem Werk:
+# gezielte Suchanfrage (sonst aus dem Titel abgeleitet). Schließt die Edition an die
+# Fachinformations-Infrastruktur an (vgl. Propylaeum-VITAE für Personen, EDH für Inschriften).
+# Kurze, distinktive Suchanfragen — VuFind verknüpft Wörter mit UND, zu lange Queries → 0 Treffer.
+PROPY = "https://www.propylaeumsearch.de/propylaeumsearch/Search/Results?type=AllFields&lookfor="
+BIB_PROPY = {
+    "bib_westd": "Westdeutsche Zeitschrift Geschichte",
+    "bib_korr": "Korrespondenzblatt Westdeutsche Zeitschrift",
+    "bib_bonn": "Bonner Jahrbücher",
+    "bib_brambach": "Corpus Inscriptionum Rhenanarum",
+    "bib_dragendorff": "Dragendorff Terra sigillata",
+    "bib_cil": "Corpus Inscriptionum Latinarum",
+    "bib_orl": "obergermanisch-raetische Limes Römerreiches",
+    "bib_ephepigr": "Ephemeris Epigraphica",
+    "bib_cohausen": "Cohausen römische Grenzwall",
+    "bib_archanz": "Archäologischer Anzeiger",
+    "bib_nassau": "Annalen Nassauische Altertumskunde",
+    "bib_wuertt": "Württembergische Vierteljahrshefte",
+    "bib_hermes": "Hermes Zeitschrift Philologie",
+    "bib_tacitus": "Tacitus Germania",
+    "bib_ptolemaeus": "Ptolemaeus Geographie",
+    "bib_ammianus": "Ammianus Marcellinus",
+    "bib_notitia": "Notitia Dignitatum",
+    "bib_peutinger": "Tabula Peutingeriana",
+    "bib_itinant": "Itinerarium Antonini",
+    "bib_steiner": "Steiner römische Inschriften",
+    "bib_becker": "Becker römische Inschriften",
+    "bib_tischler": "Tischler Fibeln",
+    "bib_haug": "Haug römische Inschriften",
+}
+def propy_url(bid, name):
+    return PROPY + quote(BIB_PROPY.get(bid) or name)
 
 # Inschriftennummern → <citedRange> (1 Capture-Gruppe = die Nummer/Sigle):
 CITE_RANGE = [
@@ -555,6 +589,7 @@ def write_bibl(path):
             L.append(f'<ref type="oa" target="{escape(oa)}">{escape(oal)}</ref>')
         if bid in BIB_IIIF:
             L.append(f'<ref type="iiif-manifest" target="{escape(BIB_IIIF[bid])}"/>')
+        L.append(f'<ref type="propylaeum" target="{escape(propy_url(bid, name))}">Propylaeum SEARCH</ref>')
         L.append('</bibl>')
     L.append('</listBibl></standOff></TEI>')
     open(path, "w", encoding="utf-8").write("\n".join(L))
