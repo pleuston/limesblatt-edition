@@ -9,7 +9,7 @@ Karte) und einen clientseitigen Volltextindex (MiniSearch). Ausgabe → docs/.
 
     python3 build/build_site.py
 """
-import glob, html, os, re, json, shutil
+import glob, html, os, re, json, shutil, math
 from collections import defaultdict
 from itertools import groupby
 from urllib.parse import quote
@@ -147,6 +147,36 @@ def load_strecken(path):
             "verlauf": g(r'<desc type="verlauf">([^<]+)<'), "region": g(r'<region>([^<]+)<'),
             "abschnitt": g(r'<desc type="abschnitt">([^<]+)<')})
     return out
+
+# Geokodierter Trassenverlauf je Strecke-Nr. (Wegpunkte lat,lon) — erlaubt die DARE-Stellen-Zuordnung
+# nach *geografischer Nähe zur Trasse* statt zum nächsten Kastell (sonst bleiben kastelllose Abschnitte leer).
+STRECKE_PATH = {
+    1:  [(50.502, 7.327), (50.339, 7.713)],                 # Rheinbrohl–Bad Ems
+    2:  [(50.339, 7.713), (50.137, 8.067)],                 # Bad Ems–Adolfseck
+    3:  [(50.137, 8.067), (50.276, 8.618)],                 # Adolfseck–Köpperner Tal
+    4:  [(50.276, 8.618), (50.232, 8.951)],                 # Köpperner Tal–Marköbel
+    5:  [(50.232, 8.951), (50.084, 8.990)],                 # Marköbel–Groß-Krotzenburg
+    6:  [(50.045, 8.973), (49.704, 9.264)],                 # Main-Linie Seligenstadt–Miltenberg
+    7:  [(49.704, 9.264), (49.555, 9.065)],                 # Miltenberg–Rehberg
+    8:  [(49.555, 9.065), (49.296, 9.489)],                 # Rehberg–Jagsthausen (Odenwald)
+    9:  [(49.296, 9.489), (48.876, 9.620)],                 # Jagsthausen–Haghof
+    10: [(49.797, 9.154), (49.231, 9.160)],                 # Wörth–Bad Wimpfen (ältere Odenwaldlinie)
+    11: [(49.231, 9.160), (48.681, 9.366)],                 # Bad Wimpfen–Köngen (Neckarlinie)
+    12: [(48.876, 9.620), (48.798, 9.689), (48.838, 10.093), (49.020, 10.381)],  # Haghof–Lorch–Aalen–Mönchsroth
+    13: [(49.020, 10.381), (49.116, 10.754)],               # Mönchsroth–Gunzenhausen
+    14: [(49.116, 10.754), (48.948, 11.385)],               # Gunzenhausen–Kipfenberg
+    15: [(48.948, 11.385), (48.852, 11.772)],               # Kipfenberg–Eining
+}
+_LON = 0.65   # cos(≈49,5°): Längengrad-Stauchung für planare Distanz
+
+def _p2seg(p, a, b):
+    px, py = p[0], p[1] * _LON; ax, ay = a[0], a[1] * _LON; bx, by = b[0], b[1] * _LON
+    dx, dy = bx - ax, by - ay; L2 = dx * dx + dy * dy
+    t = 0.0 if L2 == 0 else max(0.0, min(1.0, ((px - ax) * dx + (py - ay) * dy) / L2))
+    return math.hypot(px - (ax + t * dx), py - (ay + t * dy))
+
+def _p2path(p, path):
+    return min(_p2seg(p, path[i], path[i + 1]) for i in range(len(path) - 1)) if len(path) > 1 else _p2seg(p, path[0], path[0])
 
 # ---------- HTML-Shell ----------
 def page(title, body, depth=0, head=""):
@@ -433,8 +463,9 @@ def strecken_page(strecken, str_forts, persons, pname, strecke_sites):
                      f'<h3>{html.escape(s["name"])}</h3><div class="role">{meta}</div>{extra}</div></article>')
     return (f'<h1>Strecken</h1><p class="meta">{len(strecken)} Limes-Abschnitte mit Kastellen, beteiligten '
             f'Personen (Kommissare regional, Ausgräber aus den Kastellen) und den DARE-Stellen entlang der Linie. '
-            f'Letztere sind dem <i>nächstgelegenen verankerten Kastell</i> (≤ ~22 km) zugeordnet — Abschnitte ohne '
-            f'eigenes Kastell bleiben hier leer (ihre Stellen erscheinen weiter auf der Karte und im Ortsregister).</p>'
+            f'Letztere sind über den <i>geokodierten Trassenverlauf</i> dem geografisch nächsten Abschnitt zugeordnet '
+            f'(≤ ~15 km zur Linie) — auch kastelllose Strecken zeigen so ihre Turmstellen. In Doppellinien-Zonen '
+            f'(ältere Odenwald-/Neckarlinie neben der vorderen Linie) ist die Zuordnung näherungsweise.</p>'
             f'<div class="cards">{"".join(cards)}</div>')
 
 def index_page(volumes, toc=None):
@@ -1047,24 +1078,23 @@ def main():
     pname = {p["id"]: p["name"] for p in persons}
     sp = os.path.join(REPO,"geo","sites.geojson")
     sites = json.load(open(sp,encoding="utf-8")).get("features",[]) if os.path.exists(sp) else []
-    # DARE-Stelle → Strecke des nächstgelegenen (strecke-verankerten) Kastells (cos-gewichtet, Cap ~40 km)
-    anchors = []
-    for pl in places:
-        if pl.get("strecke_id") and len(pl.get("geo") or []) == 2:
-            try: la, lo = float(pl["geo"][0]), float(pl["geo"][1]); anchors.append((la, lo, pl["strecke_id"]))
-            except ValueError: pass
+    # DARE-Stelle → geografisch nächste Strecke (Punkt-zu-Trassen-Distanz). Füllt auch kastelllose
+    # Abschnitte und korrigiert Fehlzuordnungen, die das alte „nächstes Kastell"-Verfahren erzeugte.
+    numid = {int(s["nummer"]): s["id"] for s in strecken if s.get("nummer", "").strip().isdigit()}
+    paths = [(numid[n], p) for n, p in STRECKE_PATH.items() if n in numid]
     dare_strecke, strecke_sites = {}, defaultdict(list)
     for f in sites:
         g = f.get("geometry", {}); pr = f.get("properties", {})
-        if g.get("type") != "Point" or not anchors: continue
+        if g.get("type") != "Point" or not paths: continue
         lo, la = g["coordinates"][:2]
         best, bd = None, 1e9
-        for ala, alo, sid in anchors:
-            d = (la - ala) ** 2 + (lo - alo) ** 2 * 0.42
+        for sid, path in paths:
+            d = _p2path((la, lo), path)
             if d < bd: bd, best = d, sid
-        if best is not None and bd <= 0.20 ** 2:        # ~22 km: nur konfident nahe Stellen
+        if best is not None and bd <= 0.135:            # ~15 km zur Trasse → Limes-Stelle dieses Abschnitts
             dare_strecke[pr.get("id")] = best; strecke_sites[best].append(pr)
-    print(f"DARE-Stellen einer Strecke zugeordnet: {len(dare_strecke)}/{len(sites)} ({len(strecke_sites)} Strecken)")
+    print(f"DARE-Stellen einer Strecke zugeordnet: {len(dare_strecke)}/{len(sites)} "
+          f"({len(strecke_sites)}/{len(strecken)} Strecken belegt)")
     digs, str_forts = defaultdict(list), defaultdict(list)   # Person→Orte (Ausgräber), Strecke→Orte
     for pl in places:
         for d in pl.get("diggers", []):
