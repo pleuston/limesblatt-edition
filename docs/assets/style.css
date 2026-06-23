@@ -107,3 +107,11 @@ mark.findhl{background:#fff3a0;color:inherit;border-radius:2px;padding:0 .05em;b
 /* Propylaeum-SEARCH-Verweis (FID Altertumswissenschaften) in der Bibliographie */
 a.propy{font-size:.82rem;white-space:nowrap;color:#2a5a7a;text-decoration:none;border-bottom:1px dotted #2a5a7a}
 a.propy:hover{background:#eef3f6}
+/* Personenregister als Tabelle */
+table.reg.pers td{vertical-align:top;font-size:.9rem}
+table.reg.pers td.pn{min-width:11rem} table.reg.pers td.nd{font-size:.82rem} table.reg.pers td.nd a{white-space:nowrap}
+img.pthumb{width:34px;height:43px;object-fit:cover;border-radius:3px;float:left;margin:.1rem .55rem .15rem 0;background:#eae6dd}
+table.reg.pers tr[id]{scroll-margin-top:3.8rem}
+table.reg.pers tr[id]:target{background:#fff8e6;outline:2px solid #e0c200}
+table.reg.pers .dts{color:var(--muted);font-weight:normal;font-size:.85rem}
+table.reg.pers .alias{clear:both;color:var(--muted);font-size:.8rem;font-style:italic}

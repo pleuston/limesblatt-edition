@@ -351,37 +351,43 @@ def links_line(parts):
     return ('<div class="links">' + " · ".join(p for p in parts if p) + '</div>') if any(parts) else ""
 
 def persons_page(persons, occ, digs):
-    cards = []
+    rows = []
     for p in sorted(persons, key=lambda r: r["name"].split()[-1]):
         I = p["idno"]
-        dts = f' <span class="dts">({html.escape(p["birth"])}–{html.escape(p["death"])})</span>' if p["birth"] or p["death"] else ""
+        thumb = f'<img class="pthumb" src="{html.escape(I["portrait"])}" alt="" loading="lazy">' if I.get("portrait") else ""
+        dts = f'<span class="dts">{html.escape(p["birth"])}–{html.escape(p["death"])}</span>' if (p["birth"] or p["death"]) else ""
         al  = f'<div class="alias">alias {html.escape(", ".join(p["alias"]))}</div>' if p.get("alias") else ""
-        meta = " · ".join(x for x in [html.escape(p["occ"]),
-                 ("Wirkungsort: " + html.escape(p["residence"])) if p.get("residence") else "",
-                 ("Streckenkommissar: " + html.escape(p["strecke"])) if p.get("strecke") else ""] if x)
+        name = f'{thumb}<b>{html.escape(p["name"])}</b>{(" " + dts) if dts else ""}{al}'
+        rolle = html.escape(p["occ"]) or '<span class="meta">—</span>'
+        wirk = " · ".join(x for x in [
+            html.escape(p["residence"]) if p.get("residence") else "",
+            ("Strecke " + html.escape(p["strecke"])) if p.get("strecke") else "",
+            ("🗄️ " + html.escape(p["nachlass"])) if p.get("nachlass") else ""] if x) or '<span class="meta">—</span>'
         kal = ""
         if I.get("Kalliope"):
-            br = f' ({html.escape(p["briefe"])} Briefe)' if p.get("briefe") else ""
+            br = f' ({html.escape(p["briefe"])} Br.)' if p.get("briefe") else ""
             kal = f'<a href="https://kalliope-verbund.info/gnd/{html.escape(I["Kalliope"])}">Kalliope{br}</a>'
-        links = links_line([
+        norm = " · ".join(x for x in [
             f'<a href="https://d-nb.info/gnd/{html.escape(I["GND"])}">GND</a>' if I.get("GND") else "",
             f'<a href="https://www.wikidata.org/wiki/{html.escape(I["Wikidata"])}">Wikidata</a>' if I.get("Wikidata") else "",
-            f'<a href="{html.escape(I["DeutscheBiographie"])}">Dt. Biographie</a>' if I.get("DeutscheBiographie") else "",
-            f'<a href="{html.escape(I["Propylaeum-VITAE"])}">Propylaeum-VITAE</a>' if I.get("Propylaeum-VITAE") else "", kal])
-        extra = []
-        if p.get("nachlass"): extra.append(f'<div class="x">🗄️ Nachlass: {html.escape(p["nachlass"])}</div>')
+            f'<a href="{html.escape(I["DeutscheBiographie"])}">Dt. Biogr.</a>' if I.get("DeutscheBiographie") else "",
+            f'<a href="{html.escape(I["Propylaeum-VITAE"])}">VITAE</a>' if I.get("Propylaeum-VITAE") else "", kal] if x) or '<span class="meta">—</span>'
+        bl = []
         forts = digs.get(p["id"], [])
         if forts:
-            extra.append('<div class="x">⛏️ Ausgegraben: ' + ", ".join(
-                f'<a href="places.html#{f["id"]}">{html.escape(f["name"])}</a>' for f in forts) + '</div>')
+            bl.append("⛏️ " + ", ".join(f'<a href="places.html#{f["id"]}">{html.escape(f["name"])}</a>' for f in forts))
         bel = beleg_html(p["id"], occ)
-        if "—" not in bel: extra.append(f'<div class="x">📄 Im Volltext: {bel}</div>')
-        img = f'<img class="portrait" src="{html.escape(I["portrait"])}" alt="" loading="lazy">' if I.get("portrait") else ""
-        cards.append(f'<article class="card" id="{p["id"]}">{img}<div class="cbody">'
-                     f'<h3>{html.escape(p["name"])}{dts}</h3>{al}<div class="role">{meta}</div>{links}{"".join(extra)}</div></article>')
-    return (f'<h1>Personenregister</h1><p class="meta">{len(persons)} Personen — Normdaten, Porträts, '
-            f'Korrespondenz, Nachlass, ausgegrabene Kastelle und Volltext-Fundstellen.</p>'
-            f'<div class="cards">{"".join(cards)}</div>')
+        if "—" not in bel: bl.append("📄 " + bel)
+        belc = "<br>".join(bl) or '<span class="meta">—</span>'
+        rows.append(f'<tr id="{p["id"]}"><td class="pn">{name}</td><td>{rolle}</td><td>{wirk}</td>'
+                    f'<td class="nd">{norm}</td><td class="beleg">{belc}</td></tr>')
+    return (f'<h1>Personenregister</h1><p class="meta">{len(persons)} kuratierte Personen der RLK-Forschungs'
+            f'geschichte — mit Lebensdaten, Funktion, Normdaten, Korrespondenz/Nachlass, ausgegrabenen Kastellen '
+            f'und Volltext-Fundstellen. Alle im Limesblatt namentlich genannten Personen (NER, mehrere hundert) '
+            f'stehen im <a href="namen.html">Namenregister</a>.</p>'
+            f'<table class="reg pers"><thead><tr><th>Person (Lebensdaten)</th><th>Rolle&#8201;/&#8201;Funktion</th>'
+            f'<th>Wirkungsort&#8201;/&#8201;Nachlass</th><th>Normdaten</th><th>Belege</th></tr></thead>'
+            f'<tbody>{"".join(rows)}</tbody></table>')
 
 def places_page(places, occ, pname, str_by_id, sites, site_hits):
     feats, cards = [], []
@@ -1178,12 +1184,12 @@ def main():
         nsites.append({"type":"Feature","geometry":{"type":"Point","coordinates":[lo, la]},
             "properties":{"name":it["name"],"kind":it.get("kind",""),"n":m,
                           "gazId":r.get("gazId",""),"src":r.get("src","")}})
-        if anchors:                                            # → nächstes strecke-verankertes Kastell
+        if paths:                                              # → geografisch nächste Strecke (Trassen-Distanz)
             best, bd = None, 1e9
-            for ala, alo, sid in anchors:
-                d = (la - ala) ** 2 + (lo - alo) ** 2 * 0.42
+            for sid, path in paths:
+                d = _p2path((la, lo), path)
                 if d < bd: bd, best = d, sid
-            if best is not None and bd <= 0.20 ** 2:
+            if best is not None and bd <= 0.135:
                 ner_attention[best][0] += m; ner_attention[best][1] += 1
     attention = sorted(((str_by_id.get(sid, {}).get("name") or sid, v[0], v[1]) for sid, v in ner_attention.items()),
                        key=lambda x: -x[1])
