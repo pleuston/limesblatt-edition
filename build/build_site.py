@@ -178,6 +178,28 @@ def _p2seg(p, a, b):
 def _p2path(p, path):
     return min(_p2seg(p, path[i], path[i + 1]) for i in range(len(path) - 1)) if len(path) > 1 else _p2seg(p, path[0], path[0])
 
+# Kuratierte Strecken-Kommissare je ORL-Strecke — aus den dokumentierten Rollen/Regionen der Personen-
+# notizen erschlossen (Bodewig: unterer Lahn; Jacobi: Taunus; Wolff: Wetterau; Kofler: Hessen; Conrady:
+# Odenwald; Schumacher: Baden; Herzog: Württemberg; Steimle: Strecke 12; Eidam: Gunzenhausen–Weißenburg;
+# Leonhard: Bayern/raetisch). Kommissare betreuten mehrere Strecken → bewusst mehrfach zugeordnet.
+STRECKE_KOMMISSAR = {
+    1:  ["Robert Bodewig", "Wilhelm Soldan"],
+    2:  ["Robert Bodewig", "Emil Ritterling"],
+    3:  ["Louis Jacobi", "Heinrich Jacobi", "Emil Ritterling"],
+    4:  ["Georg Wolff", "Friedrich Kofler"],
+    5:  ["Georg Wolff", "Friedrich Kofler", "Wilhelm Soldan"],
+    6:  ["Friedrich Kofler", "Wilhelm Conrady"],
+    7:  ["Wilhelm Conrady"],
+    8:  ["Wilhelm Conrady", "Karl Schumacher"],
+    9:  ["Ernst von Herzog"],
+    10: ["Karl Schumacher", "Wilhelm Conrady"],
+    11: ["Ernst von Herzog", "Karl Schumacher"],
+    12: ["Heinrich Steimle", "Ernst von Herzog"],
+    13: ["Heinrich Eidam", "Friedrich Leonhard"],
+    14: ["Heinrich Eidam", "Friedrich Leonhard"],
+    15: ["Friedrich Leonhard"],
+}
+
 # ---------- HTML-Shell ----------
 def page(title, body, depth=0, head=""):
     up = "../" * depth
@@ -433,12 +455,13 @@ def places_page(places, occ, pname, str_by_id, sites, site_hits):
     return body, head
 
 def strecken_page(strecken, str_forts, persons, pname, strecke_sites):
+    byname = {p["name"]: p for p in persons}
     cards = []
     for s in strecken:
         forts = str_forts.get(s["id"], [])
         fl = ", ".join(f'<a href="places.html#{f["id"]}">{html.escape(f["name"])}</a>' for f in forts) or '<span class="meta">—</span>'
-        hay = (s["name"] + s["region"] + s["verlauf"] + s["abschnitt"]).lower()
-        komm = [p for p in persons if p.get("strecke") and p["strecke"].lower() in hay]
+        nr = int(s["nummer"]) if s.get("nummer", "").strip().isdigit() else 0
+        komm = [byname[n] for n in STRECKE_KOMMISSAR.get(nr, []) if n in byname]
         dig_ids = []
         for f in forts:
             for d in f.get("diggers", []):
@@ -454,7 +477,7 @@ def strecken_page(strecken, str_forts, persons, pname, strecke_sites):
             extra += f'<div class="x">○ Türme/Stellen (DARE, {len(ds)}): {shown}{" +"+str(len(ds)-24) if len(ds) > 24 else ""}</div>'
         if forts: extra += f'<div class="x">🗺️ <a href="places.html?strecke={s["id"]}">Auf der Karte zeigen</a></div>'
         bet = []
-        if komm: bet.append("Kommissar (Region): " + ", ".join(
+        if komm: bet.append("Streckenkommissar: " + ", ".join(
             f'<a href="persons.html#{p["id"]}">{html.escape(p["name"])}</a>' for p in komm))
         if dig_ids: bet.append("Ausgräber: " + ", ".join(
             f'<a href="persons.html#{d}">{html.escape(pname[d])}</a>' for d in dig_ids))
