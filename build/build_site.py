@@ -208,7 +208,7 @@ def page(title, body, depth=0, head=""):
 <title>{html.escape(title)} — Limesblatt-Edition</title>
 <link rel="stylesheet" href="{up}assets/style.css">{head}</head><body>
 <header><a class="home" href="{up}index.html">📕 Limesblatt-Edition</a>
-<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/fundindex.html">Funde</a> · <a href="{up}register/inschriften.html">Inschriften</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}register/bibliographie.html">Bibliographie</a> · <a href="{up}register/rezeption.html">Rezeption</a> · <a href="{up}register/wortschatz.html">Analyse</a> · <a href="{up}index.html#suche">Suche</a> · <a href="{up}edit.html" title="TEI-Quelle bearbeiten (GitHub-Login)">✎&#8201;Bearbeiten</a></nav></header>
+<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/fundindex.html">Funde</a> · <a href="{up}register/inschriften.html">Inschriften</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}register/bibliographie.html">Bibliographie</a> · <a href="{up}register/rezeption.html">Rezeption</a> · <a href="{up}register/orl.html">ORL</a> · <a href="{up}register/wortschatz.html">Analyse</a> · <a href="{up}index.html#suche">Suche</a> · <a href="{up}edit.html" title="TEI-Quelle bearbeiten (GitHub-Login)">✎&#8201;Bearbeiten</a></nav></header>
 <div class="wip">🚧 Diese digitale Edition befindet sich im <b>Aufbau</b> — Inhalte, Auszeichnung und Analysen sind unvollständig und können sich noch ändern.</div>
 <main>{body}</main>
 <footer>Diplomatische OCR-Edition des <em>Limesblatt</em> (1892–1903) · Text &amp; Register
@@ -526,6 +526,11 @@ IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen
 <li><a href="register/namen.html">Namen im Limesblatt</a> — vollständiges Namenregister aus dem Volltext (NER); jeder Name ist im Lesetext angeklickt verlinkt</li>
 <li><a href="register/orte-index.html">Orte im Limesblatt</a> — vollständiges Ortsregister aus dem Volltext (NER), im Lesetext verlinkt</li>
 <li><a href="register/wortschatz.html">Textanalyse</a> — diachroner Wortschatz, ORL-Gegenprobe, Münzkaiser-Chronologie, Truppen, Zitate, OCR-Qualität + KWIC-Konkordanz</li></ul>
+<h2>ORL — die Endpublikation</h2>
+<p class="meta">Das Standardwerk, in das das Limesblatt mündete, token-frei über HathiTrust erschlossen.</p>
+<ul><li><a href="register/orl.html">ORL-Bandindex</a> — Abteilung A (Strecken) + B (Kastell-Lieferungen) mit Seitenzahl, Charakteristik, Sigillata-Score und Vorbericht-Verweisen</li>
+<li><a href="register/orl-register.html">ORL-Gesamtapparat</a> — Personen- &amp; Ortsregister über alle Bände, Terra-Sigillata-Apparat, Vorbericht→ORL-Konkordanz</li>
+<li><a href="register/hathitrust.html">HathiTrust — Werkzeuge &amp; Ertrag</a> — wie der ORL token-frei und nicht-konsumtiv erschlossen wurde (Workset · Extracted Features · NER · Data Capsule)</li></ul>
 <p class="meta">Abgeleitet aus dem (privaten) Forschungs-Vault zur <a href="https://github.com/pleuston/limes">Reichs-Limeskommission</a>.
 Edition/Code: <a href="https://github.com/pleuston/limesblatt-edition">GitHub</a>.</p>
 <script>
@@ -1077,6 +1082,131 @@ def reception_page(rec):
             f'<p class="meta">Bemerkenswert für die digitale Erschließung: das Limesblatt als Periodikum hat in '
             f'<b>Wikidata</b> und der <b>GND</b> {gap} (Stand des Harvests) — ein offener Punkt seiner Rezeption.</p>')
 
+def orl_page(idx, lex):
+    a = idx.get("abteilung_A_strecken", []); b = idx.get("abteilung_B_kastelle", []); c = idx.get("counts", {})
+    nef = sum(1 for r in b if r.get("pages")); nner = sum(1 for r in b if r.get("schicht_c", {}).get("ner_terms"))
+    arows = "".join(f'<tr><td>{s.get("strecke","")}</td><td>{html.escape(s.get("verlauf",""))}</td>'
+                    f'<td>{html.escape(s.get("region",""))}</td></tr>' for s in a)
+    def brow(r):
+        sc = r.get("schicht_c", {})
+        pages = (f'{r["schicht_b"]["pages"]} S.' if r.get("schicht_b")
+                 else (f'{r["pages"]} S.' if r.get("pages") else '—'))
+        dg = f' <a href="{html.escape(r["digitalisat"])}" title="Volltext (archive.org)">▣</a>' if r.get("digitalisat") else ''
+        prof = ", ".join(sc.get("profile", [])[:4])
+        bearb = ", ".join(html.escape(x) for x in r.get("bearbeiter", []))
+        return (f'<tr><td>{html.escape(r["nr"])}</td><td>{html.escape(r["kastell"])}</td>'
+                f'<td class="meta">{html.escape(r.get("linie",""))}</td><td>{pages}{dg}</td>'
+                f'<td>{sc.get("ner_gazetteer") or ""}</td><td>{r.get("sigillata",{}).get("score") or ""}</td>'
+                f'<td class="meta">{html.escape(prof)}</td><td>{len(r.get("vorberichte",[])) or ""}</td>'
+                f'<td class="meta">{bearb}</td></tr>')
+    brows = "".join(brow(r) for r in b)
+    keyn = ""
+    if lex:
+        od = ", ".join(html.escape(d["w"]) for d in lex.get("orl_distinctive", [])[:12])
+        ld = ", ".join(html.escape(d["w"]) for d in lex.get("lb_distinctive", [])[:12])
+        keyn = (f'<h2 id="keyness">Wortschatz-Gegenprobe (Limesblatt ↔ ORL)</h2>'
+                f'<p class="meta">Korpusvergleich token-frei: ORL <b>{lex.get("orl_words",0):,}</b> W. ↔ '
+                f'Limesblatt <b>{lex.get("lb_words",0):,}</b> W. Es ist eine Gattungsverschiebung: distinktiv für '
+                f'die <b>ORL-Endpublikation</b> ist die Fund-Typologie ({od}); für die '
+                f'<b>Limesblatt-Vorberichte</b> die Trassierung in erster Person ({ld}).</p>')
+    return (f'<h1>ORL — Der obergermanisch-raetische Limes des Römerreiches</h1>'
+            f'<p class="meta">Die <b>Endpublikation</b> der Reichs-Limeskommission (1894–1937): '
+            f'{c.get("abt_A",len(a))} Strecken-Bände (Abt. A) + {c.get("abt_B",len(b))} Kastell-Lieferungen '
+            f'(Abt. B) — das Standardwerk, in das die laufenden Feldberichte des '
+            f'<a href="../index.html">Limesblatt</a> mündeten. Token-frei erschlossen über HathiTrust '
+            f'(<a href="hathitrust.html">Werkzeuge &amp; Ertrag</a>): Seitenzahlen für {nef} Bände, '
+            f'NER-Schicht-C für {nner}, ein konsolidierter <a href="orl-register.html">Gesamtapparat</a>, '
+            f'den die in 14 Mappen erschienene Reihe nie besaß.</p>'
+            f'{keyn}'
+            f'<h2>Abteilung A — Strecken-Bände (Trassierung)</h2>'
+            f'<table class="reg"><thead><tr><th>Str.</th><th>Verlauf</th><th>Region</th></tr></thead>'
+            f'<tbody>{arows}</tbody></table>'
+            f'<h2>Abteilung B — Kastell-Lieferungen</h2>'
+            f'<p class="meta">Seiten: ▣ = archive.org-Volltext, sonst HathiTrust-Extracted-Features · '
+            f'Cross-Work = mit dem Limesblatt gemeinsame Entitäten · Sig. = Terra-Sigillata-Score '
+            f'(<a href="orl-register.html#sigillata">Apparat</a>) · Vorb. = Anzahl Limesblatt-Vorberichte '
+            f'(<a href="orl-register.html#konkordanz">Konkordanz</a>).</p>'
+            f'<table class="reg"><thead><tr><th>ORL</th><th>Kastell</th><th>Linie</th><th>Seiten</th>'
+            f'<th>Cross-Work</th><th>Sig.</th><th>Charakteristik</th><th>Vorb.</th><th>Bearbeiter</th></tr></thead>'
+            f'<tbody>{brows}</tbody></table>')
+
+def orl_apparatus_page(reg, idx):
+    persons = reg.get("persons", []); places = reg.get("places", [])
+    def prow(r):
+        bands = ", ".join(r["bands"][:12]) + ("…" if len(r["bands"]) > 12 else "")
+        return (f'<tr><td>{html.escape(r["name"])}{" ✓" if r.get("gazetteer") else ""}</td>'
+                f'<td>{r["nbands"]}</td><td>{r["count"]}</td><td class="meta">{html.escape(bands)}</td></tr>')
+    pc = [r for r in persons if r.get("gazetteer") or r["nbands"] >= 3][:80]
+    plc = [r for r in places if r.get("gazetteer") or r["nbands"] >= 3][:80]
+    b = idx.get("abteilung_B_kastelle", [])
+    sig = sorted([r for r in b if r.get("sigillata")], key=lambda r: -r["sigillata"]["score"])[:25]
+    sigrows = "".join(f'<tr><td>{html.escape(r["nr"])}</td><td>{html.escape(r["kastell"])}</td>'
+                      f'<td>{r["sigillata"]["score"]}</td><td class="meta">'
+                      f'{html.escape(", ".join(f"{t} ({n})" for t,n in list(r["sigillata"]["terms"].items())[:6]))}</td></tr>'
+                      for r in sig)
+    con = [r for r in b if r.get("vorberichte")]
+    conrows = "".join(f'<tr><td>{html.escape(r["nr"])}</td><td>{html.escape(r["kastell"])}</td>'
+                      f'<td class="meta">{", ".join(html.escape(x) for x in r.get("bearbeiter", [])) or "—"}</td>'
+                      f'<td class="meta">{", ".join("Nr. "+str(v["num"]) for v in r["vorberichte"][:10])}'
+                      f'{"…" if len(r["vorberichte"])>10 else ""}</td></tr>' for r in con)
+    return (f'<h1>ORL — Konsolidierter Gesamtapparat</h1>'
+            f'<p class="meta">Register, Apparate und Konkordanzen über <b>alle</b> ORL-Bände — token-frei aus '
+            f'HathiTrust-NER und Extracted Features aggregiert (<a href="hathitrust.html">Methode</a>); '
+            f'das Generalwerkzeug, das die 14-Mappen-Reihe nie hatte. Zurück zum '
+            f'<a href="orl.html">ORL-Bandindex</a>.</p>'
+            f'<h2 id="personen">Personenregister ({len(pc)} bandübergreifend)</h2>'
+            f'<p class="meta">✓ = im Limesblatt-Gazetteer der Edition belegt. Aus automatischer Eigennamenerkennung '
+            f'über Fraktur-OCR; Schreibvarianten nicht zusammengeführt.</p>'
+            f'<table class="reg"><thead><tr><th>Person</th><th>#Bd.</th><th>Nenn.</th><th>Bände (ORL-Nr.)</th></tr></thead>'
+            f'<tbody>{"".join(prow(r) for r in pc)}</tbody></table>'
+            f'<h2 id="orte">Ortsregister ({len(plc)} bandübergreifend)</h2>'
+            f'<table class="reg"><thead><tr><th>Ort</th><th>#Bd.</th><th>Nenn.</th><th>Bände</th></tr></thead>'
+            f'<tbody>{"".join(prow(r) for r in plc)}</tbody></table>'
+            f'<h2 id="sigillata">Terra-Sigillata-Apparat</h2>'
+            f'<p class="meta">Welche Lieferungen die großen Fund-Katalogbände sind (Dragendorff/Knorr/Ludowici/'
+            f'Rheinzabern …), aus den EF-Token ausgezählt — die Verfeinerung, die die Keyness als ORL-typisch auswies.</p>'
+            f'<table class="reg"><thead><tr><th>ORL</th><th>Kastell</th><th>Score</th><th>Begriffe</th></tr></thead>'
+            f'<tbody>{sigrows}</tbody></table>'
+            f'<h2 id="konkordanz">Vorbericht → ORL-Konkordanz</h2>'
+            f'<p class="meta">Je Kastell der Limesblatt-Vorbericht (Bericht-Nr.) und der Bearbeiter — die Brücke '
+            f'Vorbericht ↔ Endpublikation.</p>'
+            f'<table class="reg"><thead><tr><th>ORL</th><th>Kastell</th><th>Bearbeiter</th><th>Limesblatt-Vorberichte</th></tr></thead>'
+            f'<tbody>{conrows}</tbody></table>')
+
+def hathitrust_page(idx, reg, lex):
+    b = idx.get("abteilung_B_kastelle", [])
+    nef = sum(1 for r in b if r.get("pages")); nner = sum(1 for r in b if r.get("schicht_c", {}).get("ner_terms"))
+    np = reg.get("counts", {}).get("persons", 0); npl = reg.get("counts", {}).get("places", 0)
+    ow = lex.get("orl_words", 0) if lex else 0
+    return (f'<h1>HathiTrust — Werkzeuge &amp; Ertrag</h1>'
+            f'<p class="meta">Wie der ORL token-frei und <b>nicht-konsumtiv</b> erschlossen wurde. Die 56 Bände sind '
+            f'gemeinfrei, liegen bei HathiTrust aber nur als Seiten-Scans hinter einer Bot-Wall. Gearbeitet wurde '
+            f'ausschließlich mit offenen, abgeleiteten Daten — kein Seitentext wird reproduziert; alles reproduzierbar '
+            f'mit Python-Standardbibliothek, ohne API-Schlüssel.</p>'
+            f'<h2>1 · Workset — die Bände identifizieren</h2>'
+            f'<p>Aus vier HathiTrust-Katalog-Records (RIS-Exporte) die echten Volume-IDs (htids) geparst → ein sauberes '
+            f'<b>56-Bände-Workset</b>, ein Exemplar je Lieferung. Decke: no.57–70 und die a/b-Unterhefte sind in '
+            f'HathiTrust nicht digitalisiert.</p>'
+            f'<h2>2 · Extracted Features — Vokabular &amp; Seiten</h2>'
+            f'<p>Die HTRC <b>Extracted Features 2.5</b> (seitenweise Wortmengen, mitgliedsfrei) direkt per '
+            f'<code>rsync</code> gezogen — am defekten <code>RSyncGenerator</code> vorbei (dessen HTTPS-Zertifikat '
+            f'abgelaufen war), indem die Stubbytree-Pfade selbst aus den htids abgeleitet wurden. Ertrag: Seitenzahlen + '
+            f'distinktive Vokabular-Profile (TF-IDF) für <b>{nef}</b> Bände.</p>'
+            f'<h2>3 · HTRC Analytics — Entitäten &amp; Frequenzen</h2>'
+            f'<p>Über das HTRC-Algorithmus-Portal auf dem Workset: <b>Named-Entity-Recognition</b> (≈130 000 '
+            f'Entitäten → Schicht C + Cross-Work-Register für <b>{nner}</b> Bände) und <b>Token-Count</b> '
+            f'(≈{ow:,}-Wörter-Korpusfrequenz → die <a href="orl.html#keyness">Wortschatz-Gegenprobe</a>).</p>'
+            f'<h2>4 · Data Capsule — Volltext (in Arbeit)</h2>'
+            f'<p>Für das, was nur fortlaufender Volltext liefert — Inschriften-Zitate (CIL/Brambach), Bearbeiter je '
+            f'Lieferung, KWIC-Konkordanz — eine nicht-konsumtive <b>HTRC Data Capsule</b>: Volltext geladen, Analyse per '
+            f'stdlib-Python, Export der aggregierten Ergebnisse über den HTRC-Review (laufend).</p>'
+            f'<h2>Ertrag</h2>'
+            f'<p>Aus diesen offenen Schichten entstand der konsolidierte <a href="orl-register.html">Gesamtapparat</a>: '
+            f'ein <b>{np}-Personen-</b> und <b>{npl}-Orte-Generalregister</b>, die '
+            f'<a href="orl-register.html#sigillata">Sigillata-Konkordanz</a>, die '
+            f'<a href="orl-register.html#konkordanz">Vorbericht-Konkordanz</a> und die Wortschatz-Gegenprobe — '
+            f'Apparate, die der in 14 Mappen über 40 Jahre erschienene ORL selbst nie besaß.</p>')
+
 def main():
     os.makedirs(os.path.join(DOCS,"volumes"), exist_ok=True)
     os.makedirs(os.path.join(DOCS,"register"), exist_ok=True)
@@ -1209,6 +1339,21 @@ def main():
     rez = json.load(open(_recp, encoding="utf-8")) if os.path.exists(_recp) else {"items": [], "summary": {}, "normdata": {}}
     open(os.path.join(DOCS,"register","rezeption.html"),"w",encoding="utf-8").write(page("Rezeption", reception_page(rez), 1))
     print(f"Rezeption: {rez.get('summary',{}).get('total',0)} Belege → register/rezeption.html")
+    # ORL — eigene Abteilung (Bandindex + Gesamtapparat + HathiTrust-Methode); Daten aus data/ (CI) oder Vault
+    def _orl_load(name):
+        for base in (os.path.join(REPO, "data"), os.path.join(REPO, "..", "limes", "tools")):
+            p = os.path.join(base, name)
+            if os.path.exists(p): return json.load(open(p, encoding="utf-8"))
+        return None
+    orl_idx = _orl_load("orl_index.json")
+    orl_reg = _orl_load("orl_register.json") or {"persons": [], "places": [], "counts": {}}
+    orl_lex = _orl_load("orl_vs_limesblatt.json")
+    if orl_idx:
+        open(os.path.join(DOCS,"register","orl.html"),"w",encoding="utf-8").write(page("ORL", orl_page(orl_idx, orl_lex), 1))
+        open(os.path.join(DOCS,"register","orl-register.html"),"w",encoding="utf-8").write(page("ORL — Gesamtapparat", orl_apparatus_page(orl_reg, orl_idx), 1))
+        open(os.path.join(DOCS,"register","hathitrust.html"),"w",encoding="utf-8").write(page("HathiTrust", hathitrust_page(orl_idx, orl_reg, orl_lex), 1))
+        print(f"ORL: Abt. A {len(orl_idx.get('abteilung_A_strecken',[]))} + Abt. B {len(orl_idx.get('abteilung_B_kastelle',[]))} "
+              f"→ register/orl.html · orl-register.html · hathitrust.html")
     ib, ih = index_page(volumes, toc)
     open(os.path.join(DOCS,"index.html"),"w",encoding="utf-8").write(page("Startseite", ib, 0, ih))
     print(f"docs/: index + {len(volumes)} Bände + 3 Register (Personen {len(persons)}, Orte {len(places)}, "
