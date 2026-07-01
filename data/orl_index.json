@@ -1066,6 +1066,7 @@
    "kastell": "Kastell Heddesdorf",
    "ort": "Neuwied",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Heddesdorf",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605048",
@@ -1866,15 +1867,12 @@
    "kastell": "Kastell Niederbieber",
    "ort": "Neuwied",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Niederbieber",
    "vault_note": "Kastell Niederbieber",
    "digitalisat": "",
    "htid": "",
    "pages": null,
    "access": "",
-   "bearbeiter": [
-    "Emil Ritterling",
-    "Robert Bodewig"
-   ],
    "vorberichte": [
     {
      "num": 175,
@@ -1900,6 +1898,10 @@
      "page": 889,
      "theme": "Kastell"
     }
+   ],
+   "bearbeiter": [
+    "Emil Ritterling",
+    "Robert Bodewig"
    ]
   },
   {
@@ -1907,6 +1909,7 @@
    "kastell": "Kastell Bendorf",
    "ort": "Bendorf",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Bendorf",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605049",
@@ -2735,6 +2738,7 @@
    "kastell": "Kastell Niederberg",
    "ort": "Koblenz",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Niederberg",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -2746,6 +2750,7 @@
    "kastell": "Kastell Arzbach",
    "ort": "Arzbach",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Arzbach",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -2765,6 +2770,7 @@
    "kastell": "Kastell Ems",
    "ort": "Bad Ems",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Ems",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -2776,6 +2782,7 @@
    "kastell": "Kastell Hunzel",
    "ort": "Hunzel",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Hunzel",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605050",
@@ -3600,6 +3607,7 @@
    "kastell": "Kastell Marienfels",
    "ort": "Marienfels",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Marienfels",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -3625,6 +3633,7 @@
    "kastell": "Kastell Holzhausen",
    "ort": "Holzhausen an der Haide",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Holzhausen",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605054",
@@ -4325,6 +4334,7 @@
    "kastell": "Kastell Kemel",
    "ort": "Heidenrod",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Kemel",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605053",
@@ -5169,6 +5179,7 @@
    "kastell": "Kastell Zugmantel",
    "ort": "Orlen",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Zugmantel",
    "vault_note": "Kastell Zugmantel",
    "digitalisat": "",
    "htid": "uc1.c2605055",
@@ -5930,9 +5941,6 @@
      "lorbeerkranz": 1
     }
    },
-   "bearbeiter": [
-    "Louis Jacobi"
-   ],
    "vorberichte": [
     {
      "num": 116,
@@ -5940,6 +5948,9 @@
      "page": 429,
      "theme": ""
     }
+   ],
+   "bearbeiter": [
+    "Louis Jacobi"
    ]
   },
   {
@@ -5947,6 +5958,7 @@
    "kastell": "Kastell Alteburg",
    "ort": "Idstein",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Alteburg",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605056",
@@ -6699,6 +6711,7 @@
    "kastell": "Kastell Kleiner Feldberg",
    "ort": "Schmitten",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Kleiner Feldberg",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605057",
@@ -7498,6 +7511,7 @@
    "kastell": "Kastell Saalburg",
    "ort": "Bad Homburg vor der Höhe",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Saalburg",
    "vault_note": "Kastell Saalburg",
    "digitalisat": "",
    "htid": "uc1.c2605058",
@@ -8265,10 +8279,6 @@
      "dragendorff": 1
     }
    },
-   "bearbeiter": [
-    "Louis Jacobi",
-    "Heinrich Jacobi"
-   ],
    "vorberichte": [
     {
      "num": 25,
@@ -8282,6 +8292,10 @@
      "page": 65,
      "theme": "Erdschanze"
     }
+   ],
+   "bearbeiter": [
+    "Louis Jacobi",
+    "Heinrich Jacobi"
    ]
   },
   {
@@ -8289,6 +8303,7 @@
    "kastell": "Kastell Kapersburg",
    "ort": "Wehrheim",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Kapersburg",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605059",
@@ -9147,6 +9162,7 @@
    "kastell": "Kastell Langenhain",
    "ort": "Ober-Mörlen",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Langenhain",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605060",
@@ -10012,6 +10028,7 @@
    "kastell": "Kastell Butzbach",
    "ort": "Butzbach",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Butzbach",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605061",
@@ -11674,6 +11691,7 @@
    "kastell": "Kastell Arnsburg",
    "ort": "Arnsburg",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Arnsburg",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605063",
@@ -12624,6 +12642,7 @@
    "kastell": "Kastell Inheiden",
    "ort": "Hungen",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Inheiden",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605064",
@@ -13470,6 +13489,7 @@
    "kastell": "Kastell Echzell",
    "ort": "Echzell",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Echzell",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605065",
@@ -14344,6 +14364,7 @@
    "kastell": "Kastell Ober-Florstadt",
    "ort": "Florstadt",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Ober-Florstadt",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605066",
@@ -15273,6 +15294,7 @@
    "kastell": "Kastell Altenstadt",
    "ort": "Altenstadt",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Altenstadt",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605067",
@@ -16209,6 +16231,7 @@
    "kastell": "Kastell Marköbel",
    "ort": "Hammersbach",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Marköbel",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605068",
@@ -16977,6 +17000,7 @@
    "kastell": "Kastell Rückingen",
    "ort": "Erlensee",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Rückingen",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605069",
@@ -17736,6 +17760,7 @@
    "kastell": "Kastell Großkrotzenburg",
    "ort": "Großkrotzenburg",
    "linie": "Aar-Taunus-Wetterau-Main (ORL 1–5)",
+   "wiki": "Kastell Großkrotzenburg",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605070",
@@ -18559,6 +18584,7 @@
    "kastell": "Kastell Kesselstadt",
    "ort": "Hanau",
    "linie": "Rückwärtige Kastelle am Obergermanischen Limes",
+   "wiki": "Kastell Kesselstadt",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605071",
@@ -19388,6 +19414,7 @@
    "kastell": "Kastell Heldenbergen",
    "ort": "Heldenbergen",
    "linie": "Rückwärtige Kastelle am Obergermanischen Limes",
+   "wiki": "",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605072",
@@ -20234,6 +20261,7 @@
    "kastell": "Kastell Okarben",
    "ort": "Karben",
    "linie": "Rückwärtige Kastelle am Obergermanischen Limes",
+   "wiki": "",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -20259,6 +20287,7 @@
    "kastell": "Kastell Friedberg",
    "ort": "Friedberg",
    "linie": "Rückwärtige Kastelle am Obergermanischen Limes",
+   "wiki": "",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605073",
@@ -21080,6 +21109,7 @@
    "kastell": "Kastell Nida",
    "ort": "Frankfurt am Main",
    "linie": "Rückwärtige Kastelle am Obergermanischen Limes",
+   "wiki": "Nida (römische Stadt)",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605074",
@@ -21972,6 +22002,7 @@
    "kastell": "Kastell Frankfurt am Main Domhügel",
    "ort": "Frankfurt am Main",
    "linie": "Rückwärtige Kastelle am Obergermanischen Limes",
+   "wiki": "Römische Niederlassung auf dem Frankfurter Domhügel",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -21991,6 +22022,7 @@
    "kastell": "Kastell Höchst am Main",
    "ort": "Frankfurt am Main",
    "linie": "Rückwärtige Kastelle am Obergermanischen Limes",
+   "wiki": "Kastell Höchst",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605075",
@@ -23087,6 +23119,7 @@
    "kastell": "Kastell Hofheim",
    "ort": "Hofheim am Taunus",
    "linie": "Rückwärtige Kastelle am Obergermanischen Limes",
+   "wiki": "Kastell Hofheim",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605076",
@@ -24003,6 +24036,7 @@
    "kastell": "Kastell Mainz",
    "ort": "Mainz-Kastel",
    "linie": "Rückwärtige Kastelle am Obergermanischen Limes",
+   "wiki": "",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605077",
@@ -24938,6 +24972,7 @@
    "kastell": "Kastell Wiesbaden",
    "ort": "Wiesbaden",
    "linie": "Rückwärtige Kastelle am Obergermanischen Limes",
+   "wiki": "Aquae Mattiacorum",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605078",
@@ -26095,6 +26130,7 @@
    "kastell": "Kastell Seligenstadt",
    "ort": "",
    "linie": "Mainlimes (ORL 6)",
+   "wiki": "Kastell Seligenstadt",
    "vault_note": "",
    "digitalisat": "",
    "htid": "njp.32101076455177",
@@ -27361,6 +27397,7 @@
    "kastell": "Kastell Stockstadt",
    "ort": "",
    "linie": "Mainlimes (ORL 6)",
+   "wiki": "Kastell Stockstadt",
    "vault_note": "",
    "digitalisat": "",
    "htid": "njp.32101076455177",
@@ -28451,6 +28488,7 @@
    "kastell": "Kastell Niedernberg",
    "ort": "",
    "linie": "Mainlimes (ORL 6)",
+   "wiki": "Kastell Niedernberg",
    "vault_note": "",
    "digitalisat": "",
    "htid": "njp.32101076455177",
@@ -29341,6 +29379,7 @@
    "kastell": "Kastell Obernburg",
    "ort": "",
    "linie": "Mainlimes (ORL 6)",
+   "wiki": "Kastell Obernburg",
    "vault_note": "",
    "digitalisat": "",
    "htid": "njp.32101076455177",
@@ -30486,6 +30525,7 @@
    "kastell": "Kastell Wörth",
    "ort": "",
    "linie": "Mainlimes (ORL 6)",
+   "wiki": "Kastell Wörth",
    "vault_note": "",
    "digitalisat": "",
    "htid": "njp.32101076455177",
@@ -31418,6 +31458,7 @@
    "kastell": "Kastell Trennfurt",
    "ort": "",
    "linie": "Mainlimes (ORL 6)",
+   "wiki": "Kastell Trennfurt",
    "vault_note": "Kastell Trennfurt",
    "digitalisat": "",
    "htid": "mdp.39015039811149",
@@ -32366,6 +32407,7 @@
    "kastell": "Kastell Miltenberg-Altstadt",
    "ort": "",
    "linie": "Mainlimes (ORL 6)",
+   "wiki": "Kastell Miltenberg-Altstadt",
    "vault_note": "",
    "digitalisat": "",
    "htid": "mdp.39015039811156",
@@ -33431,6 +33473,7 @@
    "kastell": "Kastell Miltenberg-Ost",
    "ort": "",
    "linie": "Mainlimes (ORL 6)",
+   "wiki": "Kastell Miltenberg-Ost",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -33486,6 +33529,7 @@
    "kastell": "Kastell Walldürn",
    "ort": "",
    "linie": "Jüngere Odenwaldlinie (Vorderer Limes)",
+   "wiki": "Kastell Walldürn",
    "vault_note": "",
    "digitalisat": "",
    "htid": "mdp.39015039811164",
@@ -34556,6 +34600,7 @@
    "kastell": "Kastell Osterburken",
    "ort": "",
    "linie": "Jüngere Odenwaldlinie (Vorderer Limes)",
+   "wiki": "Kastell Osterburken",
    "vault_note": "Kastell Osterburken",
    "digitalisat": "https://archive.org/details/derobergermanis00fabrgoog",
    "htid": "mdp.39015039811172",
@@ -39046,9 +39091,6 @@
      "heiligenberg": 1
     }
    },
-   "bearbeiter": [
-    "Karl Schumacher"
-   ],
    "vorberichte": [
     {
      "num": 14,
@@ -39086,6 +39128,9 @@
      "page": 667,
      "theme": "Bauinschriften vom Kastell"
     }
+   ],
+   "bearbeiter": [
+    "Karl Schumacher"
    ]
   },
   {
@@ -39093,6 +39138,7 @@
    "kastell": "Kastell Jagsthausen",
    "ort": "",
    "linie": "Jüngere Odenwaldlinie (Vorderer Limes)",
+   "wiki": "Kastell Jagsthausen",
    "vault_note": "Kastell Jagsthausen",
    "digitalisat": "",
    "htid": "mdp.39015039811198",
@@ -39918,6 +39964,7 @@
    "kastell": "Kastell Westernbach",
    "ort": "",
    "linie": "Jüngere Odenwaldlinie (Vorderer Limes)",
+   "wiki": "Kastell Westernbach",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -39929,6 +39976,7 @@
    "kastell": "Kastell Öhringen-West",
    "ort": "",
    "linie": "Jüngere Odenwaldlinie (Vorderer Limes)",
+   "wiki": "Kastell Öhringen-West",
    "vault_note": "Kastell Öhringen",
    "digitalisat": "",
    "htid": "mdp.39015039811206",
@@ -40992,9 +41040,6 @@
      "forrer": 1
     }
    },
-   "bearbeiter": [
-    "Ernst von Herzog"
-   ],
    "vorberichte": [
     {
      "num": 28,
@@ -41008,6 +41053,9 @@
      "page": 81,
      "theme": "zweites Kastell (am Limes)"
     }
+   ],
+   "bearbeiter": [
+    "Ernst von Herzog"
    ]
   },
   {
@@ -41015,14 +41063,12 @@
    "kastell": "Kastell Öhringen-Ost",
    "ort": "",
    "linie": "Jüngere Odenwaldlinie (Vorderer Limes)",
+   "wiki": "Kastell Öhringen-Ost",
    "vault_note": "Kastell Öhringen",
    "digitalisat": "",
    "htid": "",
    "pages": null,
    "access": "",
-   "bearbeiter": [
-    "Ernst von Herzog"
-   ],
    "vorberichte": [
     {
      "num": 28,
@@ -41036,6 +41082,9 @@
      "page": 81,
      "theme": "zweites Kastell (am Limes)"
     }
+   ],
+   "bearbeiter": [
+    "Ernst von Herzog"
    ]
   },
   {
@@ -41043,6 +41092,7 @@
    "kastell": "Kastell Mainhardt",
    "ort": "",
    "linie": "Jüngere Odenwaldlinie (Vorderer Limes)",
+   "wiki": "Kastell Mainhardt",
    "vault_note": "",
    "digitalisat": "",
    "htid": "mdp.39015039811214",
@@ -42138,6 +42188,7 @@
    "kastell": "Kastell Murrhardt",
    "ort": "",
    "linie": "Jüngere Odenwaldlinie (Vorderer Limes)",
+   "wiki": "Kastell Murrhardt",
    "vault_note": "",
    "digitalisat": "",
    "htid": "mdp.39015039811222",
@@ -43246,6 +43297,7 @@
    "kastell": "Kastelle von Welzheim",
    "ort": "",
    "linie": "Jüngere Odenwaldlinie (Vorderer Limes)",
+   "wiki": "Kastelle von Welzheim",
    "vault_note": "Kastell Welzheim",
    "digitalisat": "",
    "htid": "mdp.39015039811230",
@@ -44420,9 +44472,6 @@
      "dechelette": 1
     }
    },
-   "bearbeiter": [
-    "Ernst von Herzog"
-   ],
    "vorberichte": [
     {
      "num": 96,
@@ -44430,6 +44479,9 @@
      "page": 366,
      "theme": "Kastell"
     }
+   ],
+   "bearbeiter": [
+    "Ernst von Herzog"
    ]
   },
   {
@@ -44437,6 +44489,7 @@
    "kastell": "Kastell Lützelbach",
    "ort": "",
    "linie": "Ältere Odenwaldlinie",
+   "wiki": "Kastell Lützelbach",
    "vault_note": "",
    "digitalisat": "",
    "htid": "mdp.39015039811248",
@@ -45382,6 +45435,7 @@
    "kastell": "Kastell Seckmauern",
    "ort": "",
    "linie": "Ältere Odenwaldlinie",
+   "wiki": "Kastell Seckmauern",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -45393,6 +45447,7 @@
    "kastell": "Kastell Hainhaus",
    "ort": "",
    "linie": "Ältere Odenwaldlinie",
+   "wiki": "Kastell Hainhaus",
    "vault_note": "",
    "digitalisat": "",
    "htid": "mdp.39015039811255",
@@ -46498,6 +46553,7 @@
    "kastell": "Kastell Eulbach",
    "ort": "",
    "linie": "Ältere Odenwaldlinie",
+   "wiki": "Kastell Eulbach",
    "vault_note": "",
    "digitalisat": "",
    "htid": "mdp.39015039811263",
@@ -47700,6 +47756,7 @@
    "kastell": "Kastell Würzberg",
    "ort": "",
    "linie": "Ältere Odenwaldlinie",
+   "wiki": "Kastell Würzberg",
    "vault_note": "",
    "digitalisat": "",
    "htid": "uc1.c2605096",
@@ -48971,6 +49028,7 @@
    "kastell": "Kastell Hesselbach",
    "ort": "",
    "linie": "Ältere Odenwaldlinie",
+   "wiki": "Kastell Hesselbach",
    "vault_note": "Kastell Hesselbach",
    "digitalisat": "",
    "htid": "mdp.39015039811289",
@@ -50067,6 +50125,7 @@
    "kastell": "Kastell Schloßau",
    "ort": "",
    "linie": "Ältere Odenwaldlinie",
+   "wiki": "Kastell Schloßau",
    "vault_note": "",
    "digitalisat": "",
    "htid": "mdp.39015039811297",
@@ -51289,6 +51348,7 @@
    "kastell": "Kastell Oberscheidental",
    "ort": "",
    "linie": "Ältere Odenwaldlinie",
+   "wiki": "Kastell Oberscheidental",
    "vault_note": "Kastell Oberscheidental",
    "digitalisat": "",
    "htid": "mdp.39015039811305",
@@ -52527,9 +52587,6 @@
      "fullhorn": 2
     }
    },
-   "bearbeiter": [
-    "Karl Schumacher"
-   ],
    "vorberichte": [
     {
      "num": 130,
@@ -52537,6 +52594,9 @@
      "page": 501,
      "theme": "Kastell Oberscheidenthal"
     }
+   ],
+   "bearbeiter": [
+    "Karl Schumacher"
    ]
   },
   {
@@ -52544,6 +52604,7 @@
    "kastell": "Kastelle von Neckarburken",
    "ort": "",
    "linie": "Ältere Odenwaldlinie",
+   "wiki": "Kastelle von Neckarburken",
    "vault_note": "",
    "digitalisat": "",
    "htid": "mdp.39015039811313",
@@ -56037,6 +56098,7 @@
    "kastell": "Kastell Heilbronn-Böckingen",
    "ort": "",
    "linie": "Neckarlinie",
+   "wiki": "Kastell Heilbronn-Böckingen",
    "vault_note": "",
    "digitalisat": "",
    "htid": "mdp.39015039811347",
@@ -56968,6 +57030,7 @@
    "kastell": "Kastelle von Walheim",
    "ort": "",
    "linie": "Neckarlinie",
+   "wiki": "Kastelle von Walheim",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -56987,6 +57050,7 @@
    "kastell": "Kastell Benningen",
    "ort": "",
    "linie": "Neckarlinie",
+   "wiki": "Kastell Benningen",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -57006,6 +57070,7 @@
    "kastell": "Kastell Stuttgart-Bad Cannstatt",
    "ort": "",
    "linie": "Neckarlinie",
+   "wiki": "Kastell Stuttgart-Bad Cannstatt",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -57031,6 +57096,7 @@
    "kastell": "Kastell Köngen",
    "ort": "",
    "linie": "Neckarlinie",
+   "wiki": "Kastell Köngen",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -57042,6 +57108,7 @@
    "kastell": "Sumelocenna",
    "ort": "Rottenburg am Neckar",
    "linie": "Ältere Neckarlinie",
+   "wiki": "Sumelocenna",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -57061,6 +57128,7 @@
    "kastell": "Kastell Sulz",
    "ort": "Sulz am Neckar",
    "linie": "Ältere Neckarlinie",
+   "wiki": "Kastell Sulz",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -57086,6 +57154,7 @@
    "kastell": "Kastell Waldmössingen",
    "ort": "Schramberg",
    "linie": "Ältere Neckarlinie",
+   "wiki": "Kastell Waldmössingen",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -57097,6 +57166,7 @@
    "kastell": "Kastell Hüfingen",
    "ort": "",
    "linie": "Donaulinie des Obergermanisch-Raetischen Limes",
+   "wiki": "Kastell Hüfingen",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -57108,6 +57178,7 @@
    "kastell": "Kastell Lorch",
    "ort": "",
    "linie": "Jüngere Odenwaldlinie (Vorderer Limes)",
+   "wiki": "Kastell Lorch",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -57133,6 +57204,7 @@
    "kastell": "Kastell Schirenhof",
    "ort": "",
    "linie": "Raetischer Limes",
+   "wiki": "Kastell Schirenhof",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -57144,6 +57216,7 @@
    "kastell": "Kastell Unterböbingen",
    "ort": "",
    "linie": "Raetischer Limes",
+   "wiki": "Kastell Unterböbingen",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -57169,14 +57242,12 @@
    "kastell": "Kastell Aalen",
    "ort": "",
    "linie": "Raetischer Limes",
+   "wiki": "Kastell Aalen",
    "vault_note": "Kastell Aalen",
    "digitalisat": "",
    "htid": "",
    "pages": null,
    "access": "",
-   "bearbeiter": [
-    "Heinrich Steimle"
-   ],
    "vorberichte": [
     {
      "num": 98,
@@ -57184,6 +57255,9 @@
      "page": 370,
      "theme": "Kastell"
     }
+   ],
+   "bearbeiter": [
+    "Heinrich Steimle"
    ]
   },
   {
@@ -57191,6 +57265,7 @@
    "kastell": "Kastell Urspring",
    "ort": "",
    "linie": "Alblimes",
+   "wiki": "Kastell Urspring",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -57202,6 +57277,7 @@
    "kastell": "Kastell Heidenheim",
    "ort": "",
    "linie": "Alblimes",
+   "wiki": "Kastell Heidenheim",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -57221,6 +57297,7 @@
    "kastell": "Kastell Buch",
    "ort": "",
    "linie": "Raetischer Limes",
+   "wiki": "Kastell Buch",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -57258,6 +57335,7 @@
    "kastell": "Kastell Halheim",
    "ort": "",
    "linie": "Raetischer Limes",
+   "wiki": "Kastell Halheim",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -57269,6 +57347,7 @@
    "kastell": "Kastell Oberdorf",
    "ort": "",
    "linie": "Alblimes",
+   "wiki": "Kastell Oberdorf",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -57280,6 +57359,7 @@
    "kastell": "Kastell Ruffenhofen",
    "ort": "",
    "linie": "Raetischer Limes",
+   "wiki": "Kastell Ruffenhofen",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -57305,6 +57385,7 @@
    "kastell": "Kastell Dambach",
    "ort": "",
    "linie": "Raetischer Limes",
+   "wiki": "Kastell Dambach",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -57348,6 +57429,7 @@
    "kastell": "Kastell Gnotzheim",
    "ort": "",
    "linie": "Raetischer Limes",
+   "wiki": "Kastell Gnotzheim",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -57367,6 +57449,7 @@
    "kastell": "Kastell Gunzenhausen",
    "ort": "",
    "linie": "Raetischer Limes",
+   "wiki": "Kastell Gunzenhausen",
    "vault_note": "",
    "digitalisat": "",
    "htid": "njp.32101076455219",
@@ -57423,6 +57506,7 @@
    "kastell": "Kastell Theilenhofen",
    "ort": "",
    "linie": "Raetischer Limes",
+   "wiki": "Kastell Theilenhofen",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -57442,6 +57526,7 @@
    "kastell": "Kastell Weißenburg",
    "ort": "",
    "linie": "Raetischer Limes",
+   "wiki": "Kastell Weißenburg",
    "vault_note": "Kastell Weißenburg",
    "digitalisat": "",
    "htid": "njp.32101076455219",
@@ -57463,6 +57548,7 @@
    "kastell": "Kastell Pfünz",
    "ort": "",
    "linie": "Raetischer Limes",
+   "wiki": "Kastell Pfünz",
    "vault_note": "",
    "digitalisat": "",
    "htid": "njp.32101076455219",
@@ -57501,6 +57587,7 @@
    "kastell": "Kastell Böhming",
    "ort": "",
    "linie": "Raetischer Limes",
+   "wiki": "Kastell Böhming",
    "vault_note": "",
    "digitalisat": "",
    "htid": "",
@@ -57520,6 +57607,7 @@
    "kastell": "Kastell Kösching",
    "ort": "",
    "linie": "Raetischer Limes",
+   "wiki": "Kastell Kösching",
    "vault_note": "",
    "digitalisat": "",
    "htid": "njp.32101076455219",
@@ -57538,6 +57626,7 @@
    "kastell": "Kastell Pförring",
    "ort": "",
    "linie": "Raetischer Limes",
+   "wiki": "Kastell Pförring",
    "vault_note": "",
    "digitalisat": "",
    "htid": "njp.32101076455219",

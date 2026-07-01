@@ -9,7 +9,7 @@ Karte) und einen clientseitigen Volltextindex (MiniSearch). Ausgabe → docs/.
 
     python3 build/build_site.py
 """
-import glob, html, os, re, json, shutil, math
+import glob, html, os, re, json, shutil, math, urllib.parse
 from collections import defaultdict
 from itertools import groupby
 from urllib.parse import quote
@@ -1126,7 +1126,16 @@ def orl_page(idx, lex):
         dg = f' <a href="{html.escape(r["digitalisat"])}" title="Volltext (archive.org)">▣</a>' if r.get("digitalisat") else ''
         prof = ", ".join(sc.get("profile", [])[:4])
         bearb = ", ".join(html.escape(x) for x in r.get("bearbeiter", []))
-        return (f'<tr id="orl-{html.escape(r["nr"])}"><td>{html.escape(r["nr"])}</td><td>{html.escape(r["kastell"])}</td>'
+        lk = []
+        if r.get("wiki"):
+            lk.append(f'<a href="https://de.wikipedia.org/wiki/{urllib.parse.quote(r["wiki"].replace(" ", "_"))}" title="Wikipedia-Artikel">W</a>')
+        if r.get("htid"):
+            lk.append(f'<a href="https://hdl.handle.net/2027/{html.escape(r["htid"])}" title="Scan bei HathiTrust">HT</a>')
+        place = r.get("ort") or re.sub(r"^(Kastelle? von |Kleinkastell |Kastell )", "", r["kastell"])
+        if place and not place.startswith("("):
+            lk.append(f'<a href="https://de.wikisource.org/w/index.php?search={urllib.parse.quote(place)}&amp;fulltext=1" title="Realencyclopädie (RE) / Wikisource — offenes Altertums-Lexikon">RE</a>')
+        links = f' <span class="lc">[{" · ".join(lk)}]</span>' if lk else ""
+        return (f'<tr id="orl-{html.escape(r["nr"])}"><td>{html.escape(r["nr"])}</td><td>{html.escape(r["kastell"])}{links}</td>'
                 f'<td class="meta">{html.escape(r.get("linie",""))}</td><td>{pages}{dg}</td>'
                 f'<td>{sc.get("ner_gazetteer") or ""}</td><td>{r.get("sigillata",{}).get("score") or ""}</td>'
                 f'<td class="meta">{html.escape(prof)}</td><td>{len(r.get("vorberichte",[])) or ""}</td>'
@@ -1157,7 +1166,9 @@ def orl_page(idx, lex):
             f'<p class="meta">Seiten: ▣ = archive.org-Volltext, sonst HathiTrust-Extracted-Features · '
             f'Cross-Work = mit dem Limesblatt gemeinsame Entitäten · Sig. = Terra-Sigillata-Score '
             f'(<a href="orl-register.html#sigillata">Apparat</a>) · Vorb. = Anzahl Limesblatt-Vorberichte '
-            f'(<a href="orl-register.html#konkordanz">Konkordanz</a>).</p>'
+            f'(<a href="orl-register.html#konkordanz">Konkordanz</a>). Verweise je Kastell: '
+            f'<b>W</b> = Wikipedia · <b>HT</b> = Scan bei HathiTrust · <b>RE</b> = Realencyclopädie/Wikisource '
+            f'(offenes Altertums-Lexikon).</p>'
             f'<table class="reg"><thead><tr><th>ORL</th><th>Kastell</th><th>Linie</th><th>Seiten</th>'
             f'<th>Cross-Work</th><th>Sig.</th><th>Charakteristik</th><th>Vorb.</th><th>Bearbeiter</th></tr></thead>'
             f'<tbody>{brows}</tbody></table>')
