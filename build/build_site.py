@@ -1219,13 +1219,50 @@ def orl_page(idx, lex):
             f'<th>Cross-Work</th><th>Sig.</th><th>Charakteristik</th><th>Vorb.</th><th>Bearbeiter</th></tr></thead>'
             f'<tbody>{brows}</tbody></table>')
 
+SIGILLATA_FORSCHER = {"dragendorff", "knorr", "ludowici", "ricken", "dechelette", "walters", "forrer",
+                      "oswald", "drexel", "loeschcke", "haug"}   # Terra-Sigillata-/Fund-Typologen
+ANTIKE_PERSONEN = {"vespasian", "titus", "domitian", "nerva", "traian", "trajan", "hadrian", "antoninus",
+                   "pius", "aurel", "aurelius", "commodus", "pertinax", "severus", "septimius", "caracalla",
+                   "geta", "alexander", "maximinus", "gordian", "philippus", "decius", "valerian", "gallienus",
+                   "postumus", "probus", "caesar", "augustus", "tiberius", "caligula", "claudius", "nero",
+                   "faustina", "sabina", "diana", "fortuna", "victoria", "mercurius", "merkur", "jupiter",
+                   "juno", "minerva", "mars", "apollo", "hercules", "herkules", "silvanus", "mithras", "epona",
+                   "tacitus", "plinius", "ptolemaeus", "ptolemäus"}
+
+def _pcat(name):
+    w = re.sub(r"[^a-zäöüß]", "", name.split()[-1].lower()) if name.split() else ""
+    if w in SIGILLATA_FORSCHER: return "sig"
+    if w in ANTIKE_PERSONEN or w.rstrip("s") in ANTIKE_PERSONEN: return "ant"
+    return "rlk"
+
 def orl_apparatus_page(reg, idx):
     persons = reg.get("persons", []); places = reg.get("places", [])
     def prow(r):
         bands = ", ".join(r["bands"][:12]) + ("…" if len(r["bands"]) > 12 else "")
         return (f'<tr><td>{html.escape(r["name"])}{" ✓" if r.get("gazetteer") else ""}</td>'
                 f'<td>{r["nbands"]}</td><td>{r["count"]}</td><td class="meta">{html.escape(bands)}</td></tr>')
-    pc = [r for r in persons if r.get("gazetteer") or r["nbands"] >= 3][:80]
+    cred = [r for r in persons if r.get("gazetteer") or r["nbands"] >= 3]
+    groups = {"sig": [], "ant": [], "rlk": [], "rest": []}
+    for r in cred:
+        c = _pcat(r["name"])
+        groups[c if (c != "rlk" or r.get("gazetteer")) else "rest"].append(r)
+    for g in groups.values(): g.sort(key=lambda r: (-r["nbands"], -r["count"]))
+    def _tbl(rows): return (f'<table class="reg"><thead><tr><th>Person</th><th>#Bd.</th><th>Nenn.</th>'
+                            f'<th>Bände (ORL-Nr.)</th></tr></thead><tbody>{"".join(prow(r) for r in rows)}</tbody></table>')
+    persons_html = (
+        f'<h2 id="personen">Personen im ORL</h2>'
+        f'<p class="meta">Aufgeschlüsselt nach Art. ✓ = auch im Limesblatt-Gazetteer der Edition belegt; '
+        f'aus automatischer Eigennamenerkennung über Fraktur-OCR.</p>'
+        f'<h3 id="bearbeiter">RLK-Bearbeiter &amp; Ausgräber ({len(groups["rlk"])})</h3>{_tbl(groups["rlk"][:70])}'
+        f'<h3 id="sigillata-forscher">Beteiligte Sigillata-Forscher ({len(groups["sig"])})</h3>'
+        f'<p class="meta">Die Terra-Sigillata-Typologen (Dragendorff, Knorr, Ludowici …), die den '
+        f'charakteristischen Fund-Apparat des ORL prägten — der Grund, warum der ORL sprachlich als '
+        f'Fund-Katalog erscheint (vgl. <a href="wortschatz.html#gegenprobe">Wortschatz-Gegenprobe</a>).</p>{_tbl(groups["sig"])}'
+        f'<h3>Antike Personen ({len(groups["ant"])})</h3>'
+        f'<p class="meta">Kaiser (als Datierungsanker), Gottheiten und antike Autoren.</p>{_tbl(groups["ant"][:40])}'
+        f'<details><summary>Übrige, automatisch erkannt &amp; ungeprüft ({len(groups["rest"])})</summary>'
+        f'<p class="meta">Ohne Gazetteer-Beleg — darunter auch OCR-Artefakte (Gemeinwörter).</p>'
+        f'{_tbl(groups["rest"][:60])}</details>')
     plc = [r for r in places if r.get("gazetteer") or r["nbands"] >= 3][:80]
     b = idx.get("abteilung_B_kastelle", [])
     sig = sorted([r for r in b if r.get("sigillata")], key=lambda r: -r["sigillata"]["score"])[:25]
@@ -1243,11 +1280,7 @@ def orl_apparatus_page(reg, idx):
             f'HathiTrust-NER und Extracted Features aggregiert (<a href="hathitrust.html">Methode</a>); '
             f'das Generalwerkzeug, das die 14-Mappen-Reihe nie hatte. Zurück zum '
             f'<a href="orl.html">ORL-Bandindex</a>.</p>'
-            f'<h2 id="personen">Personenregister ({len(pc)} bandübergreifend)</h2>'
-            f'<p class="meta">✓ = im Limesblatt-Gazetteer der Edition belegt. Aus automatischer Eigennamenerkennung '
-            f'über Fraktur-OCR; Schreibvarianten nicht zusammengeführt.</p>'
-            f'<table class="reg"><thead><tr><th>Person</th><th>#Bd.</th><th>Nenn.</th><th>Bände (ORL-Nr.)</th></tr></thead>'
-            f'<tbody>{"".join(prow(r) for r in pc)}</tbody></table>'
+            f'{persons_html}'
             f'<h2 id="orte">Ortsregister ({len(plc)} bandübergreifend)</h2>'
             f'<table class="reg"><thead><tr><th>Ort</th><th>#Bd.</th><th>Nenn.</th><th>Bände</th></tr></thead>'
             f'<tbody>{"".join(prow(r) for r in plc)}</tbody></table>'
@@ -1421,6 +1454,16 @@ def documentation_page(s):
         f'urheberrechtlich geschützt und hier nur verlinkt, nicht erneut veröffentlicht. Quellcode und Textdateien '
         f'liegen offen bei <a href="https://github.com/pleuston/limesblatt-edition">GitHub</a>.</p>')
 
+PERSON_INST = {   # kuratierte institutionelle Verankerung der RLK-Leitung & Streckenkommissare
+    "Theodor Mommsen": "Preuß. Akademie, Berlin", "Ernst Fabricius": "Univ. Freiburg",
+    "Oscar von Sarwey": "Stuttgart", "Felix Hettner": "Provinzialmuseum Trier",
+    "Friedrich Leonhard": "Berlin", "Louis Jacobi": "Saalburgmuseum", "Heinrich Jacobi": "Saalburgmuseum",
+    "Georg Wolff": "Frankfurt a. M.", "Friedrich Kofler": "Denkmalpflege Darmstadt",
+    "Wilhelm Conrady": "Miltenberg", "Karl Schumacher": "RGZM Mainz", "Ernst von Herzog": "Univ. Tübingen",
+    "Heinrich Steimle": "Stuttgart", "Robert Bodewig": "Lahnstein", "Emil Ritterling": "Museum Wiesbaden",
+    "Wilhelm Soldan": "Hanau",
+}
+
 def organigramm_page(persons, pname):
     byname = {p["name"]: p for p in persons}
     # Streckenkommissare → ihre Strecken (datengetrieben aus STRECKE_KOMMISSAR)
@@ -1430,7 +1473,7 @@ def organigramm_page(persons, pname):
             komm.setdefault(n, []).append(nr)
     order = sorted(komm, key=lambda n: (min(komm[n]), n))
     # Layout
-    Wd, bw, bh, gx, gy, per = 1080, 244, 50, 18, 34, 4
+    Wd, bw, bh, gx, gy, per = 1080, 244, 64, 18, 34, 4
     startx = (Wd - (per * bw + (per - 1) * gx)) // 2
     gridy = 210
     rows = (len(order) + per - 1) // per
@@ -1471,7 +1514,8 @@ def organigramm_page(persons, pname):
         href = f'persons.html#{p["id"]}' if p else None
         if row == 0:
             S.append(line(x + bw / 2, busy, x + bw / 2, y))
-        S.append(box(x, y, bw, bh, [n, f'Strecke {strk}'], "#f4efe4", href=href, fs=13))
+        blines = [n, f'Strecke {strk}'] + ([PERSON_INST[n]] if n in PERSON_INST else [])
+        S.append(box(x, y, bw, bh, blines, "#f4efe4", href=href, fs=13))
     # Ebene 3: Ausgräber (Sammelhinweis)
     S.append(line(cx, grid_bottom, cx, ausy))
     S.append(box(cx - 300, ausy, 600, 40,
@@ -1494,8 +1538,10 @@ def organigramm_page(persons, pname):
             f'<b>Streckenkommissaren</b>, die je einen oder mehrere der 15 Abschnitte verantworteten und unter '
             f'denen die Ausgräber vor Ort arbeiteten. Die Kommissar-Kästen sind mit dem '
             f'<a href="persons.html">Personenregister</a> verknüpft (die Strecken selbst stehen bei den '
-            f'<a href="strecken.html">Strecken</a>). Leitungs- und Institutionsebene sind kuratiert; die '
-            f'Kommissar→Strecken-Zuordnung ist datengetrieben.</p>'
+            f'<a href="strecken.html">Strecken</a>). Unter jedem Kommissar steht seine <b>institutionelle '
+            f'Verankerung</b> (Museum, Akademie oder Universität) — so wird sichtbar, aus welchem Netz von '
+            f'Provinzialmuseen und Universitäten sich das Unternehmen speiste. Leitungs-, Institutions- und '
+            f'Affiliations-Ebene sind kuratiert; die Kommissar→Strecken-Zuordnung ist datengetrieben.</p>'
             f'<div style="overflow-x:auto">{"".join(S)}</div>')
 
 def willkommen_page(s):
