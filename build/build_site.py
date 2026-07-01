@@ -231,9 +231,7 @@ def page(title, body, depth=0, head=""):
 <li><a href="{up}dokumentation.html">Dokumentation</a></li>
 <li><a href="{up}edit.html" title="TEI-Quelle bearbeiten (GitHub-Login)">Bearbeiten ✎</a></li></ul></li>
 <li><a href="{up}index.html#suche">🔍 Suche</a></li>
-</ul></nav></header>
-<div class="wip">🚧 Diese digitale Edition befindet sich im <b>Aufbau</b> — Inhalte, Auszeichnung und Analysen sind unvollständig und können sich noch ändern.</div>
-<main>{body}</main>
+</ul></nav></header><main>{body}</main>
 <footer>Diplomatische OCR-Edition des <em>Limesblatt</em> (1892–1903) · Text &amp; Register
 <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · Seitenbilder © UB Heidelberg
 (<a href="http://rightsstatements.org/vocab/InC/1.0/">In Copyright</a>, via IIIF verlinkt) ·
@@ -562,9 +560,7 @@ def index_page(volumes, toc=None):
                   f'<span class="meta">— {len(v["pages"])} Seiten · {len(ents)} Berichte</span>{sub}</li>')
     lis = "".join(bl)
     head = '<script src="assets/minisearch.min.js"></script>'
-    body = f"""<h1>Limesblatt — digitale Edition</h1>
-<p class="meta" style="border-left:3px solid #cbb;padding-left:.7em">Neu hier? → <a href="uebersicht.html"><b>Übersicht</b></a> mit kurzen, verständlichen Beschreibungen aller Bereiche.</p>
-<p class="lede">Die <em>Mitteilungen der Streckenkommissare bei der Reichs-Limeskommission</em>
+    body = f"""<h1>Limesblatt — digitale Edition</h1><p class="lede">Die <em>Mitteilungen der Streckenkommissare bei der Reichs-Limeskommission</em>
 (1892–1903): die laufenden Feldberichte der Limesforschung, als diplomatische OCR-Edition mit
 IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen- und Ortsregistern.</p>
 <section id="suche"><h2>Volltextsuche</h2>
@@ -1197,7 +1193,15 @@ ANTIKE_PERSONEN = {"vespasian", "titus", "domitian", "nerva", "traian", "trajan"
                    "postumus", "probus", "caesar", "augustus", "tiberius", "caligula", "claudius", "nero",
                    "faustina", "sabina", "diana", "fortuna", "victoria", "mercurius", "merkur", "jupiter",
                    "juno", "minerva", "mars", "apollo", "hercules", "herkules", "silvanus", "mithras", "epona",
-                   "tacitus", "plinius", "ptolemaeus", "ptolemäus"}
+                   "tacitus", "plinius", "ptolemaeus", "ptolemäus",
+                   "germanicus", "drusus", "agrippa", "galba", "otho", "vitellius", "titus", "elagabal",
+                   "macrinus", "maximian", "aurelian", "tetricus", "victorinus", "carus", "carinus",
+                   "numerian", "diocletian", "constantin", "constantius", "constans", "julian", "valens",
+                   "valentinian", "gratian", "magnentius", "crispus", "helena", "iulia", "julia", "domna",
+                   "sabinus", "genius", "iuppiter", "iuno", "neptun", "vulcanus", "sol", "luna", "nemesis",
+                   "isis", "serapis", "cybele", "attis", "abundantia", "felicitas", "pax", "roma"}
+
+def _pn(s): return re.sub(r"[^a-zäöüß]", "", (s or "").lower())
 
 def _pcat(name):
     w = re.sub(r"[^a-zäöüß]", "", name.split()[-1].lower()) if name.split() else ""
@@ -1205,13 +1209,28 @@ def _pcat(name):
     if w in ANTIKE_PERSONEN or w.rstrip("s") in ANTIKE_PERSONEN: return "ant"
     return "rlk"
 
-def orl_apparatus_page(reg, idx):
-    persons = reg.get("persons", []); places = reg.get("places", [])
+def orl_apparatus_page(reg, idx, persons=None):
+    places = reg.get("places", [])
+    p2id = {}                                             # Name/Nachname → Personenregister-ID (Verlinkung)
+    for p in (persons or []):
+        p2id[_pn(p["name"])] = p["id"]; p2id.setdefault(_pn(p["name"].split()[-1]), p["id"])
+    plist = reg.get("persons", []); keys = {_pn(r["name"]) for r in plist}; merged = {}
+    for r in plist:                                       # Genitiv-/Varianten-Merge: „Hadrians" → „Hadrian"
+        k = _pn(r["name"])
+        if k.endswith("s") and len(k) > 4 and k[:-1] in keys: k = k[:-1]
+        e = merged.setdefault(k, {"name": r["name"], "bands": set(), "count": 0, "gazetteer": False, "best": -1})
+        e["bands"].update(r["bands"]); e["count"] += r["count"]; e["gazetteer"] |= bool(r.get("gazetteer"))
+        if r["count"] > e["best"]: e["best"] = r["count"]; e["name"] = r["name"]
+    def _nk(x): m = re.match(r"\d+", str(x)); return (int(m.group()) if m else 999, str(x))
+    pmerged = [{"name": e["name"], "bands": sorted(e["bands"], key=_nk), "nbands": len(e["bands"]),
+                "count": e["count"], "gazetteer": e["gazetteer"]} for e in merged.values()]
     def prow(r):
-        bands = ", ".join(r["bands"][:12]) + ("…" if len(r["bands"]) > 12 else "")
-        return (f'<tr><td>{html.escape(r["name"])}{" ✓" if r.get("gazetteer") else ""}</td>'
-                f'<td>{r["nbands"]}</td><td>{r["count"]}</td><td class="meta">{html.escape(bands)}</td></tr>')
-    cred = [r for r in persons if r.get("gazetteer") or r["nbands"] >= 3]
+        pid = p2id.get(_pn(r["name"])) or p2id.get(_pn(r["name"].split()[-1]))
+        nm = f'<a href="persons.html#{pid}">{html.escape(r["name"])}</a>' if pid else html.escape(r["name"])
+        bl = ", ".join(f'<a href="orl.html#orl-{html.escape(str(x))}">{html.escape(str(x))}</a>' for x in r["bands"])
+        return (f'<tr><td>{nm}{" ✓" if r.get("gazetteer") else ""}</td><td>{r["nbands"]}</td>'
+                f'<td>{r["count"]}</td><td class="meta">{bl}</td></tr>')
+    cred = [r for r in pmerged if r.get("gazetteer") or r["nbands"] >= 3]
     groups = {"sig": [], "ant": [], "rlk": [], "rest": []}
     for r in cred:
         c = _pcat(r["name"])
@@ -1222,7 +1241,9 @@ def orl_apparatus_page(reg, idx):
     persons_html = (
         f'<h2 id="personen">Personen im ORL</h2>'
         f'<p class="meta">Aufgeschlüsselt nach Art. ✓ = auch im Limesblatt-Gazetteer der Edition belegt; '
-        f'aus automatischer Eigennamenerkennung über Fraktur-OCR.</p>'
+        f'<b>verlinkte Namen</b> führen ins <a href="persons.html">Personenregister</a>, die ORL-Nummern in den '
+        f'<a href="orl.html">Bandindex</a>. Genitivformen sind zusammengeführt; aus automatischer '
+        f'Eigennamenerkennung über Fraktur-OCR.</p>'
         f'<h3 id="bearbeiter">RLK-Bearbeiter &amp; Ausgräber ({len(groups["rlk"])})</h3>{_tbl(groups["rlk"][:70])}'
         f'<h3 id="sigillata-forscher">Beteiligte Sigillata-Forscher ({len(groups["sig"])})</h3>'
         f'<p class="meta">Die Terra-Sigillata-Typologen (Dragendorff, Knorr, Ludowici …), die den '
@@ -1688,7 +1709,7 @@ def main():
     orl_reg = _orl_load("orl_register.json") or {"persons": [], "places": [], "counts": {}}
     if orl_idx.get("abteilung_B_kastelle"):
         open(os.path.join(DOCS,"register","orl.html"),"w",encoding="utf-8").write(page("ORL", orl_page(orl_idx, orl_lex), 1))
-        open(os.path.join(DOCS,"register","orl-register.html"),"w",encoding="utf-8").write(page("ORL — Gesamtapparat", orl_apparatus_page(orl_reg, orl_idx), 1))
+        open(os.path.join(DOCS,"register","orl-register.html"),"w",encoding="utf-8").write(page("ORL — Gesamtapparat", orl_apparatus_page(orl_reg, orl_idx, persons), 1))
         open(os.path.join(DOCS,"register","hathitrust.html"),"w",encoding="utf-8").write(page("HathiTrust", hathitrust_page(orl_idx, orl_reg, orl_lex), 1))
         print(f"ORL: Abt. A {len(orl_idx.get('abteilung_A_strecken',[]))} + Abt. B {len(orl_idx.get('abteilung_B_kastelle',[]))} "
               f"→ register/orl.html · orl-register.html · hathitrust.html")
