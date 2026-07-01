@@ -208,7 +208,7 @@ def page(title, body, depth=0, head=""):
 <title>{html.escape(title)} — Limesblatt-Edition</title>
 <link rel="stylesheet" href="{up}assets/style.css">{head}</head><body>
 <header><a class="home" href="{up}index.html">📕 Limesblatt-Edition</a>
-<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/fundindex.html">Funde</a> · <a href="{up}register/inschriften.html">Inschriften</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}register/bibliographie.html">Bibliographie</a> · <a href="{up}register/rezeption.html">Rezeption</a> · <a href="{up}register/orl.html">ORL</a> · <a href="{up}register/wortschatz.html">Analyse</a> · <a href="{up}index.html#suche">Suche</a> · <a href="{up}edit.html" title="TEI-Quelle bearbeiten (GitHub-Login)">✎&#8201;Bearbeiten</a></nav></header>
+<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/fundindex.html">Funde</a> · <a href="{up}register/inschriften.html">Inschriften</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}register/bibliographie.html">Bibliographie</a> · <a href="{up}register/rezeption.html">Rezeption</a> · <a href="{up}register/orl.html">ORL</a> · <a href="{up}register/wortschatz.html">Analyse</a> · <a href="{up}index.html#suche">Suche</a> · <a href="{up}dokumentation.html">Dokumentation</a> · <a href="{up}edit.html" title="TEI-Quelle bearbeiten (GitHub-Login)">✎&#8201;Bearbeiten</a></nav></header>
 <div class="wip">🚧 Diese digitale Edition befindet sich im <b>Aufbau</b> — Inhalte, Auszeichnung und Analysen sind unvollständig und können sich noch ändern.</div>
 <main>{body}</main>
 <footer>Diplomatische OCR-Edition des <em>Limesblatt</em> (1892–1903) · Text &amp; Register
@@ -531,6 +531,7 @@ IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen
 <ul><li><a href="register/orl.html">ORL-Bandindex</a> — Abteilung A (Strecken) + B (Kastell-Lieferungen) mit Seitenzahl, Charakteristik, Sigillata-Score und Vorbericht-Verweisen</li>
 <li><a href="register/orl-register.html">ORL-Gesamtapparat</a> — Personen- &amp; Ortsregister über alle Bände, Terra-Sigillata-Apparat, Vorbericht→ORL-Konkordanz</li>
 <li><a href="register/hathitrust.html">HathiTrust — Werkzeuge &amp; Ertrag</a> — wie der ORL token-frei und nicht-konsumtiv erschlossen wurde (Workset · Extracted Features · NER · Data Capsule)</li></ul>
+<p class="meta">→ <a href="dokumentation.html"><b>Dokumentation</b></a>: was auf dieser Website steht, wie wir an die Daten kamen und was sie sagen.</p>
 <p class="meta">Abgeleitet aus dem (privaten) Forschungs-Vault zur <a href="https://github.com/pleuston/limes">Reichs-Limeskommission</a>.
 Edition/Code: <a href="https://github.com/pleuston/limesblatt-edition">GitHub</a>.</p>
 <script>
@@ -1207,6 +1208,95 @@ def hathitrust_page(idx, reg, lex):
             f'<a href="orl-register.html#konkordanz">Vorbericht-Konkordanz</a> und die Wortschatz-Gegenprobe — '
             f'Apparate, die der in 14 Mappen über 40 Jahre erschienene ORL selbst nie besaß.</p>')
 
+def documentation_page(s):
+    src = [
+        ("UB Heidelberg — ALTO-OCR (<code>get_ocr.cgi</code>)", "Limesblatt-Volltext, IIIF-Faksimile, Bandseiten, Suche, Namen-/Orte-NER, Analyse"),
+        ("Wikidata + GND (lobid.org)", "Personenregister: Lebensdaten, Rollen, Normdaten, Werke, Biographie-Links"),
+        ("Kalliope-SRU", "Nachlässe &amp; Korrespondenz der Personen"),
+        ("EDH — EpiDoc-GitHub-Dumps", "Inschriften-Register der Fundorte"),
+        ("DARE + OSM-Overpass", "Ortskarte, Wachttürme/Kleinkastelle je Strecke, Limes-Trasse"),
+        ("archive.org", "Digitalisate der Bibliographie + der eine freie ORL-Volltextband"),
+        ("OpenAlex · Crossref · DAI-Zenon", "Rezeption/Wirkungsgeschichte (Zitate außerhalb des Limesblatt)"),
+        ("HathiTrust / HTRC", "ORL-Abteilung: Workset · Extracted Features · NER · Data Capsule"),
+    ]
+    srows = "".join(f'<tr><td>{a}</td><td class="meta">{b}</td></tr>' for a, b in src)
+    return (
+        f'<h1>Dokumentation</h1>'
+        f'<p class="meta">Diese Edition erschließt zwei Werke der frühen Limesforschung — die laufenden '
+        f'Feldberichte des <a href="index.html"><b>Limesblatt</b></a> (1892–1903) und die Endpublikation '
+        f'<a href="register/orl.html"><b>ORL</b></a> (1894–1937) — und den Weg des einen ins andere. Alles '
+        f'mechanisch Ableitbare ist <b>token-frei</b> (ohne Sprachmodell) aus offenen Quellen gewonnen; das LLM '
+        f'blieb der Prosa, dem Urteil und der Disambiguierung vorbehalten.</p>'
+        f'<h2>1 · Was auf der Website steht</h2>'
+        f'<h3>Die Bände</h3>'
+        f'<p class="meta">Die <a href="index.html">{s["nvol"]} Bände</a> des Limesblatt als diplomatische '
+        f'OCR-Edition: synchron zum <b>IIIF-Faksimile</b> (UB Heidelberg), spaltentreu (Seitenumbruch je '
+        f'Druckseite, Spaltenumbruch je Spalte), mit im Lesetext verlinkten Personen, Orten, Zitaten und internen '
+        f'Verweisen; Volltextsuche über das ganze Korpus.</p>'
+        f'<h3>Kuratierte Register</h3>'
+        f'<p class="meta"><a href="register/persons.html">Personen</a> ({s["npers"]} Akteure der '
+        f'Reichs-Limeskommission mit Normdaten, Nachlässen und ausgegrabenen Kastellen) · '
+        f'<a href="register/places.html">Orte</a> ({s["nplac"]} Kastelle mit Karte, Typ, Ausgräber, Inschriften) · '
+        f'<a href="register/strecken.html">Strecken</a> (die 15 Limes-Abschnitte mit Kommissaren).</p>'
+        f'<h3>Aus dem Volltext gewonnen</h3>'
+        f'<p class="meta"><a href="register/fundindex.html">Fundindex</a> (Fundgattungen, Münzkaiser, '
+        f'Sigillata-Formen, Truppenstempel mit Seiten-/Spaltenbeleg) · '
+        f'<a href="register/namen.html">Namen</a> &amp; <a href="register/orte-index.html">Orte im Volltext</a> '
+        f'(NER: {s["nner_p"]} Personen / {s["nner_pl"]} Orte, im Lesetext verlinkt, gegen GND/iDAI-Gazetteer '
+        f'abgeglichen) · <a href="register/inschriften.html">Inschriften</a> ({s["nedh"]} EDH-Datensätze) · '
+        f'<a href="register/bibliographie.html">Bibliographie</a> (zitierte Werke mit Open-Access-Digitalisaten) · '
+        f'<a href="register/wortschatz.html">Analyse</a> (diachroner Wortschatz, Chronologie, Zitatnetz, '
+        f'OCR-Qualität, KWIC-Konkordanz).</p>'
+        f'<h3>Rezeption &amp; ORL</h3>'
+        f'<p class="meta"><a href="register/rezeption.html">Rezeption</a> ({s["nrez"]} Belege, wie das Limesblatt '
+        f'außerhalb seiner Bände zitiert wurde) · und die <a href="register/orl.html">ORL-Abteilung</a>: Bandindex '
+        f'(Abt. A {s["norlA"]} Strecken + Abt. B {s["norlB"]} Lieferungen), '
+        f'<a href="register/orl-register.html">Gesamtapparat</a> (Personen-/Ortsregister über alle Bände, '
+        f'Sigillata-Apparat, Vorbericht→ORL-Konkordanz) und die '
+        f'<a href="register/hathitrust.html">HathiTrust-Methode</a>.</p>'
+        f'<h2>2 · Wie wir zu den Daten gelangt sind</h2>'
+        f'<p>Zwei Repositorien: ein <b>privater Obsidian-Forschungs-Vault</b> hält die Recherche und die '
+        f'Werkzeuge; zwei Python-Skripte (nur Standardbibliothek) leiten daraus die <b>öffentliche Edition</b> ab '
+        f'(<code>build_tei.py</code> → TEI-P5 + Register, <code>build_site.py</code> → diese Website). Leitprinzip: '
+        f'<b>strukturierte Fakten holt ein Skript</b> aus offenen APIs und schreibt sie ins Frontmatter/GeoJSON — '
+        f'<b>ohne LLM-Tokens</b>, mit md5-Cache und idempotenten Schreibvorgängen; das Sprachmodell dient nur '
+        f'Prosa, Quellenkritik und Synthese. Kein Seitenbild wird nachgehostet (nur per IIIF verlinkt); die '
+        f'ORL-Volltextarbeit ist <b>nicht-konsumtiv</b> (nur aggregierte Ableitungen verlassen die Data Capsule).</p>'
+        f'<p class="meta">Datenherkunft je Register:</p>'
+        f'<table class="reg"><thead><tr><th>Offene Quelle</th><th>speist</th></tr></thead>'
+        f'<tbody>{srows}</tbody></table>'
+        f'<h2>3 · Was die Daten sagen</h2>'
+        f'<h3>Vom Vorbericht zur Endpublikation — ein Gattungswechsel</h3>'
+        f'<p class="meta">Der token-freie Korpusvergleich (ORL {s["orl_words"]:,} W. ↔ Limesblatt '
+        f'{s["lb_words"]:,} W., <a href="register/orl.html#keyness">Keyness</a>) zeigt keine bloße Glättung, '
+        f'sondern zwei Gattungen: das <b>Limesblatt</b> spürt die Linie auf und steckt sie ab — in erster Person '
+        f'(<i>meine, Pfahlreihe, Grenzgräbchen, Absteinung</i>); der <b>ORL</b> katalogisiert die Funde — mit dem '
+        f'Terra-Sigillata-Apparat (<i>Dragendorff, Knorr, Ludowici, Rheinzabern</i>).</p>'
+        f'<h3>Cross-Work: was beide Werke teilen</h3>'
+        f'<p class="meta">Das <a href="register/orl-register.html">ORL-Gesamtregister</a> ({s["norlpers"]} '
+        f'Personen, {s["norlplac"]} Orte über alle Bände) ist gegen den Limesblatt-Gazetteer der Edition geerdet — '
+        f'die gemeinsamen Namen (die Ausgräber Jacobi, Wolff, Schumacher, Kofler …) verknüpfen Vorbericht und '
+        f'Endpublikation am Objekt. Es ist der konsolidierte Apparat, den die in 14 Mappen über 40 Jahre '
+        f'erschienene Reihe selbst nie besaß.</p>'
+        f'<h3>Die Normdaten-Lücke</h3>'
+        f'<p class="meta">Bemerkenswert: das Limesblatt als Periodikum hat (Stand des Harvests) <b>keinen eigenen '
+        f'Wikidata- oder GND-Werkeintrag</b> — ein offener Punkt seiner Erschließung, den die '
+        f'<a href="register/rezeption.html">Rezeptionsseite</a> festhält.</p>'
+        f'<h3>Der Befund hängt an der Extraktionsqualität</h3>'
+        f'<p class="meta">Alle Volltext-Befunde ruhen auf Fraktur-OCR: wo das OCR verrauscht ist, verrauscht der '
+        f'Befund. Die <a href="register/wortschatz.html">Analyse</a> misst die Qualität (Korpuswort-Wiederkehr '
+        f'~85 %) und die Register markieren unsichere Lesungen. Das ist die methodische Grundbedingung — die '
+        f'Erschließungsqualität bestimmt, was man findet.</p>'
+        f'<h2>4 · Rechte &amp; Nachnutzung</h2>'
+        f'<p class="meta">Editionstext, TEI, Register und Daten stehen unter '
+        f'<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> (© Manuel Sassmann). Die '
+        f'<b>Seitenbilder</b> © Universitätsbibliothek Heidelberg sind '
+        f'<a href="http://rightsstatements.org/vocab/InC/1.0/">„In Copyright"</a> und ausschließlich per IIIF '
+        f'verlinkt, nicht nachgehostet. Normdaten: GND/Wikidata (CC0), iDAI.gazetteer (DAI), Pleiades (CC BY). '
+        f'Quellcode, TEI-Quellen und das Markup-Modell (README · MARKUP.md): '
+        f'<a href="https://github.com/pleuston/limesblatt-edition">github.com/pleuston/limesblatt-edition</a>. '
+        f'Die ORL-Erschließung folgt den nicht-konsumtiven Regeln von HathiTrust.</p>')
+
 def main():
     os.makedirs(os.path.join(DOCS,"volumes"), exist_ok=True)
     os.makedirs(os.path.join(DOCS,"register"), exist_ok=True)
@@ -1354,6 +1444,16 @@ def main():
         open(os.path.join(DOCS,"register","hathitrust.html"),"w",encoding="utf-8").write(page("HathiTrust", hathitrust_page(orl_idx, orl_reg, orl_lex), 1))
         print(f"ORL: Abt. A {len(orl_idx.get('abteilung_A_strecken',[]))} + Abt. B {len(orl_idx.get('abteilung_B_kastelle',[]))} "
               f"→ register/orl.html · orl-register.html · hathitrust.html")
+    stats = {"nvol": len(volumes), "npers": len(persons), "nplac": len(places),
+             "nner_p": len(ner_p), "nner_pl": len(ner_pl),
+             "nedh": edh.get("total", 0), "nrez": rez.get("summary", {}).get("total", 0),
+             "norlA": (orl_idx or {}).get("counts", {}).get("abt_A", 0),
+             "norlB": (orl_idx or {}).get("counts", {}).get("abt_B", 0),
+             "norlpers": orl_reg.get("counts", {}).get("persons", 0),
+             "norlplac": orl_reg.get("counts", {}).get("places", 0),
+             "orl_words": (orl_lex or {}).get("orl_words", 0), "lb_words": (orl_lex or {}).get("lb_words", 0)}
+    open(os.path.join(DOCS,"dokumentation.html"),"w",encoding="utf-8").write(page("Dokumentation", documentation_page(stats), 0))
+    print(f"Dokumentation → dokumentation.html")
     ib, ih = index_page(volumes, toc)
     open(os.path.join(DOCS,"index.html"),"w",encoding="utf-8").write(page("Startseite", ib, 0, ih))
     print(f"docs/: index + {len(volumes)} Bände + 3 Register (Personen {len(persons)}, Orte {len(places)}, "
