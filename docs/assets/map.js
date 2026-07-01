@@ -47,6 +47,19 @@
     addToggle("Limesverlauf", "#6b4f2a", "▬", lineLayer, true);
   }).catch(function () {});
 
+  // 2b) Streckenabschnitte (echte Linie, nach Strecke eingefärbt)
+  var strLayer = L.layerGroup();
+  fetch("../data/strecken-line.geojson").then(function (r) { return r.json(); }).then(function (gj) {
+    L.geoJSON(gj, {
+      style: function (f) { return { color: f.properties.color, weight: 4, opacity: .85 }; },
+      onEachFeature: function (f, l) {
+        l.bindPopup('<a href="strecken.html#' + f.properties.id + '">' + f.properties.name + "</a>");
+        l.bindTooltip(f.properties.name, { sticky: true });
+      }
+    }).addTo(strLayer);
+    addToggle("Streckenabschnitte", "#888", "▬", strLayer, false);
+  }).catch(function () {});
+
   // 3) Weitere Limesstellen (DARE): Türme/Kleinkastelle/Lager zwischen den Kastellen
   var dareColor = { camp: "#8a8a8a", fort: "#8a6d3b" };  // sonst (fortlet/tower):
   var siteLayer = L.layerGroup(), siteById = {};

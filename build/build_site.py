@@ -472,7 +472,8 @@ def places_page(places, occ, pname, str_by_id, sites, site_hits):
                   + "".join(secs)) if sites else ""
     head = '<link rel="stylesheet" href="../assets/leaflet.css"><script src="../assets/leaflet.js"></script>'
     body = (f'<h1>Ortsregister</h1><p class="meta">{len(places)} benannte Kastelle (Karten unten) plus '
-            f'{len(sites)} weitere Limesstellen — auf der Karte zuschaltbar: der <b>Limesverlauf</b> und die '
+            f'{len(sites)} weitere Limesstellen — auf der Karte zuschaltbar: der <b>Limesverlauf</b>, die '
+            f'<b>Streckenabschnitte</b> (die echte Linie nach Strecke eingefärbt, Klick → Streckenseite) und die '
             f'<b>weiteren Limesstellen</b> (Türme / Kleinkastelle / Lager, DARE). Filter nach Limes-Abschnitt.</p>'
             f'<div id="facets"></div><div id="map"></div>'
             f'<div class="cards">{"".join(cards)}</div>'
@@ -1569,6 +1570,47 @@ def willkommen_page(s):
             f'<p class="meta">Neu hier? Beginnen Sie mit den <a href="index.html">Bänden</a> oder lesen Sie die '
             f'<a href="dokumentation.html">Dokumentation</a>. Editionstext und Daten stehen unter CC&nbsp;BY&nbsp;4.0.</p>')
 
+STRECKE_COLORS = ["#e6194B", "#3cb44b", "#ca9a00", "#4363d8", "#f58231", "#911eb4", "#0898a4",
+                  "#c026a8", "#7a9c1f", "#c76a8a", "#469990", "#8a63c4", "#9A6324", "#800000", "#000075"]
+
+def _pt_seg_d(p, a, b):                                    # Punkt→Strecken-Abstand (lat/lng planar-approx)
+    (py, px), (ay, ax), (by, bx) = p, a, b
+    dx, dy = bx - ax, by - ay
+    if dx == 0 and dy == 0: return ((px - ax) ** 2 + (py - ay) ** 2) ** .5
+    t = max(0, min(1, ((px - ax) * dx + (py - ay) * dy) / (dx * dx + dy * dy)))
+    return ((px - (ax + t * dx)) ** 2 + (py - (ay + t * dy)) ** 2) ** .5
+
+def write_strecken_line(strecken):
+    """Färbt die echte OSM-Limeslinie nach Strecke ein: jeder Linienpunkt wird der nächstliegenden
+    Strecke (STRECKE_PATH) zugeordnet → data/strecken-line.geojson (eine farbige Linie je Abschnitt)."""
+    lp = os.path.join(DOCS, "data", "limes-line.geojson")
+    if not os.path.exists(lp) or not STRECKE_PATH: return
+    gj = json.load(open(lp, encoding="utf-8"))
+    nr2 = {int(s["nummer"]): (s["id"], s.get("name", "Strecke " + str(s["nummer"])))
+           for s in strecken if str(s.get("nummer", "")).strip().isdigit()}
+    sp = sorted(STRECKE_PATH.items())
+    nearest = lambda ll: min(sp, key=lambda kv: _pt_seg_d(ll, kv[1][0], kv[1][1]))[0]
+    def lines(g): return [g["coordinates"]] if g["type"] == "LineString" else (g["coordinates"] if g["type"] == "MultiLineString" else [])
+    def mk(run, nr):
+        sid, name = nr2.get(nr, ("", "Strecke " + str(nr)))
+        return {"type": "Feature", "properties": {"strecke": nr, "name": name, "id": sid,
+                "color": STRECKE_COLORS[(nr - 1) % len(STRECKE_COLORS)]},
+                "geometry": {"type": "LineString", "coordinates": run}}
+    feats = []
+    for f in gj["features"]:
+        for coords in lines(f["geometry"]):
+            asg = [(nearest((lat, lng)), [lng, lat]) for lng, lat in coords]
+            i = 0
+            while i < len(asg):
+                nr = asg[i][0]; run = [asg[i][1]]; j = i + 1
+                while j < len(asg) and asg[j][0] == nr: run.append(asg[j][1]); j += 1
+                if j < len(asg): run.append(asg[j][1])          # Brücke zum Nachbarabschnitt
+                if len(run) >= 2: feats.append(mk(run, nr))
+                i = j
+    json.dump({"type": "FeatureCollection", "features": feats},
+              open(os.path.join(DOCS, "data", "strecken-line.geojson"), "w", encoding="utf-8"))
+    print(f"Streckenabschnitte auf der Karte: {len(feats)} farbige Segmente → data/strecken-line.geojson")
+
 def main():
     os.makedirs(os.path.join(DOCS,"volumes"), exist_ok=True)
     os.makedirs(os.path.join(DOCS,"register"), exist_ok=True)
@@ -1595,6 +1637,7 @@ def main():
     persons = load_register(os.path.join(REPO,"registers","persons.xml"), "person")
     places  = load_register(os.path.join(REPO,"registers","places.xml"), "place")
     strecken = load_strecken(os.path.join(REPO,"registers","strecken.xml"))
+    write_strecken_line(strecken)
     str_by_id = {s["id"]: s for s in strecken}
     pname = {p["id"]: p["name"] for p in persons}
     sp = os.path.join(REPO,"geo","sites.geojson")
