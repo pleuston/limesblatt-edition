@@ -460,8 +460,16 @@ def places_page(places, occ, pname, str_by_id, sites, site_hits):
             f'<script src="../assets/map.js"></script>')
     return body, head
 
-def strecken_page(strecken, str_forts, persons, pname, strecke_sites):
+def strecken_page(strecken, str_forts, persons, pname, strecke_sites, orl_idx, volumes):
     byname = {p["name"]: p for p in persons}
+    slug2nr = {v["slug"]: v["nr"] for v in volumes}
+    def _core(k):
+        k = re.sub(r"^(Kleinkastell|Kastelle von|Kastell|Kastelle)\s+", "", k or "").lower()
+        return re.sub(r"[^a-zäöüß0-9]", "", k)
+    kastB = {}
+    for r in orl_idx.get("abteilung_B_kastelle", []):
+        kastB.setdefault(_core(r["kastell"]), r)
+    strA = {str(a.get("strecke")): a for a in orl_idx.get("abteilung_A_strecken", [])}
     cards = []
     for s in strecken:
         forts = str_forts.get(s["id"], [])
@@ -474,6 +482,29 @@ def strecken_page(strecken, str_forts, persons, pname, strecke_sites):
                 if d in pname and d not in dig_ids: dig_ids.append(d)
         meta = " · ".join(x for x in [html.escape(s["verlauf"]), html.escape(s["region"]), html.escape(s["abschnitt"])] if x)
         extra = f'<div class="x">⛏️ Kastelle: {fl}</div>'
+        # --- Limesblatt (Vorbericht) ↔ ORL (Endpublikation) nebeneinander ---
+        orlB, seenB, vols = [], set(), {}
+        for f in forts:
+            r = kastB.get(_core(f["name"]))
+            if r and r["nr"] not in seenB:
+                seenB.add(r["nr"]); orlB.append(r)
+                for vb in r.get("vorberichte", []):
+                    n = slug2nr.get(vb.get("slug"))
+                    if n: vols[n] = vols.get(n, 0) + 1
+        if vols:
+            bl = ", ".join(f'<a href="../volumes/bd{n}.html">Bd. {n}</a>' for n in sorted(vols))
+            lb_html = f'{bl} <span class="meta">({sum(vols.values())} Berichte zu diesen Kastellen)</span>'
+        else:
+            lb_html = '<span class="meta">— kein zugeordneter Feldbericht</span>'
+        sn = str(nr) if nr else ""
+        op = []
+        if strA.get(sn): op.append(f'<a href="orl.html#orl-a-{sn}">Strecken-Band (Abt.&#8201;A)</a>')
+        if orlB: op.append("Lieferungen " + ", ".join(f'<a href="orl.html#orl-{r["nr"]}">ORL&#8201;{r["nr"]}</a>' for r in orlB))
+        orl_html = " · ".join(op) or '<span class="meta">—</span>'
+        extra += (f'<div class="x" style="display:grid;grid-template-columns:1fr 1fr;gap:.4em .9em;'
+                  f'border-left:3px solid #cbb;padding-left:.7em;margin:.35em 0">'
+                  f'<div>📄 <b>Limesblatt</b> · Vorbericht<br>{lb_html}</div>'
+                  f'<div>📗 <b>ORL</b> · Endpublikation<br>{orl_html}</div></div>')
         ds, seen_n = [], set()
         for x in sorted(strecke_sites.get(s["id"], []), key=lambda x: x.get("name", "")):
             n = x.get("name", "?")
@@ -490,11 +521,11 @@ def strecken_page(strecken, str_forts, persons, pname, strecke_sites):
         if bet: extra += '<div class="x">👤 Beteiligte — ' + " · ".join(bet) + '</div>'
         cards.append(f'<article class="card wide" id="{s["id"]}"><div class="cbody">'
                      f'<h3>{html.escape(s["name"])}</h3><div class="role">{meta}</div>{extra}</div></article>')
-    return (f'<h1>Strecken</h1><p class="meta">{len(strecken)} Limes-Abschnitte mit Kastellen, beteiligten '
-            f'Personen (Kommissare regional, Ausgräber aus den Kastellen) und den DARE-Stellen entlang der Linie. '
-            f'Letztere sind über den <i>geokodierten Trassenverlauf</i> dem geografisch nächsten Abschnitt zugeordnet '
-            f'(≤ ~15 km zur Linie) — auch kastelllose Strecken zeigen so ihre Turmstellen. In Doppellinien-Zonen '
-            f'(ältere Odenwald-/Neckarlinie neben der vorderen Linie) ist die Zuordnung näherungsweise.</p>'
+    return (f'<h1>Strecken</h1><p class="meta">{len(strecken)} Limes-Abschnitte, je mit den Kastellen, den '
+            f'zugehörigen <b>Limesblatt-Bänden</b> (Vorbericht) und der <b>ORL</b>-Endpublikation nebeneinander, '
+            f'den beteiligten Personen und den DARE-Stellen entlang der Linie. Die Turmstellen sind über den '
+            f'geokodierten Trassenverlauf dem nächsten Abschnitt zugeordnet (≤ ~15&#8239;km); in Doppellinien-Zonen '
+            f'näherungsweise.</p>'
             f'<div class="cards">{"".join(cards)}</div>')
 
 def index_page(volumes, toc=None):
@@ -1086,7 +1117,7 @@ def reception_page(rec):
 def orl_page(idx, lex):
     a = idx.get("abteilung_A_strecken", []); b = idx.get("abteilung_B_kastelle", []); c = idx.get("counts", {})
     nef = sum(1 for r in b if r.get("pages")); nner = sum(1 for r in b if r.get("schicht_c", {}).get("ner_terms"))
-    arows = "".join(f'<tr><td>{s.get("strecke","")}</td><td>{html.escape(s.get("verlauf",""))}</td>'
+    arows = "".join(f'<tr id="orl-a-{s.get("strecke","")}"><td>{s.get("strecke","")}</td><td>{html.escape(s.get("verlauf",""))}</td>'
                     f'<td>{html.escape(s.get("region",""))}</td></tr>' for s in a)
     def brow(r):
         sc = r.get("schicht_c", {})
@@ -1095,7 +1126,7 @@ def orl_page(idx, lex):
         dg = f' <a href="{html.escape(r["digitalisat"])}" title="Volltext (archive.org)">▣</a>' if r.get("digitalisat") else ''
         prof = ", ".join(sc.get("profile", [])[:4])
         bearb = ", ".join(html.escape(x) for x in r.get("bearbeiter", []))
-        return (f'<tr><td>{html.escape(r["nr"])}</td><td>{html.escape(r["kastell"])}</td>'
+        return (f'<tr id="orl-{html.escape(r["nr"])}"><td>{html.escape(r["nr"])}</td><td>{html.escape(r["kastell"])}</td>'
                 f'<td class="meta">{html.escape(r.get("linie",""))}</td><td>{pages}{dg}</td>'
                 f'<td>{sc.get("ner_gazetteer") or ""}</td><td>{r.get("sigillata",{}).get("score") or ""}</td>'
                 f'<td class="meta">{html.escape(prof)}</td><td>{len(r.get("vorberichte",[])) or ""}</td>'
@@ -1422,7 +1453,13 @@ def main():
     open(os.path.join(DOCS,"register","persons.html"),"w",encoding="utf-8").write(page("Personenregister", persons_page(persons, occ, digs), 1))
     plb, plh = places_page(places, occ, pname, str_by_id, sites, dare_hits)
     open(os.path.join(DOCS,"register","places.html"),"w",encoding="utf-8").write(page("Ortsregister", plb, 1, plh))
-    open(os.path.join(DOCS,"register","strecken.html"),"w",encoding="utf-8").write(page("Strecken", strecken_page(strecken, str_forts, persons, pname, strecke_sites), 1))
+    def _orl_load(name):
+        for base in (os.path.join(REPO, "data"), os.path.join(REPO, "..", "limes", "tools")):
+            p = os.path.join(base, name)
+            if os.path.exists(p): return json.load(open(p, encoding="utf-8"))
+        return None
+    orl_idx = _orl_load("orl_index.json") or {"abteilung_A_strecken": [], "abteilung_B_kastelle": []}
+    open(os.path.join(DOCS,"register","strecken.html"),"w",encoding="utf-8").write(page("Strecken", strecken_page(strecken, str_forts, persons, pname, strecke_sites, orl_idx, volumes), 1))
     nerd = os.path.join(REPO, "data")
     def loadj(fn): return json.load(open(os.path.join(nerd,fn),encoding="utf-8")) if os.path.exists(os.path.join(nerd,fn)) else ([] if "ner_" in fn else {})
     ner_p, ner_pl = loadj("ner_persons.json"), loadj("ner_places.json")
@@ -1465,16 +1502,10 @@ def main():
     rez = json.load(open(_recp, encoding="utf-8")) if os.path.exists(_recp) else {"items": [], "summary": {}, "normdata": {}}
     open(os.path.join(DOCS,"register","rezeption.html"),"w",encoding="utf-8").write(page("Rezeption", reception_page(rez), 1))
     print(f"Rezeption: {rez.get('summary',{}).get('total',0)} Belege → register/rezeption.html")
-    # ORL — eigene Abteilung (Bandindex + Gesamtapparat + HathiTrust-Methode); Daten aus data/ (CI) oder Vault
-    def _orl_load(name):
-        for base in (os.path.join(REPO, "data"), os.path.join(REPO, "..", "limes", "tools")):
-            p = os.path.join(base, name)
-            if os.path.exists(p): return json.load(open(p, encoding="utf-8"))
-        return None
-    orl_idx = _orl_load("orl_index.json")
+    # ORL-Register/Analyse-Seiten (orl_idx + _orl_load bereits vor den Strecken geladen)
     orl_reg = _orl_load("orl_register.json") or {"persons": [], "places": [], "counts": {}}
     orl_lex = _orl_load("orl_vs_limesblatt.json")
-    if orl_idx:
+    if orl_idx.get("abteilung_B_kastelle"):
         open(os.path.join(DOCS,"register","orl.html"),"w",encoding="utf-8").write(page("ORL", orl_page(orl_idx, orl_lex), 1))
         open(os.path.join(DOCS,"register","orl-register.html"),"w",encoding="utf-8").write(page("ORL — Gesamtapparat", orl_apparatus_page(orl_reg, orl_idx), 1))
         open(os.path.join(DOCS,"register","hathitrust.html"),"w",encoding="utf-8").write(page("HathiTrust", hathitrust_page(orl_idx, orl_reg, orl_lex), 1))
