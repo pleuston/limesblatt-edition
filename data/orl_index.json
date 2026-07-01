@@ -1871,6 +1871,10 @@
    "htid": "",
    "pages": null,
    "access": "",
+   "bearbeiter": [
+    "Emil Ritterling",
+    "Robert Bodewig"
+   ],
    "vorberichte": [
     {
      "num": 175,
@@ -1896,10 +1900,6 @@
      "page": 889,
      "theme": "Kastell"
     }
-   ],
-   "bearbeiter": [
-    "Emil Ritterling",
-    "Robert Bodewig"
    ]
   },
   {
@@ -5930,6 +5930,9 @@
      "lorbeerkranz": 1
     }
    },
+   "bearbeiter": [
+    "Louis Jacobi"
+   ],
    "vorberichte": [
     {
      "num": 116,
@@ -5937,9 +5940,6 @@
      "page": 429,
      "theme": ""
     }
-   ],
-   "bearbeiter": [
-    "Louis Jacobi"
    ]
   },
   {
@@ -8265,6 +8265,10 @@
      "dragendorff": 1
     }
    },
+   "bearbeiter": [
+    "Louis Jacobi",
+    "Heinrich Jacobi"
+   ],
    "vorberichte": [
     {
      "num": 25,
@@ -8278,10 +8282,6 @@
      "page": 65,
      "theme": "Erdschanze"
     }
-   ],
-   "bearbeiter": [
-    "Louis Jacobi",
-    "Heinrich Jacobi"
    ]
   },
   {
@@ -16957,12 +16957,6 @@
      "slug": "limesblatt1892_1893",
      "page": 24,
      "theme": "Kastell"
-    },
-    {
-     "num": 45,
-     "slug": "limesblatt1892_1893",
-     "page": 129,
-     "theme": "Praetorium, vgl. Nr. 10"
     },
     {
      "num": 46,
@@ -39052,6 +39046,9 @@
      "heiligenberg": 1
     }
    },
+   "bearbeiter": [
+    "Karl Schumacher"
+   ],
    "vorberichte": [
     {
      "num": 14,
@@ -39089,9 +39086,6 @@
      "page": 667,
      "theme": "Bauinschriften vom Kastell"
     }
-   ],
-   "bearbeiter": [
-    "Karl Schumacher"
    ]
   },
   {
@@ -40998,6 +40992,9 @@
      "forrer": 1
     }
    },
+   "bearbeiter": [
+    "Ernst von Herzog"
+   ],
    "vorberichte": [
     {
      "num": 28,
@@ -41011,9 +41008,6 @@
      "page": 81,
      "theme": "zweites Kastell (am Limes)"
     }
-   ],
-   "bearbeiter": [
-    "Ernst von Herzog"
    ]
   },
   {
@@ -41026,6 +41020,9 @@
    "htid": "",
    "pages": null,
    "access": "",
+   "bearbeiter": [
+    "Ernst von Herzog"
+   ],
    "vorberichte": [
     {
      "num": 28,
@@ -41039,9 +41036,6 @@
      "page": 81,
      "theme": "zweites Kastell (am Limes)"
     }
-   ],
-   "bearbeiter": [
-    "Ernst von Herzog"
    ]
   },
   {
@@ -44426,6 +44420,9 @@
      "dechelette": 1
     }
    },
+   "bearbeiter": [
+    "Ernst von Herzog"
+   ],
    "vorberichte": [
     {
      "num": 96,
@@ -44433,9 +44430,6 @@
      "page": 366,
      "theme": "Kastell"
     }
-   ],
-   "bearbeiter": [
-    "Ernst von Herzog"
    ]
   },
   {
@@ -52533,6 +52527,9 @@
      "fullhorn": 2
     }
    },
+   "bearbeiter": [
+    "Karl Schumacher"
+   ],
    "vorberichte": [
     {
      "num": 130,
@@ -52540,9 +52537,6 @@
      "page": 501,
      "theme": "Kastell Oberscheidenthal"
     }
-   ],
-   "bearbeiter": [
-    "Karl Schumacher"
    ]
   },
   {
@@ -57180,6 +57174,9 @@
    "htid": "",
    "pages": null,
    "access": "",
+   "bearbeiter": [
+    "Heinrich Steimle"
+   ],
    "vorberichte": [
     {
      "num": 98,
@@ -57187,9 +57184,6 @@
      "page": 370,
      "theme": "Kastell"
     }
-   ],
-   "bearbeiter": [
-    "Heinrich Steimle"
    ]
   },
   {
