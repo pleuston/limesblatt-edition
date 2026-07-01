@@ -208,7 +208,7 @@ def page(title, body, depth=0, head=""):
 <title>{html.escape(title)} — Limesblatt-Edition</title>
 <link rel="stylesheet" href="{up}assets/style.css">{head}</head><body>
 <header><a class="home" href="{up}index.html">📕 Limesblatt-Edition</a>
-<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/fundindex.html">Funde</a> · <a href="{up}register/inschriften.html">Inschriften</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}register/bibliographie.html">Bibliographie</a> · <a href="{up}register/rezeption.html">Rezeption</a> · <a href="{up}register/orl.html">ORL</a> · <a href="{up}register/wortschatz.html">Analyse</a> · <a href="{up}index.html#suche">Suche</a> · <a href="{up}dokumentation.html">Dokumentation</a> · <a href="{up}edit.html" title="TEI-Quelle bearbeiten (GitHub-Login)">✎&#8201;Bearbeiten</a></nav></header>
+<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/organigramm.html">Organigramm</a> · <a href="{up}register/fundindex.html">Funde</a> · <a href="{up}register/inschriften.html">Inschriften</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}register/bibliographie.html">Bibliographie</a> · <a href="{up}register/rezeption.html">Rezeption</a> · <a href="{up}register/orl.html">ORL</a> · <a href="{up}register/wortschatz.html">Analyse</a> · <a href="{up}index.html#suche">Suche</a> · <a href="{up}dokumentation.html">Dokumentation</a> · <a href="{up}edit.html" title="TEI-Quelle bearbeiten (GitHub-Login)">✎&#8201;Bearbeiten</a></nav></header>
 <div class="wip">🚧 Diese digitale Edition befindet sich im <b>Aufbau</b> — Inhalte, Auszeichnung und Analysen sind unvollständig und können sich noch ändern.</div>
 <main>{body}</main>
 <footer>Diplomatische OCR-Edition des <em>Limesblatt</em> (1892–1903) · Text &amp; Register
@@ -550,6 +550,7 @@ IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen
 <h2>Register</h2><ul><li><a href="register/persons.html">Personenregister</a> — mit Porträts, Normdaten, Korrespondenz, ausgegrabenen Kastellen</li>
 <li><a href="register/places.html">Ortsregister</a> — mit Karte, Kastelltyp, Ausgräber, Inschriften</li>
 <li><a href="register/strecken.html">Strecken</a> — die 15 Limes-Abschnitte mit Kastellen &amp; Kommissaren</li>
+<li><a href="register/organigramm.html">Organigramm</a> — die Struktur der Reichs-Limeskommission: Leitung, Streckenkommissare, Ausgräber, Institutionen</li>
 <li><a href="register/fundindex.html">Fundindex</a> — Fundgattungen, Münzkaiser, Sigillata-Formen &amp; Truppenstempel mit Seiten-/Spalten-Belegen</li>
 <li><a href="register/inschriften.html">Inschriften (EDH)</a> — 759 katalogisierte Inschriften der Limes-Fundorte aus der Epigraphic Database Heidelberg</li>
 <li><a href="register/bibliographie.html">Bibliographie &amp; Quellen</a> — die zitierten Werke, aufgelöst zu vollen Referenzen + Open-Access-Digitalisaten (UB Heidelberg u. a.)</li>
@@ -1395,6 +1396,83 @@ def documentation_page(s):
         f'urheberrechtlich geschützt und hier nur verlinkt, nicht erneut veröffentlicht. Quellcode und Textdateien '
         f'liegen offen bei <a href="https://github.com/pleuston/limesblatt-edition">GitHub</a>.</p>')
 
+def organigramm_page(persons, pname):
+    byname = {p["name"]: p for p in persons}
+    # Streckenkommissare → ihre Strecken (datengetrieben aus STRECKE_KOMMISSAR)
+    komm = {}
+    for nr, names in STRECKE_KOMMISSAR.items():
+        for n in names:
+            komm.setdefault(n, []).append(nr)
+    order = sorted(komm, key=lambda n: (min(komm[n]), n))
+    # Layout
+    Wd, bw, bh, gx, gy, per = 1080, 244, 50, 18, 34, 4
+    startx = (Wd - (per * bw + (per - 1) * gx)) // 2
+    gridy = 210
+    rows = (len(order) + per - 1) // per
+    grid_bottom = gridy + rows * bh + (rows - 1) * gy
+    ausy = grid_bottom + 26
+    insty = ausy + 82
+    H = insty + 84
+    S = [f'<svg viewBox="0 0 {Wd} {H}" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif" '
+         f'style="max-width:100%;height:auto;border:1px solid var(--line,#ddd);border-radius:6px;background:var(--bg,#fff)">']
+    def box(x, y, w, h, lines, fill, href=None, fs=14):
+        r = (f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="6" fill="{fill}" stroke="#b9b3a6"/>')
+        n = len(lines); ty0 = y + h / 2 - (n - 1) * 8 + 5
+        tx = x + w / 2
+        txt = "".join(f'<text x="{tx:.0f}" y="{ty0 + i*16:.0f}" text-anchor="middle" font-size="{fs if i==0 else 12}" '
+                      f'fill="#222"{" font-weight=\"600\"" if i==0 else ""}>{html.escape(ln)}</text>' for i, ln in enumerate(lines))
+        inner = r + txt
+        return f'<a href="{href}">{inner}</a>' if href else inner
+    def line(x1, y1, x2, y2): return f'<line x1="{x1:.0f}" y1="{y1:.0f}" x2="{x2:.0f}" y2="{y2:.0f}" stroke="#b9b3a6"/>'
+    cx = Wd / 2
+    # Ebene 0: Kommission
+    S.append(box(cx - 175, 16, 350, 54, ["Reichs-Limeskommission", "1892–1937"], "#e7eef6", fs=16))
+    # Ebene 1: Leitung / Herausgeber
+    S.append(line(cx, 70, cx, 96))
+    S.append(box(cx - 300, 96, 600, 50,
+                 ["Initiator: Theodor Mommsen · Leitung/Herausgeber:", "Sarwey · Hettner · Fabricius · Leonhard"],
+                 "#e7eef6", fs=14))
+    # Bus zu den Kommissaren
+    busy = 176
+    S.append(line(cx, 146, cx, busy))
+    firstx = startx + bw / 2; lastx = startx + (min(per, len(order)) - 1) * (bw + gx) + bw / 2
+    S.append(line(firstx, busy, lastx, busy))
+    # Ebene 2: Streckenkommissare
+    for i, n in enumerate(order):
+        col, row = i % per, i // per
+        x = startx + col * (bw + gx); y = gridy + row * (bh + gy)
+        strk = ", ".join(str(s) for s in sorted(komm[n]))
+        p = byname.get(n)
+        href = f'persons.html#{p["id"]}' if p else None
+        if row == 0:
+            S.append(line(x + bw / 2, busy, x + bw / 2, y))
+        S.append(box(x, y, bw, bh, [n, f'Strecke {strk}'], "#f4efe4", href=href, fs=13))
+    # Ebene 3: Ausgräber (Sammelhinweis)
+    S.append(line(cx, grid_bottom, cx, ausy))
+    S.append(box(cx - 300, ausy, 600, 40,
+                 ["Ausgräber der Kastelle → im Personenregister und je Strecke"], "#f4efe4",
+                 href="persons.html", fs=13))
+    # Institutionen (kuratiert)
+    inst = [("Reich / Reichstag", "Finanzierung", "https://de.wikipedia.org/wiki/Reichs-Limeskommission"),
+            ("Preußische Akademie", "d. Wissenschaften", "https://de.wikipedia.org/wiki/Preußische_Akademie_der_Wissenschaften"),
+            ("Röm.-Germ. Kommission", "RGK, ab 1902", "https://de.wikipedia.org/wiki/Römisch-Germanische_Kommission"),
+            ("Provinzialmuseen", "Saalburg · Mainz u. a.", "places.html")]
+    iw = (Wd - 2 * startx - 3 * gx) / 4
+    S.append(f'<text x="{startx}" y="{insty - 12}" font-size="12" fill="#666">Trägerschaft &amp; Umfeld</text>')
+    for i, (t1, t2, href) in enumerate(inst):
+        x = startx + i * (iw + gx)
+        S.append(box(x, insty, iw, 52, [t1, t2], "#e9f2ec", href=href, fs=13))
+    S.append('</svg>')
+    return (f'<h1>Organigramm der Reichs-Limeskommission</h1>'
+            f'<p class="meta">Die Struktur des ersten länderübergreifenden Großforschungs-Unternehmens des '
+            f'Kaiserreichs: initiiert von Theodor Mommsen, geleitet von wenigen Herausgebern, getragen von den '
+            f'<b>Streckenkommissaren</b>, die je einen oder mehrere der 15 Abschnitte verantworteten und unter '
+            f'denen die Ausgräber vor Ort arbeiteten. Die Kommissar-Kästen sind mit dem '
+            f'<a href="persons.html">Personenregister</a> verknüpft (die Strecken selbst stehen bei den '
+            f'<a href="strecken.html">Strecken</a>). Leitungs- und Institutionsebene sind kuratiert; die '
+            f'Kommissar→Strecken-Zuordnung ist datengetrieben.</p>'
+            f'<div style="overflow-x:auto">{"".join(S)}</div>')
+
 def main():
     os.makedirs(os.path.join(DOCS,"volumes"), exist_ok=True)
     os.makedirs(os.path.join(DOCS,"register"), exist_ok=True)
@@ -1492,6 +1570,7 @@ def main():
     orl_idx = _orl_load("orl_index.json") or {"abteilung_A_strecken": [], "abteilung_B_kastelle": []}
     orl_lex = _orl_load("orl_vs_limesblatt.json")
     open(os.path.join(DOCS,"register","strecken.html"),"w",encoding="utf-8").write(page("Strecken", strecken_page(strecken, str_forts, persons, pname, strecke_sites, orl_idx, volumes), 1))
+    open(os.path.join(DOCS,"register","organigramm.html"),"w",encoding="utf-8").write(page("Organigramm", organigramm_page(persons, pname), 1))
     nerd = os.path.join(REPO, "data")
     def loadj(fn): return json.load(open(os.path.join(nerd,fn),encoding="utf-8")) if os.path.exists(os.path.join(nerd,fn)) else ([] if "ner_" in fn else {})
     ner_p, ner_pl = loadj("ner_persons.json"), loadj("ner_places.json")
