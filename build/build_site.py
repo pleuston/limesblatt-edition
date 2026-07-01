@@ -208,7 +208,31 @@ def page(title, body, depth=0, head=""):
 <title>{html.escape(title)} — Limesblatt-Edition</title>
 <link rel="stylesheet" href="{up}assets/style.css">{head}</head><body>
 <header><a class="home" href="{up}index.html">📕 Limesblatt-Edition</a>
-<nav><a href="{up}willkommen.html">Willkommen</a> · <a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/organigramm.html">Organigramm</a> · <a href="{up}register/fundindex.html">Funde</a> · <a href="{up}register/inschriften.html">Inschriften</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}register/bibliographie.html">Bibliographie</a> · <a href="{up}register/rezeption.html">Rezeption</a> · <a href="{up}register/orl.html">ORL</a> · <a href="{up}register/wortschatz.html">Analyse</a> · <a href="{up}index.html#suche">Suche</a> · <a href="{up}dokumentation.html">Dokumentation</a> · <a href="{up}edit.html" title="TEI-Quelle bearbeiten (GitHub-Login)">✎&#8201;Bearbeiten</a></nav></header>
+<nav><ul class="nav">
+<li><a href="{up}willkommen.html">Willkommen</a></li>
+<li><a href="{up}index.html">Bände</a></li>
+<li class="has"><a href="{up}register/persons.html">Wer &amp; Wo</a><ul>
+<li><a href="{up}register/persons.html">Personen</a></li>
+<li><a href="{up}register/places.html">Orte</a></li>
+<li><a href="{up}register/strecken.html">Strecken</a></li>
+<li><a href="{up}register/organigramm.html">Organigramm</a></li></ul></li>
+<li class="has"><a href="{up}register/fundindex.html">Funde &amp; Text</a><ul>
+<li><a href="{up}register/fundindex.html">Fundindex</a></li>
+<li><a href="{up}register/inschriften.html">Inschriften</a></li>
+<li><a href="{up}register/namen.html">Namen im Text</a></li>
+<li><a href="{up}register/orte-index.html">Orte im Text</a></li>
+<li><a href="{up}register/bibliographie.html">Bibliographie</a></li></ul></li>
+<li class="has"><a href="{up}register/orl.html">ORL</a><ul>
+<li><a href="{up}register/orl.html">Bandindex</a></li>
+<li><a href="{up}register/orl-register.html">Gesamtapparat</a></li>
+<li><a href="{up}register/hathitrust.html">Erschließung (HathiTrust)</a></li></ul></li>
+<li><a href="{up}register/wortschatz.html">Analyse</a></li>
+<li><a href="{up}register/rezeption.html">Rezeption</a></li>
+<li class="has"><a href="{up}dokumentation.html">Über</a><ul>
+<li><a href="{up}dokumentation.html">Dokumentation</a></li>
+<li><a href="{up}edit.html" title="TEI-Quelle bearbeiten (GitHub-Login)">Bearbeiten ✎</a></li></ul></li>
+<li><a href="{up}index.html#suche">🔍 Suche</a></li>
+</ul></nav></header>
 <div class="wip">🚧 Diese digitale Edition befindet sich im <b>Aufbau</b> — Inhalte, Auszeichnung und Analysen sind unvollständig und können sich noch ändern.</div>
 <main>{body}</main>
 <footer>Diplomatische OCR-Edition des <em>Limesblatt</em> (1892–1903) · Text &amp; Register

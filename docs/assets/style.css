@@ -5,6 +5,20 @@ header{position:sticky;top:0;z-index:10;display:flex;flex-wrap:wrap;gap:.5rem 1.
   padding:.6rem 1.2rem;background:#fff;border-bottom:1px solid var(--line)}
 header .home{font-weight:bold;text-decoration:none;color:var(--accent);font-size:1.1rem}
 header nav{font-size:.92rem;color:var(--muted)} header nav a{color:var(--muted)}
+header nav ul.nav{list-style:none;display:flex;flex-wrap:wrap;gap:.15rem 1.05rem;margin:0;padding:0;align-items:center}
+header nav ul.nav>li{position:relative}
+header nav ul.nav a{text-decoration:none;white-space:nowrap}
+header nav ul.nav a:hover{color:var(--accent);text-decoration:underline}
+header nav ul.nav li.has>a::after{content:"▾";margin-left:.25em;font-size:.75em;opacity:.55}
+header nav ul.nav ul{list-style:none;position:absolute;left:0;top:100%;min-width:200px;background:#fff;
+  border:1px solid var(--line);border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,.13);padding:.35rem 0;margin:.35rem 0 0;display:none;z-index:60}
+header nav ul.nav li.has:hover>ul,header nav ul.nav li.has:focus-within>ul{display:block}
+header nav ul.nav ul li{display:block}
+header nav ul.nav ul a{display:block;padding:.35rem 1rem;white-space:nowrap}
+header nav ul.nav ul a:hover{background:#f3eee3;text-decoration:none}
+@media(max-width:640px){header nav ul.nav{gap:.1rem .8rem}
+  header nav ul.nav ul{position:static;display:block;box-shadow:none;border:0;padding:0 0 .3rem .9rem;min-width:0;margin:0}
+  header nav ul.nav li.has>a::after{content:""}}
 a{color:var(--accent)} a:hover{text-decoration:underline}
 .wip{background:#fff3cd;border-bottom:1px solid #e0c200;color:#5b4a00;font-size:.85rem;padding:.4rem 1.2rem;text-align:center}
 main{max-width:980px;margin:0 auto;padding:1.2rem}
