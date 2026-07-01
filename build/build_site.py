@@ -656,7 +656,7 @@ TM_YEARS = {1:"1892/93",2:"1893/94",3:"1894/95",4:"1896",5:"1897",6:"1897/98",7:
 def tm_norm(t):
     t = t.replace("ſ","s"); t = re.sub(r"(\w)[-¬]\s*\n\s*(\w)", r"\1\2", t); return re.sub(r"\s+"," ",t)
 
-def analysis_sections(volumes):
+def analysis_sections(volumes, orl_lex=None):
     """Befunde aus dem Volltext (+ ORL-Cache des Vaults) für die öffentliche Seite."""
     CACHE = os.path.join(REPO, "..", "limes", "tools", ".cache")
     BANDS = [("limesblatt1892_1893", "Bd. 1 (1892/93)"), ("limesblatt1893_1894", "Bd. 2 (1893/94)"),
@@ -689,6 +689,26 @@ def analysis_sections(volumes):
                    '<p class="meta">Derselbe Standort: der polierte ORL-Band (Schumacher 1895) gegen die Limesblatt-Osterburken-Seiten (Treffer je 1000 Wörter).</p>'
                    '<table class="reg tm"><tr><th>Term-Gruppe</th>' + "".join(f"<th>{html.escape(c[0])}</th>" for c in cols) + f'</tr>{rows}</table>'
                    '<p class="meta">Für dasselbe Kastell nennt das ORL <b>Holzbefunde ~4× seltener</b> als die Feldberichte — die Ausdünnung der Holz-Erde-Evidenz ist <b>editorial</b>, nicht feldbedingt.</p>')
+    # Wortschatz-Gegenprobe über das ganze Werk (Keyness, aus orl_vs_limesblatt.json)
+    if orl_lex:
+        od = orl_lex.get("orl_distinctive", [])[:20]; ld = orl_lex.get("lb_distinctive", [])[:20]
+        def _kr(items): return "".join(f'<tr><td>{html.escape(d["w"])}</td><td>{d.get("log2",0):+.1f}</td>'
+                                       f'<td>{d.get("orl_per10k",0):.1f}</td><td>{d.get("lb_per10k",0):.1f}</td></tr>' for d in items)
+        _kh = '<tr><th>Wort</th><th>Log2</th><th>ORL/10k</th><th>LB/10k</th></tr>'
+        out.append(
+            f'<h2 id="gegenprobe">Wortschatz-Gegenprobe: das ganze Werk (Limesblatt ↔ ORL)</h2>'
+            f'<p class="meta">Nicht nur ein Band: der <b>gesamte</b> ORL-Korpus ({orl_lex.get("orl_words",0):,} Wörter) '
+            f'gegen das ganze Limesblatt ({orl_lex.get("lb_words",0):,}). Gezeigt sind die Wörter, die jedes Werk am '
+            f'stärksten kennzeichnen — als Log2 des Verhältnisses ihrer relativen Häufigkeiten (pro 10 000 Wörter). '
+            f'Der Befund ist ein <b>Wechsel der Textsorte</b>, keine bloße Straffung: die Feldberichte spüren die '
+            f'Grenzlinie auf und stecken sie ab — in der Ich-Form des Ausgräbers, voller Geländevokabular; die '
+            f'Endpublikation katalogisiert die Funde, mit dem ganzen Apparat der Keramik-Typologie.</p>'
+            f'<div style="display:grid;grid-template-columns:1fr 1fr;gap:1em">'
+            f'<div><b>Distinktiv für den ORL</b> — Fund-Typologie<table class="reg tm">{_kh}{_kr(od)}</table></div>'
+            f'<div><b>Distinktiv für das Limesblatt</b> — Trassierung, erste Person<table class="reg tm">{_kh}{_kr(ld)}</table></div>'
+            f'</div>'
+            f'<p class="meta">Caveat: die Formen stammen aus der maschinellen Umschrift der Frakturschrift; '
+            f'Kürzungen wie „dragd" stehen für „Dragendorff". Die Richtung des Befunds ist davon unberührt.</p>')
     # Münzkaiser-Chronologie
     EMP = [("Vespasian", r"vespasian"), ("Domitian", r"domitian"), ("Trajan", r"tra[ij]an"), ("Hadrian", r"hadrian(?!swall)"),
            ("Ant. Pius", r"antoninus|antonin\b"), ("Marc Aurel", r"marc\W{0,2}aurel|marcus aurel"), ("Commodus", r"commodus"),
@@ -742,7 +762,7 @@ def analysis_sections(volumes):
                f'<table class="reg tm"><tr><th>Band</th><th>Ø-Qualität</th></tr>{qrows}</table>')
     return "".join(out)
 
-def wortschatz_page(volumes, attention=None):
+def wortschatz_page(volumes, attention=None, orl_lex=None):
     bands = sorted(volumes, key=lambda v: v["nr"]); nrs = [v["nr"] for v in bands]
     texts = {v["nr"]: tm_norm(" ".join(p["text"] for p in v["pages"] if p.get("text"))).lower() for v in bands}
     words = {nr: max(1, len(re.findall(r"[a-zäöüß]+", t))) for nr, t in texts.items()}
@@ -797,13 +817,13 @@ def wortschatz_page(volumes, attention=None):
                f'Aufmerksamkeit bekamen.</p><div class="attwrap">{bars}</div>')
     return (f'<h1>Textanalyse des Limesblatt</h1>'
             f'<p class="meta">Token-freie Auswertung des gesamten Fraktur-OCR-Volltexts (8 Bände, 1892–1903; {tot:,} Wörter). '
-            f'Sprung zu: <a href="#orl">ORL-Gegenprobe</a> · <a href="#muenzen">Münzkaiser</a> · <a href="#truppen">Truppen</a> · '
+            f'Sprung zu: <a href="#gegenprobe">Wortschatz-Gegenprobe (ORL)</a> · <a href="#orl">Osterburken-Kontrast</a> · <a href="#muenzen">Münzkaiser</a> · <a href="#truppen">Truppen</a> · '
             f'<a href="#zitate">Zitate</a> · <a href="#ocr">OCR-Qualität</a> · <a href="#kwic">Konkordanz</a>.</p>'
             f'<div class="tmwrap">{chart}</div>'
             f'<h2>Term-Gruppen über die Zeit</h2>{table}'
             f'<p class="meta">Befund: Steinbau dominiert; Holzbefund-Vokabular ist präsent und steigt mittig (Bd. 4–6); '
             f'explizite Datierungssprache fehlt fast; „principia" kommt nicht vor (man schrieb „Prätorium").</p>'
-            + att + analysis_sections(volumes) + "".join(kw))
+            + att + analysis_sections(volumes, orl_lex) + "".join(kw))
 
 TOC_PAT   = re.compile(r"(?<![A-Za-z0-9])(\d{1,3})[._]\s+([A-ZÄÖÜ][A-Za-zäöüß0-9 .„“”\-]{1,55}?)[.*)]+\s*(\[[^\]]{0,70}\])?")
 TOC_NOISE = re.compile(r"^(Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|De[cz]ember|"
@@ -1143,13 +1163,13 @@ def orl_page(idx, lex):
     brows = "".join(brow(r) for r in b)
     keyn = ""
     if lex:
-        od = ", ".join(html.escape(d["w"]) for d in lex.get("orl_distinctive", [])[:12])
-        ld = ", ".join(html.escape(d["w"]) for d in lex.get("lb_distinctive", [])[:12])
-        keyn = (f'<h2 id="keyness">Wortschatz-Gegenprobe (Limesblatt ↔ ORL)</h2>'
-                f'<p class="meta">Korpusvergleich token-frei: ORL <b>{lex.get("orl_words",0):,}</b> W. ↔ '
-                f'Limesblatt <b>{lex.get("lb_words",0):,}</b> W. Es ist eine Gattungsverschiebung: distinktiv für '
-                f'die <b>ORL-Endpublikation</b> ist die Fund-Typologie ({od}); für die '
-                f'<b>Limesblatt-Vorberichte</b> die Trassierung in erster Person ({ld}).</p>')
+        od = ", ".join(html.escape(d["w"]) for d in lex.get("orl_distinctive", [])[:8])
+        ld = ", ".join(html.escape(d["w"]) for d in lex.get("lb_distinctive", [])[:8])
+        keyn = (f'<p class="meta" id="keyness">Ein Vergleich der Worthäufigkeiten beider Werke zeigt einen '
+                f'<b>Wechsel der Textsorte</b>: distinktiv für die <b>ORL-Endpublikation</b> ist die Fund-Typologie '
+                f'({od}…), für die <b>Limesblatt-Vorberichte</b> die Trassierung in erster Person ({ld}…). '
+                f'Die vollständige <a href="wortschatz.html#gegenprobe">Wortschatz-Gegenprobe</a> mit beiden '
+                f'Wortlisten steht in der <a href="wortschatz.html">Analyse</a>.</p>')
     return (f'<h1>ORL — Der obergermanisch-raetische Limes des Römerreiches</h1>'
             f'<p class="meta">Die <b>Endpublikation</b> der Reichs-Limeskommission (1894–1937): '
             f'{c.get("abt_A",len(a))} Strecken-Bände (Abt. A) + {c.get("abt_B",len(b))} Kastell-Lieferungen '
@@ -1470,6 +1490,7 @@ def main():
             if os.path.exists(p): return json.load(open(p, encoding="utf-8"))
         return None
     orl_idx = _orl_load("orl_index.json") or {"abteilung_A_strecken": [], "abteilung_B_kastelle": []}
+    orl_lex = _orl_load("orl_vs_limesblatt.json")
     open(os.path.join(DOCS,"register","strecken.html"),"w",encoding="utf-8").write(page("Strecken", strecken_page(strecken, str_forts, persons, pname, strecke_sites, orl_idx, volumes), 1))
     nerd = os.path.join(REPO, "data")
     def loadj(fn): return json.load(open(os.path.join(nerd,fn),encoding="utf-8")) if os.path.exists(os.path.join(nerd,fn)) else ([] if "ner_" in fn else {})
@@ -1501,7 +1522,7 @@ def main():
               open(os.path.join(DOCS,"data","ner-sites.geojson"),"w",encoding="utf-8"), ensure_ascii=False)
     pm = sum(1 for v in rec_p.values() if v); om = sum(1 for v in rec_pl.values() if v and v.get("geo"))
     print(f"Volltext-Index (LLM-NER): {len(ner_p)} Namen ({pm} reconciled), {len(ner_pl)} Orte ({om} verortet → ner-sites.geojson)")
-    open(os.path.join(DOCS,"register","wortschatz.html"),"w",encoding="utf-8").write(page("Wortschatz & Konkordanz", wortschatz_page(volumes, attention), 1))
+    open(os.path.join(DOCS,"register","wortschatz.html"),"w",encoding="utf-8").write(page("Wortschatz & Konkordanz", wortschatz_page(volumes, attention, orl_lex), 1))
     open(os.path.join(DOCS,"register","fundindex.html"),"w",encoding="utf-8").write(page("Fundindex", fundindex_page(volumes), 1))
     bibls = load_bibl(os.path.join(REPO, "registers", "bibliography.xml"))
     open(os.path.join(DOCS,"register","bibliographie.html"),"w",encoding="utf-8").write(page("Bibliographie", bibliography_page(bibls, occ), 1))
@@ -1513,9 +1534,8 @@ def main():
     rez = json.load(open(_recp, encoding="utf-8")) if os.path.exists(_recp) else {"items": [], "summary": {}, "normdata": {}}
     open(os.path.join(DOCS,"register","rezeption.html"),"w",encoding="utf-8").write(page("Rezeption", reception_page(rez), 1))
     print(f"Rezeption: {rez.get('summary',{}).get('total',0)} Belege → register/rezeption.html")
-    # ORL-Register/Analyse-Seiten (orl_idx + _orl_load bereits vor den Strecken geladen)
+    # ORL-Register/Analyse-Seiten (orl_idx/orl_lex + _orl_load bereits vor den Strecken geladen)
     orl_reg = _orl_load("orl_register.json") or {"persons": [], "places": [], "counts": {}}
-    orl_lex = _orl_load("orl_vs_limesblatt.json")
     if orl_idx.get("abteilung_B_kastelle"):
         open(os.path.join(DOCS,"register","orl.html"),"w",encoding="utf-8").write(page("ORL", orl_page(orl_idx, orl_lex), 1))
         open(os.path.join(DOCS,"register","orl-register.html"),"w",encoding="utf-8").write(page("ORL — Gesamtapparat", orl_apparatus_page(orl_reg, orl_idx), 1))
