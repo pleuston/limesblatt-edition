@@ -209,7 +209,7 @@ def page(title, body, depth=0, head=""):
 <link rel="stylesheet" href="{up}assets/style.css">{head}</head><body>
 <header><a class="home" href="{up}index.html">📕 Limesblatt-Edition</a>
 <nav><ul class="nav">
-<li><a href="{up}willkommen.html">Willkommen</a></li>
+<li><a href="{up}uebersicht.html">Übersicht</a></li>
 <li><a href="{up}index.html">Bände</a></li>
 <li class="has"><a href="{up}register/persons.html">Wer &amp; Wo</a><ul>
 <li><a href="{up}register/persons.html">Personen</a></li>
@@ -227,7 +227,6 @@ def page(title, body, depth=0, head=""):
 <li><a href="{up}register/orl-register.html">Gesamtapparat</a></li>
 <li><a href="{up}register/hathitrust.html">Erschließung (HathiTrust)</a></li></ul></li>
 <li><a href="{up}register/wortschatz.html">Analyse</a></li>
-<li><a href="{up}register/rezeption.html">Rezeption</a></li>
 <li class="has"><a href="{up}dokumentation.html">Über</a><ul>
 <li><a href="{up}dokumentation.html">Dokumentation</a></li>
 <li><a href="{up}edit.html" title="TEI-Quelle bearbeiten (GitHub-Login)">Bearbeiten ✎</a></li></ul></li>
@@ -564,7 +563,7 @@ def index_page(volumes, toc=None):
     lis = "".join(bl)
     head = '<script src="assets/minisearch.min.js"></script>'
     body = f"""<h1>Limesblatt — digitale Edition</h1>
-<p class="meta" style="border-left:3px solid #cbb;padding-left:.7em">Neu hier? → <a href="willkommen.html"><b>Willkommensseite</b></a> mit einer kurzen, verständlichen Übersicht aller Bereiche.</p>
+<p class="meta" style="border-left:3px solid #cbb;padding-left:.7em">Neu hier? → <a href="uebersicht.html"><b>Übersicht</b></a> mit kurzen, verständlichen Beschreibungen aller Bereiche.</p>
 <p class="lede">Die <em>Mitteilungen der Streckenkommissare bei der Reichs-Limeskommission</em>
 (1892–1903): die laufenden Feldberichte der Limesforschung, als diplomatische OCR-Edition mit
 IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen- und Ortsregistern.</p>
@@ -579,7 +578,6 @@ IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen
 <li><a href="register/fundindex.html">Fundindex</a> — Fundgattungen, Münzkaiser, Sigillata-Formen &amp; Truppenstempel mit Seiten-/Spalten-Belegen</li>
 <li><a href="register/inschriften.html">Inschriften (EDH)</a> — 759 katalogisierte Inschriften der Limes-Fundorte aus der Epigraphic Database Heidelberg</li>
 <li><a href="register/bibliographie.html">Bibliographie &amp; Quellen</a> — die zitierten Werke, aufgelöst zu vollen Referenzen + Open-Access-Digitalisaten (UB Heidelberg u. a.)</li>
-<li><a href="register/rezeption.html">Rezeption &amp; Wirkungsgeschichte</a> — wie das Limesblatt außerhalb seiner Bände rezipiert wurde (token-frei aus OpenAlex/Crossref/archive.org/DAI-Zenon)</li>
 <li><a href="register/namen.html">Namen im Limesblatt</a> — vollständiges Namenregister aus dem Volltext (NER); jeder Name ist im Lesetext angeklickt verlinkt</li>
 <li><a href="register/orte-index.html">Orte im Limesblatt</a> — vollständiges Ortsregister aus dem Volltext (NER), im Lesetext verlinkt</li>
 <li><a href="register/wortschatz.html">Textanalyse</a> — diachroner Wortschatz, ORL-Gegenprobe, Münzkaiser-Chronologie, Truppen, Zitate, OCR-Qualität + KWIC-Konkordanz</li></ul>
@@ -1131,34 +1129,6 @@ def inscriptions_page(edh):
             f'verknüpft mit dem <a href="places.html">Ortsregister</a>.</p>'
             + "".join(secs))
 
-def reception_page(rec):
-    items = rec.get("items", []); summ = rec.get("summary", {}); nd = rec.get("normdata", {})
-    sp = summ.get("span", [None, None])
-    def row(it):
-        au = (", ".join(it.get("authors", [])[:2]) + " · ") if it.get("authors") else ""
-        return (f'<li><a href="{html.escape(it["url"])}">{html.escape(it.get("title") or "—")}</a> '
-                f'<span class="meta">{html.escape(au)}{it.get("year") or "o. J."} — {html.escape(it["type"])} '
-                f'<span class="lc">[{html.escape(" · ".join(it.get("srcs", [])))}]</span></span></li>')
-    secs = ""
-    for key, lbl in [("zeitgenössisch", "Zeitgenössische Rezeption (≤ 1912)"),
-                     ("modern", "Moderne Zitations-Nachwirkung")]:
-        lis = "".join(row(it) for it in items if it.get("era") == key)
-        if lis: secs += f'<h2>{lbl}</h2><ul class="nerlist">{lis}</ul>'
-    gap = ("<b>noch keinen eigenen Eintrag</b>" if not nd.get("wikidata_hits") and not nd.get("gnd_work_hits")
-           else f'{nd.get("wikidata_hits", 0)} Wikidata- / {nd.get("gnd_work_hits", 0)} GND-Treffer')
-    return (f'<h1>Rezeption &amp; Wirkungsgeschichte</h1>'
-            f'<p class="meta">Wie das Limesblatt <b>außerhalb</b> seiner eigenen Bände rezipiert wurde — token-frei '
-            f'aus Open-Access-Repositorien geharvestet (OpenAlex · Crossref · archive.org · DAI-Zenon). '
-            f'{summ.get("total", 0)} Belege ({sp[0]}–{sp[1]}); heuristisch, metadaten-getrieben '
-            f'(<code>tools/rezeption.py</code>).</p>'
-            f'<h2>Vom Vorbericht zum Standardwerk (Limesblatt → ORL)</h2>'
-            f'<p class="meta">Die laufenden Feldberichte des Limesblatt gingen in das definitive '
-            f'<a href="bibliographie.html#bib_orl">ORL</a> ein; die <a href="wortschatz.html#orl">ORL-Gegenprobe</a> '
-            f'zeigt, wie die ORL-Redaktion die Befunde (Holzbefunde ~4×) ausdünnte — Rezeption als editoriale Transformation.</p>'
-            f'{secs}'
-            f'<h2>Normdaten-Lücke</h2>'
-            f'<p class="meta">Bemerkenswert für die digitale Erschließung: das Limesblatt als Periodikum hat in '
-            f'<b>Wikidata</b> und der <b>GND</b> {gap} (Stand des Harvests) — ein offener Punkt seiner Rezeption.</p>')
 
 def orl_page(idx, lex):
     a = idx.get("abteilung_A_strecken", []); b = idx.get("abteilung_B_kastelle", []); c = idx.get("counts", {})
@@ -1338,7 +1308,6 @@ def documentation_page(s):
         ("Epigraphische Datenbank Heidelberg", "Die von den Limes-Fundorten bekannten römischen Inschriften."),
         ("Antike-Ortsverzeichnisse &amp; OpenStreetMap", "Die Karte, der Verlauf der Grenzlinie und die Wachttürme und Kleinkastelle je Abschnitt."),
         ("archive.org", "Frei lesbare Digitalisate der zitierten Literatur und der eine offen zugängliche Band der Endpublikation."),
-        ("Literaturdatenbanken (u. a. Zenon des DAI)", "Wo spätere Forschung das Limesblatt zitiert hat — für die Nachwirkung."),
         ("Digitale Bibliothek HathiTrust", "Die eingescannten Bände der Endpublikation (ORL), aus denen ihre Verzeichnisse gewonnen wurden."),
     ]
     srows = "".join(f'<tr><td>{a}</td><td class="meta">{b}</td></tr>' for a, b in src)
@@ -1395,11 +1364,8 @@ def documentation_page(s):
         f'Übersicht zentraler Begriffe im Satzzusammenhang und ein grobes Maß für die Qualität der Umschrift.</li>'
         f'</ul>'
 
-        f'<h3>Nachwirkung und Endpublikation</h3>'
+        f'<h3>Die Endpublikation (ORL)</h3>'
         f'<ul>'
-        f'<li><a href="register/rezeption.html"><b>Rezeption</b></a> — wo die spätere Forschung das Limesblatt '
-        f'zitiert hat ({s["nrez"]} Belege, aus den großen Literaturdatenbanken); dazu der bemerkenswerte Befund, '
-        f'dass die Zeitschrift selbst in den überregionalen Normdaten keinen eigenen Eintrag hat.</li>'
         f'<li><a href="register/orl.html"><b>ORL — die Endpublikation</b></a> — das mehrbändige Standardwerk, in '
         f'das die Feldberichte mündeten: der Bandindex (Abteilung A mit {s["norlA"]} Strecken-Bänden, Abteilung B '
         f'mit {s["norlB"]} Kastell-Lieferungen), je mit Seitenzahl, kurzer Inhaltskennzeichnung und den '
@@ -1439,8 +1405,7 @@ def documentation_page(s):
         f'Kofler …) verbinden Vorbericht und Standardwerk am Gegenstand.</p>'
         f'<h3>Eine Lücke in den Normdaten</h3>'
         f'<p class="meta">Bemerkenswert: das Limesblatt als Zeitschrift hat in den überregionalen Normdaten der '
-        f'Bibliotheken bislang <b>keinen eigenen Eintrag</b> — ein offener Punkt seiner Erschließung, den die '
-        f'<a href="register/rezeption.html">Rezeptionsseite</a> festhält.</p>'
+        f'Bibliotheken bislang <b>keinen eigenen Eintrag</b> — ein offener Punkt seiner Erschließung.</p>'
         f'<h3>Alles hängt an der Umschrift</h3>'
         f'<p class="meta">Sämtliche Befunde aus dem Volltext ruhen auf der maschinellen Umschrift der alten '
         f'Frakturschrift: wo diese fehlerhaft ist, ist es der Befund auch. Die <a href="register/wortschatz.html">'
@@ -1567,16 +1532,13 @@ def willkommen_page(s):
         ("📊", "Analyse",
          'Wie sich die Sprache über die Jahre wandelt, welche Kaiser und Münzen datieren, und der Vergleich Feldbericht ↔ Standardwerk.',
          "register/wortschatz.html"),
-        ("🔁", "Nachwirkung",
-         f'Wie das Limesblatt später zitiert wurde ({s["nrez"]} Belege) — und eine Lücke in den Normdaten.',
-         "register/rezeption.html"),
         ("ℹ️", "Über diese Website",
          'Ein Wegweiser: was hier zu finden ist, woher die Angaben stammen und was sie erkennen lassen.',
          "dokumentation.html"),
     ]
     grid = ('<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1em;margin:1.3em 0">'
             + "".join(tile(*t) for t in tiles) + '</div>')
-    return (f'<h1>Willkommen</h1>'
+    return (f'<h1>Übersicht</h1>'
             f'<p>Diese Website macht die <b>Anfänge der Limesforschung</b> lesbar und durchsuchbar: die laufenden '
             f'Feldberichte der <b>Reichs-Limeskommission</b> — das <i>Limesblatt</i> (1892–1903) — und das große '
             f'Standardwerk, in das sie mündeten, den <i>Obergermanisch-Raetischen Limes</i> (1894–1937). Jede '
@@ -1722,10 +1684,6 @@ def main():
     edh = json.load(open(_edhp, encoding="utf-8")) if os.path.exists(_edhp) else {"kastelle": [], "total": 0}
     open(os.path.join(DOCS,"register","inschriften.html"),"w",encoding="utf-8").write(page("Inschriften (EDH)", inscriptions_page(edh), 1))
     print(f"EDH-Inschriften: {edh.get('total',0)} von {len(edh.get('kastelle',[]))} Fundorten → register/inschriften.html")
-    _recp = os.path.join(REPO, "..", "limes", "tools", "rezeption.json")
-    rez = json.load(open(_recp, encoding="utf-8")) if os.path.exists(_recp) else {"items": [], "summary": {}, "normdata": {}}
-    open(os.path.join(DOCS,"register","rezeption.html"),"w",encoding="utf-8").write(page("Rezeption", reception_page(rez), 1))
-    print(f"Rezeption: {rez.get('summary',{}).get('total',0)} Belege → register/rezeption.html")
     # ORL-Register/Analyse-Seiten (orl_idx/orl_lex + _orl_load bereits vor den Strecken geladen)
     orl_reg = _orl_load("orl_register.json") or {"persons": [], "places": [], "counts": {}}
     if orl_idx.get("abteilung_B_kastelle"):
@@ -1736,7 +1694,7 @@ def main():
               f"→ register/orl.html · orl-register.html · hathitrust.html")
     stats = {"nvol": len(volumes), "npers": len(persons), "nplac": len(places),
              "nner_p": len(ner_p), "nner_pl": len(ner_pl),
-             "nedh": edh.get("total", 0), "nrez": rez.get("summary", {}).get("total", 0),
+             "nedh": edh.get("total", 0),
              "norlA": (orl_idx or {}).get("counts", {}).get("abt_A", 0),
              "norlB": (orl_idx or {}).get("counts", {}).get("abt_B", 0),
              "norlpers": orl_reg.get("counts", {}).get("persons", 0),
@@ -1744,7 +1702,7 @@ def main():
              "orl_words": (orl_lex or {}).get("orl_words", 0), "lb_words": (orl_lex or {}).get("lb_words", 0)}
     open(os.path.join(DOCS,"dokumentation.html"),"w",encoding="utf-8").write(page("Dokumentation", documentation_page(stats), 0))
     print(f"Dokumentation → dokumentation.html")
-    open(os.path.join(DOCS,"willkommen.html"),"w",encoding="utf-8").write(page("Willkommen", willkommen_page(stats), 0))
+    open(os.path.join(DOCS,"uebersicht.html"),"w",encoding="utf-8").write(page("Übersicht", willkommen_page(stats), 0))
     ib, ih = index_page(volumes, toc)
     open(os.path.join(DOCS,"index.html"),"w",encoding="utf-8").write(page("Startseite", ib, 0, ih))
     print(f"docs/: index + {len(volumes)} Bände + 3 Register (Personen {len(persons)}, Orte {len(places)}, "
