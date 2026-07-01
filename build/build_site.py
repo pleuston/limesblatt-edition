@@ -208,7 +208,7 @@ def page(title, body, depth=0, head=""):
 <title>{html.escape(title)} — Limesblatt-Edition</title>
 <link rel="stylesheet" href="{up}assets/style.css">{head}</head><body>
 <header><a class="home" href="{up}index.html">📕 Limesblatt-Edition</a>
-<nav><a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/organigramm.html">Organigramm</a> · <a href="{up}register/fundindex.html">Funde</a> · <a href="{up}register/inschriften.html">Inschriften</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}register/bibliographie.html">Bibliographie</a> · <a href="{up}register/rezeption.html">Rezeption</a> · <a href="{up}register/orl.html">ORL</a> · <a href="{up}register/wortschatz.html">Analyse</a> · <a href="{up}index.html#suche">Suche</a> · <a href="{up}dokumentation.html">Dokumentation</a> · <a href="{up}edit.html" title="TEI-Quelle bearbeiten (GitHub-Login)">✎&#8201;Bearbeiten</a></nav></header>
+<nav><a href="{up}willkommen.html">Willkommen</a> · <a href="{up}index.html">Bände</a> · <a href="{up}register/persons.html">Personen</a> · <a href="{up}register/places.html">Orte</a> · <a href="{up}register/strecken.html">Strecken</a> · <a href="{up}register/organigramm.html">Organigramm</a> · <a href="{up}register/fundindex.html">Funde</a> · <a href="{up}register/inschriften.html">Inschriften</a> · <a href="{up}register/namen.html">Namen</a> · <a href="{up}register/bibliographie.html">Bibliographie</a> · <a href="{up}register/rezeption.html">Rezeption</a> · <a href="{up}register/orl.html">ORL</a> · <a href="{up}register/wortschatz.html">Analyse</a> · <a href="{up}index.html#suche">Suche</a> · <a href="{up}dokumentation.html">Dokumentation</a> · <a href="{up}edit.html" title="TEI-Quelle bearbeiten (GitHub-Login)">✎&#8201;Bearbeiten</a></nav></header>
 <div class="wip">🚧 Diese digitale Edition befindet sich im <b>Aufbau</b> — Inhalte, Auszeichnung und Analysen sind unvollständig und können sich noch ändern.</div>
 <main>{body}</main>
 <footer>Diplomatische OCR-Edition des <em>Limesblatt</em> (1892–1903) · Text &amp; Register
@@ -540,6 +540,7 @@ def index_page(volumes, toc=None):
     lis = "".join(bl)
     head = '<script src="assets/minisearch.min.js"></script>'
     body = f"""<h1>Limesblatt — digitale Edition</h1>
+<p class="meta" style="border-left:3px solid #cbb;padding-left:.7em">Neu hier? → <a href="willkommen.html"><b>Willkommensseite</b></a> mit einer kurzen, verständlichen Übersicht aller Bereiche.</p>
 <p class="lede">Die <em>Mitteilungen der Streckenkommissare bei der Reichs-Limeskommission</em>
 (1892–1903): die laufenden Feldberichte der Limesforschung, als diplomatische OCR-Edition mit
 IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen- und Ortsregistern.</p>
@@ -1473,6 +1474,48 @@ def organigramm_page(persons, pname):
             f'Kommissar→Strecken-Zuordnung ist datengetrieben.</p>'
             f'<div style="overflow-x:auto">{"".join(S)}</div>')
 
+def willkommen_page(s):
+    def tile(icon, title, desc, href):
+        return (f'<a href="{href}" style="display:block;text-decoration:none;color:inherit;'
+                f'border:1px solid var(--line,#ddd);border-radius:8px;padding:.85em 1.05em;background:var(--card,#fbfaf7)">'
+                f'<div style="font-size:1.5em;line-height:1">{icon}</div>'
+                f'<div style="font-weight:600;margin:.25em 0 .15em">{title}</div>'
+                f'<div class="meta">{desc}</div></a>')
+    tiles = [
+        ("📖", "Die Bände lesen",
+         f'Die {s["nvol"]} Hefte des Limesblatt (1892–1903) vollständig — neben den eingescannten Originalseiten, mit Volltextsuche.',
+         "index.html"),
+        ("👥", "Menschen &amp; Orte",
+         f'Wer die Grenze erforschte und wo: {s["npers"]} Personen, {s["nplac"]} Kastelle auf der Karte, die 15 Abschnitte und das <b>Organigramm</b> der Kommission.',
+         "register/organigramm.html"),
+        ("🏺", "Was gefunden wurde",
+         f'Münzen, Keramik und Truppenstempel aus dem Fundindex sowie die {s["nedh"]} römischen Inschriften der Fundorte.',
+         "register/fundindex.html"),
+        ("📗", "Die Endpublikation (ORL)",
+         'Das mehrbändige Standardwerk, in das die Feldberichte mündeten — Bandindex, Gesamtregister, Bearbeiter.',
+         "register/orl.html"),
+        ("📊", "Analyse",
+         'Wie sich die Sprache über die Jahre wandelt, welche Kaiser und Münzen datieren, und der Vergleich Feldbericht ↔ Standardwerk.',
+         "register/wortschatz.html"),
+        ("🔁", "Nachwirkung",
+         f'Wie das Limesblatt später zitiert wurde ({s["nrez"]} Belege) — und eine Lücke in den Normdaten.',
+         "register/rezeption.html"),
+        ("ℹ️", "Über diese Website",
+         'Ein Wegweiser: was hier zu finden ist, woher die Angaben stammen und was sie erkennen lassen.',
+         "dokumentation.html"),
+    ]
+    grid = ('<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1em;margin:1.3em 0">'
+            + "".join(tile(*t) for t in tiles) + '</div>')
+    return (f'<h1>Willkommen</h1>'
+            f'<p>Diese Website macht die <b>Anfänge der Limesforschung</b> lesbar und durchsuchbar: die laufenden '
+            f'Feldberichte der <b>Reichs-Limeskommission</b> — das <i>Limesblatt</i> (1892–1903) — und das große '
+            f'Standardwerk, in das sie mündeten, den <i>Obergermanisch-Raetischen Limes</i> (1894–1937). Jede '
+            f'Angabe, die sich nachschlagen lässt, ist automatisch aus frei zugänglichen Quellen zusammengetragen; '
+            f'das Deuten und Schreiben blieb Handarbeit.</p>'
+            f'{grid}'
+            f'<p class="meta">Neu hier? Beginnen Sie mit den <a href="index.html">Bänden</a> oder lesen Sie die '
+            f'<a href="dokumentation.html">Dokumentation</a>. Editionstext und Daten stehen unter CC&nbsp;BY&nbsp;4.0.</p>')
+
 def main():
     os.makedirs(os.path.join(DOCS,"volumes"), exist_ok=True)
     os.makedirs(os.path.join(DOCS,"register"), exist_ok=True)
@@ -1631,6 +1674,7 @@ def main():
              "orl_words": (orl_lex or {}).get("orl_words", 0), "lb_words": (orl_lex or {}).get("lb_words", 0)}
     open(os.path.join(DOCS,"dokumentation.html"),"w",encoding="utf-8").write(page("Dokumentation", documentation_page(stats), 0))
     print(f"Dokumentation → dokumentation.html")
+    open(os.path.join(DOCS,"willkommen.html"),"w",encoding="utf-8").write(page("Willkommen", willkommen_page(stats), 0))
     ib, ih = index_page(volumes, toc)
     open(os.path.join(DOCS,"index.html"),"w",encoding="utf-8").write(page("Startseite", ib, 0, ih))
     print(f"docs/: index + {len(volumes)} Bände + 3 Register (Personen {len(persons)}, Orte {len(places)}, "
