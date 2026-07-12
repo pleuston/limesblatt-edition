@@ -221,7 +221,8 @@ def page(title, body, depth=0, head=""):
 <li><a href="{up}register/inschriften.html">Inschriften</a></li>
 <li><a href="{up}register/namen.html">Namen im Text</a></li>
 <li><a href="{up}register/orte-index.html">Orte im Text</a></li>
-<li><a href="{up}register/bibliographie.html">Bibliographie</a></li></ul></li>
+<li><a href="{up}register/bibliographie.html">Bibliographie</a></li>
+<li><a href="{up}register/jahresberichte.html">RLK-Jahresberichte</a></li></ul></li>
 <li class="has"><a href="{up}register/orl.html">ORL</a><ul>
 <li><a href="{up}register/orl.html">Bandindex</a></li>
 <li><a href="{up}register/orl-register.html">Gesamtapparat</a></li>
@@ -1321,6 +1322,65 @@ def hathitrust_page(idx, reg, lex):
             f'<a href="orl-register.html#konkordanz">Vorbericht-Konkordanz</a> und die Wortschatz-Gegenprobe — '
             f'Apparate, die der in 14 Mappen über 40 Jahre erschienene ORL selbst nie besaß.</p>')
 
+def _rlk_paragraphs(text):
+    paras = re.split(r"\n\s*\n", text.strip())
+    out = []
+    for p in paras:
+        line = re.sub(r"\s+", " ", p.replace("\n", " ")).strip()
+        line = re.sub(r"(\w)-\s+(\w)", r"\1\2", line)          # Silbentrennung am Zeilenende auflösen
+        if line:
+            out.append(f"<p>{html.escape(line)}</p>")
+    return "\n".join(out)
+
+def rlk_jahresberichte_page(data):
+    if not data:
+        return "<h1>RLK-Jahresberichte</h1><p class=\"meta\">Daten nicht verfügbar.</p>"
+    berichte = data.get("berichte", [])
+    trend = data.get("trend_spearman", {})
+    geg = data.get("gegenprobe_limesblatt", {})
+    rows = "".join(
+        f'<tr><td>{b["band"]}</td><td>{b["jahrgang"]}</td><td>{b["woerter"]:,}</td>'
+        f'<td>{b["admin_je_1000"]}</td><td>{b["feld_je_1000"]}</td>'
+        f'<td><a href="#bd{b["band"]:02d}">Volltext ↓</a></td></tr>'
+        for b in berichte)
+    details = "".join(
+        f'<details id="bd{b["band"]:02d}"><summary><b>Bd. {b["band"]} ({b["jahrgang"]})</b> '
+        f'— {b["woerter"]:,} Wörter</summary>{_rlk_paragraphs(b["text"])}</details>'
+        for b in berichte)
+    fehlt = ", ".join(f"Bd. {n}" for n in data.get("fehlend", [])) or "—"
+    return (
+        f'<h1>RLK-Jahresberichte (1892–1904)</h1>'
+        f'<p class="meta">Die institutionellen Rechenschaftsberichte der Reichs-Limeskommission — jährlich als '
+        f'„Bericht über die Thätigkeit/die Arbeiten der Reichs-Limeskommission" im Archäologischer-Anzeiger-Anhang '
+        f'des <i>Jahrbuch des Kaiserlich Deutschen Archäologischen Instituts</i> veröffentlicht (Bd. 7–20, 1892–1905). '
+        f'Unabhängig vom Limesblatt (den Feldberichten der Streckenkommissare): das ist die institutionelle '
+        f'Selbstauskunft der Kommission an die Öffentlichkeit. Token-frei geharvestet von archive.org '
+        f'(<b>{len(berichte)}/14</b> Jahrgänge frei zugänglich; fehlend: {fehlt}, dort nicht digitalisiert '
+        f'auffindbar).</p>'
+        f'<h2>Befund: Umfang nimmt ab, nicht zu</h2>'
+        f'<p>Über die erschlossenen Jahrgänge <b>fällt</b> der Berichtsumfang (Spearman ρ = '
+        f'<b>{trend.get("umfang", "–")}</b>) — ein Gegenbefund zur wachsenden '
+        f'<a href="orl.html">ORL-Lieferungsreihe</a> über deren 45 Jahre. Beide widersprechen sich nicht: die '
+        f'ORL-Lieferungen sind die wissenschaftliche Endpublikation über 45 Jahre, die Jahresberichte sind die '
+        f'institutionelle Selbstauskunft über die ersten 13 Jahre — und die schrumpft, je mehr die Kommission von '
+        f'der Gründungs- in die Verwaltungsroutine übergeht. Der Bruch fällt mit dem Tod Theodor Mommsens, Felix '
+        f'Hettners und Karl Zangemeisters 1902/03 zusammen (Bd. 19/1904 spricht selbst von „großer Zurückhaltung" '
+        f'bei neuen Grabungen).</p>'
+        f'<p><b>Gegenprobe gegen das Limesblatt-Korpus</b> ({geg.get("limesblatt_woerter", 0):,} Wörter): '
+        f'Verwaltungssprache {geg.get("jahresbericht_admin_je_1000")}/1000 W. (Jahresbericht) vs. '
+        f'{geg.get("limesblatt_admin_je_1000")}/1000 W. (Limesblatt); Feldsprache '
+        f'{geg.get("jahresbericht_feld_je_1000")}/1000 W. vs. {geg.get("limesblatt_feld_je_1000")}/1000 W. — in '
+        f'beiden Korpora nahezu identisch. Der Jahresbericht ist keine trockene Verwaltungsprosa, sondern teilt das '
+        f'Vokabular der Feldnarration; er fasst zusammen, was die Streckenkommissare im Limesblatt ausführlicher '
+        f'erzählen.</p>'
+        f'<table class="reg"><thead><tr><th>Bd.</th><th>Jahrgang</th><th>Wörter</th>'
+        f'<th>Admin/1000 W.</th><th>Feld/1000 W.</th><th></th></tr></thead><tbody>{rows}</tbody></table>'
+        f'<h2>Volltexte</h2>'
+        f'<p class="meta">Heuristische Extraktion (Zeilen-Cluster um „Limeskommission"-Treffer, am Ende bei der '
+        f'nächsten erkennbaren Kapitelüberschrift gekappt) — kleine Ränder zum Nachbarartikel möglich; '
+        f'Silbentrennung am Zeilenende aufgelöst.</p>{details}'
+    )
+
 def documentation_page(s):
     # Datenherkunft — jede offene Quelle in klarer Sprache (kein Fachjargon)
     src = [
@@ -1756,6 +1816,11 @@ def main():
         open(os.path.join(DOCS,"register","hathitrust.html"),"w",encoding="utf-8").write(page("HathiTrust", hathitrust_page(orl_idx, orl_reg, orl_lex), 1))
         print(f"ORL: Abt. A {len(orl_idx.get('abteilung_A_strecken',[]))} + Abt. B {len(orl_idx.get('abteilung_B_kastelle',[]))} "
               f"→ register/orl.html · orl-register.html · hathitrust.html")
+    rlk_jb = _orl_load("rlk_jahresberichte.json")
+    if rlk_jb:
+        open(os.path.join(DOCS,"register","jahresberichte.html"),"w",encoding="utf-8").write(
+            page("RLK-Jahresberichte", rlk_jahresberichte_page(rlk_jb), 1))
+        print(f"RLK-Jahresberichte: {rlk_jb.get('baende',0)}/14 Jahrgänge → register/jahresberichte.html")
     stats = {"nvol": len(volumes), "npers": len(persons), "nplac": len(places),
              "nner_p": len(ner_p), "nner_pl": len(ner_pl),
              "nedh": edh.get("total", 0),
