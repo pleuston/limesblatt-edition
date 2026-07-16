@@ -222,6 +222,7 @@ def page(title, body, depth=0, head=""):
 <li><a href="{up}register/namen.html">Namen im Text</a></li>
 <li><a href="{up}register/orte-index.html">Orte im Text</a></li>
 <li><a href="{up}register/ortsnamen.html">Ortsnamen antik/modern</a></li>
+<li><a href="{up}register/hintzelmann.html">Register von 1903</a></li>
 <li><a href="{up}register/bibliographie.html">Bibliographie</a></li>
 <li><a href="{up}register/jahresberichte.html">RLK-Jahresberichte</a></li></ul></li>
 <li class="has"><a href="{up}register/orl.html">ORL</a><ul>
@@ -580,6 +581,7 @@ IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen
 <li><a href="register/namen.html">Namen im Limesblatt</a> — vollständiges Namenregister aus dem Volltext (NER); jeder Name ist im Lesetext angeklickt verlinkt</li>
 <li><a href="register/orte-index.html">Orte im Limesblatt</a> — vollständiges Ortsregister aus dem Volltext (NER), im Lesetext verlinkt</li>
 <li><a href="register/ortsnamen.html">Ortsnamen antik/modern</a> — der Crosswalk: warum „Nida" im Feldbericht 0 Treffer hat und „Heddernheim" 65</li>
+<li><a href="register/hintzelmann.html">Hintzelmanns Register (1903)</a> — das zeitgenössische Gesamtregister aus dem Schlussheft, Verweise aufgelöst: das älteste Findmittel zum Limesblatt</li>
 <li><a href="register/wortschatz.html">Textanalyse</a> — diachroner Wortschatz, ORL-Gegenprobe, Münzkaiser-Chronologie, Truppen, Zitate, OCR-Qualität + KWIC-Konkordanz</li></ul>
 <h2>ORL — die Endpublikation</h2>
 <p class="meta">Das Standardwerk, in das das Limesblatt mündete, token-frei über HathiTrust erschlossen.</p>
@@ -1243,6 +1245,46 @@ def _pcat(name):
     if w in SIGILLATA_FORSCHER: return "sig"
     if w in ANTIKE_PERSONEN or w.rstrip("s") in ANTIKE_PERSONEN: return "ant"
     return "rlk"
+
+def hintzelmann_page(volumes):
+    """Hintzelmanns »Register zu Nr. 1–35 des Limesblattes« (1903) als eigene Seite.
+
+    Das Register steht gedruckt im Schlussheft und damit im Lesetext von Band 8. Diese Seite
+    hebt es aus dem Fließtext heraus und macht es benutzbar: als das aelteste Findmittel zum
+    Limesblatt, mit auflösbaren Spaltenverweisen. Der Text wird NICHT neu gesetzt, sondern aus
+    dem gebauten Bandtext übernommen — eine Quelle, keine zweite Wahrheit.
+    """
+    v8 = next((v for v in volumes if v["nr"] == 8), None)
+    if not v8: return None
+    import io
+    src = os.path.join(DOCS, "volumes", "bd8.html")
+    if not os.path.exists(src): return None
+    h = open(src, encoding="utf-8").read()
+    i = h.find("Register zu Nr")
+    if i < 0: return None
+    j = h.find("</article>", i)
+    body = h[i:j if j > 0 else len(h)]
+    body = re.sub(r'<span class="pb"[^>]*>.*?</span>', "", body, flags=re.S)   # Spaltenmarken raus
+    body = body.replace('href="bd', 'href="../volumes/bd').replace('href="../register/', 'href="')
+    body = re.sub(r'href="#pb-', 'href="../volumes/bd8.html#pb-', body)
+    n_ref = len(re.findall(r'class="ent xref"', body))
+    return (f'<h1>Hintzelmanns Register zum Limesblatt (1903)</h1>'
+            f'<div class="note"><p><b>Das älteste Findmittel zum Limesblatt</b> — und es stammt von der '
+            f'Redaktion selbst. Das Schlussheft Nr. 35 (27. Mai 1903) schließt mit einem Gesamtregister '
+            f'über alle 35 Hefte, verfasst von Prof. Dr. P. Hintzelmann: Mitarbeiter, Orte, Inschriften. '
+            f'Die Zeitschrift schließt sich zum Abschied selbst auf.</p>'
+            f'<p>Seine Vorbemerkung sagt, worauf die Zahlen zeigen: <i>„Die Ziffern bezeichnen die '
+            f'Spalten."</i> Das Limesblatt zählt nämlich <b>Spalten, nicht Seiten</b> — jede Druckseite '
+            f'trägt zwei Nummern. Alle <b>{n_ref}</b> Verweise sind hier aufgelöst und führen in den '
+            f'Lesetext; sie streuen aus dem Schlussheft in alle acht Bände. Abkürzungen wie im Original: '
+            f'<b>K.</b> = Kastell · <b>Zk.</b> = Zwischenkastell · <b>L.</b> = Limes.</p>'
+            f'<p class="meta">Der Text ist der des <a href="../volumes/bd8.html#pb-959-a">Bandes 8</a>, '
+            f'Spalten 959–968 — diplomatisch, mit den Fraktur-Fehlern des Drucks. Wo die OCR einen Namen '
+            f'zerbrach, steht die Lesung des Drucks und die Identifikation im Link: „II et tn er" ist '
+            f'Hettner, „S t e i m 1 e" ist Steimle, „Kofier" ist Kofler — Register-Lemmata wurden gesperrt '
+            f'gesetzt, und daran scheitert die Schrifterkennung ausgerechnet bei den bekanntesten Namen.</p>'
+            f'</div>{body}')
+
 
 def namen_page(nm):
     """Orts-Crosswalk antik ↔ modern ↔ Flurname.
@@ -1953,6 +1995,10 @@ def main():
     orl_reg = _orl_load("orl_register.json") or {"persons": [], "places": [], "counts": {}}
     if orl_idx.get("abteilung_B_kastelle"):
         orl_bli = _orl_load("orl_band_lieferung.json") or {}
+    _hz = hintzelmann_page(volumes)
+    if _hz:
+        open(os.path.join(DOCS,"register","hintzelmann.html"),"w",encoding="utf-8").write(
+            page("Hintzelmanns Register (1903)", _hz, 1))
     nm = _orl_load("namen.json")
     if nm:
         open(os.path.join(DOCS,"register","ortsnamen.html"),"w",encoding="utf-8").write(

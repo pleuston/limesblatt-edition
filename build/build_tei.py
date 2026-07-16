@@ -730,20 +730,33 @@ def main():
                 pn = str(c.get("printed_no", ""))
                 if pn.isdigit() and c.get("printed_src") in ("head", "inferred"):
                     cands.setdefault(int(pn), []).append((tk, c["label"]))
+    OFF = {"a": 0, "b": 1, "c": 2}
     def _konsistent(pn, tk, lab):
         """Deckt sich die Nummer mit dem Token? (Beilagen wie »679a« sind nie konsistent.)"""
         if not tk.isdigit(): return False
-        base = int(tk)
-        return pn == base + {"a": 0, "b": 1, "c": 2}.get(lab, 99)
+        return pn == int(tk) + OFF.get(lab, 99)
     selfmap, selfmap_ambig = {}, {}
     for pn, cs in cands.items():
         gut = [c for c in cs if _konsistent(pn, *c)]
         pick = gut[0] if gut else cs[0]
         if len(cs) > 1: selfmap_ambig[pn] = {"gewaehlt": pick, "kandidaten": cs, "token_konsistent": bool(gut)}
         selfmap[pn] = f"pb_{pick[0]}_{pick[1]}"
-    if selfmap_ambig:
+    # Die Kopfzahl ist unzuverlässig: Fraktur verliest 6→0 („155b" meldet 150 statt 156, „761a"
+    # meldet 701 statt 761), und manche Spalte wiederholt schlicht die Zahl ihrer Nachbarin
+    # (775b/823b/919b). Das TOKEN dagegen ist die Wahrheit — es kommt aus der UB-Paginierung.
+    # Deshalb wird jede token-konsistente Nummer ZUSÄTZLICH eingetragen, auch wenn die OCR sie
+    # nie gelesen hat. Aufgefallen an Hintzelmanns Register von 1903, dessen Verweise auf genau
+    # diese Spalten ins Leere zeigten.
+    n_erg = 0
+    for tk, lab in {(tk, lab) for cs in cands.values() for tk, lab in cs}:
+        if not tk.isdigit() or lab not in OFF: continue
+        pn = int(tk) + OFF[lab]
+        if pn not in selfmap:
+            selfmap[pn] = f"pb_{tk}_{lab}"; n_erg += 1
+    if selfmap_ambig or n_erg:
         _kein = [n for n, v in selfmap_ambig.items() if not v["token_konsistent"]]
-        print(f"  selfmap: {len(selfmap_ambig)} mehrdeutige Spaltennummern über das Token aufgelöst"
+        print(f"  selfmap: {len(selfmap_ambig)} mehrdeutige Nummern über das Token aufgelöst · "
+              f"{n_erg} aus dem Token ergänzt (Kopfzahl verlesen) · {len(selfmap)} Spalten gesamt"
               + (f" · {len(_kein)} ohne konsistenten Kandidaten: {sorted(_kein)}" if _kein else ""))
     # Bericht-Nr. → Startseiten-<pb> für „Forts. zu Nr. NN": erst der strenge TOC-Report
     # (hohe Präzision), dann ergänzend ein direkter Spaltenanfang-Scan (höhere Vollständigkeit).
