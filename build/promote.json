@@ -1,497 +1,12 @@
 {
- "Taunus": [
+ "Aalbach": [
   "pl",
-  "plcN_hofheim_a_taunus",
+  "plcN_aalbach",
   "low"
  ],
- "Gmünd": [
+ "Aarthal": [
   "pl",
-  "plcN_gmund",
-  "medium"
- ],
- "Jacobi": [
-  "p",
-  "psnN_jacobi",
-  "medium"
- ],
- "Höhr": [
-  "pl",
-  "plcN_hohr",
-  "medium"
- ],
- "Wörth": [
-  "pl",
-  "plcN_worth",
-  "medium"
- ],
- "Elisabethenstrasse": [
-  "pl",
-  "plcN_elisabethenstrae",
-  "low"
- ],
- "Brambach": [
-  "p",
-  "psnN_brambach",
-  "low"
- ],
- "Mainz": [
-  "pl",
-  "plcN_mainz",
-  "medium"
- ],
- "Hetschenlache": [
-  "pl",
-  "plcN_hetschenlache",
-  "low"
- ],
- "Domitians": [
-  "p",
-  "psnN_domitian",
-  "low"
- ],
- "Rhein": [
-  "pl",
-  "plcN_rhein",
-  "medium"
- ],
- "Obergermanien": [
-  "pl",
-  "plcN_obergermanien",
-  "low"
- ],
- "Rems": [
-  "pl",
-  "plcN_rems",
-  "medium"
- ],
- "Lorch": [
-  "pl",
-  "plcN_lorch",
-  "medium"
- ],
- "Neusass": [
-  "pl",
-  "plcN_neusass",
-  "medium"
- ],
- "Nidda": [
-  "pl",
-  "plcN_nidda",
-  "medium"
- ],
- "Dahm": [
-  "p",
-  "psnN_dahm",
-  "low"
- ],
- "Nidder": [
-  "pl",
-  "plcN_nidder",
-  "medium"
- ],
- "Julia Domna": [
-  "p",
-  "psnN_julia_domna",
-  "low"
- ],
- "Bäderstrasse": [
-  "pl",
-  "plcN_baderstrasse",
-  "low"
- ],
- "Marc Aurel": [
-  "p",
-  "psnN_marc_aurel",
-  "low"
- ],
- "Mümmlinglinie": [
-  "pl",
-  "plcN_mummlinglinie",
-  "low"
- ],
- "Neckarlinie": [
-  "pl",
-  "plcN_neckarlinie",
-  "low"
- ],
- "Hornberg": [
-  "pl",
-  "plcN_hornberg",
-  "low"
- ],
- "Kallée": [
-  "p",
-  "psnN_kallee_general_von",
-  "low"
- ],
- "Hanau": [
-  "pl",
-  "plcN_hanau",
-  "medium"
- ],
- "Bulau": [
-  "pl",
-  "plcN_bulau",
-  "medium"
- ],
- "Altburg": [
-  "pl",
-  "plcN_altburg",
-  "low"
- ],
- "Sayn": [
-  "pl",
-  "plcN_sayn",
-  "medium"
- ],
- "Dieffenbach": [
-  "p",
-  "psnN_dieffenbach_ph",
-  "low"
- ],
- "Philippus Arabs": [
-  "p",
-  "psnN_philippus_arabs",
-  "low"
- ],
- "Irsing": [
-  "pl",
-  "plcN_irsing",
-  "low"
- ],
- "Pfünz": [
-  "pl",
-  "plcN_pfunz",
-  "medium"
- ],
- "Antoninus Pius": [
-  "p",
-  "psnN_antoninus_pius",
-  "low"
- ],
- "Julia Maesa": [
-  "p",
-  "psnN_julia_maesa",
-  "low"
- ],
- "Julia Mamaea": [
-  "p",
-  "psnN_julia_mamaea",
-  "low"
- ],
- "Hönehauskastell": [
-  "pl",
-  "plcN_honehauskastell",
-  "low"
- ],
- "Süsskind": [
-  "p",
-  "psnN_von_susskind",
-  "low"
- ],
- "Traianus": [
-  "p",
-  "psnN_traianus",
-  "low"
- ],
- "Hasselmann": [
-  "p",
-  "psnN_hasselmann",
-  "low"
- ],
- "Klotzbach": [
-  "pl",
-  "plcN_klotzbach",
-  "low"
- ],
- "Schw. Gmünd": [
-  "pl",
-  "plcN_schwabisch_gmund",
-  "low"
- ],
- "Dühren": [
-  "pl",
-  "plcN_duhren",
-  "medium"
- ],
- "Untermain": [
-  "pl",
-  "plcN_untermain",
-  "low"
- ],
- "Germaniens": [
-  "pl",
-  "plcN_germanien",
-  "low"
- ],
- "Habels": [
-  "p",
-  "psnN_habel",
-  "low"
- ],
- "Saalburgstrasse": [
-  "pl",
-  "plcN_saalburgstrasse",
-  "low"
- ],
- "Giget": [
-  "pl",
-  "plcN_giget",
-  "low"
- ],
- "Donau": [
-  "pl",
-  "plcN_donau",
-  "medium"
- ],
- "Kaltebach": [
-  "pl",
-  "plcN_kaltebach",
-  "low"
- ],
- "Neuwieder Beckens": [
-  "pl",
-  "plcN_neuwieder_becken",
-  "low"
- ],
- "Zangemeisters": [
-  "p",
-  "p_karl_zangemeister",
-  "low"
- ],
- "Pervincus": [
-  "p",
-  "psnN_pervincus",
-  "low"
- ],
- "Mombrunner": [
-  "pl",
-  "plcN_mombrunn",
-  "low"
- ],
- "Nied": [
-  "pl",
-  "plcN_nied",
-  "medium"
- ],
- "Hochweisel": [
-  "pl",
-  "plcN_hochweisel",
-  "low"
- ],
- "Hünerstrasse": [
-  "pl",
-  "plcN_hunerstrasse",
-  "low"
- ],
- "Septimius Severus": [
-  "p",
-  "psnN_septimius_severus",
-  "low"
- ],
- "Westfalen": [
-  "pl",
-  "plcN_westfalen",
-  "low"
- ],
- "Rottenburg": [
-  "pl",
-  "plcN_rottenburg",
-  "low"
- ],
- "Trajans": [
-  "p",
-  "psnN_trajan",
-  "low"
- ],
- "Jupiter": [
-  "p",
-  "psnN_jupiter",
-  "low"
- ],
- "Dorow": [
-  "p",
-  "psnN_dorow",
-  "low"
- ],
- "Leihgesterner Weg": [
-  "pl",
-  "plcN_cleeberger_weg",
-  "low"
- ],
- "Dragendorff": [
-  "p",
-  "psnN_dragendorff",
-  "low"
- ],
- "Windecker Chaussee": [
-  "pl",
-  "plcN_windecker_chaussee",
-  "low"
- ],
- "Bayern": [
-  "pl",
-  "plcN_bayern",
-  "medium"
- ],
- "Silvanus": [
-  "p",
-  "psnN_silvanus",
-  "low"
- ],
- "Etruscilla": [
-  "p",
-  "psnN_herennia_etruscilla",
-  "low"
- ],
- "Gallienus": [
-  "p",
-  "psnN_gallienus",
-  "low"
- ],
- "Kemel": [
-  "pl",
-  "plcN_kemel",
-  "medium"
- ],
- "Arrianos": [
-  "p",
-  "psnN_arrian",
-  "low"
- ],
- "Afrika": [
-  "pl",
-  "plcN_afrika",
-  "low"
- ],
- "Faleri": [
-  "pl",
-  "plcN_falerii",
-  "low"
- ],
- "Mauretanien": [
-  "pl",
-  "plcN_mauretanien",
-  "low"
- ],
- "Divitia": [
-  "pl",
-  "plcN_divitia",
-  "low"
- ],
- "Deutz": [
-  "pl",
-  "plcN_deutz",
-  "low"
- ],
- "Bremenium": [
-  "pl",
-  "plcN_bremenium",
-  "low"
- ],
- "Hadrianswall": [
-  "pl",
-  "plcN_hadrianswall",
-  "low"
- ],
- "PATRVINVS": [
-  "p",
-  "psnN_patruinus",
-  "low"
- ],
- "LILLVS": [
-  "p",
-  "psnN_lillus",
-  "low"
- ],
- "Hadrianus": [
-  "p",
-  "psnN_hadrian",
-  "low"
- ],
- "Italien": [
-  "pl",
-  "plcN_italien",
-  "low"
- ],
- "Rheinland": [
-  "pl",
-  "plcN_rheinland",
-  "low"
- ],
- "Xanten": [
-  "pl",
-  "plcN_xanten",
-  "low"
- ],
- "Foligno": [
-  "pl",
-  "plcN_foligno",
-  "low"
- ],
- "Troas": [
-  "pl",
-  "plcN_troas",
-  "low"
- ],
- "Tarraco": [
-  "pl",
-  "plcN_tarraco",
-  "low"
- ],
- "Arles": [
-  "pl",
-  "plcN_arles",
-  "low"
- ],
- "Derby": [
-  "pl",
-  "plcN_derby",
-  "low"
- ],
- "Anavione": [
-  "pl",
-  "plcN_anavio",
-  "low"
- ],
- "Ur-Memmingen": [
-  "pl",
-  "plcN_ur_memmingen",
-  "low"
- ],
- "Jakob Kellers": [
-  "p",
-  "psnN_jakob_keller",
-  "low"
- ],
- "Heddernheim": [
-  "pl",
-  "plcN_heddernheim",
-  "medium"
- ],
- "Genf": [
-  "pl",
-  "plcN_genf",
-  "low"
- ],
- "Bourges": [
-  "pl",
-  "plcN_bourges",
-  "low"
- ],
- "Byzacene": [
-  "pl",
-  "plcN_byzacena",
-  "low"
- ],
- "Tebessa": [
-  "pl",
-  "plcN_tebessa",
-  "low"
- ],
- "Kairuan": [
-  "pl",
-  "plcN_kairouan",
+  "plcN_aartal",
   "low"
  ],
  "Admaedara": [
@@ -499,349 +14,29 @@
   "plcN_ammaedara",
   "low"
  ],
+ "Afrika": [
+  "pl",
+  "plcN_afrika",
+  "low"
+ ],
+ "Almgren": [
+  "p",
+  "psnN_oscar_almgren",
+  "low"
+ ],
+ "Altburg": [
+  "pl",
+  "plcN_altburg",
+  "low"
+ ],
  "Ammaedara": [
   "pl",
   "plcN_ammaedara",
   "low"
  ],
- "Thala": [
+ "Anavione": [
   "pl",
-  "plcN_thala",
-  "low"
- ],
- "Zama": [
-  "pl",
-  "plcN_zama",
-  "low"
- ],
- "Kühkopf": [
-  "pl",
-  "plcN_kuhkopf",
-  "low"
- ],
- "Gickelsburg": [
-  "pl",
-  "plcN_gickelsburg",
-  "low"
- ],
- "Kirnach": [
-  "pl",
-  "plcN_kirnach",
-  "low"
- ],
- "Roethenbach": [
-  "pl",
-  "plcN_rotenbach",
-  "low"
- ],
- "Ehrenschwinden": [
-  "pl",
-  "plcN_ehrenschwinden",
-  "medium"
- ],
- "Illenschwang": [
-  "pl",
-  "plcN_illenschwang",
-  "low"
- ],
- "Weitlingen": [
-  "pl",
-  "plcN_weiltingen",
-  "low"
- ],
- "Hesselberg": [
-  "pl",
-  "plcN_hesselberg",
-  "medium"
- ],
- "Königsfeld": [
-  "pl",
-  "plcN_konigsfeld",
-  "low"
- ],
- "Vespasianus": [
-  "p",
-  "psnN_vespasianus",
-  "low"
- ],
- "Lyon": [
-  "pl",
-  "plcN_lyon",
-  "low"
- ],
- "Hispania citerior Tarraconensis": [
-  "pl",
-  "plcN_hispania_citerior_tarraconensis",
-  "low"
- ],
- "Pompelo": [
-  "pl",
-  "plcN_pompelo",
-  "low"
- ],
- "Obergermaniens": [
-  "pl",
-  "plcN_obergermanien",
-  "low"
- ],
- "Moesia": [
-  "pl",
-  "plcN_moesia",
-  "low"
- ],
- "Aschbach": [
-  "p",
-  "psnN_joseph_aschbach",
-  "low"
- ],
- "Vicus Aurelii": [
-  "pl",
-  "plcN_vicus_aurelii",
-  "low"
- ],
- "Iul(ii) Silvani": [
-  "p",
-  "psnN_iulius_silvanus",
-  "low"
- ],
- "Vaterculi Proculi": [
-  "p",
-  "psnN_vaterculus_proculus",
-  "low"
- ],
- "Götzenthal": [
-  "pl",
-  "plcN_gotzental",
-  "low"
- ],
- "Nepperwald": [
-  "pl",
-  "plcN_nepperwald",
-  "low"
- ],
- "Muthlangerheide": [
-  "pl",
-  "plcN_muthlanger_heide",
-  "low"
- ],
- "Vogelhöfe": [
-  "pl",
-  "plcN_vogelhofe",
-  "low"
- ],
- "Hoeftle": [
-  "pl",
-  "plcN_hoftle",
-  "low"
- ],
- "Unterbobingen": [
-  "pl",
-  "plcN_unterbobingen",
-  "medium"
- ],
- "Aalbach": [
-  "pl",
-  "plcN_aalbach",
-  "low"
- ],
- "F. W. Schmidt": [
-  "p",
-  "psnN_schmidt",
-  "low"
- ],
- "Cohausens": [
-  "p",
-  "p_karl_august_von_cohausen",
-  "low"
- ],
- "Kuthe": [
-  "p",
-  "psnN_kuthe",
-  "low"
- ],
- "Donau-Limes": [
-  "pl",
-  "plcN_donau_limes",
-  "low"
- ],
- "Schwäbisch Gmünd": [
-  "pl",
-  "plcN_schwabisch_gmund",
-  "medium"
- ],
- "Goetzenbach": [
-  "pl",
-  "plcN_goetzenbach",
-  "low"
- ],
- "Pleinfeld": [
-  "pl",
-  "plcN_pleinfeld",
-  "medium"
- ],
- "Schnebsberges": [
-  "pl",
-  "plcN_schnebsberg",
-  "low"
- ],
- "Frankfurts": [
-  "pl",
-  "plcN_frankfurt_am_main",
-  "low"
- ],
- "Schwäbisch-Gmünd": [
-  "pl",
-  "plcN_schwabisch_gmund",
-  "low"
- ],
- "Schw.-Gmünd": [
-  "pl",
-  "plcN_schwabisch_gmund",
-  "low"
- ],
- "von Sarvey": [
-  "p",
-  "psnN_von_sarvey",
-  "low"
- ],
- "F. Thudichum": [
-  "p",
-  "psnN_friedrich_thudichum",
-  "low"
- ],
- "Hochtaunus": [
-  "pl",
-  "plcN_hochtaunus",
-  "low"
- ],
- "Siculus Flaccus": [
-  "p",
-  "psnN_siculus_flaccus",
-  "low"
- ],
- "Faustus": [
-  "p",
-  "psnN_faustus",
-  "low"
- ],
- "Valerius": [
-  "p",
-  "psnN_valerius",
-  "low"
- ],
- "Wallbachmühle": [
-  "pl",
-  "plcN_wallbachmuhle",
-  "low"
- ],
- "Bonn": [
-  "pl",
-  "plcN_bonn",
-  "medium"
- ],
- "Dieffenbachs": [
-  "p",
-  "psnN_dieffenbach",
-  "low"
- ],
- "Kinzig": [
-  "pl",
-  "plcN_kinzig",
-  "medium"
- ],
- "Reussenhof": [
-  "pl",
-  "plcN_reussenhof",
-  "low"
- ],
- "Köbeler Wald": [
-  "pl",
-  "plcN_arnsburger_wald",
-  "low"
- ],
- "Lich": [
-  "pl",
-  "plcN_lich",
-  "low"
- ],
- "Niederelnbach": [
-  "pl",
-  "plcN_niederelnbach",
-  "low"
- ],
- "Sauhaus": [
-  "pl",
-  "plcN_sauhaus",
-  "low"
- ],
- "Heubirken": [
-  "pl",
-  "plcN_heubirken",
-  "medium"
- ],
- "Michael Zinser": [
-  "p",
-  "psnN_michael_zinser",
-  "low"
- ],
- "Waldreffen": [
-  "pl",
-  "plcN_waldreffen",
-  "low"
- ],
- "G. Sixt": [
-  "p",
-  "p_gustav_sixt",
-  "high"
- ],
- "Kl. Deinbach": [
-  "pl",
-  "plcN_klein_deinbach",
-  "low"
- ],
- "Jagst": [
-  "pl",
-  "plcN_jagst",
-  "medium"
- ],
- "Pfahlbach": [
-  "pl",
-  "plcN_pfahlbach",
-  "medium"
- ],
- "Niederalfingen": [
-  "pl",
-  "plcN_niederalfingen",
-  "low"
- ],
- "Gütersleben": [
-  "pl",
-  "plcN_gutersleben",
-  "low"
- ],
- "Mittel-Lengenfeld": [
-  "pl",
-  "plcN_mittel_lengenfeld",
-  "low"
- ],
- "Hünschmaroth": [
-  "pl",
-  "plcN_hunschmaroth",
-  "low"
- ],
- "Weiltinger Forst": [
-  "pl",
-  "plcN_hienheimer_forst",
-  "low"
- ],
- "Hohenried": [
-  "pl",
-  "plcN_hohenried",
-  "medium"
- ],
- "Sennenbach": [
-  "pl",
-  "plcN_sennenbach",
+  "plcN_anavio",
   "low"
  ],
  "Andernach": [
@@ -849,119 +44,24 @@
   "plcN_andernach",
   "low"
  ],
- "Vindonissa": [
-  "pl",
-  "plcN_vindonissa",
-  "low"
- ],
- "Schweiz": [
-  "pl",
-  "plcN_schweiz",
-  "low"
- ],
- "Drusus": [
+ "Antoninus Pius": [
   "p",
-  "psnN_drusus",
+  "psnN_antoninus_pius",
   "low"
  ],
- "Berlin": [
+ "Argentovaria": [
   "pl",
-  "plcN_berlin",
+  "plcN_argentovaria",
   "low"
  ],
- "Bennerpfad": [
+ "Arles": [
   "pl",
-  "plcN_bennerpfad",
+  "plcN_arles",
   "low"
  ],
- "Taunuslimes": [
-  "pl",
-  "plcN_taunuslimes",
-  "low"
- ],
- "Heftrich": [
-  "pl",
-  "plcN_heftrich",
-  "medium"
- ],
- "Julia Paula": [
+ "Arrianos": [
   "p",
-  "psnN_julia_paula",
-  "low"
- ],
- "Toutonensteins": [
-  "pl",
-  "plcN_toutonenstein",
-  "low"
- ],
- "Reichartshausen": [
-  "pl",
-  "plcN_reichartshausen",
-  "medium"
- ],
- "Wohlfahrtsschneise": [
-  "pl",
-  "plcN_wohlfahrtsschneise",
-  "low"
- ],
- "Stehnle": [
-  "p",
-  "psnN_stehnle",
-  "low"
- ],
- "Rödelheim": [
-  "pl",
-  "plcN_rodelheim",
-  "medium"
- ],
- "SERVANDVS": [
-  "p",
-  "psnN_servandus",
-  "low"
- ],
- "Ostheim": [
-  "pl",
-  "plcN_ostheim",
-  "low"
- ],
- "Burggräfenrode": [
-  "pl",
-  "plcN_burggrafenrode",
-  "low"
- ],
- "Nero": [
-  "p",
-  "psnN_nero",
-  "low"
- ],
- "Rutesheim": [
-  "pl",
-  "plcN_rutesheim",
-  "low"
- ],
- "Köhnen": [
-  "p",
-  "psnN_kohnen",
-  "low"
- ],
- "Porta nigra": [
-  "pl",
-  "plcN_porta_nigra",
-  "low"
- ],
- "Embach": [
-  "pl",
-  "plcN_embach",
-  "low"
- ],
- "Libbach": [
-  "pl",
-  "plcN_libbach",
-  "low"
- ],
- "P. Sept. Geta": [
-  "p",
-  "psnN_publius_septimius_geta",
+  "psnN_arrian",
   "low"
  ],
  "Artaunon": [
@@ -974,274 +74,34 @@
   "plcN_artaunum",
   "low"
  ],
- "Mattiakum": [
+ "Aschaffenburger Chaussée": [
   "pl",
-  "plcN_mattiacum",
+  "plcN_praunheimer_chaussee",
   "low"
  ],
- "Hanauer Landstrasse": [
-  "pl",
-  "plcN_hanauer_landstrasse",
-  "low"
- ],
- "MINICIVS FATALIS": [
+ "Aschbach": [
   "p",
-  "psnN_minucius_fatalis",
+  "psnN_joseph_aschbach",
   "low"
  ],
- "Messelbachs": [
+ "Bayern": [
   "pl",
-  "plcN_messelbach",
-  "low"
- ],
- "Watterbachthal": [
-  "pl",
-  "plcN_watterbachtal",
-  "low"
- ],
- "Diocletians": [
-  "p",
-  "psnN_diokletian",
-  "low"
- ],
- "Vallatum": [
-  "pl",
-  "plcN_vallatum",
-  "low"
- ],
- "Argentovaria": [
-  "pl",
-  "plcN_argentovaria",
-  "low"
- ],
- "Epamandodurum": [
-  "pl",
-  "plcN_epamanduodurum",
-  "low"
- ],
- "Sequania": [
-  "pl",
-  "plcN_sequania",
-  "low"
- ],
- "Maxima Sequanorum": [
-  "pl",
-  "plcN_maxima_sequanorum",
-  "low"
- ],
- "Castrum Rauracense": [
-  "pl",
-  "plcN_castrum_rauracense",
-  "low"
- ],
- "Karls d. Gr.": [
-  "p",
-  "psnN_karl_der_groe",
-  "low"
- ],
- "Foerstemann": [
-  "p",
-  "psnN_ernst_forstemann",
-  "low"
- ],
- "Faringa": [
-  "pl",
-  "plcN_faringa",
-  "low"
- ],
- "Feringa": [
-  "pl",
-  "plcN_feringa",
-  "low"
- ],
- "Ernsbethofen": [
-  "pl",
-  "plcN_ernsbethofen",
-  "low"
- ],
- "Hunnen-Kirchhof": [
-  "pl",
-  "plcN_hunnen_kirchhof",
-  "low"
- ],
- "Pforzheim": [
-  "pl",
-  "plcN_pforzheim",
+  "plcN_bayern",
   "medium"
  ],
- "Feldbergkastell": [
-  "pl",
-  "plcN_feldbergkastell",
-  "low"
- ],
- "Saalburg": [
-  "pl",
-  "pl_kastell_saalburg",
-  "high"
- ],
- "Seckmauern": [
-  "pl",
-  "plcN_seckmauern",
-  "low"
- ],
- "Vogelbaumhecken": [
-  "pl",
-  "plcN_vogelbaumhecken",
-  "low"
- ],
- "Heungwald": [
-  "pl",
-  "plcN_heungwald",
-  "low"
- ],
- "Holzdäckel": [
-  "pl",
-  "plcN_holzdackel",
-  "low"
- ],
- "Euterthal": [
-  "pl",
-  "plcN_esthal",
-  "low"
- ],
- "Waldleiningen": [
-  "pl",
-  "plcN_waldleiningen",
-  "low"
- ],
- "Haingrund": [
-  "pl",
-  "plcN_haingrund",
-  "low"
- ],
- "Spartian": [
+ "Belatullus": [
   "p",
-  "psnN_spartianus",
+  "psnN_belatullus",
   "low"
  ],
- "Hestermann": [
-  "p",
-  "psnN_hestermann",
-  "low"
- ],
- "Grosskarben": [
+ "Bennerpfad": [
   "pl",
-  "plcN_gro_karben",
+  "plcN_bennerpfad",
   "low"
  ],
- "Koflers": [
-  "p",
-  "p_friedrich_kofler",
-  "low"
- ],
- "Gönzbachthal": [
+ "Berlin": [
   "pl",
-  "plcN_gonzbach",
-  "low"
- ],
- "Elzthales": [
-  "pl",
-  "plcN_elztal",
-  "low"
- ],
- "Eckartsweiler": [
-  "pl",
-  "plcN_eckartsweiler",
-  "low"
- ],
- "Rüstich": [
-  "pl",
-  "plcN_rustich",
-  "low"
- ],
- "Gunzenausweiler": [
-  "pl",
-  "plcN_gunzenausweiler",
-  "low"
- ],
- "Diokletian": [
-  "p",
-  "psnN_diokletian",
-  "low"
- ],
- "Maximian": [
-  "p",
-  "psnN_maximian",
-  "low"
- ],
- "Oberwinterthur": [
-  "pl",
-  "plcN_oberwinterthur",
-  "low"
- ],
- "Zürich": [
-  "pl",
-  "plcN_zurich",
-  "low"
- ],
- "v. Kallee": [
-  "p",
-  "psnN_von_kallee",
-  "low"
- ],
- "Kihm": [
-  "p",
-  "psnN_kihm",
-  "low"
- ],
- "Kettenhofwegs": [
-  "pl",
-  "plcN_kettenhofweg",
-  "low"
- ],
- "Friedrichshof": [
-  "pl",
-  "plcN_friedrichshof",
-  "low"
- ],
- "Schärff": [
-  "p",
-  "psnN_scharff_fr",
-  "low"
- ],
- "Starkenburg": [
-  "pl",
-  "plcN_starkenburg",
-  "low"
- ],
- "Rosersmühle": [
-  "pl",
-  "plcN_rosersmuhle",
-  "low"
- ],
- "Binsdorf": [
-  "pl",
-  "plcN_binsdorf",
-  "low"
- ],
- "Otto Engelhardt": [
-  "p",
-  "psnN_engelhardt",
-  "low"
- ],
- "Mainkele": [
-  "pl",
-  "plcN_mainkele",
-  "low"
- ],
- "Robern": [
-  "pl",
-  "plcN_robern",
-  "medium"
- ],
- "Trajans-Säule": [
-  "pl",
-  "plcN_trajanssaule",
-  "low"
- ],
- "Egenroth": [
-  "pl",
-  "plcN_egenroth",
+  "plcN_berlin",
   "low"
  ],
  "Beyenheim": [
@@ -1249,154 +109,14 @@
   "plcN_beienheim",
   "low"
  ],
- "Haseleck": [
-  "pl",
-  "plcN_haselheck",
-  "low"
- ],
  "Biederichsgraben": [
   "pl",
   "plcN_biederichsgraben",
   "low"
  ],
- "Steinleinsfurt": [
+ "Binsdorf": [
   "pl",
-  "plcN_steinleinsfurt",
-  "low"
- ],
- "Schwäbischen Rezat": [
-  "pl",
-  "plcN_rezat",
-  "low"
- ],
- "Magetissa": [
-  "p",
-  "psnN_magetissa",
-  "low"
- ],
- "Langenhain": [
-  "pl",
-  "plcN_langenhain",
-  "medium"
- ],
- "Hofheim": [
-  "pl",
-  "plcN_hofheim",
-  "medium"
- ],
- "Petersee-Thälchen": [
-  "pl",
-  "plcN_petersee",
-  "low"
- ],
- "Gareis": [
-  "p",
-  "psnN_gareis",
-  "low"
- ],
- "Frontin": [
-  "p",
-  "psnN_frontinus",
-  "low"
- ],
- "Mommsens": [
-  "p",
-  "p_theodor_mommsen",
-  "low"
- ],
- "Müttenberg": [
-  "pl",
-  "plcN_muttenberg",
-  "low"
- ],
- "Diocletian": [
-  "p",
-  "psnN_diokletian",
-  "low"
- ],
- "Sybels": [
-  "p",
-  "psnN_heinrich_von_sybel",
-  "low"
- ],
- "Stöckenburg": [
-  "pl",
-  "plcN_stockenburg",
-  "low"
- ],
- "Wellenhof": [
-  "pl",
-  "plcN_wellenhof",
-  "low"
- ],
- "Fornsbach": [
-  "pl",
-  "plcN_fornsbach",
-  "low"
- ],
- "Kettenbach": [
-  "pl",
-  "plcN_kettenbach",
-  "low"
- ],
- "Steinchesweg": [
-  "pl",
-  "plcN_steinchesweg",
-  "low"
- ],
- "Weierwäldchen": [
-  "pl",
-  "plcN_weierwaldchen",
-  "low"
- ],
- "Kaltebornsweges": [
-  "pl",
-  "plcN_kaltebornsweg",
-  "low"
- ],
- "Minerva": [
-  "p",
-  "psnN_minerva",
-  "low"
- ],
- "Kutschenweg": [
-  "pl",
-  "plcN_kutschenweg",
-  "low"
- ],
- "Winkelmann": [
-  "p",
-  "psnN_winkelmann",
-  "low"
- ],
- "Weberleithe": [
-  "pl",
-  "plcN_weberleithe",
-  "low"
- ],
- "Heglohe": [
-  "pl",
-  "plcN_heglohe",
-  "low"
- ],
- "Pfahlbuck": [
-  "pl",
-  "plcN_pfahlbuck",
-  "low"
- ],
- "Könen": [
-  "p",
-  "psnN_konen",
-  "low"
- ],
- "Ernst Fabricius": [
-  "p",
-  "p_ernst_fabricius",
-  "low"
- ],
- "Wintersein": [
-  "pl",
-  "plcN_wintersein",
+  "plcN_binsdorf",
   "low"
  ],
  "Birklar": [
@@ -1404,39 +124,729 @@
   "plcN_birklar",
   "low"
  ],
- "Soldan": [
-  "p",
-  "p_wilhelm_soldan",
-  "high"
+ "Bonn": [
+  "pl",
+  "plcN_bonn",
+  "medium"
  ],
- "Lucilla": [
-  "p",
-  "psnN_lucilla",
+ "Bourges": [
+  "pl",
+  "plcN_bourges",
   "low"
  ],
- "Mammaea": [
+ "Brambach": [
   "p",
-  "psnN_julia_mamaea",
+  "psnN_brambach",
   "low"
  ],
- "Ph. Dieffenbach": [
+ "Bremenium": [
+  "pl",
+  "plcN_bremenium",
+  "low"
+ ],
+ "Bulau": [
+  "pl",
+  "plcN_bulau",
+  "medium"
+ ],
+ "Bunk": [
+  "p",
+  "psnN_bunk",
+  "low"
+ ],
+ "Burggräfenrode": [
+  "pl",
+  "plcN_burggrafenrode",
+  "low"
+ ],
+ "Byzacene": [
+  "pl",
+  "plcN_byzacena",
+  "low"
+ ],
+ "Bäderstrasse": [
+  "pl",
+  "plcN_baderstrasse",
+  "low"
+ ],
+ "COBNERTVS": [
+  "p",
+  "psnN_cobnertus",
+  "low"
+ ],
+ "Caracalla": [
+  "p",
+  "psnN_caracalla",
+  "low"
+ ],
+ "Castrum Rauracense": [
+  "pl",
+  "plcN_castrum_rauracense",
+  "low"
+ ],
+ "Cohausens": [
+  "p",
+  "p_karl_august_von_cohausen",
+  "low"
+ ],
+ "Cohen": [
+  "p",
+  "psnN_cohen",
+  "low"
+ ],
+ "Constantin": [
+  "p",
+  "psnN_konstantin",
+  "low"
+ ],
+ "Costutus": [
+  "p",
+  "psnN_costutus",
+  "low"
+ ],
+ "Dahm": [
+  "p",
+  "p_otto_dahm",
+  "medium"
+ ],
+ "Decius": [
+  "p",
+  "psnN_decius",
+  "low"
+ ],
+ "Dekumatenlande": [
+  "pl",
+  "plcN_dekumatenland",
+  "low"
+ ],
+ "Derby": [
+  "pl",
+  "plcN_derby",
+  "low"
+ ],
+ "Deutz": [
+  "pl",
+  "plcN_deutz",
+  "low"
+ ],
+ "Dieffenbach": [
+  "p",
+  "psnN_dieffenbach_ph",
+  "low"
+ ],
+ "Dieffenbachs": [
   "p",
   "psnN_dieffenbach",
   "low"
  ],
- "Leutersthaler Hof": [
-  "pl",
-  "plcN_leutersthaler_hof",
+ "Diocletian": [
+  "p",
+  "psnN_diokletian",
   "low"
  ],
- "Sixt": [
+ "Diocletians": [
+  "p",
+  "psnN_diokletian",
+  "low"
+ ],
+ "Diokletian": [
+  "p",
+  "psnN_diokletian",
+  "low"
+ ],
+ "Divitia": [
+  "pl",
+  "plcN_divitia",
+  "low"
+ ],
+ "Domaszewski": [
+  "p",
+  "psnN_domaszewski",
+  "low"
+ ],
+ "Domitians": [
+  "p",
+  "psnN_domitian",
+  "low"
+ ],
+ "Donatus": [
+  "p",
+  "psnN_donatus",
+  "low"
+ ],
+ "Donau": [
+  "pl",
+  "plcN_donau",
+  "medium"
+ ],
+ "Donau-Limes": [
+  "pl",
+  "plcN_donau_limes",
+  "low"
+ ],
+ "Dorow": [
+  "p",
+  "psnN_dorow",
+  "low"
+ ],
+ "Dragendorff": [
+  "p",
+  "psnN_dragendorff",
+  "low"
+ ],
+ "Drusus": [
+  "p",
+  "psnN_drusus",
+  "low"
+ ],
+ "Dühren": [
+  "pl",
+  "plcN_duhren",
+  "medium"
+ ],
+ "Eckartsweiler": [
+  "pl",
+  "plcN_eckartsweiler",
+  "low"
+ ],
+ "Egenroth": [
+  "pl",
+  "plcN_egenroth",
+  "low"
+ ],
+ "Ehrenschwinden": [
+  "pl",
+  "plcN_ehrenschwinden",
+  "medium"
+ ],
+ "Elisabethenstrasse": [
+  "pl",
+  "plcN_elisabethenstrae",
+  "low"
+ ],
+ "Elzthales": [
+  "pl",
+  "plcN_elztal",
+  "low"
+ ],
+ "Embach": [
+  "pl",
+  "plcN_embach",
+  "low"
+ ],
+ "Epamandodurum": [
+  "pl",
+  "plcN_epamanduodurum",
+  "low"
+ ],
+ "Ernsbethofen": [
+  "pl",
+  "plcN_ernsbethofen",
+  "low"
+ ],
+ "Ernst Fabricius": [
+  "p",
+  "p_ernst_fabricius",
+  "low"
+ ],
+ "Etruscilla": [
+  "p",
+  "psnN_herennia_etruscilla",
+  "low"
+ ],
+ "Euterthal": [
+  "pl",
+  "plcN_esthal",
+  "low"
+ ],
+ "F. Thudichum": [
+  "p",
+  "psnN_friedrich_thudichum",
+  "low"
+ ],
+ "F. W. Schmidt": [
+  "p",
+  "psnN_schmidt",
+  "low"
+ ],
+ "Faleri": [
+  "pl",
+  "plcN_falerii",
+  "low"
+ ],
+ "Faringa": [
+  "pl",
+  "plcN_faringa",
+  "low"
+ ],
+ "Faustus": [
+  "p",
+  "psnN_faustus",
+  "low"
+ ],
+ "Feldbergkastell": [
+  "pl",
+  "plcN_feldbergkastell",
+  "low"
+ ],
+ "Feringa": [
+  "pl",
+  "plcN_feringa",
+  "low"
+ ],
+ "Foerstemann": [
+  "p",
+  "psnN_ernst_forstemann",
+  "low"
+ ],
+ "Foligno": [
+  "pl",
+  "plcN_foligno",
+  "low"
+ ],
+ "Fornsbach": [
+  "pl",
+  "plcN_fornsbach",
+  "low"
+ ],
+ "Forrer": [
+  "p",
+  "psnN_robert_forrer",
+  "low"
+ ],
+ "Frankfurts": [
+  "pl",
+  "plcN_frankfurt_am_main",
+  "low"
+ ],
+ "Freiburg": [
+  "pl",
+  "plcN_freiburg_i_br",
+  "low"
+ ],
+ "Freiburg i. Br.": [
+  "pl",
+  "plcN_freiburg_i_br",
+  "low"
+ ],
+ "Friedrichshof": [
+  "pl",
+  "plcN_friedrichshof",
+  "low"
+ ],
+ "Frontin": [
+  "p",
+  "psnN_frontinus",
+  "low"
+ ],
+ "G. Sixt": [
   "p",
   "p_gustav_sixt",
   "high"
  ],
+ "G. Wolff": [
+  "p",
+  "p_georg_wolff",
+  "low"
+ ],
+ "Gallienus": [
+  "p",
+  "psnN_gallienus",
+  "low"
+ ],
+ "Gareis": [
+  "p",
+  "psnN_gareis",
+  "low"
+ ],
+ "Genf": [
+  "pl",
+  "plcN_genf",
+  "low"
+ ],
+ "Germaniens": [
+  "pl",
+  "plcN_germanien",
+  "low"
+ ],
+ "Gerolfing": [
+  "pl",
+  "plcN_gerolfing",
+  "low"
+ ],
+ "Gickelsburg": [
+  "pl",
+  "plcN_gickelsburg",
+  "low"
+ ],
+ "Giget": [
+  "pl",
+  "plcN_giget",
+  "low"
+ ],
+ "Gmünd": [
+  "pl",
+  "plcN_gmund",
+  "medium"
+ ],
+ "Goetzenbach": [
+  "pl",
+  "plcN_goetzenbach",
+  "low"
+ ],
+ "Gordianus": [
+  "p",
+  "psnN_gordianus_iii",
+  "low"
+ ],
+ "Grosskarben": [
+  "pl",
+  "plcN_gro_karben",
+  "low"
+ ],
+ "Gunzenausweiler": [
+  "pl",
+  "plcN_gunzenausweiler",
+  "low"
+ ],
+ "Gönzbachthal": [
+  "pl",
+  "plcN_gonzbach",
+  "low"
+ ],
+ "Götzenthal": [
+  "pl",
+  "plcN_gotzental",
+  "low"
+ ],
+ "Gümbel": [
+  "p",
+  "psnN_carl_wilhelm_von_gumbel",
+  "low"
+ ],
+ "Gütersleben": [
+  "pl",
+  "plcN_gutersleben",
+  "low"
+ ],
+ "H. Wehner": [
+  "p",
+  "psnN_wehner",
+  "low"
+ ],
+ "Habels": [
+  "p",
+  "psnN_habel",
+  "low"
+ ],
+ "Hadrianswall": [
+  "pl",
+  "plcN_hadrianswall",
+  "low"
+ ],
+ "Hadrianus": [
+  "p",
+  "psnN_hadrian",
+  "low"
+ ],
+ "Haghof": [
+  "pl",
+  "plcN_haghof",
+  "medium"
+ ],
+ "Haingrund": [
+  "pl",
+  "plcN_haingrund",
+  "low"
+ ],
+ "Hanau": [
+  "pl",
+  "plcN_hanau",
+  "medium"
+ ],
+ "Hanauer Landstrasse": [
+  "pl",
+  "plcN_hanauer_landstrasse",
+  "low"
+ ],
+ "Haseleck": [
+  "pl",
+  "plcN_haselheck",
+  "low"
+ ],
+ "Hasselmann": [
+  "p",
+  "psnN_hasselmann",
+  "low"
+ ],
+ "Heddernheim": [
+  "pl",
+  "plcN_heddernheim",
+  "medium"
+ ],
+ "Hefner": [
+  "p",
+  "psnN_joseph_von_hefner",
+  "low"
+ ],
+ "Heftrich": [
+  "pl",
+  "plcN_heftrich",
+  "medium"
+ ],
+ "Heglohe": [
+  "pl",
+  "plcN_heglohe",
+  "low"
+ ],
  "Hergenstatter Wald": [
   "pl",
   "plcN_arnsburger_wald",
+  "low"
+ ],
+ "Hesselberg": [
+  "pl",
+  "plcN_hesselberg",
+  "medium"
+ ],
+ "Hestermann": [
+  "p",
+  "psnN_hestermann",
+  "low"
+ ],
+ "Hetschenlache": [
+  "pl",
+  "plcN_hetschenlache",
+  "low"
+ ],
+ "Heubirken": [
+  "pl",
+  "plcN_heubirken",
+  "medium"
+ ],
+ "Heungwald": [
+  "pl",
+  "plcN_heungwald",
+  "low"
+ ],
+ "Hintzelmann": [
+  "p",
+  "psnN_paul_hintzelmann",
+  "low"
+ ],
+ "Hispania citerior Tarraconensis": [
+  "pl",
+  "plcN_hispania_citerior_tarraconensis",
+  "low"
+ ],
+ "Hochtaunus": [
+  "pl",
+  "plcN_hochtaunus",
+  "low"
+ ],
+ "Hochweisel": [
+  "pl",
+  "plcN_hochweisel",
+  "low"
+ ],
+ "Hoeftle": [
+  "pl",
+  "plcN_hoftle",
+  "low"
+ ],
+ "Hofheim": [
+  "pl",
+  "plcN_hofheim",
+  "medium"
+ ],
+ "Hohenried": [
+  "pl",
+  "plcN_hohenried",
+  "medium"
+ ],
+ "Holzdäckel": [
+  "pl",
+  "plcN_holzdackel",
+  "low"
+ ],
+ "Hornberg": [
+  "pl",
+  "plcN_hornberg",
+  "low"
+ ],
+ "Hunnen-Kirchhof": [
+  "pl",
+  "plcN_hunnen_kirchhof",
+  "low"
+ ],
+ "Höhr": [
+  "pl",
+  "plcN_hohr",
+  "medium"
+ ],
+ "Hönehauskastell": [
+  "pl",
+  "plcN_honehauskastell",
+  "low"
+ ],
+ "Hünerstrasse": [
+  "pl",
+  "plcN_hunerstrasse",
+  "low"
+ ],
+ "Hünschmaroth": [
+  "pl",
+  "plcN_hunschmaroth",
+  "low"
+ ],
+ "II et tn er": [
+  "p",
+  "p_felix_hettner",
+  "medium"
+ ],
+ "Illenschwang": [
+  "pl",
+  "plcN_illenschwang",
+  "low"
+ ],
+ "Illyrien": [
+  "pl",
+  "plcN_illyrien",
+  "low"
+ ],
+ "Irsing": [
+  "pl",
+  "plcN_irsing",
+  "low"
+ ],
+ "Italien": [
+  "pl",
+  "plcN_italien",
+  "low"
+ ],
+ "Iul(ii) Silvani": [
+  "p",
+  "psnN_iulius_silvanus",
+  "low"
+ ],
+ "Jacobi": [
+  "p",
+  "psnN_jacobi",
+  "medium"
+ ],
+ "Jagst": [
+  "pl",
+  "plcN_jagst",
+  "medium"
+ ],
+ "Jagstthal": [
+  "pl",
+  "plcN_jagsttal",
+  "low"
+ ],
+ "Jakob Kellers": [
+  "p",
+  "psnN_jakob_keller",
+  "low"
+ ],
+ "Julia Aquilia Severa": [
+  "p",
+  "psnN_julia_aquilia_severa",
+  "low"
+ ],
+ "Julia Domna": [
+  "p",
+  "psnN_julia_domna",
+  "low"
+ ],
+ "Julia Maesa": [
+  "p",
+  "psnN_julia_maesa",
+  "low"
+ ],
+ "Julia Mamaea": [
+  "p",
+  "psnN_julia_mamaea",
+  "low"
+ ],
+ "Julia Paula": [
+  "p",
+  "psnN_julia_paula",
+  "low"
+ ],
+ "Jupiter": [
+  "p",
+  "psnN_jupiter",
+  "low"
+ ],
+ "Kairuan": [
+  "pl",
+  "plcN_kairouan",
+  "low"
+ ],
+ "Kallée": [
+  "p",
+  "psnN_kallee_general_von",
+  "low"
+ ],
+ "Kaltebach": [
+  "pl",
+  "plcN_kaltebach",
+  "low"
+ ],
+ "Kaltebornsweges": [
+  "pl",
+  "plcN_kaltebornsweg",
+  "low"
+ ],
+ "Kap ff": [
+  "p",
+  "psnN_kapff",
+  "medium"
+ ],
+ "Karl Popp": [
+  "p",
+  "p_karl_popp",
+  "medium"
+ ],
+ "Karls d. Gr.": [
+  "p",
+  "psnN_karl_der_groe",
+  "low"
+ ],
+ "Kemel": [
+  "pl",
+  "plcN_kemel",
+  "medium"
+ ],
+ "Kemeler Haide": [
+  "pl",
+  "plcN_muthlanger_heide",
+  "low"
+ ],
+ "Kettenbach": [
+  "pl",
+  "plcN_kettenbach",
+  "low"
+ ],
+ "Kettenhofwegs": [
+  "pl",
+  "plcN_kettenhofweg",
+  "low"
+ ],
+ "Kihm": [
+  "p",
+  "psnN_kihm",
+  "low"
+ ],
+ "Kinzig": [
+  "pl",
+  "plcN_kinzig",
+  "medium"
+ ],
+ "Kirnach": [
+  "pl",
+  "plcN_kirnach",
   "low"
  ],
  "Kirnau": [
@@ -1444,14 +854,89 @@
   "plcN_kirnau",
   "medium"
  ],
- "Dekumatenlande": [
+ "Kl. Deinbach": [
   "pl",
-  "plcN_dekumatenland",
+  "plcN_klein_deinbach",
   "low"
  ],
- "Wilhelm Kohl": [
+ "Klotzbach": [
+  "pl",
+  "plcN_klotzbach",
+  "low"
+ ],
+ "Kofier": [
   "p",
-  "p_wilhelm_kohl",
+  "p_friedrich_kofler",
+  "medium"
+ ],
+ "Koflers": [
+  "p",
+  "p_friedrich_kofler",
+  "low"
+ ],
+ "Kuthe": [
+  "p",
+  "psnN_kuthe",
+  "low"
+ ],
+ "Kutschenweg": [
+  "pl",
+  "plcN_kutschenweg",
+  "low"
+ ],
+ "Köbeler Wald": [
+  "pl",
+  "plcN_arnsburger_wald",
+  "low"
+ ],
+ "Köhnen": [
+  "p",
+  "psnN_kohnen",
+  "low"
+ ],
+ "Könen": [
+  "p",
+  "psnN_konen",
+  "low"
+ ],
+ "Königsfeld": [
+  "pl",
+  "plcN_konigsfeld",
+  "low"
+ ],
+ "Kühkopf": [
+  "pl",
+  "plcN_kuhkopf",
+  "low"
+ ],
+ "LILLVS": [
+  "p",
+  "psnN_lillus",
+  "low"
+ ],
+ "Lahnbachthal": [
+  "pl",
+  "plcN_lahnbachtal",
+  "low"
+ ],
+ "Langenhain": [
+  "pl",
+  "plcN_langenhain",
+  "medium"
+ ],
+ "Latinni": [
+  "p",
+  "psnN_latinnus",
+  "low"
+ ],
+ "Laufenselder Weg": [
+  "pl",
+  "plcN_cleeberger_weg",
+  "low"
+ ],
+ "Leihgesterner Weg": [
+  "pl",
+  "plcN_cleeberger_weg",
   "low"
  ],
  "Leonhardi": [
@@ -1464,34 +949,19 @@
   "psnN_meininger_leopold",
   "low"
  ],
- "G. Wolff": [
-  "p",
-  "p_georg_wolff",
-  "low"
- ],
- "Decius": [
-  "p",
-  "psnN_decius",
-  "low"
- ],
- "Cohen": [
-  "p",
-  "psnN_cohen",
-  "low"
- ],
- "Caracalla": [
-  "p",
-  "psnN_caracalla",
-  "low"
- ],
- "Aarthal": [
+ "Leutersthaler Hof": [
   "pl",
-  "plcN_aartal",
+  "plcN_leutersthaler_hof",
   "low"
  ],
- "Laufenselder Weg": [
+ "Libbach": [
   "pl",
-  "plcN_cleeberger_weg",
+  "plcN_libbach",
+  "low"
+ ],
+ "Lich": [
+  "pl",
+  "plcN_lich",
   "low"
  ],
  "Limburger Strasse": [
@@ -1499,64 +969,19 @@
   "plcN_dierdorfer_strasse",
   "low"
  ],
- "Lahnbachthal": [
-  "pl",
-  "plcN_lahnbachtal",
-  "low"
- ],
  "Lindschied": [
   "pl",
   "plcN_lindschied",
   "low"
  ],
- "Kemeler Haide": [
+ "Lorch": [
   "pl",
-  "plcN_muthlanger_heide",
-  "low"
+  "plcN_lorch",
+  "medium"
  ],
- "Aschaffenburger Chaussée": [
-  "pl",
-  "plcN_praunheimer_chaussee",
-  "low"
- ],
- "Nordwetterau": [
-  "pl",
-  "plcN_nordwetterau",
-  "low"
- ],
- "Panofka": [
+ "Lucilla": [
   "p",
-  "psnN_theodor_panofka",
-  "low"
- ],
- "Forrer": [
-  "p",
-  "psnN_robert_forrer",
-  "low"
- ],
- "Hefner": [
-  "p",
-  "psnN_joseph_von_hefner",
-  "low"
- ],
- "Domaszewski": [
-  "p",
-  "psnN_domaszewski",
-  "low"
- ],
- "Thrazien": [
-  "pl",
-  "plcN_thrakien",
-  "low"
- ],
- "Illyrien": [
-  "pl",
-  "plcN_illyrien",
-  "low"
- ],
- "Mamaea": [
-  "p",
-  "psnN_julia_mamaea",
+  "psnN_lucilla",
   "low"
  ],
  "Lucius Verus": [
@@ -1564,49 +989,221 @@
   "psnN_lucius_verus",
   "low"
  ],
- "Almgren": [
-  "p",
-  "psnN_oscar_almgren",
+ "Lyon": [
+  "pl",
+  "plcN_lyon",
   "low"
  ],
- "Haghof": [
+ "MINICIVS FATALIS": [
+  "p",
+  "psnN_minucius_fatalis",
+  "low"
+ ],
+ "Magetissa": [
+  "p",
+  "psnN_magetissa",
+  "low"
+ ],
+ "Mainkele": [
   "pl",
-  "plcN_haghof",
+  "plcN_mainkele",
+  "low"
+ ],
+ "Mainz": [
+  "pl",
+  "plcN_mainz",
   "medium"
  ],
- "Jagstthal": [
+ "Mamaea": [
+  "p",
+  "psnN_julia_mamaea",
+  "low"
+ ],
+ "Mammaea": [
+  "p",
+  "psnN_julia_mamaea",
+  "low"
+ ],
+ "Marc Aurel": [
+  "p",
+  "psnN_marc_aurel",
+  "low"
+ ],
+ "Mattiakum": [
   "pl",
-  "plcN_jagsttal",
+  "plcN_mattiacum",
   "low"
  ],
- "Bunk": [
-  "p",
-  "psnN_bunk",
-  "low"
- ],
- "H. Wehner": [
-  "p",
-  "psnN_wehner",
-  "low"
- ],
- "Steinkritz": [
+ "Mauretanien": [
   "pl",
-  "plcN_steinkritz",
+  "plcN_mauretanien",
   "low"
  ],
- "Belatullus": [
-  "p",
-  "psnN_belatullus",
+ "Maxima Sequanorum": [
+  "pl",
+  "plcN_maxima_sequanorum",
   "low"
  ],
- "Costutus": [
+ "Maximian": [
   "p",
-  "psnN_costutus",
+  "psnN_maximian",
   "low"
  ],
- "Donatus": [
+ "Messelbachs": [
+  "pl",
+  "plcN_messelbach",
+  "low"
+ ],
+ "Michael Zinser": [
   "p",
-  "psnN_donatus",
+  "psnN_michael_zinser",
+  "low"
+ ],
+ "Minerva": [
+  "p",
+  "psnN_minerva",
+  "low"
+ ],
+ "Mittel-Lengenfeld": [
+  "pl",
+  "plcN_mittel_lengenfeld",
+  "low"
+ ],
+ "Moesia": [
+  "pl",
+  "plcN_moesia",
+  "low"
+ ],
+ "Mombrunner": [
+  "pl",
+  "plcN_mombrunn",
+  "low"
+ ],
+ "Mommsens": [
+  "p",
+  "p_theodor_mommsen",
+  "low"
+ ],
+ "Muthlangerheide": [
+  "pl",
+  "plcN_muthlanger_heide",
+  "low"
+ ],
+ "Mümmlinglinie": [
+  "pl",
+  "plcN_mummlinglinie",
+  "low"
+ ],
+ "Müttenberg": [
+  "pl",
+  "plcN_muttenberg",
+  "low"
+ ],
+ "Neckarlinie": [
+  "pl",
+  "plcN_neckarlinie",
+  "low"
+ ],
+ "Nepperwald": [
+  "pl",
+  "plcN_nepperwald",
+  "low"
+ ],
+ "Nero": [
+  "p",
+  "psnN_nero",
+  "low"
+ ],
+ "Neusass": [
+  "pl",
+  "plcN_neusass",
+  "medium"
+ ],
+ "Neuwieder Beckens": [
+  "pl",
+  "plcN_neuwieder_becken",
+  "low"
+ ],
+ "Nidda": [
+  "pl",
+  "plcN_nidda",
+  "medium"
+ ],
+ "Nidder": [
+  "pl",
+  "plcN_nidder",
+  "medium"
+ ],
+ "Nied": [
+  "pl",
+  "plcN_nied",
+  "medium"
+ ],
+ "Niederalfingen": [
+  "pl",
+  "plcN_niederalfingen",
+  "low"
+ ],
+ "Niederelnbach": [
+  "pl",
+  "plcN_niederelnbach",
+  "low"
+ ],
+ "Nordwetterau": [
+  "pl",
+  "plcN_nordwetterau",
+  "low"
+ ],
+ "Obergermanien": [
+  "pl",
+  "plcN_obergermanien",
+  "low"
+ ],
+ "Obergermaniens": [
+  "pl",
+  "plcN_obergermanien",
+  "low"
+ ],
+ "Oberwinterthur": [
+  "pl",
+  "plcN_oberwinterthur",
+  "low"
+ ],
+ "Odenwald": [
+  "pl",
+  "plcN_odenwald",
+  "low",
+  "Odenwald"
+ ],
+ "Odenwalds": [
+  "pl",
+  "plcN_odenwald",
+  "low",
+  "Odenwald"
+ ],
+ "Ostheim": [
+  "pl",
+  "plcN_ostheim",
+  "low"
+ ],
+ "Otto Engelhardt": [
+  "p",
+  "psnN_engelhardt",
+  "low"
+ ],
+ "P. Sept. Geta": [
+  "p",
+  "psnN_publius_septimius_geta",
+  "low"
+ ],
+ "PATRVINVS": [
+  "p",
+  "psnN_patruinus",
+  "low"
+ ],
+ "Panofka": [
+  "p",
+  "psnN_theodor_panofka",
   "low"
  ],
  "Patricianus": [
@@ -1614,44 +1211,354 @@
   "psnN_patricianus",
   "low"
  ],
- "Trajanus": [
+ "Pervincus": [
   "p",
-  "psnN_trajan",
+  "psnN_pervincus",
   "low"
  ],
- "Latinni": [
-  "p",
-  "psnN_latinnus",
+ "Petersee-Thälchen": [
+  "pl",
+  "plcN_petersee",
   "low"
  ],
- "Julia Aquilia Severa": [
-  "p",
-  "psnN_julia_aquilia_severa",
-  "low"
- ],
- "Gümbel": [
-  "p",
-  "psnN_carl_wilhelm_von_gumbel",
-  "low"
- ],
- "Karl Popp": [
-  "p",
-  "p_karl_popp",
+ "Pfahlbach": [
+  "pl",
+  "plcN_pfahlbach",
   "medium"
+ ],
+ "Pfahlbuck": [
+  "pl",
+  "plcN_pfahlbuck",
+  "low"
+ ],
+ "Pforzheim": [
+  "pl",
+  "plcN_pforzheim",
+  "medium"
+ ],
+ "Pförring": [
+  "pl",
+  "plcN_pforring",
+  "medium"
+ ],
+ "Pfünz": [
+  "pl",
+  "plcN_pfunz",
+  "medium"
+ ],
+ "Ph. Dieffenbach": [
+  "p",
+  "psnN_dieffenbach",
+  "low"
+ ],
+ "Philippus Arabs": [
+  "p",
+  "psnN_philippus_arabs",
+  "low"
+ ],
+ "Pleinfeld": [
+  "pl",
+  "plcN_pleinfeld",
+  "medium"
+ ],
+ "Pompelo": [
+  "pl",
+  "plcN_pompelo",
+  "low"
+ ],
+ "Porta nigra": [
+  "pl",
+  "plcN_porta_nigra",
+  "low"
+ ],
+ "Reichartshausen": [
+  "pl",
+  "plcN_reichartshausen",
+  "medium"
+ ],
+ "Rems": [
+  "pl",
+  "plcN_rems",
+  "medium"
+ ],
+ "Reussenhof": [
+  "pl",
+  "plcN_reussenhof",
+  "low"
+ ],
+ "Rhein": [
+  "pl",
+  "plcN_rhein",
+  "medium"
+ ],
+ "Rheinland": [
+  "pl",
+  "plcN_rheinland",
+  "low"
+ ],
+ "Robern": [
+  "pl",
+  "plcN_robern",
+  "medium"
+ ],
+ "Roethenbach": [
+  "pl",
+  "plcN_rotenbach",
+  "low"
+ ],
+ "Rosersmühle": [
+  "pl",
+  "plcN_rosersmuhle",
+  "low"
+ ],
+ "Rottenburg": [
+  "pl",
+  "plcN_rottenburg",
+  "low"
+ ],
+ "Rutesheim": [
+  "pl",
+  "plcN_rutesheim",
+  "low"
+ ],
+ "Rödelheim": [
+  "pl",
+  "plcN_rodelheim",
+  "medium"
+ ],
+ "Röthenbachthal": [
+  "pl",
+  "plcN_rothenbachtal",
+  "low"
+ ],
+ "Rüstich": [
+  "pl",
+  "plcN_rustich",
+  "low"
+ ],
+ "S t e i m 1 e": [
+  "p",
+  "p_heinrich_steimle",
+  "medium"
+ ],
+ "SERVANDVS": [
+  "p",
+  "psnN_servandus",
+  "low"
+ ],
+ "Saalburg": [
+  "pl",
+  "pl_kastell_saalburg",
+  "high"
+ ],
+ "Saalburgstrasse": [
+  "pl",
+  "plcN_saalburgstrasse",
+  "low"
+ ],
+ "Sauhaus": [
+  "pl",
+  "plcN_sauhaus",
+  "low"
+ ],
+ "Sayn": [
+  "pl",
+  "plcN_sayn",
+  "medium"
+ ],
+ "Sc heller": [
+  "p",
+  "psnN_magnus_scheller",
+  "medium"
+ ],
+ "Schnebsberges": [
+  "pl",
+  "plcN_schnebsberg",
+  "low"
  ],
  "Schutterthal": [
   "pl",
   "plcN_schuttertal",
   "low"
  ],
- "Unterstall": [
+ "Schw. Gmünd": [
   "pl",
-  "plcN_unterstall",
+  "plcN_schwabisch_gmund",
   "low"
  ],
- "Gerolfing": [
+ "Schw.-Gmünd": [
   "pl",
-  "plcN_gerolfing",
+  "plcN_schwabisch_gmund",
+  "low"
+ ],
+ "Schweiz": [
+  "pl",
+  "plcN_schweiz",
+  "low"
+ ],
+ "Schwäbisch Gmünd": [
+  "pl",
+  "plcN_schwabisch_gmund",
+  "medium"
+ ],
+ "Schwäbisch-Gmünd": [
+  "pl",
+  "plcN_schwabisch_gmund",
+  "low"
+ ],
+ "Schwäbischen Rezat": [
+  "pl",
+  "plcN_rezat",
+  "low"
+ ],
+ "Schärff": [
+  "p",
+  "psnN_scharff_fr",
+  "low"
+ ],
+ "Seckmauern": [
+  "pl",
+  "plcN_seckmauern",
+  "low"
+ ],
+ "Sennenbach": [
+  "pl",
+  "plcN_sennenbach",
+  "low"
+ ],
+ "Septimius Severus": [
+  "p",
+  "psnN_septimius_severus",
+  "low"
+ ],
+ "Sequania": [
+  "pl",
+  "plcN_sequania",
+  "low"
+ ],
+ "Siculus Flaccus": [
+  "p",
+  "psnN_siculus_flaccus",
+  "low"
+ ],
+ "Silvanus": [
+  "p",
+  "psnN_silvanus",
+  "low"
+ ],
+ "Sixt": [
+  "p",
+  "p_gustav_sixt",
+  "high"
+ ],
+ "Soldan": [
+  "p",
+  "p_wilhelm_soldan",
+  "high"
+ ],
+ "Spartian": [
+  "p",
+  "psnN_spartianus",
+  "low"
+ ],
+ "Starkenburg": [
+  "pl",
+  "plcN_starkenburg",
+  "low"
+ ],
+ "Stehnle": [
+  "p",
+  "psnN_stehnle",
+  "low"
+ ],
+ "Steinchesweg": [
+  "pl",
+  "plcN_steinchesweg",
+  "low"
+ ],
+ "Steinkritz": [
+  "pl",
+  "plcN_steinkritz",
+  "low"
+ ],
+ "Steinleinsfurt": [
+  "pl",
+  "plcN_steinleinsfurt",
+  "low"
+ ],
+ "Stöckenburg": [
+  "pl",
+  "plcN_stockenburg",
+  "low"
+ ],
+ "Sulz a. N.": [
+  "pl",
+  "plcN_rottenburg_am_neckar",
+  "low"
+ ],
+ "Sybels": [
+  "p",
+  "psnN_heinrich_von_sybel",
+  "low"
+ ],
+ "Süsskind": [
+  "p",
+  "psnN_von_susskind",
+  "low"
+ ],
+ "Tarraco": [
+  "pl",
+  "plcN_tarraco",
+  "low"
+ ],
+ "Taunus": [
+  "pl",
+  "plcN_hofheim_a_taunus",
+  "low"
+ ],
+ "Taunuslimes": [
+  "pl",
+  "plcN_taunuslimes",
+  "low"
+ ],
+ "Tebessa": [
+  "pl",
+  "plcN_tebessa",
+  "low"
+ ],
+ "Thala": [
+  "pl",
+  "plcN_thala",
+  "low"
+ ],
+ "Thrazien": [
+  "pl",
+  "plcN_thrakien",
+  "low"
+ ],
+ "Toutonensteins": [
+  "pl",
+  "plcN_toutonenstein",
+  "low"
+ ],
+ "Traianus": [
+  "p",
+  "psnN_traianus",
+  "low"
+ ],
+ "Trajans": [
+  "p",
+  "psnN_trajan",
+  "low"
+ ],
+ "Trajans-Säule": [
+  "pl",
+  "plcN_trajanssaule",
+  "low"
+ ],
+ "Trajanus": [
+  "p",
+  "psnN_trajan",
   "low"
  ],
  "Trautmann": [
@@ -1659,14 +1566,114 @@
   "psnN_m_trautmann",
   "low"
  ],
- "Röthenbachthal": [
+ "Troas": [
   "pl",
-  "plcN_rothenbachtal",
+  "plcN_troas",
   "low"
  ],
- "COBNERTVS": [
+ "Unterbobingen": [
+  "pl",
+  "plcN_unterbobingen",
+  "medium"
+ ],
+ "Untermain": [
+  "pl",
+  "plcN_untermain",
+  "low"
+ ],
+ "Unterstall": [
+  "pl",
+  "plcN_unterstall",
+  "low"
+ ],
+ "Ur-Memmingen": [
+  "pl",
+  "plcN_ur_memmingen",
+  "low"
+ ],
+ "Valerius": [
   "p",
-  "psnN_cobnertus",
+  "psnN_valerius",
+  "low"
+ ],
+ "Vallatum": [
+  "pl",
+  "plcN_vallatum",
+  "low"
+ ],
+ "Vaterculi Proculi": [
+  "p",
+  "psnN_vaterculus_proculus",
+  "low"
+ ],
+ "Vespasianus": [
+  "p",
+  "psnN_vespasianus",
+  "low"
+ ],
+ "Vicus Aurelii": [
+  "pl",
+  "plcN_vicus_aurelii",
+  "low"
+ ],
+ "Vindonissa": [
+  "pl",
+  "plcN_vindonissa",
+  "low"
+ ],
+ "Vogelbaumhecken": [
+  "pl",
+  "plcN_vogelbaumhecken",
+  "low"
+ ],
+ "Vogelhöfe": [
+  "pl",
+  "plcN_vogelhofe",
+  "low"
+ ],
+ "Waldleiningen": [
+  "pl",
+  "plcN_waldleiningen",
+  "low"
+ ],
+ "Waldreffen": [
+  "pl",
+  "plcN_waldreffen",
+  "low"
+ ],
+ "Wallbachmühle": [
+  "pl",
+  "plcN_wallbachmuhle",
+  "low"
+ ],
+ "Watterbachthal": [
+  "pl",
+  "plcN_watterbachtal",
+  "low"
+ ],
+ "Weberleithe": [
+  "pl",
+  "plcN_weberleithe",
+  "low"
+ ],
+ "Weierwäldchen": [
+  "pl",
+  "plcN_weierwaldchen",
+  "low"
+ ],
+ "Weiltinger Forst": [
+  "pl",
+  "plcN_hienheimer_forst",
+  "low"
+ ],
+ "Weitlingen": [
+  "pl",
+  "plcN_weiltingen",
+  "low"
+ ],
+ "Wellenhof": [
+  "pl",
+  "plcN_wellenhof",
   "low"
  ],
  "Weller": [
@@ -1674,19 +1681,9 @@
   "psnN_weller",
   "low"
  ],
- "Hintzelmann": [
-  "p",
-  "psnN_paul_hintzelmann",
-  "low"
- ],
- "Pförring": [
+ "Westfalen": [
   "pl",
-  "plcN_pforring",
-  "medium"
- ],
- "Sulz a. N.": [
-  "pl",
-  "plcN_rottenburg_am_neckar",
+  "plcN_westfalen",
   "low"
  ],
  "Wetterau": [
@@ -1695,36 +1692,64 @@
   "low",
   "Wetterau"
  ],
- "Gordianus": [
+ "Wilhelm Kohl": [
   "p",
-  "psnN_gordianus_iii",
+  "p_wilhelm_kohl",
   "low"
  ],
- "Odenwalds": [
+ "Windecker Chaussee": [
   "pl",
-  "plcN_odenwald",
-  "low",
-  "Odenwald"
- ],
- "Odenwald": [
-  "pl",
-  "plcN_odenwald",
-  "low",
-  "Odenwald"
- ],
- "Freiburg i. Br.": [
-  "pl",
-  "plcN_freiburg_i_br",
+  "plcN_windecker_chaussee",
   "low"
  ],
- "Freiburg": [
-  "pl",
-  "plcN_freiburg_i_br",
-  "low"
- ],
- "Constantin": [
+ "Winkelmann": [
   "p",
-  "psnN_konstantin",
+  "psnN_winkelmann",
+  "low"
+ ],
+ "Wintersein": [
+  "pl",
+  "plcN_wintersein",
+  "low"
+ ],
+ "Wohlfahrtsschneise": [
+  "pl",
+  "plcN_wohlfahrtsschneise",
+  "low"
+ ],
+ "Wörth": [
+  "pl",
+  "plcN_worth",
+  "medium"
+ ],
+ "Xanten": [
+  "pl",
+  "plcN_xanten",
+  "low"
+ ],
+ "Zama": [
+  "pl",
+  "plcN_zama",
+  "low"
+ ],
+ "Zangemeisters": [
+  "p",
+  "p_karl_zangemeister",
+  "low"
+ ],
+ "Zürich": [
+  "pl",
+  "plcN_zurich",
+  "low"
+ ],
+ "v. Kallee": [
+  "p",
+  "psnN_von_kallee",
+  "low"
+ ],
+ "von Sarvey": [
+  "p",
+  "psnN_von_sarvey",
   "low"
  ]
 }

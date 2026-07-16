@@ -234,9 +234,13 @@ def dare_terms(dare, taken, corpus_low=""):
 
 CITE_RX = [(bid, re.compile(rx, re.I)) for bid, _n, _f, _o, _l, rx in BIBLIO if rx]
 SELF_RX = re.compile(r"Limesbl\w*\.?\s*S\.?\s*(\d{1,4})", re.I)   # interner Selbstverweis (Seite)
+REGNUM_RX = re.compile(r"(?<![\d,.\-/])(\d{1,3})(?![\d]|\s*(?:cm|mm|m\b|km|kg))")  # Registerzahl = Spalte
+REGISTER_START = "Verzeichnis der Mitarbeiter"   # Hintzelmanns Gesamtregister, Bd. 8: ab HIER sind
+# bloße Zahlen Spaltenverweise. NICHT beim Titel »Register zu Nr. 1–35« beginnen — dessen 1 und 35
+# sind HEFT-Nummern und würden sonst auf die Spalten 1 und 35 zeigen.
 REPORT_RX = re.compile(r"(?:Forts\w*|Fortsetzung|[Vv]gl\.|siehe|s\.)\s+(?:zu\s+)?(Nr\.\s*(\d{1,3}))", re.I)  # Bericht-Querverweis
 
-def tag_page(text, terms, cites=CITE_RX, ranges=CITE_RANGE, selfmap=None, reportmap=None):
+def tag_page(text, terms, cites=CITE_RX, ranges=CITE_RANGE, selfmap=None, reportmap=None, regnums=None):
     """terms: {term:(kind,id,cert)} → persName/placeName; cites → <ref target>;
     ranges (id,regex mit 1 Gruppe) → <ref><citedRange>; selfmap {Druckseite:pb-id}
     → interner <ref> auf „Limesblatt S. NNN". Non-overlapping, längste zuerst."""
@@ -255,6 +259,18 @@ def tag_page(text, terms, cites=CITE_RX, ranges=CITE_RANGE, selfmap=None, report
             tgt = selfmap.get(int(m.group(1)))
             if tgt:
                 spans.append((m.start(), m.end(), "self", tgt, ""))
+    if selfmap and regnums is not None:
+        # NUR im Registerbereich (Hintzelmanns »Register zu Nr. 1–35«, Bd. 8): dort sind bloße
+        # Zahlen Spaltenverweise — »Anthes 442 (Palissaden…), 443, 464«. Sein eigener Kopf sagt:
+        # »Die Ziffern bezeichnen die Spalten.« Korpusweit wäre das fatal (Maße, Jahre, Funde),
+        # deshalb ist es strikt begrenzt — und zwar ZEICHENGENAU: `regnums` ist der Offset, ab
+        # dem das Register beginnt. Spalte 959a trägt beides, den Schluss eines Feldberichts und
+        # den Registerkopf; ohne den Offset würde »Wachtposten 12« zu einem Verweis auf Spalte 12.
+        for m in REGNUM_RX.finditer(text):
+            if m.start(1) < regnums: continue
+            tgt = selfmap.get(int(m.group(1)))
+            if tgt:
+                spans.append((m.start(1), m.end(1), "self", tgt, ""))
     if reportmap:
         for m in REPORT_RX.finditer(text):              # nur das „Nr. NN" markieren (Gruppe 1)
             tgt = reportmap.get(m.group(2))             # Gruppe 2 = die Bericht-Nummer
@@ -481,12 +497,20 @@ def build_volume(slug_, label, nr, vault, global_terms, token_terms, occ, outdir
     toks, cdir = tokens(vault, slug_)
     surfaces, body, npages, ntags, nempty = [], [], 0, 0, 0
 
+    in_register = [False]   # ab Hintzelmanns »Register zu Nr. 1–35« bis Bandende (nur Bd. 8)
+
     def tag(text, printed, col, baseoff=0):
         """Spaltentext markieren: korpusweite Vault-Begriffe + auf dieses Token verankerte
         NER-Begriffe + Literatur-/Selbst-/Bericht-Verweise; Treffer mit (spalten-relativem)
-        Offset im Belegindex sammeln. `baseoff` = Startoffset des Absatzes in der Spalte."""
+        Offset im Belegindex sammeln. `baseoff` = Startoffset des Absatzes in der Spalte.
+        Ab dem Registerbeginn zusätzlich: bloße Zahlen = Spaltenverweise (regnums)."""
+        if REGISTER_START in text:            # Registerkopf in DIESER Spalte → ab hier
+            regfrom = text.index(REGISTER_START) + len(REGISTER_START); in_register[0] = True
+        else:
+            regfrom = 0 if in_register[0] else None    # None = Register-Modus aus
         terms = dict(global_terms); terms.update(token_terms.get((nr, tok), {}))
-        html_, hits = tag_page(text, terms, selfmap=selfmap, reportmap=reportmap)
+        html_, hits = tag_page(text, terms, selfmap=selfmap, reportmap=reportmap,
+                               regnums=regfrom)
         for eid, kind, off in hits:
             occ[eid].append([nr, tok, printed, col, baseoff + off])
         return html_.replace("\n", "<lb/>"), len(hits)   # Zeilenumbrüche (Korrekturen) → <lb/>
@@ -688,7 +712,14 @@ def main():
           f"{sum(1 for e in ner_only if entities[e]['kind']=='place')}O)")
     print(f"Geo: {ngeo} DARE-Stellen (entdoppelt) + {nline} Verlaufslinie(n) → geo/")
     # Globale Druckseiten→<pb>-Karte für interne „Limesblatt S. NNN"-Selbstverweise
-    selfmap = {}
+    # Spaltennummer → Anker. ACHTUNG: 32 von 931 Nummern haben MEHRERE Kandidaten, weil die
+    # OCR Spaltenköpfe verliest („063" als 3, „633" als 33, „155" als 150) und weil Beilagen
+    # (311a, 455a, 679a, 935a) Nummern der Hauptfolge dublieren. Ein blindes setdefault nimmt
+    # den erstbesten — aufgefallen an Hintzelmanns Register, dessen Verweise dann auf
+    # Beilagenseiten zeigten. Auflösung: das TOKEN ist die Wahrheit, nicht die Kopfzahl. Das
+    # Limesblatt zählt Spalten, jede Druckseite trägt zwei; das Token ist die erste (ungerade).
+    # Also gilt: Token T, Spalte a → Nummer T · Spalte b → T+1. Wer dazu passt, gewinnt.
+    cands = {}
     for slug_, label, nr in WORKS:
         cdir = os.path.join(vault, "tools", ".cache", slug_)
         for jf in glob.glob(os.path.join(cdir, "*.alto.json")):
@@ -698,7 +729,22 @@ def main():
             for c in cj.get("columns", []):
                 pn = str(c.get("printed_no", ""))
                 if pn.isdigit() and c.get("printed_src") in ("head", "inferred"):
-                    selfmap.setdefault(int(pn), f"pb_{tk}_{c['label']}")
+                    cands.setdefault(int(pn), []).append((tk, c["label"]))
+    def _konsistent(pn, tk, lab):
+        """Deckt sich die Nummer mit dem Token? (Beilagen wie »679a« sind nie konsistent.)"""
+        if not tk.isdigit(): return False
+        base = int(tk)
+        return pn == base + {"a": 0, "b": 1, "c": 2}.get(lab, 99)
+    selfmap, selfmap_ambig = {}, {}
+    for pn, cs in cands.items():
+        gut = [c for c in cs if _konsistent(pn, *c)]
+        pick = gut[0] if gut else cs[0]
+        if len(cs) > 1: selfmap_ambig[pn] = {"gewaehlt": pick, "kandidaten": cs, "token_konsistent": bool(gut)}
+        selfmap[pn] = f"pb_{pick[0]}_{pick[1]}"
+    if selfmap_ambig:
+        _kein = [n for n, v in selfmap_ambig.items() if not v["token_konsistent"]]
+        print(f"  selfmap: {len(selfmap_ambig)} mehrdeutige Spaltennummern über das Token aufgelöst"
+              + (f" · {len(_kein)} ohne konsistenten Kandidaten: {sorted(_kein)}" if _kein else ""))
     # Bericht-Nr. → Startseiten-<pb> für „Forts. zu Nr. NN": erst der strenge TOC-Report
     # (hohe Präzision), dann ergänzend ein direkter Spaltenanfang-Scan (höhere Vollständigkeit).
     reportmap = {}

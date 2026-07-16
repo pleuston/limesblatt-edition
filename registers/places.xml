@@ -25,6 +25,38 @@
 <relation name="excavatedBy" passive="#p_heinrich_steimle"/>
 <note type="strecke" corresp="#str_strecke_12_haghoflorchaalenmonchsroth">Strecke 12 – Haghof–Lorch–Aalen–Mönchsroth</note>
 </place>
+<place xml:id="pl_kastell_benningen">
+<placeName>Kastell Benningen</placeName>
+<placeName type="modern">Benningen am Neckar (Landkreis Ludwigsburg, Baden-Württemberg)</placeName>
+<location><geo>48.9439 9.24931</geo></location>
+<region>Obergermanien</region>
+<idno type="Wikidata">Q1735337</idno>
+<idno type="ORL">ORL 58</idno>
+<relation name="excavatedBy" passive="#p_adolf_mettler"/>
+<note type="strecke" corresp="#str_strecke_11_bad_wimpfenkongen_neckarlinie">Strecke 11 – Bad Wimpfen–Köngen (Neckarlinie)</note>
+</place>
+<place xml:id="pl_kastell_butzbach">
+<placeName>Kastell Butzbach</placeName>
+<placeName type="modern">Butzbach (Wetteraukreis, Hessen)</placeName>
+<location><geo>50.4396 8.66451</geo></location>
+<region>Obergermanien</region>
+<idno type="Wikidata">Q14906931</idno>
+<idno type="ORL">ORL 14</idno>
+<trait type="kastelltyp"><desc>Kohortenkastell</desc></trait>
+<relation name="excavatedBy" passive="#p_friedrich_kofler"/>
+<note type="strecke" corresp="#str_strecke_04_kopperner_talmarkobel">Strecke 04 – Köpperner Tal–Marköbel</note>
+</place>
+<place xml:id="pl_kastell_dambach">
+<placeName>Kastell Dambach</placeName>
+<placeName type="modern">Ehingen (Ortsteil Dambach), Landkreis Ansbach</placeName>
+<location><geo>49.10285 10.57876</geo></location>
+<region>Raetien</region>
+<idno type="Wikidata">Q1370136</idno>
+<idno type="ORL">ORL 69</idno>
+<trait type="kastelltyp"><desc>Numeruskastell (Phase I) / Kohortenkastell (Phase II)</desc></trait>
+<relation name="excavatedBy" passive="#p_karl_popp"/>
+<note type="strecke" corresp="#str_strecke_13_monchsrothgunzenhausen">Strecke 13 – Mönchsroth–Gunzenhausen</note>
+</place>
 <place xml:id="pl_kastell_eining">
 <placeName>Kastell Eining</placeName>
 <placeName type="modern">Eining (Ortsteil von Neustadt an der Donau)</placeName>
@@ -32,7 +64,7 @@
 <region>Raetien</region>
 <idno type="Wikidata">Q1735352</idno>
 <idno type="iDAI-Gazetteer">2047393</idno>
-<idno type="ORL">ORL 75</idno>
+<idno type="ORL">   # KEINE: ORL 75 = Kastell Pförring (Bibliographie Jahrbuch Bd. 17 + K10plus). Eining hat keine Abt.-B-Lieferung — es ist der Endpunkt von Strecke 15 (Abt. A).</idno>
 <trait type="kastelltyp"><desc>Kohortenkastell</desc></trait>
 <note type="strecke" corresp="#str_strecke_15_kipfenbergeining">Strecke 15 – Kipfenberg–Eining</note>
 <note type="edh" n="61"/>
@@ -49,6 +81,16 @@
 <note type="strecke" corresp="#str_strecke_10_worthbad_wimpfen_altere_odenwaldlinie">Strecke 10 – Wörth–Bad Wimpfen (Ältere Odenwaldlinie)</note>
 <note type="edh" n="1"/>
 </place>
+<place xml:id="pl_kastell_holzhausen">
+<placeName>Kastell Holzhausen</placeName>
+<placeName type="modern">Holzhausen an der Haide (Rhein-Lahn-Kreis, Rheinland-Pfalz)</placeName>
+<location><geo>50.21488056 7.94746667</geo></location>
+<region>Obergermanien</region>
+<idno type="Wikidata">Q1735376</idno>
+<idno type="ORL">ORL 6</idno>
+<relation name="excavatedBy" passive="#p_ludwig_pallat"/>
+<note type="strecke" corresp="#str_strecke_02_bad_emsadolfseck">Strecke 02 – Bad Ems–Adolfseck</note>
+</place>
 <place xml:id="pl_kastell_jagsthausen">
 <placeName>Kastell Jagsthausen</placeName>
 <placeName type="modern">Jagsthausen</placeName>
@@ -56,7 +98,7 @@
 <region>Obergermanien</region>
 <idno type="Wikidata">Q1735380</idno>
 <idno type="iDAI-Gazetteer">2045676</idno>
-<idno type="ORL">ORL 39</idno>
+<idno type="ORL">ORL 41</idno>
 <trait type="kastelltyp"><desc>Kohortenkastell</desc></trait>
 <relation name="excavatedBy" passive="#p_ernst_von_herzog"/>
 <note type="strecke" corresp="#str_strecke_08_rehbergjagsthausen_odenwaldlinie">Strecke 08 – Rehberg–Jagsthausen (Odenwaldlinie)</note>
@@ -101,6 +143,17 @@
 <note type="strecke" corresp="#str_strecke_08_rehbergjagsthausen_odenwaldlinie">Strecke 08 – Rehberg–Jagsthausen (Odenwaldlinie)</note>
 <note type="edh" n="132"/>
 </place>
+<place xml:id="pl_kastell_ruckingen">
+<placeName>Kastell Rückingen</placeName>
+<placeName type="modern">Erlensee, Ortsteil Rückingen (Main-Kinzig-Kreis, Hessen)</placeName>
+<location><geo>50.1541 8.98186</geo></location>
+<region>Obergermanien</region>
+<idno type="Wikidata">Q1735413</idno>
+<idno type="ORL">ORL 22</idno>
+<trait type="kastelltyp"><desc>Kohortenkastell</desc></trait>
+<relation name="excavatedBy" passive="#p_georg_wolff"/>
+<note type="strecke" corresp="#str_strecke_05_markobelgro_krotzenburg">Strecke 05 – Marköbel–Groß-Krotzenburg</note>
+</place>
 <place xml:id="pl_kastell_saalburg">
 <placeName>Kastell Saalburg</placeName>
 <placeName type="modern">Bad Homburg vor der Höhe</placeName>
@@ -126,6 +179,16 @@
 <relation name="excavatedBy" passive="#p_karl_zangemeister"/>
 <note type="strecke" corresp="#str_strecke_06_main_linie_seligenstadtmiltenberg">Strecke 06 – Main-Linie (Seligenstadt–Miltenberg)</note>
 <note type="edh" n="1"/>
+</place>
+<place xml:id="pl_kastell_walldurn">
+<placeName>Kastell Walldürn</placeName>
+<placeName type="modern">Walldürn (Neckar-Odenwald-Kreis, Baden-Württemberg)</placeName>
+<location><geo>49.5785 9.38674</geo></location>
+<region>Obergermanien</region>
+<idno type="Wikidata">Q1735436</idno>
+<idno type="ORL">ORL 39</idno>
+<relation name="excavatedBy" passive="#p_wilhelm_conrady"/>
+<note type="strecke" corresp="#str_strecke_07_miltenbergrehberg">Strecke 07 – Miltenberg–Rehberg</note>
 </place>
 <place xml:id="pl_kastell_weienburg">
 <placeName>Kastell Weißenburg</placeName>

@@ -84,9 +84,6 @@
 <person xml:id="psnN_braun" type="ner" cert="low"><persName>Braun</persName>
 <occupation>Dr. med. (Bendorf) · Stadtpfarrer in Lorch</occupation>
 </person>
-<person xml:id="psnN_buchner" type="ner" cert="low"><persName>Buchner</persName>
-<occupation>Früherer Forscher; "Reisen auf der Teufelsmauer"</occupation>
-</person>
 <person xml:id="psnN_buhler" type="ner" cert="low"><persName>Bühler</persName>
 <occupation>Fürstlich Hohenlohe'scher Hofrath</occupation>
 </person>
@@ -136,12 +133,6 @@
 </person>
 <person xml:id="psnN_costutus" type="ner" cert="low"><persName>Costutus</persName>
 </person>
-<person xml:id="psnN_dahm" type="ner" cert="low"><persName>Dahm</persName>
-<occupation>Mitautor (Wolff-Dahm, Grenzwall-Publikation) · Streckenkommissar</occupation>
-</person>
-<person xml:id="psnN_dahm_oberstleutnant" type="ner" cert="low"><persName>Dahm, Oberstleutnant</persName>
-<occupation>Streckenkommissar (Arzbach-Augst)</occupation>
-</person>
 <person xml:id="psnN_decius" type="ner" cert="low"><persName>Decius</persName>
 </person>
 <person xml:id="psnN_dessau" type="ner" cert="low"><persName>Dessau</persName>
@@ -173,9 +164,6 @@
 </person>
 <person xml:id="psnN_dott" type="ner" cert="low"><persName>Dott</persName>
 <occupation>Beigeordneter; Pächter des Leonhardischen Parks</occupation>
-</person>
-<person xml:id="psnN_dragendorff" type="ner" cert="low"><persName>Dragendorff</persName>
-<occupation>Autor (Terra sigillata)</occupation>
 </person>
 <person xml:id="psnN_drusus" type="ner" cert="low"><persName>Drusus</persName>
 </person>
@@ -225,12 +213,6 @@
 </person>
 <person xml:id="psnN_feucht" type="ner" cert="low"><persName>Feucht</persName>
 <occupation>Schmied in Harsberg, Fund von Steinkugeln beim Roden</occupation>
-</person>
-<person xml:id="psnN_fink" type="ner" cert="low"><persName>Fink</persName>
-<occupation>Berichterstatter, Würzburg; Kastell Pförring (Nr. 58 abschließend) · Professor, Streckenkommissar</occupation>
-</person>
-<person xml:id="psnN_fink_j" type="ner" cert="low"><persName>Fink, J</persName>
-<occupation>k. Professor, Streckenkommissar (Irnsing/Donau), München</occupation>
 </person>
 <person xml:id="psnN_fischer_w" type="ner" cert="low"><persName>Fischer, W</persName>
 <occupation>Maurermeister in Grosskrotzenburg</occupation>
@@ -304,9 +286,6 @@
 <person xml:id="psnN_gut" type="ner" cert="low"><persName>Gut</persName>
 <occupation>Ortsbürger (Bruchenbrücken)</occupation>
 </person>
-<person xml:id="psnN_habel" type="ner" cert="low"><persName>Habel</persName>
-<occupation>Autor zu Wiesbaden-Kastell · Früherer Forscher; Topographie Heddernheim</occupation>
-</person>
 <person xml:id="psnN_hadrian" type="ner" cert="low"><persName>Hadrian</persName>
 <occupation>Kaiser · römischer Kaiser</occupation>
 </person>
@@ -323,9 +302,6 @@
 </person>
 <person xml:id="psnN_hammerau" type="ner" cert="low"><persName>Hammerau</persName>
 <occupation>Forscher / Autor (Korrbl. Westd. Ztschr.)</occupation>
-</person>
-<person xml:id="psnN_hammerle" type="ner" cert="low"><persName>Hämmerle</persName>
-<occupation>Ausgräber (Kastell Murrhardt) · Streckenkommissar</occupation>
 </person>
 <person xml:id="psnN_hanapel" type="ner" cert="low"><persName>Hanapel</persName>
 <occupation>Pfarrer</occupation>
@@ -384,8 +360,6 @@
 </person>
 <person xml:id="psnN_hubertsberg" type="ner" cert="low"><persName>Hubertsberg</persName>
 <occupation>Fabrikdirektor (Bendorf)</occupation>
-</person>
-<person xml:id="psnN_hubner" type="ner" cert="low"><persName>Hübner</persName>
 </person>
 <person xml:id="psnN_hundeshagen" type="ner" cert="low"><persName>Hundeshagen</persName>
 <occupation>Ersteller des Plans des Kastells Niederbieber (publiziert von Dorow 1826) · Ersteller eines Kastellplans (Niederbieber)</occupation>
@@ -556,13 +530,6 @@
 </person>
 <person xml:id="psnN_latinnus" type="ner" cert="low"><persName>Latinnus</persName>
 </person>
-<person xml:id="psnN_lehner" type="ner" cert="low"><persName>Lehner</persName>
-<occupation>Streckenkommissar (Kastell Kemel, Holzhausen–Aarthal)</occupation>
-</person>
-<person xml:id="psnN_lehner_hans" type="ner" cert="medium"><persName>Lehner, Hans</persName>
-<occupation>Dr.; Beiträger zu den Steindenkmälern des Trierer Museums · Streckenkommissar, Wiesbaden</occupation>
-<idno type="GND">116874279</idno>
-</person>
 <person xml:id="psnN_leonhardi" type="ner" cert="low"><persName>Leonhardi</persName>
 <occupation>Freiherr; Besitzer des Parks bei Heldenbergen</occupation>
 </person>
@@ -639,9 +606,6 @@
 <person xml:id="psnN_meininger_leopold" type="ner" cert="low"><persName>Meininger, Leopold</persName>
 <occupation>Ortsbürger und Ökonom (Heldenbergen)</occupation>
 </person>
-<person xml:id="psnN_mettler" type="ner" cert="low"><persName>Mettler</persName>
-<occupation>Streckenkommissar · Streckenkommissar (Kastell Welzheim, Walheim, Böckingen, Rottweil)</occupation>
-</person>
 <person xml:id="psnN_metz" type="ner" cert="low"><persName>Metz</persName>
 <occupation>Bürgermeister (Heftrich-Gebiet); stellte Acker für Ausgrabungen zur Verfügung</occupation>
 </person>
@@ -711,9 +675,6 @@
 </person>
 <person xml:id="psnN_pop" type="ner" cert="low"><persName>Pop</persName>
 <occupation>General; Besichtigung der Ausgrabungen bei Mönchsroth</occupation>
-</person>
-<person xml:id="psnN_prescher" type="ner" cert="low"><persName>Prescher</persName>
-<occupation>Streckenkommissar (Kastell Heidenheim) · Streckenkommissar, Heidenheim</occupation>
 </person>
 <person xml:id="psnN_ptolemaeus" type="ner" cert="low"><persName>Ptolemaeus</persName>
 <occupation>Antiker Geograph (Artaunon-Identifizierung Zugmantel)</occupation>
@@ -882,9 +843,6 @@
 <occupation>Ökonom, ermöglichte Nachgrabung in Marköbel</occupation>
 <idno type="GND">133562506</idno>
 </person>
-<person xml:id="psnN_studion" type="ner" cert="low"><persName>Studion</persName>
-<occupation>Marbacher Präceptor</occupation>
-</person>
 <person xml:id="psnN_tacitus" type="ner" cert="low"><persName>Tacitus</persName>
 <occupation>antiker Autor, referenziert</occupation>
 </person>
@@ -983,15 +941,6 @@
 <occupation>Gutsbesitzer (Burgholzhof, Gmünd-Gebiet); Angaben zur Limesmauerlage</occupation>
 </person>
 <person xml:id="psnN_wiener" type="ner" cert="low"><persName>Wiener</persName>
-</person>
-<person xml:id="psnN_wilhelmi" type="ner" cert="low"><persName>Wilhelmi</persName>
-</person>
-<person xml:id="psnN_winkelmann" type="ner" cert="low"><persName>Winkelmann</persName>
-<occupation>Berichterstatter Pfünz · Grabungsleiter Pfünz</occupation>
-</person>
-<person xml:id="psnN_winkelmann_fr" type="ner" cert="medium"><persName>Winkelmann, Fr</persName>
-<occupation>Streckenkommissar (Pfünz, Nassenfels, Geimersheim)</occupation>
-<idno type="GND">1318561124</idno>
 </person>
 <person xml:id="psnN_winterwerber" type="ner" cert="low"><persName>Winterwerber</persName>
 <occupation>Landmann in Marienfels</occupation>
@@ -1292,11 +1241,6 @@
 <place xml:id="plcN_bennigen" type="ner" cert="low"><placeName>Bennigen</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 </place>
-<place xml:id="plcN_benningen" type="ner" cert="medium"><placeName>Benningen</placeName>
-<trait type="art"><desc>Kastell</desc></trait>
-<idno type="iDAI-Gazetteer">2045774</idno>
-<location><geo>48.94672 9.24212</geo></location>
-</place>
 <place xml:id="plcN_bergen" type="ner" cert="medium"><placeName>Bergen</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2181133</idno>
@@ -1542,11 +1486,6 @@
 <idno type="iDAI-Gazetteer">2049493</idno>
 <location><geo>51.02783 8.81242</geo></location>
 </place>
-<place xml:id="plcN_butzbach" type="ner" cert="medium"><placeName>Butzbach</placeName>
-<trait type="art"><desc>Ort</desc></trait>
-<idno type="iDAI-Gazetteer">2087816</idno>
-<location><geo>50.43303 8.67358</geo></location>
-</place>
 <place xml:id="plcN_byzacena" type="ner" cert="low"><placeName>Byzacena</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 </place>
@@ -1621,11 +1560,6 @@
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2045858</idno>
 <location><geo>49.38553 9.1906</geo></location>
-</place>
-<place xml:id="plcN_dambach" type="ner" cert="medium"><placeName>Dambach</placeName>
-<trait type="art"><desc>Ort</desc></trait>
-<idno type="iDAI-Gazetteer">2046761</idno>
-<location><geo>49.09372 10.56739</geo></location>
 </place>
 <place xml:id="plcN_danibach" type="ner" cert="low"><placeName>Danibach</placeName>
 <trait type="art"><desc>Ort</desc></trait>
@@ -3078,10 +3012,6 @@
 <trait type="art"><desc>Kastell</desc></trait>
 <location><geo>50.20826 8.33317</geo></location>
 </place>
-<place xml:id="plcN_kastell_butzbach" type="ner" cert="medium"><placeName>Kastell Butzbach</placeName>
-<trait type="art"><desc>Kastell</desc></trait>
-<location><geo>50.44068 8.66528</geo></location>
-</place>
 <place xml:id="plcN_kastell_cannstatt" type="ner" cert="medium"><placeName>Kastell Cannstatt</placeName>
 <trait type="art"><desc>Kastell</desc></trait>
 <location><geo>48.81423 9.21131</geo></location>
@@ -3122,10 +3052,6 @@
 </place>
 <place xml:id="plcN_kastell_okarben" type="ner" cert="low"><placeName>Kastell Okarben</placeName>
 <trait type="art"><desc>Kastell</desc></trait>
-</place>
-<place xml:id="plcN_kastell_ruckingen" type="ner" cert="medium"><placeName>Kastell Rückingen</placeName>
-<trait type="art"><desc>Kastell</desc></trait>
-<location><geo>50.15362 8.98202</geo></location>
 </place>
 <place xml:id="plcN_kastell_ruffenhofen" type="ner" cert="medium"><placeName>Kastell Ruffenhofen</placeName>
 <trait type="art"><desc>Kastell</desc></trait>
@@ -4493,11 +4419,6 @@
 <place xml:id="plcN_rucking" type="ner" cert="low"><placeName>Rücking</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 </place>
-<place xml:id="plcN_ruckingen" type="ner" cert="medium"><placeName>Rückingen</placeName>
-<trait type="art"><desc>Kastell</desc></trait>
-<idno type="iDAI-Gazetteer">2180532</idno>
-<location><geo>50.15791 8.98867</geo></location>
-</place>
 <place xml:id="plcN_ruffenhofen" type="ner" cert="medium"><placeName>Ruffenhofen</placeName>
 <trait type="art"><desc>Ort</desc></trait>
 <idno type="iDAI-Gazetteer">2046752</idno>
@@ -5156,11 +5077,6 @@
 </place>
 <place xml:id="plcN_wallbachmuhle" type="ner" cert="low"><placeName>Wallbachmühle</placeName>
 <trait type="art"><desc>Ort</desc></trait>
-</place>
-<place xml:id="plcN_walldurn" type="ner" cert="medium"><placeName>Walldürn</placeName>
-<trait type="art"><desc>Ort</desc></trait>
-<idno type="iDAI-Gazetteer">2045869</idno>
-<location><geo>49.58358 9.36642</geo></location>
 </place>
 <place xml:id="plcN_wasseralfingen" type="ner" cert="medium"><placeName>Wasseralfingen</placeName>
 <trait type="art"><desc>Ort</desc></trait>

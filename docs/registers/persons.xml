@@ -4,13 +4,83 @@
 <publicationStmt><availability status="free"><licence target="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</licence></availability></publicationStmt>
 <sourceDesc><p>Generiert aus dem RLK-Vault-Frontmatter (Personen/); Normdaten GND/Wikidata.</p></sourceDesc>
 </fileDesc></teiHeader><standOff><listPerson>
+<person xml:id="p_adolf_mettler">
+<persName>Adolf Mettler</persName>
+<persName type="alias">Mettler</persName>
+<birth when="1865"/>
+<death when="1938"/>
+<occupation>Württembergischer Pfarrer und Archäologe; RLK-Bearbeiter zahlreicher Kastelle am raetischen und Neckar-Odenwald-Limes (Aalen, Köngen, Cannstatt, Walheim)</occupation>
+<idno type="GND">116955457</idno>
+<idno type="Wikidata">Q55674935</idno>
+<residence>Württemberg (Gaildorf, Stuttgart)</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116955457.html</idno>
+</person>
+<person xml:id="p_adolf_von_harnack">
+<persName>Adolf von Harnack</persName>
+<persName type="alias">Adolf Harnack</persName>
+<persName type="alias">Carl Gustav Adolf von Harnack</persName>
+<birth when="1851"/>
+<death when="1930"/>
+<occupation>Kirchenhistoriker und Wissenschaftsorganisator; Theoretiker des ‚Großbetriebs der Wissenschaft</occupation>
+<idno type="GND">118546058</idno>
+<idno type="Wikidata">Q164699</idno>
+<residence>Berlin</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Adolf%20Harnack.jpg?width=400</idno>
+</person>
+<person xml:id="p_andreas_buchner">
+<persName>Andreas Buchner</persName>
+<birth when="1776"/>
+<death when="1854"/>
+<occupation>Regensburger Geschichtsprofessor; löste die Frage des Limesknicks bei Lorch</occupation>
+<idno type="GND">138305277</idno>
+<idno type="Wikidata">Q496426</idno>
+<residence>Regensburg</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Andreas%20Buchner.jpg?width=400</idno>
+</person>
+<person xml:id="p_august_boeckh">
+<persName>August Boeckh</persName>
+<persName type="alias">August Böckh</persName>
+<persName type="alias">Philipp August Böckh</persName>
+<birth when="1785"/>
+<death when="1867"/>
+<occupation>Begründer des akademischen Inschriften-Korpus (CIG); methodischer Ahne von Mommsens Großforschung</occupation>
+<idno type="GND">118808850</idno>
+<idno type="Wikidata">Q63183</idno>
+<residence>Berlin</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Philipp%20August%20B%C3%B6ckh%20-%20Imagines%20philologorum.jpg?width=400</idno>
+</person>
+<person xml:id="p_barthold_georg_niebuhr">
+<persName>Barthold Georg Niebuhr</persName>
+<persName type="alias">B. G. Niebuhr</persName>
+<birth when="1776"/>
+<death when="1831"/>
+<occupation>Begründer der quellenkritischen Altertumswissenschaft</occupation>
+<idno type="GND">118587773</idno>
+<idno type="Wikidata">Q60586</idno>
+<residence>Berlin / Bonn / Rom</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Barthold%20Georg%20Niebuhr.jpg?width=400</idno>
+</person>
+<person xml:id="p_carl_immanuel_gerhardt">
+<persName>Carl Immanuel Gerhardt</persName>
+<persName type="alias">C. I. Gerhardt</persName>
+<persName type="alias">Karl Immanuel Gerhardt</persName>
+<birth when="1816"/>
+<death when="1899"/>
+<occupation>Herausgeber von Leibniz' mathematischen und philosophischen Schriften</occupation>
+<idno type="GND">116571411</idno>
+<idno type="Wikidata">Q1038962</idno>
+<residence>Eisleben / Halle</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Carl%20Immanuel%20Gerhardt.jpg?width=400</idno>
+</person>
 <person xml:id="p_carl_schuchhardt">
 <persName>Carl Schuchhardt</persName>
 <birth when="1859"/>
 <death when="1943"/>
 <occupation>Archäologe</occupation>
 <idno type="GND">120459930</idno>
+<idno type="Wikidata">Q68273</idno>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd120459930.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/3117/view</idno>
 <note type="nachlass">Stadtarchiv Hannover</note>
 </person>
 <person xml:id="p_christian_ernst_hanelmann">
@@ -29,13 +99,29 @@
 <note type="briefe" n="4/4"/>
 <note type="nachlass">Münchner Stadtbibliothek / Monacensia</note>
 </person>
+<person xml:id="p_christian_hammerle">
+<persName>Christian Hämmerle</persName>
+<persName type="alias">Hämmerle</persName>
+<persName type="alias">Christian Gottfried Hämmerle</persName>
+<birth when="1843"/>
+<death when="1916"/>
+<occupation>Streckenkommissar der RLK in der Gründungsphase (Württemberg); leitete 1892 die Kastellgrabung Murrhardt und verfasste die ORL-Lieferung Abt. B Nr. 44</occupation>
+<idno type="GND">119127008</idno>
+<idno type="Wikidata">Q1080381</idno>
+<residence>Backnang, Murrhardt (Württemberg)</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd119127008.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/18162/view</idno>
+</person>
 <person xml:id="p_eduard_anthes">
 <persName>Eduard Anthes</persName>
 <birth when="1859"/>
 <death when="1922"/>
 <occupation>Prähistoriker</occupation>
 <idno type="GND">116312696</idno>
+<idno type="Wikidata">Q1287915</idno>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116312696.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/16966/view</idno>
+<note type="nachlass">Korrespondenzakte der RGK-Altregistratur (iDAI.archives, DAI-RGK-A 306)</note>
 </person>
 <person xml:id="p_eduard_paulus">
 <persName>Eduard Paulus</persName>
@@ -54,6 +140,40 @@
 <note type="briefe" n="307/525"/>
 <note type="nachlass">Deutsches Literaturarchiv Marbach, Archiv</note>
 </person>
+<person xml:id="p_elias_neuhof">
+<persName>Elias Neuhof</persName>
+<birth when="1724"/>
+<death when="1799"/>
+<occupation>Homburgischer Regierungsrat; erkannte als Erster die Saalburg als römisch</occupation>
+<idno type="GND">130672807</idno>
+<idno type="Wikidata">Q55913624</idno>
+<residence>Bad Homburg vor der Höhe</residence>
+</person>
+<person xml:id="p_elly_viola_nahmmacher">
+<persName>Elly-Viola Nahmmacher</persName>
+<persName type="alias">Nahmmacher</persName>
+<persName type="alias">Elly-Viola Müller</persName>
+<birth when="1913"/>
+<death when="2000"/>
+<occupation>Assistentin von Ernst Fabricius bei der RLK (1934–1937); ordnete das Limesarchiv und wickelte seinen Transport nach Frankfurt (1937) ab; ORL-Zeichnerin</occupation>
+<idno type="GND">118814001</idno>
+<idno type="Wikidata">Q1332607</idno>
+<residence>Freiburg im Breisgau; Saalburg; Mainz</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd118814001.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/58519/view</idno>
+</person>
+<person xml:id="p_emil_hubner">
+<persName>Emil Hübner</persName>
+<persName type="alias">Ernst Willibald Emil Hübner</persName>
+<persName type="alias">Emil Huebner</persName>
+<birth when="1834"/>
+<death when="1901"/>
+<occupation>Epigraphiker; Bearbeiter des CIL VII (Britannien); Vermittler zwischen britischer und deutscher Limesforschung</occupation>
+<idno type="GND">117037486</idno>
+<idno type="Wikidata">Q68483</idno>
+<residence>Berlin</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Emil%20H%C3%BCbner.jpg?width=400</idno>
+</person>
 <person xml:id="p_emil_ritterling">
 <persName>Emil Ritterling</persName>
 <persName type="alias">Ernst Ritterling</persName>
@@ -69,6 +189,18 @@
 <idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/3097/view</idno>
 <idno type="Kalliope">116573589</idno>
 <note type="briefe" n="12/0"/>
+<note type="nachlass">Archiv der Römisch-Germanischen Kommission (RGK)</note>
+</person>
+<person xml:id="p_eric_birley">
+<persName>Eric Birley</persName>
+<persName type="alias">Eric Barff Birley</persName>
+<birth when="1906"/>
+<death when="1995"/>
+<occupation>Erforscher der römischen Grenzen; Wegbereiter des Internationalen Limeskongresses</occupation>
+<idno type="GND">116191902</idno>
+<idno type="Wikidata">Q5386141</idno>
+<residence>Durham</residence>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/17260/view</idno>
 </person>
 <person xml:id="p_ernst_fabricius">
 <persName>Ernst Fabricius</persName>
@@ -83,6 +215,7 @@
 <idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/12108/view</idno>
 <idno type="Kalliope">116369957</idno>
 <note type="briefe" n="52/2"/>
+<note type="nachlass">Archiv der Römisch-Germanischen Kommission (RGK)</note>
 </person>
 <person xml:id="p_ernst_wagner">
 <persName>Ernst Wagner</persName>
@@ -115,6 +248,20 @@
 <note type="briefe" n="25/8"/>
 <note type="nachlass">Deutsches Literaturarchiv Marbach, Archiv</note>
 </person>
+<person xml:id="p_eugen_nagele">
+<persName>Eugen Nägele</persName>
+<persName type="alias">Naegele</persName>
+<persName type="alias">Nägele</persName>
+<birth when="1856"/>
+<death when="1937"/>
+<occupation>1895 von der RLK zum Streckenkommissar auf württembergischem Boden berufen; württembergischer Gymnasialprofessor und Albvereins-Vorsitzender — Musterfall des Rekrutierungspools ‚höherer Lehrerstand + Vereinsanbindung‘</occupation>
+<idno type="GND">101044917</idno>
+<idno type="Wikidata">Q1372800</idno>
+<residence>Tübingen; württembergische Limesstrecke (Alblimes, Neckarlinie)</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd101044917.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/18156/view</idno>
+<note type="nachlass">Korrespondenz im RGK-Archiv (iDAI.archives, DAI-RGK-A 80: Briefwechsel mit Friedrich Drexel, 1928)</note>
+</person>
 <person xml:id="p_felix_hettner">
 <persName>Felix Hettner</persName>
 <birth when="1851"/>
@@ -128,6 +275,53 @@
 <idno type="Kalliope">116779209</idno>
 <note type="briefe" n="66/8"/>
 <note type="nachlass">Universitäts- und Landesbibliothek Bonn</note>
+</person>
+<person xml:id="p_francis_haverfield">
+<persName>Francis Haverfield</persName>
+<persName type="alias">Francis John Haverfield</persName>
+<birth when="1860"/>
+<death when="1919"/>
+<occupation>Begründer der romano-britischen Archäologie; zentraler britischer Ansprechpartner der RLK vor 1914</occupation>
+<idno type="GND">116550325</idno>
+<idno type="Wikidata">Q1441580</idno>
+<residence>Oxford</residence>
+</person>
+<person xml:id="p_franz_i_zu_erbach_erbach">
+<persName>Franz I. zu Erbach-Erbach</persName>
+<persName type="alias">Franz I. (Erbach-Erbach)</persName>
+<persName type="alias">Graf Franz zu Erbach-Erbach</persName>
+<birth when="1754"/>
+<death when="1823"/>
+<occupation>Standesherr; Erforscher und Rekonstrukteur des Odenwaldlimes</occupation>
+<idno type="GND">118879286</idno>
+<idno type="Wikidata">Q115150</idno>
+<residence>Erbach (Odenwald)</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Franz%20graf%20erbach.JPG?width=400</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/17696/view</idno>
+</person>
+<person xml:id="p_franz_oelmann">
+<persName>Franz Oelmann</persName>
+<persName type="alias">Oelmann</persName>
+<birth when="1883"/>
+<death when="1963"/>
+<occupation>Bearbeiter der Niederbieber-Keramik (1914) — der keramische Fundapparat zu Ritterlings ORL-Kastell 1a; RGK-Mitglied 1931–1940, ab 1930 Direktor des Rheinischen Landesmuseums Bonn</occupation>
+<idno type="GND">117104930</idno>
+<idno type="Wikidata">Q1310489</idno>
+<residence>Bonn (Rheinisches Landesmuseum); Freiburg (RLK)</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd117104930.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/24248/view</idno>
+<note type="nachlass">Korrespondenzakten der RGK-Altregistratur (iDAI.archives, DAI-RGK-A 969 u. a.)</note>
+</person>
+<person xml:id="p_frederick_gerald_simpson">
+<persName>Frederick Gerald Simpson</persName>
+<persName type="alias">F. G. Simpson</persName>
+<persName type="alias">Frank Gerald Simpson</persName>
+<birth when="1882"/>
+<death when="1955"/>
+<occupation>Hadrianswall-Ausgräber; Gastgeber von Fabricius' Besuch 1928</occupation>
+<idno type="GND">173801056</idno>
+<idno type="Wikidata">Q94532439</idno>
+<residence>Nordengland</residence>
 </person>
 <person xml:id="p_friedrich_althoff">
 <persName>Friedrich Althoff</persName>
@@ -156,6 +350,19 @@
 <idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/17163/view</idno>
 <idno type="Kalliope">116219866</idno>
 <note type="briefe" n="41/1"/>
+<note type="nachlass">Römisch-Germanische Kommission (RGK-Archiv, iDAI.archives)</note>
+</person>
+<person xml:id="p_friedrich_gustav_habel">
+<persName>Friedrich Gustav Habel</persName>
+<persName type="alias">F. G. Habel</persName>
+<birth when="1792"/>
+<death when="1867"/>
+<occupation>Wiesbadener Archivar; Vorsitzender der Limes-Kommission von 1852</occupation>
+<idno type="GND">118977954</idno>
+<idno type="Wikidata">Q1459410</idno>
+<residence>Wiesbaden</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Friedrich%20Gustav%20Habel.jpg?width=400</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/18211/view</idno>
 </person>
 <person xml:id="p_friedrich_kofler">
 <persName>Friedrich Kofler</persName>
@@ -165,29 +372,49 @@
 <occupation>Hessischer Streckenkommissar der Reichs-Limeskommission</occupation>
 <idno type="GND">117530824</idno>
 <idno type="Wikidata">Q1460478</idno>
-<residence>Bad Homburg / Hessen</residence>
+<residence>Darmstadt (Großherzogtum Hessen)</residence>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd117530824.html</idno>
 <idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/17591/view</idno>
 <idno type="Kalliope">117530824</idno>
 <note type="briefe" n="0/0"/>
+<note type="nachlass">Leibniz-Zentrum für Archäologie (LEIZA/RGZM), Mainz (Korrespondenz, LLA)</note>
 </person>
 <person xml:id="p_friedrich_leonhard">
 <persName>Friedrich Leonhard</persName>
 <persName type="alias">Fritz Leonhard</persName>
 <birth when="1857"/>
 <death when="1929"/>
-<occupation>ORL-Autor und Mitredaktor, Streckenbearbeiter für Bayern</occupation>
+<occupation>ORL-Autor und Mitredaktor; RLK-Streckenkommissar ab 1904; 'rechte Hand' von Fabricius in Freiburg</occupation>
 <idno type="GND">1012283615</idno>
-<residence>Bayern / Berlin</residence>
+<idno type="Wikidata">Q94827462</idno>
+<residence>Freiburg im Breisgau (Südbaden)</residence>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/22209/view</idno>
+<note type="nachlass">Korrespondenz (1918–1925) im RGK-Archiv (iDAI.archives, DAI-RGK-A 843 u. DAI-RGK-A 64); Personalakte HStA Stuttgart (J 191)</note>
 </person>
 <person xml:id="p_friedrich_ohlenschlager">
 <persName>Friedrich Ohlenschlager</persName>
 <birth when="1840"/>
 <death when="1916"/>
-<occupation>Klassischer Philologe</occupation>
+<occupation>RLK-Mitglied für Bayern; Erforscher des bayerischen Limes</occupation>
 <idno type="GND">117111368</idno>
+<idno type="Wikidata">Q30312508</idno>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd117111368.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/24742/view</idno>
 <note type="nachlass">Bayerische Staatsbibliothek</note>
+</person>
+<person xml:id="p_friedrich_winkelmann">
+<persName>Friedrich Winkelmann</persName>
+<persName type="alias">Winkelmann</persName>
+<persName type="alias">Friedrich Theodor Wilhelm Winkelmann</persName>
+<birth when="1852"/>
+<death when="1934"/>
+<occupation>Lokaler Streckenkommissar der RLK am Raetischen Limes (1892–1902); Gutsherr und autodidaktischer Ausgräber von Pfünz und Böhming, ORL-Autor</occupation>
+<idno type="GND">117414689</idno>
+<idno type="Wikidata">Q1463400</idno>
+<residence>Pfünz (Walting), Eichstätt (Mittelfranken); Frankfurt a. M. (RGK)</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd117414689.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/18152/view</idno>
+<note type="nachlass">Nachlass in der ehem. Staats- und Seminarbibliothek Eichstätt (Kalliope DE-611-BF-18901); Korrespondenzakte im RGK-Archiv (iDAI.archives, DAI-RGK-A 1305)</note>
 </person>
 <person xml:id="p_friedrich_zollmann">
 <persName>Friedrich Zollmann</persName>
@@ -202,13 +429,25 @@
 <idno type="Kalliope">130833568</idno>
 <note type="briefe" n="2/0"/>
 </person>
+<person xml:id="p_georg_heinrich_pertz">
+<persName>Georg Heinrich Pertz</persName>
+<birth when="1795"/>
+<death when="1876"/>
+<occupation>Langjähriger Leiter der Monumenta Germaniae Historica; Herausgeber von Leibniz' Werken</occupation>
+<idno type="GND">118592858</idno>
+<idno type="Wikidata">Q68383</idno>
+<residence>Hannover / Berlin</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Pertz%20Georg%20Heinrich.jpg?width=400</idno>
+</person>
 <person xml:id="p_georg_loeschcke">
 <persName>Georg Loeschcke</persName>
 <birth when="1852"/>
 <death when="1915"/>
 <occupation>Archäologe</occupation>
 <idno type="GND">117155896</idno>
+<idno type="Wikidata">Q73520</idno>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd117155896.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/3052/view</idno>
 <note type="nachlass">Universitäts- und Landesbibliothek Bonn</note>
 </person>
 <person xml:id="p_georg_wolff">
@@ -224,14 +463,76 @@
 <idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/17861/view</idno>
 <idno type="Kalliope">117440647</idno>
 <note type="briefe" n="5/0"/>
+<note type="nachlass">Korrespondenzakten der RGK-Altregistratur (iDAI.archives, DAI-RGK-A 1316, 38)</note>
+</person>
+<person xml:id="p_george_macdonald">
+<persName>George Macdonald</persName>
+<persName type="alias">Sir George Macdonald</persName>
+<birth when="1862"/>
+<death when="1940"/>
+<occupation>Erforscher des Antoninuswalls; schottischer Kontaktpartner von Ernst Fabricius</occupation>
+<idno type="GND">141262788</idno>
+<idno type="Wikidata">Q15994747</idno>
+<residence>Glasgow / Edinburgh</residence>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/22310/view</idno>
+</person>
+<person xml:id="p_gottfried_wilhelm_leibniz">
+<persName>Gottfried Wilhelm Leibniz</persName>
+<persName type="alias">Leibniz</persName>
+<persName type="alias">Gottfried Wilhelm von Leibniz</persName>
+<birth when="1646"/>
+<death when="1716"/>
+<occupation>Universalgelehrter; geistiger Schöpfer der Berliner Akademie; Quellensammler der Welfengeschichte</occupation>
+<idno type="GND">118571249</idno>
+<idno type="Wikidata">Q9047</idno>
+<residence>Hannover</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Christoph%20Bernhard%20Francke%20-%20Bildnis%20des%20Philosophen%20Leibniz%20%28ca.%201695%29.jpg?width=400</idno>
 </person>
 <person xml:id="p_gustav_sixt">
 <persName>Gustav Sixt</persName>
 <birth when="1856"/>
 <death when="1904"/>
-<occupation>Pädagoge</occupation>
+<occupation>Württembergischer Streckenkommissar der RLK (Abschnitt Jagsthausen–Welzheim)</occupation>
 <idno type="GND">10151106X</idno>
+<idno type="Wikidata">Q1238551</idno>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd10151106X.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/18154/view</idno>
+</person>
+<person xml:id="p_hans_delbruck">
+<persName>Hans Delbrück</persName>
+<birth when="1848"/>
+<death when="1929"/>
+<occupation>Historiker, Herausgeber der Preußischen Jahrbücher; gelehrtenpolitischer Partner Harnacks und Mommsens</occupation>
+<idno type="GND">118524518</idno>
+<idno type="Wikidata">Q76575</idno>
+<residence>Berlin</residence>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/9931/view</idno>
+</person>
+<person xml:id="p_hans_dragendorff">
+<persName>Hans Dragendorff</persName>
+<persName type="alias">Dragendorff</persName>
+<birth when="1870"/>
+<death when="1941"/>
+<occupation>Gründungsdirektor der Römisch-Germanischen Kommission (1902); Schöpfer der Terra-Sigillata-Typologie, auf der der ORL-Fundapparat ruht</occupation>
+<idno type="GND">11619443X</idno>
+<idno type="Wikidata">Q109287</idno>
+<residence>Römisch-Germanische Kommission, Frankfurt / Universität Freiburg</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd11619443X.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/2942/view</idno>
+</person>
+<person xml:id="p_hans_lehner">
+<persName>Hans Lehner</persName>
+<persName type="alias">Lehner</persName>
+<persName type="alias">Johannes Evangelist Franz Xaver Lehner</persName>
+<birth when="1865"/>
+<death when="1938"/>
+<occupation>Streckenkommissar der RLK im Taunus; Autor der ORL-Lieferung »Das Kastell Kemel« (Abt. B Nr. 7, 1901); Direktor des Provinzialmuseums Bonn</occupation>
+<idno type="GND">116874279</idno>
+<idno type="Wikidata">Q1581012</idno>
+<residence>Bonn, Trier, Wiesbaden, Taunus</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116874279.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/8090/view</idno>
+<note type="nachlass">Korrespondenzakte der RGK-Altregistratur (iDAI.archives, DAI-RGK-A 840; 1919–1938)</note>
 </person>
 <person xml:id="p_heinrich_eidam">
 <persName>Heinrich Eidam</persName>
@@ -246,6 +547,7 @@
 <idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/18163/view</idno>
 <idno type="Kalliope">117497908</idno>
 <note type="briefe" n="3/0"/>
+<note type="nachlass">Korrespondenz im RGK-Archiv (iDAI.archives, DAI-RGK-A 518: Korrespondenzakte 1929–1934; heute Leibniz-Zentrum für Archäologie)</note>
 </person>
 <person xml:id="p_heinrich_jacobi">
 <persName>Heinrich Jacobi</persName>
@@ -275,6 +577,15 @@
 <idno type="Kalliope">117022829</idno>
 <note type="briefe" n="95/0"/>
 </person>
+<person xml:id="p_heinrich_prescher">
+<persName>Heinrich Prescher</persName>
+<birth when="1749"/>
+<death when="1827"/>
+<occupation>Pfarrer in Gschwend; näherte sich dem tatsächlichen südlichen Limesverlauf an</occupation>
+<idno type="GND">115636579</idno>
+<idno type="Wikidata">Q1438669</idno>
+<residence>Gschwend (Ostalbkreis)</residence>
+</person>
 <person xml:id="p_heinrich_steimle">
 <persName>Heinrich Steimle</persName>
 <birth when="1846"/>
@@ -300,6 +611,18 @@
 <note type="briefe" n="617/7470"/>
 <note type="nachlass">Bayerische Staatsbibliothek</note>
 </person>
+<person xml:id="p_helmuth_von_moltke">
+<persName>Helmuth von Moltke</persName>
+<persName type="alias">Helmuth Karl Bernhard von Moltke</persName>
+<persName type="alias">Moltke der Ältere</persName>
+<persName type="alias">Feldmarschall v. Moltke</persName>
+<birth when="1800"/>
+<death when="1891"/>
+<occupation>Chef des Großen Generalstabs (1857–1888); Fürsprecher der frühen Limes-Anläufe, Gründer der Preußischen Landesaufnahme</occupation>
+<idno type="GND">118583387</idno>
+<idno type="Wikidata">Q44205</idno>
+<residence>Berlin (Großer Generalstab)</residence>
+</person>
 <person xml:id="p_johann_alexander_doderlein">
 <persName>Johann Alexander Döderlein</persName>
 <persName type="alias">Döderlein</persName>
@@ -313,6 +636,15 @@
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd121988511.html</idno>
 <idno type="Kalliope">121988511</idno>
 <note type="briefe" n="2/0"/>
+</person>
+<person xml:id="p_johann_michael_redenbacher">
+<persName>Johann Michael Redenbacher</persName>
+<birth when="1764"/>
+<death when="1816"/>
+<occupation>Schloßprediger in Pappenheim; entdeckte Limesanfang und Richtungswechsel — unpubliziert</occupation>
+<idno type="GND">116374403</idno>
+<idno type="Wikidata">Q55895510</idno>
+<residence>Pappenheim</residence>
 </person>
 <person xml:id="p_johannes_aventinus">
 <persName>Johannes Aventinus</persName>
@@ -329,11 +661,37 @@
 <idno type="Kalliope">11850522X</idno>
 <note type="briefe" n="15/0"/>
 </person>
+<person xml:id="p_john_collingwood_bruce">
+<persName>John Collingwood Bruce</persName>
+<persName type="alias">J. C. Bruce</persName>
+<persName type="alias">John Bruce</persName>
+<birth when="1805"/>
+<death when="1892"/>
+<occupation>Führende britische Autorität zum Hadrianswall im 19. Jahrhundert</occupation>
+<idno type="GND">105517334X</idno>
+<idno type="Wikidata">Q6226710</idno>
+<residence>Newcastle upon Tyne</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/J.%20Collingwood%20Bruce%201805-1892.jpg?width=400</idno>
+</person>
+<person xml:id="p_john_oxberry">
+<persName>John Oxberry</persName>
+<birth when="1857"/>
+<death when="1940"/>
+<occupation>Antiquar in Newcastle; Briefpartner von Ernst Fabricius</occupation>
+<residence>Newcastle upon Tyne</residence>
+</person>
+<person xml:id="p_josef_fink">
+<persName>Josef Fink</persName>
+<persName type="alias">Fink</persName>
+<occupation>Streckenkommissar der RLK am raetischen Limes (Raum Kösching, Bayern); Grabungsauftrag ab 1890</occupation>
+<residence>Kösching / raetischer Limes (Bayern)</residence>
+<state type="strecke"><label>raetischer Limes (Bayern)</label></state>
+</person>
 <person xml:id="p_karl_august_von_cohausen">
 <persName>Karl August von Cohausen</persName>
 <birth when="1812"/>
 <death when="1894"/>
-<occupation>Pionier der Limesforschung, preußisches RLK-Mitglied 1892</occupation>
+<occupation>Pionier der Limesforschung; aus Heidelberg 1890 ausgeschlossen, 1892 aber zur Berliner Gründungskonferenz einberufen — kein ständiges RLK-Mitglied</occupation>
 <idno type="GND">116627824</idno>
 <idno type="Wikidata">Q1730391</idno>
 <residence>Wiesbaden / Saalburg</residence>
@@ -348,10 +706,15 @@
 <persName>Karl Popp</persName>
 <persName type="alias">Karl von Popp</persName>
 <persName type="alias">Ritter von Popp</persName>
+<persName type="alias">Karl Ritter von Popp</persName>
 <birth when="1825"/>
 <death when="1905"/>
-<occupation>Bayerisches Mitglied im geschäftsführenden Ausschuss der RLK ab 1892</occupation>
+<occupation>Bayerisches Mitglied im geschäftsführenden Ausschuss der RLK ab 1892; unterlegener Mitbewerber um den militärischen Dirigenten-Posten</occupation>
+<idno type="GND">116268166</idno>
+<idno type="Wikidata">Q94897989</idno>
 <residence>Bayern / München</residence>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/40904/view</idno>
+<note type="nachlass">kein geschlossener Nachlass; Einzelbrief (1893), Signatur LLA 013/037</note>
 </person>
 <person xml:id="p_karl_schumacher">
 <persName>Karl Schumacher</persName>
@@ -368,6 +731,18 @@
 <note type="briefe" n="19/13"/>
 <note type="nachlass">Universitätsbibliothek Heidelberg</note>
 </person>
+<person xml:id="p_karl_wilhelmi">
+<persName>Karl Wilhelmi</persName>
+<persName type="alias">Carl Wilhelmi</persName>
+<birth when="1786"/>
+<death when="1857"/>
+<occupation>Sinsheimer Pfarrer; Gründer der Sinsheimer Altertumsgesellschaft; grub das Kastell Osterburken</occupation>
+<idno type="GND">119031841</idno>
+<idno type="Wikidata">Q1733444</idno>
+<residence>Sinsheim</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Karl-wilhelmi.jpg?width=400</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/40534/view</idno>
+</person>
 <person xml:id="p_karl_zangemeister">
 <persName>Karl Zangemeister</persName>
 <birth when="1837"/>
@@ -383,13 +758,39 @@
 <note type="briefe" n="205/94"/>
 <note type="nachlass">Universitätsbibliothek Heidelberg</note>
 </person>
+<person xml:id="p_karl_von_veith">
+<persName>Karl von Veith</persName>
+<persName type="alias">Carl von Veith</persName>
+<persName type="alias">Karl Johann von Veith</persName>
+<birth when="1818"/>
+<death when="1892"/>
+<occupation>Generalmajor; Vertreter des preußischen Generalstabs bei der Gründung der RLK</occupation>
+<idno type="GND">101423837</idno>
+<idno type="Wikidata">Q65682898</idno>
+<residence>Bonn (ab 1874); zuvor preußischer Generalstab</residence>
+<note type="nachlass">kein geschlossener Gelehrten-Nachlass; annotierte Fachbibliothek (~200 Bde., mit eigenhändigen Randbemerkungen/Kartenskizzen) als Vermächtnis an den Verein von Altertumsfreunden im Rheinlande (Bonn); Briefe im Nachlass Anton Birlinger (WLB Stuttgart)</note>
+</person>
 <person xml:id="p_konrad_miller">
 <persName>Konrad Miller</persName>
 <birth when="1844"/>
 <death when="1933"/>
 <occupation>Kartograf</occupation>
 <idno type="GND">117043486</idno>
+<idno type="Wikidata">Q108512</idno>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd117043486.html</idno>
+</person>
+<person xml:id="p_kurt_stade">
+<persName>Kurt Stade</persName>
+<persName type="alias">Stade</persName>
+<birth when="1899"/>
+<death when="1971"/>
+<occupation>Assistent der RLK (1928–1929) und Zweiter Direktor der RGK (1935–1937); Althistoriker</occupation>
+<idno type="GND">11719493X</idno>
+<idno type="Wikidata">Q1684899</idno>
+<residence>Freiburg im Breisgau, Frankfurt am Main, Gießen, Königsberg, Münster</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd11719493X.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/19250/view</idno>
+<note type="nachlass">Korrespondenz im RGK-Archiv (iDAI.archives, DAI-RGK-A 1183, 2620, 2045, 80, 873)</note>
 </person>
 <person xml:id="p_louis_jacobi">
 <persName>Louis Jacobi</persName>
@@ -411,13 +812,16 @@
 <persName>Ludwig Pallat</persName>
 <birth when="1867"/>
 <death when="1946"/>
-<occupation>Archäologe</occupation>
+<occupation>Streckenkommissar Wiesbaden der RLK; später preußischer Bildungsreformer</occupation>
 <idno type="GND">118739042</idno>
+<idno type="Wikidata">Q1874849</idno>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd118739042.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/18155/view</idno>
 <note type="nachlass">Niedersächsische Staats- und Universitätsbibliothek Göttingen</note>
 </person>
 <person xml:id="p_oscar_von_sarwey">
 <persName>Oscar von Sarwey</persName>
+<persName type="alias">Oskar von Sarwey</persName>
 <birth when="1837"/>
 <death when="1912"/>
 <occupation>Militärischer Dirigent der RLK ab 1892; Mitherausgeber des ORL</occupation>
@@ -427,6 +831,20 @@
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd116810068.html</idno>
 <idno type="Kalliope">116810068</idno>
 <note type="briefe" n="5/1"/>
+<note type="nachlass">kein geschlossener Gelehrten-Nachlass; württ. Militärpersonalakten (HStA Stuttgart M 430/1 Bü 2292, M 744 Bü 1; StA Sigmaringen FAS DS 169 T 1 Nr. 106–107), Einzelbriefe in fremden Nachlässen (Kalliope)</note>
+</person>
+<person xml:id="p_otto_dahm">
+<persName>Otto Dahm</persName>
+<persName type="alias">Leopold Otto Dahm</persName>
+<persName type="alias">Dahm</persName>
+<birth when="1844"/>
+<death when="1908"/>
+<occupation>Streckenkommissar der RLK am Westerwald-/Lahn-Limes (Höhr–Langenschwalbach) und ORL-Autor (Kastelle Niederberg u. Arzbach); a. D.-Artillerieoffizier aus dem Statuts-Offizierspool</occupation>
+<idno type="GND">1224633164</idno>
+<idno type="Wikidata">Q15990407</idno>
+<residence>Hanau, Westerwald/Lahn-Limes, Taunus</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd1224633164.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/18164/view</idno>
 </person>
 <person xml:id="p_otto_von_bismarck">
 <persName>Otto von Bismarck</persName>
@@ -443,6 +861,19 @@
 <idno type="Kalliope">11851136X</idno>
 <note type="briefe" n="305/84"/>
 </person>
+<person xml:id="p_paul_wilski">
+<persName>Paul Wilski</persName>
+<persName type="alias">Wilski</persName>
+<birth when="1868"/>
+<death when="1939"/>
+<occupation>Geodät/Markscheider; lieferte als professioneller Vermesser die trigonometrisch-topographische Bauaufnahme für den ORL (Kastell Urspring, Nr. 66a) — die zivil-technische Seite des Limes als Vermessungsproblem</occupation>
+<idno type="GND">117396508</idno>
+<idno type="Wikidata">Q2063156</idno>
+<residence>Danzig, Bonn-Poppelsdorf, Freiberg, Aachen; Thera (Santorin)</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd117396508.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/18023/view</idno>
+<note type="nachlass">Überlieferung im RGK-Archiv (iDAI.archives, DE-DAI-RGK-A 0027)</note>
+</person>
 <person xml:id="p_robert_bodewig">
 <persName>Robert Bodewig</persName>
 <persName type="alias">Bodewig</persName>
@@ -453,14 +884,27 @@
 <idno type="Wikidata">Q1557997</idno>
 <residence>Lahnstein, Koblenz-Region</residence>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd120260948.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/18166/view</idno>
 <idno type="Kalliope">120260948</idno>
 <note type="briefe" n="0/0"/>
+</person>
+<person xml:id="p_robin_george_collingwood">
+<persName>Robin George Collingwood</persName>
+<persName type="alias">R. G. Collingwood</persName>
+<persName type="alias">Robin Collingwood</persName>
+<birth when="1889"/>
+<death when="1943"/>
+<occupation>Hadrianswall-Forscher und Philosoph; Kontaktpartner von Ernst Fabricius in den 1920er-Jahren</occupation>
+<idno type="GND">118676636</idno>
+<idno type="Wikidata">Q317075</idno>
+<residence>Oxford</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Robin%20G.%20Collingwood.jpg?width=400</idno>
 </person>
 <person xml:id="p_rudolf_virchow">
 <persName>Rudolf Virchow</persName>
 <birth when="1821"/>
 <death when="1902"/>
-<occupation>Parlamentarischer Fürsprecher der RLK-Finanzierung 1892</occupation>
+<occupation>Parlamentarischer Fürsprecher der RLK-Finanzierung 1892; Organisator der deutschen Anthropologie/Urgeschichte (DGAEU/BGAEU)</occupation>
 <idno type="GND">118627198</idno>
 <idno type="Wikidata">Q76432</idno>
 <residence>Berlin</residence>
@@ -470,6 +914,29 @@
 <idno type="Kalliope">118627198</idno>
 <note type="briefe" n="183/20"/>
 <note type="nachlass">Staatsbibliothek zu Berlin. Handschriftenabteilung</note>
+</person>
+<person xml:id="p_simon_studion">
+<persName>Simon Studion</persName>
+<birth when="1543"/>
+<death when="1605"/>
+<occupation>Vater der römischen Altertumskunde und -pflege in Württemberg</occupation>
+<idno type="GND">117354287</idno>
+<idno type="Wikidata">Q2287830</idno>
+<residence>Marbach am Neckar</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Simon%20Studion%2C%20016.jpg?width=400</idno>
+</person>
+<person xml:id="p_stanislaus_von_leszczynski">
+<persName>Stanislaus von Leszczynski</persName>
+<persName type="alias">Friedrich Wilhelm von Leszczynski</persName>
+<persName type="alias">Major von Leszczynski</persName>
+<persName type="alias">v. Leszczynski</persName>
+<persName type="alias">Friedrich Wilhelm Stanislaus von Leszczynski</persName>
+<birth when="1842"/>
+<death when="1932"/>
+<occupation>Preußischer Generalstabs-Delegierter der RLK-Gründung (1890/92); Inhaber des militärischen Kommissionssitzes bis ~1905</occupation>
+<idno type="Wikidata">Q87743572</idno>
+<residence>Berlin (Großer Generalstab)</residence>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/87006/view</idno>
 </person>
 <person xml:id="p_suzana_matesic">
 <persName>Suzana Matešić</persName>
@@ -499,6 +966,16 @@
 <note type="briefe" n="2073/1096"/>
 <note type="nachlass">Deutsches Literaturarchiv Marbach, Archiv</note>
 </person>
+<person xml:id="p_thomas_hodgkin">
+<persName>Thomas Hodgkin</persName>
+<birth when="1831"/>
+<death when="1913"/>
+<occupation>Historiker; früher Vermittler des deutschen Limes an britische Antiquare</occupation>
+<idno type="GND">117525650</idno>
+<idno type="Wikidata">Q3990642</idno>
+<residence>Newcastle upon Tyne</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Hodgkin%20%281831%E2%80%931913%29.jpg?width=400</idno>
+</person>
 <person xml:id="p_udo_recker">
 <persName>Udo Recker</persName>
 <persName type="alias">Recker</persName>
@@ -510,6 +987,21 @@
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd1136592598.html</idno>
 <idno type="Kalliope">1136592598</idno>
 <note type="briefe" n="0/0"/>
+</person>
+<person xml:id="p_walther_barthel">
+<persName>Walther Barthel</persName>
+<persName type="alias">Barthel</persName>
+<persName type="alias">Walter Barthel</persName>
+<persName type="alias">W. Barthel</persName>
+<persName type="alias">Eduard Walther Barthel</persName>
+<birth when="1880"/>
+<death when="1915"/>
+<occupation>Wissenschaftlicher Assistent der RLK (ab 1911); Kleinfundbearbeiter der ORL-Lieferung Zugmantel; später Direktor der Römisch-Germanischen Kommission (1914)</occupation>
+<idno type="GND">1025064259</idno>
+<idno type="Wikidata">Q1666267</idno>
+<residence>Frankfurt am Main; Zugmantel (Taunus)</residence>
+<idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd1025064259.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/12857/view</idno>
 </person>
 <person xml:id="p_wilhelm_conrady">
 <persName>Wilhelm Conrady</persName>
@@ -531,7 +1023,9 @@
 <death when="1898"/>
 <occupation>Archäologe</occupation>
 <idno type="GND">120633116</idno>
+<idno type="Wikidata">Q2573711</idno>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd120633116.html</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/18157/view</idno>
 </person>
 <person xml:id="p_wilhelm_oechelhauser">
 <persName>Wilhelm Oechelhäuser</persName>
@@ -546,6 +1040,18 @@
 <idno type="Kalliope">118735977</idno>
 <note type="briefe" n="31/1"/>
 </person>
+<person xml:id="p_wilhelm_schleiermacher">
+<persName>Wilhelm Schleiermacher</persName>
+<persName type="alias">W. Schleiermacher</persName>
+<birth when="1904"/>
+<death when="1977"/>
+<occupation>RLK-Assistent (ab 1931), Saalburg-Leiter (1935–38), Zweiter Direktor der RGK (1938–66)</occupation>
+<idno type="GND">117323675</idno>
+<idno type="Wikidata">Q22693777</idno>
+<residence>Saalburg / Frankfurt (RGK)</residence>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/19236/view</idno>
+<note type="nachlass">RGK-Archiv (iDAI.archives, DAI-RGK-A 1137, DAI-RGK-A 1993, DAI-RGK-A 870, DAI-RGK-A 873)</note>
+</person>
 <person xml:id="p_wilhelm_soldan">
 <persName>Wilhelm Soldan</persName>
 <birth when="1842"/>
@@ -558,5 +1064,17 @@
 <idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/38298/view</idno>
 <idno type="Kalliope">136159877</idno>
 <note type="briefe" n="0/0"/>
+<note type="nachlass">Unterlagen/Korrespondenz aus dem RGZM-Gesamtvorstand im Archiv des Leibniz-Zentrums für Archäologie (vormals RGZM), Signatur LLJ</note>
+</person>
+<person xml:id="p_wolfgang_helbig">
+<persName>Wolfgang Helbig</persName>
+<birth when="1839"/>
+<death when="1915"/>
+<occupation>Klassischer Archäologe; Zweiter Sekretar des Archäologischen Instituts in Rom; 34-jähriger Briefpartner Mommsens</occupation>
+<idno type="GND">118710036</idno>
+<idno type="Wikidata">Q70423</idno>
+<residence>Rom</residence>
+<idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Wolfgang%20Helbig.jpg?width=400</idno>
+<idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/12604/view</idno>
 </person>
 </listPerson></standOff></TEI>
