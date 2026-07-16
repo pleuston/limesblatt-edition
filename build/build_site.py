@@ -221,6 +221,7 @@ def page(title, body, depth=0, head=""):
 <li><a href="{up}register/inschriften.html">Inschriften</a></li>
 <li><a href="{up}register/namen.html">Namen im Text</a></li>
 <li><a href="{up}register/orte-index.html">Orte im Text</a></li>
+<li><a href="{up}register/ortsnamen.html">Ortsnamen antik/modern</a></li>
 <li><a href="{up}register/bibliographie.html">Bibliographie</a></li>
 <li><a href="{up}register/jahresberichte.html">RLK-Jahresberichte</a></li></ul></li>
 <li class="has"><a href="{up}register/orl.html">ORL</a><ul>
@@ -578,11 +579,12 @@ IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen
 <li><a href="register/bibliographie.html">Bibliographie &amp; Quellen</a> — die zitierten Werke, aufgelöst zu vollen Referenzen + Open-Access-Digitalisaten (UB Heidelberg u. a.)</li>
 <li><a href="register/namen.html">Namen im Limesblatt</a> — vollständiges Namenregister aus dem Volltext (NER); jeder Name ist im Lesetext angeklickt verlinkt</li>
 <li><a href="register/orte-index.html">Orte im Limesblatt</a> — vollständiges Ortsregister aus dem Volltext (NER), im Lesetext verlinkt</li>
+<li><a href="register/ortsnamen.html">Ortsnamen antik/modern</a> — der Crosswalk: warum „Nida" im Feldbericht 0 Treffer hat und „Heddernheim" 65</li>
 <li><a href="register/wortschatz.html">Textanalyse</a> — diachroner Wortschatz, ORL-Gegenprobe, Münzkaiser-Chronologie, Truppen, Zitate, OCR-Qualität + KWIC-Konkordanz</li></ul>
 <h2>ORL — die Endpublikation</h2>
 <p class="meta">Das Standardwerk, in das das Limesblatt mündete, token-frei über HathiTrust erschlossen.</p>
-<ul><li><a href="register/orl.html">ORL-Bandindex</a> — Abteilung A (Strecken) + B (Kastell-Lieferungen) mit Seitenzahl, Charakteristik, Sigillata-Score und Vorbericht-Verweisen</li>
-<li><a href="register/orl-register.html">ORL-Gesamtapparat</a> — Personen- &amp; Ortsregister über alle Bände, Terra-Sigillata-Apparat, Vorbericht→ORL-Konkordanz</li>
+<ul><li><a href="register/orl.html">ORL-Bandindex</a> — Abteilung A (Strecken) + B (Kastell-Lieferungen) mit belegter Lieferung, Bearbeiter und Vorbericht-Verweisen</li>
+<li><a href="register/orl-register.html">ORL-Gesamtapparat</a> — Personen- &amp; Ortsregister über alle Bände, Vorbericht→ORL-Konkordanz</li>
 <li><a href="register/hathitrust.html">HathiTrust — Werkzeuge &amp; Ertrag</a> — wie der ORL token-frei und nicht-konsumtiv erschlossen wurde (Workset · Extracted Features · NER · Data Capsule)</li></ul>
 <p class="meta">→ <a href="dokumentation.html"><b>Dokumentation</b></a>: was auf dieser Website steht, wie wir an die Daten kamen und was sie sagen.</p>
 <p class="meta">Abgeleitet aus dem (privaten) Forschungs-Vault zur <a href="https://github.com/pleuston/limes">Reichs-Limeskommission</a>.
@@ -1128,32 +1130,49 @@ def inscriptions_page(edh):
             + "".join(secs))
 
 
-def orl_page(idx, lex):
+def orl_page(idx, lex, bli=None):
+    # bli = orl_band_lieferung.json — der GEPRÜFTE Index. Alles Scan-Abgeleitete (Seitenzahl, EF-Profil,
+    # Sigillata-Score, Cross-Work) hing an orl_index.htid, und die Zuordnung war für 30 Bände falsch:
+    # die HathiTrust-enumcron „v. N" ist die LIEFERUNG, nicht die Kastell-Nr. Diese Spalten sind daher
+    # entfernt; an ihre Stelle tritt die belegte Lieferung. Details: Vault-Notiz „ORL-Index Band, Lieferung, Kastell".
+    bli = bli or {}
+    lfg_ok = bli.get("kastell_nr_zu_lieferung") or {}
+    htid_ok = bli.get("kastell_nr_zu_htids") or {}
     a = idx.get("abteilung_A_strecken", []); b = idx.get("abteilung_B_kastelle", []); c = idx.get("counts", {})
-    nef = sum(1 for r in b if r.get("pages")); nner = sum(1 for r in b if r.get("schicht_c", {}).get("ner_terms"))
+    n_lfg = sum(1 for r in b if lfg_ok.get(r["nr"]))
+    n_scharf = sum(1 for r in b if lfg_ok.get(r["nr"]) and "-" not in str(lfg_ok[r["nr"]].get("lieferung", "")))
     arows = "".join(f'<tr id="orl-a-{s.get("strecke","")}"><td>{s.get("strecke","")}</td><td>{html.escape(s.get("verlauf",""))}</td>'
                     f'<td>{html.escape(s.get("region",""))}</td></tr>' for s in a)
+    QUELLE = {"merten": "Merten 2002", "bibliographie": "Bibliographie des Jahrbuchs",
+              "jahresbericht": "RLK-Jahresbericht"}
     def brow(r):
-        sc = r.get("schicht_c", {})
-        pages = (f'{r["schicht_b"]["pages"]} S.' if r.get("schicht_b")
-                 else (f'{r["pages"]} S.' if r.get("pages") else '—'))
-        dg = f' <a href="{html.escape(r["digitalisat"])}" title="Volltext (archive.org)">▣</a>' if r.get("digitalisat") else ''
-        prof = ", ".join(sc.get("profile", [])[:4])
-        bearb = ", ".join(html.escape(x) for x in r.get("bearbeiter", []))
+        lf = lfg_ok.get(r["nr"]) or {}
+        # Bearbeiter: der Lieferungsindex ist die bessere Quelle (55/55 belegt, aus Merten 2002 /
+        # Bibliographie des Jahrbuchs / RLK-Jahresbericht) — orl_index hat nur 13/92.
+        bearb = (html.escape(lf.get("bearbeiter") or "")
+                 or ", ".join(html.escape(x) for x in r.get("bearbeiter", [])))
+        if lf:
+            span = "-" in str(lf.get("lieferung", ""))
+            q = QUELLE.get(lf.get("quelle"), "?")
+            lfg = (f'<b>{html.escape(str(lf["lieferung"]))}</b>'
+                   f'{"" if span else ""}<span class="lc"> ({html.escape(str(lf.get("jahr") or "?"))})</span>')
+            hint = f'{q}{" · nur Spanne" if span else ""}'
+            lfgc = f'<td>{lfg}</td><td class="meta">{html.escape(hint)}</td>'
+        else:
+            lfgc = '<td>—</td><td class="meta">nicht belegt</td>'
         lk = []
         if r.get("wiki"):
             lk.append(f'<a href="https://de.wikipedia.org/wiki/{urllib.parse.quote(r["wiki"].replace(" ", "_"))}" title="Wikipedia-Artikel">W</a>')
-        if r.get("htid"):
-            lk.append(f'<a href="https://hdl.handle.net/2027/{html.escape(r["htid"])}" title="Scan bei HathiTrust">HT</a>')
+        ht = (htid_ok.get(r["nr"]) or [None])[0]      # NUR der geprüfte Scan, nie orl_index.htid
+        if ht:
+            lk.append(f'<a href="https://hdl.handle.net/2027/{html.escape(ht)}" title="Geprüfter Scan bei HathiTrust">HT</a>')
         place = r.get("ort") or re.sub(r"^(Kastelle? von |Kleinkastell |Kastell )", "", r["kastell"])
         if place and not place.startswith("("):
             lk.append(f'<a href="https://de.wikisource.org/w/index.php?search={urllib.parse.quote(place)}&amp;fulltext=1" title="Realencyclopädie (RE) / Wikisource — offenes Altertums-Lexikon">RE</a>')
         links = f' <span class="lc">[{" · ".join(lk)}]</span>' if lk else ""
         return (f'<tr id="orl-{html.escape(r["nr"])}"><td>{html.escape(r["nr"])}</td><td>{html.escape(r["kastell"])}{links}</td>'
-                f'<td class="meta">{html.escape(r.get("linie",""))}</td><td>{pages}{dg}</td>'
-                f'<td>{sc.get("ner_gazetteer") or ""}</td><td>{r.get("sigillata",{}).get("score") or ""}</td>'
-                f'<td class="meta">{html.escape(prof)}</td><td>{len(r.get("vorberichte",[])) or ""}</td>'
-                f'<td class="meta">{bearb}</td></tr>')
+                f'<td class="meta">{html.escape(r.get("linie",""))}</td>{lfgc}'
+                f'<td>{len(r.get("vorberichte",[])) or ""}</td><td class="meta">{bearb}</td></tr>')
     brows = "".join(brow(r) for r in b)
     keyn = ""
     if lex:
@@ -1168,23 +1187,37 @@ def orl_page(idx, lex):
             f'<p class="meta">Die <b>Endpublikation</b> der Reichs-Limeskommission (1894–1937): '
             f'{c.get("abt_A",len(a))} Strecken-Bände (Abt. A) + {c.get("abt_B",len(b))} Kastell-Lieferungen '
             f'(Abt. B) — das Standardwerk, in das die laufenden Feldberichte des '
-            f'<a href="../index.html">Limesblatt</a> mündeten. Token-frei erschlossen über HathiTrust '
-            f'(<a href="hathitrust.html">Werkzeuge &amp; Ertrag</a>): Seitenzahlen für {nef} Bände, '
-            f'NER-Schicht-C für {nner}, ein konsolidierter <a href="orl-register.html">Gesamtapparat</a>, '
-            f'den die in 14 Mappen erschienene Reihe nie besaß.</p>'
+            f'<a href="../index.html">Limesblatt</a> mündeten. Für <b>{n_lfg} Kastelle</b> ist die '
+            f'<b>Lieferung</b> quellenmäßig belegt ({n_scharf} kastellscharf), dazu ein konsolidierter '
+            f'<a href="orl-register.html">Gesamtapparat</a>, den die in 14 Mappen erschienene Reihe nie besaß.</p>'
             f'{keyn}'
             f'<h2>Abteilung A — Strecken-Bände (Trassierung)</h2>'
             f'<table class="reg"><thead><tr><th>Str.</th><th>Verlauf</th><th>Region</th></tr></thead>'
             f'<tbody>{arows}</tbody></table>'
             f'<h2>Abteilung B — Kastell-Lieferungen</h2>'
-            f'<p class="meta">Seiten: ▣ = archive.org-Volltext, sonst HathiTrust-Extracted-Features · '
-            f'Cross-Work = mit dem Limesblatt gemeinsame Entitäten · Sig. = Terra-Sigillata-Score '
-            f'(<a href="orl-register.html#sigillata">Apparat</a>) · Vorb. = Anzahl Limesblatt-Vorberichte '
+            f'<div class="note"><p><b>Zwei Zählungen, die man nicht verwechseln darf.</b> Die '
+            f'<b>ORL-Nummer ist geografisch</b> vergeben — von Rheinbrohl (1) im Norden bis zur Donau. Die '
+            f'<b>Lieferung ist chronologisch</b>: Sie erschien, wenn der Bearbeiter fertig war. Lieferung 1 '
+            f'(1894) enthält deshalb Butzbach (14), Murrhardt (44) <i>und</i> Unterböbingen (65) — drei '
+            f'Kastelle aus drei Landschaften. Die Lieferungsfolge ist ein <b>Arbeitsstands-, kein '
+            f'Ortsregister</b>.</p>'
+            f'<p>Diese Seite zeigte bis 2026-07 vier weitere Spalten (Seitenzahl, Cross-Work, '
+            f'Sigillata-Score, „Charakteristik"), die aus dem HathiTrust-Scan abgeleitet waren. Sie wurden '
+            f'<b>entfernt</b>: Die Scan-Zuordnung las die Signatur „v.&#8201;N" als Kastell-Nummer, obwohl '
+            f'sie die <i>Lieferung</i> meint — für 30 Bände war sie damit falsch, und selbst bei richtiger '
+            f'Zuordnung beschreibt ein Scan die ganze Lieferung (bis zu vier Kastelle), nie ein einzelnes. '
+            f'Die Gegenprobe an der zeitgenössischen Bibliographie zeigt die Größenordnung: Für Kemel wies '
+            f'die Seitenzahl 372 aus — gedruckt sind <b>8</b>. An ihrer Stelle steht jetzt die belegte '
+            f'Lieferung.</p></div>'
+            f'<p class="meta">Lieferung: <b>fett</b> = Nummer, dahinter das Erscheinungsjahr; die Spalte '
+            f'<b>Beleg</b> nennt die Quelle und ob die Zuordnung kastellscharf ist oder nur eine Spanne '
+            f'(dann nennt die Quelle die Lieferungen und die Kastelle, ordnet sie aber nicht einander zu — '
+            f'das wird nicht geraten). · Vorb. = Anzahl Limesblatt-Vorberichte '
             f'(<a href="orl-register.html#konkordanz">Konkordanz</a>). Verweise je Kastell: '
-            f'<b>W</b> = Wikipedia · <b>HT</b> = Scan bei HathiTrust · <b>RE</b> = Realencyclopädie/Wikisource '
-            f'(offenes Altertums-Lexikon).</p>'
-            f'<table class="reg"><thead><tr><th>ORL</th><th>Kastell</th><th>Linie</th><th>Seiten</th>'
-            f'<th>Cross-Work</th><th>Sig.</th><th>Charakteristik</th><th>Vorb.</th><th>Bearbeiter</th></tr></thead>'
+            f'<b>W</b> = Wikipedia · <b>HT</b> = <i>geprüfter</i> Scan bei HathiTrust · <b>RE</b> = '
+            f'Realencyclopädie/Wikisource (offenes Altertums-Lexikon).</p>'
+            f'<table class="reg"><thead><tr><th>ORL</th><th>Kastell</th><th>Linie</th><th>Lieferung</th>'
+            f'<th>Beleg</th><th>Vorb.</th><th>Bearbeiter</th></tr></thead>'
             f'<tbody>{brows}</tbody></table>')
 
 SIGILLATA_FORSCHER = {"dragendorff", "knorr", "ludowici", "ricken", "dechelette", "walters", "forrer",
@@ -1211,6 +1244,73 @@ def _pcat(name):
     if w in ANTIKE_PERSONEN or w.rstrip("s") in ANTIKE_PERSONEN: return "ant"
     return "rlk"
 
+def namen_page(nm):
+    """Orts-Crosswalk antik ↔ modern ↔ Flurname.
+
+    Warum die Seite existiert: Das Limesblatt benennt seine Orte MODERN. Wer „Nida" sucht, findet 0 Treffer —
+    obwohl 60 Stellen über den Ort reden, alle unter „Heddernheim". Die Tabelle sagt daher nicht, wie ein Ort
+    HIESS, sondern unter welchem String er im jeweiligen Korpus AUFFINDBAR ist.
+    """
+    o = nm.get("orte") or nm.get("places") or []
+    if isinstance(o, dict): o = list(o.values())
+    ant = sorted([e for e in o if e.get("antik")], key=lambda e: -(e.get("n_orl_antik") or 0))
+    flur = [e for e in o if e.get("flurname")]
+    def anames(e): return ", ".join(a["name"] for a in e["antik"])
+    def fname(e):   # flurname ist ein Objekt {name, quelle}, kein String
+        f = e.get("flurname")
+        return (f or {}).get("name") if isinstance(f, dict) else (f or None)
+    def cell(n): return f'<b>{n}</b>' if n else '<span class="lc">0</span>'
+    def row(e):
+        vn = (f'<a href="../index.html">{html.escape(e["vault_note"])}</a>' if False else
+              html.escape(e.get("vault_note") or "—"))
+        lb_a, lb_m = e.get("n_limesblatt_antik") or 0, e.get("n_limesblatt_modern") or 0
+        best = e.get("modern_im_limesblatt") or e.get("modern") or ""
+        return (f'<tr><td><i>{html.escape(anames(e))}</i></td>'
+                f'<td>{html.escape(e.get("modern") or "—")}</td>'
+                f'<td>{html.escape(fname(e) or "—")}</td>'
+                f'<td>{cell(lb_a)} · {lb_m}&#8239;× <span class="lc">{html.escape(best)}</span></td>'
+                f'<td>{e.get("n_orl_antik") or 0} · {e.get("n_orl_modern") or 0}</td>'
+                f'<td class="meta">{html.escape(e.get("orl_nr") or "—")}</td></tr>')
+    rows = "".join(row(e) for e in ant)
+    fl = "".join(f'<tr><td>{html.escape(fname(e) or "?")}</td><td>{html.escape(e.get("modern") or "—")}</td>'
+                 f'<td>{e.get("n_limesblatt_flur") or 0}</td><td>{e.get("n_limesblatt_modern") or 0}</td>'
+                 f'<td class="meta">{html.escape((e.get("flurname") or {}).get("quelle","") if isinstance(e.get("flurname"), dict) else "")}</td></tr>'
+                 for e in flur)
+    return (f'<h1>Ortsnamen — antik, modern, Flurname</h1>'
+            f'<div class="note"><p><b>Wer hier „Nida" sucht, findet im Limesblatt nichts</b> — und das ist kein '
+            f'Fehler der Edition, sondern eine Eigenschaft der Quelle. Der Feldbericht der Reichs-Limeskommission '
+            f'<b>benennt seine Orte modern</b>: „Nida" steht in den acht Bänden <b>0×</b>, „Heddernheim" <b>65×</b>. '
+            f'Auch „Mogontiacum" kommt <b>0×</b> vor, während „Mainz" <b>37×</b> dasteht — bei Mainz war der '
+            f'römische Name nie strittig, es geht also nicht um Unsicherheit, sondern um das Register der Gattung: '
+            f'Wer im Gelände gräbt, benennt Orte wie eine Postanschrift — nach Dorf, Flur, Gewann.</p>'
+            f'<p>Diese Tabelle ist deshalb ein <b>Recherche-Instrument, keine Namenskunde</b>. Sie beantwortet '
+            f'nicht „wie hieß Heddernheim in der Antike?", sondern: <i>Ich suche Nida — welchen String muss ich '
+            f'eingeben?</i> Antwort: <code>Heddernheim</code>.</p></div>'
+            f'<h2>Antike Namen ({len(ant)})</h2>'
+            f'<p class="meta">Jede Gleichsetzung ist gegen <a href="https://pleiades.stoa.org">Pleiades</a> '
+            f'und/oder DARE geerdet; ungesicherte stehen nicht in der Tabelle. Die Zahlenspalten lesen sich '
+            f'<i>antik · modern</i> — sie sagen, unter welchem Namen der Ort im jeweiligen Werk auffindbar ist. '
+            f'Für die meisten Kastelle ist <b>kein</b> antiker Name überliefert (darunter die Saalburg); sie '
+            f'fehlen hier zu Recht.</p>'
+            f'<table class="reg"><thead><tr><th>antik</th><th>modern</th><th>Flurname</th>'
+            f'<th>im Limesblatt</th><th>im ORL</th><th>ORL-Nr.</th></tr></thead><tbody>{rows}</tbody></table>'
+            f'<h2>Die Schwelle verläuft auch durch den ORL</h2>'
+            f'<p class="meta">Der Kontrast ist <b>nicht</b> „Feldbericht modern, Endpublikation antik". Auch der '
+            f'ORL benennt überwiegend modern: <i>Vetoniana</i> kommt dort <b>0×</b> vor, <i>Pfünz</i> 478×; '
+            f'<i>Arae Flaviae</i> <b>0×</b>, <i>Rottweil</i> 488×. Und wo der ORL den antiken Namen führt, '
+            f'erdrückt ihn der moderne (Nida 91 : Heddernheim 469). Der Unterschied ist graduell, aber real: '
+            f'Die Endpublikation <i>lässt den antiken Namen zu</i> — als gelehrte Glosse neben dem Arbeitsnamen. '
+            f'Der Feldbericht lässt ihn nur ins Zitat: Der einzige antike Ortsname im ganzen Limesblatt ist '
+            f'<i>Abusina</i> (2×), und beide Belege zitieren eine Schriftquelle — ein Itinerar und eine '
+            f'Truppendislokation —, keiner benennt den Boden, auf dem gegraben wird.</p>'
+            + (f'<h2>Flurnamen ({len(flur)})</h2>'
+               f'<p class="meta">Namen, unter denen der Feldbericht einen Platz führte, bevor die Endpublikation '
+               f'ihn umtaufte — systematisch hebbar nur dort, wo ein ORL-Titel sie konserviert hat („Das Kastell '
+               f'<i>Alteburg</i> bei Walldürn"). Zahlen: Flurname · moderner Name im Limesblatt.</p>'
+               f'<table class="reg"><thead><tr><th>Flurname</th><th>modern</th><th>Flur im LB</th>'
+               f'<th>modern im LB</th><th>Beleg</th></tr></thead><tbody>{fl}</tbody></table>' if fl else ""))
+
+
 def orl_apparatus_page(reg, idx, persons=None):
     places = reg.get("places", [])
     p2id = {}                                             # Name/Nachname → Personenregister-ID (Verlinkung)
@@ -1227,11 +1327,15 @@ def orl_apparatus_page(reg, idx, persons=None):
     pmerged = [{"name": e["name"], "bands": sorted(e["bands"], key=_nk), "nbands": len(e["bands"]),
                 "count": e["count"], "gazetteer": e["gazetteer"]} for e in merged.values()]
     def prow(r):
+        # Die frühere Spalte „Bände (ORL-Nr.)" ist entfernt: Ihre Nummern kamen aus der htid→Kastell-Nr.-
+        # Abbildung des orl_index, und die war für 37 der 56 Bände falsch (enumcron „v. N" = Lieferung,
+        # nicht Kastell-Nr.). Geprüft und WEITERHIN GÜLTIG sind #Bd. und Nenn.: keine der 130.540 NER-Zeilen
+        # fällt weg, und die Abbildung ist injektiv (56 Bände → 56 Nrn.) — sie zählt also richtig, in wie
+        # vielen Bänden ein Name steht; falsch war nur, WELCHE genannt wurden.
         pid = p2id.get(_pn(r["name"])) or p2id.get(_pn(r["name"].split()[-1]))
         nm = f'<a href="persons.html#{pid}">{html.escape(r["name"])}</a>' if pid else html.escape(r["name"])
-        bl = ", ".join(f'<a href="orl.html#orl-{html.escape(str(x))}">{html.escape(str(x))}</a>' for x in r["bands"])
         return (f'<tr><td>{nm}{" ✓" if r.get("gazetteer") else ""}</td><td>{r["nbands"]}</td>'
-                f'<td>{r["count"]}</td><td class="meta">{bl}</td></tr>')
+                f'<td>{r["count"]}</td></tr>')
     cred = [r for r in pmerged if r.get("gazetteer") or r["nbands"] >= 3]
     groups = {"sig": [], "ant": [], "rlk": [], "rest": []}
     for r in cred:
@@ -1239,13 +1343,20 @@ def orl_apparatus_page(reg, idx, persons=None):
         groups[c if (c != "rlk" or r.get("gazetteer")) else "rest"].append(r)
     for g in groups.values(): g.sort(key=lambda r: (-r["nbands"], -r["count"]))
     def _tbl(rows): return (f'<table class="reg"><thead><tr><th>Person</th><th>#Bd.</th><th>Nenn.</th>'
-                            f'<th>Bände (ORL-Nr.)</th></tr></thead><tbody>{"".join(prow(r) for r in rows)}</tbody></table>')
+                            f'</tr></thead><tbody>{"".join(prow(r) for r in rows)}</tbody></table>')
     persons_html = (
         f'<h2 id="personen">Personen im ORL</h2>'
         f'<p class="meta">Aufgeschlüsselt nach Art. ✓ = auch im Limesblatt-Gazetteer der Edition belegt; '
-        f'<b>verlinkte Namen</b> führen ins <a href="persons.html">Personenregister</a>, die ORL-Nummern in den '
-        f'<a href="orl.html">Bandindex</a>. Genitivformen sind zusammengeführt; aus automatischer '
-        f'Eigennamenerkennung über Fraktur-OCR.</p>'
+        f'<b>verlinkte Namen</b> führen ins <a href="persons.html">Personenregister</a>. '
+        f'Genitivformen sind zusammengeführt; aus automatischer Eigennamenerkennung über Fraktur-OCR.</p>'
+        f'<div class="note"><p><b>Warum hier keine Bandnummern stehen.</b> Bis 2026-07 nannte diese Tabelle '
+        f'zu jedem Namen die Bände, in denen er vorkommt. Diese Nummern stammten aus der Zuordnung '
+        f'Scan→Kastell-Nummer, und die war für <b>37 der 56 Bände falsch</b> (die HathiTrust-Signatur '
+        f'„v.&#8201;N" ist die <i>Lieferung</i>, nicht die Kastell-Nummer). Geprüft und weiterhin gültig '
+        f'sind <b>#Bd.</b> und <b>Nenn.</b>: Keine der 130.540 NER-Zeilen fällt weg, und die Abbildung ist '
+        f'injektiv (56 Bände → 56 Nummern) — sie zählt also richtig, in <i>wie vielen</i> Bänden ein Name '
+        f'steht; falsch war nur, <i>welche</i>. Häufigkeits- und Streuungsaussagen tragen daher, '
+        f'diachrone Lesarten („erscheint erst in den späten Bänden") nicht.</p></div>'
         f'<h3 id="bearbeiter">RLK-Bearbeiter &amp; Ausgräber ({len(groups["rlk"])})</h3>{_tbl(groups["rlk"][:70])}'
         f'<h3 id="sigillata-forscher">Beteiligte Sigillata-Forscher ({len(groups["sig"])})</h3>'
         f'<p class="meta">Die Terra-Sigillata-Typologen (Dragendorff, Knorr, Ludowici …), die den '
@@ -1275,13 +1386,20 @@ def orl_apparatus_page(reg, idx, persons=None):
             f'<a href="orl.html">ORL-Bandindex</a>.</p>'
             f'{persons_html}'
             f'<h2 id="orte">Ortsregister ({len(plc)} bandübergreifend)</h2>'
-            f'<table class="reg"><thead><tr><th>Ort</th><th>#Bd.</th><th>Nenn.</th><th>Bände</th></tr></thead>'
+            f'<table class="reg"><thead><tr><th>Ort</th><th>#Bd.</th><th>Nenn.</th></tr></thead>'
             f'<tbody>{"".join(prow(r) for r in plc)}</tbody></table>'
-            f'<h2 id="sigillata">Terra-Sigillata-Apparat</h2>'
-            f'<p class="meta">Welche Lieferungen die großen Fund-Katalogbände sind (Dragendorff/Knorr/Ludowici/'
-            f'Rheinzabern …), aus den EF-Token ausgezählt — die Verfeinerung, die die Keyness als ORL-typisch auswies.</p>'
-            f'<table class="reg"><thead><tr><th>ORL</th><th>Kastell</th><th>Score</th><th>Begriffe</th></tr></thead>'
-            f'<tbody>{sigrows}</tbody></table>'
+            f'<h2 id="sigillata">Terra-Sigillata-Apparat — zurückgezogen</h2>'
+            f'<div class="note"><p>Diese Tabelle wies aus, welche Lieferungen die großen Fund-Katalogbände '
+            f'sind (Dragendorff/Knorr/Ludowici/Rheinzabern …), ausgezählt über die HathiTrust-Extracted-'
+            f'Features. Sie ist <b>zurückgezogen</b>, weil sie am selben Fehler hängt wie die früheren '
+            f'Spalten des <a href="orl.html">Bandindex</a>: Die Zuordnung Scan→Kastell las die Signatur '
+            f'„v.&#8201;N" als Kastell-Nummer, obwohl sie die <i>Lieferung</i> meint — für 30 Bände war sie '
+            f'damit falsch, und ein Scan umfasst ohnehin eine ganze Lieferung (bis zu vier Kastelle), nie '
+            f'ein einzelnes. Ein Sigillata-Score „je Kastell" ist auf dieser Grundlage nicht zu haben.</p>'
+            f'<p>Der Befund selbst — dass der ORL sprachlich ein Fund-Katalog ist — bleibt unberührt; er '
+            f'ruht auf der <a href="wortschatz.html#gegenprobe">Wortschatz-Gegenprobe</a> über den gesamten '
+            f'Korpus, die keine Band-Zuordnung braucht. Die Tabelle kehrt zurück, sobald die Scans über den '
+            f'geprüften Lieferungsindex neu zugeordnet sind.</p></div>'
             f'<h2 id="konkordanz">Vorbericht → ORL-Konkordanz</h2>'
             f'<p class="meta">Je Kastell der Limesblatt-Vorbericht (Bericht-Nr.) und der Bearbeiter — die Brücke '
             f'Vorbericht ↔ Endpublikation.</p>'
@@ -1811,7 +1929,12 @@ def main():
     # ORL-Register/Analyse-Seiten (orl_idx/orl_lex + _orl_load bereits vor den Strecken geladen)
     orl_reg = _orl_load("orl_register.json") or {"persons": [], "places": [], "counts": {}}
     if orl_idx.get("abteilung_B_kastelle"):
-        open(os.path.join(DOCS,"register","orl.html"),"w",encoding="utf-8").write(page("ORL", orl_page(orl_idx, orl_lex), 1))
+        orl_bli = _orl_load("orl_band_lieferung.json") or {}
+    nm = _orl_load("namen.json")
+    if nm:
+        open(os.path.join(DOCS,"register","ortsnamen.html"),"w",encoding="utf-8").write(
+            page("Ortsnamen — antik, modern, Flurname", namen_page(nm), 1))
+        open(os.path.join(DOCS,"register","orl.html"),"w",encoding="utf-8").write(page("ORL", orl_page(orl_idx, orl_lex, orl_bli), 1))
         open(os.path.join(DOCS,"register","orl-register.html"),"w",encoding="utf-8").write(page("ORL — Gesamtapparat", orl_apparatus_page(orl_reg, orl_idx, persons), 1))
         open(os.path.join(DOCS,"register","hathitrust.html"),"w",encoding="utf-8").write(page("HathiTrust", hathitrust_page(orl_idx, orl_reg, orl_lex), 1))
         print(f"ORL: Abt. A {len(orl_idx.get('abteilung_A_strecken',[]))} + Abt. B {len(orl_idx.get('abteilung_B_kastelle',[]))} "

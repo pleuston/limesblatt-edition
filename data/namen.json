@@ -1,0 +1,3548 @@
+{
+ "_befund": "Von 18 Orten mit gesicherter antiker Gleichsetzung ist der antike Name im Limesblatt bei 1 belegt (Abusina 2×). Die Auslösernotiz sagt »kein einziger antiker Ortsname« — das gilt für die 7 dort geprüften Namen, aber nicht für den ganzen Crosswalk: Abusina (Eining) 2×. Die Regel steht, die Ausnahmslosigkeit nicht.",
+ "_zaehlweise": "case-insensitive, am Wortanfang verankert (\\b<name>), über 497 Limesblatt-Spaltendateien. Reproduziert die Auslösernotiz 12/12 (Mainz 37, Wiesbaden 44, Heddernheim 65, Rottweil 9, vicus 10, Rottenburg 4, Köngen 2; Nida/Sumelocenna/Grinario/Lopodunum/Mogontiacum 0). Freier Teilstring (die Zählweise der Notiz) und strikte Wortgrenzen laufen als Kontrollen mit: belege.antik_teilstring / belege.antik_wortgrenze.",
+ "_belegregel": "sicher=True nur bei Pleiades-Antikenspanne (start<600) oder DARE-ancient ohne * / ?. Wikidata-la-Label wird nie als Beleg gewertet (Saalburg: »Castellum Saalaburgense« ist neulateinisch). recon_places.json wird nicht benutzt (Saalburg→Saalburg-Ebersdorf/Thüringen).",
+ "_quellen": "Pleiades (Namensspannen) · DARE tools/limes_dare.geojson · Wikidata P1584/P1936/P625 · K10plus SRU (ORL-Lieferungstitel = Flurnamen) · tools/orl_register.json (nur count/nbands; bands ist unbrauchbar)",
+ "counts": {
+  "orte": 97,
+  "mit_antikem_namen": 18,
+  "sicher": 18,
+  "unsicher": 0,
+  "antik_im_limesblatt_belegt": 1,
+  "mit_flurname": 4,
+  "limesblatt_spalten": 497
+ },
+ "warnungen_la_label": [
+  {
+   "ort": "Bad Homburg vor der Höhe",
+   "wikidata": "Q542329",
+   "la_label": "Castellum Saalaburgense",
+   "grund": "la-Label ohne Pleiades-/DARE-Deckung — neulateinische Prägung, kein antiker Name. Nicht übernommen."
+  },
+  {
+   "ort": "Kastelle von Welzheim",
+   "wikidata": "Q1735441",
+   "la_label": "Castra Romana Welzheimi",
+   "grund": "la-Label ohne Pleiades-/DARE-Deckung — neulateinische Prägung, kein antiker Name. Nicht übernommen."
+  }
+ ],
+ "orte": [
+  {
+   "slug": "kastell_nida",
+   "modern": "Frankfurt am Main",
+   "modern_im_limesblatt": "Heddernheim",
+   "modern_varianten": [
+    "Frankfurt am Main",
+    "Heddernheim",
+    "Frankfurt"
+   ],
+   "kastell": "Kastell Nida",
+   "antik": [
+    {
+     "name": "Nida",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 109205 (Namensspanne endet in der Antike)"
+     ]
+    }
+   ],
+   "flurname": null,
+   "vault_note": "Nida (Heddernheim)",
+   "orl_nr": "ORL 27",
+   "wikidata": "Q834452",
+   "koordinaten": "50.1541, 8.63774",
+   "sicher": true,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 65,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 91,
+   "n_orl_modern": 469,
+   "belege": {
+    "antik": {
+     "Nida": 0
+    },
+    "modern": {
+     "Frankfurt am Main": 1,
+     "Heddernheim": 65,
+     "Frankfurt": 61
+    },
+    "antik_teilstring": {
+     "Nida": 0
+    },
+    "antik_wortgrenze": {
+     "Nida": 0
+    },
+    "pleiades_modern": [
+     "Heddernheim"
+    ]
+   },
+   "zusammengefuehrt": [
+    "Nida (Heddernheim)"
+   ]
+  },
+  {
+   "slug": "sumelocenna",
+   "modern": "Rottenburg am Neckar",
+   "modern_im_limesblatt": "Rottenburg",
+   "modern_varianten": [
+    "Rottenburg am Neckar",
+    "Rottenburg"
+   ],
+   "kastell": "Sumelocenna",
+   "antik": [
+    {
+     "name": "Sumelocenna",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 118985 (Namensspanne endet in der Antike)"
+     ]
+    },
+    {
+     "name": "Samulocenis",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 118985 (Namensspanne endet in der Antike)"
+     ]
+    }
+   ],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 61",
+   "wikidata": "Q129177488",
+   "koordinaten": "48.4776425, 8.937121000000001",
+   "sicher": true,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 4,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 38,
+   "n_orl_modern": 232,
+   "belege": {
+    "antik": {
+     "Sumelocenna": 0,
+     "Samulocenis": 0
+    },
+    "modern": {
+     "Rottenburg am Neckar": 1,
+     "Rottenburg": 4
+    },
+    "antik_teilstring": {
+     "Sumelocenna": 0,
+     "Samulocenis": 0
+    },
+    "antik_wortgrenze": {
+     "Sumelocenna": 0,
+     "Samulocenis": 0
+    },
+    "pleiades_modern": [
+     "Rottenburg am Neckar"
+    ]
+   },
+   "pleiades_via_suche": "118985 (Pleiades-Suche »Sumelocenna«, eindeutiger Namenstreffer, Geo ungeprüft)",
+   "geo_geprueft": false
+  },
+  {
+   "slug": "kastell_koengen",
+   "modern": "Köngen",
+   "modern_im_limesblatt": "Köngen",
+   "modern_varianten": [
+    "Köngen"
+   ],
+   "kastell": "Kastell Köngen",
+   "antik": [
+    {
+     "name": "Grinario",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 118706 (Namensspanne endet in der Antike)"
+     ]
+    },
+    {
+     "name": "Grinarione",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 118706 (Namensspanne endet in der Antike)"
+     ]
+    }
+   ],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 60",
+   "wikidata": "Q1735387",
+   "koordinaten": "48.6773, 9.36007",
+   "sicher": true,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 2,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 18,
+   "n_orl_modern": 205,
+   "belege": {
+    "antik": {
+     "Grinario": 0,
+     "Grinarione": 0
+    },
+    "modern": {
+     "Köngen": 2
+    },
+    "antik_teilstring": {
+     "Grinario": 0,
+     "Grinarione": 0
+    },
+    "antik_wortgrenze": {
+     "Grinario": 0,
+     "Grinarione": 0
+    },
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_eining",
+   "modern": "Eining",
+   "modern_im_limesblatt": "Eining",
+   "modern_varianten": [
+    "Eining"
+   ],
+   "kastell": "Kastell Eining",
+   "antik": [
+    {
+     "name": "Abusina",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 118539 (Namensspanne endet in der Antike)",
+      "DARE 1929"
+     ]
+    },
+    {
+     "name": "Arusena",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 118539 (Namensspanne endet in der Antike)"
+     ]
+    }
+   ],
+   "flurname": null,
+   "vault_note": "Kastell Eining",
+   "orl_nr": null,
+   "wikidata": "Q1735352",
+   "koordinaten": "48.8503, 11.7708",
+   "sicher": true,
+   "n_limesblatt_antik": 2,
+   "n_limesblatt_modern": 8,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 7,
+   "n_orl_modern": 59,
+   "belege": {
+    "antik": {
+     "Abusina": 2,
+     "Arusena": 0
+    },
+    "modern": {
+     "Eining": 8
+    },
+    "antik_teilstring": {
+     "Abusina": 2,
+     "Arusena": 0
+    },
+    "antik_wortgrenze": {
+     "Abusina": 2,
+     "Arusena": 0
+    },
+    "pleiades_modern": [
+     "Eining"
+    ]
+   },
+   "kwic_antik": {
+    "Abusina": [
+     "erarienbuche aus Diocletians Zeit pag. 250 als die auf Abusina folgende und von diesem 18 römische Meilen entfernte S",
+     "ndos bezogen wurde, welche eventuell die Besatzung von Abusina abzustellen hatte. Ein solches Wachtkommando fand sein"
+    ]
+   }
+  },
+  {
+   "slug": "kastell_urspring",
+   "modern": "Urspring",
+   "modern_im_limesblatt": null,
+   "modern_varianten": [
+    "Urspring",
+    "Castra Ad Lunam"
+   ],
+   "kastell": "Kastell Urspring",
+   "antik": [
+    {
+     "name": "Ad Lunam",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 118542 (Namensspanne endet in der Antike)"
+     ]
+    }
+   ],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 66a",
+   "wikidata": "Q1735430",
+   "koordinaten": "48.55, 9.90069",
+   "sicher": true,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 0,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 7,
+   "n_orl_modern": 51,
+   "belege": {
+    "antik": {
+     "Ad Lunam": 0
+    },
+    "modern": {
+     "Urspring": 0,
+     "Castra Ad Lunam": 0
+    },
+    "antik_teilstring": {
+     "Ad Lunam": 0
+    },
+    "antik_wortgrenze": {
+     "Ad Lunam": 0
+    },
+    "pleiades_modern": [
+     "Castra Ad Lunam",
+     "Kastell Urspring",
+     "Urspring"
+    ]
+   }
+  },
+  {
+   "slug": "kastell_koesching",
+   "modern": "Kösching",
+   "modern_im_limesblatt": "Kösching",
+   "modern_varianten": [
+    "Kösching"
+   ],
+   "kastell": "Kastell Kösching",
+   "antik": [
+    {
+     "name": "Germanicum",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 118697 (Namensspanne endet in der Antike)",
+      "DARE 1927"
+     ]
+    }
+   ],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 74",
+   "wikidata": "Q1618277",
+   "koordinaten": "48.8108, 11.4997",
+   "sicher": true,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 5,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 6,
+   "n_orl_modern": 199,
+   "belege": {
+    "antik": {
+     "Germanicum": 0
+    },
+    "modern": {
+     "Kösching": 5
+    },
+    "antik_teilstring": {
+     "Germanicum": 0
+    },
+    "antik_wortgrenze": {
+     "Germanicum": 0
+    },
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_gnotzheim",
+   "modern": "Gnotzheim",
+   "modern_im_limesblatt": "Gnotzheim",
+   "modern_varianten": [
+    "Gnotzheim"
+   ],
+   "kastell": "Kastell Gnotzheim",
+   "antik": [
+    {
+     "name": "Mediana",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 118840 (Namensspanne endet in der Antike)",
+      "DARE 14065"
+     ]
+    }
+   ],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 70",
+   "wikidata": "Q1696315",
+   "koordinaten": "49.0572, 10.7045",
+   "sicher": true,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 8,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 141,
+   "belege": {
+    "antik": {
+     "Mediana": 0
+    },
+    "modern": {
+     "Gnotzheim": 8
+    },
+    "antik_teilstring": {
+     "Mediana": 0
+    },
+    "antik_wortgrenze": {
+     "Mediana": 0
+    },
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_huefingen",
+   "modern": "Hüfingen",
+   "modern_im_limesblatt": "Hüfingen",
+   "modern_varianten": [
+    "Hüfingen"
+   ],
+   "kastell": "Kastell Hüfingen",
+   "antik": [
+    {
+     "name": "Brigobannis",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 187326 (Namensspanne endet in der Antike)"
+     ]
+    }
+   ],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 62a",
+   "wikidata": "Q1312863",
+   "koordinaten": "47.91944444, 8.4825",
+   "sicher": true,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 2,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 80,
+   "belege": {
+    "antik": {
+     "Brigobannis": 0
+    },
+    "modern": {
+     "Hüfingen": 2
+    },
+    "antik_teilstring": {
+     "Brigobannis": 0
+    },
+    "antik_wortgrenze": {
+     "Brigobannis": 0
+    },
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "lopodunum_ladenburg",
+   "modern": "Ladenburg",
+   "modern_im_limesblatt": null,
+   "modern_varianten": [
+    "Ladenburg"
+   ],
+   "kastell": "Lopodunum (Ladenburg)",
+   "antik": [
+    {
+     "name": "Lopodunum",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 118813 (Namensspanne endet in der Antike)"
+     ]
+    }
+   ],
+   "flurname": null,
+   "vault_note": "Lopodunum (Ladenburg)",
+   "orl_nr": null,
+   "wikidata": "Q1869794",
+   "koordinaten": "49.4716, 8.61118",
+   "sicher": true,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 0,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 29,
+   "belege": {
+    "antik": {
+     "Lopodunum": 0
+    },
+    "modern": {
+     "Ladenburg": 0
+    },
+    "antik_teilstring": {
+     "Lopodunum": 0
+    },
+    "antik_wortgrenze": {
+     "Lopodunum": 0
+    },
+    "pleiades_modern": [
+     "Ladenburg"
+    ]
+   },
+   "pleiades_via_suche": "118813 (Pleiades-Suche »Lopodunum«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "mainz",
+   "modern": "Mainz",
+   "modern_im_limesblatt": "Mainz",
+   "modern_varianten": [
+    "Mainz"
+   ],
+   "kastell": "",
+   "antik": [
+    {
+     "name": "Mogontiacum",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 109169 (Namensspanne endet in der Antike)"
+     ]
+    }
+   ],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": null,
+   "wikidata": "Q571790",
+   "koordinaten": "50, 8.27111",
+   "sicher": true,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 37,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 426,
+   "belege": {
+    "antik": {
+     "Mogontiacum": 0
+    },
+    "modern": {
+     "Mainz": 37
+    },
+    "antik_teilstring": {
+     "Mogontiacum": 0
+    },
+    "antik_wortgrenze": {
+     "Mogontiacum": 0
+    },
+    "pleiades_modern": [
+     "Mainz"
+    ]
+   }
+  },
+  {
+   "slug": "kastell_mainz",
+   "modern": "Mainz-Kastel",
+   "modern_im_limesblatt": null,
+   "modern_varianten": [
+    "Mainz-Kastel"
+   ],
+   "kastell": "Kastell Mainz",
+   "antik": [
+    {
+     "name": "Castellum Mattiacorum",
+     "sicher": true,
+     "quelle": [
+      "DARE 535"
+     ]
+    }
+   ],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 30",
+   "wikidata": null,
+   "koordinaten": null,
+   "sicher": true,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 0,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 7,
+   "belege": {
+    "antik": {
+     "Castellum Mattiacorum": 0
+    },
+    "modern": {
+     "Mainz-Kastel": 0
+    },
+    "antik_teilstring": {
+     "Castellum Mattiacorum": 0
+    },
+    "antik_wortgrenze": {
+     "Castellum Mattiacorum": 0
+    },
+    "pleiades_modern": []
+   },
+   "dare_via_name": "535 (Namensgleichheit »Mainz-Kastel«, Geo ungeprüft)"
+  },
+  {
+   "slug": "kastell_oberdorf",
+   "modern": "Oberdorf",
+   "modern_im_limesblatt": "Oberdorf",
+   "modern_varianten": [
+    "Oberdorf",
+    "Oberdorf am Ipf"
+   ],
+   "kastell": "Kastell Oberdorf",
+   "antik": [
+    {
+     "name": "Opia",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 118895 (Namensspanne endet in der Antike)",
+      "DARE 8100"
+     ]
+    },
+    {
+     "name": "Opie",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 118895 (Namensspanne endet in der Antike)"
+     ]
+    }
+   ],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 67b",
+   "wikidata": "Q1735402",
+   "koordinaten": "48.8686, 10.3417",
+   "sicher": true,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 3,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 50,
+   "belege": {
+    "antik": {
+     "Opia": 0,
+     "Opie": 0
+    },
+    "modern": {
+     "Oberdorf": 3,
+     "Oberdorf am Ipf": 0
+    },
+    "antik_teilstring": {
+     "Opia": 0,
+     "Opie": 1
+    },
+    "antik_wortgrenze": {
+     "Opia": 0,
+     "Opie": 0
+    },
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_pfoerring",
+   "modern": "Pförring",
+   "modern_im_limesblatt": "Pförring",
+   "modern_varianten": [
+    "Pförring"
+   ],
+   "kastell": "Kastell Pförring",
+   "antik": [
+    {
+     "name": "Celeusum",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 118628 (Namensspanne endet in der Antike)",
+      "DARE 1928"
+     ]
+    },
+    {
+     "name": "Celeuso",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 118628 (Namensspanne endet in der Antike)"
+     ]
+    }
+   ],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 75",
+   "wikidata": "Q1735406",
+   "koordinaten": "48.8185, 11.6824",
+   "sicher": true,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 6,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 0,
+   "belege": {
+    "antik": {
+     "Celeusum": 0,
+     "Celeuso": 0
+    },
+    "modern": {
+     "Pförring": 6
+    },
+    "antik_teilstring": {
+     "Celeusum": 0,
+     "Celeuso": 0
+    },
+    "antik_wortgrenze": {
+     "Celeusum": 0,
+     "Celeuso": 0
+    },
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_pfuenz",
+   "modern": "Pfünz",
+   "modern_im_limesblatt": "Pfünz",
+   "modern_varianten": [
+    "Pfünz"
+   ],
+   "kastell": "Kastell Pfünz",
+   "antik": [
+    {
+     "name": "Vetoniana",
+     "sicher": true,
+     "quelle": [
+      "DARE 5497"
+     ]
+    }
+   ],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 73",
+   "wikidata": "Q1574748",
+   "koordinaten": "48.88381, 11.26394",
+   "sicher": true,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 35,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 478,
+   "belege": {
+    "antik": {
+     "Vetoniana": 0
+    },
+    "modern": {
+     "Pfünz": 35
+    },
+    "antik_teilstring": {
+     "Vetoniana": 0
+    },
+    "antik_wortgrenze": {
+     "Vetoniana": 0
+    },
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "rottweil",
+   "modern": "Rottweil",
+   "modern_im_limesblatt": "Rottweil",
+   "modern_varianten": [
+    "Rottweil"
+   ],
+   "kastell": "",
+   "antik": [
+    {
+     "name": "Arae Flaviae",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 118572 (Namensspanne endet in der Antike)"
+     ]
+    },
+    {
+     "name": "Aris Flavis",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 118572 (Namensspanne endet in der Antike)"
+     ]
+    }
+   ],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": null,
+   "wikidata": "Q624910",
+   "koordinaten": "48.168056, 8.624722",
+   "sicher": true,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 9,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 488,
+   "belege": {
+    "antik": {
+     "Arae Flaviae": 0,
+     "Aris Flavis": 0
+    },
+    "modern": {
+     "Rottweil": 9
+    },
+    "antik_teilstring": {
+     "Arae Flaviae": 0,
+     "Aris Flavis": 0
+    },
+    "antik_wortgrenze": {
+     "Arae Flaviae": 0,
+     "Aris Flavis": 0
+    },
+    "pleiades_modern": [
+     "Rottweil"
+    ]
+   }
+  },
+  {
+   "slug": "kastell_theilenhofen",
+   "modern": "Theilenhofen",
+   "modern_im_limesblatt": "Theilenhofen",
+   "modern_varianten": [
+    "Theilenhofen"
+   ],
+   "kastell": "Kastell Theilenhofen",
+   "antik": [
+    {
+     "name": "Iciniacum",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 118758 (Namensspanne endet in der Antike)",
+      "DARE 14064"
+     ]
+    }
+   ],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 71a",
+   "wikidata": "Q1214616",
+   "koordinaten": "49.08952, 10.84716",
+   "sicher": true,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 5,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 85,
+   "belege": {
+    "antik": {
+     "Iciniacum": 0
+    },
+    "modern": {
+     "Theilenhofen": 5
+    },
+    "antik_teilstring": {
+     "Iciniacum": 0
+    },
+    "antik_wortgrenze": {
+     "Iciniacum": 0
+    },
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_weissenburg",
+   "modern": "Weißenburg",
+   "modern_im_limesblatt": "Weißenburg",
+   "modern_varianten": [
+    "Weißenburg",
+    "Weißenburg in Bayern",
+    "WeiÃŸenburg in Bayern",
+    "WeiÃŸenburg"
+   ],
+   "kastell": "Kastell Weißenburg",
+   "antik": [
+    {
+     "name": "Biriciana",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 118600 (Namensspanne endet in der Antike)",
+      "DARE 4608"
+     ]
+    },
+    {
+     "name": "Biricianis",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 118600 (Namensspanne endet in der Antike)"
+     ]
+    }
+   ],
+   "flurname": null,
+   "vault_note": "Kastell Weißenburg",
+   "orl_nr": "ORL 72",
+   "wikidata": "Q638525",
+   "koordinaten": "49.0308, 10.9625",
+   "sicher": true,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 27,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 190,
+   "belege": {
+    "antik": {
+     "Biriciana": 0,
+     "Biricianis": 0
+    },
+    "modern": {
+     "Weißenburg": 27,
+     "Weißenburg in Bayern": 0,
+     "WeiÃŸenburg in Bayern": 0,
+     "WeiÃŸenburg": 0
+    },
+    "antik_teilstring": {
+     "Biriciana": 0,
+     "Biricianis": 0
+    },
+    "antik_wortgrenze": {
+     "Biriciana": 0,
+     "Biricianis": 0
+    },
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_wiesbaden",
+   "modern": "Wiesbaden",
+   "modern_im_limesblatt": "Wiesbaden",
+   "modern_varianten": [
+    "Wiesbaden"
+   ],
+   "kastell": "Kastell Wiesbaden",
+   "antik": [
+    {
+     "name": "Aquae Mattiacorum",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 108750 (Namensspanne endet in der Antike)"
+     ]
+    },
+    {
+     "name": "Mattiaci",
+     "sicher": true,
+     "quelle": [
+      "Pleiades 108750 (Namensspanne endet in der Antike)"
+     ]
+    }
+   ],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 31",
+   "wikidata": "Q622981",
+   "koordinaten": "50.086375, 8.241862",
+   "sicher": true,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 44,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 855,
+   "belege": {
+    "antik": {
+     "Aquae Mattiacorum": 0,
+     "Mattiaci": 0
+    },
+    "modern": {
+     "Wiesbaden": 44
+    },
+    "antik_teilstring": {
+     "Aquae Mattiacorum": 0,
+     "Mattiaci": 0
+    },
+    "antik_wortgrenze": {
+     "Aquae Mattiacorum": 0,
+     "Mattiaci": 0
+    },
+    "pleiades_modern": [
+     "Wiesbaden"
+    ]
+   }
+  },
+  {
+   "slug": "laut_katalog",
+   "modern": "(laut Katalog)",
+   "modern_im_limesblatt": null,
+   "modern_varianten": [],
+   "kastell": "(laut Katalog)",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 15",
+   "wikidata": null,
+   "koordinaten": null,
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 0,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 0,
+   "belege": {
+    "antik": {},
+    "modern": {},
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "laut_katalog",
+   "modern": "(laut Katalog)",
+   "modern_im_limesblatt": null,
+   "modern_varianten": [],
+   "kastell": "(laut Katalog)",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 55",
+   "wikidata": null,
+   "koordinaten": null,
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 0,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 0,
+   "belege": {
+    "antik": {},
+    "modern": {},
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_aalen",
+   "modern": "Aalen",
+   "modern_im_limesblatt": "Aalen",
+   "modern_varianten": [
+    "Aalen",
+    "Reiterkastell Aalen"
+   ],
+   "kastell": "Kastell Aalen",
+   "antik": [],
+   "flurname": null,
+   "vault_note": "Kastell Aalen",
+   "orl_nr": "ORL 66",
+   "wikidata": "Q1660247",
+   "koordinaten": "48.835579, 10.08472",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 8,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 108,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Aalen": 8,
+     "Reiterkastell Aalen": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": [
+     "Aalen",
+     "Reiterkastell Aalen",
+     "Kastell Aalen"
+    ]
+   }
+  },
+  {
+   "slug": "kastell_altenstadt",
+   "modern": "Altenstadt",
+   "modern_im_limesblatt": "Altenstadt",
+   "modern_varianten": [
+    "Altenstadt"
+   ],
+   "kastell": "Kastell Altenstadt",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 20",
+   "wikidata": "Q1464398",
+   "koordinaten": "50.2852, 8.94114",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 10,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 60,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Altenstadt": 10
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "118559 (Pleiades-Suche »Altenstadt«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_arnsburg",
+   "modern": "Arnsburg",
+   "modern_im_limesblatt": "Arnsburg",
+   "modern_varianten": [
+    "Arnsburg",
+    "Arnsburg, Muschenheim"
+   ],
+   "kastell": "Kastell Arnsburg",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 16",
+   "wikidata": "Q1519355",
+   "koordinaten": "50.4872, 8.78444",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 38,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 355,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Arnsburg": 38,
+     "Arnsburg, Muschenheim": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_arzbach",
+   "modern": "Arzbach",
+   "modern_im_limesblatt": "Arzbach",
+   "modern_varianten": [
+    "Arzbach"
+   ],
+   "kastell": "Kastell Arzbach",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 3",
+   "wikidata": "Q1735331",
+   "koordinaten": "50.3753, 7.74565",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 5,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 60,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Arzbach": 5
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_ems",
+   "modern": "Bad Ems",
+   "modern_im_limesblatt": null,
+   "modern_varianten": [
+    "Bad Ems"
+   ],
+   "kastell": "Kastell Ems",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 4",
+   "wikidata": "Q1690694",
+   "koordinaten": "50.3359, 7.713",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 0,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 0,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Bad Ems": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_saalburg",
+   "modern": "Bad Homburg vor der Höhe",
+   "modern_im_limesblatt": "Saalburg",
+   "modern_varianten": [
+    "Bad Homburg vor der Höhe",
+    "Saalburg",
+    "Römerkastell Saalburg",
+    "Saalburg castrum",
+    "Bad Homburg"
+   ],
+   "kastell": "Kastell Saalburg",
+   "antik": [],
+   "flurname": null,
+   "vault_note": "Kastell Saalburg",
+   "orl_nr": "ORL 11",
+   "wikidata": "Q542329",
+   "koordinaten": "50.2715, 8.56666",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 73,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 927,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Bad Homburg vor der Höhe": 0,
+     "Saalburg": 73,
+     "Römerkastell Saalburg": 0,
+     "Saalburg castrum": 0,
+     "Bad Homburg": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": [
+     "Saalburg",
+     "Römerkastell Saalburg",
+     "Kastell Saalburg",
+     "Saalburg castrum"
+    ]
+   }
+  },
+  {
+   "slug": "kastell_bendorf",
+   "modern": "Bendorf",
+   "modern_im_limesblatt": "Bendorf",
+   "modern_varianten": [
+    "Bendorf"
+   ],
+   "kastell": "Kastell Bendorf",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 2",
+   "wikidata": "Q1373100",
+   "koordinaten": "50.4194, 7.56667",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 12,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 78,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Bendorf": 12
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_benningen",
+   "modern": "Benningen",
+   "modern_im_limesblatt": "Benningen",
+   "modern_varianten": [
+    "Benningen",
+    "Benningen am Neckar"
+   ],
+   "kastell": "Kastell Benningen",
+   "antik": [],
+   "flurname": null,
+   "vault_note": "Kastell Benningen",
+   "orl_nr": "ORL 58",
+   "wikidata": "Q1735337",
+   "koordinaten": "48.9439, 9.24931",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 8,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 101,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Benningen": 8,
+     "Benningen am Neckar": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "zusammengefuehrt": [
+    "Kastell Benningen"
+   ],
+   "pleiades_via_suche": "118594 (Pleiades-Suche »Benningen«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_buch",
+   "modern": "Buch",
+   "modern_im_limesblatt": "Buch",
+   "modern_varianten": [
+    "Buch"
+   ],
+   "kastell": "Kastell Buch",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 67",
+   "wikidata": "Q1698469",
+   "koordinaten": "48.90968, 10.14517",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 152,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 0,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Buch": 152
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "118614 (Pleiades-Suche »Buch«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_butzbach",
+   "modern": "Butzbach",
+   "modern_im_limesblatt": "Butzbach",
+   "modern_varianten": [
+    "Butzbach"
+   ],
+   "kastell": "Kastell Butzbach",
+   "antik": [],
+   "flurname": null,
+   "vault_note": "Kastell Butzbach",
+   "orl_nr": "ORL 14",
+   "wikidata": "Q14906931",
+   "koordinaten": "50.4396, 8.66451",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 50,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 296,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Butzbach": 50
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": [
+     "Butzbach"
+    ]
+   },
+   "zusammengefuehrt": [
+    "Kastell Butzbach"
+   ],
+   "pleiades_via_suche": "108839 (Pleiades-Suche »Butzbach«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_boehming",
+   "modern": "Böhming",
+   "modern_im_limesblatt": "Böhming",
+   "modern_varianten": [
+    "Böhming"
+   ],
+   "kastell": "Kastell Böhming",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 73a",
+   "wikidata": "Q1735341",
+   "koordinaten": "48.946111, 11.360833",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 8,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 59,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Böhming": 8
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_dambach",
+   "modern": "Dambach",
+   "modern_im_limesblatt": "Dambach",
+   "modern_varianten": [
+    "Dambach",
+    "Ehingen (Ortsteil Dambach), Landkreis Ansbach"
+   ],
+   "kastell": "Kastell Dambach",
+   "antik": [],
+   "flurname": {
+    "name": "Hammerschmiede",
+    "quelle": "Limesblatt-OCR; der ORL-Titel »Das Kastell Dambach« (1901) führt ihn nicht, im ORL-Register fehlt er ganz"
+   },
+   "vault_note": "Kastell Dambach",
+   "orl_nr": "ORL 69",
+   "wikidata": "Q1370136",
+   "koordinaten": "49.10285, 10.57876",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 24,
+   "n_limesblatt_flur": 17,
+   "n_orl_antik": 0,
+   "n_orl_modern": 78,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Dambach": 24,
+     "Ehingen (Ortsteil Dambach), Landkreis Ansbach": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "zusammengefuehrt": [
+    "Kastell Dambach"
+   ]
+  },
+  {
+   "slug": "kastell_echzell",
+   "modern": "Echzell",
+   "modern_im_limesblatt": "Echzell",
+   "modern_varianten": [
+    "Echzell"
+   ],
+   "kastell": "Kastell Echzell",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 18",
+   "wikidata": "Q1657587",
+   "koordinaten": "50.393, 8.88322",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 23,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 139,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Echzell": 23
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": [
+     "Echzell"
+    ]
+   },
+   "pleiades_via_suche": "118657 (Pleiades-Suche »Echzell«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_rueckingen",
+   "modern": "Erlensee",
+   "modern_im_limesblatt": "Rückingen",
+   "modern_varianten": [
+    "Erlensee",
+    "Erlensee, Ortsteil Rückingen",
+    "Rückingen"
+   ],
+   "kastell": "Kastell Rückingen",
+   "antik": [],
+   "flurname": null,
+   "vault_note": "Kastell Rückingen",
+   "orl_nr": "ORL 22",
+   "wikidata": "Q1735413",
+   "koordinaten": "50.1541, 8.98186",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 26,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 162,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Erlensee": 0,
+     "Erlensee, Ortsteil Rückingen": 0,
+     "Rückingen": 26
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "zusammengefuehrt": [
+    "Kastell Rückingen"
+   ]
+  },
+  {
+   "slug": "kastell_eulbach",
+   "modern": "Eulbach",
+   "modern_im_limesblatt": "Eulbach",
+   "modern_varianten": [
+    "Eulbach"
+   ],
+   "kastell": "Kastell Eulbach",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 48",
+   "wikidata": "Q1735359",
+   "koordinaten": "49.68, 9.07791667",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 13,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 151,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Eulbach": 13
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "118671 (Pleiades-Suche »Eulbach«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_ober_florstadt",
+   "modern": "Florstadt",
+   "modern_im_limesblatt": "Florstadt",
+   "modern_varianten": [
+    "Florstadt",
+    "Ober-Florstadt"
+   ],
+   "kastell": "Kastell Ober-Florstadt",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 19",
+   "wikidata": "Q1735400",
+   "koordinaten": "50.3238, 8.87635",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 5,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 102,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Florstadt": 5,
+     "Ober-Florstadt": 2
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_frankfurt_am_main_domhuegel",
+   "modern": "Frankfurt am Main",
+   "modern_im_limesblatt": "Frankfurt",
+   "modern_varianten": [
+    "Frankfurt am Main",
+    "Frankfurt"
+   ],
+   "kastell": "Kastell Frankfurt am Main Domhügel",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 27a",
+   "wikidata": "Q2202470",
+   "koordinaten": "50.1106, 8.6845",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 61,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 203,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Frankfurt am Main": 1,
+     "Frankfurt": 61
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_hoechst_am_main",
+   "modern": "Frankfurt am Main",
+   "modern_im_limesblatt": "Höchst",
+   "modern_varianten": [
+    "Frankfurt am Main",
+    "Höchst",
+    "Frankfurt"
+   ],
+   "kastell": "Kastell Höchst am Main",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 28",
+   "wikidata": "Q1735377",
+   "koordinaten": "50.1008, 8.55083",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 68,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 203,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Frankfurt am Main": 1,
+     "Höchst": 68,
+     "Frankfurt": 61
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_friedberg",
+   "modern": "Friedberg",
+   "modern_im_limesblatt": "Friedberg",
+   "modern_varianten": [
+    "Friedberg"
+   ],
+   "kastell": "Kastell Friedberg",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 26",
+   "wikidata": null,
+   "koordinaten": "50.336719, 8.753676",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 46,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 416,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Friedberg": 46
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "118681 (Pleiades-Suche »Friedberg«, eindeutiger Namenstreffer, Geo ungeprüft)",
+   "geo_geprueft": false
+  },
+  {
+   "slug": "kastell_grosskrotzenburg",
+   "modern": "Großkrotzenburg",
+   "modern_im_limesblatt": "Großkrotzenburg",
+   "modern_varianten": [
+    "Großkrotzenburg",
+    "GroÃŸkrotzenburg"
+   ],
+   "kastell": "Kastell Großkrotzenburg",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 23",
+   "wikidata": "Q1735361",
+   "koordinaten": "50.07985581862, 8.9798829032052",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 40,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 96,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Großkrotzenburg": 40,
+     "GroÃŸkrotzenburg": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_gunzenhausen",
+   "modern": "Gunzenhausen",
+   "modern_im_limesblatt": "Gunzenhausen",
+   "modern_varianten": [
+    "Gunzenhausen"
+   ],
+   "kastell": "Kastell Gunzenhausen",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 71",
+   "wikidata": "Q1466202",
+   "koordinaten": "49.11277778, 10.75555556",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 25,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 313,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Gunzenhausen": 25
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "118717 (Pleiades-Suche »Gunzenhausen«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_hainhaus",
+   "modern": "Hainhaus",
+   "modern_im_limesblatt": "Hainhaus",
+   "modern_varianten": [
+    "Hainhaus"
+   ],
+   "kastell": "Kastell Hainhaus",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 47",
+   "wikidata": "Q1735367",
+   "koordinaten": "49.7328, 9.08319",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 4,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 6,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Hainhaus": 4
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "118724 (Pleiades-Suche »Hainhaus«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_halheim",
+   "modern": "Halheim",
+   "modern_im_limesblatt": "Halheim",
+   "modern_varianten": [
+    "Halheim"
+   ],
+   "kastell": "Kastell Halheim",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 67a",
+   "wikidata": "Q1735371",
+   "koordinaten": "48.9832, 10.2857",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 1,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 46,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Halheim": 1
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_markoebel",
+   "modern": "Hammersbach",
+   "modern_im_limesblatt": "Marköbel",
+   "modern_varianten": [
+    "Hammersbach",
+    "Marköbel"
+   ],
+   "kastell": "Kastell Marköbel",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 21",
+   "wikidata": "Q1735395",
+   "koordinaten": "50.2226, 8.98424",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 40,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 168,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Hammersbach": 0,
+     "Marköbel": 40
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_kesselstadt",
+   "modern": "Hanau",
+   "modern_im_limesblatt": "Hanau",
+   "modern_varianten": [
+    "Hanau",
+    "Kesselstadt"
+   ],
+   "kastell": "Kastell Kesselstadt",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 24",
+   "wikidata": "Q1735381",
+   "koordinaten": "50.1289, 8.89529",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 34,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 195,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Hanau": 34,
+     "Kesselstadt": 27
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kleinkastell_neuwirtshaus",
+   "modern": "Hanau",
+   "modern_im_limesblatt": "Hanau",
+   "modern_varianten": [
+    "Hanau",
+    "Neuwirtshaus, Wolfgang"
+   ],
+   "kastell": "Kleinkastell Neuwirtshaus",
+   "antik": [],
+   "flurname": null,
+   "vault_note": "Kleinkastell Neuwirtshaus",
+   "orl_nr": null,
+   "wikidata": "Q1746886",
+   "koordinaten": "50.1112, 8.9829",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 34,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 195,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Hanau": 34,
+     "Neuwirtshaus, Wolfgang": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "heidelberg_in_roemischer_zeit",
+   "modern": "Heidelberg",
+   "modern_im_limesblatt": "Heidelberg",
+   "modern_varianten": [
+    "Heidelberg",
+    "Neuenheim"
+   ],
+   "kastell": "Heidelberg in römischer Zeit",
+   "antik": [],
+   "flurname": null,
+   "vault_note": "Heidelberg in römischer Zeit",
+   "orl_nr": null,
+   "wikidata": "Q1594006",
+   "koordinaten": "49.4150825, 8.6839274",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 7,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 95,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Heidelberg": 7,
+     "Neuenheim": 2
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": [
+     "Heidelberg"
+    ]
+   }
+  },
+  {
+   "slug": "kastell_heidenheim",
+   "modern": "Heidenheim",
+   "modern_im_limesblatt": "Heidenheim",
+   "modern_varianten": [
+    "Heidenheim"
+   ],
+   "kastell": "Kastell Heidenheim",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 66b",
+   "wikidata": "Q128401126",
+   "koordinaten": "48.67908333333333, 10.153666666666666",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 9,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 220,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Heidenheim": 9
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_kemel",
+   "modern": "Heidenrod",
+   "modern_im_limesblatt": "Kemel",
+   "modern_varianten": [
+    "Heidenrod",
+    "Kemel"
+   ],
+   "kastell": "Kastell Kemel",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 7",
+   "wikidata": "Q1725806",
+   "koordinaten": "50.1655, 8.01606",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 27,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 176,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Heidenrod": 0,
+     "Kemel": 27
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_heilbronn_boeckingen",
+   "modern": "Heilbronn-Böckingen",
+   "modern_im_limesblatt": "Böckingen",
+   "modern_varianten": [
+    "Heilbronn-Böckingen",
+    "Böckingen"
+   ],
+   "kastell": "Kastell Heilbronn-Böckingen",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 56",
+   "wikidata": "Q1735374",
+   "koordinaten": "49.133888, 9.188611",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 9,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 116,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Heilbronn-Böckingen": 0,
+     "Böckingen": 9
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_heldenbergen",
+   "modern": "Heldenbergen",
+   "modern_im_limesblatt": "Heldenbergen",
+   "modern_varianten": [
+    "Heldenbergen"
+   ],
+   "kastell": "Kastell Heldenbergen",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 25",
+   "wikidata": null,
+   "koordinaten": null,
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 35,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 203,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Heldenbergen": 35
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "dare_via_name": "6273 (Namensgleichheit »Heldenbergen«, Geo ungeprüft)"
+  },
+  {
+   "slug": "kastell_hesselbach",
+   "modern": "Hesselbach",
+   "modern_im_limesblatt": "Hesselbach",
+   "modern_varianten": [
+    "Hesselbach",
+    "Oberzent"
+   ],
+   "kastell": "Kastell Hesselbach",
+   "antik": [],
+   "flurname": null,
+   "vault_note": "Kastell Hesselbach",
+   "orl_nr": "ORL 50",
+   "wikidata": "Q1411006",
+   "koordinaten": "49.57625, 9.09055556",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 27,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 76,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Hesselbach": 27,
+     "Oberzent": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "118741 (Pleiades-Suche »Hesselbach«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_hofheim",
+   "modern": "Hofheim am Taunus",
+   "modern_im_limesblatt": "Hofheim",
+   "modern_varianten": [
+    "Hofheim am Taunus",
+    "Hofheim"
+   ],
+   "kastell": "Kastell Hofheim",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 29",
+   "wikidata": "Q1735375",
+   "koordinaten": "50.0808, 8.45089",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 50,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 449,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Hofheim am Taunus": 0,
+     "Hofheim": 50
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "109047 (Pleiades-Suche »Hofheim«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_holzhausen",
+   "modern": "Holzhausen an der Haide",
+   "modern_im_limesblatt": "Holzhausen",
+   "modern_varianten": [
+    "Holzhausen an der Haide",
+    "Holzhausen"
+   ],
+   "kastell": "Kastell Holzhausen",
+   "antik": [],
+   "flurname": null,
+   "vault_note": "Kastell Holzhausen",
+   "orl_nr": "ORL 6",
+   "wikidata": "Q1735376",
+   "koordinaten": "50.21488056, 7.94746667",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 36,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 121,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Holzhausen an der Haide": 1,
+     "Holzhausen": 36
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "zusammengefuehrt": [
+    "Kastell Holzhausen"
+   ],
+   "pleiades_via_suche": "109050 (Pleiades-Suche »Holzhausen«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_inheiden",
+   "modern": "Hungen",
+   "modern_im_limesblatt": "Hungen",
+   "modern_varianten": [
+    "Hungen",
+    "Inheiden, Hungen"
+   ],
+   "kastell": "Kastell Inheiden",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 17",
+   "wikidata": "Q1735379",
+   "koordinaten": "50.4606, 8.90795",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 1,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 24,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Hungen": 1,
+     "Inheiden, Hungen": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_hunzel",
+   "modern": "Hunzel",
+   "modern_im_limesblatt": "Hunzel",
+   "modern_varianten": [
+    "Hunzel"
+   ],
+   "kastell": "Kastell Hunzel",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 5",
+   "wikidata": "Q1240802",
+   "koordinaten": "50.2467, 7.82785",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 14,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 53,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Hunzel": 14
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "109056 (Pleiades-Suche »Hunzel«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_alteburg",
+   "modern": "Idstein",
+   "modern_im_limesblatt": "Idstein",
+   "modern_varianten": [
+    "Idstein",
+    "Alteburg, Heftrich"
+   ],
+   "kastell": "Kastell Alteburg",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 9",
+   "wikidata": "Q1735324",
+   "koordinaten": "50.20849444, 8.33294444",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 2,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 39,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Idstein": 2,
+     "Alteburg, Heftrich": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_jagsthausen",
+   "modern": "Jagsthausen",
+   "modern_im_limesblatt": "Jagsthausen",
+   "modern_varianten": [
+    "Jagsthausen"
+   ],
+   "kastell": "Kastell Jagsthausen",
+   "antik": [],
+   "flurname": null,
+   "vault_note": "Kastell Jagsthausen",
+   "orl_nr": "ORL 41",
+   "wikidata": "Q1735380",
+   "koordinaten": "49.3109, 9.46917",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 28,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 234,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Jagsthausen": 28
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "dare_via_name": "2151 (Namensgleichheit »Jagsthausen«, Geo ≤5 km)"
+  },
+  {
+   "slug": "kastell_okarben",
+   "modern": "Karben",
+   "modern_im_limesblatt": null,
+   "modern_varianten": [
+    "Karben"
+   ],
+   "kastell": "Kastell Okarben",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 25a",
+   "wikidata": null,
+   "koordinaten": null,
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 0,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 0,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Karben": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastelle_von_neckarburken",
+   "modern": "Kastelle von Neckarburken",
+   "modern_im_limesblatt": "Neckarburken",
+   "modern_varianten": [
+    "Kastelle von Neckarburken",
+    "Neckarburken"
+   ],
+   "kastell": "Kastelle von Neckarburken",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 53",
+   "wikidata": "Q1343017",
+   "koordinaten": "49.376667, 9.170278",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 27,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 28,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Kastelle von Neckarburken": 0,
+     "Neckarburken": 27
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastelle_von_walheim",
+   "modern": "Kastelle von Walheim",
+   "modern_im_limesblatt": "Walheim",
+   "modern_varianten": [
+    "Kastelle von Walheim",
+    "Walheim"
+   ],
+   "kastell": "Kastelle von Walheim",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 57",
+   "wikidata": "Q1669086",
+   "koordinaten": "49.0107, 9.15444",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 11,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 100,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Kastelle von Walheim": 0,
+     "Walheim": 11
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastelle_von_welzheim",
+   "modern": "Kastelle von Welzheim",
+   "modern_im_limesblatt": "Welzheim",
+   "modern_varianten": [
+    "Kastelle von Welzheim",
+    "Welzheim",
+    "Ostkastell Welzheim",
+    "Numeruskastell Welzheim",
+    "Welzheim-Ost",
+    "Welzheim-West"
+   ],
+   "kastell": "Kastelle von Welzheim",
+   "antik": [],
+   "flurname": null,
+   "vault_note": "Kastell Welzheim",
+   "orl_nr": "ORL 45",
+   "wikidata": "Q1735441",
+   "koordinaten": "48.87122, 9.64224",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 23,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 196,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Kastelle von Welzheim": 0,
+     "Welzheim": 23,
+     "Ostkastell Welzheim": 0,
+     "Numeruskastell Welzheim": 0,
+     "Welzheim-Ost": 0,
+     "Welzheim-West": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": [
+     "Ostkastell Welzheim",
+     "Numeruskastell Welzheim"
+    ]
+   }
+  },
+  {
+   "slug": "kastell_niederberg",
+   "modern": "Koblenz",
+   "modern_im_limesblatt": "Niederberg",
+   "modern_varianten": [
+    "Koblenz",
+    "Niederberg"
+   ],
+   "kastell": "Kastell Niederberg",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 2a",
+   "wikidata": "Q1670400",
+   "koordinaten": "50.3689, 7.62734",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 3,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 183,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Koblenz": 0,
+     "Niederberg": 3
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_lorch",
+   "modern": "Lorch",
+   "modern_im_limesblatt": "Lorch",
+   "modern_varianten": [
+    "Lorch"
+   ],
+   "kastell": "Kastell Lorch",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 63",
+   "wikidata": "Q1433981",
+   "koordinaten": "48.7981, 9.68855",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 21,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 241,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Lorch": 21
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_luetzelbach",
+   "modern": "Lützelbach",
+   "modern_im_limesblatt": "Lützelbach",
+   "modern_varianten": [
+    "Lützelbach"
+   ],
+   "kastell": "Kastell Lützelbach",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 46",
+   "wikidata": "Q1735392",
+   "koordinaten": "49.77944444, 9.08861111",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 16,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 68,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Lützelbach": 16
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "118822 (Pleiades-Suche »Lützelbach«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_mainhardt",
+   "modern": "Mainhardt",
+   "modern_im_limesblatt": "Mainhardt",
+   "modern_varianten": [
+    "Mainhardt"
+   ],
+   "kastell": "Kastell Mainhardt",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 43",
+   "wikidata": "Q1735393",
+   "koordinaten": "49.0804, 9.55631",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 14,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 94,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Mainhardt": 14
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "118829 (Pleiades-Suche »Mainhardt«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_marienfels",
+   "modern": "Marienfels",
+   "modern_im_limesblatt": "Marienfels",
+   "modern_varianten": [
+    "Marienfels"
+   ],
+   "kastell": "Kastell Marienfels",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 5a",
+   "wikidata": "Q1359182",
+   "koordinaten": "50.2403, 7.81076",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 15,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 111,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Marienfels": 15
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "109142 (Pleiades-Suche »Marienfels«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_miltenberg_altstadt",
+   "modern": "Miltenberg-Altstadt",
+   "modern_im_limesblatt": null,
+   "modern_varianten": [
+    "Miltenberg-Altstadt"
+   ],
+   "kastell": "Kastell Miltenberg-Altstadt",
+   "antik": [],
+   "flurname": {
+    "name": "Altstadt",
+    "quelle": "ORL-Lieferungstitel »Das Kastell Altstadt bei Miltenberg« (K10plus SRU)"
+   },
+   "vault_note": null,
+   "orl_nr": "ORL 38",
+   "wikidata": "Q51415709",
+   "koordinaten": "49.70918, 9.23005",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 0,
+   "n_limesblatt_flur": 13,
+   "n_orl_antik": 0,
+   "n_orl_modern": 0,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Miltenberg-Altstadt": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_miltenberg_ost",
+   "modern": "Miltenberg-Ost",
+   "modern_im_limesblatt": null,
+   "modern_varianten": [
+    "Miltenberg-Ost"
+   ],
+   "kastell": "Kastell Miltenberg-Ost",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 38a",
+   "wikidata": "Q51557490",
+   "koordinaten": "49.70538, 9.26157",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 0,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 0,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Miltenberg-Ost": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_murrhardt",
+   "modern": "Murrhardt",
+   "modern_im_limesblatt": "Murrhardt",
+   "modern_varianten": [
+    "Murrhardt"
+   ],
+   "kastell": "Kastell Murrhardt",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 44",
+   "wikidata": "Q1735397",
+   "koordinaten": "48.97696, 9.5823",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 11,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 107,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Murrhardt": 11
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "118854 (Pleiades-Suche »Murrhardt«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_heddesdorf",
+   "modern": "Neuwied",
+   "modern_im_limesblatt": "Heddesdorf",
+   "modern_varianten": [
+    "Neuwied",
+    "Heddesdorf"
+   ],
+   "kastell": "Kastell Heddesdorf",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 1",
+   "wikidata": "Q1735373",
+   "koordinaten": "50.4365, 7.46931",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 8,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 132,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Neuwied": 5,
+     "Heddesdorf": 8
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_niederbieber",
+   "modern": "Neuwied",
+   "modern_im_limesblatt": "Neuwied",
+   "modern_varianten": [
+    "Neuwied",
+    "Niederbieber-Segendorf"
+   ],
+   "kastell": "Kastell Niederbieber",
+   "antik": [],
+   "flurname": null,
+   "vault_note": "Kastell Niederbieber",
+   "orl_nr": "ORL 1a",
+   "wikidata": "Q1735398",
+   "koordinaten": "50.467025, 7.47194722",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 5,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 81,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Neuwied": 5,
+     "Niederbieber-Segendorf": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_niedernberg",
+   "modern": "Niedernberg",
+   "modern_im_limesblatt": "Niedernberg",
+   "modern_varianten": [
+    "Niedernberg"
+   ],
+   "kastell": "Kastell Niedernberg",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 34",
+   "wikidata": "Q1735399",
+   "koordinaten": "49.9141, 9.14105",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 2,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 98,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Niedernberg": 2
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_langenhain",
+   "modern": "Ober-Mörlen",
+   "modern_im_limesblatt": "Langenhain",
+   "modern_varianten": [
+    "Ober-Mörlen",
+    "Langenhain"
+   ],
+   "kastell": "Kastell Langenhain",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 13",
+   "wikidata": "Q14497142",
+   "koordinaten": "50.365, 8.64358",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 24,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 116,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Ober-Mörlen": 0,
+     "Langenhain": 24
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_obernburg",
+   "modern": "Obernburg",
+   "modern_im_limesblatt": "Obernburg",
+   "modern_varianten": [
+    "Obernburg",
+    "Obernburg am Main"
+   ],
+   "kastell": "Kastell Obernburg",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 35",
+   "wikidata": "Q654470",
+   "koordinaten": "49.8411, 9.14597",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 10,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 240,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Obernburg": 10,
+     "Obernburg am Main": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_oberscheidental",
+   "modern": "Oberscheidental",
+   "modern_im_limesblatt": null,
+   "modern_varianten": [
+    "Oberscheidental",
+    "Mudau"
+   ],
+   "kastell": "Kastell Oberscheidental",
+   "antik": [],
+   "flurname": null,
+   "vault_note": "Kastell Oberscheidental",
+   "orl_nr": "ORL 52",
+   "wikidata": "Q1735404",
+   "koordinaten": "49.5064, 9.15278",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 0,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 47,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Oberscheidental": 0,
+     "Mudau": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "118890 (Pleiades-Suche »Oberscheidental«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_zugmantel",
+   "modern": "Orlen",
+   "modern_im_limesblatt": "Orlen",
+   "modern_varianten": [
+    "Orlen",
+    "Taunusstein-Orlen",
+    "Zugmantel, Orlen",
+    "Eichelgarten"
+   ],
+   "kastell": "Kastell Zugmantel",
+   "antik": [],
+   "flurname": null,
+   "vault_note": "Kastell Zugmantel",
+   "orl_nr": "ORL 8",
+   "wikidata": "Q1727277",
+   "koordinaten": "50.18977, 8.20364",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 3,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 7,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Orlen": 3,
+     "Taunusstein-Orlen": 0,
+     "Zugmantel, Orlen": 0,
+     "Eichelgarten": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_osterburken",
+   "modern": "Osterburken",
+   "modern_im_limesblatt": "Osterburken",
+   "modern_varianten": [
+    "Osterburken",
+    "Kohortenkastell, Osterburken"
+   ],
+   "kastell": "Kastell Osterburken",
+   "antik": [],
+   "flurname": null,
+   "vault_note": "Kastell Osterburken",
+   "orl_nr": "ORL 40",
+   "wikidata": "Q1243550",
+   "koordinaten": "49.42753, 9.42364",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 58,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 383,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Osterburken": 58,
+     "Kohortenkastell, Osterburken": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "118898 (Pleiades-Suche »Osterburken«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_ruffenhofen",
+   "modern": "Ruffenhofen",
+   "modern_im_limesblatt": "Ruffenhofen",
+   "modern_varianten": [
+    "Ruffenhofen"
+   ],
+   "kastell": "Kastell Ruffenhofen",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 68",
+   "wikidata": "Q1735412",
+   "koordinaten": "49.0464, 10.4805",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 8,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 39,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Ruffenhofen": 8
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_schirenhof",
+   "modern": "Schirenhof",
+   "modern_im_limesblatt": null,
+   "modern_varianten": [
+    "Schirenhof"
+   ],
+   "kastell": "Kastell Schirenhof",
+   "antik": [],
+   "flurname": {
+    "name": "Schierenhof",
+    "quelle": "ORL-Lieferungstitel »Das Kastell Schierenhof bei Schw. Gmünd« (K10plus SRU)"
+   },
+   "vault_note": null,
+   "orl_nr": "ORL 64",
+   "wikidata": "Q1735417",
+   "koordinaten": "48.78676, 9.77725",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 0,
+   "n_limesblatt_flur": 8,
+   "n_orl_antik": 0,
+   "n_orl_modern": 0,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Schirenhof": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_schlossau",
+   "modern": "Schloßau",
+   "modern_im_limesblatt": "Schloßau",
+   "modern_varianten": [
+    "Schloßau",
+    "SchloÃŸau"
+   ],
+   "kastell": "Kastell Schloßau",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 51",
+   "wikidata": "Q1735418",
+   "koordinaten": "49.5406, 9.14944",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 18,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 39,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Schloßau": 18,
+     "SchloÃŸau": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_kleiner_feldberg",
+   "modern": "Schmitten",
+   "modern_im_limesblatt": null,
+   "modern_varianten": [
+    "Schmitten",
+    "Kleiner Feldberg"
+   ],
+   "kastell": "Kastell Kleiner Feldberg",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 10",
+   "wikidata": "Q1735383",
+   "koordinaten": "50.2271, 8.44467",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 0,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 0,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Schmitten": 0,
+     "Kleiner Feldberg": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_waldmoessingen",
+   "modern": "Schramberg",
+   "modern_im_limesblatt": "Römerkastell",
+   "modern_varianten": [
+    "Schramberg",
+    "Römerkastell in Waldmössingen",
+    "Römerkastell"
+   ],
+   "kastell": "Kastell Waldmössingen",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 61b",
+   "wikidata": "Q1735435",
+   "koordinaten": "48.2739, 8.49333",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 3,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 13,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Schramberg": 0,
+     "Römerkastell in Waldmössingen": 0,
+     "Römerkastell": 3
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": [
+     "Schramberg",
+     "Kastell Waldmössingen",
+     "Römerkastell in Waldmössingen"
+    ]
+   }
+  },
+  {
+   "slug": "kastell_seckmauern",
+   "modern": "Seckmauern",
+   "modern_im_limesblatt": "Seckmauern",
+   "modern_varianten": [
+    "Seckmauern"
+   ],
+   "kastell": "Kastell Seckmauern",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 46b",
+   "wikidata": "Q1735419",
+   "koordinaten": "49.79902778, 9.11736111",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 1,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 8,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Seckmauern": 1
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "118959 (Pleiades-Suche »Seckmauern«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_seligenstadt",
+   "modern": "Seligenstadt",
+   "modern_im_limesblatt": "Seligenstadt",
+   "modern_varianten": [
+    "Seligenstadt"
+   ],
+   "kastell": "Kastell Seligenstadt",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 32",
+   "wikidata": "Q1735420",
+   "koordinaten": "50.0441, 8.97587",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 1,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 85,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Seligenstadt": 1
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "118961 (Pleiades-Suche »Seligenstadt«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_stockstadt",
+   "modern": "Stockstadt",
+   "modern_im_limesblatt": "Stockstadt",
+   "modern_varianten": [
+    "Stockstadt",
+    "Stockstadt am Main"
+   ],
+   "kastell": "Kastell Stockstadt",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 33",
+   "wikidata": "Q1735421",
+   "koordinaten": "49.9774, 9.06737",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 8,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 334,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Stockstadt": 8,
+     "Stockstadt am Main": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "118976 (Pleiades-Suche »Stockstadt«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_stuttgart_bad_cannstatt",
+   "modern": "Stuttgart-Bad Cannstatt",
+   "modern_im_limesblatt": null,
+   "modern_varianten": [
+    "Stuttgart-Bad Cannstatt",
+    "Bad Cannstatt"
+   ],
+   "kastell": "Kastell Stuttgart-Bad Cannstatt",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 59",
+   "wikidata": "Q1735423",
+   "koordinaten": "48.8133, 9.21083",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 0,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 0,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Stuttgart-Bad Cannstatt": 0,
+     "Bad Cannstatt": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_sulz",
+   "modern": "Sulz am Neckar",
+   "modern_im_limesblatt": "Sulz",
+   "modern_varianten": [
+    "Sulz am Neckar",
+    "Sulz"
+   ],
+   "kastell": "Kastell Sulz",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 61a",
+   "wikidata": "Q1735424",
+   "koordinaten": "48.3597, 8.63667",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 22,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 171,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Sulz am Neckar": 0,
+     "Sulz": 22
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "118983 (Pleiades-Suche »Sulz«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_trennfurt",
+   "modern": "Trennfurt",
+   "modern_im_limesblatt": "Trennfurt",
+   "modern_varianten": [
+    "Trennfurt",
+    "Klingenberg am Main",
+    "Klingenberg"
+   ],
+   "kastell": "Kastell Trennfurt",
+   "antik": [],
+   "flurname": null,
+   "vault_note": "Kastell Trennfurt",
+   "orl_nr": "ORL 37",
+   "wikidata": "Q32064050",
+   "koordinaten": "49.77763, 9.17791",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 12,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 54,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Trennfurt": 12,
+     "Klingenberg am Main": 0,
+     "Klingenberg": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "dare_via_name": "16052 (Namensgleichheit »Trennfurt«, Geo ≤5 km)"
+  },
+  {
+   "slug": "kastell_unterboebingen",
+   "modern": "Unterböbingen",
+   "modern_im_limesblatt": "Unterböbingen",
+   "modern_varianten": [
+    "Unterböbingen"
+   ],
+   "kastell": "Kastell Unterböbingen",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 65",
+   "wikidata": "Q1424499",
+   "koordinaten": "48.8181017, 9.9228301",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 8,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 19,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Unterböbingen": 8
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_wallduern",
+   "modern": "Walldürn",
+   "modern_im_limesblatt": "Walldürn",
+   "modern_varianten": [
+    "Walldürn"
+   ],
+   "kastell": "Kastell Walldürn",
+   "antik": [],
+   "flurname": {
+    "name": "Alteburg",
+    "quelle": "ORL-Lieferungstitel »Das Kastell Alteburg bei Walldürn« (K10plus SRU)"
+   },
+   "vault_note": "Kastell Walldürn",
+   "orl_nr": "ORL 39",
+   "wikidata": "Q1735436",
+   "koordinaten": "49.5785, 9.38674",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 38,
+   "n_limesblatt_flur": 37,
+   "n_orl_antik": 0,
+   "n_orl_modern": 166,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Walldürn": 38
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "zusammengefuehrt": [
+    "Kastell Walldürn"
+   ],
+   "pleiades_via_suche": "119043 (Pleiades-Suche »Walldürn«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_kapersburg",
+   "modern": "Wehrheim",
+   "modern_im_limesblatt": "Kapersburg",
+   "modern_varianten": [
+    "Wehrheim",
+    "Kapersburg",
+    "Kapersburg, Ober-Rosbach"
+   ],
+   "kastell": "Kastell Kapersburg",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 12",
+   "wikidata": "Q1735382",
+   "koordinaten": "50.31270674931, 8.636502423992",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 24,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 119,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Wehrheim": 1,
+     "Kapersburg": 24,
+     "Kapersburg, Ober-Rosbach": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": [
+     "Kapersburg",
+     "Kastell Kapersburg"
+    ]
+   }
+  },
+  {
+   "slug": "kastell_westernbach",
+   "modern": "Westernbach",
+   "modern_im_limesblatt": "Westernbach",
+   "modern_varianten": [
+    "Westernbach"
+   ],
+   "kastell": "Kastell Westernbach",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 41a",
+   "wikidata": "Q32064058",
+   "koordinaten": "49.23078, 9.50341",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 5,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 30,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Westernbach": 5
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "119050 (Pleiades-Suche »Westernbach«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true,
+   "dare_via_name": "2152 (Namensgleichheit »Westernbach«, Geo ≤5 km)"
+  },
+  {
+   "slug": "kastell_wimpfen",
+   "modern": "Wimpfen",
+   "modern_im_limesblatt": "Wimpfen",
+   "modern_varianten": [
+    "Wimpfen"
+   ],
+   "kastell": "Kastell Wimpfen",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 54",
+   "wikidata": null,
+   "koordinaten": null,
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 14,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 102,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Wimpfen": 14
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   }
+  },
+  {
+   "slug": "kastell_woerth",
+   "modern": "Wörth",
+   "modern_im_limesblatt": "Wörth",
+   "modern_varianten": [
+    "Wörth",
+    "Wörth am Main"
+   ],
+   "kastell": "Kastell Wörth",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 36",
+   "wikidata": "Q1302239",
+   "koordinaten": "49.80138, 9.1449",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 12,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 115,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Wörth": 12,
+     "Wörth am Main": 0
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "119054 (Pleiades-Suche »Wörth«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_wuerzberg",
+   "modern": "Würzberg",
+   "modern_im_limesblatt": "Würzberg",
+   "modern_varianten": [
+    "Würzberg"
+   ],
+   "kastell": "Kastell Würzberg",
+   "antik": [],
+   "flurname": null,
+   "vault_note": null,
+   "orl_nr": "ORL 49",
+   "wikidata": "Q1445553",
+   "koordinaten": "49.63416667, 9.07527778",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 13,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 67,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Würzberg": 13
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "pleiades_via_suche": "119055 (Pleiades-Suche »Würzberg«, Geo-Probe ≤15 km bestätigt)",
+   "geo_geprueft": true
+  },
+  {
+   "slug": "kastell_oehringen_west",
+   "modern": "Öhringen-West",
+   "modern_im_limesblatt": "Öhringen",
+   "modern_varianten": [
+    "Öhringen-West",
+    "Öhringen"
+   ],
+   "kastell": "Kastell Öhringen-West",
+   "antik": [],
+   "flurname": null,
+   "vault_note": "Kastell Öhringen",
+   "orl_nr": "ORL 42",
+   "wikidata": "Q86069877",
+   "koordinaten": "49.205444444444446, 9.497397222222222",
+   "sicher": false,
+   "n_limesblatt_antik": 0,
+   "n_limesblatt_modern": 11,
+   "n_limesblatt_flur": 0,
+   "n_orl_antik": 0,
+   "n_orl_modern": 142,
+   "belege": {
+    "antik": {},
+    "modern": {
+     "Öhringen-West": 0,
+     "Öhringen": 11
+    },
+    "antik_teilstring": {},
+    "antik_wortgrenze": {},
+    "pleiades_modern": []
+   },
+   "zusammengefuehrt": [
+    "Kastell Öhringen-Ost"
+   ]
+  }
+ ]
+}
