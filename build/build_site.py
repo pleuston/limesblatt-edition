@@ -234,7 +234,7 @@ def page(title, body, depth=0, head=""):
 <li><a href="{up}edit.html" title="TEI-Quelle bearbeiten (GitHub-Login)">Bearbeiten ✎</a></li></ul></li>
 <li><a href="{up}index.html#suche">🔍 Suche</a></li>
 </ul></nav></header><main>{body}</main>
-<footer>Diplomatische OCR-Edition des <em>Limesblatt</em> (1892–1903) · Text &amp; Register
+<footer>Diplomatische OCR-Edition des <em>Limesblatt</em> (35 Hefte, 1892–1903) · Text &amp; Register
 <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · Seitenbilder © UB Heidelberg
 (<a href="http://rightsstatements.org/vocab/InC/1.0/">In Copyright</a>, via IIIF verlinkt) ·
 <a href="https://github.com/pleuston/limesblatt-edition">Quellcode &amp; TEI</a></footer></body></html>"""
@@ -1718,7 +1718,7 @@ def willkommen_page(s):
                 f'<div class="meta">{desc}</div></a>')
     tiles = [
         ("📖", "Die Bände lesen",
-         f'Die {s["nvol"]} Hefte des Limesblatt (1892–1903) vollständig — neben den eingescannten Originalseiten, mit Volltextsuche.',
+         f'Alle <b>35 Hefte</b> des Limesblatt (1892–1903), gebunden in {s["nvol"]} Jahrgangsbände — neben den eingescannten Originalseiten, mit Volltextsuche.',
          "index.html"),
         ("👥", "Menschen &amp; Orte",
          f'Wer die Grenze erforschte und wo: {s["npers"]} Personen, {s["nplac"]} Kastelle auf der Karte, die 15 Abschnitte und das <b>Organigramm</b> der Kommission.',
@@ -1744,6 +1744,29 @@ def willkommen_page(s):
             f'Standardwerk, in das sie mündeten, den <i>Obergermanisch-Raetischen Limes</i> (1894–1937). Jede '
             f'Angabe, die sich nachschlagen lässt, ist automatisch aus frei zugänglichen Quellen zusammengetragen; '
             f'das Deuten und Schreiben blieb Handarbeit.</p>'
+            f'<div class="note"><p><b>35 Hefte, und dann war Schluss.</b> Das Limesblatt erschien in '
+            f'<b>35 Nummern</b> — „Er[schein]t jährlich i[n] 5–6 Nrn. zum Preise von 3 Mark", wie sein Kopf sagt —, '
+            f'gebunden in acht Jahrgangsbände. Die letzte trägt den Vermerk „<i>Nr. 35. Ausgegeben am 27. Mai '
+            f'[1903]</i>". <span class="lc">(Eckige Klammern: Lesungen, wo die Fraktur-OCR versagt — sie liest '
+            f'„Kracheiut jährlich iu" und „27. Mai Ulli:]". Das Jahr ist über den Jahrgangsband und den '
+            f'Jahresbericht gesichert.)</span> Warum es endete, sagt die Kommission in ihrem Jahresbericht '
+            f'selbst:</p>'
+            f'<blockquote>„Das »Limesblatt« wurde durch Herausgabe eines letzten, des 35. Heftes, zum Abschluß '
+            f'gebracht. Da diese Veröffentlichung, die dazu bestimmt war, vorläufige Berichte über die Ergebnisse '
+            f'der Ausgrabungen fortlaufend zur Kenntnis der Mitforscher zu bringen, <b>mit dem Abschluß der '
+            f'eigentlichen Grabungen ihren Zweck erfüllt hatte</b>, so wurde das weitere Erscheinen eingestellt."'
+            f'<footer>Ernst Fabricius, Bericht der Reichs-Limeskommission, Januar 1904 '
+            f'(<a href="register/jahresberichte.html">Jahresberichte</a>)</footer></blockquote>'
+            f'<p>Kein Geldmangel, kein Streit: <b>Die Gattung endete mit ihrem Gegenstand.</b> Das Limesblatt war '
+            f'ein Organ der laufenden Feldarbeit — als die Grabungen abgeschlossen waren, hatte es keinen Anlass '
+            f'mehr. Was blieb, wanderte in die Endpublikation, den <a href="register/orl.html">ORL</a>.</p>'
+            f'<p>Das Schlussheft ist entsprechend gebaut: Es enthält einen <b>Nachruf auf Karl Zangemeister und '
+            f'Felix Hettner</b> — die beiden, die dem Blatt den Namen gaben und laut Fabricius „von Anbeginn an '
+            f'der Spitze unseres Unternehmens gestanden hatten"; beide starben 1902 —, Beiträge von Popp, '
+            f'Winkelmann, Schuchhardt, Fabricius, Steimle und Leonhard, und schließlich ein <b>„Register zu '
+            f'Nr. 1–35 des Limesblattes. Von Prof. Dr. P. Hintzelmann"</b>. Die Zeitschrift schließt sich also '
+            f'selbst auf — dieses zeitgenössische Register steht im letzten Band dieser Edition '
+            f'(<a href="volumes/bd8.html">Band 8</a>).</p></div>'
             f'{grid}'
             f'<p class="meta">Neu hier? Beginnen Sie mit den <a href="index.html">Bänden</a> oder lesen Sie die '
             f'<a href="dokumentation.html">Dokumentation</a>. Editionstext und Daten stehen unter CC&nbsp;BY&nbsp;4.0.</p>')
