@@ -63,10 +63,34 @@ def _entsub(inner):
     body = re.sub(r'<ref type="([^"]+)" target="#([^"]+)">(.*?)</ref>', _refsub, body, flags=re.S)   # Literatur/intern
     return body.replace("<lb/>", "<br>")               # Zeilenumbrüche (Inschriften/Korrekturen)
 
-def render_page(inner):
+# Textlose Tafelseiten. Die UB liefert für sie ein ALTO mit HTTP 200, aber leer (745 statt
+# ~76.000 Bytes): sie sind handschriftlich in KURRENT beschriftet, da ist per OCR nichts zu
+# holen — auch nicht per Re-OCR. »Leer« sind sie deshalb NICHT, und so dürfen sie auch nicht
+# heißen: Hintzelmann verweist 1903 auf Sp. 559 (»Gundelshalm«), wo Fig. 3 die Legende
+# »… auf der Höhe bei Gundelshalm« trägt. Der Leser gehört hier ans Faksimile geschickt.
+TAFELN = {("limesblatt1893_1894", "211"), ("limesblatt1896", "467"),
+          ("limesblatt1896", "541"),      ("limesblatt1896", "559")}
+
+def render_page(inner, tafel=None):
     """inner = <cb/> + <p>…</p>-Block einer Spalte; Inline-Tags → HTML-Spans/Links."""
     inner = re.sub(r'<cb\b[^>]*/>', '', inner)          # Spaltenmarke aus dem Lesetext entfernen
-    if "<gap" in inner: return '<p class="gap">[leere bzw. nicht erfasste Seite]</p>'
+    if "<gap" in inner:
+        if tafel:
+            tok, slug_ = tafel
+            no = int(tok)
+            iiif = f"https://digi.ub.uni-heidelberg.de/iiif/2/{slug_}%3A{tok}.jpg"
+            return (f'<figure class="tafel" style="margin:1em 0;text-align:center">'
+                    f'<a href="{iiif}/full/max/0/default.jpg" title="Faksimile in voller Auflösung">'
+                    f'<img loading="lazy" alt="Tafel, Spalten {no}/{no+1} — Faksimile" '
+                    f'style="max-width:100%;border:1px solid var(--line,#ddd)" '
+                    f'src="{iiif}/full/700,/0/default.jpg">'
+                    f'</a><figcaption class="meta" style="text-align:left"><b>Tafel — Spalten {no}/{no+1}.</b> Die Seite trägt keinen Satztext: '
+                    f'Sie ist <b>handschriftlich in Kurrent</b> beschriftet, weshalb die '
+                    f'Schrifterkennung sie leer lässt. Zitierbar ist sie trotzdem — '
+                    f'<a href="../register/hintzelmann.html">Hintzelmanns Register</a> von 1903 verweist '
+                    f'darauf. <a href="{iiif}/full/max/0/default.jpg">Volle Auflösung</a> · '
+                    f'Seitenbilder &#169; UB Heidelberg.</figcaption></figure>')
+        return '<p class="gap">[leere bzw. nicht erfasste Seite]</p>'
     return _entsub(inner)  # bereits <p>…</p>
 
 def render_head(inner):
@@ -100,7 +124,8 @@ def load_volume(path):
         printed, img_tok, col, typ, inner = m.group(3), m.group(4), m.group(5) or "a", m.group(6) or "", m.group(7).strip()
         anchor = f"{img_tok}-{col}"
         pages.append({"img_tok": img_tok, "printed": printed, "col": col, "anchor": anchor, "tok": anchor,
-                      "type": typ, "head": pending_head, "html": render_page(inner),
+                      "type": typ, "head": pending_head,
+                      "html": render_page(inner, (img_tok, slug) if (slug, img_tok) in TAFELN else None),
                       "text": unesc(strip_tags(re.sub(r'<cb\b[^>]*/>|<lb/>|</?p\b[^>]*>', ' ', inner))).strip(),
                       "ents": re.findall(r'ref="#([^"]+)"', inner),
                       "dents": re.findall(r'ref="dare:([^"]+)"', inner),

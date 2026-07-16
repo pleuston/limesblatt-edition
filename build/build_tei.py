@@ -753,6 +753,29 @@ def main():
         pn = int(tk) + OFF[lab]
         if pn not in selfmap:
             selfmap[pn] = f"pb_{tk}_{lab}"; n_erg += 1
+    # TAFELSEITEN. Vier nummerierte Seiten tragen keinen Text: 211 (Bd. 2) sowie 467, 541, 559
+    # (Bd. 4). Die UB liefert für sie ein ALTO mit HTTP 200, aber leer (745 statt ~76.000 Bytes) —
+    # sie sind HANDSCHRIFTLICH IN KURRENT beschriftet, da ist nichts zu erkennen, auch nicht per
+    # Re-OCR. Ohne Spalten entstehen sie hier gar nicht erst, und ihre Nummern fehlten der selfmap.
+    # Sie sind aber zitierbar: Hintzelmann verweist 1903 auf Sp. 559 (»Gundelshalm«) — dort steht
+    # Fig. 3 »… auf der Höhe bei Gundelshalm«. Der Faksimile-Anker pb_<tok>_a existiert längst
+    # (type="token"); die Tafel trägt im Kopf BEIDE Spaltennummern (»— 559 — Limesblatt. — 560 —«),
+    # deshalb zeigen beide auf dieselbe Seite.
+    n_taf, tafeln = 0, []
+    for slug_, label, nr in WORKS:
+        cdir = os.path.join(vault, "tools", ".cache", slug_)
+        for tf in glob.glob(os.path.join(cdir, "*.txt")):
+            tk = os.path.basename(tf)[:-4]
+            if not tk.isdigit(): continue
+            if os.path.exists(os.path.join(cdir, f"{tk}.alto.json")): continue   # hat Spalten → kein Tafelfall
+            for off in (0, 1):
+                pn = int(tk) + off
+                if pn not in selfmap:
+                    selfmap[pn] = f"pb_{tk}_a"; n_taf += 1
+            tafeln.append(f"{label}/{tk}")
+    if tafeln:
+        print(f"  Tafelseiten ohne Text (leeres ALTO, Kurrent-Beschriftung): {', '.join(sorted(tafeln))} "
+              f"→ {n_taf} Spaltennummern auf das Faksimile gezeigt")
     if selfmap_ambig or n_erg:
         _kein = [n for n, v in selfmap_ambig.items() if not v["token_konsistent"]]
         print(f"  selfmap: {len(selfmap_ambig)} mehrdeutige Nummern über das Token aufgelöst · "
