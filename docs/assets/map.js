@@ -1,7 +1,13 @@
 /* Facettierte Limes-Karte: benannte Kastelle (nach Abschnitt gefärbt/filterbar),
    Limesverlauf-Linie und die weiteren Limesstellen (DARE: Türme/Kleinkastelle/Lager
    zwischen den Kastellen) als zuschaltbare Ebenen. Fokus auf eine Strecke via ?strecke=<id>.
-   Erwartet window.MAPDATA.feats; lädt ../data/limes-line.geojson und ../data/sites.geojson. */
+   Erwartet window.MAPDATA.feats; lädt ../data/limes-line.geojson und ../data/sites.geojson.
+
+   Zwei historische Kartenebenen als LIVE Drittanbieter-Kacheldienste (kein Rehosting,
+   nichts davon liegt in diesem Repo) — deshalb hier möglich, obwohl Breeze & Schaller 2011
+   (CC BY-NC, nur im privaten Vault) das nicht ist: HLGL-WMTS (Herzogtum Hessen-Nassau
+   1819/1848 + Großherzogtum Hessen 1823–1850) und das Virtuelle Kartenforum SLUB Dresden
+   (Karte des Deutschen Reiches 1:100.000, 1909, klassischer WMS über L.tileLayer.wms). */
 (function () {
   var F = (window.MAPDATA && MAPDATA.feats) || [];
   var palette = ["#b3331a", "#1f7a4d", "#3060c0", "#b07d20", "#7a3fae"];
@@ -94,6 +100,25 @@
     }).addTo(nerLayer);
     addToggle("im Volltext genannte Orte · NER (" + (gj.features || []).length + ")", "#7a3fae", "◆", nerLayer, false);
   }).catch(function () {});
+
+  // 5) Historische Landesaufnahmen Hessen (HLGL-WMTS, live Kachel-Dienst, kein Rehosting):
+  //    Herzogtum Hessen-Nassau 1819/1848 + Großherzogtum Hessen 1823–1850, gebührenfrei.
+  var hlglHN = L.tileLayer(
+    "https://wms.hlgl.uni-marburg.de/mapcache/landesaufnahme/wmts/1.0.0/hn/default/GoogleMapsCompatible/{z}/{y}/{x}.png",
+    { maxZoom: 18, attribution: 'Historische Landesaufnahme © <a href="https://hil.hessen.de">HLGL</a>' });
+  var hlglGHH = L.tileLayer(
+    "https://wms.hlgl.uni-marburg.de/mapcache/landesaufnahme/wmts/1.0.0/ghh/default/GoogleMapsCompatible/{z}/{y}/{x}.png",
+    { maxZoom: 18, attribution: 'Historische Landesaufnahme © <a href="https://hil.hessen.de">HLGL</a>' });
+  addToggle("Herzogtum Hessen-Nassau, 1819/1848", "#9c6b30", "▦", hlglHN, false);
+  addToggle("Großherzogtum Hessen, 1823–1850", "#9c6b30", "▦", hlglGHH, false);
+
+  // 6) Karte des Deutschen Reiches 1:100.000, 1909 (Virtuelles Kartenforum SLUB Dresden,
+  //    live WMS, kein Rehosting) — RLK-zeitgenössisch, deckt ganz Deutschland.
+  var kdr100 = L.tileLayer.wms("https://wms.kartenforum.slub-dresden.de/map/deutsches_reich_tk100", {
+    layers: "deutsches_reich_tk100", format: "image/png", transparent: true, maxZoom: 18,
+    attribution: '„Karte des Deutschen Reiches" 1909 © <a href="https://kartenforum.slub-dresden.de/">Virtuelles Kartenforum, SLUB Dresden</a>'
+  });
+  addToggle("Karte des Deutschen Reiches, 1909", "#5a5a5a", "▦", kdr100, false);
 
   window.focusSite = function (id) {
     var m = siteById[id]; if (!m) return false;
