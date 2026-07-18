@@ -3,11 +3,16 @@
    zwischen den Kastellen) als zuschaltbare Ebenen. Fokus auf eine Strecke via ?strecke=<id>.
    Erwartet window.MAPDATA.feats; lädt ../data/limes-line.geojson und ../data/sites.geojson.
 
-   Zwei historische Kartenebenen als LIVE Drittanbieter-Kacheldienste (kein Rehosting,
-   nichts davon liegt in diesem Repo) — deshalb hier möglich, obwohl Breeze & Schaller 2011
-   (CC BY-NC, nur im privaten Vault) das nicht ist: HLGL-WMTS (Herzogtum Hessen-Nassau
-   1819/1848 + Großherzogtum Hessen 1823–1850) und das Virtuelle Kartenforum SLUB Dresden
-   (Karte des Deutschen Reiches 1:100.000, 1909, klassischer WMS über L.tileLayer.wms). */
+   Mehrere historische/thematische Kartenebenen als LIVE Drittanbieter-Kacheldienste (kein
+   Rehosting, nichts davon liegt in diesem Repo) — deshalb hier möglich, obwohl Breeze &
+   Schaller 2011 (CC BY-NC, nur im privaten Vault) das nicht ist: HLGL-WMTS (Herzogtum
+   Hessen-Nassau 1819/1848 + Großherzogtum Hessen 1823–1850), das Virtuelle Kartenforum
+   SLUB Dresden (Karte des Deutschen Reiches 1:100.000, 1909, klassischer WMS über
+   L.tileLayer.wms) und das Geländerelief (DGM) Hessen + Bayern + Baden-Württemberg
+   (Terrainform statt Kartenbild — Bayern/BW klassischer WMS, Hessen über eine kleine
+   L.TileLayer-Unterklasse, die die ArcGIS-`export`-Reprojektion pro Kachel aufruft, da der
+   Dienst keinen {z}/{x}/{y}-Kachel-Endpunkt hat, s. Publikationen/Geländerelief (DGM) über
+   dem Limes.md im Vault). */
 (function () {
   var F = (window.MAPDATA && MAPDATA.feats) || [];
   var palette = ["#b3331a", "#1f7a4d", "#3060c0", "#b07d20", "#7a3fae"];
@@ -128,6 +133,12 @@
     attribution: 'Geländerelief © <a href="https://geoservices.bayern.de">Bayerische Vermessungsverwaltung</a>, CC BY 4.0'
   });
   addToggle("Geländerelief Bayern (DGM1)", "#6b6b6b", "▦", reliefBayern, false);
+
+  var reliefBW = L.tileLayer.wms("https://owsproxy.lgl-bw.de/owsproxy/ows/WMS_LGL-BW_ATKIS_DGM_025_Schummerung", {
+    layers: "Schummerung_DGM_025_BW", format: "image/png", transparent: true, maxZoom: 18,
+    attribution: 'Geländerelief © <a href="https://www.lgl-bw.de">LGL Baden-Württemberg</a>, DL-DE-BY-2.0'
+  });
+  addToggle("Geländerelief Baden-Württemberg (DGM 25cm)", "#6b6b6b", "▦", reliefBW, false);
 
   // Hessens DGM1-Dienst ist ein ArcGIS-ImageServer ohne {z}/{x}/{y}-Kachel-Endpunkt (natives
   // CRS EPSG:25832). Die `export`-Operation reprojiziert aber live über bboxSR/imageSR=3857 —
