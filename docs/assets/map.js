@@ -120,6 +120,36 @@
   });
   addToggle("Karte des Deutschen Reiches, 1909", "#5a5a5a", "▦", kdr100, false);
 
+  // 7) Geländerelief (DGM1) Hessen + Bayern — live WMS/ArcGIS-export, kein Rehosting.
+  //    Zeigt Terrainform statt Kartenbild: Wall/Graben/Hohlwege werden als feine lineare
+  //    Strukturen sichtbar, wo oberirdisch erhalten. Sucheinstieg, kein Nachweis.
+  var reliefBayern = L.tileLayer.wms("https://geoservices.bayern.de/od/wms/dgm/v1/relief", {
+    layers: "by_relief_kombiniert", format: "image/png", transparent: true, maxZoom: 18,
+    attribution: 'Geländerelief © <a href="https://geoservices.bayern.de">Bayerische Vermessungsverwaltung</a>, CC BY 4.0'
+  });
+  addToggle("Geländerelief Bayern (DGM1)", "#6b6b6b", "▦", reliefBayern, false);
+
+  // Hessens DGM1-Dienst ist ein ArcGIS-ImageServer ohne {z}/{x}/{y}-Kachel-Endpunkt (natives
+  // CRS EPSG:25832). Die `export`-Operation reprojiziert aber live über bboxSR/imageSR=3857 —
+  // eine L.TileLayer-Unterklasse berechnet pro Kachel die EPSG:3857-BBOX und ruft sie als
+  // 256×256-„Kachel" ab (derselbe Trick wie beim Vault-Bake in tools/relief_georef.py, nur
+  // pro Kachel statt einmalig über die volle Ausdehnung).
+  var HessenDGM1Layer = L.TileLayer.extend({
+    getTileUrl: function (coords) {
+      var R = 20037508.342789244, tiles = Math.pow(2, coords.z), res = (2 * R) / (tiles * 256);
+      var x0 = coords.x * 256 * res - R, x1 = (coords.x + 1) * 256 * res - R;
+      var y1 = R - coords.y * 256 * res, y0 = R - (coords.y + 1) * 256 * res;
+      return "https://umweltdaten.hessen.de/arcgis/rest/services/geobasis/dgm1_schummerung/mapserver/export"
+        + "?bbox=" + x0 + "," + y0 + "," + x1 + "," + y1 + "&bboxSR=3857&imageSR=3857"
+        + "&size=256,256&format=png32&transparent=true&f=image";
+    }
+  });
+  var reliefHessen = new HessenDGM1Layer("", {
+    maxZoom: 18, minZoom: 9,
+    attribution: 'Geländerelief © HVBG/HLNUG, <a href="https://opendata.hessen.de/dataset/atkis-dgm-1">DL-DE-Zero-2.0</a>'
+  });
+  addToggle("Geländerelief Hessen (DGM1)", "#6b6b6b", "▦", reliefHessen, false);
+
   window.focusSite = function (id) {
     var m = siteById[id]; if (!m) return false;
     if (!map.hasLayer(siteLayer)) siteLayer.addTo(map);
