@@ -1,0 +1,410 @@
+{
+ "quelle": "Merten 2002 (Trierer Zeitschrift 65), S. 277-278 — ORL Abt. B Lfg. 1-18, Hg. Felix Hettner",
+ "n": 43,
+ "lieferungen": [
+  {
+   "lfg": 1,
+   "jahr": "1894-11",
+   "kastell": "Butzbach",
+   "bearbeiter": "Kofler",
+   "orl_band": 2,
+   "nr_label": "14",
+   "nr": "14"
+  },
+  {
+   "lfg": 1,
+   "jahr": "1894-11",
+   "kastell": "Murrhardt",
+   "bearbeiter": "Hämmerle",
+   "orl_band": 4,
+   "nr_label": "44",
+   "nr": "44"
+  },
+  {
+   "lfg": 1,
+   "jahr": "1894-11",
+   "kastell": "Unterböbingen",
+   "bearbeiter": "Steimle",
+   "orl_band": 6,
+   "nr_label": "65",
+   "nr": "65"
+  },
+  {
+   "lfg": 2,
+   "jahr": "1895-08",
+   "kastell": "Osterburken",
+   "bearbeiter": "Schumacher",
+   "orl_band": 4,
+   "nr_label": "40",
+   "nr": "40"
+  },
+  {
+   "lfg": 3,
+   "jahr": "1896-06",
+   "kastell": "Marköbel",
+   "bearbeiter": "Wolff",
+   "orl_band": 2,
+   "nr_label": "21",
+   "nr": "21"
+  },
+  {
+   "lfg": 3,
+   "jahr": "1896-06",
+   "kastell": "Niedernberg",
+   "bearbeiter": "Conrady",
+   "orl_band": 3,
+   "nr_label": "34",
+   "nr": "34"
+  },
+  {
+   "lfg": 4,
+   "jahr": "1896-11",
+   "kastell": "Eulbach",
+   "bearbeiter": "Kofler",
+   "orl_band": 5,
+   "nr_label": "48",
+   "nr": "48"
+  },
+  {
+   "lfg": 4,
+   "jahr": "1896-11",
+   "kastell": "Würzberg",
+   "bearbeiter": "Kofler",
+   "orl_band": 5,
+   "nr_label": "49",
+   "nr": "49"
+  },
+  {
+   "lfg": 4,
+   "jahr": "1896-11",
+   "kastell": "Hesselbach",
+   "bearbeiter": "Kofler",
+   "orl_band": 5,
+   "nr_label": "50",
+   "nr": "50"
+  },
+  {
+   "lfg": 4,
+   "jahr": "1896-11",
+   "kastell": "Ruffenhofen",
+   "bearbeiter": "Kohl",
+   "orl_band": 6,
+   "nr_label": "68",
+   "nr": "68"
+  },
+  {
+   "lfg": 5,
+   "jahr": "1897-07",
+   "kastell": "Öhringen",
+   "bearbeiter": "v. Herzog",
+   "orl_band": 4,
+   "nr_label": "42 u.42/1",
+   "nr": "42"
+  },
+  {
+   "lfg": 5,
+   "jahr": "1897-07",
+   "kastell": "Vielbrunn",
+   "bearbeiter": "Kofler",
+   "orl_band": 5,
+   "nr_label": "47",
+   "nr": "47"
+  },
+  {
+   "lfg": 5,
+   "jahr": "1897-07",
+   "kastell": "Lorch",
+   "bearbeiter": "Steimle",
+   "orl_band": 6,
+   "nr_label": "63",
+   "nr": "63"
+  },
+  {
+   "lfg": 6,
+   "jahr": "1897-08",
+   "kastell": "Hunzel",
+   "bearbeiter": "Bodewig",
+   "orl_band": 1,
+   "nr_label": "5",
+   "nr": "5"
+  },
+  {
+   "lfg": 6,
+   "jahr": "1897-08",
+   "kastell": "Oberscheidenthal",
+   "bearbeiter": "Schumacher",
+   "orl_band": 5,
+   "nr_label": "52",
+   "nr": "52"
+  },
+  {
+   "lfg": 6,
+   "jahr": "1897-08",
+   "kastell": "Waldmössingen",
+   "bearbeiter": "Naegele",
+   "orl_band": 5,
+   "nr_label": "61b",
+   "nr": "61b"
+  },
+  {
+   "lfg": 7,
+   "jahr": "1897-09",
+   "kastell": "Hofheim",
+   "bearbeiter": "Wolff",
+   "orl_band": 2,
+   "nr_label": "29",
+   "nr": "29"
+  },
+  {
+   "lfg": 7,
+   "jahr": "1897-09",
+   "kastell": "Schierenhof",
+   "bearbeiter": "Steimle",
+   "orl_band": 6,
+   "nr_label": "64",
+   "nr": "64"
+  },
+  {
+   "lfg": 8,
+   "jahr": "1897-11",
+   "kastell": "Langenhain",
+   "bearbeiter": "Kofler",
+   "orl_band": 2,
+   "nr_label": "13",
+   "nr": "13"
+  },
+  {
+   "lfg": 8,
+   "jahr": "1897-11",
+   "kastell": "Walheim",
+   "bearbeiter": "Mettler",
+   "orl_band": 5,
+   "nr_label": "57",
+   "nr": "57"
+  },
+  {
+   "lfg": 8,
+   "jahr": "1897-11",
+   "kastell": "Sulz",
+   "bearbeiter": "Herzog",
+   "orl_band": 5,
+   "nr_label": "61a",
+   "nr": "61a"
+  },
+  {
+   "lfg": 9,
+   "jahr": "1898-06",
+   "kastell": "Neckarburken",
+   "bearbeiter": "Schumacher",
+   "orl_band": 5,
+   "nr_label": "53 u.53/1",
+   "nr": "53"
+  },
+  {
+   "lfg": 10,
+   "jahr": "1898-09",
+   "kastell": "Kesselstadt",
+   "bearbeiter": "Wolff",
+   "orl_band": 2,
+   "nr_label": "24",
+   "nr": "24"
+  },
+  {
+   "lfg": 10,
+   "jahr": "1898-09",
+   "kastell": "Böckingen",
+   "bearbeiter": "Steimle",
+   "orl_band": 5,
+   "nr_label": "56",
+   "nr": "56"
+  },
+  {
+   "lfg": 10,
+   "jahr": "1898-09",
+   "kastell": "Buch",
+   "bearbeiter": "Herzog",
+   "orl_band": 6,
+   "nr_label": "67",
+   "nr": "67"
+  },
+  {
+   "lfg": 11,
+   "jahr": "1900-09",
+   "kastell": "Wörth",
+   "bearbeiter": "Conrady",
+   "orl_band": 3,
+   "nr_label": "36",
+   "nr": "36"
+  },
+  {
+   "lfg": 11,
+   "jahr": "1900-09",
+   "kastell": "Trennfurt",
+   "bearbeiter": "Conrady",
+   "orl_band": 3,
+   "nr_label": "37",
+   "nr": "37"
+  },
+  {
+   "lfg": 11,
+   "jahr": "1900-09",
+   "kastell": "Schloßau",
+   "bearbeiter": "Schumacher",
+   "orl_band": 5,
+   "nr_label": "51",
+   "nr": "51"
+  },
+  {
+   "lfg": 12,
+   "jahr": "1900-10",
+   "kastell": "Niederberg",
+   "bearbeiter": "Dahm",
+   "orl_band": 1,
+   "nr_label": "2a",
+   "nr": "2a"
+  },
+  {
+   "lfg": 12,
+   "jahr": "1900-10",
+   "kastell": "Arzbach",
+   "bearbeiter": "Dahm",
+   "orl_band": 1,
+   "nr_label": "3",
+   "nr": "3"
+  },
+  {
+   "lfg": 13,
+   "jahr": "1900-12",
+   "kastell": "Heldenbergen",
+   "bearbeiter": "Wolff",
+   "orl_band": 2,
+   "nr_label": "25",
+   "nr": "25"
+  },
+  {
+   "lfg": 13,
+   "jahr": "1900-12",
+   "kastell": "Wimpfen",
+   "bearbeiter": "Schumacher",
+   "orl_band": 5,
+   "nr_label": "54/55",
+   "nr": "54"
+  },
+  {
+   "lfg": 13,
+   "jahr": "1900-12",
+   "kastell": "Heidenheim",
+   "bearbeiter": "Prescher",
+   "orl_band": 6,
+   "nr_label": "66b",
+   "nr": "66b"
+  },
+  {
+   "lfg": 14,
+   "jahr": "1901-08",
+   "kastell": "Pfünz",
+   "bearbeiter": "Winkelmann",
+   "orl_band": 7,
+   "nr_label": "73",
+   "nr": "73"
+  },
+  {
+   "lfg": 15,
+   "jahr": "1901-11",
+   "kastell": "Kemel",
+   "bearbeiter": "Lehner",
+   "orl_band": 1,
+   "nr_label": "7",
+   "nr": "7"
+  },
+  {
+   "lfg": 15,
+   "jahr": "1901-11",
+   "kastell": "Halheim",
+   "bearbeiter": "Steimle",
+   "orl_band": 6,
+   "nr_label": "67a",
+   "nr": "67a"
+  },
+  {
+   "lfg": 15,
+   "jahr": "1901-11",
+   "kastell": "Dambach",
+   "bearbeiter": "Kohl/Popp",
+   "orl_band": 6,
+   "nr_label": "69",
+   "nr": "69"
+  },
+  {
+   "lfg": 16,
+   "jahr": "1902-02",
+   "kastell": "Okarben",
+   "bearbeiter": "Wolff",
+   "orl_band": 2,
+   "nr_label": "25a",
+   "nr": "25a"
+  },
+  {
+   "lfg": 16,
+   "jahr": "1902-02",
+   "kastell": "Pföring",
+   "bearbeiter": "Fink",
+   "orl_band": 7,
+   "nr_label": "75",
+   "nr": "75"
+  },
+  {
+   "lfg": 17,
+   "jahr": "1902-04",
+   "kastell": "Arnsburg",
+   "bearbeiter": "Kofler",
+   "orl_band": 2,
+   "nr_label": "16",
+   "nr": "16"
+  },
+  {
+   "lfg": 17,
+   "jahr": "1902-04",
+   "kastell": "Benningen",
+   "bearbeiter": "Mettler",
+   "orl_band": 5,
+   "nr_label": "58",
+   "nr": "58"
+  },
+  {
+   "lfg": 18,
+   "jahr": "1903-03",
+   "kastell": "Ober-Florstadt",
+   "bearbeiter": "Kofler",
+   "orl_band": 2,
+   "nr_label": "19",
+   "nr": "19"
+  },
+  {
+   "lfg": 18,
+   "jahr": "1903-03",
+   "kastell": "Obernburg",
+   "bearbeiter": "Conrady",
+   "orl_band": 3,
+   "nr_label": "35",
+   "nr": "35"
+  }
+ ],
+ "pruefpunkte": {
+  "schreibvarianten_harmlos": [
+   "nr.52 Oberscheidenthal/-tal",
+   "nr.64 Schierenhof/Schirenhof",
+   "nr.75 Pföring/Pförring"
+  ],
+  "luecke_gefuellt": [
+   "nr.54 = Kastell Wimpfen (Index-Platzhalter, Merten authoritativ)"
+  ],
+  "bearbeiter_konflikt_merten_vs_index": [
+   "nr.37 Trennfurt: Merten 'Conrady' vs Index 'Karl Zangemeister' — Conrady bearbeitete die Main-Linie; Index-Wert vermutlich NER-Artefakt",
+   "nr.50 Hesselbach: Merten 'Kofler' vs Index 'Karl Schumacher' — Merten = Hettners ORL-Hg.-Liste, authoritativ"
+  ],
+  "kastell_zuordnung_pruefen": [
+   "nr.47: Merten 'Vielbrunn' vs Index 'Kastell Hainhaus' — ORL-Nummernzuordnung gegen Merten prüfen (vgl. früherer Jagsthausen-39/41-Fehler)"
+  ]
+ }
+}

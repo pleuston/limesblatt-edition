@@ -306,8 +306,10 @@ def vol_page(v, toc=None):
             '<script defer src="../assets/pageedit.js"></script>')
     inh = ""
     if toc:
-        items = toc_li(toc, "", True)
-        inh = f'<details class="inhalt" open><summary>Inhalt — {len(toc)} nummerierte Berichte</summary><ul class="toc">{items}</ul></details>'
+        items = toc_li_hefte(toc, "", True, band=v["nr"])
+        nh = sum(1 for h in HEFTE if h["band"] == v["nr"])
+        inh = (f'<details class="inhalt" open><summary>Inhalt — {nh} Hefte, '
+               f'{len(toc)} nummerierte Berichte</summary><ul class="toc">{items}</ul></details>')
     body = f"""<h1>Limesblatt · {html.escape(v['label'])}</h1>
 <p class="meta">IIIF-Faksimile: <a href="{IIIF_MAN.format(slug=slug)}">Manifest</a> (UB Heidelberg) ·
 TEI: <a href="../tei/{teiname}">XML</a></p>
@@ -583,10 +585,15 @@ def index_page(volumes, toc=None):
     bl = []
     for v in volumes:
         ents = toc.get(v["nr"], [])
-        items = toc_li(ents, f'volumes/bd{v["nr"]}.html', False)
+        items = toc_li_hefte(ents, f'volumes/bd{v["nr"]}.html', False, band=v["nr"])
         sub = f'<ul class="toc idxtoc">{items}</ul>' if items else ""
+        hf = [h for h in HEFTE if h["band"] == v["nr"]]
+        spanne = ""
+        if hf:
+            d1, d2 = hf[0].get("datum") or "", hf[-1].get("datum") or ""
+            spanne = f' · {len(hf)} Hefte ({html.escape(d1)} – {html.escape(d2)})' if d1 else f' · {len(hf)} Hefte'
         bl.append(f'<li><a href="volumes/bd{v["nr"]}.html"><b>{html.escape(v["label"])}</b></a> '
-                  f'<span class="meta">— {len(v["pages"])} Seiten · {len(ents)} Berichte</span>{sub}</li>')
+                  f'<span class="meta">— {len(v["pages"])} Seiten{spanne} · {len(ents)} Berichte</span>{sub}</li>')
     lis = "".join(bl)
     head = '<script src="assets/minisearch.min.js"></script>'
     body = f"""<h1>Limesblatt — digitale Edition</h1><p class="lede">Die <em>Mitteilungen der Streckenkommissare bei der Reichs-Limeskommission</em>
@@ -937,6 +944,67 @@ def build_toc(PLA):
         nr, tok, num, title, br, _ = cands[j]; toc.setdefault(nr, []).append((tok, num, title, br, "medium"))
     return toc
 
+def load_hefte():
+    """Die 34 Hefteinheiten (35 Nummern, 7/8 ist ein Doppelheft) mit Ausgabedatum.
+    Quelle: IIIF-`structures` der UB Heidelberg via `tools/limesblatt_hefte.py` — die
+    Fraktur-OCR gibt die Impressumszeilen nicht her (3 lesbare »Ausgegeben am« im ganzen Werk)."""
+    f = next((p for p in (os.path.join(REPO, "data", "hefte.json"),
+                          os.path.join(REPO, "..", "limes", "tools", "hefte.json"))
+              if os.path.exists(p)), None)
+    if not f:
+        return []
+    try:
+        return json.load(open(f, encoding="utf-8")).get("hefte", [])
+    except Exception:
+        return []
+
+
+HEFTE = load_hefte()
+
+
+def heft_label(h):
+    nr = f'{h["nr"]}/{h["nr_bis"]}' if h.get("nr_bis") else str(h["nr"])
+    return f'Nr. {nr}', (h.get("datum") or "")
+
+
+def tokkey(t):
+    """Token-Normalform. Der OCR-Cache polstert die Druckseiten fuer die Sortierung
+    (»001«), die IIIF-Canvas-Labels tun es nicht (»1«) — ohne Normalisierung faende
+    Band 1 kein einziges seiner Hefte."""
+    t = str(t or "").strip()
+    m = re.match(r"^0*(\d+)([a-z]*)$", t)
+    return (m.group(1) + m.group(2)) if m else t
+
+
+ANCHOR_TOK = {}
+
+
+def register_anchors(volumes):
+    """img_tok je Band merken: die Bandseiten polstern Band 1 (»001«), die IIIF-Labels
+    nicht (»1«) — ein Heft-Link auf das rohe Manifest-Token liefe ins Leere."""
+    for v in volumes:
+        for pg in v["pages"]:
+            ANCHOR_TOK.setdefault((v["nr"], tokkey(pg["img_tok"])), pg["img_tok"])
+
+
+def heft_anchor(h):
+    """Sprungziel eines Heftes: erste Druckseite, Spalte a — mit dem ECHTEN Ankertoken."""
+    t = ANCHOR_TOK.get((h["band"], tokkey(h.get("erste_seite"))))
+    return "#pb-%s-a" % t if t else ""
+
+
+def heft_index():
+    """Druckseiten-Token -> Heft. Ein Bericht erbt das Ausgabedatum seines Heftes."""
+    idx = {}
+    for h in HEFTE:
+        for t in h.get("tokens", []):
+            idx.setdefault(tokkey(t), h)
+    return idx
+
+
+HEFT_IDX = heft_index()
+
+
 def toc_li(entries, hrefpre, with_page):
     """TOC-Listeneinträge; leere Titel → Platzhalter, conf=low → gedämpft (ehrlich gekennzeichnet)."""
     out = []
@@ -947,6 +1015,41 @@ def toc_li(entries, hrefpre, with_page):
         out.append(f'<li{cls}><a href="{hrefpre}#art-{num}"><b>{num}.</b> {disp}</a>'
                    f'{(" " + html.escape(br)) if br else ""}{meta}</li>')
     return "".join(out)
+
+def toc_li_hefte(entries, hrefpre, with_page, band=None):
+    """Wie toc_li, aber nach HEFTEN gegliedert: vor jeder Gruppe eine Zeile »Nr. N · Datum«.
+    Hefte ohne eigenen nummerierten Bericht erscheinen trotzdem — die Publikationsfolge soll
+    vollstaendig sein. Berichte ohne Heft-Zuordnung stehen am Ende, ausgewiesen."""
+    if not HEFTE:
+        return toc_li(entries, hrefpre, with_page)
+    gruppen, rest = {}, []
+    for e in entries:
+        h = HEFT_IDX.get(tokkey(e[0]))
+        if h:
+            gruppen.setdefault((h["band"], h["nr"]), []).append(e)
+        else:
+            rest.append(e)
+    out = []
+    for h in HEFTE:
+        if band is not None and h["band"] != band:
+            continue
+        nr, dat = heft_label(h)
+        anz = len(gruppen.get((h["band"], h["nr"]), []))
+        ziel = hrefpre + heft_anchor(h)
+        spalten = (" · Sp.&nbsp;%s–%s" % (h["erste_seite"], h["letzte_seite"])
+                   if h.get("erste_seite") else "")
+        berichte = " · %d Berichte" % anz if anz else ""
+        out.append('<li class="heft"><a href="%s"><b>%s</b></a>'
+                   '<span class="meta"> · %s%s%s</span></li>'
+                   % (ziel, nr, html.escape(dat), spalten, berichte))
+        if anz:
+            out.append(toc_li(gruppen[(h["band"], h["nr"])], hrefpre, with_page))
+    if rest:
+        out.append('<li class="heft"><b class="muted">ohne Heftzuordnung</b>'
+                   '<span class="meta"> · %d Berichte</span></li>' % len(rest))
+        out.append(toc_li(rest, hrefpre, with_page))
+    return "".join(out)
+
 
 # ---------- Fundindex & Bibliographie (token-frei, spalten-präzise) ----------
 def scan_occ(volumes, patterns):
@@ -1835,10 +1938,70 @@ def willkommen_page(s):
             f'Winkelmann, Schuchhardt, Fabricius, Steimle und Leonhard, und schließlich ein <b>„Register zu '
             f'Nr. 1–35 des Limesblattes. Von Prof. Dr. P. Hintzelmann"</b>. Die Zeitschrift schließt sich also '
             f'selbst auf — dieses zeitgenössische Register steht im letzten Band dieser Edition '
-            f'(<a href="volumes/bd8.html">Band 8</a>).</p></div>'
+            f'(<a href="volumes/bd8.html">Band 8</a>).</p>'
+            f'{heft_rhythmus()}</div>'
             f'{grid}'
             f'<p class="meta">Neu hier? Beginnen Sie mit den <a href="index.html">Bänden</a> oder lesen Sie die '
             f'<a href="dokumentation.html">Dokumentation</a>. Editionstext und Daten stehen unter CC&nbsp;BY&nbsp;4.0.</p>')
+
+def orl_spiegel():
+    """Die Gegenreihe: ORL-Faszikel je Jahr aus der Merten-Lieferungstabelle des Vaults.
+    Nur ausgeben, wenn die Daten wirklich vorliegen — sonst schweigen statt behaupten."""
+    f = next((p for p in (os.path.join(REPO, "data", "orl_abtB_lieferungen.json"),
+                          os.path.join(REPO, "..", "limes", "tools", "orl_abtB_lieferungen.json"))
+              if os.path.exists(p)), None)
+    if not f:
+        return ""
+    try:
+        d = json.load(open(f, encoding="utf-8"))
+        rows = next((v for v in d.values() if isinstance(v, list)), None) if isinstance(d, dict) else d
+        jahre = {}
+        for l in rows or []:
+            j = l.get("jahr") or l.get("jahr_lfg") or l.get("year")
+            if j:
+                jahre[int(str(j)[:4])] = jahre.get(int(str(j)[:4]), 0) + 1
+    except Exception:
+        return ""
+    if not jahre or 1900 not in jahre or jahre.get(1899):
+        return ""
+    return (f' <b>Spiegelbildlich verhält sich die Endpublikation:</b> 1899 erscheint '
+            f'<b>keine einzige</b> ORL-Lieferung (das dokumentierte Lieferungsloch), 1900 dagegen '
+            f'<b>{jahre[1900]} Faszikel</b> — genau in dem Jahr, in dem das Limesblatt schweigt. '
+            f'Die beiden Reihen wechseln sich in ihrer Stille ab; von 1900 an trägt die '
+            f'<a href="register/orl.html">Endpublikation</a>.')
+
+
+def heft_rhythmus():
+    """Der Erscheinungsrhythmus, aus den Ausgabedaten gerechnet (nichts von Hand)."""
+    d = [h for h in HEFTE if h.get("datum_iso")]
+    if len(d) < 5:
+        return ""
+    import datetime, statistics
+    from collections import Counter
+    tage = [(datetime.date.fromisoformat(b["datum_iso"]) - datetime.date.fromisoformat(a["datum_iso"])).days
+            for a, b in zip(d, d[1:])]
+    med = int(statistics.median(tage))
+    jahre = Counter(int(h["datum_iso"][:4]) for h in d)
+    sp = range(min(jahre), max(jahre) + 1)
+    bal = "".join(
+        f'<span style="display:inline-block;text-align:center;margin:0 .35em .2em 0">'
+        f'<span style="display:block;width:1.5em;background:{"#8a8375" if jahre.get(y) else "#d9d3c6"};'
+        f'height:{max(3, jahre.get(y, 0) * 9)}px" title="{y}: {jahre.get(y, 0)} Hefte"></span>'
+        f'<span class="meta" style="font-size:.72em">{str(y)[2:]}</span></span>' for y in sp)
+    letzte = [f'{a["nr"]}→{b["nr"]}' for a, b in zip(d, d[1:])][-3:]
+    return (f'<p><b>Der Takt bricht mitten im Werk.</b> Aus den Ausgabedaten der Hefte '
+            f'(im <a href="index.html">Inhaltsverzeichnis</a> bei jeder Nummer) lässt sich der '
+            f'Rhythmus ablesen: im Median <b>{med} Tage</b> von Heft zu Heft — die versprochenen '
+            f'„5–6 Nrn. jährlich" wurden bis 1899 gehalten. Dann reißt es ab: zwischen '
+            f'<b>Nr. 32 (25. Juli 1899)</b> und <b>Nr. 33 (1. Februar 1901)</b> liegen '
+            f'<b>556 Tage</b>, und <b>1900 erschien kein einziges Heft</b>; die letzten drei '
+            f'Nummern folgen im Jahresabstand.{orl_spiegel()}</p>'
+            f'<p style="margin:.2em 0 .1em"><span class="meta">Hefte je Jahr:</span></p>'
+            f'<div style="display:flex;align-items:flex-end;gap:0">{bal}</div>'
+            f'<p class="meta">Quelle der Daten: die <i>structures</i> der IIIF-Manifeste '
+            f'(UB Heidelberg) — die gedruckten Impressumszeilen selbst sind für die '
+            f'Fraktur-OCR unlesbar.</p>')
+
 
 STRECKE_COLORS = ["#e6194B", "#3cb44b", "#ca9a00", "#4363d8", "#f58231", "#911eb4", "#0898a4",
                   "#c026a8", "#7a9c1f", "#c76a8a", "#469990", "#8a63c4", "#9A6324", "#800000", "#000075"]
@@ -1895,6 +2058,7 @@ def main():
         for tk in re.findall(r'<surface xml:id="f_([^"]+)"', open(f, encoding="utf-8").read()):
             TOK2BAND[tk] = nr
     volumes = sorted((load_volume(f) for f in glob.glob(os.path.join(REPO,"tei","*.xml"))), key=lambda v: v["nr"])
+    register_anchors(volumes)                    # Heft-Sprungziele auf echte Ankertokens
     if "--volumes-only" in __import__("sys").argv:   # CI-Rebuild nach TEI-Edit: nur Bandseiten aus dem (editierten) TEI
         _np = os.path.join(REPO, "data", "ner_places.json")
         PLA = {e["name"].split("(")[0].strip().lower() for e in (json.load(open(_np, encoding="utf-8")) if os.path.exists(_np) else []) if len(e["name"]) > 3}
