@@ -1,0 +1,324 @@
+{
+ "_beschreibung": "ORL Abteilung A: die Streckentitel der RLK selbst (K10plus/SRU) gegen die Vault-Titel. Siehe Docstring — der Vault-Beleg war zirkulär.",
+ "_vorbehalt": "Der Faszikeltitel BENENNT die Grenze, er verortet sie nicht. Strecke 11 und 12 liefert K10plus mit diesem Query nicht.",
+ "stand": {
+  "records": 14,
+  "strecken_mit_orl_titel": 12,
+  "vault_strecken": 15,
+  "sammelfaszikel": [
+   [
+    1,
+    2
+   ],
+   [
+    4,
+    5
+   ],
+   [
+    6,
+    9
+   ],
+   [
+    7,
+    9
+   ]
+  ],
+  "ohne_orl_titel": [
+   8,
+   11,
+   12
+  ]
+ },
+ "vergleich": [
+  {
+   "nr": 1,
+   "vault_notiz": "Strecke 01 – Rheinbrohl–Bad Ems",
+   "vault_verlauf": "Rheinbrohl–Bad Ems",
+   "orl_titel": "Strecke 1: Der Limes vom Rhein bis zur Lahn / bearb. von Ernst Fabricius",
+   "orl_jahr": "1915",
+   "orl_band": "1",
+   "orl_sammelfaszikel_mit": [],
+   "beleg": "k10plus"
+  },
+  {
+   "nr": 2,
+   "vault_notiz": "Strecke 02 – Bad Ems–Adolfseck",
+   "vault_verlauf": "Bad Ems–Adolfseck",
+   "orl_titel": "Strecke 2 : der Limes von der Lahn bis zur Aar / bearb. von Ernst Fabricius",
+   "orl_jahr": "1916",
+   "orl_band": "Abt. A, Bd. 1",
+   "orl_sammelfaszikel_mit": [],
+   "beleg": "k10plus"
+  },
+  {
+   "nr": 3,
+   "vault_notiz": "Strecke 03 – Adolfseck–Köpperner Tal",
+   "vault_verlauf": "Adolfseck–Köpperner Tal",
+   "orl_titel": "Die Limesanlagen im Taunus von der Aar bis zum Köpperner Tal bei Saalburg : Strecke 3 / bearb. von Ernst Fabricius",
+   "orl_jahr": "1935",
+   "orl_band": "Abt. A, Bd.2,1",
+   "orl_sammelfaszikel_mit": [],
+   "beleg": "k10plus"
+  },
+  {
+   "nr": 4,
+   "vault_notiz": "Strecke 04 – Köpperner Tal–Marköbel",
+   "vault_verlauf": "Köpperner Tal–Marköbel",
+   "orl_titel": "Strecke 4 und 5: Die Wetteraulinie vom Köppener Tal bei der Saalburg bis um Main bei Gross-Krotzenburg / bearb. von Ernst Fabricius",
+   "orl_jahr": "1936",
+   "orl_band": "Abt. A, Bd. 2",
+   "orl_sammelfaszikel_mit": [
+    5
+   ],
+   "beleg": "k10plus"
+  },
+  {
+   "nr": 5,
+   "vault_notiz": "Strecke 05 – Marköbel–Groß-Krotzenburg",
+   "vault_verlauf": "Marköbel–Groß-Krotzenburg",
+   "orl_titel": "Strecke 4 und 5: Die Wetteraulinie vom Köppener Tal bei der Saalburg bis um Main bei Gross-Krotzenburg / bearb. von Ernst Fabricius",
+   "orl_jahr": "1936",
+   "orl_band": "Abt. A, Bd. 2",
+   "orl_sammelfaszikel_mit": [
+    4
+   ],
+   "beleg": "k10plus"
+  },
+  {
+   "nr": 6,
+   "vault_notiz": "Strecke 06 – Main-Linie (Seligenstadt–Miltenberg)",
+   "vault_verlauf": "Seligenstadt–Miltenberg",
+   "orl_titel": "Strecke 6 : die Mainlinie von Seligenstadt bis Miltenberg / Wilhelm Conrady",
+   "orl_jahr": "1933",
+   "orl_band": "Abt. A, Bd. 3",
+   "orl_sammelfaszikel_mit": [],
+   "beleg": "k10plus"
+  },
+  {
+   "nr": 7,
+   "vault_notiz": "Strecke 07 – Miltenberg–Rehberg",
+   "vault_verlauf": "Miltenberg–Rehberg",
+   "orl_titel": "Strecke 7 - 9 : der obergermansche Limes von Miltenberg am Main bis zum Haghof bei Welzheim; nach den Untersuchungen der Streckenkommissare Wilhelm Conrady, Karl Schumacher, Gustav Sixt und Friedrich Leonhard / bearb. von Ernst Fabricius",
+   "orl_jahr": "1933",
+   "orl_band": "Abt. A, Bd. 4",
+   "orl_sammelfaszikel_mit": [
+    9
+   ],
+   "beleg": "k10plus"
+  },
+  {
+   "nr": 8,
+   "vault_notiz": "Strecke 08 – Rehberg–Jagsthausen (Odenwaldlinie)",
+   "vault_verlauf": "Rehberg–Jagsthausen",
+   "orl_titel": null,
+   "orl_jahr": null,
+   "orl_band": null,
+   "orl_sammelfaszikel_mit": [],
+   "beleg": "offen"
+  },
+  {
+   "nr": 9,
+   "vault_notiz": "Strecke 09 – Jagsthausen–Haghof",
+   "vault_verlauf": "Jagsthausen–Haghof",
+   "orl_titel": "Strecke 7 - 9 : der obergermansche Limes von Miltenberg am Main bis zum Haghof bei Welzheim; nach den Untersuchungen der Streckenkommissare Wilhelm Conrady, Karl Schumacher, Gustav Sixt und Friedrich Leonhard / bearb. von Ernst Fabricius",
+   "orl_jahr": "1933",
+   "orl_band": "Abt. A, Bd. 4",
+   "orl_sammelfaszikel_mit": [
+    7
+   ],
+   "beleg": "k10plus"
+  },
+  {
+   "nr": 10,
+   "vault_notiz": "Strecke 10 – Wörth–Bad Wimpfen (Ältere Odenwaldlinie)",
+   "vault_verlauf": "Wörth–Bad Wimpfen",
+   "orl_titel": "Strecke 10, der Odenwaldlimes von Wörth am Main bis Wimpfen am Neckar / bearb. von Ernst Fabricius",
+   "orl_jahr": "1926",
+   "orl_band": "10",
+   "orl_sammelfaszikel_mit": [],
+   "beleg": "k10plus"
+  },
+  {
+   "nr": 11,
+   "vault_notiz": "Strecke 11 – Bad Wimpfen–Köngen (Neckarlinie)",
+   "vault_verlauf": "Bad Wimpfen–Köngen",
+   "orl_titel": null,
+   "orl_jahr": null,
+   "orl_band": null,
+   "orl_sammelfaszikel_mit": [],
+   "beleg": "offen"
+  },
+  {
+   "nr": 12,
+   "vault_notiz": "Strecke 12 – Haghof–Lorch–Aalen–Mönchsroth",
+   "vault_verlauf": "Haghof–Lorch–Aalen–Mönchsroth",
+   "orl_titel": null,
+   "orl_jahr": null,
+   "orl_band": null,
+   "orl_sammelfaszikel_mit": [],
+   "beleg": "offen"
+  },
+  {
+   "nr": 13,
+   "vault_notiz": "Strecke 13 – Mönchsroth–Gunzenhausen",
+   "vault_verlauf": "Mönchsroth–Gunzenhausen",
+   "orl_titel": "Strecke 13 : Der raetische Limes von der württembergisch-bayerischen Grenze bis Gunzenhausen und das kleine Kastell Unter-Schwaningen",
+   "orl_jahr": "1930",
+   "orl_band": "",
+   "orl_sammelfaszikel_mit": [],
+   "beleg": "k10plus"
+  },
+  {
+   "nr": 14,
+   "vault_notiz": "Strecke 14 – Gunzenhausen–Kipfenberg",
+   "vault_verlauf": "Gunzenhausen–Kipfenberg",
+   "orl_titel": "Strecke 14: Der raetische Limes von Gunzenhausen bis Kipfenberg / bearb. von Ernst Fabricius",
+   "orl_jahr": "1927",
+   "orl_band": "Abt. A, Bd. 7",
+   "orl_sammelfaszikel_mit": [],
+   "beleg": "k10plus"
+  },
+  {
+   "nr": 15,
+   "vault_notiz": "Strecke 15 – Kipfenberg–Eining",
+   "vault_verlauf": "Kipfenberg–Eining",
+   "orl_titel": "Strecke 15: Der Raetische Limes von Kipfenberg bis zur Donau : mit 6 Tafeln und einer Karte / nach den Untersuchungen des Streckenkommissars Joseph Fink und nach eingenen Aufnahmen bearb. von Friedrich Winkelmann und Ernst Fabricius",
+   "orl_jahr": "1933",
+   "orl_band": "Abt. A, Bd. 7",
+   "orl_sammelfaszikel_mit": [],
+   "beleg": "k10plus"
+  }
+ ],
+ "records": [
+  {
+   "strecken": [
+    1,
+    2
+   ],
+   "jahr": "1936",
+   "band": "Abt. A, Bd. 1",
+   "titel": "Die Strecken 1 und 2",
+   "sammelband": true
+  },
+  {
+   "strecken": [
+    4,
+    5
+   ],
+   "jahr": "1936",
+   "band": "Abt. A, Bd. 2",
+   "titel": "Strecke 4 und 5: Die Wetteraulinie vom Köppener Tal bei der Saalburg bis um Main bei Gross-Krotzenburg / bearb. von Ernst Fabricius",
+   "sammelband": true
+  },
+  {
+   "strecken": [
+    3
+   ],
+   "jahr": "1935",
+   "band": "Abt. A, Bd.2,1",
+   "titel": "Die Limesanlagen im Taunus von der Aar bis zum Köpperner Tal bei Saalburg : Strecke 3 / bearb. von Ernst Fabricius",
+   "sammelband": false
+  },
+  {
+   "strecken": [
+    15
+   ],
+   "jahr": "1933",
+   "band": "Abt. A, Bd. 7",
+   "titel": "Strecke 15: Der Raetische Limes von Kipfenberg bis zur Donau : mit 6 Tafeln und einer Karte / nach den Untersuchungen des Streckenkommissars Joseph Fink und nach eingenen Aufnahmen bearb. von Friedrich Winkelmann und Ernst Fabricius",
+   "sammelband": false
+  },
+  {
+   "strecken": [
+    6
+   ],
+   "jahr": "1933",
+   "band": "Abt. A, Bd. 3",
+   "titel": "Strecke 6 : die Mainlinie von Seligenstadt bis Miltenberg / Wilhelm Conrady",
+   "sammelband": false
+  },
+  {
+   "strecken": [
+    6,
+    9
+   ],
+   "jahr": "1933",
+   "band": "",
+   "titel": "Die Strecken 6 - 9",
+   "sammelband": true
+  },
+  {
+   "strecken": [
+    7,
+    9
+   ],
+   "jahr": "1933",
+   "band": "Abt. A, Bd. 4",
+   "titel": "Strecke 7 - 9 : der obergermansche Limes von Miltenberg am Main bis zum Haghof bei Welzheim; nach den Untersuchungen der Streckenkommissare Wilhelm Conrady, Karl Schumacher, Gustav Sixt und Friedrich Leonhard / bearb. von Ernst Fabricius",
+   "sammelband": true
+  },
+  {
+   "strecken": [
+    6
+   ],
+   "jahr": "1933",
+   "band": "Abt. A, Bd. 3",
+   "titel": "Die Strecke 6",
+   "sammelband": false
+  },
+  {
+   "strecken": [
+    13
+   ],
+   "jahr": "1930",
+   "band": "",
+   "titel": "Strecke 13 : Der raetische Limes von der württembergisch-bayerischen Grenze bis Gunzenhausen und das kleine Kastell Unter-Schwaningen",
+   "sammelband": false
+  },
+  {
+   "strecken": [
+    14
+   ],
+   "jahr": "1927",
+   "band": "Abt. A, Bd. 7",
+   "titel": "Strecke 14: Der raetische Limes von Gunzenhausen bis Kipfenberg / bearb. von Ernst Fabricius",
+   "sammelband": false
+  },
+  {
+   "strecken": [
+    10
+   ],
+   "jahr": "1926",
+   "band": "10",
+   "titel": "Strecke 10, der Odenwaldlimes von Wörth am Main bis Wimpfen am Neckar / bearb. von Ernst Fabricius",
+   "sammelband": false
+  },
+  {
+   "strecken": [
+    2
+   ],
+   "jahr": "1916",
+   "band": "Abt. A, Bd. 1",
+   "titel": "Strecke 2 : der Limes von der Lahn bis zur Aar / bearb. von Ernst Fabricius",
+   "sammelband": false
+  },
+  {
+   "strecken": [
+    1
+   ],
+   "jahr": "1915",
+   "band": "1",
+   "titel": "Strecke 1: Der Limes vom Rhein bis zur Lahn / bearb. von Ernst Fabricius",
+   "sammelband": false
+  },
+  {
+   "strecken": [
+    1
+   ],
+   "jahr": "1914",
+   "band": "1",
+   "titel": "Strecke 1: Der Limes vom Rhein bis zur Lahn / bearb. von Ernst Fabricius",
+   "sammelband": false
+  }
+ ]
+}
