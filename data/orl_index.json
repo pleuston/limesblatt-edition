@@ -5,7 +5,8 @@
    "strecke": 1,
    "note": "Strecke 01 – Rheinbrohl–Bad Ems",
    "verlauf": "Rheinbrohl–Bad Ems",
-   "region": "Preußen (Rheinprovinz) / Hessen-Nassau"
+   "region": "Preußen (Rheinprovinz) / Hessen-Nassau",
+   "year_k10": 1914
   },
   {
    "strecke": 2,
@@ -979,19 +980,22 @@
       "gazetteer": false
      }
     }
-   }
+   },
+   "year_k10": 1916
   },
   {
    "strecke": 3,
    "note": "Strecke 03 – Adolfseck–Köpperner Tal",
    "verlauf": "Adolfseck–Köpperner Tal",
-   "region": "Taunus, Hessen-Nassau"
+   "region": "Taunus, Hessen-Nassau",
+   "year_k10": 1935
   },
   {
    "strecke": 4,
    "note": "Strecke 04 – Köpperner Tal–Marköbel",
    "verlauf": "Köpperner Tal–Marköbel",
-   "region": "Wetterau, Hessen / Hessen-Nassau"
+   "region": "Wetterau, Hessen / Hessen-Nassau",
+   "year_k10": 1936
   },
   {
    "strecke": 5,
@@ -1003,7 +1007,8 @@
    "strecke": 6,
    "note": "Strecke 06 – Main-Linie (Seligenstadt–Miltenberg)",
    "verlauf": "Seligenstadt–Miltenberg",
-   "region": "Hessen / Bayern"
+   "region": "Hessen / Bayern",
+   "year_k10": 1933
   },
   {
    "strecke": 7,
@@ -1027,7 +1032,8 @@
    "strecke": 10,
    "note": "Strecke 10 – Wörth–Bad Wimpfen (Ältere Odenwaldlinie)",
    "verlauf": "Wörth–Bad Wimpfen",
-   "region": "Bayern / Baden"
+   "region": "Bayern / Baden",
+   "year_k10": 1926
   },
   {
    "strecke": 11,
@@ -1045,13 +1051,15 @@
    "strecke": 13,
    "note": "Strecke 13 – Mönchsroth–Gunzenhausen",
    "verlauf": "Mönchsroth–Gunzenhausen",
-   "region": "Bayern"
+   "region": "Bayern",
+   "year_k10": 1930
   },
   {
    "strecke": 14,
    "note": "Strecke 14 – Gunzenhausen–Kipfenberg",
    "verlauf": "Gunzenhausen–Kipfenberg",
-   "region": "Bayern"
+   "region": "Bayern",
+   "year_k10": 1927
   },
   {
    "strecke": 15,
@@ -2743,7 +2751,10 @@
    "digitalisat": "",
    "htid": "",
    "pages": null,
-   "access": ""
+   "access": "",
+   "lfg": 12,
+   "jahr_lfg": "1900-10",
+   "bearbeiter_merten": "Dahm"
   },
   {
    "nr": "3",
@@ -2763,7 +2774,10 @@
      "page": 425,
      "theme": "Kastell"
     }
-   ]
+   ],
+   "lfg": 12,
+   "jahr_lfg": "1900-10",
+   "bearbeiter_merten": "Dahm"
   },
   {
    "nr": "4",
@@ -3600,7 +3614,10 @@
      "page": 537,
      "theme": ""
     }
-   ]
+   ],
+   "lfg": 6,
+   "jahr_lfg": "1897-08",
+   "bearbeiter_merten": "Bodewig"
   },
   {
    "nr": "5a",
@@ -5172,7 +5189,10 @@
      "page": 857,
      "theme": "Zwei römische Erdschanzen"
     }
-   ]
+   ],
+   "lfg": 15,
+   "jahr_lfg": "1901-11",
+   "bearbeiter_merten": "Lehner"
   },
   {
    "nr": "8",
@@ -10021,7 +10041,10 @@
      "page": 23,
      "theme": "Inschriften / Ziegelstempel"
     }
-   ]
+   ],
+   "lfg": 8,
+   "jahr_lfg": "1897-11",
+   "bearbeiter_merten": "Kofler"
   },
   {
    "nr": "14",
@@ -10924,7 +10947,10 @@
      "page": 106,
      "theme": "Hessen / Die Hunneburg bei Butzbach"
     }
-   ]
+   ],
+   "lfg": 1,
+   "jahr_lfg": "1894-11",
+   "bearbeiter_merten": "Kofler"
   },
   {
    "nr": "15",
@@ -12635,7 +12661,10 @@
      "page": 263,
      "theme": ""
     }
-   ]
+   ],
+   "lfg": 17,
+   "jahr_lfg": "1902-04",
+   "bearbeiter_merten": "Kofler"
   },
   {
    "nr": "17",
@@ -15287,7 +15316,10 @@
      "page": 238,
      "theme": "Kastell"
     }
-   ]
+   ],
+   "lfg": 18,
+   "jahr_lfg": "1903-03",
+   "bearbeiter_merten": "Kofler"
   },
   {
    "nr": "20",
@@ -16993,7 +17025,10 @@
      "page": 244,
      "theme": ""
     }
-   ]
+   ],
+   "lfg": 3,
+   "jahr_lfg": "1896-06",
+   "bearbeiter_merten": "Wolff"
   },
   {
    "nr": "22",
@@ -19407,7 +19442,10 @@
      "heiligenberg": 1,
      "fullhorn": 1
     }
-   }
+   },
+   "lfg": 10,
+   "jahr_lfg": "1898-09",
+   "bearbeiter_merten": "Wolff"
   },
   {
    "nr": "25",
@@ -20254,7 +20292,10 @@
      "page": 864,
      "theme": "Erdlager und Töpferofen"
     }
-   ]
+   ],
+   "lfg": 13,
+   "jahr_lfg": "1900-12",
+   "bearbeiter_merten": "Wolff"
   },
   {
    "nr": "25a",
@@ -20280,7 +20321,10 @@
      "page": 489,
      "theme": "Kastell und Militärbad"
     }
-   ]
+   ],
+   "lfg": 16,
+   "jahr_lfg": "1902-02",
+   "bearbeiter_merten": "Wolff"
   },
   {
    "nr": "26",
@@ -24029,7 +24073,10 @@
      "page": 539,
      "theme": "Römische Rundschanze"
     }
-   ]
+   ],
+   "lfg": 7,
+   "jahr_lfg": "1897-09",
+   "bearbeiter_merten": "Wolff"
   },
   {
    "nr": "30",
@@ -29372,7 +29419,10 @@
      "lezoux": 1,
      "forrer": 1
     }
-   }
+   },
+   "lfg": 3,
+   "jahr_lfg": "1896-06",
+   "bearbeiter_merten": "Conrady"
   },
   {
    "nr": "35",
@@ -30518,7 +30568,10 @@
      "topferstempel": 2,
      "dragendorff": 1
     }
-   }
+   },
+   "lfg": 18,
+   "jahr_lfg": "1903-03",
+   "bearbeiter_merten": "Conrady"
   },
   {
    "nr": "36",
@@ -31451,7 +31504,10 @@
      "dragendorff": 1,
      "banassac": 1
     }
-   }
+   },
+   "lfg": 11,
+   "jahr_lfg": "1900-09",
+   "bearbeiter_merten": "Conrady"
   },
   {
    "nr": "37",
@@ -32400,7 +32456,9 @@
    },
    "bearbeiter": [
     "Karl Zangemeister"
-   ]
+   ],
+   "lfg": 11,
+   "jahr_lfg": "1900-09"
   },
   {
    "nr": "38",
@@ -39131,7 +39189,9 @@
    ],
    "bearbeiter": [
     "Karl Schumacher"
-   ]
+   ],
+   "lfg": 2,
+   "jahr_lfg": "1895-08"
   },
   {
    "nr": "41",
@@ -41056,7 +41116,9 @@
    ],
    "bearbeiter": [
     "Ernst von Herzog"
-   ]
+   ],
+   "lfg": 5,
+   "jahr_lfg": "1897-07"
   },
   {
    "nr": "42a",
@@ -43290,7 +43352,10 @@
      "page": 117,
      "theme": "Kastell"
     }
-   ]
+   ],
+   "lfg": 1,
+   "jahr_lfg": "1894-11",
+   "bearbeiter_merten": "Hämmerle"
   },
   {
    "nr": "45",
@@ -46546,7 +46611,10 @@
      "page": 447,
      "theme": ""
     }
-   ]
+   ],
+   "lfg": 5,
+   "jahr_lfg": "1897-07",
+   "bearbeiter_merten": "Kofler"
   },
   {
    "nr": "48",
@@ -47749,7 +47817,10 @@
      "rheinzabern": 1,
      "lezoux": 1
     }
-   }
+   },
+   "lfg": 4,
+   "jahr_lfg": "1896-11",
+   "bearbeiter_merten": "Kofler"
   },
   {
    "nr": "49",
@@ -49021,7 +49092,10 @@
      "page": 447,
      "theme": ""
     }
-   ]
+   ],
+   "lfg": 4,
+   "jahr_lfg": "1896-11",
+   "bearbeiter_merten": "Kofler"
   },
   {
    "nr": "50",
@@ -50118,7 +50192,9 @@
    },
    "bearbeiter": [
     "Karl Schumacher"
-   ]
+   ],
+   "lfg": 4,
+   "jahr_lfg": "1896-11"
   },
   {
    "nr": "51",
@@ -51341,7 +51417,10 @@
      "graufesenque": 1,
      "eierstab": 1
     }
-   }
+   },
+   "lfg": 11,
+   "jahr_lfg": "1900-09",
+   "bearbeiter_merten": "Schumacher"
   },
   {
    "nr": "52",
@@ -52597,7 +52676,9 @@
    ],
    "bearbeiter": [
     "Karl Schumacher"
-   ]
+   ],
+   "lfg": 6,
+   "jahr_lfg": "1897-08"
   },
   {
    "nr": "53",
@@ -53893,11 +53974,14 @@
      "page": 341,
      "theme": "Mümling-Neckarlinie"
     }
-   ]
+   ],
+   "lfg": 9,
+   "jahr_lfg": "1898-06",
+   "bearbeiter_merten": "Schumacher"
   },
   {
    "nr": "54",
-   "kastell": "(laut Katalog)",
+   "kastell": "Kastell Wimpfen",
    "ort": "",
    "linie": "",
    "vault_note": "",
@@ -55116,7 +55200,11 @@
      "ludowici": 4,
      "heiligenberg": 2
     }
-   }
+   },
+   "lfg": 13,
+   "jahr_lfg": "1900-12",
+   "bearbeiter_merten": "Schumacher",
+   "kastell_quelle": "Merten 2002 (ORL Abt.B Lfg.13)"
   },
   {
    "nr": "55",
@@ -57023,7 +57111,10 @@
      "page": 417,
      "theme": "Kastell"
     }
-   ]
+   ],
+   "lfg": 10,
+   "jahr_lfg": "1898-09",
+   "bearbeiter_merten": "Steimle"
   },
   {
    "nr": "57",
@@ -57043,7 +57134,10 @@
      "page": 369,
      "theme": "Kastell"
     }
-   ]
+   ],
+   "lfg": 8,
+   "jahr_lfg": "1897-11",
+   "bearbeiter_merten": "Mettler"
   },
   {
    "nr": "58",
@@ -57063,7 +57157,11 @@
      "page": 855,
      "theme": "Kastell"
     }
-   ]
+   ],
+   "lfg": 17,
+   "jahr_lfg": "1902-04",
+   "bearbeiter_merten": "Mettler",
+   "year_k10": 1902
   },
   {
    "nr": "59",
@@ -57089,7 +57187,8 @@
      "page": 875,
      "theme": "Mutmassliche mansio und Beneficiarier-Station beim Kastell Cannstatt"
     }
-   ]
+   ],
+   "year_k10": 1907
   },
   {
    "nr": "60",
@@ -57101,7 +57200,8 @@
    "digitalisat": "",
    "htid": "",
    "pages": null,
-   "access": ""
+   "access": "",
+   "year_k10": 1907
   },
   {
    "nr": "61",
@@ -57147,7 +57247,10 @@
      "page": 535,
      "theme": "Kastell"
     }
-   ]
+   ],
+   "lfg": 8,
+   "jahr_lfg": "1897-11",
+   "bearbeiter_merten": "Herzog"
   },
   {
    "nr": "61b",
@@ -57159,7 +57262,10 @@
    "digitalisat": "",
    "htid": "",
    "pages": null,
-   "access": ""
+   "access": "",
+   "lfg": 6,
+   "jahr_lfg": "1897-08",
+   "bearbeiter_merten": "Naegele"
   },
   {
    "nr": "62a",
@@ -57197,7 +57303,11 @@
      "page": 281,
      "theme": ""
     }
-   ]
+   ],
+   "lfg": 5,
+   "jahr_lfg": "1897-07",
+   "bearbeiter_merten": "Steimle",
+   "year_k10": 1897
   },
   {
    "nr": "64",
@@ -57209,7 +57319,11 @@
    "digitalisat": "",
    "htid": "",
    "pages": null,
-   "access": ""
+   "access": "",
+   "lfg": 7,
+   "jahr_lfg": "1897-09",
+   "bearbeiter_merten": "Steimle",
+   "year_k10": 1897
   },
   {
    "nr": "65",
@@ -57235,7 +57349,10 @@
      "page": 93,
      "theme": "Bruchstück eines Militärdiploms"
     }
-   ]
+   ],
+   "lfg": 1,
+   "jahr_lfg": "1894-11",
+   "bearbeiter_merten": "Steimle"
   },
   {
    "nr": "66",
@@ -57270,7 +57387,8 @@
    "digitalisat": "",
    "htid": "",
    "pages": null,
-   "access": ""
+   "access": "",
+   "year_k10": 1905
   },
   {
    "nr": "66b",
@@ -57290,7 +57408,11 @@
      "page": 593,
      "theme": "Kastell"
     }
-   ]
+   ],
+   "lfg": 13,
+   "jahr_lfg": "1900-12",
+   "bearbeiter_merten": "Prescher",
+   "year_k10": 1900
   },
   {
    "nr": "67",
@@ -57328,7 +57450,11 @@
      "page": 707,
      "theme": "Begleithügel und Strassentürme"
     }
-   ]
+   ],
+   "lfg": 10,
+   "jahr_lfg": "1898-09",
+   "bearbeiter_merten": "Herzog",
+   "year_k10": 1898
   },
   {
    "nr": "67a",
@@ -57340,7 +57466,11 @@
    "digitalisat": "",
    "htid": "",
    "pages": null,
-   "access": ""
+   "access": "",
+   "lfg": 15,
+   "jahr_lfg": "1901-11",
+   "bearbeiter_merten": "Steimle",
+   "year_k10": 1901
   },
   {
    "nr": "67b",
@@ -57352,7 +57482,8 @@
    "digitalisat": "",
    "htid": "",
    "pages": null,
-   "access": ""
+   "access": "",
+   "year_k10": 1915
   },
   {
    "nr": "68",
@@ -57378,7 +57509,11 @@
      "page": 94,
      "theme": "Zur Auffindung des Kastells"
     }
-   ]
+   ],
+   "lfg": 4,
+   "jahr_lfg": "1896-11",
+   "bearbeiter_merten": "Kohl",
+   "year_k10": 1896
   },
   {
    "nr": "69",
@@ -57422,7 +57557,11 @@
      "page": 596,
      "theme": "Vgl. S. 255 und 287"
     }
-   ]
+   ],
+   "lfg": 15,
+   "jahr_lfg": "1901-11",
+   "bearbeiter_merten": "Kohl/Popp",
+   "year_k10": 1901
   },
   {
    "nr": "70",
@@ -57442,7 +57581,8 @@
      "page": 60,
      "theme": "Kastell (Gunzenhausen)"
     }
-   ]
+   ],
+   "year_k10": 1907
   },
   {
    "nr": "71",
@@ -57580,7 +57720,10 @@
      "page": 933,
      "theme": ""
     }
-   ]
+   ],
+   "lfg": 14,
+   "jahr_lfg": "1901-08",
+   "bearbeiter_merten": "Winkelmann"
   },
   {
    "nr": "73a",
@@ -58769,7 +58912,10 @@
      "page": 185,
      "theme": "Kastell"
     }
-   ]
+   ],
+   "lfg": 16,
+   "jahr_lfg": "1902-02",
+   "bearbeiter_merten": "Fink"
   }
  ],
  "vault_konflikte": [],
@@ -58780,5 +58926,23 @@
   "B_mit_digitalisat": 1,
   "konflikte": 0,
   "B_C_aufgebaut": 1
- }
+ },
+ "abteilung_A_baende": [
+  {
+   "htid": "coo.31924088444033",
+   "band": "Abt. A, Bd. 1",
+   "enumcron": "Abt.A v.1",
+   "access": "ic",
+   "quelle": "HathiTrust record 009032475 (Cornell)",
+   "note": "Strecken-Sammelband — EF/Capsule-only, nicht pro Strecke zuordenbar"
+  },
+  {
+   "htid": "coo.31924088444041",
+   "band": "Abt. A, Bd. 2",
+   "enumcron": "Abt.A v.2:pt.1-2",
+   "access": "ic",
+   "quelle": "HathiTrust record 009032475 (Cornell)",
+   "note": "Strecken-Sammelband — EF/Capsule-only, nicht pro Strecke zuordenbar"
+  }
+ ]
 }

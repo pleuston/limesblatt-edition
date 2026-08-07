@@ -252,6 +252,7 @@ def page(title, body, depth=0, head=""):
 <li><a href="{up}register/jahresberichte.html">RLK-Jahresberichte</a></li></ul></li>
 <li class="has"><a href="{up}register/orl.html">ORL</a><ul>
 <li><a href="{up}register/orl.html">Bandindex</a></li>
+<li><a href="{up}register/orl-inhalt.html">Inhaltsverzeichnis</a></li>
 <li><a href="{up}register/orl-register.html">Gesamtapparat</a></li>
 <li><a href="{up}register/hathitrust.html">Erschließung (HathiTrust)</a></li></ul></li>
 <li><a href="{up}register/wortschatz.html">Analyse</a></li>
@@ -618,6 +619,7 @@ IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen
 <h2>ORL — die Endpublikation</h2>
 <p class="meta">Das Standardwerk, in das das Limesblatt mündete, token-frei über HathiTrust erschlossen.</p>
 <ul><li><a href="register/orl.html">ORL-Bandindex</a> — Abteilung A (Strecken) + B (Kastell-Lieferungen) mit belegter Lieferung, Bearbeiter und Vorbericht-Verweisen</li>
+<li><a href="register/orl-inhalt.html">ORL — vollständiges Inhaltsverzeichnis</a> — alle 92 Kastell-Faszikel und 15 Streckenbände nach ihrem Erscheinen (Lieferung + Jahr), mit Vorbericht-Links</li>
 <li><a href="register/orl-register.html">ORL-Gesamtapparat</a> — Personen- &amp; Ortsregister über alle Bände, Vorbericht→ORL-Konkordanz</li>
 <li><a href="register/hathitrust.html">HathiTrust — Werkzeuge &amp; Ertrag</a> — wie der ORL token-frei und nicht-konsumtiv erschlossen wurde (Workset · Extracted Features · NER · Data Capsule)</li></ul>
 <p class="meta">→ <a href="dokumentation.html"><b>Dokumentation</b></a>: was auf dieser Website steht, wie wir an die Daten kamen und was sie sagen.</p>
@@ -943,6 +945,19 @@ def build_toc(PLA):
     for num, j in sorted(accept.items(), key=lambda kv: kv[1]):
         nr, tok, num, title, br, _ = cands[j]; toc.setdefault(nr, []).append((tok, num, title, br, "medium"))
     return toc
+
+def _load_json_any(name):
+    """data/ des Editions-Repos zuerst (CI-Rebuild), sonst der Vault-Nachbar (lokaler Build)."""
+    f = next((p for p in (os.path.join(REPO, "data", name),
+                          os.path.join(REPO, "..", "limes", "tools", name))
+              if os.path.exists(p)), None)
+    if not f:
+        return {}
+    try:
+        return json.load(open(f, encoding="utf-8"))
+    except Exception:
+        return {}
+
 
 def load_hefte():
     """Die 34 Hefteinheiten (35 Nummern, 7/8 ist ein Doppelheft) mit Ausgabedatum.
@@ -1479,6 +1494,129 @@ def namen_page(nm):
                f'<i>Alteburg</i> bei Walldürn"). Zahlen: Flurname · moderner Name im Limesblatt.</p>'
                f'<table class="reg"><thead><tr><th>Flurname</th><th>modern</th><th>Flur im LB</th>'
                f'<th>modern im LB</th><th>Beleg</th></tr></thead><tbody>{fl}</tbody></table>' if fl else ""))
+
+
+def orl_toc_page(idx, bli=None, fasz=None, dseiten=None, toc=None):
+    """Das vollständige ORL-Inhaltsverzeichnis nach PUBLIKATIONSEINHEIT — das Gegenstück
+    zum Limesblatt-Verzeichnis, wo die Hefte gliedern. Beim ORL gliedert die Lieferung:
+    die Kastell-Nummern laufen GEOGRAFISCH (1 = Rheinbrohl im Norden), erschienen sind
+    die Faszikel CHRONOLOGISCH, nach Fertigstellung durch die Bearbeiter. Beide Ordnungen
+    nebeneinander zu haben ist der eigentliche Zweck dieser Seite."""
+    bli = bli or {}
+    lfg_ok = bli.get("kastell_nr_zu_lieferung") or {}
+    b = idx.get("abteilung_B_kastelle", [])
+    a = idx.get("abteilung_A_strecken", [])
+    QUELLE = {"merten": "Merten 2002", "bibliographie": "Bibliographie des Jahrbuchs",
+              "jahresbericht": "RLK-Jahresbericht"}
+
+    # Druckseiten-Umfang je Kastellname (aus der Faszikel-Zerlegung des Kapsel-Laufs)
+    umfang = {}
+    for blk in (dseiten or {}).get("bloecke", []):
+        if blk.get("kastell") and blk.get("druckseiten"):
+            umfang.setdefault(blk["kastell"], blk["druckseiten"])
+
+    def vorbericht_links(r):
+        """Deep-Links in die Limesblatt-Edition: der Vorbericht zu genau diesem Kastell."""
+        out = []
+        vb = r.get("vorberichte")
+        if isinstance(vb, str):
+            try:
+                vb = json.loads(vb.replace("'", '"'))
+            except Exception:
+                vb = []
+        for v in (vb or [])[:4]:
+            bd = {"limesblatt1892_1893": 1, "limesblatt1893_1894": 2, "limesblatt1894_1895": 3,
+                  "limesblatt1896": 4, "limesblatt1897": 5, "limesblatt1897_1898": 6,
+                  "limesblatt1898_1902": 7, "limesblatt1903": 8}.get(v.get("slug"))
+            if bd:
+                out.append(f'<a href="../volumes/bd{bd}.html#art-{v.get("num")}">Nr.&#8239;{v.get("num")}</a>')
+        return " · ".join(out)
+
+    def zeile(r):
+        lf = lfg_ok.get(r["nr"]) or {}
+        name = html.escape(re.sub(r"^Kastelle? ", "", r["kastell"]))
+        bearb = html.escape(lf.get("bearbeiter") or "")
+        seiten = (f'{lf["seiten"]}&#8239;S.' if lf.get("seiten") else
+                  (f'S.&#8239;{umfang[r["kastell"]]}' if r["kastell"] in umfang else ""))
+        vb = vorbericht_links(r)
+        extra = " · ".join(x for x in (bearb, seiten) if x)
+        return (f'<li id="orltoc-{r["nr"]}"><a href="orl.html#orl-{r["nr"]}"><b>ORL&#8239;{r["nr"]}</b> '
+                f'{name}</a>{f" <span class=meta>· {extra}</span>" if extra else ""}'
+                f'{f" <span class=meta>· Vorbericht {vb}</span>" if vb else ""}</li>')
+
+    # --- nach Lieferung gruppieren; Sortierung nach Jahr, dann Lieferungsnummer ---
+    grp = {}
+    for r in b:
+        lf = lfg_ok.get(r["nr"])
+        grp.setdefault(str(lf["lieferung"]) if lf else None, []).append(r)
+
+    def lkey(k):
+        if k is None:
+            return (9999, 999, "")
+        lf = next((lfg_ok[r["nr"]] for r in grp[k] if lfg_ok.get(r["nr"])), {})
+        jahr = str(lf.get("jahr") or "")
+        m = re.match(r"(\d+)", k)
+        return (int(jahr[:4]) if jahr[:4].isdigit() else 9998, int(m.group(1)) if m else 999, k)
+
+    blocks = []
+    for k in sorted(grp, key=lkey):
+        rows = sorted(grp[k], key=lambda r: (int(re.sub(r"\D", "", r["nr"]) or 0), r["nr"]))
+        if k is None:
+            blocks.append(
+                f'<h3 id="lfg-offen">Ohne belegte Lieferung <span class="meta">· {len(rows)} Faszikel</span></h3>'
+                f'<p class="meta">Für diese Faszikel nennt keine der drei Quellen (Merten&nbsp;2002, '
+                f'Bibliographie des Jahrbuchs, RLK-Jahresberichte) eine Lieferung. Sie fehlen nicht im '
+                f'Werk — nur ihr Erscheinungsdatum ist nicht belegt.</p>'
+                f'<ul class="toc orltoc">{"".join(zeile(r) for r in rows)}</ul>')
+            continue
+        lf = next((lfg_ok[r["nr"]] for r in rows if lfg_ok.get(r["nr"])), {})
+        jahr = html.escape(str(lf.get("jahr") or "?"))
+        span = "-" in str(k)
+        q = QUELLE.get(lf.get("quelle"), "?")
+        blocks.append(
+            f'<h3 id="lfg-{html.escape(k)}">Lieferung {html.escape(k)} '
+            f'<span class="meta">· {jahr} · {len(rows)} Faszikel · {html.escape(q)}'
+            f'{" · nur als Spanne belegt" if span else ""}</span></h3>'
+            f'<ul class="toc orltoc">{"".join(zeile(r) for r in rows)}</ul>')
+
+    n_lfg = sum(1 for r in b if lfg_ok.get(r["nr"]))
+    n_lief = len([k for k in grp if k is not None])
+    def arow(s):
+        jahr = s.get("year_k10")
+        meta = " · ".join(x for x in (html.escape(s.get("region", "")),
+                                      str(jahr) if jahr else "") if x)
+        return (f'<li><a href="orl.html#orl-a-{s.get("strecke","")}">'
+                f'<b>Strecke&#8239;{s.get("strecke","")}</b> {html.escape(s.get("verlauf",""))}</a>'
+                f'<span class="meta"> · {meta}</span></li>')
+
+    arows = "".join(arow(s) for s in sorted(a, key=lambda s: s.get("strecke", 0)))
+    n_fasz = sum(len(v["faszikel"]) for v in (fasz or {}).get("baende", {}).values())
+
+    return (
+        f'<h1>ORL — vollständiges Inhaltsverzeichnis</h1>'
+        f'<p class="lede">Alle <b>{len(b)} Kastell-Faszikel</b> der Abteilung&nbsp;B und die '
+        f'<b>{len(a)} Streckenbände</b> der Abteilung&nbsp;A — geordnet nicht nach ihrer Nummer, '
+        f'sondern nach ihrem <b>Erscheinen</b>. Das ist beim ORL zweierlei: die Nummern laufen '
+        f'<b>geografisch</b> (ORL&nbsp;1 = Rheinbrohl im Norden, ORL&nbsp;75 = Pförring an der Donau), '
+        f'die Faszikel erschienen aber <b>chronologisch</b>, wie die Bearbeiter fertig wurden. '
+        f'Die nummerngeordnete Ansicht steht im <a href="orl.html">Bandindex</a>.</p>'
+        f'<div class="note"><p><b>Was hier belegt ist — und was nicht.</b> Eine Lieferung mit Jahr '
+        f'ist für <b>{n_lfg} der {len(b)}</b> Faszikel aus einer zeitgenössischen Quelle belegt '
+        f'({n_lief} Lieferungen): Hettners Herausgeberliste bei Merten&nbsp;2002, die '
+        f'<a href="jahresberichte.html">RLK-Jahresberichte</a> und — kastellscharf, mit Seiten- und '
+        f'Tafelzahl — die <b>Bibliographie des Jahrbuchs</b>, die jede Lieferung bei Erscheinen '
+        f'anzeigte. Die übrigen stehen unten in einem eigenen Block; ihr Erscheinungsdatum ist '
+        f'unbelegt, nicht ihr Vorhandensein. Wo ein <b>Vorbericht</b> genannt ist, führt der Link '
+        f'in den betreffenden Feldbericht des <a href="../index.html">Limesblatts</a>.</p></div>'
+        f'<h2 id="abt-a">Abteilung A — die Strecken</h2>'
+        f'<p class="meta">Die Beschreibung der Linie selbst; erschienen 1914–1937, also grossenteils '
+        f'nach den Kastell-Faszikeln. Die RLK definierte ihre Strecken nach Flüssen und Landschaft, '
+        f'nicht nach Städten.</p><ul class="toc orltoc">{arows}</ul>'
+        f'<h2 id="abt-b">Abteilung B — die Kastelle, nach Lieferungen</h2>'
+        + "".join(blocks) +
+        f'<p class="meta">Seitenumfang: wo die Bibliographie ihn nennt, ist es ihre Angabe; sonst der '
+        f'aus dem Digitalisat errechnete Druckseiten-Bereich ({n_fasz} Faszikel wurden dafür in den '
+        f'Scans abgegrenzt). → <a href="hathitrust.html">wie das erschlossen wurde</a></p>')
 
 
 def orl_apparatus_page(reg, idx, persons=None):
@@ -2196,6 +2334,10 @@ def main():
             page("Ortsnamen — antik, modern, Flurname", namen_page(nm), 1))
         open(os.path.join(DOCS,"register","orl.html"),"w",encoding="utf-8").write(page("ORL", orl_page(orl_idx, orl_lex, orl_bli), 1))
         open(os.path.join(DOCS,"register","orl-register.html"),"w",encoding="utf-8").write(page("ORL — Gesamtapparat", orl_apparatus_page(orl_reg, orl_idx, persons), 1))
+        _fj = _load_json_any("orl_faszikel.json")
+        _dj = _load_json_any("orl_druckseiten.json")
+        open(os.path.join(DOCS,"register","orl-inhalt.html"),"w",encoding="utf-8").write(
+            page("ORL — Inhaltsverzeichnis", orl_toc_page(orl_idx, orl_bli, _fj, _dj), 1))
         open(os.path.join(DOCS,"register","hathitrust.html"),"w",encoding="utf-8").write(page("HathiTrust", hathitrust_page(orl_idx, orl_reg, orl_lex), 1))
         print(f"ORL: Abt. A {len(orl_idx.get('abteilung_A_strecken',[]))} + Abt. B {len(orl_idx.get('abteilung_B_kastelle',[]))} "
               f"→ register/orl.html · orl-register.html · hathitrust.html")
