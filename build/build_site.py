@@ -3277,7 +3277,9 @@ def jahresbericht_reader(b):
     if not seiten:
         return None, None
     item = b.get("item") or f"jahrbuchdeskaise{b['band']:02d}kaisrich"
-    tiles = [f"https://iiif.archive.org/iiif/{item}%24{s['leaf']}/info.json" for s in seiten]
+    # archive.org zählt die IIIF-Blätter AB 1, das djvu-XML ab 0 — ohne das +1 zeigt das
+    # Faksimile durchgehend die Seite davor. Geprüft: IIIF $371 ist djvu-Blatt 370.
+    tiles = [f"https://iiif.archive.org/iiif/{item}%24{s['leaf'] + 1}/info.json" for s in seiten]
     text, alle_kopfe = [], []
     for i, s in enumerate(seiten):
         koerper, marken = jb_struktur(s.get("text") or "")
@@ -3315,7 +3317,9 @@ var viewer = OpenSeadragon({{id:"osd", prefixUrl:"", tileSources:tiles, sequence
 function upd(){{document.getElementById("pgind").textContent=(viewer.currentPage()+1)+" / "+tiles.length;}}
 function syncOn(){{var b=document.getElementById("syncscroll");return !b||b.checked;}}
 var _slock=false;
-viewer.addHandler("open", upd);
+// goHome nach dem Öffnen: der Viewer startet sonst weit außerhalb des Blattes (die Kachelgröße
+// steht erst fest, wenn info.json da ist) — die Fläche bleibt schwarz, das Blatt ein Fleck.
+viewer.addHandler("open", function(){{ upd(); viewer.viewport.goHome(true); }});
 viewer.addHandler("page", function(ev){{
   upd();
   if(!syncOn()||_slock) return;
