@@ -3399,10 +3399,16 @@ def artikel_seite(a):
                     f'onclick="viewer.goToPage({i})" title="Dieses Blatt im Faksimile zeigen">'
                     f'— S. {html.escape(s["druckseite"])} —</div>{absaetze}')
     head = '<script src="../assets/openseadragon.min.js"></script>'
+    # Zwei Anbieter, zwei Adressformen — die Kennung eines Anbieters in die URL des anderen zu
+    # setzen ergibt einen Link, der nach Nachweis aussieht und ins Leere führt.
+    if a.get("anbieter") == "archive.org":
+        quelle_link = f'<a href="https://archive.org/details/{a["slug"]}">archive.org</a>'
+    else:
+        quelle_link = (f'<a href="https://digi.ub.uni-heidelberg.de/diglit/{a["slug"]}">'
+                       f'UB Heidelberg</a>')
     body = f"""<h1>{html.escape(a["titel"])}</h1>
 <p class="meta">{html.escape(a.get("verfasser", ""))} · {html.escape(a.get("quelle", ""))} ·
-{len(seiten)} Seiten · Faksimile und OCR: <a href="https://digi.ub.uni-heidelberg.de/diglit/{a["slug"]}">UB
-Heidelberg</a> · TEI: <a href="../tei/artikel/{a["id"]}.xml">XML</a> ·
+{len(seiten)} Seiten · Faksimile und OCR: {quelle_link} · TEI: <a href="../tei/artikel/{a["id"]}.xml">XML</a> ·
 zurück zum <a href="index.html">Aufsatzverzeichnis</a></p>
 <p class="meta">{html.escape(a.get("warum", ""))}</p>
 <div class="reader">
@@ -3445,8 +3451,12 @@ viewer.addHandler("page", function(ev){{
     return body, head
 
 
-def artikel_index(arts):
-    """Verzeichnis der einzeln erschlossenen Aufsätze — nach Organ gruppiert."""
+def artikel_index(arts, offen=()):
+    """Verzeichnis der einzeln erschlossenen Aufsätze — nach Organ gruppiert.
+
+    `offen` sind die Aufsätze des Verzeichnisses, die KEIN erreichbares Digitalisat haben. Sie
+    werden mit ihrem Grund genannt, statt zu verschwinden: eine Lücke, die man sieht, ist eine
+    Angabe; eine Lücke, die man nicht sieht, ist ein stiller Bestandsfehler."""
     from collections import defaultdict
     grp = defaultdict(list)
     for a in arts:
@@ -3458,23 +3468,42 @@ def artikel_index(arts):
             f'<tr><td><a href="{a["id"]}.html"><b>{html.escape(a["titel"][:90])}</b></a></td>'
             f'<td>{html.escape(a.get("verfasser", "") or "—")}</td>'
             f'<td class="meta">{html.escape(a.get("quelle", ""))}</td>'
-            f'<td>{len(a.get("seiten") or [])}</td><td>{a.get("woerter", 0):,}</td></tr>'.replace(",", ".")
+            f'<td>{len(a.get("seiten") or [])}</td><td>{a.get("woerter", 0):,}</td>'
+            f'<td class="meta">{"archive.org" if a.get("anbieter") == "archive.org" else "UB Heidelberg"}</td></tr>'.replace(",", ".")
             for a in sorted(grp[organ], key=lambda x: x.get("quelle", "")))
         teile.append(f'<h2>{html.escape(organ)}</h2>'
                      f'<table class="reg"><thead><tr><th>Aufsatz</th><th>Verfasser</th><th>Fundstelle</th>'
-                     f'<th>Seiten</th><th>Wörter</th></tr></thead><tbody>{zeilen}</tbody></table>')
+                     f'<th>Seiten</th><th>Wörter</th><th>Digitalisat</th></tr></thead>'
+                     f'<tbody>{zeilen}</tbody></table>')
     n_w = sum(a.get("woerter", 0) for a in arts)
+    luecke = ""
+    if offen:
+        zeilen = "".join(
+            f'<tr><td>{html.escape(o.get("wer_was", ""))}</td>'
+            f'<td class="meta">Bd. {html.escape(str(o.get("band", "")))}, '
+            f'S. {o.get("von")}–{o.get("bis")}</td>'
+            f'<td class="meta">{html.escape(o.get("grund", ""))}</td></tr>' for o in offen)
+        luecke = (f'<h2>Ohne erreichbares Digitalisat</h2>'
+                  f'<p class="meta">Diese Aufsätze stehen im Verzeichnis, ihr Band ist aber in keiner '
+                  f'der abgefragten Sammlungen digitalisiert. Sie bleiben hier stehen, damit die '
+                  f'Lücke sichtbar ist.</p>'
+                  f'<table class="reg"><thead><tr><th>Aufsatz</th><th>Fundstelle</th>'
+                  f'<th>Warum nicht hier</th></tr></thead><tbody>{zeilen}</tbody></table>')
     return (f'<h1>Aufsätze</h1>'
             f'<p class="lede">Einzelne Aufsätze, die für die Gründungs- und Forschungsgeschichte zählen — '
             f'jeder als Volltext neben seinem Faksimile. <b>{len(arts)} Aufsätze</b>, '
             f'{n_w:,} Wörter.</p>'.replace(",", ".") +
             f'<p class="meta">Der Bestand kommt aus dem Aufsatzverzeichnis des Forschungs-Vaults, das die '
             f'Inhaltsverzeichnisse der Digitalisate ausgewertet hat; Text und Blatt liefern die '
-            f'Digitalisate selbst (UB Heidelberg: IIIF-Manifest und ALTO-OCR). Welcher Jahrgang eines '
-            f'Organs den Aufsatz führt, wird nicht geraten: der Band gilt erst als gefunden, wenn die '
-            f'Seitenbeschriftungen seiner Bildfolge die gesuchte Spanne wirklich enthalten — sonst bleibt '
-            f'der Aufsatz unerschlossen und wird hier nicht aufgeführt.</p>'
-            + "".join(teile) +
+            f'Digitalisate selbst — bei der UB Heidelberg über IIIF-Manifest und ALTO-OCR, bei '
+            f'archive.org über die Bildfolge und den mitgelieferten Text. Welche Stelle eines Bandes '
+            f'den Aufsatz führt, wird nicht geraten. Bei der UB Heidelberg gilt der Jahrgang erst als '
+            f'gefunden, wenn die Seitenbeschriftungen seiner Bildfolge die gesuchte Spanne wirklich '
+            f'enthalten. Bei archive.org reicht das nicht, denn dort sind mehrere Bände in einen Scan '
+            f'gebunden und dieselbe Seitenzahl kommt mehrfach vor: dort müssen <b>zwei</b> Belege '
+            f'zusammenfallen — Verfasser- und Titelwörter auf dem Blatt selbst, und eine passende '
+            f'Folgenummer in Reichweite. Fällt beides nicht zusammen, bleibt der Aufsatz unerschlossen.</p>'
+            + "".join(teile) + luecke +
             f'<p class="meta">Zurück zu den <a href="../quellen.html">Quellen</a>.</p>')
 
 
@@ -3981,7 +4010,9 @@ def main():
     open(os.path.join(DOCS,"register","inschriften.html"),"w",encoding="utf-8").write(page("Inschriften (EDH)", inscriptions_page(edh), 1))
     print(f"EDH-Inschriften: {edh.get('total',0)} von {len(edh.get('kastelle',[]))} Fundorten → register/inschriften.html")
     # ORL-Register/Analyse-Seiten (orl_idx/orl_lex + _orl_load bereits vor den Strecken geladen)
-    _artliste = (_load_json_any("artikel.json") or {}).get("artikel", [])
+    _artjson = _load_json_any("artikel.json") or {}
+    _artliste = _artjson.get("artikel", [])
+    _artoffen = _artjson.get("_offen", [])
     orl_reg = _orl_load("orl_register.json") or {"persons": [], "places": [], "counts": {}}
     if orl_idx.get("abteilung_B_kastelle"):
         orl_bli = _orl_load("orl_band_lieferung.json") or {}
@@ -4057,7 +4088,7 @@ def main():
                 open(os.path.join(DOCS, "artikel", f'{_a["id"]}.html'), "w", encoding="utf-8").write(
                     page(_a["titel"][:60], _b, 1, _h))
         open(os.path.join(DOCS, "artikel", "index.html"), "w", encoding="utf-8").write(
-            page("Aufsätze", artikel_index(_artliste), 1))
+            page("Aufsätze", artikel_index(_artliste, _artoffen), 1))
         print(f"Aufsätze: {len(_artliste)} Lesefassungen mit Faksimile → artikel/index.html")
     print("Quellen-Hub → quellen.html")
     _arch = _load_json_any("archive.json") or {}

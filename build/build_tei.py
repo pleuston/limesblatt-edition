@@ -654,9 +654,13 @@ def artikel_tei(repo, quelle=None):
                 abs_ = abs_.strip()
                 if abs_:
                     koerper.append("<p>" + esc(abs_) + "</p>")
-        digi = (f"https://digi.ub.uni-heidelberg.de/diglit/{a['slug']}"
-                if not str(a.get("slug", "")).startswith("ia:") else
-                f"https://archive.org/details/{a['slug'][3:]}")
+        # Der Aufsatzbestand hat zwei Anbieter, und beide haben ihre eigene Adressform. Wer den
+        # UB-Pfad blind nimmt, baut aus einer archive.org-Kennung eine Heidelberger URL, die es
+        # nicht gibt — ein Link, der nach Nachweis aussieht und keiner ist.
+        ia = a.get("anbieter") == "archive.org" or str(a.get("slug", "")).startswith("ia:")
+        kennung = a["slug"][3:] if str(a.get("slug", "")).startswith("ia:") else a["slug"]
+        digi = (f"https://archive.org/details/{kennung}" if ia else
+                f"https://digi.ub.uni-heidelberg.de/diglit/{kennung}")
         xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
                '<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de">\n'
                '<teiHeader><fileDesc>\n'
@@ -673,8 +677,9 @@ def artikel_tei(repo, quelle=None):
                f'<sourceDesc><bibl>{esc(a.get("quelle", ""))}</bibl>'
                f'<bibl type="digitalisat"><ref target="{esc(digi)}">{esc(digi)}</ref></bibl>'
                f'</sourceDesc>\n</fileDesc>\n'
-               '<encodingDesc><projectDesc><p>Volltext aus der OCR des Digitalisats, spaltentreu '
-               'rekonstruiert; Absatzgrenzen folgen der Vorlage, soweit sie erkennbar sind. Keine '
+               '<encodingDesc><projectDesc><p>Volltext aus der OCR des Digitalisats'
+               + (', in der Lesereihenfolge des Anbieters' if ia else ', spaltentreu rekonstruiert')
+               + '; Absatzgrenzen folgen der Vorlage, soweit sie erkennbar sind. Keine '
                'Normalisierung der historischen Orthographie.</p></projectDesc></encodingDesc>\n'
                '</teiHeader>\n<text><body><div type="article">\n'
                + "\n".join(koerper) + "\n</div></body></text>\n</TEI>\n")
