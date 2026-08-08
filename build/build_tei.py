@@ -621,6 +621,133 @@ def write_bibl(path):
     L.append('</listBibl></standOff></TEI>')
     open(path, "w", encoding="utf-8").write("\n".join(L))
 
+def esc(s):
+    return (str(s or "").replace("&", "&amp;").replace("<", "&lt;")
+            .replace(">", "&gt;").replace('"', "&quot;"))
+
+
+def artikel_tei(repo, quelle=None):
+    """Die Aufsatz-Transkriptionen als TEI sichern — eine Datei je Aufsatz.
+
+    Die Lesefassungen sind bislang nur HTML; damit wären sie an diese Website gebunden. TEI macht
+    sie zitierfähig und weiterverwendbar: `<pb n="Druckseite" facs="IIIF-Adresse"/>` bindet jeden
+    Absatz an sein Blatt, der Kopf nennt Verfasser, Fundstelle, Digitalisat und Rechtslage —
+    getrennt nach Transkription (CC BY 4.0) und Seitenbildern (bei der besitzenden Bibliothek).
+    """
+    quelle = quelle or os.path.join(repo, "data", "artikel.json")
+    if not os.path.exists(quelle):
+        return 0
+    arts = json.load(open(quelle, encoding="utf-8")).get("artikel", [])
+    ziel = os.path.join(repo, "tei", "artikel")
+    os.makedirs(ziel, exist_ok=True)
+    n = 0
+    for a in arts:
+        seiten = a.get("seiten") or []
+        if not seiten:
+            continue
+        koerper = []
+        for s in seiten:
+            facs = (s.get("iiif") or "") + ("/full/max/0/default.jpg" if s.get("iiif") else "")
+            koerper.append(f'<pb n="{esc(s["druckseite"])}"'
+                           + (f' facs="{esc(facs)}"' if facs else "") + "/>")
+            for abs_ in re.split(r"\n\s*\n", s.get("text") or ""):
+                abs_ = abs_.strip()
+                if abs_:
+                    koerper.append("<p>" + esc(abs_) + "</p>")
+        digi = (f"https://digi.ub.uni-heidelberg.de/diglit/{a['slug']}"
+                if not str(a.get("slug", "")).startswith("ia:") else
+                f"https://archive.org/details/{a['slug'][3:]}")
+        xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
+               '<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de">\n'
+               '<teiHeader><fileDesc>\n'
+               f'<titleStmt><title>{esc(a["titel"])}</title>'
+               + (f'<author>{esc(a["verfasser"])}</author>' if a.get("verfasser") else "")
+               + '<respStmt><resp>Transkription (OCR, maschinell)</resp>'
+                 '<name>RLK-digital</name></respStmt></titleStmt>\n'
+               '<publicationStmt><publisher>RLK-digital</publisher>'
+               '<availability status="restricted">'
+               '<licence target="https://creativecommons.org/licenses/by/4.0/">'
+               'Transkription und Auszeichnung: CC BY 4.0.</licence>'
+               f'<p>Seitenbilder werden nur verlinkt (IIIF), nicht nachgenutzt; die Rechte liegen '
+               f'bei der besitzenden Einrichtung.</p></availability></publicationStmt>\n'
+               f'<sourceDesc><bibl>{esc(a.get("quelle", ""))}</bibl>'
+               f'<bibl type="digitalisat"><ref target="{esc(digi)}">{esc(digi)}</ref></bibl>'
+               f'</sourceDesc>\n</fileDesc>\n'
+               '<encodingDesc><projectDesc><p>Volltext aus der OCR des Digitalisats, spaltentreu '
+               'rekonstruiert; Absatzgrenzen folgen der Vorlage, soweit sie erkennbar sind. Keine '
+               'Normalisierung der historischen Orthographie.</p></projectDesc></encodingDesc>\n'
+               '</teiHeader>\n<text><body><div type="article">\n'
+               + "\n".join(koerper) + "\n</div></body></text>\n</TEI>\n")
+        open(os.path.join(ziel, f'{a["id"]}.xml'), "w", encoding="utf-8").write(xml)
+        n += 1
+    return n
+
+
+def _tei_datei(ziel, kennung, titel, verfasser, quelle, digitalisat, seiten, hinweis):
+    """Eine TEI-Datei aus (Kopf + Seiten mit Faksimile-Adresse) — gemeinsam für Aufsätze und
+    Jahresberichte, damit beide Bestände dieselbe Form haben."""
+    koerper = []
+    for s in seiten:
+        facs = s.get("facs") or ""
+        koerper.append(f'<pb n="{esc(s["n"])}"' + (f' facs="{esc(facs)}"' if facs else "") + "/>")
+        for abs_ in re.split(r"\n\s*\n", s.get("text") or ""):
+            abs_ = abs_.strip()
+            if abs_:
+                koerper.append("<p>" + esc(abs_) + "</p>")
+    xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
+           '<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de">\n'
+           '<teiHeader><fileDesc>\n'
+           f'<titleStmt><title>{esc(titel)}</title>'
+           + (f'<author>{esc(verfasser)}</author>' if verfasser else "")
+           + '<respStmt><resp>Transkription (OCR, maschinell)</resp>'
+             '<name>RLK-digital</name></respStmt></titleStmt>\n'
+           '<publicationStmt><publisher>RLK-digital</publisher>'
+           '<availability status="restricted">'
+           '<licence target="https://creativecommons.org/licenses/by/4.0/">'
+           'Transkription und Auszeichnung: CC BY 4.0.</licence>'
+           '<p>Seitenbilder werden nur verlinkt (IIIF), nicht nachgenutzt; die Rechte liegen bei '
+           'der besitzenden Einrichtung.</p></availability></publicationStmt>\n'
+           f'<sourceDesc><bibl>{esc(quelle)}</bibl>'
+           + (f'<bibl type="digitalisat"><ref target="{esc(digitalisat)}">{esc(digitalisat)}</ref></bibl>'
+              if digitalisat else "")
+           + '</sourceDesc>\n</fileDesc>\n'
+           f'<encodingDesc><projectDesc><p>{esc(hinweis)}</p></projectDesc></encodingDesc>\n'
+           '</teiHeader>\n<text><body><div>\n' + "\n".join(koerper) + "\n</div></body></text>\n</TEI>\n")
+    os.makedirs(ziel, exist_ok=True)
+    open(os.path.join(ziel, f"{kennung}.xml"), "w", encoding="utf-8").write(xml)
+
+
+def jahresberichte_tei(repo, quelle=None):
+    """Die Jahresberichte der RLK als TEI — je Jahrgang eine Datei, Blatt für Blatt ans
+    Faksimile gebunden. Das Faksimile liegt bei archive.org, und dort zählt IIIF ab 1, während
+    der djvu-Index ab 0 läuft: die facs-Adresse trägt deshalb Blatt+1."""
+    quelle = quelle or os.path.join(repo, "data", "rlk_jahresberichte.json")
+    if not os.path.exists(quelle):
+        return 0
+    d = json.load(open(quelle, encoding="utf-8"))
+    n = 0
+    for b in d.get("berichte", []):
+        seiten = b.get("seiten") or []
+        if not seiten:
+            continue
+        item = b.get("item") or f"jahrbuchdeskaise{b['band']:02d}kaisrich"
+        sn = [{"n": str(s["leaf"]),
+               "facs": f"https://iiif.archive.org/iiif/{item}%24{s['leaf'] + 1}/full/max/0/default.jpg",
+               "text": s.get("text", "")} for s in seiten]
+        _tei_datei(os.path.join(repo, "tei", "jahresberichte"), f'jb{b["jahrgang"]}',
+                   f'Bericht über die Thätigkeit der Reichs-Limeskommission {b["jahrgang"]}',
+                   "Reichs-Limeskommission",
+                   f'Jahrbuch des Kaiserlich Deutschen Archäologischen Instituts, Band {b["band"]} — '
+                   f'Archäologischer Anzeiger, Blatt {seiten[0]["leaf"]}–{seiten[-1]["leaf"]}',
+                   f"https://archive.org/details/{item}",
+                   sn,
+                   "Volltext am Faksimile gelesen (macOS Vision, halbseitenweise wegen des "
+                   "zweispaltigen Satzes); Kolumnentitel entfernt, Silbentrennung am Zeilenende "
+                   "aufgelöst. Die Seitenzählung ist die des Scans (Blatt), nicht die Druckseite.")
+        n += 1
+    return n
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--vault", default=os.environ.get("VAULT_ROOT", os.path.join(REPO, "..", "limes")))
@@ -831,6 +958,12 @@ def main():
             for eid, e in entities.items() if eid in occ}
     json.dump({"entities": meta, "occ": {k: occ[k] for k in occ}},
               open(os.path.join(REPO, "data", "occurrences.json"), "w", encoding="utf-8"), ensure_ascii=False)
+    n_jb = jahresberichte_tei(REPO)
+    if n_jb:
+        print(f"Jahresberichte als TEI: {n_jb} Dateien → tei/jahresberichte/")
+    n_art = artikel_tei(REPO)
+    if n_art:
+        print(f"Aufsatz-Transkriptionen als TEI: {n_art} Dateien → tei/artikel/")
     nent = len(occ); ncov = sum(1 for e in entities if e in occ)
     print(f"Σ Inline-Tags: {tot} · Belegindex: {nent} Entitäten, {sum(len(v) for v in occ.values())} Vorkommen "
           f"→ data/occurrences.json")

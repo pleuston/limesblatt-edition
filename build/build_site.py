@@ -3340,6 +3340,7 @@ def jahresbericht_reader(b):
 Archäologischer Anzeiger, Blatt {seiten[0]['leaf']}–{seiten[-1]['leaf']} ·
 {len(seiten)} Seiten · Faksimile: <a href="https://archive.org/details/{item}">archive.org</a> ·
 Lesung: {html.escape(b.get('ocr', ''))} ·
+TEI: <a href="../tei/jahresberichte/jb{b['jahrgang']}.xml">XML</a> ·
 zurück zum <a href="../register/jahresberichte.html">Berichtsindex</a></p>
 {gliederung}
 <div class="reader">
@@ -3401,7 +3402,8 @@ def artikel_seite(a):
     body = f"""<h1>{html.escape(a["titel"])}</h1>
 <p class="meta">{html.escape(a.get("verfasser", ""))} · {html.escape(a.get("quelle", ""))} ·
 {len(seiten)} Seiten · Faksimile und OCR: <a href="https://digi.ub.uni-heidelberg.de/diglit/{a["slug"]}">UB
-Heidelberg</a> · zurück zu den <a href="../quellen.html#aufsaetze">Quellen</a></p>
+Heidelberg</a> · TEI: <a href="../tei/artikel/{a["id"]}.xml">XML</a> ·
+zurück zum <a href="index.html">Aufsatzverzeichnis</a></p>
 <p class="meta">{html.escape(a.get("warum", ""))}</p>
 <div class="reader">
   <div class="facs"><div id="osd"></div>
@@ -3841,6 +3843,10 @@ def main():
     for sub in ("tei","registers","data","assets"): os.makedirs(os.path.join(DOCS,sub), exist_ok=True)
     # TEI/Register zum Download/Reuse mitkopieren
     for f in glob.glob(os.path.join(REPO,"tei","*.xml")): shutil.copy(f, os.path.join(DOCS,"tei"))
+    for unter in ("artikel", "jahresberichte"):          # TEI der Aufsätze und Jahresberichte
+        os.makedirs(os.path.join(DOCS, "tei", unter), exist_ok=True)
+        for f in glob.glob(os.path.join(REPO, "tei", unter, "*.xml")):
+            shutil.copy(f, os.path.join(DOCS, "tei", unter))
     for f in glob.glob(os.path.join(REPO,"registers","*.xml")): shutil.copy(f, os.path.join(DOCS,"registers"))
     for f in glob.glob(os.path.join(REPO,"geo","*.geojson")): shutil.copy(f, os.path.join(DOCS,"data"))
 
