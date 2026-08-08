@@ -247,7 +247,7 @@ def page(title, body, depth=0, head=""):
 <li><a href="{up}quellen.html#jahresberichte"><b>Jahresberichte</b> der RLK</a></li>
 <li><a href="{up}quellen.html#extern"><b>Zitierte externe Quellen</b></a></li>
 <li><a href="{up}quellen.html#lokal"><b>Lokale Publikationen</b></a></li>
-<li><a href="{up}quellen.html#aufsaetze"><b>Einzelne Aufsätze</b></a></li>
+<li><a href="{up}artikel/index.html"><b>Aufsätze</b></a></li>
 <li><a href="{up}register/archive.html"><b>Archivbestände</b></a></li></ul></li>
 <li class="has"><a href="{up}register/persons.html">Register</a><ul>
 <li><a href="{up}register/persons.html">Personen</a></li>
@@ -681,12 +681,12 @@ def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh, artliste=None):
               "Neben den drei Beständen stehen einzelne Aufsätze, an denen die Gründungsgeschichte hängt. "
               "Wo sie bei der UB Heidelberg digitalisiert sind, liegen sie in derselben Form vor wie das "
               "Limesblatt — Faksimile plus OCR — und stehen hier ebenso nebeneinander: Text links, Blatt rechts.",
-              [(f'<b>{html.escape(x["titel"][:70])}</b> — {html.escape(x.get("verfasser",""))}, '
-                f'{html.escape(x.get("quelle",""))} '
-                f'(<a href="artikel/{x["id"]}.html">lesen mit Faksimile</a>)') for x in (artliste or [])]
-              or ["noch keine Aufsätze erschlossen"],
-              [("Alle Aufsätze", "artikel/" + (artliste[0]["id"] if artliste else "") + ".html")]
-              if artliste else []),
+              [f'<b>{len(artliste or [])} Aufsätze</b> erschlossen, '
+               f'{sum(x.get("woerter", 0) for x in (artliste or [])):,} Wörter'.replace(",", "."),
+               "darunter Florschütz’ Nachruf auf Cohausen (1895) und Cohausens Streitschrift (1892)",
+               "der Bestand stammt aus dem Aufsatzverzeichnis des Vaults; der Jahrgang wird nicht "
+               "geraten, sondern an den Seitenbeschriftungen der Bildfolge geprüft"],
+              [("Verzeichnis der Aufsätze", "artikel/index.html")]),
         block("archive", "Archivbestände", "unveröffentlicht · zum Teil ungesehen",
               "Alles bisher Genannte ist gedruckt. Daneben liegt das <em>unveröffentlichte</em> Material: "
               "Grabungstagebücher, Korrespondenz, Vermessungsunterlagen, Ministerialakten. Hier steht, wo es "
@@ -3443,6 +3443,39 @@ viewer.addHandler("page", function(ev){{
     return body, head
 
 
+def artikel_index(arts):
+    """Verzeichnis der einzeln erschlossenen Aufsätze — nach Organ gruppiert."""
+    from collections import defaultdict
+    grp = defaultdict(list)
+    for a in arts:
+        organ = re.split(r"\s+\d", a.get("quelle", "Einzeldruck"))[0].strip() or "Einzeldruck"
+        grp[organ].append(a)
+    teile = []
+    for organ in sorted(grp):
+        zeilen = "".join(
+            f'<tr><td><a href="{a["id"]}.html"><b>{html.escape(a["titel"][:90])}</b></a></td>'
+            f'<td>{html.escape(a.get("verfasser", "") or "—")}</td>'
+            f'<td class="meta">{html.escape(a.get("quelle", ""))}</td>'
+            f'<td>{len(a.get("seiten") or [])}</td><td>{a.get("woerter", 0):,}</td></tr>'.replace(",", ".")
+            for a in sorted(grp[organ], key=lambda x: x.get("quelle", "")))
+        teile.append(f'<h2>{html.escape(organ)}</h2>'
+                     f'<table class="reg"><thead><tr><th>Aufsatz</th><th>Verfasser</th><th>Fundstelle</th>'
+                     f'<th>Seiten</th><th>Wörter</th></tr></thead><tbody>{zeilen}</tbody></table>')
+    n_w = sum(a.get("woerter", 0) for a in arts)
+    return (f'<h1>Aufsätze</h1>'
+            f'<p class="lede">Einzelne Aufsätze, die für die Gründungs- und Forschungsgeschichte zählen — '
+            f'jeder als Volltext neben seinem Faksimile. <b>{len(arts)} Aufsätze</b>, '
+            f'{n_w:,} Wörter.</p>'.replace(",", ".") +
+            f'<p class="meta">Der Bestand kommt aus dem Aufsatzverzeichnis des Forschungs-Vaults, das die '
+            f'Inhaltsverzeichnisse der Digitalisate ausgewertet hat; Text und Blatt liefern die '
+            f'Digitalisate selbst (UB Heidelberg: IIIF-Manifest und ALTO-OCR). Welcher Jahrgang eines '
+            f'Organs den Aufsatz führt, wird nicht geraten: der Band gilt erst als gefunden, wenn die '
+            f'Seitenbeschriftungen seiner Bildfolge die gesuchte Spanne wirklich enthalten — sonst bleibt '
+            f'der Aufsatz unerschlossen und wird hier nicht aufgeführt.</p>'
+            + "".join(teile) +
+            f'<p class="meta">Zurück zu den <a href="../quellen.html">Quellen</a>.</p>')
+
+
 def documentation_page(s):
     # Datenherkunft — jede offene Quelle in klarer Sprache (kein Fachjargon)
     src = [
@@ -4017,7 +4050,9 @@ def main():
             if _b:
                 open(os.path.join(DOCS, "artikel", f'{_a["id"]}.html'), "w", encoding="utf-8").write(
                     page(_a["titel"][:60], _b, 1, _h))
-        print(f"Aufsätze: {len(_artliste)} Lesefassungen mit Faksimile → artikel/<id>.html")
+        open(os.path.join(DOCS, "artikel", "index.html"), "w", encoding="utf-8").write(
+            page("Aufsätze", artikel_index(_artliste), 1))
+        print(f"Aufsätze: {len(_artliste)} Lesefassungen mit Faksimile → artikel/index.html")
     print("Quellen-Hub → quellen.html")
     _arch = _load_json_any("archive.json") or {}
     if _arch.get("bestaende"):
