@@ -230,44 +230,48 @@ def page(title, body, depth=0, head=""):
     up = "../" * depth
     return f"""<!doctype html><html lang="de"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{html.escape(title)} — Limesblatt-Edition</title>
+<title>{html.escape(title)} — RLK-digital</title>
 <link rel="stylesheet" href="{up}assets/style.css">
 <script src="{up}assets/tables.js" defer></script>{head}</head><body>
-<header><a class="home" href="{up}index.html">📕 Limesblatt-Edition</a>
+<header><a class="home" href="{up}index.html">🏛 RLK-digital</a>
 <nav><ul class="nav">
 <li><a href="{up}uebersicht.html">Übersicht</a></li>
-<li><a href="{up}index.html">Bände</a></li>
-<li class="has"><a href="{up}register/persons.html">Wer &amp; Wo</a><ul>
+<li class="has"><a href="{up}quellen.html">Quellen</a><ul>
+<li><a href="{up}quellen.html">Alle Quellen im Überblick</a></li>
+<li><a href="{up}quellen.html#limesblatt"><b>Limesblatt</b> — das Feldorgan</a></li>
+<li><a href="{up}index.html">· Bände &amp; Inhaltsverzeichnis</a></li>
+<li><a href="{up}quellen.html#orl"><b>ORL</b> — die Endpublikation</a></li>
+<li><a href="{up}register/orl-inhalt.html">· Inhaltsverzeichnis</a></li>
+<li><a href="{up}register/orl-verweise.html">· Binnenverweise</a></li>
+<li><a href="{up}register/genese.html">· Genese des Werks</a></li>
+<li><a href="{up}quellen.html#jahresberichte"><b>Jahresberichte</b> der RLK</a></li>
+<li><a href="{up}quellen.html#extern"><b>Zitierte externe Quellen</b></a></li>
+<li><a href="{up}quellen.html#lokal"><b>Lokale Publikationen</b></a></li></ul></li>
+<li class="has"><a href="{up}register/persons.html">Register</a><ul>
 <li><a href="{up}register/persons.html">Personen</a></li>
 <li><a href="{up}register/places.html">Orte</a></li>
 <li><a href="{up}register/strecken.html">Strecken</a></li>
-<li><a href="{up}register/organigramm.html">Organigramm</a></li></ul></li>
-<li class="has"><a href="{up}register/fundindex.html">Funde &amp; Text</a><ul>
+<li><a href="{up}register/organigramm.html">Organigramm</a></li>
 <li><a href="{up}register/fundindex.html">Fundindex</a></li>
 <li><a href="{up}register/inschriften.html">Inschriften</a></li>
 <li><a href="{up}register/namen.html">Namen im Text</a></li>
 <li><a href="{up}register/orte-index.html">Orte im Text</a></li>
 <li><a href="{up}register/ortsnamen.html">Ortsnamen antik/modern</a></li>
 <li><a href="{up}register/hintzelmann.html">Register von 1903</a></li>
-<li><a href="{up}register/bibliographie.html">Bibliographie</a></li>
-<li><a href="{up}register/gesamtbibliographie.html">Gesamtbibliographie</a></li>
 <li><a href="{up}register/gesamtregister.html">Gesamtregister (alle Werke)</a></li>
-<li><a href="{up}register/netz.html">Netzansicht</a></li>
-<li><a href="{up}register/jahresberichte.html">RLK-Jahresberichte</a></li></ul></li>
-<li class="has"><a href="{up}register/orl.html">ORL</a><ul>
-<li><a href="{up}register/genese.html">Genese des Werks</a></li>
-<li><a href="{up}register/orl.html">Bandindex</a></li>
-<li><a href="{up}register/orl-inhalt.html">Inhaltsverzeichnis</a></li>
-<li><a href="{up}register/orl-verweise.html">Binnenverweise</a></li>
-<li><a href="{up}register/orl-register.html">Gesamtapparat</a></li>
+<li><a href="{up}register/orl-register.html">ORL-Gesamtapparat</a></li>
+<li><a href="{up}register/netz.html">Netzansicht</a></li></ul></li>
+<li class="has"><a href="{up}register/wortschatz.html">Analyse</a><ul>
+<li><a href="{up}register/wortschatz.html">Textanalyse</a></li>
+<li><a href="{up}register/genese.html">Genese des ORL</a></li>
 <li><a href="{up}register/hathitrust.html">Erschließung (HathiTrust)</a></li></ul></li>
-<li><a href="{up}register/wortschatz.html">Analyse</a></li>
 <li class="has"><a href="{up}dokumentation.html">Über</a><ul>
 <li><a href="{up}dokumentation.html">Dokumentation</a></li>
 <li><a href="{up}edit.html" title="TEI-Quelle bearbeiten (GitHub-Login)">Bearbeiten ✎</a></li></ul></li>
 <li><a href="{up}index.html#suche">🔍 Suche</a></li>
 </ul></nav></header><main>{body}</main>
-<footer>Diplomatische OCR-Edition des <em>Limesblatt</em> (35 Hefte, 1892–1903) · Text &amp; Register
+<footer><b>RLK-digital</b> — die Quellen der Reichs-Limeskommission (1892–1937), digital erschlossen:
+<em>Limesblatt</em> · <em>Obergermanisch-Raetischer Limes</em> · Jahresberichte · Text &amp; Register
 <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · Seitenbilder © UB Heidelberg
 (<a href="http://rightsstatements.org/vocab/InC/1.0/">In Copyright</a>, via IIIF verlinkt) ·
 <a href="https://github.com/pleuston/limesblatt-edition">Quellcode &amp; TEI</a></footer></body></html>"""
@@ -587,6 +591,102 @@ def strecken_page(strecken, str_forts, persons, pname, strecke_sites, orl_idx, v
             f'näherungsweise.</p>'
             f'<div class="cards">{"".join(cards)}</div>')
 
+def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh):
+    """Der Quellen-Hub: fünf Bestände, je mit eigener Herkunft, eigenem Zuschnitt, eigener Grenze.
+
+    Die Website ist aus einer Limesblatt-Edition gewachsen; inzwischen trägt sie vier weitere
+    Bestände, die nicht Beiwerk sind, sondern eigene Quellen mit eigenen Fragen. Diese Seite
+    stellt sie nebeneinander, statt sie als Anhänge der Edition zu führen."""
+    n_hefte = len(HEFTE)
+    n_ber = sum(len(v) for v in (toc or {}).values())
+    n_seiten = sum(len(v["pages"]) for v in volumes)
+    b = idx.get("abteilung_B_kastelle", [])
+    a = idx.get("abteilung_A_strecken", [])
+    n_jb = len(jb.get("berichte", []))
+    organe = zs.get("organe_vollzaehlung") or {}
+    n_rez = len(rez.get("items", []))
+    n_edh = edh.get("total", 0)
+
+    def block(anker, titel, zeitraum, was, punkte, links):
+        lp = " · ".join(f'<a href="{h}">{t}</a>' for t, h in links)
+        li = "".join(f"<li>{x}</li>" for x in punkte)
+        return (f'<section class="qbox" id="{anker}"><h2>{titel} <span class="meta">{zeitraum}</span></h2>'
+                f'<p>{was}</p><ul class="qpunkte">{li}</ul>'
+                f'<p class="meta"><b>Hier entlang:</b> {lp}</p></section>')
+
+    teile = [
+        block("limesblatt", "Limesblatt", "1892–1903 · Feldorgan",
+              "Die <em>Mitteilungen der Streckenkommissare</em> — das laufende Berichtsorgan der Kommission, "
+              "in dem die Streckenkommissare ihre Kampagne noch im Gange beschreiben. Hier vollständig als "
+              "diplomatische OCR-Edition mit Faksimile-Anschluss.",
+              [f"<b>{n_seiten} Seiten</b> in 8 Bänden, durchlaufend in 967 Spalten gezählt",
+               f"<b>{n_hefte} Hefteinheiten</b> (35 Nummern) mit Ausgabedatum aus den IIIF-Strukturdaten",
+               f"<b>{n_ber} nummerierte Feldberichte</b>, 114 davon am Faksimile gegengeprüft",
+               "Volltext, Register und Faksimile Seite für Seite verknüpft"],
+              [("Bände &amp; Inhaltsverzeichnis", "index.html"),
+               ("Namen im Text", "register/namen.html"), ("Orte im Text", "register/orte-index.html"),
+               ("Hintzelmanns Register 1903", "register/hintzelmann.html"),
+               ("Textanalyse", "register/wortschatz.html")]),
+        block("orl", "Obergermanisch-Raetischer Limes (ORL)", "1894–1937 · Endpublikation",
+              "Das Werk, in das die Feldarbeit mündete — in 14 Mappen über 45 Jahre erschienen und deshalb nie "
+              "als Ganzes erschlossen. Hier token-frei über HathiTrust aufgeschlüsselt: Inhalt, Apparat, "
+              "Binnenverweise und die Schichten seiner Entstehung.",
+              [f"<b>{len(b)} Kastell-Faszikel</b> und <b>{len(a)} Streckenbände</b>, nach Lieferung geordnet",
+               "551 Binnenverweise beidseitig in den Scan verlinkt, doppelt validiert",
+               "1751 Verweise auf das Limesblatt aufgelöst — das Feldarchiv, auf das sich der ORL beruft",
+               "Gesamtregister über alle Bände, das die Reihe selbst nie hatte"],
+              [("Inhaltsverzeichnis", "register/orl-inhalt.html"), ("Bandindex", "register/orl.html"),
+               ("Binnenverweise", "register/orl-verweise.html"),
+               ("Gesamtapparat", "register/orl-register.html"),
+               ("Genese des Werks", "register/genese.html"),
+               ("Erschließung", "register/hathitrust.html")]),
+        block("jahresberichte", "Jahresberichte der Reichs-Limeskommission", "1892–1905 · institutionelle Selbstauskunft",
+              "Was die Kommission jährlich über sich selbst veröffentlichte, als Anhang im "
+              "<em>Jahrbuch des Deutschen Archäologischen Instituts</em>. Kein Feldbericht und keine "
+              "Endpublikation, sondern die dritte Stimme: Personal, Beschlüsse, Fortschritt.",
+              [f"<b>{n_jb} von 14 Jahrgängen</b> erschlossen (1894 nicht digitalisiert auffindbar)",
+               "durchnummeriert nach Jahrgang — die Bandzahl gehört dem Jahrbuch, nicht den Berichten",
+               "Register der genannten Personen und Orte, dazu das Verwaltungsvokabular",
+               "Befund: der Berichtsumfang <b>fällt</b>, während die ORL-Lieferungen zunehmen"],
+              [("Die Berichte", "register/jahresberichte.html"),
+               ("Wer genannt wird", "register/jahresberichte.html#wer"),
+               ("Welche Orte", "register/jahresberichte.html#wo")]),
+        block("extern", "Zitierte externe Quellen", "Apparat der drei Werke",
+              "Worauf sich die Limesforschung beruft: Inschriftencorpora, Referenzwerke, "
+              "Fachzeitschriften — aufgelöst zu vollen Referenzen und, wo vorhanden, zum offenen Digitalisat.",
+              [f"<b>{len(bibls)} zitierte Werke</b> im Limesblatt, als <code>&lt;ref&gt;</code> im TEI ausgezeichnet",
+               f"<b>{n_edh} Inschriften</b> der Limes-Fundorte aus der Epigraphic Database Heidelberg",
+               "817 Inschriften-Zitate des ORL, normalisiert zum Zitatregister",
+               "Befund: nur 11 Inschriften zitieren beide Werke — der ORL-Apparat wurde neu aufgebaut"],
+              [("Bibliographie", "register/bibliographie.html"),
+               ("Gesamtbibliographie", "register/gesamtbibliographie.html"),
+               ("Inschriften (EDH)", "register/inschriften.html")]),
+        block("lokal", "Lokale &amp; regionale Publikationen", "das föderale Ökosystem",
+              "Die Limesforschung erschien nicht nur zentral. Die Regionalorgane der beteiligten Staaten — "
+              "Westdeutsche Zeitschrift, Nassauische Annalen, Fundberichte aus Schwaben, Mainzer Zeitschrift — "
+              "tragen einen erheblichen Teil des Apparats. Mommsens Klage über „so viele Limeslitteraturen wie "
+              "beteiligte Staaten“ wurde nicht stillgelegt, sondern eingebaut.",
+              [f"<b>{len(organe)} Organe</b> im ORL-Apparat vollständig ausgezählt",
+               "Organ und Region des Bandinhalts entsprechen einander in fünf geprüften Fällen",
+               "das Ökosystem wuchs zwischen Vorbericht und Endpublikation — die Mainzer Zeitschrift "
+               "(gegr. 1906) konnte im Limesblatt gar nicht stehen",
+               f"<b>{n_rez} Nachweise</b> zur Rezeption des Limesblatts außerhalb seiner Bände"],
+              [("Organe im Gesamtapparat", "register/orl-register.html"),
+               ("Gesamtbibliographie", "register/gesamtbibliographie.html")]),
+    ]
+    return (f'<h1>Die Quellen</h1>'
+            f'<p class="lede">Fünf Bestände, die die Reichs-Limeskommission hinterlassen hat — jeder mit eigener '
+            f'Entstehung, eigenem Zuschnitt und eigenen Grenzen. Sie erzählen dasselbe Unternehmen dreimal '
+            f'verschieden: im Gange (Limesblatt), abgeschlossen (ORL) und von der Verwaltung her '
+            f'(Jahresberichte); dazu die Literatur, auf die sie sich berufen, und die regionalen Organe, '
+            f'in denen dieselben Leute parallel publizierten.</p>'
+            f'<p class="meta">Werkübergreifend: <a href="register/gesamtregister.html">Gesamtregister</a> '
+            f'(Personen und Orte in allen drei Werken) · '
+            f'<a href="register/gesamtbibliographie.html">Gesamtbibliographie</a> · '
+            f'<a href="register/netz.html">Netzansicht</a>.</p>'
+            + "".join(teile))
+
+
 def index_page(volumes, toc=None):
     toc = toc or {}
     bl = []
@@ -603,13 +703,19 @@ def index_page(volumes, toc=None):
                   f'<span class="meta">— {len(v["pages"])} Seiten{spanne} · {len(ents)} Berichte</span>{sub}</li>')
     lis = "".join(bl)
     head = '<script src="assets/minisearch.min.js"></script>'
-    body = f"""<h1>Limesblatt — digitale Edition</h1><p class="lede">Die <em>Mitteilungen der Streckenkommissare bei der Reichs-Limeskommission</em>
-(1892–1903): die laufenden Feldberichte der Limesforschung, als diplomatische OCR-Edition mit
-IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen- und Ortsregistern.</p>
-<section id="suche"><h2>Volltextsuche</h2>
+    body = f"""<h1>RLK-digital</h1><p class="lede">Die <b>Reichs-Limeskommission</b> (1892–1937) — das erste
+länderübergreifende Großforschungsunternehmen des Kaiserreichs — mit ihren Quellen: dem laufenden Feldorgan
+<em>Limesblatt</em>, der Endpublikation <em>Obergermanisch-Raetischer Limes</em>, den Jahresberichten der
+Kommission, der zitierten Literatur und den regionalen Organen. Alles token-frei erschlossen, jede Angabe
+auf ihre Quelle zurückführbar.</p>
+<p class="meta">→ <a href="quellen.html"><b>Die Quellen im Überblick</b></a> — fünf Bestände, je mit eigener
+Herkunft und eigenen Grenzen.</p>
+<section id="suche"><h2>Volltextsuche im Limesblatt</h2>
 <input id="q" type="search" placeholder="z. B. Saalburg, Entschädigung, Mommsen …" autocomplete="off">
 <div id="res"></div></section>
-<h2>Bände &amp; Inhaltsverzeichnisse</h2><ul class="bandlist">{lis}</ul>
+<h2>Limesblatt — Bände &amp; Inhaltsverzeichnisse</h2>
+<p class="meta">Das Feldorgan als diplomatische OCR-Edition mit IIIF-Faksimiles (UB Heidelberg); die anderen
+Bestände stehen unter <a href="quellen.html">Quellen</a>.</p><ul class="bandlist">{lis}</ul>
 <h2>Register</h2><ul><li><a href="register/persons.html">Personenregister</a> — mit Porträts, Normdaten, Korrespondenz, ausgegrabenen Kastellen</li>
 <li><a href="register/places.html">Ortsregister</a> — mit Karte, Kastelltyp, Ausgräber, Inschriften</li>
 <li><a href="register/strecken.html">Strecken</a> — die 15 Limes-Abschnitte mit Kastellen &amp; Kommissaren</li>
@@ -2511,7 +2617,8 @@ def rlk_jahresberichte_page(data, ner_p=None, ner_pl=None):
         f'<table class="reg"><thead><tr><th>Nr.</th><th>Jahrgang</th><th>Jahrbuch-Bd.</th><th>Wörter</th>'
         f'<th>Personen</th><th>Orte</th><th>Admin/1000 W.</th><th>Feld/1000 W.</th><th></th></tr></thead>'
         f'<tbody>{rows}</tbody></table>'
-        + jb_register_html(reihe, jb_pers, jb_orte, data) +
+        + jb_register_html(reihe, jb_pers, jb_orte, data)
+        + jb_ereignis_html(jb_personalia(data, ner_p or []), jb_kampagnen(data, ner_pl or [])) +
         f'<h2>Volltexte</h2>'
         f'<p class="meta">Heuristische Extraktion (Zeilen-Cluster um „Limeskommission"-Treffer, am Ende bei der '
         f'nächsten erkennbaren Kapitelüberschrift gekappt) — kleine Ränder zum Nachbarartikel möglich; '
@@ -2763,6 +2870,111 @@ def netz_page(persons, ner_p, orl_idx, bli, verw, jb, ner_pl, bibls, occ):
             f'auf eine geprüfte Person zeigt und nicht auf eine OCR-Form. Das Layout ist vorberechnet und bei '
             f'jedem Build identisch.</p>'
             f'<script src="../assets/netz.js" defer></script>')
+
+
+# ---------- Personalia und Kampagnen: was der Jahresbericht als Institution meldet ----------
+# Der Jahresbericht ist die einzige der drei Quellen, die über PERSONAL spricht — wer berufen
+# wurde, wer starb, wer an wessen Stelle trat. Und er ist die einzige, die Jahr für Jahr sagt,
+# WO gegraben wurde. Beides steht im Fließtext, nicht in Tabellen; extrahiert wird satzweise:
+# ein Satz zählt, wenn er ein Ereigniswort UND einen Namen aus dem Gazetteer führt.
+JB_EREIGNIS = [
+    ("Berufung", r"\bernannt|\bberufen|\bbestellt\b|\büberträgt\b|\bübertragen\b|zum\s+Vorsitzenden"),
+    ("Nachfolge", r"an\s+(?:die\s+)?Stelle\s+(?:des|der)|\bNachfolger|trat\s+an\s+die\s+Stelle|\bnachgefolgt"),
+    ("Tod", r"\bverstorben|\bgestorben|\bTode?\b|\bAbleben|\bHinscheiden|\bdahingerafft"),
+    ("Ausscheiden", r"\bausgeschieden|\bzurückgetreten|\bRücktritt|niedergelegt|\bentbunden|\bentlassen"),
+    ("Beauftragung", r"Kommissar\s+für|als\s+Streckenkommissar|mit\s+der\s+(?:Bearbeitung|Untersuchung|Leitung)\s+"
+                     r"(?:der|des|betraut)|\bbetraut\b|\bübernahm\b|\bübernommen\b"),
+]
+JB_GRABUNG = re.compile(r"ausgegraben|aufgedeckt|freigelegt|blossgelegt|bloßgelegt|untersucht|Grabung|"
+                        r"gegraben|Aufdeckung|Untersuchung|nachgegraben|Schürf|aufgenommen|ermittelt", re.I)
+
+
+def _saetze(txt):
+    t = re.sub(r"\s+", " ", txt)
+    return [s.strip() for s in re.split(r"(?<=[.!?])\s+(?=[A-ZÄÖÜ])", t) if len(s.strip()) > 30]
+
+
+def jb_personalia(jb, ner_p):
+    """Personalereignisse je Jahrgang — Ereignisart, genannte Personen, Belegstelle.
+
+    Gesucht wird in einem FENSTER um das Ereigniswort, nicht im Satz: die OCR setzt Punkte
+    unzuverlässig (»Zange- meister«, »z. D.«), und ein Satzsplitter zerlegt genau dort, wo
+    Amtsbezeichnungen abgekürzt stehen. Das Fenster ist grob, aber es verliert nichts."""
+    nset = {p["name"] for p in ner_p if len(p["name"]) > 4 and " " not in p["name"]} - JB_VETO
+    out, gesehen = [], set()
+    for b in sorted(jb.get("berichte", []), key=lambda x: x["jahrgang"]):
+        txt = re.sub(r"\s+", " ", b.get("text") or "")
+        for art, rx in JB_EREIGNIS:
+            for m in re.finditer(rx, txt):
+                a, e = max(0, m.start() - 190), min(len(txt), m.end() + 190)
+                fenster = txt[a:e]
+                pers = [w for w in dict.fromkeys(re.findall(r"[A-ZÄÖÜ][\wäöüß-]+", fenster)) if w in nset]
+                if not pers:
+                    continue
+                schl = (b["jahrgang"], art, pers[0], m.start() // 400)
+                if schl in gesehen:
+                    continue
+                gesehen.add(schl)
+                out.append({"jahrgang": b["jahrgang"], "art": art, "personen": pers[:4],
+                            "beleg": "…" + fenster.strip() + "…"})
+    out.sort(key=lambda e: (e["jahrgang"], e["art"]))
+    return out
+
+
+def jb_kampagnen(jb, ner_pl):
+    """Wo in welchem Jahr gegraben wurde — Ort × Jahrgang aus den Grabungssätzen."""
+    orte = {p["name"] for p in ner_pl if len(p["name"]) > 4 and " " not in p["name"]} - JB_VETO
+    treffer = defaultdict(lambda: {"n": 0, "beleg": "", "strecken": set()})
+    for b in sorted(jb.get("berichte", []), key=lambda x: x["jahrgang"]):
+        for s in _saetze(b.get("text") or ""):
+            if not JB_GRABUNG.search(s):
+                continue
+            st = re.findall(r"Strecke\s+([IVXLC]+|\d{1,2})", s)
+            for w in dict.fromkeys(re.findall(r"[A-ZÄÖÜ][\wäöüß-]+", s)):
+                if w not in orte:
+                    continue
+                e = treffer[(b["jahrgang"], w)]
+                e["n"] += 1
+                e["strecken"].update(st)
+                if not e["beleg"]:
+                    e["beleg"] = s if len(s) < 300 else s[:297] + "…"
+    return [{"jahrgang": j, "ort": o, "n": v["n"], "strecken": sorted(v["strecken"]), "beleg": v["beleg"]}
+            for (j, o), v in sorted(treffer.items(), key=lambda kv: (kv[0][0], -kv[1]["n"], kv[0][1]))]
+
+
+def jb_ereignis_html(pers, kamp):
+    prows = "".join(
+        f'<tr><td>{e["jahrgang"]}</td><td>{html.escape(e["art"])}</td>'
+        f'<td>{", ".join(f"<a href=namen.html#psnN_{gazetteer.slug(gazetteer._primary(n)[0])}>{html.escape(n)}</a>" for n in e["personen"])}</td>'
+        f'<td class="meta ktx">{html.escape(e["beleg"])}</td></tr>' for e in pers)
+    krows = "".join(
+        f'<tr><td>{k["jahrgang"]}</td>'
+        f'<td><a href="orte-index.html#plcN_{gazetteer.slug(gazetteer._primary(k["ort"])[0])}">{html.escape(k["ort"])}</a></td>'
+        f'<td>{k["n"]}</td>'
+        f'<td class="meta ktx">{html.escape(k["beleg"])}</td></tr>' for k in kamp)
+    jahre_k = len({k["jahrgang"] for k in kamp}); orte_k = len({k["ort"] for k in kamp})
+    art = Counter(e["art"] for e in pers)
+    return (f'<h2 id="personalia">Personalia — wer kam, wer ging ({len(pers)})</h2>'
+            f'<p class="meta">Stellen, an denen ein Personalereignis <i>und</i> ein bekannter Name '
+            f'beieinanderstehen: '
+            f'{" · ".join(f"{a} {n}" for a, n in art.most_common())}. Der Jahresbericht ist die einzige der '
+            f'drei Quellen, die über Personal spricht — das Limesblatt berichtet vom Feld, der ORL von der '
+            f'Sache. Die Zuordnung Person↔Ereignis ist die der Textstelle, nicht eine geprüfte '
+            f'Biographie — gesucht wird in einem Fenster um das Ereigniswort, weil die OCR Satzgrenzen '
+            f'unzuverlässig setzt.</p>'
+            f'<table class="reg"><thead><tr><th>Jahrgang</th><th>Art</th><th>Personen</th><th>Beleg</th>'
+            f'</tr></thead><tbody>{prows}</tbody></table>'
+            f'<h2 id="kampagnen">Kampagnen — wo in welchem Jahr gegraben wurde ({len(kamp)})</h2>'
+            f'<p class="meta">{orte_k} Orte über {jahre_k} Jahrgänge, aus Sätzen mit Grabungsvokabular '
+            f'(ausgegraben, aufgedeckt, untersucht …). Nach <b>Ort</b> sortiert wird daraus die Chronologie '
+            f'eines Platzes, nach <b>Jahrgang</b> das Arbeitsprogramm einer Saison. Nennung in einem '
+            f'Grabungssatz heißt nicht, dass dort in diesem Jahr gegraben wurde — der Satz kann vergleichen '
+            f'oder zurückblicken; der Beleg steht daneben. Eine Strecken-Spalte fehlt mit Absicht: der '
+            f'Bericht benennt seine Strecken nach ihrem Verlauf („die Strecke von Dambach über Gunzenhausen '
+            f'zur Rezat“), nicht nach Nummern — dieselbe Gewohnheit, die auch die Titel der '
+            f'<a href="orl-inhalt.html#abt-a">Abteilung A</a> prägt.</p>'
+            f'<table class="reg"><thead><tr><th>Jahrgang</th><th>Ort</th><th>Stellen</th>'
+            f'<th>Beleg</th></tr></thead><tbody>{krows}</tbody></table>')
 
 
 def documentation_page(s):
@@ -3332,6 +3544,11 @@ def main():
                  netz_page(persons, ner_p, orl_idx, (orl_bli if "orl_bli" in dir() else {}) or {},
                            _vw, rlk_jb, ner_pl, bibls, occ), 1))
         print("Gesamtregister + Netz → register/gesamtregister.html · register/netz.html")
+    open(os.path.join(DOCS,"quellen.html"),"w",encoding="utf-8").write(
+        page("Die Quellen", quellen_page(volumes, toc, orl_idx, rlk_jb or {}, bibls,
+                                         _load_json_any("orl_zeitschriften.json") or {},
+                                         _load_json_any("rezeption.json") or {}, edh), 0))
+    print("Quellen-Hub → quellen.html")
     stats = {"nvol": len(volumes), "npers": len(persons), "nplac": len(places),
              "nner_p": len(ner_p), "nner_pl": len(ner_pl),
              "nedh": edh.get("total", 0),

@@ -176,3 +176,11 @@ table.reg.nerreg tr[id]{scroll-margin-top:3.8rem}
 table.reg.nerreg tr[id]:target{background:#fff8e6;outline:2px solid #e0c200}
 table.reg.nerreg td.pgs{font-size:.82rem;max-width:34rem}
 table.reg.nerreg tr.lc td:first-child{color:var(--muted)}
+
+/* Quellen-Hub */
+.qbox{border:1px solid var(--line);border-left:4px solid var(--accent,#8a3b12);border-radius:6px;
+      padding:.9rem 1.1rem;margin:1.1rem 0;background:var(--bg)}
+.qbox h2{margin-top:.2rem}
+.qbox h2 .meta{font-size:.8rem;font-weight:normal;text-transform:none;letter-spacing:0}
+ul.qpunkte{margin:.5rem 0 .4rem 1.1rem}
+ul.qpunkte li{margin:.2rem 0}
