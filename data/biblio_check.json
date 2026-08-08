@@ -1,0 +1,453 @@
+{
+ "_methode": "K10plus-SRU (MARC-XML, token-frei). Kriterium ist die Ueberlappung distinktiver Titelwoerter, nicht die blosse Trefferzahl. Geprueft wird, OB es die Titelaufnahme gibt — nicht, ob der Treffer die vom Limesblatt gemeinte Ausgabe ist.",
+ "bilanz": {
+  "belegt": 12,
+  "nicht nachgewiesen": 2,
+  "antike Quelle": 6
+ },
+ "eintraege": [
+  {
+   "id": "bib_westd",
+   "titel": "Westdeutsche Zeitschrift für Geschichte und Kunst",
+   "notiz": "Trier 1882–1907, hrsg. Felix Hettner und Karl Lamprecht. ZDB 2977286-2.",
+   "oa": "https://digi.ub.uni-heidelberg.de/diglit/wzgk_kbl",
+   "status": "belegt",
+   "ueberlappung": 99,
+   "verfasser": "",
+   "belege": [
+    {
+     "verfasser": "",
+     "titel": "Westdeutsche Zeitschrift für Geschichte und Kunst",
+     "jahr": "1883-1883",
+     "zdb": "2977286-2",
+     "quelle": "ZDB",
+     "titelgleich": true
+    }
+   ]
+  },
+  {
+   "id": "bib_korr",
+   "titel": "Korrespondenzblatt der Westdeutschen Zeitschrift",
+   "notiz": "Trier 1882–1907. ZDB 2902295-2.",
+   "oa": "https://digi.ub.uni-heidelberg.de/diglit/wzgk_kbl",
+   "status": "nicht nachgewiesen",
+   "ueberlappung": 0,
+   "verfasser": "",
+   "belege": []
+  },
+  {
+   "id": "bib_bonn",
+   "titel": "Bonner Jahrbücher",
+   "notiz": "Bonner Jahrbücher (Jahrbücher des Vereins von Altertumsfreunden im Rheinlande), Bonn, seit 1842.",
+   "oa": "https://journals.ub.uni-heidelberg.de/index.php/bjb",
+   "status": "belegt",
+   "ueberlappung": 99,
+   "verfasser": "",
+   "belege": [
+    {
+     "verfasser": "",
+     "titel": "Bonner Jahrbücher des Rheinischen Landesmuseums in Bonn und des Rheinischen Amtes für Bodendenkmalpflege im Landschaftsverband Rheinland und des Vereins von Altertumsfreunden im Rheinlande",
+     "jahr": "1950-",
+     "zdb": "282283-0",
+     "quelle": "ZDB",
+     "titelgleich": true
+    }
+   ]
+  },
+  {
+   "id": "bib_brambach",
+   "titel": "W. Brambach, Corpus Inscriptionum Rhenanarum (1867)",
+   "notiz": "Wilhelm Brambach, Corpus Inscriptionum Rhenanarum. Elberfeld 1867.",
+   "oa": "https://archive.org/details/bub_gb_pbJfXWjFgP4C",
+   "status": "belegt",
+   "ueberlappung": 20,
+   "verfasser": "brambach",
+   "belege": [
+    {
+     "verfasser": "Brambach, Wilhelm",
+     "titel": "Corpus inscriptionum Rhenanarum",
+     "jahr": "1986",
+     "ppn": "",
+     "gemeinsam": [
+      "corpus",
+      "inscriptionum",
+      "rhenanarum"
+     ],
+     "titelgleich": true,
+     "verfasser_passt": true
+    }
+   ]
+  },
+  {
+   "id": "bib_dragendorff",
+   "titel": "H. Dragendorff, Terra sigillata (BJb 96/97, 1895)",
+   "notiz": "Hans Dragendorff, Terra sigillata. Ein Beitrag zur Geschichte der griechischen und römischen Keramik. Bonner Jahrbücher 96/97 (1895) 18–155.",
+   "oa": "https://archive.org/details/terrasigillatae00draggoog",
+   "status": "belegt",
+   "ueberlappung": 20,
+   "verfasser": "dragendorff",
+   "belege": [
+    {
+     "verfasser": "Dragendorff, Hans",
+     "titel": "Terra sigillata ein Beitrag zur Geschichte der griechischen und römischen Keramik",
+     "jahr": "1895",
+     "ppn": "",
+     "gemeinsam": [
+      "griechischen",
+      "keramik",
+      "sigillata",
+      "terra"
+     ],
+     "titelgleich": true,
+     "verfasser_passt": true
+    }
+   ]
+  },
+  {
+   "id": "bib_cil",
+   "titel": "Corpus Inscriptionum Latinarum (CIL)",
+   "notiz": "Corpus Inscriptionum Latinarum. Berlin, seit 1863 (bes. Bd. XIII, Germania).",
+   "oa": "https://cil.bbaw.de/",
+   "status": "belegt",
+   "ueberlappung": 20,
+   "verfasser": "",
+   "belege": [
+    {
+     "verfasser": "Horster, Marietta",
+     "titel": "\"Corpus Inscriptionum Latinarum\" eine Edition zur Erforschung \"römischer Alterthümer\"",
+     "jahr": "2026",
+     "ppn": "",
+     "gemeinsam": [
+      "corpus",
+      "inscriptionum",
+      "latinarum"
+     ],
+     "titelgleich": true,
+     "verfasser_passt": false
+    },
+    {
+     "verfasser": "",
+     "titel": "Corpus inscriptionum Latinarum Partim consilio et auctoritate academiae litterarum regiae Borussicae editum. Partim consilio et auctoritate Academiae Scientiarum Berolinensis et Brandenburgensis editum : Tituli reliqui militares, CIL VI ; Sistemazione, interpretazione e valorizzazione",
+     "jahr": "2025",
+     "ppn": "",
+     "gemeinsam": [
+      "corpus",
+      "inscriptionum",
+      "latinarum"
+     ],
+     "titelgleich": true,
+     "verfasser_passt": false
+    },
+    {
+     "verfasser": "",
+     "titel": "Corpus inscriptionum Latinarum Partim consilio et auctoritate academiae litterarum regiae Borussicae editum. Partim consilio et auctoritate Academiae Scientiarum Berolinensis et Brandenburgensis editum : Miliaria Provinciae Pannoniae",
+     "jahr": "2025",
+     "ppn": "",
+     "gemeinsam": [
+      "corpus",
+      "inscriptionum",
+      "latinarum"
+     ],
+     "titelgleich": true,
+     "verfasser_passt": false
+    }
+   ]
+  },
+  {
+   "id": "bib_orl",
+   "titel": "Der obergermanisch-raetische Limes des Römerreiches",
+   "notiz": "E. Fabricius, F. Hettner, O. v. Sarwey (Hrsg.), Der obergermanisch-raetische Limes des Römerreiches. 1894 ff.",
+   "oa": "https://archive.org/details/derobergermanis00fabrgoog",
+   "status": "belegt",
+   "ueberlappung": 20,
+   "verfasser": "",
+   "belege": [
+    {
+     "verfasser": "",
+     "titel": "Der obergermanisch-raetische Limes des Römerreiches",
+     "jahr": "2007",
+     "ppn": "",
+     "gemeinsam": [
+      "limes",
+      "obergermanisch",
+      "raetische",
+      "römerreiches"
+     ],
+     "titelgleich": true,
+     "verfasser_passt": false
+    },
+    {
+     "verfasser": "",
+     "titel": "Der obergermanisch-raetische Limes des Römerreiches",
+     "jahr": "2007",
+     "ppn": "",
+     "gemeinsam": [
+      "limes",
+      "obergermanisch",
+      "raetische",
+      "römerreiches"
+     ],
+     "titelgleich": true,
+     "verfasser_passt": false
+    },
+    {
+     "verfasser": "",
+     "titel": "Der obergermanisch-raetische Limes des Römerreiches",
+     "jahr": "2005",
+     "ppn": "",
+     "gemeinsam": [
+      "limes",
+      "obergermanisch",
+      "raetische",
+      "römerreiches"
+     ],
+     "titelgleich": true,
+     "verfasser_passt": false
+    }
+   ]
+  },
+  {
+   "id": "bib_ephepigr",
+   "titel": "Ephemeris Epigraphica",
+   "notiz": "Ephemeris Epigraphica. Corporis Inscriptionum Latinarum Supplementum. Rom/Berlin 1872 ff.",
+   "oa": "https://archive.org/details/ephemerisepigrap04inst",
+   "status": "belegt",
+   "ueberlappung": 99,
+   "verfasser": "",
+   "belege": [
+    {
+     "verfasser": "",
+     "titel": "Ephemeris epigraphica",
+     "jahr": "1872-1913",
+     "zdb": "2790838-0",
+     "quelle": "ZDB",
+     "titelgleich": true
+    }
+   ]
+  },
+  {
+   "id": "bib_cohausen",
+   "titel": "A. von Cohausen, Der römische Grenzwall in Deutschland (1884)",
+   "notiz": "August von Cohausen, Der römische Grenzwall in Deutschland. Wiesbaden: Kreidel, 1884.",
+   "oa": "https://digi.ub.uni-heidelberg.de/diglit/cohausen1884ga",
+   "status": "belegt",
+   "ueberlappung": 20,
+   "verfasser": "cohausen",
+   "belege": [
+    {
+     "verfasser": "Cohausen, August von",
+     "titel": "Der römische Grenzwall in Deutschland",
+     "jahr": "1994",
+     "ppn": "",
+     "gemeinsam": [
+      "deutschland",
+      "grenzwall"
+     ],
+     "titelgleich": true,
+     "verfasser_passt": true
+    },
+    {
+     "verfasser": "Cohausen, August von",
+     "titel": "Der römische Grenzwall in Deutschland",
+     "jahr": "1994-",
+     "ppn": "",
+     "gemeinsam": [
+      "deutschland",
+      "grenzwall"
+     ],
+     "titelgleich": true,
+     "verfasser_passt": true
+    },
+    {
+     "verfasser": "Cohausen, August von",
+     "titel": "Der römische Grenzwall in Deutschland",
+     "jahr": "1973",
+     "ppn": "",
+     "gemeinsam": [
+      "deutschland",
+      "grenzwall"
+     ],
+     "titelgleich": true,
+     "verfasser_passt": true
+    }
+   ]
+  },
+  {
+   "id": "bib_haug",
+   "titel": "F. Haug / G. Sixt, Die römischen Inschriften und Bildwerke Württembergs",
+   "notiz": "Ferdinand Haug, Gustav Sixt, Die römischen Inschriften und Bildwerke Württembergs. Stuttgart 1900; 2., erweiterte Auflage 1914. Titelaufnahme geprüft (K10plus).",
+   "oa": "",
+   "status": "belegt",
+   "ueberlappung": 20,
+   "verfasser": "",
+   "belege": [
+    {
+     "verfasser": "Haug, Ferdinand",
+     "titel": "Die römischen Inschriften und Bildwerke Württembergs",
+     "jahr": "1970",
+     "ppn": "",
+     "gemeinsam": [
+      "bildwerke",
+      "inschriften",
+      "württembergs"
+     ],
+     "titelgleich": true,
+     "verfasser_passt": false
+    },
+    {
+     "verfasser": "Haug, Ferdinand",
+     "titel": "Die römischen Inschriften und Bildwerke Württembergs",
+     "jahr": "1970",
+     "ppn": "",
+     "gemeinsam": [
+      "bildwerke",
+      "inschriften",
+      "württembergs"
+     ],
+     "titelgleich": true,
+     "verfasser_passt": false
+    },
+    {
+     "verfasser": "",
+     "titel": "Die römischen Inschriften und Bildwerke Württembergs",
+     "jahr": "1970",
+     "ppn": "",
+     "gemeinsam": [
+      "bildwerke",
+      "inschriften",
+      "württembergs"
+     ],
+     "titelgleich": true,
+     "verfasser_passt": false
+    }
+   ]
+  },
+  {
+   "id": "bib_archanz",
+   "titel": "Archäologischer Anzeiger",
+   "notiz": "Archäologischer Anzeiger (Beiblatt zum Jahrbuch des Deutschen Archäologischen Instituts), Berlin.",
+   "oa": "https://www.digi.ub.uni-heidelberg.de/diglit/aa",
+   "status": "belegt",
+   "ueberlappung": 99,
+   "verfasser": "",
+   "belege": [
+    {
+     "verfasser": "",
+     "titel": "Archäologischer Anzeiger",
+     "jahr": "1849-1900",
+     "zdb": "2752050-X",
+     "quelle": "ZDB",
+     "titelgleich": true
+    }
+   ]
+  },
+  {
+   "id": "bib_nassau",
+   "titel": "Annalen des Vereins für Nassauische Altertumskunde und Geschichtsforschung",
+   "notiz": "Wiesbaden 1833–1912 (Titelaufnahme ZDB 2748734-9); Fortsetzung bis heute.",
+   "oa": "",
+   "status": "belegt",
+   "ueberlappung": 99,
+   "verfasser": "",
+   "belege": [
+    {
+     "verfasser": "",
+     "titel": "Annalen des Vereins für Nassauische Altertumskunde und Geschichtsforschung",
+     "jahr": "1833-1912",
+     "zdb": "2748734-9",
+     "quelle": "ZDB",
+     "titelgleich": true
+    }
+   ]
+  },
+  {
+   "id": "bib_wuertt",
+   "titel": "Württembergische Vierteljahrshefte für Landesgeschichte",
+   "notiz": "Stuttgart 1878–1908 (Titelaufnahme ZDB 2754989-6); Neue Folge bis 1943.",
+   "oa": "",
+   "status": "belegt",
+   "ueberlappung": 99,
+   "verfasser": "",
+   "belege": [
+    {
+     "verfasser": "",
+     "titel": "Württembergische Vierteljahrshefte für Landesgeschichte",
+     "jahr": "1878-1908",
+     "zdb": "2754989-6",
+     "quelle": "ZDB",
+     "titelgleich": true
+    }
+   ]
+  },
+  {
+   "id": "bib_hermes",
+   "titel": "Hermes",
+   "notiz": "Hermes. Zeitschrift für classische Philologie, Berlin, seit 1866.",
+   "oa": "",
+   "status": "nicht nachgewiesen",
+   "ueberlappung": 0,
+   "verfasser": "",
+   "belege": []
+  },
+  {
+   "id": "bib_tacitus",
+   "titel": "Tacitus (Germania / Annales / Historiae)",
+   "notiz": "P. Cornelius Tacitus, bes. Germania, Annales, Historiae (antike Quelle).",
+   "oa": "",
+   "status": "antike Quelle",
+   "ueberlappung": 0,
+   "verfasser": "",
+   "belege": []
+  },
+  {
+   "id": "bib_ptolemaeus",
+   "titel": "Klaudios Ptolemaios, Geographie",
+   "notiz": "Klaudios Ptolemaios, Geographike Hyphegesis (antike Quelle, bes. Buch II).",
+   "oa": "",
+   "status": "antike Quelle",
+   "ueberlappung": 0,
+   "verfasser": "",
+   "belege": []
+  },
+  {
+   "id": "bib_ammianus",
+   "titel": "Ammianus Marcellinus",
+   "notiz": "Ammianus Marcellinus, Res gestae (antike Quelle).",
+   "oa": "",
+   "status": "antike Quelle",
+   "ueberlappung": 0,
+   "verfasser": "",
+   "belege": []
+  },
+  {
+   "id": "bib_notitia",
+   "titel": "Notitia Dignitatum",
+   "notiz": "Notitia Dignitatum (spätantikes Staatshandbuch, bes. occ. — Limesgarnisonen).",
+   "oa": "",
+   "status": "antike Quelle",
+   "ueberlappung": 0,
+   "verfasser": "",
+   "belege": []
+  },
+  {
+   "id": "bib_peutinger",
+   "titel": "Tabula Peutingeriana",
+   "notiz": "Tabula Peutingeriana (spätantike Straßenkarte).",
+   "oa": "",
+   "status": "antike Quelle",
+   "ueberlappung": 0,
+   "verfasser": "",
+   "belege": []
+  },
+  {
+   "id": "bib_itinant",
+   "titel": "Itinerarium Antonini",
+   "notiz": "Itinerarium Antonini Augusti (spätantikes Straßenverzeichnis).",
+   "oa": "",
+   "status": "antike Quelle",
+   "ueberlappung": 0,
+   "verfasser": "",
+   "belege": []
+  }
+ ]
+}

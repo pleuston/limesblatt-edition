@@ -252,7 +252,7 @@
 <idno type="iDAI-Gazetteer">2103585</idno>
 <trait type="kastelltyp"><desc>Kleinkastell</desc></trait>
 <idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Kleinkastell%20Neuwirtshaus.jpg?width=400</idno>
-<note type="strecke" corresp="#str_strecke_03_adolfseckkopperner_tal">Strecke 03 – Adolfseck–Köpperner Tal</note>
+<note type="strecke" corresp="#str_strecke_05_markobelgro_krotzenburg">Strecke 05 – Marköbel–Groß-Krotzenburg</note>
 </place>
 <place xml:id="pl_lopodunum_ladenburg">
 <placeName>Lopodunum (Ladenburg)</placeName>

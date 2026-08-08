@@ -196,3 +196,4 @@ blockquote.zit{border-left:3px solid var(--accent,#8a3b12);background:var(--card
   padding:.6rem .9rem;margin:.5rem 0;font-size:.95rem}
 pre.bib{background:var(--card,#fbfaf7);border:1px solid var(--line);border-radius:6px;padding:.7rem;
   overflow-x:auto;font-size:.82rem}
+.ok{color:#2b6b2b;font-weight:600;font-size:.85rem}

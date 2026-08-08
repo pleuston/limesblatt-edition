@@ -247,7 +247,8 @@ def page(title, body, depth=0, head=""):
 <li><a href="{up}quellen.html#jahresberichte"><b>Jahresberichte</b> der RLK</a></li>
 <li><a href="{up}quellen.html#extern"><b>Zitierte externe Quellen</b></a></li>
 <li><a href="{up}quellen.html#lokal"><b>Lokale Publikationen</b></a></li>
-<li><a href="{up}register/archive.html"><b>Archivbestände</b> — noch zu sichten</a></li></ul></li>
+<li><a href="{up}quellen.html#aufsaetze"><b>Einzelne Aufsätze</b></a></li>
+<li><a href="{up}register/archive.html"><b>Archivbestände</b></a></li></ul></li>
 <li class="has"><a href="{up}register/persons.html">Register</a><ul>
 <li><a href="{up}register/persons.html">Personen</a></li>
 <li><a href="{up}register/places.html">Orte</a></li>
@@ -594,7 +595,7 @@ def strecken_page(strecken, str_forts, persons, pname, strecke_sites, orl_idx, v
             f'näherungsweise.</p>'
             f'<div class="cards">{"".join(cards)}</div>')
 
-def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh):
+def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh, artliste=None):
     """Der Quellen-Hub: fünf Bestände, je mit eigener Herkunft, eigenem Zuschnitt, eigener Grenze.
 
     Die Website ist aus einer Limesblatt-Edition gewachsen; inzwischen trägt sie vier weitere
@@ -676,6 +677,16 @@ def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh):
                f"<b>{n_rez} Nachweise</b> zur Rezeption des Limesblatts außerhalb seiner Bände"],
               [("Organe im Gesamtapparat", "register/orl-register.html"),
                ("Gesamtbibliographie", "register/gesamtbibliographie.html")]),
+        block("aufsaetze", "Einzelne Aufsätze", "Nachrufe · Streitschriften · Gründungstexte",
+              "Neben den drei Beständen stehen einzelne Aufsätze, an denen die Gründungsgeschichte hängt. "
+              "Wo sie bei der UB Heidelberg digitalisiert sind, liegen sie in derselben Form vor wie das "
+              "Limesblatt — Faksimile plus OCR — und stehen hier ebenso nebeneinander: Text links, Blatt rechts.",
+              [(f'<b>{html.escape(x["titel"][:70])}</b> — {html.escape(x.get("verfasser",""))}, '
+                f'{html.escape(x.get("quelle",""))} '
+                f'(<a href="artikel/{x["id"]}.html">lesen mit Faksimile</a>)') for x in (artliste or [])]
+              or ["noch keine Aufsätze erschlossen"],
+              [("Alle Aufsätze", "artikel/" + (artliste[0]["id"] if artliste else "") + ".html")]
+              if artliste else []),
         block("archive", "Archivbestände", "unveröffentlicht · zum Teil ungesehen",
               "Alles bisher Genannte ist gedruckt. Daneben liegt das <em>unveröffentlichte</em> Material: "
               "Grabungstagebücher, Korrespondenz, Vermessungsunterlagen, Ministerialakten. Hier steht, wo es "
@@ -1698,6 +1709,9 @@ def gesamtbibliographie_page(bibls, idx, abta, jb, rez, zs, bli, hefte):
 
 
 def bibliography_page(bibls, occ):
+    # Nachweis-Spalte: jede Titelaufnahme ist gegen K10plus bzw. die ZDB geprüft
+    # (tools/biblio_check.py). Anlass war ein Eintrag, den es nicht gab.
+    pruef = {e["id"]: e for e in (_load_json_any("biblio_check.json") or {}).get("eintraege", [])}
     rows = []
     for b in bibls:
         items = occ.get(b["id"], [])
@@ -1717,8 +1731,25 @@ def bibliography_page(bibls, occ):
             jl = b["title"].replace("'", "").replace('"', "")
             iiifbtn = (f' · <button class="iiifbtn" onclick="openIIIF(\'{b["iiif"]}\',\'{html.escape(jl)}\')">'
                        f'📖 Faksimile (IIIF)</button>')
+        pr = pruef.get(b["id"], {})
+        st = pr.get("status", "")
+        if st == "belegt" and pr.get("belege"):
+            k = pr["belege"][0]
+            nw = (f'<span class="ok">✓ nachgewiesen</span><div class="meta">'
+                  f'{html.escape((k.get("verfasser") or "").strip())}'
+                  f'{": " if k.get("verfasser") else ""}{html.escape(k.get("titel", "")[:70])}'
+                  f'{" (" + html.escape(k.get("jahr", "")) + ")" if k.get("jahr") else ""}'
+                  f'{" · ZDB " + html.escape(k["zdb"]) if k.get("zdb") else " · K10plus"}</div>')
+        elif st == "antike Quelle":
+            nw = ('<span class="meta">antike Quelle</span><div class="meta">keine Titelaufnahme; '
+                  'zitiert wird nach Ausgabe</div>')
+        elif st:
+            nw = '<span class="lc">nicht nachgewiesen</span>'
+        else:
+            nw = '<span class="meta">—</span>'
         rows.append(f'<tr id="{b["id"]}"><td><b>{html.escape(b["title"])}</b>{link}{propy}{iiifbtn}'
                     f'<div class="meta">{html.escape(b["note"])}</div></td>'
+                    f'<td>{nw}</td>'
                     f'<td>{cnt}</td><td class="beleg">{bel}</td></tr>')
     n_oa = sum(1 for b in bibls if b["oa"]); n_iiif = sum(1 for b in bibls if b.get("iiif"))
     return (f'<h1>Bibliographie &amp; Quellen</h1>'
@@ -1731,7 +1762,16 @@ def bibliography_page(bibls, occ):
             f'UB Heidelberg) angeschlossen — wie die Personen an <a href="namen.html">Propylaeum-VITAE</a> und die '
             f'Inschriften an die <a href="inschriften.html">EDH</a>. '
             f'Journal-zentriert: dominant die Westdeutsche Zeitschrift und ihr Korrespondenzblatt.</p>'
-            f'<table class="reg fund"><tr><th>Werk / Reihe (Digitalisat)</th><th>Verweise</th><th>Belege (Seite · Spalte)</th></tr>'
+            f'<div class="note"><p><b>Jede Titelaufnahme ist geprüft.</b> Anlass war ein Eintrag, den es '
+            f'nicht gab: »Ferdinand Haug, zu den römischen Inschriften Südwestdeutschlands« war eine '
+            f'Umschreibung, mit der ein Namenstreffer im Volltext beschriftet worden war — das Werk heißt '
+            f'<i>Die römischen Inschriften und Bildwerke Württembergs</i> (Haug/Sixt 1900). Seither läuft '
+            f'jede Aufnahme gegen den Verbundkatalog K10plus (Monographien) bzw. die Zeitschriftendatenbank '
+            f'ZDB (Reihen); geprüft wird Verfasser <i>und</i> Titel, weil die Titelwörter allein '
+            f'Fehltreffer bestätigen. Antike Werke haben keine Titelaufnahme und stehen entsprechend '
+            f'gekennzeichnet. Drei Einträge, die nur Namen im Volltext einfingen, sind entfallen.</p></div>'
+            f'<table class="reg fund"><tr><th>Werk / Reihe (Digitalisat)</th><th>Nachweis</th>'
+            f'<th>Verweise</th><th>Belege (Seite · Spalte)</th></tr>'
             f'{"".join(rows)}</table>'
             f'<div id="iiifwin"><div class="iiifbar"><span id="iiiflabel"></span>'
             f'<button onclick="closeIIIF()">✕ schließen</button></div><div id="iiifosd"></div></div>'
@@ -3344,6 +3384,65 @@ viewer.addHandler("page", function(ev){{
     return body, head
 
 
+def artikel_seite(a):
+    """Ein Aufsatz als Lesefassung: Text links, Blatt der UB Heidelberg rechts."""
+    seiten = a.get("seiten") or []
+    if not seiten:
+        return None, None
+    tiles = [s["iiif"] + "/info.json" for s in seiten if s.get("iiif")]
+    text = []
+    for i, s in enumerate(seiten):
+        absaetze = "".join(f"<p>{html.escape(z.strip())}</p>"
+                           for z in re.split(r"\n\s*\n", s.get("text") or "") if z.strip())
+        text.append(f'<div class="pb" id="s-{html.escape(s["druckseite"])}" data-page="{i}" '
+                    f'onclick="viewer.goToPage({i})" title="Dieses Blatt im Faksimile zeigen">'
+                    f'— S. {html.escape(s["druckseite"])} —</div>{absaetze}')
+    head = '<script src="../assets/openseadragon.min.js"></script>'
+    body = f"""<h1>{html.escape(a["titel"])}</h1>
+<p class="meta">{html.escape(a.get("verfasser", ""))} · {html.escape(a.get("quelle", ""))} ·
+{len(seiten)} Seiten · Faksimile und OCR: <a href="https://digi.ub.uni-heidelberg.de/diglit/{a["slug"]}">UB
+Heidelberg</a> · zurück zu den <a href="../quellen.html#aufsaetze">Quellen</a></p>
+<p class="meta">{html.escape(a.get("warum", ""))}</p>
+<div class="reader">
+  <div class="facs"><div id="osd"></div>
+    <div class="osdnav"><button onclick="viewer.goToPage(Math.max(0,viewer.currentPage()-1))">‹ vorige</button>
+    <span class="toggles"><label class="synctoggle"><input type="checkbox" id="syncscroll" checked>
+    Faksimile folgt</label></span>
+    <span id="pgind"></span><button onclick="viewer.goToPage(Math.min({len(tiles)-1},viewer.currentPage()+1))">nächste ›</button></div></div>
+  <div class="text">{''.join(text)}</div>
+</div>
+<script>
+var tiles = {json.dumps(tiles)};
+var viewer = OpenSeadragon({{id:"osd", prefixUrl:"", tileSources:tiles, sequenceMode:true,
+  showNavigationControl:false, showSequenceControl:false, gestureSettingsMouse:{{clickToZoom:false}}}});
+function upd(){{document.getElementById("pgind").textContent=(viewer.currentPage()+1)+" / "+tiles.length;}}
+function syncOn(){{var b=document.getElementById("syncscroll");return !b||b.checked;}}
+var _slock=false;
+viewer.addHandler("open", function(){{ upd(); viewer.viewport.goHome(true); }});
+viewer.addHandler("page", function(ev){{
+  upd();
+  if(!syncOn()||_slock) return;
+  var pb=document.querySelector('.reader .text .pb[data-page="'+ev.page+'"]');
+  if(pb){{_slock=true; pb.scrollIntoView({{behavior:"smooth",block:"start"}}); setTimeout(function(){{_slock=false;}},700);}}
+}});
+(function(){{
+  var pane=document.querySelector('.reader .text');
+  if(!pane||!('IntersectionObserver' in window)) return;
+  var io=new IntersectionObserver(function(es){{
+    if(!syncOn()||_slock) return;
+    es.forEach(function(e){{
+      if(e.isIntersecting){{
+        var p=parseInt(e.target.getAttribute('data-page'));
+        if(p>=0 && p!==viewer.currentPage()){{_slock=true; viewer.goToPage(p); setTimeout(function(){{_slock=false;}},350);}}
+      }}
+    }});
+  }},{{root:pane, rootMargin:"0px 0px -82% 0px", threshold:0}});
+  pane.querySelectorAll('.pb[data-page]').forEach(function(pb){{io.observe(pb);}});
+}})();
+</script>"""
+    return body, head
+
+
 def documentation_page(s):
     # Datenherkunft — jede offene Quelle in klarer Sprache (kein Fachjargon)
     src = [
@@ -3843,6 +3942,7 @@ def main():
     open(os.path.join(DOCS,"register","inschriften.html"),"w",encoding="utf-8").write(page("Inschriften (EDH)", inscriptions_page(edh), 1))
     print(f"EDH-Inschriften: {edh.get('total',0)} von {len(edh.get('kastelle',[]))} Fundorten → register/inschriften.html")
     # ORL-Register/Analyse-Seiten (orl_idx/orl_lex + _orl_load bereits vor den Strecken geladen)
+    _artliste = (_load_json_any("artikel.json") or {}).get("artikel", [])
     orl_reg = _orl_load("orl_register.json") or {"persons": [], "places": [], "counts": {}}
     if orl_idx.get("abteilung_B_kastelle"):
         orl_bli = _orl_load("orl_band_lieferung.json") or {}
@@ -3909,7 +4009,15 @@ def main():
     open(os.path.join(DOCS,"quellen.html"),"w",encoding="utf-8").write(
         page("Die Quellen", quellen_page(volumes, toc, orl_idx, rlk_jb or {}, bibls,
                                          _load_json_any("orl_zeitschriften.json") or {},
-                                         _load_json_any("rezeption.json") or {}, edh), 0))
+                                         _load_json_any("rezeption.json") or {}, edh, _artliste), 0))
+    if _artliste:
+        os.makedirs(os.path.join(DOCS, "artikel"), exist_ok=True)
+        for _a in _artliste:
+            _b, _h = artikel_seite(_a)
+            if _b:
+                open(os.path.join(DOCS, "artikel", f'{_a["id"]}.html'), "w", encoding="utf-8").write(
+                    page(_a["titel"][:60], _b, 1, _h))
+        print(f"Aufsätze: {len(_artliste)} Lesefassungen mit Faksimile → artikel/<id>.html")
     print("Quellen-Hub → quellen.html")
     _arch = _load_json_any("archive.json") or {}
     if _arch.get("bestaende"):

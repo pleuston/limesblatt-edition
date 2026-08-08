@@ -27,6 +27,17 @@
 <residence>Berlin</residence>
 <idno type="portrait">https://commons.wikimedia.org/wiki/Special:FilePath/Adolf%20Harnack.jpg?width=400</idno>
 </person>
+<person xml:id="p_albert_egges_van_giffen">
+<persName>Albert Egges van Giffen</persName>
+<persName type="alias">A. E. van Giffen</persName>
+<persName type="alias">van Giffen</persName>
+<birth when="1884-03-14"/>
+<death when="1973-05-31"/>
+<occupation>Grabungsmethodiker des niederländischen Rheinlimes; Ausgräber des Kastells Valkenburg</occupation>
+<idno type="GND">116621001</idno>
+<idno type="Wikidata">Q7509903</idno>
+<residence>Groningen · Utrecht · Valkenburg (ZH)</residence>
+</person>
 <person xml:id="p_andreas_buchner">
 <persName>Andreas Buchner</persName>
 <birth when="1776"/>
@@ -111,6 +122,16 @@
 <residence>Backnang, Murrhardt (Württemberg)</residence>
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd119127008.html</idno>
 <idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/18162/view</idno>
+</person>
+<person xml:id="p_constantin_koenen">
+<persName>Constantin Koenen</persName>
+<persName type="alias">C. Koenen</persName>
+<birth when="1854-01-28"/>
+<death when="1929-10-03"/>
+<occupation>Autodidaktischer Ausgräber des Legionslagers Novaesium (Neuss) am niedergermanischen Rheinlimes</occupation>
+<idno type="GND">189557508</idno>
+<idno type="Wikidata">Q1127872</idno>
+<residence>Neuss · Rheinland</residence>
 </person>
 <person xml:id="p_eduard_anthes">
 <persName>Eduard Anthes</persName>
@@ -247,6 +268,16 @@
 <idno type="Kalliope">116762314</idno>
 <note type="briefe" n="25/8"/>
 <note type="nachlass">Deutsches Literaturarchiv Marbach, Archiv</note>
+</person>
+<person xml:id="p_eugen_bormann">
+<persName>Eugen Bormann</persName>
+<persName type="alias">E. Bormann</persName>
+<birth when="1842-10-06"/>
+<death when="1917-03-05"/>
+<occupation>Epigraphiker der Wiener Limeskommission</occupation>
+<idno type="GND">116253215</idno>
+<idno type="Wikidata">Q109487</idno>
+<residence>Wien · Carnuntum</residence>
 </person>
 <person xml:id="p_eugen_nagele">
 <persName>Eugen Nägele</persName>
@@ -428,6 +459,17 @@
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd130833568.html</idno>
 <idno type="Kalliope">130833568</idno>
 <note type="briefe" n="2/0"/>
+</person>
+<person xml:id="p_friedrich_von_kenner">
+<persName>Friedrich von Kenner</persName>
+<persName type="alias">Friedrich Kenner</persName>
+<persName type="alias">F. von Kenner</persName>
+<birth when="1834-07-15"/>
+<death when="1922-11-28"/>
+<occupation>Vorsitzender der Wiener Limeskommission</occupation>
+<idno type="GND">13965268X</idno>
+<idno type="Wikidata">Q88521</idno>
+<residence>Wien</residence>
 </person>
 <person xml:id="p_georg_heinrich_pertz">
 <persName>Georg Heinrich Pertz</persName>
@@ -622,6 +664,17 @@
 <idno type="GND">118583387</idno>
 <idno type="Wikidata">Q44205</idno>
 <residence>Berlin (Großer Generalstab)</residence>
+</person>
+<person xml:id="p_jan_hendrik_holwerda">
+<persName>Jan Hendrik Holwerda</persName>
+<persName type="alias">J. H. Holwerda</persName>
+<persName type="alias">Holwerda</persName>
+<birth when="1873-12-03"/>
+<death when="1951-03-03"/>
+<occupation>Erforscher des niederländischen Rheinlimes; Konservator am Rijksmuseum van Oudheden, Leiden</occupation>
+<idno type="GND">116971118</idno>
+<idno type="Wikidata">Q543666</idno>
+<residence>Leiden · Nijmegen · Den Haag</residence>
 </person>
 <person xml:id="p_johann_alexander_doderlein">
 <persName>Johann Alexander Döderlein</persName>
@@ -818,6 +871,19 @@
 <idno type="DeutscheBiographie">https://www.deutsche-biographie.de/gnd118739042.html</idno>
 <idno type="Propylaeum-VITAE">https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/18155/view</idno>
 <note type="nachlass">Niedersächsische Staats- und Universitätsbibliothek Göttingen</note>
+</person>
+<person xml:id="p_maximilian_von_groller_mildensee">
+<persName>Maximilian von Groller-Mildensee</persName>
+<persName type="alias">Max von Groller-Mildensee</persName>
+<persName type="alias">Groller von Mildensee</persName>
+<persName type="alias">Maximilian Groller von Mildensee</persName>
+<persName type="alias">M. von Groller</persName>
+<birth when="1838-06-05"/>
+<death when="1920-05-20"/>
+<occupation>Militärischer Leiter und Vermesser der Wiener Limeskommission</occupation>
+<idno type="GND">128209488</idno>
+<idno type="Wikidata">Q1914140</idno>
+<residence>Wien · Carnuntum</residence>
 </person>
 <person xml:id="p_oscar_von_sarwey">
 <persName>Oscar von Sarwey</persName>

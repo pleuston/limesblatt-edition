@@ -484,9 +484,6 @@
 <person xml:id="psnN_kochhauser" type="ner" cert="low"><persName>Kochhäuser</persName>
 <occupation>Anwohner Heddesdorf</occupation>
 </person>
-<person xml:id="psnN_koenen" type="ner" cert="low"><persName>Koenen</persName>
-<occupation>Autor (Gefässkunde)</occupation>
-</person>
 <person xml:id="psnN_koffer" type="ner" cert="low"><persName>Koffer</persName>
 <occupation>Streckenkommissar (Friedberg, Okarben) · Streckenkommissar / Ausgräber (Butzbach)</occupation>
 </person>
