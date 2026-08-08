@@ -184,3 +184,11 @@ table.reg.nerreg tr.lc td:first-child{color:var(--muted)}
 .qbox h2 .meta{font-size:.8rem;font-weight:normal;text-transform:none;letter-spacing:0}
 ul.qpunkte{margin:.5rem 0 .4rem 1.1rem}
 ul.qpunkte li{margin:.2rem 0}
+
+/* Startseite: Einstiegskarten */
+.startgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.9rem;margin:1rem 0 1.4rem}
+a.startkarte{display:flex;flex-direction:column;gap:.25rem;text-decoration:none;color:inherit;
+  border:1px solid var(--line);border-radius:8px;padding:.8rem .95rem;background:var(--card,#fbfaf7)}
+a.startkarte:hover{border-color:var(--accent,#8a3b12)}
+a.startkarte b{font-size:1.02rem}
+a.startkarte .meta{font-size:.78rem}

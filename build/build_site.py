@@ -239,14 +239,15 @@ def page(title, body, depth=0, head=""):
 <li class="has"><a href="{up}quellen.html">Quellen</a><ul>
 <li><a href="{up}quellen.html">Alle Quellen im Überblick</a></li>
 <li><a href="{up}quellen.html#limesblatt"><b>Limesblatt</b> — das Feldorgan</a></li>
-<li><a href="{up}index.html">· Bände &amp; Inhaltsverzeichnis</a></li>
+<li><a href="{up}baende.html">· Bände &amp; Inhaltsverzeichnis</a></li>
 <li><a href="{up}quellen.html#orl"><b>ORL</b> — die Endpublikation</a></li>
 <li><a href="{up}register/orl-inhalt.html">· Inhaltsverzeichnis</a></li>
 <li><a href="{up}register/orl-verweise.html">· Binnenverweise</a></li>
 <li><a href="{up}register/genese.html">· Genese des Werks</a></li>
 <li><a href="{up}quellen.html#jahresberichte"><b>Jahresberichte</b> der RLK</a></li>
 <li><a href="{up}quellen.html#extern"><b>Zitierte externe Quellen</b></a></li>
-<li><a href="{up}quellen.html#lokal"><b>Lokale Publikationen</b></a></li></ul></li>
+<li><a href="{up}quellen.html#lokal"><b>Lokale Publikationen</b></a></li>
+<li><a href="{up}register/archive.html"><b>Archivbestände</b> — noch zu sichten</a></li></ul></li>
 <li class="has"><a href="{up}register/persons.html">Register</a><ul>
 <li><a href="{up}register/persons.html">Personen</a></li>
 <li><a href="{up}register/places.html">Orte</a></li>
@@ -623,7 +624,7 @@ def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh):
                f"<b>{n_hefte} Hefteinheiten</b> (35 Nummern) mit Ausgabedatum aus den IIIF-Strukturdaten",
                f"<b>{n_ber} nummerierte Feldberichte</b>, 114 davon am Faksimile gegengeprüft",
                "Volltext, Register und Faksimile Seite für Seite verknüpft"],
-              [("Bände &amp; Inhaltsverzeichnis", "index.html"),
+              [("Bände &amp; Inhaltsverzeichnis", "baende.html"),
                ("Namen im Text", "register/namen.html"), ("Orte im Text", "register/orte-index.html"),
                ("Hintzelmanns Register 1903", "register/hintzelmann.html"),
                ("Textanalyse", "register/wortschatz.html")]),
@@ -673,6 +674,17 @@ def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh):
                f"<b>{n_rez} Nachweise</b> zur Rezeption des Limesblatts außerhalb seiner Bände"],
               [("Organe im Gesamtapparat", "register/orl-register.html"),
                ("Gesamtbibliographie", "register/gesamtbibliographie.html")]),
+        block("archive", "Archivbestände", "unveröffentlicht · zum Teil ungesehen",
+              "Alles bisher Genannte ist gedruckt. Daneben liegt das <em>unveröffentlichte</em> Material: "
+              "Grabungstagebücher, Korrespondenz, Vermessungsunterlagen, Ministerialakten. Hier steht, wo es "
+              "liegt, wie man herankommt — und was noch niemand angesehen hat.",
+              ["das wissenschaftliche Archiv der Kommission liegt geschlossen bei der "
+               "<b>Römisch-Germanischen Kommission</b> des DAI in Frankfurt",
+               "die <b>Verwaltungsüberlieferung</b> dagegen verteilt auf die Staatsarchive der Trägerstaaten — "
+               "die Kommission war keine Behörde, sondern ein Verbund",
+               "Nachlässe der Beteiligten, über Kalliope und die DAI-Findmittel ermittelt",
+               "eine priorisierte <b>Bestell-Liste</b>: welche Akte welche offene Frage beantworten würde"],
+              [("Archivbestände &amp; Desiderate", "register/archive.html")]),
     ]
     return (f'<h1>Die Quellen</h1>'
             f'<p class="lede">Fünf Bestände, die die Reichs-Limeskommission hinterlassen hat — jeder mit eigener '
@@ -687,7 +699,26 @@ def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh):
             + "".join(teile))
 
 
-def index_page(volumes, toc=None):
+INDEX_SUCHSKRIPT = """<script>
+fetch("data/search.json").then(r=>r.json()).then(docs=>{
+ var ms=new MiniSearch({fields:["text"],storeFields:["vol","anchor","pp","label"]}); ms.addAll(docs);
+ var q=document.getElementById("q"),res=document.getElementById("res");
+ q.addEventListener("input",function(){
+  var v=q.value.trim(); if(v.length<3){res.innerHTML="";return;}
+  var hits=ms.search(v,{prefix:true,fuzzy:.1}).slice(0,40);
+  res.innerHTML=hits.length?hits.map(function(h){
+    var t=h.text||""; var i=t.toLowerCase().indexOf(v.toLowerCase());
+    var sn=i<0?t.slice(0,140):t.slice(Math.max(0,i-50),i+90);
+    return '<a class="hit" href="volumes/bd'+h.vol+'.html#pb-'+h.anchor+'">'+h.label+', S. '+h.pp+'</a> <span>…'+
+      sn.replace(/</g,"&lt;")+'…</span>';}).join(""):"<p class=meta>keine Treffer</p>";
+ });
+});
+</script>"""
+
+
+def baende_page(volumes, toc=None):
+    """Die Limesblatt-Bände mit ihren Inhaltsverzeichnissen — eigene Seite, seit die Startseite
+    ein Einstieg ist und kein Verzeichnis."""
     toc = toc or {}
     bl = []
     for v in volumes:
@@ -701,63 +732,65 @@ def index_page(volumes, toc=None):
             spanne = f' · {len(hf)} Hefte ({html.escape(d1)} – {html.escape(d2)})' if d1 else f' · {len(hf)} Hefte'
         bl.append(f'<li><a href="volumes/bd{v["nr"]}.html"><b>{html.escape(v["label"])}</b></a> '
                   f'<span class="meta">— {len(v["pages"])} Seiten{spanne} · {len(ents)} Berichte</span>{sub}</li>')
-    lis = "".join(bl)
+    n_ber = sum(len(x) for x in toc.values())
+    return (f'<h1>Limesblatt — Bände &amp; Inhaltsverzeichnis</h1>'
+            f'<p class="lede">Das Feldorgan der Reichs-Limeskommission, vollständig: acht Jahrgangsbände, '
+            f'{len(HEFTE)} Hefteinheiten, {n_ber} nummerierte Feldberichte. Jeder Bericht führt an seine '
+            f'Stelle im Text, jede Seite an das Faksimile der UB Heidelberg.</p>'
+            f'<p class="meta">Die Hefte sind mit ihrem Ausgabedatum gegliedert (Quelle: die IIIF-Strukturdaten '
+            f'des Digitalisats). Volltextsuche über alle Bände: <a href="index.html#suche">auf der '
+            f'Startseite</a>.</p>'
+            f'<ul class="bandlist">{"".join(bl)}</ul>')
+
+
+def index_page(volumes, toc=None):
+    """Startseite: ein Einstieg, kein Verzeichnis — was hier zu finden ist, in einem Bildschirm."""
+    toc = toc or {}
+    n_ber = sum(len(x) for x in toc.values())
+    n_seiten = sum(len(v["pages"]) for v in volumes)
     head = '<script src="assets/minisearch.min.js"></script>'
-    body = f"""<h1>RLK-digital</h1><p class="lede">Die <b>Reichs-Limeskommission</b> (1892–1937) — das erste
-länderübergreifende Großforschungsunternehmen des Kaiserreichs — mit ihren Quellen: dem laufenden Feldorgan
-<em>Limesblatt</em>, der Endpublikation <em>Obergermanisch-Raetischer Limes</em>, den Jahresberichten der
-Kommission, der zitierten Literatur und den regionalen Organen. Alles token-frei erschlossen, jede Angabe
-auf ihre Quelle zurückführbar.</p>
-<p class="meta">→ <a href="quellen.html"><b>Die Quellen im Überblick</b></a> — fünf Bestände, je mit eigener
-Herkunft und eigenen Grenzen.</p>
-<section id="suche"><h2>Volltextsuche im Limesblatt</h2>
-<input id="q" type="search" placeholder="z. B. Saalburg, Entschädigung, Mommsen …" autocomplete="off">
-<div id="res"></div></section>
-<h2>Limesblatt — Bände &amp; Inhaltsverzeichnisse</h2>
-<p class="meta">Das Feldorgan als diplomatische OCR-Edition mit IIIF-Faksimiles (UB Heidelberg); die anderen
-Bestände stehen unter <a href="quellen.html">Quellen</a>.</p><ul class="bandlist">{lis}</ul>
-<h2>Register</h2><ul><li><a href="register/persons.html">Personenregister</a> — mit Porträts, Normdaten, Korrespondenz, ausgegrabenen Kastellen</li>
-<li><a href="register/places.html">Ortsregister</a> — mit Karte, Kastelltyp, Ausgräber, Inschriften</li>
-<li><a href="register/strecken.html">Strecken</a> — die 15 Limes-Abschnitte mit Kastellen &amp; Kommissaren</li>
-<li><a href="register/organigramm.html">Organigramm</a> — die Struktur der Reichs-Limeskommission: Leitung, Streckenkommissare, Ausgräber, Institutionen</li>
-<li><a href="register/fundindex.html">Fundindex</a> — zwei Auflösungen: Fundgattungen und Münzkaiser im Überblick, dazu die <b>Einzelfunde</b> — jedes gemeldete Stück, jede Stempel-Lesung, jede datierte Münze mit Kontext und Faksimile-Sprung</li>
-<li><a href="register/inschriften.html">Inschriften (EDH)</a> — 759 katalogisierte Inschriften der Limes-Fundorte aus der Epigraphic Database Heidelberg</li>
-<li><a href="register/bibliographie.html">Bibliographie &amp; Quellen</a> — die zitierten Werke, aufgelöst zu vollen Referenzen + Open-Access-Digitalisaten (UB Heidelberg u. a.)</li>
-<li><a href="register/gesamtbibliographie.html">Gesamtbibliographie</a> — alle bibliographischen Einheiten der Edition in einer sortierbaren Tabelle: zitierte Werke, ORL-Lieferungen, Jahresberichte, Hefte, Rezeption, Organe</li>
-<li><a href="register/gesamtregister.html">Gesamtregister</a> — Personen und Orte quer über alle drei Werke: Limesblatt, ORL, RLK-Jahresberichte</li>
-<li><a href="register/netz.html">Netzansicht</a> — Personen, Publikationen und Zitate als Beziehungsbild</li>
-<li><a href="register/namen.html">Namen im Limesblatt</a> — vollständiges Namenregister aus dem Volltext (NER); jeder Name ist im Lesetext angeklickt verlinkt</li>
-<li><a href="register/orte-index.html">Orte im Limesblatt</a> — vollständiges Ortsregister aus dem Volltext (NER), im Lesetext verlinkt</li>
-<li><a href="register/ortsnamen.html">Ortsnamen antik/modern</a> — der Crosswalk: warum „Nida" im Feldbericht 0 Treffer hat und „Heddernheim" 65</li>
-<li><a href="register/hintzelmann.html">Hintzelmanns Register (1903)</a> — das zeitgenössische Gesamtregister aus dem Schlussheft, Verweise aufgelöst: das älteste Findmittel zum Limesblatt</li>
-<li><a href="register/wortschatz.html">Textanalyse</a> — diachroner Wortschatz, ORL-Gegenprobe, Münzkaiser-Chronologie, Truppen, Zitate, OCR-Qualität + KWIC-Konkordanz</li></ul>
-<h2>ORL — die Endpublikation</h2>
-<p class="meta">Das Standardwerk, in das das Limesblatt mündete, token-frei über HathiTrust erschlossen.</p>
-<ul><li><a href="register/orl.html">ORL-Bandindex</a> — Abteilung A (Strecken) + B (Kastell-Lieferungen) mit belegter Lieferung, Bearbeiter und Vorbericht-Verweisen</li>
-<li><a href="register/orl-inhalt.html">ORL — vollständiges Inhaltsverzeichnis</a> — alle 92 Kastell-Faszikel und 15 Streckenbände nach ihrem Erscheinen (Lieferung + Jahr), mit Vorbericht-Links</li>
-<li><a href="register/genese.html">Die Genese des ORL</a> — die Schichten des Standardwerks: was Grundlage war, was aufeinander aufbaute, was nach 1914 hinzukam</li>
-<li><a href="register/orl-verweise.html">ORL — Binnenverweise</a> — 551 werkinterne Verweise, beidseitig in den Scan verlinkt; warum die frühen Faszikel nie werkintern zitieren</li>
-<li><a href="register/orl-register.html">ORL-Gesamtapparat</a> — Personen- &amp; Ortsregister über alle Bände, Vorbericht→ORL-Konkordanz</li>
-<li><a href="register/hathitrust.html">HathiTrust — Werkzeuge &amp; Ertrag</a> — wie der ORL token-frei und nicht-konsumtiv erschlossen wurde (Workset · Extracted Features · NER · Data Capsule)</li></ul>
-<p class="meta">→ <a href="dokumentation.html"><b>Dokumentation</b></a>: was auf dieser Website steht, wie wir an die Daten kamen und was sie sagen.</p>
-<p class="meta">Abgeleitet aus dem (privaten) Forschungs-Vault zur <a href="https://github.com/pleuston/limes">Reichs-Limeskommission</a>.
-Edition/Code: <a href="https://github.com/pleuston/limesblatt-edition">GitHub</a>.</p>
-<script>
-fetch("data/search.json").then(r=>r.json()).then(docs=>{{
- var ms=new MiniSearch({{fields:["text"],storeFields:["vol","anchor","pp","label"]}}); ms.addAll(docs);
- var q=document.getElementById("q"),res=document.getElementById("res");
- q.addEventListener("input",function(){{
-  var v=q.value.trim(); if(v.length<3){{res.innerHTML="";return;}}
-  var hits=ms.search(v,{{prefix:true,fuzzy:.1}}).slice(0,40);
-  res.innerHTML=hits.length?hits.map(function(h){{
-    var t=h.text||""; var i=t.toLowerCase().indexOf(v.toLowerCase());
-    var sn=i<0?t.slice(0,140):t.slice(Math.max(0,i-50),i+90);
-    return '<a class="hit" href="volumes/bd'+h.vol+'.html#pb-'+h.anchor+'">'+h.label+', S. '+h.pp+'</a> <span>…'+
-      sn.replace(/</g,"&lt;")+'…</span>';}}).join(""):"<p class=meta>keine Treffer</p>";
- }});
-}});
-</script>"""
+
+    def karte(titel, text, href, meta=""):
+        return (f'<a class="startkarte" href="{href}"><b>{titel}</b>'
+                f'<span class="meta">{meta}</span><span>{text}</span></a>')
+
+    karten = [
+        karte("Limesblatt", "Die laufenden Feldberichte der Streckenkommissare, vollständig lesbar neben dem "
+              "Faksimile.", "baende.html", f"1892–1903 · {n_seiten} Seiten · {n_ber} Berichte"),
+        karte("ORL", "Die Endpublikation, in die das Feld mündete — Inhalt, Apparat und Binnenverweise "
+              "erschlossen.", "register/orl-inhalt.html", "1894–1937 · 92 Kastell-Faszikel"),
+        karte("Jahresberichte", "Was die Kommission jährlich über sich selbst berichtete: Personal, "
+              "Beschlüsse, Kampagnen.", "register/jahresberichte.html", "1892–1905 · 13 Jahrgänge"),
+        karte("Archivbestände", "Das unveröffentlichte Material — wo es liegt, wie man herankommt, was noch "
+              "niemand angesehen hat.", "register/archive.html", "Findmittel · Nachlässe · Desiderate"),
+        karte("Personen &amp; Orte", "Wer die Grenze erforschte und wo — mit Normdaten, Karte und den "
+              "Belegen im Text.", "register/persons.html", "85 Personen · 23 Kastelle · 15 Strecken"),
+        karte("Funde", "Fundgattungen im Überblick und die Einzelstücke: Stempel-Lesungen, datierte Münzen, "
+              "gemeldete Objekte.", "register/fundindex.html", "435 Einzelfunde · 125 Stempel"),
+        karte("Werkübergreifend", "Dieselben Namen in allen drei Werken, die Gesamtbibliographie und das "
+              "Beziehungsnetz.", "register/gesamtregister.html", "Register · Bibliographie · Netz"),
+        karte("Analyse", "Wie sich die Sprache wandelt, was den Feldbericht vom Standardwerk trennt, wie der "
+              "ORL entstand.", "register/wortschatz.html", "Wortschatz · Genese · Methode"),
+    ]
+    body = (f'<h1>RLK-digital</h1>'
+            f'<p class="lede">Die <b>Reichs-Limeskommission</b> (1892–1937) — das erste länderübergreifende '
+            f'Großforschungsunternehmen des Kaiserreichs — mit ihren Quellen: dem Feldorgan <em>Limesblatt</em>, '
+            f'der Endpublikation <em>Obergermanisch-Raetischer Limes</em>, den Jahresberichten der Kommission, '
+            f'der zitierten Literatur und den Archivbeständen, die dahinter liegen.</p>'
+            f'<section id="suche"><h2>Volltextsuche im Limesblatt</h2>'
+            f'<input id="q" type="search" placeholder="z. B. Saalburg, Entschädigung, Mommsen …" '
+            f'autocomplete="off"><div id="res"></div></section>'
+            f'<h2>Was hier zu finden ist</h2>'
+            f'<div class="startgrid">{"".join(karten)}</div>'
+            f'<p class="meta">Alle Bestände nebeneinander, je mit Umfang und Grenze: '
+            f'<a href="quellen.html"><b>Die Quellen</b></a>. Wie diese Website gebaut ist und woher die Angaben '
+            f'stammen: <a href="dokumentation.html"><b>Dokumentation</b></a>. '
+            f'Abgeleitet aus einem Forschungs-Vault zur '
+            f'<a href="https://github.com/pleuston/limes">Reichs-Limeskommission</a>; Code und TEI auf '
+            f'<a href="https://github.com/pleuston/limesblatt-edition">GitHub</a>.</p>'
+            + INDEX_SUCHSKRIPT)
     return body, head
+
 
 def _tokn(t):
     """Polsterung abtragen: der NER-Cache schreibt Band 1 als »043«, das TEI als »43«."""
@@ -2977,6 +3010,89 @@ def jb_ereignis_html(pers, kamp):
             f'<th>Beleg</th></tr></thead><tbody>{krows}</tbody></table>')
 
 
+def archiv_page(a, persons):
+    """Die Archivlage: was hinter den digitalen Quellen liegt und was davon noch aussteht.
+
+    Diese Seite veröffentlicht kein Archivgut. Sie führt zusammen, was die Recherche über die
+    Bestände ergeben hat — Signaturen, Findmittel, Zugangswege — und benennt, was ungesehen
+    geblieben ist. Die Vorbehalte sind Zitate aus den Rechercheprotokollen, keine Bewertung."""
+    if not a:
+        return ""
+    pid = {}
+    for p in (persons or []):
+        pid[_pn(p["name"])] = p["id"]
+    arb = a.get("arbeitsliste", [])
+    arows = "".join(f'<tr><td>{html.escape(x["prio"])}</td><td><b>{html.escape(x["bestellung"])}</b></td>'
+                    f'<td>{html.escape(x["frage"])}</td></tr>' for x in arb)
+    drows = "".join(f'<tr><td class="meta">{html.escape(x["notiz"])}</td><td>{html.escape(x["text"])}</td></tr>'
+                    for x in a.get("desiderate", []))
+    brows = ""
+    for b in a.get("bestaende", []):
+        lnk = (f'<a href="{html.escape(b["findmittel_url"])}">Findmittel ↗</a>'
+               if b.get("findmittel_url") else '<span class="meta">—</span>')
+        sig = ", ".join(html.escape(s) for s in b.get("signaturen", [])[:8]) or "—"
+        brows += (f'<tr><td><b>{html.escape(b["notiz"])}</b>'
+                  f'<div class="meta">{html.escape(b.get("kurz", "")[:230])}…</div></td>'
+                  f'<td>{html.escape(", ".join(b.get("institutionen", [])) or "—")}</td>'
+                  f'<td class="meta">{sig}</td>'
+                  f'<td class="meta">{html.escape(b.get("zugang", "") or "—")}</td><td>{lnk}</td></tr>')
+    nrows = ""
+    for n in a.get("nachlaesse", []):
+        i = pid.get(_pn(n["person"]))
+        nm = (f'<a href="persons.html#{i}">{html.escape(n["person"])}</a>' if i else html.escape(n["person"]))
+        nrows += (f'<tr><td>{nm}</td><td class="meta">{html.escape(n.get("rolle", "") or "—")}</td>'
+                  f'<td>{html.escape(n["verwahrort"])}</td></tr>')
+    prows = "".join(f'<tr><td><a href="{html.escape(p["url"])}">{html.escape(p["name"])}</a></td>'
+                    f'<td>{html.escape(p["reichweite"])}</td></tr>' for p in a.get("portale", []))
+    zrows = "".join(f'<tr><td class="meta">{html.escape(z["notiz"])}</td><td>{html.escape(z["findmittel"])}</td>'
+                    f'<td class="meta ktx">{html.escape(z["erreichbarkeit"])}</td>'
+                    f'<td class="meta">{html.escape(z.get("deckt_ab", ""))}</td></tr>'
+                    for z in a.get("zugangslage", []))
+    bil = a.get("bilanz", {})
+    return (f'<h1>Archivbestände — was noch zu sichten ist</h1>'
+            f'<p class="lede">Hinter den gedruckten Quellen liegt das unveröffentlichte Material: '
+            f'Grabungstagebücher, Korrespondenz, Vermessungsunterlagen, Ministerialakten. Diese Seite '
+            f'veröffentlicht davon nichts — sie führt zusammen, <b>wo es liegt</b>, <b>wie man herankommt</b> '
+            f'und vor allem, <b>was noch niemand angesehen hat</b>. '
+            f'{bil.get("bestandsnotizen", 0)} Bestands- und Findmittelnotizen, '
+            f'{bil.get("signaturen", 0)} belegte Signaturen, {bil.get("nachlaesse", 0)} Nachlässe.</p>'
+            f'<div class="note"><p><b>Der Grundbefund.</b> Das wissenschaftliche Archiv der Kommission liegt '
+            f'geschlossen bei der Römisch-Germanischen Kommission des DAI in Frankfurt; ihre <i>Verwaltungs</i>'
+            f'überlieferung dagegen verteilt sich auf die Staatsarchive der Trägerstaaten — die Kommission war '
+            f'keine Behörde, sondern ein Verbund. Wer das Unternehmen als Institution untersuchen will, muss '
+            f'daher an mehreren Orten suchen; wer die Grabungen untersuchen will, an einem.</p></div>'
+            + (f'<h2 id="arbeitsliste">Zu bestellen — die priorisierte Liste ({len(arb)})</h2>'
+               f'<p class="meta">Aus dem Erschließungsplan zum RGK-Bestand: welche Akte welche offene Frage '
+               f'beantworten würde. Die Reihenfolge ist eine Setzung, keine Rangfolge der Bestände.</p>'
+               f'<table class="reg nosort"><thead><tr><th>Prio</th><th>Bestellung (Signatur)</th>'
+               f'<th>beantwortet welche offene Frage</th></tr></thead><tbody>{arows}</tbody></table>'
+               if arb else "")
+            + (f'<h2 id="vorbehalte">Vorbehalte im Wortlaut ({len(a.get("desiderate", []))})</h2>'
+               f'<p class="meta">Was die Recherche selbst als ungeprüft festgehalten hat — zitiert, nicht '
+               f'zusammengefasst.</p>'
+               f'<table class="reg"><thead><tr><th>Notiz</th><th>Vorbehalt</th></tr></thead>'
+               f'<tbody>{drows}</tbody></table>' if drows else "")
+            + f'<h2 id="bestaende">Bestände &amp; Findmittel</h2>'
+            f'<table class="reg"><thead><tr><th>Bestand / Findmittel</th><th>Institution</th>'
+            f'<th>Signaturen</th><th>Zugang</th><th></th></tr></thead><tbody>{brows}</tbody></table>'
+            + (f'<h2 id="zugang">Erreichbarkeit der Findmittel</h2>'
+               f'<p class="meta">Welches Findmittel maschinell erreichbar ist und welches nicht — die '
+               f'Unterscheidung entscheidet, was sich token-frei erschließen lässt und was eine Reise '
+               f'kostet.</p><table class="reg"><thead><tr><th>Notiz</th><th>Findmittel</th>'
+               f'<th>Erreichbarkeit</th><th>deckt ab</th></tr></thead><tbody>{zrows}</tbody></table>'
+               if zrows else "")
+            + f'<h2 id="nachlaesse">Nachlässe der Beteiligten ({len(a.get("nachlaesse", []))})</h2>'
+            f'<p class="meta">Wo die persönliche Überlieferung der Kommissionsmitglieder liegt — ermittelt '
+            f'über den <a href="https://kalliope-verbund.info">Kalliope-Verbund</a> und die Findmittel des '
+            f'DAI. Sortierbar nach Person und Verwahrort.</p>'
+            f'<table class="reg"><thead><tr><th>Person</th><th>Rolle</th><th>Verwahrort / Nachweis</th>'
+            f'</tr></thead><tbody>{nrows}</tbody></table>'
+            f'<h2 id="portale">Sucheinstiege</h2>'
+            f'<table class="reg nosort"><thead><tr><th>Portal</th><th>Reichweite</th></tr></thead>'
+            f'<tbody>{prows}</tbody></table>'
+            f'<p class="meta">Zurück zu den <a href="../quellen.html">Quellen</a>.</p>')
+
+
 def documentation_page(s):
     # Datenherkunft — jede offene Quelle in klarer Sprache (kein Fachjargon)
     src = [
@@ -2993,13 +3109,16 @@ def documentation_page(s):
     srows = "".join(f'<tr><td>{a}</td><td class="meta">{b}</td></tr>' for a, b in src)
     return (
         f'<h1>Dokumentation</h1>'
-        f'<p class="meta">Diese Website erschließt zwei Werke der frühen Limesforschung: die laufenden '
-        f'<a href="index.html"><b>Feldberichte des Limesblatt</b></a> (1892–1903) und die große '
-        f'<a href="register/orl.html"><b>Endpublikation ORL</b></a> (1894–1937) — und zeigt, wie das eine ins '
-        f'andere überging. Alles, was sich verlässlich nachschlagen lässt (Lebensdaten, Orte, Nachweise), wurde '
-        f'automatisch aus frei zugänglichen Quellen zusammengetragen; das Deuten, Prüfen und Schreiben blieb '
-        f'Handarbeit. Diese Seite erklärt <b>was</b> hier zu finden ist, <b>woher</b> die Angaben stammen und '
-        f'<b>was</b> sie erkennen lassen.</p>'
+        f'<p class="meta"><b>RLK-digital</b> erschließt die Quellen der Reichs-Limeskommission in fünf '
+        f'Beständen (<a href="quellen.html">Überblick</a>): die laufenden '
+        f'<a href="index.html"><b>Feldberichte des Limesblatt</b></a> (1892–1903), die große '
+        f'<a href="register/orl.html"><b>Endpublikation ORL</b></a> (1894–1937), die '
+        f'<a href="register/jahresberichte.html"><b>Jahresberichte</b></a> der Kommission (1892–1905), die '
+        f'zitierte Literatur und die regionalen Organe — und zeigt, wie das eine ins andere überging. Alles, was '
+        f'sich verlässlich nachschlagen lässt (Lebensdaten, Orte, Nachweise), wurde automatisch aus frei '
+        f'zugänglichen Quellen zusammengetragen; das Deuten, Prüfen und Schreiben blieb Handarbeit. Diese Seite '
+        f'erklärt <b>was</b> hier zu finden ist, <b>woher</b> die Angaben stammen und <b>was</b> sie erkennen '
+        f'lassen.</p>'
 
         f'<h2>1 · Was auf der Website steht — ein Wegweiser</h2>'
         f'<p class="meta">Die Seite hat drei Ebenen: den <i>lesbaren Text</i> der Bände, <i>Verzeichnisse</i>, die '
@@ -3007,7 +3126,7 @@ def documentation_page(s):
 
         f'<h3>Der Text der Bände</h3>'
         f'<ul>'
-        f'<li><a href="index.html"><b>Bände</b></a> — die {s["nvol"]} Hefte des Limesblatt vollständig lesbar, '
+        f'<li><a href="baende.html"><b>Bände</b></a> — die {s["nvol"]} Hefte des Limesblatt vollständig lesbar, '
         f'Seite für Seite neben dem eingescannten Original; die zweispaltige Druckanordnung bleibt erhalten. '
         f'Personen, Orte und zitierte Werke sind im Text anklickbar und führen in die Verzeichnisse.</li>'
         f'<li><a href="index.html#suche"><b>Suche</b></a> — durchsucht den gesamten Text aller Bände.</li>'
@@ -3197,9 +3316,13 @@ def willkommen_page(s):
                 f'<div style="font-weight:600;margin:.25em 0 .15em">{title}</div>'
                 f'<div class="meta">{desc}</div></a>')
     tiles = [
+        ("🗂", "Die Quellen",
+         'Fünf Bestände nebeneinander: das Feldorgan <b>Limesblatt</b>, die Endpublikation <b>ORL</b>, die '
+         '<b>Jahresberichte</b> der Kommission, die zitierte Literatur und die regionalen Organe.',
+         "quellen.html"),
         ("📖", "Die Bände lesen",
          f'Alle <b>35 Hefte</b> des Limesblatt (1892–1903), gebunden in {s["nvol"]} Jahrgangsbände — neben den eingescannten Originalseiten, mit Volltextsuche.',
-         "index.html"),
+         "baende.html"),
         ("👥", "Menschen &amp; Orte",
          f'Wer die Grenze erforschte und wo: {s["npers"]} Personen, {s["nplac"]} Kastelle auf der Karte, die 15 Abschnitte und das <b>Organigramm</b> der Kommission.',
          "register/organigramm.html"),
@@ -3219,11 +3342,13 @@ def willkommen_page(s):
     grid = ('<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1em;margin:1.3em 0">'
             + "".join(tile(*t) for t in tiles) + '</div>')
     return (f'<h1>Übersicht</h1>'
-            f'<p>Diese Website macht die <b>Anfänge der Limesforschung</b> lesbar und durchsuchbar: die laufenden '
-            f'Feldberichte der <b>Reichs-Limeskommission</b> — das <i>Limesblatt</i> (1892–1903) — und das große '
-            f'Standardwerk, in das sie mündeten, den <i>Obergermanisch-Raetischen Limes</i> (1894–1937). Jede '
-            f'Angabe, die sich nachschlagen lässt, ist automatisch aus frei zugänglichen Quellen zusammengetragen; '
-            f'das Deuten und Schreiben blieb Handarbeit.</p>'
+            f'<p><b>RLK-digital</b> macht die <b>Anfänge der Limesforschung</b> lesbar und durchsuchbar — die '
+            f'Quellen der <b>Reichs-Limeskommission</b> (1892–1937) in fünf Beständen: die laufenden Feldberichte '
+            f'des <i>Limesblatt</i> (1892–1903), das Standardwerk, in das sie mündeten (<i>Obergermanisch-'
+            f'Raetischer Limes</i>, 1894–1937), die <a href="register/jahresberichte.html">Jahresberichte</a> der '
+            f'Kommission, die zitierte Literatur und die regionalen Organe '
+            f'(<a href="quellen.html">Überblick</a>). Jede Angabe, die sich nachschlagen lässt, ist automatisch '
+            f'aus frei zugänglichen Quellen zusammengetragen; das Deuten und Schreiben blieb Handarbeit.</p>'
             f'<div class="note"><p><b>Das Erscheinen: 35 Nummern, 1892–1903.</b> Das Limesblatt erschien in '
             f'<b>35 Nummern</b> — „Er[schein]t jährlich i[n] 5–6 Nrn. zum Preise von 3 Mark", wie sein Kopf sagt —, '
             f'gebunden in acht Jahrgangsbände. Die letzte trägt den Vermerk „<i>Nr. 35. Ausgegeben am 27. Mai '
@@ -3249,7 +3374,7 @@ def willkommen_page(s):
             f'(<a href="volumes/bd8.html">Band 8</a>).</p>'
             f'{heft_rhythmus()}</div>'
             f'{grid}'
-            f'<p class="meta">Neu hier? Beginnen Sie mit den <a href="index.html">Bänden</a> oder lesen Sie die '
+            f'<p class="meta">Neu hier? Beginnen Sie mit den <a href="baende.html">Bänden</a> oder lesen Sie die '
             f'<a href="dokumentation.html">Dokumentation</a>. Editionstext und Daten stehen unter CC&nbsp;BY&nbsp;4.0.</p>')
 
 def orl_spiegel():
@@ -3298,7 +3423,7 @@ def heft_rhythmus():
         f'<span class="meta" style="font-size:.72em">{str(y)[2:]}</span></span>' for y in sp)
     letzte = [f'{a["nr"]}→{b["nr"]}' for a, b in zip(d, d[1:])][-3:]
     return (f'<p><b>Der Erscheinungsrhythmus.</b> Aus den Ausgabedaten der Hefte '
-            f'(im <a href="index.html">Inhaltsverzeichnis</a> bei jeder Nummer) lässt sich der '
+            f'(im <a href="baende.html">Inhaltsverzeichnis</a> bei jeder Nummer) lässt sich der '
             f'Rhythmus ablesen: bis 1899 im Median <b>{med} Tage</b> von Heft zu Heft — das '
             f'entspricht den angekündigten „5–6 Nrn. jährlich". Danach dehnt sich die Folge '
             f'erheblich: Zwischen Nr. 32 (25. Juli 1899) und Nr. 33 (1. Februar 1901) liegen '
@@ -3549,6 +3674,12 @@ def main():
                                          _load_json_any("orl_zeitschriften.json") or {},
                                          _load_json_any("rezeption.json") or {}, edh), 0))
     print("Quellen-Hub → quellen.html")
+    _arch = _load_json_any("archive.json") or {}
+    if _arch.get("bestaende"):
+        open(os.path.join(DOCS,"register","archive.html"),"w",encoding="utf-8").write(
+            page("Archivbestände", archiv_page(_arch, persons), 1))
+        print(f"Archivbestände → register/archive.html ({_arch['bilanz']['bestandsnotizen']} Notizen, "
+              f"{_arch['bilanz']['nachlaesse']} Nachlässe)")
     stats = {"nvol": len(volumes), "npers": len(persons), "nplac": len(places),
              "nner_p": len(ner_p), "nner_pl": len(ner_pl),
              "nedh": edh.get("total", 0),
@@ -3562,6 +3693,8 @@ def main():
     open(os.path.join(DOCS,"uebersicht.html"),"w",encoding="utf-8").write(page("Übersicht", willkommen_page(stats), 0))
     ib, ih = index_page(volumes, toc)
     open(os.path.join(DOCS,"index.html"),"w",encoding="utf-8").write(page("Startseite", ib, 0, ih))
+    open(os.path.join(DOCS,"baende.html"),"w",encoding="utf-8").write(
+        page("Limesblatt — Bände", baende_page(volumes, toc), 0))
     print(f"docs/: index + {len(volumes)} Bände + 3 Register (Personen {len(persons)}, Orte {len(places)}, "
           f"Strecken {len(strecken)}) · Suchindex {len(corpus)} Seiten · Ausgräber-Links {sum(len(v) for v in digs.values())}")
 

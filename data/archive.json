@@ -1,0 +1,654 @@
+{
+ "_methode": "Aus den Vault-Notizen 'Archive/' (Frontmatter + Kurzcharakteristik + Signaturmuster) und dem Personen-Feld 'nachlass'. Die Desiderate sind ZITATE aus den Notizen, keine Einschaetzung des Skripts.",
+ "bestaende": [
+  {
+   "notiz": "Archiv der Reichs-Limeskommission",
+   "art": "Bestand",
+   "institutionen": [
+    "Römisch-Germanische Kommission des DAI, Frankfurt am Main"
+   ],
+   "bestand": "DE-DAI-RGK-A RLK",
+   "zugang": "Lesesaal nach Absprache (Mo/Mi/Do); Reproduktion auf Anfrage",
+   "findmittel_url": "https://archives.dainst.org/index.php/de-dai-rgk-a-rlk",
+   "stand": "",
+   "kurz": "Der archivalische Nachlass der Reichs-Limeskommission – verwahrt von der RGK des DAI in Frankfurt. Hier liegt das unveröffentlichte Material, das über die ORL-Bände hinausgeht.",
+   "signaturen": [
+    "DE-DAI-RGK-A RLK",
+    "DAI-RGK-A 43",
+    "DAI-RGK-A 287",
+    "R 3001/22381"
+   ],
+   "links": [
+    "https://archives.dainst.org/index.php/de-dai-rgk-a-rlk",
+    "https://www.dainst.org/en/departments/rgk/about-us/organisation/archive"
+   ]
+  },
+  {
+   "notiz": "Archivportal-D",
+   "art": "Findmittel",
+   "institutionen": [
+    "Deutsche Digitale Bibliothek / Bundesarchiv"
+   ],
+   "bestand": "",
+   "zugang": "frei online",
+   "findmittel_url": "https://www.archivportal-d.de",
+   "stand": "",
+   "kurz": "Fachportal der Deutschen Digitalen Bibliothek (DDB), das Findbücher und Bestandsinformationen aus rund 270 deutschen Archiven aggregiert. Mit Tektonik-Suche, Volltextsuche und GND-Personen-Einstieg bietet es einen archivenübergreifenden Erstzugang – auch zu den Verwaltungsüberlieferungen der Kultusbehörden, die die Reichs-Limeskommission begleiteten.",
+   "signaturen": [],
+   "links": [
+    "https://www.archivportal-d.de",
+    "https://www.archivportal-d.de/person/gnd/116369957",
+    "https://de.wikipedia.org/wiki/Archivportal-D"
+   ]
+  },
+  {
+   "notiz": "Digitalisate der Limesforschung",
+   "art": "Findmittel",
+   "institutionen": [
+    "UB Heidelberg · Propylaeum · HathiTrust"
+   ],
+   "bestand": "",
+   "zugang": "frei online (Open Access)",
+   "findmittel_url": "https://digi.ub.uni-heidelberg.de/diglit/limesblatt",
+   "stand": "",
+   "kurz": "Übersicht der frei im Netz verfügbaren Digitalisate zu den Kernpublikationen der Reichs-Limeskommission und ihrer Nachfolgeforschung: Limesblatt (vollständig), ORL-Teildigitalisate, Saalburg-Jahrbuch, Bericht der RGK und Germania. Alle hier genannten Ressourcen sind ohne Zugangsbeschränkung nutzbar.",
+   "signaturen": [],
+   "links": [
+    "https://www.deutsche-limeskommission.de/en/downloads/maps/",
+    "https://digi.ub.uni-heidelberg.de/diglit/limesblatt",
+    "https://www.propylaeum.de/publizieren/propylaeum-ejournals/propylaeum-ejournals-a-z/",
+    "https://www.propylaeum.de/blog/artikel/2018/07/19/100-jahre-germania",
+    "https://www.dainst.blog/crossing-borders/2018/12/06/redaktion-2-0-die-rgk-und-die-digitalisierung-ihrer-publikationen/"
+   ]
+  },
+  {
+   "notiz": "Erschließungsplan – RLK-Bestand der RGK",
+   "art": "Findmittel",
+   "institutionen": [
+    "Römisch-Germanische Kommission des DAI, Frankfurt am Main"
+   ],
+   "bestand": "",
+   "zugang": "",
+   "findmittel_url": "",
+   "stand": "2026-07-15",
+   "kurz": "Ein priorisierter, token-freier-wo-möglich Fahrplan, um den RLK-relevanten Teil des RGK-Archivs für den Vault zu erschließen — abgegrenzt gegen das große DFG-Projekt „Spuren archäologischer Wissensgenerierung\", das den Gesamtbestand institutionell katalogisiert. Grundlage ist die Bestandssondierung vom 15. Juli 2026; ihr Kern-Befund: die beiden Findmittel-Systeme sind komplementär und weitgehend disjunkt, und das RGK-eigene Item-Findmittel ist token-frei verschlossen.",
+   "signaturen": [
+    "DE-DAI-RGK-A RLK",
+    "DAI-RGK-A 43",
+    "DAI-RGK-A 482",
+    "DAI-RGK-A 1066",
+    "DAI-RGK-A 840",
+    "DAI-RGK-A 287"
+   ],
+   "links": [
+    "https://www.dainst.org/en/departments/rgk/about-us/organisation/archive",
+    "https://archives.dainst.org/index.php/de-dai-rgk-a-rlk",
+    "https://archives.dainst.org/index.php/de-dai-rgk-a-ar-482",
+    "https://kalliope-verbund.info/de/isil?isil.id=DE-F36"
+   ]
+  },
+  {
+   "notiz": "Hintzelmanns Register zum Limesblatt (1903)",
+   "art": "Findmittel",
+   "institutionen": [],
+   "bestand": "",
+   "zugang": "",
+   "findmittel_url": "",
+   "stand": "",
+   "kurz": "",
+   "signaturen": [],
+   "links": [
+    "https://pleuston.github.io/limesblatt-edition/",
+    "https://pleuston.github.io/limesblatt-edition/register/hintzelmann.html",
+    "https://pleuston.github.io/limesblatt-edition/volumes/bd4.html#pb-559-a",
+    "https://pleuston.github.io/limesblatt-edition/volumes/bd8.html#pb-959-a"
+   ]
+  },
+  {
+   "notiz": "Kalliope-Verbund",
+   "art": "Findmittel",
+   "institutionen": [
+    "Staatsbibliothek zu Berlin – Preußischer Kulturbesitz"
+   ],
+   "bestand": "",
+   "zugang": "frei online",
+   "findmittel_url": "https://kalliope-verbund.info",
+   "stand": "",
+   "kurz": "Nationaler Verbundkatalog für Nachlässe, Autographen und Korrespondenz in deutschen Bibliotheken, Archiven und Museen – mit Normdatensuche über die GND. Für die Reichs-Limeskommission von zentralem Wert, weil die Korrespondenznetze der leitenden Kommissare (Mommsen, Fabricius, Zangemeister) hier nachgewiesen und mit Archivstandorten verknüpft sind.",
+   "signaturen": [],
+   "links": [
+    "https://kalliope-verbund.info",
+    "https://kalliope-verbund.info/gnd/118583425",
+    "https://kalliope-verbund.info/gnd/116369957",
+    "https://www.ub.uni-heidelberg.de/wir/geschichte/zangemeister.html"
+   ]
+  },
+  {
+   "notiz": "Landesdenkmalämter & Ortsakten",
+   "art": "Bestand",
+   "institutionen": [
+    "LAD Baden-Württemberg · BLfD Bayern · hessenARCHÄOLOGIE · GDKE Rheinland-Pfalz"
+   ],
+   "bestand": "Ortsakten zu einzelnen Kastellen und Limesabschnitten",
+   "zugang": "nur dienstlich oder auf begründete schriftliche Anfrage",
+   "findmittel_url": "https://www.denkmalpflege-bw.de/denkmale/datenbanken/adabweb",
+   "stand": "",
+   "kurz": "Die Ortsakten (auch: Fundakten, Objektakten) der Landesdenkmalämter sind kastell- und fundstellenbezogene Dossiers, die von der RLK-Zeit bis heute weitergeführt wurden. Sie enthalten ältere Grabungsberichte, Korrespondenzen, Fotos und Pläne, die in keine Publikation eingegangen sind – eine Primärquelle, die den ORL unmittelbar ergänzt.",
+   "signaturen": [],
+   "links": [
+    "https://www.denkmalpflege-bw.de/denkmale/datenbanken/adabweb",
+    "https://gdke.rlp.de/kulturerbeonline/lesehaeppchen/landesarchaeologie",
+    "https://www.denkmalpflege-bw.de/denkmale/unesco-welterbe/obergermanischer-raetischer-limes-in-baden-wuerttemberg"
+   ]
+  },
+  {
+   "notiz": "Militärischer Teil der RLK — Archivalien",
+   "art": "Findmittel",
+   "institutionen": [
+    "RGK/DAI Frankfurt",
+    "Bundesarchiv Berlin-Lichterfelde",
+    "Bundesarchiv-Militärarchiv Freiburg",
+    "GStA-PK Berlin",
+    "Landesarchiv Baden-Württemberg",
+    "Generallandesarchiv Karlsruhe"
+   ],
+   "bestand": "",
+   "zugang": "",
+   "findmittel_url": "",
+   "stand": "",
+   "kurz": "Wo die militärische Dimension der Reichs-Limeskommission (Zwei-Direktoren-Modell, Sarwey, Generalstab, Landesaufnahme, Reichsfinanzierung) archivalisch überliefert ist — mit konkreten Beständen und Signaturen (verifiziert über iDAI.archives, Archivportal-D/DDB, Bundesarchiv-invenio und Kalliope, 2026-07).",
+   "signaturen": [
+    "DE-DAI-RGK-A RLK",
+    "DAI-RGK-A 43",
+    "R 1501/116024–116028",
+    "R 1501/116030–116033",
+    "R 1501/116034–116035",
+    "R 1501/116036–116038",
+    "R 1501/116029",
+    "R 1501/116039",
+    "R 3001/22381",
+    "R 1501/116034",
+    "R 1501/116035",
+    "R 1501/116030",
+    "R 1501/116031",
+    "R 1501/116032"
+   ],
+   "links": [
+    "https://archives.dainst.org/index.php/de-dai-rgk-a-rlk",
+    "https://www.archivportal-d.de/objekte/?query=Reichslimeskommission",
+    "https://www.archivportal-d.de/item/SWJEKRAM7SSG3OSBIRRPRZGHUIQ2VLPN",
+    "https://www.archivportal-d.de/item/3FHJSCYZS3ES7NEKBFP6RJ66EZ5KVWPW",
+    "https://www.archivportal-d.de/item/MNDUASZKV3UQBNUG3X2C7DCIQ2BYUPMX"
+   ]
+  },
+  {
+   "notiz": "Propylaeum-VITAE",
+   "art": "Findmittel",
+   "institutionen": [
+    "Universitätsbibliothek Heidelberg"
+   ],
+   "bestand": "",
+   "zugang": "frei online (Open Access)",
+   "findmittel_url": "https://sempub.ub.uni-heidelberg.de/propylaeum_vitae",
+   "stand": "",
+   "kurz": "Biografisches Open-Access-Informationssystem der UB Heidelberg zu Altertumswissenschaftlerinnen und Altertumswissenschaftlern (seit 2017 online). Propylaeum-VITAE vernetzt Lebensdaten, Archivstandorte, Publikationen und Forschungsnetzwerke – und wird durch das DFG-Projekt „Spuren archäologischer Wissensgenerierung\" (federführend RGK, RGZM/LEIZA und UB Heidelberg; bewilligt August 2020) gezielt für die Akteure der Reichs-Limeskommission ausgebaut. Maßgebliche Beschreibung: Spuren archäologischer Wissensgenerierung (Rasbach u. a. 2021).",
+   "signaturen": [],
+   "links": [
+    "https://sempub.ub.uni-heidelberg.de/propylaeum_vitae",
+    "https://gepris.dfg.de/gepris/projekt/452800897",
+    "https://www.dainst.org/en/research/projects/spuren-archaeologischer-wissensgenerierung-propylaeum-vitae-ein-instrument-fuer-die-wissenschaftsgeschichte-der-archaeologie/5661",
+    "https://sempub.ub.uni-heidelberg.de/propylaeum_vitae/de/wisski/navigate/12108/view"
+   ]
+  },
+  {
+   "notiz": "Staatsarchive (Verwaltungsakten der RLK)",
+   "art": "Bestand",
+   "institutionen": [
+    "Landesarchive der ehemaligen Mitgliedstaaten der Reichs-Limeskommission"
+   ],
+   "bestand": "GLA Karlsruhe 235 · HStA Stuttgart · BayHStA München · GStA PK Berlin I. HA Rep. 76 · Arcinsys Hessen",
+   "zugang": "Lesesaal nach Benutzungsantrag; Reproduktion auf Anfrage",
+   "findmittel_url": "https://www.archivportal-d.de",
+   "stand": "",
+   "kurz": "Die Reichs-Limeskommission war keine eigenständige Behörde, sondern wurde von den Kultusministerien der beteiligten Bundesstaaten und der Preußischen Akademie der Wissenschaften getragen. Ihre Verwaltungsüberlieferung liegt daher verteilt in mehreren Staatsarchiven – ein zentrales Pendant zum wissenschaftlichen Nachlass im RGK-Archiv.",
+   "signaturen": [
+    "235 Nr. 5234",
+    "235 Nr. 47748",
+    "Rep. 76 Kultusmin"
+   ],
+   "links": [
+    "https://www2.landesarchiv-bw.de/ofs21/olf/struktur.php?bestand=12041&sprungId=8000641&letztesLimit=suchen",
+    "https://de.wikipedia.org/wiki/Reichs-Limeskommission",
+    "https://www.archivportal-d.de"
+   ]
+  },
+  {
+   "notiz": "iDAI.archives",
+   "art": "Findmittel",
+   "institutionen": [
+    "Deutsches Archäologisches Institut"
+   ],
+   "bestand": "",
+   "zugang": "Findmittel frei online; Archivalien nur vor Ort oder auf Anfrage",
+   "findmittel_url": "https://archives.dainst.org",
+   "stand": "",
+   "kurz": "Online-Findmittel-Portal des DAI für dessen archivische Überlieferung, darunter explizit den Bestand DE-DAI-RGK-A RLK der Römisch-Germanischen Kommission. Die Erschließung basiert auf dem Standard EAD 2002 (XML-Export abrufbar), was die maschinelle Weiterverarbeitung und Verlinkung mit anderen Normdatensystemen ermöglicht.",
+   "signaturen": [
+    "DE-DAI-RGK-A RLK"
+   ],
+   "links": [
+    "https://archives.dainst.org",
+    "https://archives.dainst.org/index.php/de-dai-rgk-a-rlk",
+    "https://www.dainst.org/en/departments/rgk/about-us/organisation/archive"
+   ]
+  },
+  {
+   "notiz": "iDAI.world (Arachne · Zenon · Gazetteer)",
+   "art": "Findmittel",
+   "institutionen": [
+    "Deutsches Archäologisches Institut"
+   ],
+   "bestand": "",
+   "zugang": "frei online (Open Access)",
+   "findmittel_url": "https://idai.world",
+   "stand": "",
+   "kurz": "Die digitale Forschungsinfrastruktur des DAI bündelt drei komplementäre Werkzeuge: iDAI.objects/Arachne (Objekt- und Bilddatenbank), iDAI.bibliography/Zenon (Bibliografie) und iDAI.gazetteer (Ortsnormdaten). Zusammen bilden sie eine verlinkbare Gesamtinfrastruktur, die Objekte, Literatur und Orte der antiken Welt – darunter alle Limeskastelle – miteinander verbindet.",
+   "signaturen": [],
+   "links": [
+    "https://idai.world",
+    "https://arachne.dainst.org",
+    "https://zenon.dainst.org",
+    "https://gazetteer.dainst.org"
+   ]
+  }
+ ],
+ "desiderate": [
+  {
+   "notiz": "Archiv der Reichs-Limeskommission",
+   "text": "Einsicht nur im Lesesaal nach Voranmeldung (Mo/Mi/Do, archiv.rgk@dainst.de, Arndtstraße 23, Frankfurt); Reproduktionen auf Anfrage. ## Siehe auch - Erschließungsplan – RLK-Bestand der RGK — priorisierter Fahrplan (token-frei + Lesesaal) für genau diesen Bestand - Archive & Findmittel · iDAI.archives · Römisch-Germanische Kommission · Forschungsstrategie – neues Wissen generieren - Militärischer Teil der RLK — Archiva"
+  },
+  {
+   "notiz": "Hintzelmanns Register zum Limesblatt (1903)",
+   "text": "Sie sind die nächste Kurationsrunde. [!note] Parse-Vorbehalt Die 65 sind roh gezählt; darunter sind Artefakte des Ditto-Zeichens und der Gattungsabkürzungen („Ziegelst\", „Töpferst\", „Haide\", „Kemel Graffito und\", „Pförring Armreif\" als vermeintliche Ortsnamen)."
+  },
+  {
+   "notiz": "Militärischer Teil der RLK — Archivalien",
+   "text": "Das militärisch-kartographische Material sitzt in RLK-A und den RLK-B-Plankästen. Vorbehalt: nur serienweise erschlossen; „Sarwey\" ergibt online 0 Treffer — Sarwey-Mappen nur stückgenau im Lesesaal (archiv.rgk@dainst.de). → Archiv der Reichs-Limeskommission ## B · Reichsorganisation & Finanzierung (Bundesarchiv Berlin-Lichterfelde) Geschlossene Aktengruppe R 1501 (Reichsministerium des Innern), „Reichs-Limes-Kommissi"
+  },
+  {
+   "notiz": "Militärischer Teil der RLK — Archivalien",
+   "text": "Ein Beleg, dass der militärische Kommissionssitz nach 1900 institutionell fortgeführt wurde. - Leszczynski identifiziert (via Braun 1992, S. 12; eigene Notiz Stanislaus von Leszczynski): Friedrich Wilhelm (Stanislaus) von Leszczynski (1842–1932), zur Heidelberger Konferenz 1890 „damaliger Major und späterer (charakterisierter) Generalleutnant vom Großen Generalstab\" — der preußische Generalstabs-Delegierte der Gründu"
+  }
+ ],
+ "arbeitsliste": [
+  {
+   "notiz": "Erschließungsplan – RLK-Bestand der RGK",
+   "prio": "1",
+   "bestellung": "RLK-LA Limesarchiv, Gründungs-/Organisationskorrespondenz",
+   "frage": "Strecken-Einteilung: nach welchen Kriterien, durch wen? · Statut-Autopsie 7./17. Mai (→ Statut der Reichs-Limeskommission (1892))"
+  },
+  {
+   "notiz": "Erschließungsplan – RLK-Bestand der RGK",
+   "prio": "2",
+   "bestellung": "DAI-RGK-A 43 „RLK: Korrespondenz 1937\"",
+   "frage": "deckt der Bestand den Auflösungs-Erlass 26.5.1937 / die Limesarchiv-Übergabe ab? (→ Auflösung der RLK 1937)"
+  },
+  {
+   "notiz": "Erschließungsplan – RLK-Bestand der RGK",
+   "prio": "3",
+   "bestellung": "RLK-B Kastelle, Grabungstagebücher vs. Druck",
+   "frage": "Quellenkritik (ORL vs. Archiv): Selektions-/Normierungseffekte der ORL-Redaktion"
+  },
+  {
+   "notiz": "Erschließungsplan – RLK-Bestand der RGK",
+   "prio": "4",
+   "bestellung": "RLK-A Strecken, Streckenkommissar-Korrespondenz",
+   "frage": "Kommunikationsnetz: kommunizierten die Kommissare untereinander oder nur mit der Spitze?"
+  },
+  {
+   "notiz": "Erschließungsplan – RLK-Bestand der RGK",
+   "prio": "5",
+   "bestellung": "DAI-RGK-A 287 „Wiss. Erforschung des Limes\" 1905–09",
+   "frage": "Verwaltungsalltag der mittleren Phase"
+  }
+ ],
+ "zugangslage": [
+  {
+   "notiz": "Digitalisate der Limesforschung",
+   "findmittel": "archive.org derobergermanis00fabrgoog",
+   "erreichbarkeit": "Abt. B 40, Kastell Osterburken (Schumacher 1895)",
+   "deckt_ab": "…_djvu.txt (193 KB)"
+  },
+  {
+   "notiz": "Digitalisate der Limesforschung",
+   "findmittel": "HathiTrust Record 012239533",
+   "erreichbarkeit": "Lieferung 1–56 (vollständig), uc1.c2605048–c2605103",
+   "deckt_ab": "Seiten-OCR imgsrv/download/plaintext"
+  },
+  {
+   "notiz": "Digitalisate der Limesforschung",
+   "findmittel": "DDB / DFG-Viewer",
+   "erreichbarkeit": "alle 14 Bände (A 1–7, B 1–7) gelistet",
+   "deckt_ab": "–"
+  },
+  {
+   "notiz": "Digitalisate der Limesforschung",
+   "findmittel": "Google Books",
+   "erreichbarkeit": "≥4 PD-Bände (iEA0AQAAMAAJ u. a.)",
+   "deckt_ab": "–"
+  },
+  {
+   "notiz": "Digitalisate der Limesforschung",
+   "findmittel": "MDZ/BSB · UB Heidelberg",
+   "erreichbarkeit": "–",
+   "deckt_ab": "–"
+  },
+  {
+   "notiz": "Digitalisate der Limesforschung",
+   "findmittel": "Zenon/iDAI",
+   "erreichbarkeit": "nur Katalognachweis",
+   "deckt_ab": "–"
+  },
+  {
+   "notiz": "Erschließungsplan – RLK-Bestand der RGK",
+   "findmittel": "iDAI.archives (AtoM)",
+   "erreichbarkeit": "Anubis-Bot-Wall (307 → anubis.archives.dainst.org); OAI-PMH & Browse-API automatisiert blockiert, im Browser aber lesbar und als EAD exportierbar (Anubis manuell passierbar). RLK-Serien publiziert (scope/Umfang/Bestandsgeschichte), Item-Ebene (<dsc) noch leer; Direktoren-Nachlässe teils item-tief (DAI-RGK-A 482 Dragendorff)",
+   "deckt_ab": "das RGK-eigene, laufend fortgeschriebene Findmittel"
+  },
+  {
+   "notiz": "Erschließungsplan – RLK-Bestand der RGK",
+   "findmittel": "gedrucktes Findbuch (Ruppel 1981)",
+   "erreichbarkeit": "Print / Bibliotheksexemplar",
+   "deckt_ab": "die RGK-Registratur 1902–1956 item-tief — inkl. RLK-Altregistratur"
+  },
+  {
+   "notiz": "Erschließungsplan – RLK-Bestand der RGK",
+   "findmittel": "[[Kalliope-Verbund",
+   "erreichbarkeit": "Kalliope]] (SRU/CQL, ISIL DE-F36)",
+   "deckt_ab": "token-frei; ead.repository.isil=DE-F36 → 4203 RGK-Datensätze"
+  },
+  {
+   "notiz": "Erschließungsplan – RLK-Bestand der RGK",
+   "findmittel": "Propylaeum-VITAE",
+   "erreichbarkeit": "Personen-IDs via Wikidata P12176 token-frei",
+   "deckt_ab": "biografische Aggregation, kein Archiv-Item-Findmittel"
+  },
+  {
+   "notiz": "Erschließungsplan – RLK-Bestand der RGK",
+   "findmittel": "Lesesaal RGK",
+   "erreichbarkeit": "physisch, Mo/Mi/Do n. V. (archiv.rgk@dainst.de)",
+   "deckt_ab": "die einzige Ebene mit Item-/Signaturzugriff"
+  },
+  {
+   "notiz": "Landesdenkmalämter & Ortsakten",
+   "findmittel": "LAD Baden-Württemberg",
+   "erreichbarkeit": "ADABweb (intern, ~82.000 Bodendenkmäler)",
+   "deckt_ab": "Kastelle am obergermanischen Limes BW"
+  },
+  {
+   "notiz": "Landesdenkmalämter & Ortsakten",
+   "findmittel": "BLfD Bayern",
+   "erreichbarkeit": "Fachdatenbank (intern)",
+   "deckt_ab": "Raetischer Limes Bayern"
+  },
+  {
+   "notiz": "Landesdenkmalämter & Ortsakten",
+   "findmittel": "hessenARCHÄOLOGIE (LfDH)",
+   "erreichbarkeit": "auf Anfrage",
+   "deckt_ab": "Hessischer Limesabschnitt"
+  },
+  {
+   "notiz": "Landesdenkmalämter & Ortsakten",
+   "findmittel": "GDKE Rheinland-Pfalz (Landesarchäologie)",
+   "erreichbarkeit": "Ortsakten auf Anfrage",
+   "deckt_ab": "Niedergermanische Anschlussabschnitte"
+  }
+ ],
+ "nachlaesse": [
+  {
+   "person": "Carl Schuchhardt",
+   "verwahrort": "Stadtarchiv Hannover",
+   "gnd": "120459930",
+   "rolle": "Archäologe"
+  },
+  {
+   "person": "Christian Ernst Hanßelmann",
+   "verwahrort": "Münchner Stadtbibliothek / Monacensia",
+   "gnd": "118979221",
+   "rolle": "Pionier der wissenschaftlichen Limesforschung"
+  },
+  {
+   "person": "Eduard Anthes",
+   "verwahrort": "Korrespondenzakte der RGK-Altregistratur (iDAI.archives, DAI-RGK-A 306)",
+   "gnd": "116312696",
+   "rolle": "Prähistoriker"
+  },
+  {
+   "person": "Eduard Paulus",
+   "verwahrort": "Deutsches Literaturarchiv Marbach, Archiv",
+   "gnd": "116066342",
+   "rolle": "Württembergischer Vertreter bei der Heidelberger Konferenz 1890"
+  },
+  {
+   "person": "Emil Ritterling",
+   "verwahrort": "Archiv der Römisch-Germanischen Kommission (RGK)",
+   "gnd": "116573589",
+   "rolle": "Streckenkommissar der RLK, ORL-Autor"
+  },
+  {
+   "person": "Ernst Fabricius",
+   "verwahrort": "Archiv der Römisch-Germanischen Kommission (RGK)",
+   "gnd": "116369957",
+   "rolle": "Archäologischer Dirigent der RLK ab 1902; Haupt-Herausgeber des ORL"
+  },
+  {
+   "person": "Ernst von Herzog",
+   "verwahrort": "Deutsches Literaturarchiv Marbach, Archiv",
+   "gnd": "116762314",
+   "rolle": "Streckenkommissar Württemberg der RLK 1892–1911"
+  },
+  {
+   "person": "Eugen Nägele",
+   "verwahrort": "Korrespondenz im RGK-Archiv (iDAI.archives, DAI-RGK-A 80: Briefwechsel mit Friedrich Drexel, 1928)",
+   "gnd": "101044917",
+   "rolle": "1895 von der RLK zum Streckenkommissar auf württembergischem Boden berufen; württembergischer Gymnasialprofessor und Albvereins-Vorsitzender — Musterfall des Rekrutierungspools ‚höherer Lehrerstand + Vereinsanbindung‘"
+  },
+  {
+   "person": "Felix Hettner",
+   "verwahrort": "Universitäts- und Landesbibliothek Bonn",
+   "gnd": "116779209",
+   "rolle": "Erster archäologischer Dirigent der RLK 1892–1902"
+  },
+  {
+   "person": "Franz Oelmann",
+   "verwahrort": "Korrespondenzakten der RGK-Altregistratur (iDAI.archives, DAI-RGK-A 969 u. a.)",
+   "gnd": "117104930",
+   "rolle": "Bearbeiter der Niederbieber-Keramik (1914) — der keramische Fundapparat zu Ritterlings ORL-Kastell 1a; RGK-Mitglied 1931–1940, ab 1930 Direktor des Rheinischen Landesmuseums Bonn"
+  },
+  {
+   "person": "Friedrich Althoff",
+   "verwahrort": "Staatsbibliothek zu Berlin. Handschriftenabteilung",
+   "gnd": "118644890",
+   "rolle": "Preußischer Wissenschaftsorganisator, RLK-Mitglied ab 1892"
+  },
+  {
+   "person": "Friedrich Drexel",
+   "verwahrort": "Römisch-Germanische Kommission (RGK-Archiv, iDAI.archives)",
+   "gnd": "116219866",
+   "rolle": "ORL-Autor, Direktor der RGK"
+  },
+  {
+   "person": "Friedrich Kofler",
+   "verwahrort": "Leibniz-Zentrum für Archäologie (LEIZA/RGZM), Mainz (Korrespondenz, LLA)",
+   "gnd": "117530824",
+   "rolle": "Hessischer Streckenkommissar der Reichs-Limeskommission"
+  },
+  {
+   "person": "Friedrich Leonhard",
+   "verwahrort": "Korrespondenz (1918–1925) im RGK-Archiv (iDAI.archives, DAI-RGK-A 843 u. DAI-RGK-A 64); Personalakte HStA Stuttgart (J 191)",
+   "gnd": "1012283615",
+   "rolle": "ORL-Autor und Mitredaktor; RLK-Streckenkommissar ab 1904; 'rechte Hand' von Fabricius in Freiburg"
+  },
+  {
+   "person": "Friedrich Ohlenschlager",
+   "verwahrort": "Bayerische Staatsbibliothek",
+   "gnd": "117111368",
+   "rolle": "RLK-Mitglied für Bayern; Erforscher des bayerischen Limes"
+  },
+  {
+   "person": "Friedrich Winkelmann",
+   "verwahrort": "Nachlass in der ehem. Staats- und Seminarbibliothek Eichstätt (Kalliope DE-611-BF-18901); Korrespondenzakte im RGK-Archiv (iDAI.archives, DAI-RGK-A 1305)",
+   "gnd": "117414689",
+   "rolle": "Lokaler Streckenkommissar der RLK am Raetischen Limes (1892–1902); Gutsherr und autodidaktischer Ausgräber von Pfünz und Böhming, ORL-Autor"
+  },
+  {
+   "person": "Georg Loeschcke",
+   "verwahrort": "Universitäts- und Landesbibliothek Bonn",
+   "gnd": "117155896",
+   "rolle": "Archäologe"
+  },
+  {
+   "person": "Georg Wolff",
+   "verwahrort": "Korrespondenzakten der RGK-Altregistratur (iDAI.archives, DAI-RGK-A 1316, 38)",
+   "gnd": "117440647",
+   "rolle": "Streckenkommissar der RLK, Wetterau-Forscher, ORL-Autor"
+  },
+  {
+   "person": "Hans Lehner",
+   "verwahrort": "Korrespondenzakte der RGK-Altregistratur (iDAI.archives, DAI-RGK-A 840; 1919–1938)",
+   "gnd": "116874279",
+   "rolle": "Streckenkommissar der RLK im Taunus; Autor der ORL-Lieferung »Das Kastell Kemel« (Abt. B Nr. 7, 1901); Direktor des Provinzialmuseums Bonn"
+  },
+  {
+   "person": "Heinrich Eidam",
+   "verwahrort": "Korrespondenz im RGK-Archiv (iDAI.archives, DAI-RGK-A 518: Korrespondenzakte 1929–1934; heute Leibniz-Zentrum für Archäologie)",
+   "gnd": "117497908",
+   "rolle": "Streckenkommissar der RLK für den raetischen Limes (Bereich Gunzenhausen–Weißenburg)"
+  },
+  {
+   "person": "Heinrich von Brunn",
+   "verwahrort": "Bayerische Staatsbibliothek",
+   "gnd": "116777273",
+   "rolle": "Stellvertretender Vorsitzender der RLK; Mommsens Schlüsselkontakt für die Heidelberger Konferenz 1890"
+  },
+  {
+   "person": "Karl August von Cohausen",
+   "verwahrort": "Freies Deutsches Hochstift - Frankfurter Goethe-Museum",
+   "gnd": "116627824",
+   "rolle": "Pionier der Limesforschung; aus Heidelberg 1890 ausgeschlossen, 1892 aber zur Berliner Gründungskonferenz einberufen — kein ständiges RLK-Mitglied"
+  },
+  {
+   "person": "Karl Popp",
+   "verwahrort": "kein geschlossener Nachlass; Einzelbrief (1893), Signatur LLA 013/037",
+   "gnd": "116268166",
+   "rolle": "Bayerisches Mitglied im geschäftsführenden Ausschuss der RLK ab 1892; unterlegener Mitbewerber um den militärischen Dirigenten-Posten"
+  },
+  {
+   "person": "Karl Schumacher",
+   "verwahrort": "Universitätsbibliothek Heidelberg",
+   "gnd": "118795597",
+   "rolle": "Streckenkommissar Baden der RLK; erster Direktor des RGZM Mainz"
+  },
+  {
+   "person": "Karl Zangemeister",
+   "verwahrort": "Universitätsbibliothek Heidelberg",
+   "gnd": "116964022",
+   "rolle": "Leiter des geschäftsführenden Ausschusses der RLK; Archivar und Epigraphiker"
+  },
+  {
+   "person": "Karl von Veith",
+   "verwahrort": "kein geschlossener Gelehrten-Nachlass; annotierte Fachbibliothek (~200 Bde., mit eigenhändigen Randbemerkungen/Kartenskizzen) als Vermächtnis an den Verein von Altertumsfreunden im Rheinlande (Bonn); Briefe im Nachlass Anton Birlinger (WLB Stuttgart)",
+   "gnd": "101423837",
+   "rolle": "Generalmajor; Vertreter des preußischen Generalstabs bei der Gründung der RLK"
+  },
+  {
+   "person": "Kurt Stade",
+   "verwahrort": "Korrespondenz im RGK-Archiv (iDAI.archives, DAI-RGK-A 1183, 2620, 2045, 80, 873)",
+   "gnd": "11719493X",
+   "rolle": "Assistent der RLK (1928–1929) und Zweiter Direktor der RGK (1935–1937); Althistoriker"
+  },
+  {
+   "person": "Louis Jacobi",
+   "verwahrort": "Staatsbibliothek zu Berlin. Handschriftenabteilung",
+   "gnd": "11703861X",
+   "rolle": "Streckenkommissar Taunus; Erforschung und Rekonstruktion des Kastells Saalburg"
+  },
+  {
+   "person": "Ludwig Pallat",
+   "verwahrort": "Niedersächsische Staats- und Universitätsbibliothek Göttingen",
+   "gnd": "118739042",
+   "rolle": "Streckenkommissar Wiesbaden der RLK; später preußischer Bildungsreformer"
+  },
+  {
+   "person": "Oscar von Sarwey",
+   "verwahrort": "kein geschlossener Gelehrten-Nachlass; württ. Militärpersonalakten (HStA Stuttgart M 430/1 Bü 2292, M 744 Bü 1; StA Sigmaringen FAS DS 169 T 1 Nr. 106–107), Einzelbriefe in fremden Nachlässen (Kalliope)",
+   "gnd": "116810068",
+   "rolle": "Militärischer Dirigent der RLK ab 1892; Mitherausgeber des ORL"
+  },
+  {
+   "person": "Paul Wilski",
+   "verwahrort": "Überlieferung im RGK-Archiv (iDAI.archives, DE-DAI-RGK-A 0027)",
+   "gnd": "117396508",
+   "rolle": "Geodät/Markscheider; lieferte als professioneller Vermesser die trigonometrisch-topographische Bauaufnahme für den ORL (Kastell Urspring, Nr. 66a) — die zivil-technische Seite des Limes als Vermessungsproblem"
+  },
+  {
+   "person": "Rudolf Virchow",
+   "verwahrort": "Staatsbibliothek zu Berlin. Handschriftenabteilung",
+   "gnd": "118627198",
+   "rolle": "Parlamentarischer Fürsprecher der RLK-Finanzierung 1892; Organisator der deutschen Anthropologie/Urgeschichte (DGAEU/BGAEU)"
+  },
+  {
+   "person": "Theodor Mommsen",
+   "verwahrort": "Deutsches Literaturarchiv Marbach, Archiv",
+   "gnd": "118583425",
+   "rolle": "Vorsitzender der Reichs-Limeskommission"
+  },
+  {
+   "person": "Wilhelm Schleiermacher",
+   "verwahrort": "RGK-Archiv (iDAI.archives, DAI-RGK-A 1137, DAI-RGK-A 1993, DAI-RGK-A 870, DAI-RGK-A 873)",
+   "gnd": "117323675",
+   "rolle": "RLK-Assistent (ab 1931), Saalburg-Leiter (1935–38), Zweiter Direktor der RGK (1938–66)"
+  },
+  {
+   "person": "Wilhelm Soldan",
+   "verwahrort": "Unterlagen/Korrespondenz aus dem RGZM-Gesamtvorstand im Archiv des Leibniz-Zentrums für Archäologie (vormals RGZM), Signatur LLJ",
+   "gnd": "136159877",
+   "rolle": "Hessisches RLK-Mitglied, Streckenbearbeiter für Hessen und Rheinprovinz"
+  }
+ ],
+ "portale": [
+  {
+   "name": "iDAI.archives",
+   "url": "https://archives.dainst.org",
+   "reichweite": "Findmittel des DAI, darunter der RLK-Bestand der Römisch-Germanischen Kommission"
+  },
+  {
+   "name": "Archivportal-D / Deutsche Digitale Bibliothek",
+   "url": "https://www.archivportal-d.de",
+   "reichweite": "Verbundsuche über die deutschen Staats- und Landesarchive"
+  },
+  {
+   "name": "Kalliope-Verbund",
+   "url": "https://kalliope-verbund.info",
+   "reichweite": "Nachlässe und Autographen; Grundlage der Korrespondenz-Auswertung dieses Projekts"
+  },
+  {
+   "name": "Bundesarchiv invenio",
+   "url": "https://invenio.bundesarchiv.de",
+   "reichweite": "Reichsakten (R 1501 Reichsministerium des Innern) und Militärarchiv Freiburg"
+  },
+  {
+   "name": "Arcinsys Hessen",
+   "url": "https://arcinsys.hessen.de",
+   "reichweite": "hessische Staatsarchive — Ortsakten und Kultusministerialüberlieferung"
+  }
+ ],
+ "bilanz": {
+  "bestandsnotizen": 12,
+  "desiderate": 4,
+  "nachlaesse": 35,
+  "arbeitsliste": 5,
+  "zugangslage": 15,
+  "signaturen": 28
+ }
+}
