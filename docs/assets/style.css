@@ -141,3 +141,38 @@ table.reg.pers .alias{clear:both;color:var(--muted);font-size:.8rem;font-style:i
 .toc li.heft b{font-size:.98em;letter-spacing:.02em}
 .toc li.heft .muted{font-weight:600;color:var(--muted,#8a8375)}
 .idxtoc li.heft{margin:.6em 0 .15em}
+
+/* Sortierbare Registertabellen (assets/tables.js) */
+table.reg th.srt{cursor:pointer;user-select:none;white-space:nowrap}
+table.reg th.srt:hover{color:var(--fg)}
+table.reg th.srt::after{content:"⇅";opacity:.35;font-size:.8em;margin-left:.3em}
+table.reg th.srt[data-srt="auf"]::after{content:"▲";opacity:.9}
+table.reg th.srt[data-srt="ab"]::after{content:"▼";opacity:.9}
+.tfilter{display:flex;gap:.6rem;align-items:center;margin:.6rem 0 .3rem}
+.tfilter input{flex:1 1 16rem;max-width:24rem;padding:.35rem .5rem;border:1px solid var(--line);border-radius:4px;font:inherit}
+.tfilter span{color:var(--muted);font-size:.85rem;white-space:nowrap}
+table.reg.fund td.ktx{max-width:34rem;font-size:.82rem;line-height:1.35}
+table.reg tr.fehlt td{opacity:.7;font-style:italic}
+
+/* Netzansicht (assets/netz.js, Layout aus build/graph.py) */
+.netzbox{border:1px solid var(--line);border-radius:6px;overflow:hidden;margin:.8rem 0;background:var(--bg)}
+#netz{width:100%;height:min(78vh,760px);display:block;cursor:grab;touch-action:none}
+#netz:active{cursor:grabbing}
+#netz .kante{stroke:var(--line);opacity:.55}
+#netz .kante.aktiv{stroke:#b5560f;opacity:.95}
+#netz .knoten{cursor:pointer}
+#netz .knoten.blass{opacity:.13}
+#netz .knoten.treffer circle,#netz .knoten.treffer rect{stroke:#e0c200;stroke-width:3}
+#netz .nlabel{font-size:11px;fill:var(--fg);paint-order:stroke;stroke:var(--bg);stroke-width:3px;stroke-linejoin:round}
+#netz a .nlabel{text-decoration:underline}
+.netzsteuer{display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;margin:.5rem 0}
+.netzsteuer input[type=search]{padding:.35rem .5rem;border:1px solid var(--line);border-radius:4px;font:inherit}
+.netz-typ{display:flex;gap:.7rem;flex-wrap:wrap;font-size:.85rem}
+.netz-typ label{display:inline-flex;align-items:center;gap:.25rem;white-space:nowrap}
+.netz-typ .sw{width:.7rem;height:.7rem;border-radius:2px;display:inline-block}
+#netz .knoten.klein .nlabel{opacity:0;transition:opacity .12s}
+#netz .knoten.klein:hover .nlabel{opacity:1}
+table.reg.nerreg tr[id]{scroll-margin-top:3.8rem}
+table.reg.nerreg tr[id]:target{background:#fff8e6;outline:2px solid #e0c200}
+table.reg.nerreg td.pgs{font-size:.82rem;max-width:34rem}
+table.reg.nerreg tr.lc td:first-child{color:var(--muted)}

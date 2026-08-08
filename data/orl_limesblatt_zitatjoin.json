@@ -1,0 +1,320 @@
+{
+ "_methode": "identischer INSCR-Regex auf beiden Korpora (Symmetrie); Fraktur-Gegenprobe C.J.L=0",
+ "limesblatt": {
+  "belege": 40,
+  "eindeutig": 38,
+  "woerter": 267152,
+  "dichte_pro_1000": 0.15
+ },
+ "orl": {
+  "belege": 2038,
+  "eindeutig": 842,
+  "dichte_pro_1000": 0.85
+ },
+ "join": {
+  "in_beiden": 12,
+  "nur_limesblatt": 26,
+  "beide_liste": [
+   "Brambach 1",
+   "Brambach 1728",
+   "Brambach 1729",
+   "Brambach 1732",
+   "Brambach 2",
+   "Brambach 3",
+   "CIL III 728",
+   "CIL VII 446",
+   "CIL VIII 9059",
+   "CIL VIII 9906",
+   "CIL XI 3104",
+   "CIRh 1444"
+  ],
+  "nur_lb_liste": [
+   "Brambach 0",
+   "Brambach 134",
+   "Brambach 1467",
+   "Brambach 1752",
+   "Brambach 8",
+   "CIL II 4188",
+   "CIL II 4203",
+   "CIL III 388",
+   "CIL III 6570",
+   "CIL VI 1463",
+   "CIL VIII 1030",
+   "CIL VIII 1406",
+   "CIL XII 2618",
+   "CIL XII 671",
+   "CIL XIII 1584",
+   "CIRh 1030",
+   "CIRh 1237",
+   "CIRh 1330",
+   "CIRh 1377",
+   "CIRh 1617",
+   "CIRh 1739",
+   "CIRh 1751",
+   "CIRh 1757",
+   "CIRh 511",
+   "CIRh 7",
+   "CIRh 991"
+  ]
+ },
+ "gegenrichtung_orl_zitiert_limesblatt": {
+  "echte_verweise_mit_stelle": 1778,
+  "davon_spalte": 1578,
+  "davon_seite": 200,
+  "token_limesbl_v1": 1946,
+  "_lesart": "limesblatt_refs.csv zählt nur Verweise MIT Stellenangabe (deep-link-fähig); die v1-Tokenzählung (1946) schloss auch Nennungen ohne Stelle ein — beide Maße sind komplementär."
+ },
+ "selbstnennung_streckenkommissar": {
+  "limesblatt": {
+   "n": 65,
+   "pro_1000": 0.24
+  },
+  "orl": {
+   "n": 1923,
+   "pro_1000": 0.8
+  },
+  "faktor": 3.3
+ },
+ "lb_belege": [
+  {
+   "zitat": "CIL VIII 1406",
+   "slug": "limesblatt1892_1893",
+   "seite": "005",
+   "kontext": "iederkehrend zum Beispiel auf den afrikanischen Inschriften CIL VIII 1406 (vom J. 229), 1429, 1484. Keine Schwier"
+  },
+  {
+   "zitat": "CIL XI 3104",
+   "slug": "limesblatt1892_1893",
+   "seite": "005",
+   "kontext": "nt erweckte, ob es nicht in dieser Truppe statt von Faleri (CIL XI 3104) zeigt hat, dass eine solche Abteilung,"
+  },
+  {
+   "zitat": "CIRh 1751",
+   "slug": "limesblatt1892_1893",
+   "seite": "007",
+   "kontext": "ffenburger Inschriften des n. Brit. et explorat. Nemaning. (CIRh. 1751) und des n. Brit. N[e]man[in]g. (CIRh."
+  },
+  {
+   "zitat": "CIRh 1757",
+   "slug": "limesblatt1892_1893",
+   "seite": "007",
+   "kontext": "rat. Nemaning. (CIRh. 1751) und des n. Brit. N[e]man[in]g. (CIRh. 1757) die erste nach diesem Muster aufzulöse"
+  },
+  {
+   "zitat": "CIL VIII 9906",
+   "slug": "limesblatt1892_1893",
+   "seite": "007",
+   "kontext": "torum Pomariensium, stationiert in Pomarium in Mauretanien (CIL VIII 9906, 9907) unter Alexander und Gordian. 2."
+  },
+  {
+   "zitat": "CIRh 1237",
+   "slug": "limesblatt1892_1893",
+   "seite": "007",
+   "kontext": "lexander und Gordian. 2. numerus exploratorum Divitiensium (CIRh. 1237 unter Caracalla); exploratores Divitien"
+  },
+  {
+   "zitat": "CIRh 991",
+   "slug": "limesblatt1892_1893",
+   "seite": "007",
+   "kontext": "um (CIRh. 1237 unter Caracalla); exploratores Divitiensies (CIRh. 991) beide aus Mainz, sicher von Divitia, D"
+  },
+  {
+   "zitat": "CIL VIII 9059",
+   "slug": "limesblatt1892_1893",
+   "seite": "007",
+   "kontext": "ensis G(ermaniae) s(uperionis) der mauretanischen Inschrift CIL VIII 9059 und der numerus Divitiensium in der thr"
+  },
+  {
+   "zitat": "CIL III 728",
+   "slug": "limesblatt1892_1893",
+   "seite": "007",
+   "kontext": "L VIII 9059 und der numerus Divitiensium in der thrakischen CIL III 728—7327 werden damit identisch sein. 3. nu"
+  },
+  {
+   "zitat": "CIL VIII 1030",
+   "slug": "limesblatt1892_1893",
+   "seite": "007",
+   "kontext": "amit identisch sein. 3. numerus exploratorum Bremen(ensium) CIL VIII 1030 und 1037 unter Gordian aus Bremenium am"
+  },
+  {
+   "zitat": "CIRh 7",
+   "slug": "limesblatt1892_1893",
+   "seite": "007",
+   "kontext": "tischen Hadrianswall. 4. numerus expl(oratorum) Bat(avorum) CIRh. 7 unter Caracalla aus Romburg. Die oben e"
+  },
+  {
+   "zitat": "CIRh 1739",
+   "slug": "limesblatt1892_1893",
+   "seite": "007",
+   "kontext": "Zweifel identisch mit dem nach der Miltenberger Inschrift (CIRh. 1739) vom J. 212 daselbst stationierten n(um"
+  },
+  {
+   "zitat": "CIL XIII 1584",
+   "slug": "limesblatt1892_1893",
+   "seite": "017",
+   "kontext": "tgemeinden auf und wenn die Nennung eines solchen für Köln (CIL XIII 1584) und vielleicht für Xanten (das. VIII 2"
+  },
+  {
+   "zitat": "CIL VI 1463",
+   "slug": "limesblatt1892_1893",
+   "seite": "017",
+   "kontext": "ium XXIII[I] Vasconum et Vardulorum in einer stadtrömischen CIL VI 1463; den Tribun der africanischen Legion, w"
+  },
+  {
+   "zitat": "CIL III 388",
+   "slug": "limesblatt1892_1893",
+   "seite": "017",
+   "kontext": "eo censae sunt, in seiner Heimat Troas eine Statue setzten (CIL III 388); einen andern Offizier, welcher censum"
+  },
+  {
+   "zitat": "CIL II 4188",
+   "slug": "limesblatt1892_1893",
+   "seite": "017",
+   "kontext": "dern einiger Distrikte derselben, auf dem Stein von Tarraco CIL II 4188 und ähnlich auf dem von Arles CIL XII 6"
+  },
+  {
+   "zitat": "CIL XII 671",
+   "slug": "limesblatt1892_1893",
+   "seite": "017",
+   "kontext": "Stein von Tarraco CIL II 4188 und ähnlich auf dem von Arles CIL XII 671. Dass die in diesen Inschriften aufgefü"
+  },
+  {
+   "zitat": "CIL III 6570",
+   "slug": "limesblatt1892_1893",
+   "seite": "017",
+   "kontext": "angehörige Inschriften, die von Ur-Memmingen bei Nördlingen CIL III 6570 vom J. 225 und die Mainzer in Jakob Kel"
+  },
+  {
+   "zitat": "CIRh 1330",
+   "slug": "limesblatt1892_1893",
+   "seite": "017",
+   "kontext": "ni coloniae, auch auf germanischen Inschriften sich findet (CIRh. 1330, 1341): aber nirgends erscheint die For"
+  },
+  {
+   "zitat": "CIRh 1444",
+   "slug": "limesblatt1892_1893",
+   "seite": "017",
+   "kontext": "biet gegeben haben; die bekannte Inschrift von Heddernheim (CIRh. 1444) der c(ives) R(omani) et Tannenses ex o"
+  },
+  {
+   "zitat": "CIL XII 2618",
+   "slug": "limesblatt1892_1893",
+   "seite": "017",
+   "kontext": "die Abkürzung C·C·R zum Beispiel auf den Steinen von Genf (CIL XII 2618) und Bourges (Hübner exempla n. 193) hi"
+  },
+  {
+   "zitat": "CIL II 4203",
+   "slug": "limesblatt1892_1893",
+   "seite": "023",
+   "kontext": "gels us weggelassen. Die cohors I Biturigum ist bekannt aus CIL II 4203 und dem Diplom von Mainz vom J. 90 (Eph"
+  },
+  {
+   "zitat": "CIRh 1617",
+   "slug": "limesblatt1892_1893",
+   "seite": "023",
+   "kontext": "und den Schriftresten hat dann wahrscheinlich nur cos (wie CIRh. 1617), nicht II cos dagestanden. II. Ziegels"
+  },
+  {
+   "zitat": "CIRh 511",
+   "slug": "limesblatt1892_1893",
+   "seite": "023",
+   "kontext": "der leg. XXI rapax angehört; der Fehler XX findet sich auch CIRh. 511, c, 4 (Bonn) und 1501, c (Nied). — Dies"
+  },
+  {
+   "zitat": "CIRh 1377",
+   "slug": "limesblatt1892_1893",
+   "seite": "023",
+   "kontext": "ich in die Zeit von Domitian. Nr. 2. Derselbe Stempel z. B. CIRh. 1377 g, 36 (Mainz); die Figur war die eines"
+  },
+  {
+   "zitat": "CIRh 511",
+   "slug": "limesblatt1892_1893",
+   "seite": "023",
+   "kontext": "Von einem ligierten E ist aber nichts zu sehen. Vgl. z. B. CIRh. 511, c, 3 R(a)P(ax). Diese Cohorte stand in"
+  },
+  {
+   "zitat": "CIRh 1030",
+   "slug": "limesblatt1892_1893",
+   "seite": "023",
+   "kontext": "511, c, 3 R(a)P(ax). Diese Cohorte stand in Obergermanien: CIRh. 1030 und 1101; vgl. Mommsen, Ephem. V p. 241"
+  },
+  {
+   "zitat": "Brambach 1728",
+   "slug": "limesblatt1892_1893",
+   "seite": "067",
+   "kontext": "n zu der schon früher in der „Bürg\" aufgefundenen Inschrift Brambach 1728 identisches Exemplar, sowie zwei Ziegel"
+  },
+  {
+   "zitat": "Brambach 1467",
+   "slug": "limesblatt1893_1894",
+   "seite": "241",
+   "kontext": "he bis jetzt nur aus drei Inschriften aus Heddernheim, vgl. Brambach 1467, 1480, 1496, bekannt ist. Münzen wurden"
+  },
+  {
+   "zitat": "Brambach 134",
+   "slug": "limesblatt1894_1895",
+   "seite": "341",
+   "kontext": "burken (Baden). [Mümling-Neckarlinie]. Westkastell (L. 161, Br. 134,5 m). Nachdem schon im Herbst 1892 die"
+  },
+  {
+   "zitat": "Brambach 8",
+   "slug": "limesblatt1894_1895",
+   "seite": "341",
+   "kontext": "gebrochen. Von den Thoren ist nur die praetoria zweiteilig (Br. 8,95); der südliche Turm zeigt einige mäc"
+  },
+  {
+   "zitat": "Brambach 2",
+   "slug": "limesblatt1894_1895",
+   "seite": "449",
+   "kontext": "ie sog. einseitiges Gefäll, indem die eigentliche Fahrbahn (Br. 2—4,70 m) horizontal liegen würde und an"
+  },
+  {
+   "zitat": "Brambach 1729",
+   "slug": "limesblatt1897",
+   "seite": "667",
+   "kontext": "en ist, wurde bereits im vorigen Jahrhundert gefunden (vgl. Brambach 1729 und d. Obergerm.-rät. Limes, Kastell Os"
+  },
+  {
+   "zitat": "Brambach 1752",
+   "slug": "limesblatt1897",
+   "seite": "667",
+   "kontext": "errichtet wurde, worauf der Beiname Commoda hinweist (vgl. Brambach 1752), während das ältere Kastell oder Teile"
+  },
+  {
+   "zitat": "Brambach 0",
+   "slug": "limesblatt1897_1898",
+   "seite": "695",
+   "kontext": "und hinter der porta sinistra gefunden worden ist (H. 0,13, Br. 0,255, Buchstabenh. 0,035 In den von Thor"
+  },
+  {
+   "zitat": "Brambach 1732",
+   "slug": "limesblatt1897_1898",
+   "seite": "761",
+   "kontext": "Statthalter schon durch die Gross-Krotzenburger Inschrift (Brambach 1732, Bonner Jahrbücher 1873 S. 141) bekannt"
+  },
+  {
+   "zitat": "Brambach 3",
+   "slug": "limesblatt1897_1898",
+   "seite": "771",
+   "kontext": "llum fostgestellt, die porta sinistra teilweise aufgedeckt (Br. 3,75), an der Südseite längs des Fusses d"
+  },
+  {
+   "zitat": "Brambach 1",
+   "slug": "limesblatt1897_1898",
+   "seite": "773",
+   "kontext": "g. Pflaster) ein scharfes Eck gefunden. Diese zweite Seite (Br. 1,80 m) zieht nun c. 50 m weit unter dies"
+  },
+  {
+   "zitat": "Brambach 1",
+   "slug": "limesblatt1897_1898",
+   "seite": "773",
+   "kontext": "nneren Böschung ausgeschachtet. Die dritte Seite (Südseite, Br. 1,90) ergab sich unter dem Feldweg, welch"
+  },
+  {
+   "zitat": "CIL VII 446",
+   "slug": "limesblatt1898_1902",
+   "seite": "829",
+   "kontext": "z. B. die Inschrift des britannischen Kastells Lanchester (CIL. VII, 446), nach welcher Kaiser Gordian „armament"
+  }
+ ]
+}

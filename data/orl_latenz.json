@@ -1,0 +1,6489 @@
+{
+ "_methode": "Latenz = Jahr des zitierenden ORL-Faszikels (Merten/kuratiert/enumcron, NUR harte Jahre) minus Jahr der zitierten Limesblatt-Spalte (Heftdatum aus den IIIF-structures). Kombination aus hefte.json x orl_limesblatt_links x orl_band_lieferung.",
+ "_trivialitaets_einwand": "Spaete Baende KOENNEN nur Altes zitieren (LB endete 1903). Traeger des Befunds sind deshalb Dichte (x8,6, s. orl_binnenverweise) und Streubreite — nicht die Latenz allein.",
+ "nullprobe_negative_latenzen": 0,
+ "datierbar": {
+  "verweise": 643,
+  "von": 1751,
+  "htids_mit_jahr": 33,
+  "htids_gesamt": 78
+ },
+ "latenz": {
+  "gesamt": {
+   "n": 643,
+   "median": 36,
+   "q1": 30,
+   "q3": 39,
+   "min": 1,
+   "max": 44
+  },
+  "zitierende_frueh_bis_1904": {
+   "n": 68,
+   "median": 6.0,
+   "q1": 3,
+   "q3": 8,
+   "min": 1,
+   "max": 10
+  },
+  "zitierende_spaet_ab_1914": {
+   "n": 575,
+   "median": 37,
+   "q1": 33,
+   "q3": 40,
+   "min": 27,
+   "max": 44
+  }
+ },
+ "streubreite_lb_baende": {
+  "frueh": {
+   "n_faszikel": 8,
+   "median": 4.0
+  },
+  "spaet": {
+   "n_faszikel": 11,
+   "median": 6
+  }
+ },
+ "spaete_zitieren_lb_baende": {
+  "1": 78,
+  "2": 111,
+  "3": 80,
+  "4": 58,
+  "5": 81,
+  "6": 83,
+  "7": 63,
+  "8": 21
+ },
+ "verweise": [
+  {
+   "latenz": 2,
+   "orl_jahr": 1895,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811180",
+   "orl_label": "v.40 pt.2 1895",
+   "spalte": 68,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 3,
+   "orl_jahr": 1895,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811180",
+   "orl_label": "v.40 pt.2 1895",
+   "spalte": 42,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1926,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 442,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 464,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 471,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 467,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 471,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 478,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 467,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 470,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 29,
+   "orl_jahr": 1926,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 698,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 29,
+   "orl_jahr": 1926,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 698,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 470,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 470,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 470,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 470,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 469,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 467,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 467,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 476,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 469,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 469,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1926,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 443,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 478,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 551,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 551,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 550,
+   "bericht_nr": 4
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1926,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 552,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 28,
+   "orl_jahr": 1926,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 772,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 29,
+   "orl_jahr": 1926,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 653,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1926,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 451,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1926,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 159,
+   "bericht_nr": 1
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1926,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 160,
+   "bericht_nr": 1
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1926,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 160,
+   "bericht_nr": 1
+  },
+  {
+   "latenz": 28,
+   "orl_jahr": 1926,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 772,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1926,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 397,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1926,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 451,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1926,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 397,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1926,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 451,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 27,
+   "orl_jahr": 1926,
+   "lb_jahr": 1899,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 851,
+   "bericht_nr": 7
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1926,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 397,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1926,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811222",
+   "orl_label": "no.44 1926",
+   "spalte": 449,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1928,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 800,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1928,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 800,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 32,
+   "orl_jahr": 1928,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 557,
+   "bericht_nr": 4
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1928,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 596,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1928,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 399,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1928,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 399,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1928,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 400,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 32,
+   "orl_jahr": 1928,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 559,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1928,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 703,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1928,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 404,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1928,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 403,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1928,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 405,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1928,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 403,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1928,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 408,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1928,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 405,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1928,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 804,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1928,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 804,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1928,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 805,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1928,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 804,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1928,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 403,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1928,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 801,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1928,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 403,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1928,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 800,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1928,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 403,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 32,
+   "orl_jahr": 1928,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 554,
+   "bericht_nr": 4
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1928,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 806,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1928,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 801,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1928,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 804,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1928,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 408,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1928,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 675,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1928,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 676,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1928,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 676,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1928,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 676,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1928,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 707,
+   "bericht_nr": 6
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1928,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 372,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1928,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 373,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1928,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 677,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1928,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 373,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1928,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 373,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1928,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 677,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1928,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 374,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1928,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 373,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1928,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 374,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1928,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 374,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1928,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 678,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1928,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 374,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1928,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 375,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1928,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 375,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1928,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 375,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1928,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 376,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1928,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 678,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1928,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 799,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1928,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 709,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1928,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 709,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1928,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 709,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 31,
+   "orl_jahr": 1928,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 709,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1928,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 408,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1928,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 56,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 32,
+   "orl_jahr": 1928,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811230",
+   "orl_label": "no.45 1928",
+   "spalte": 557,
+   "bericht_nr": 4
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 47,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1930,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 302,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1930,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 483,
+   "bericht_nr": 4
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1930,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 553,
+   "bericht_nr": 4
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 62,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1930,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 388,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1930,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 553,
+   "bericht_nr": 4
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1930,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 303,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 51,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 51,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 47,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1930,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 311,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1930,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 308,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 48,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1930,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 302,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1930,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 311,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1930,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 307,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 48,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 48,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1930,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 311,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1930,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 309,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 49,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 49,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1930,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 613,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 49,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1930,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 557,
+   "bericht_nr": 4
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 49,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 49,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1930,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 310,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1930,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 483,
+   "bericht_nr": 4
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1930,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 483,
+   "bericht_nr": 4
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1930,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 310,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 51,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 51,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1930,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 182,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1930,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 183,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1930,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 312,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 52,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 52,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 52,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 52,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 53,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 54,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 54,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1930,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 122,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1930,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 596,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 55,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1930,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 310,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1930,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 122,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1930,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 705,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1930,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 124,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1930,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 705,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1930,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 124,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1930,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 124,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1930,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 124,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1930,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 126,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1930,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 705,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 61,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1930,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 126,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 62,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1930,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 56,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1930,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811255",
+   "orl_label": "no.47 1930",
+   "spalte": 120,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 336,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 899,
+   "bericht_nr": 7
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 740,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 823,
+   "bericht_nr": 7
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 611,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 902,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 336,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 358,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1931,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 178,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1931,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 178,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1931,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 179,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1931,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 145,
+   "bericht_nr": 1
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1931,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 151,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1931,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 177,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1931,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 177,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1931,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 176,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1931,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 176,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1931,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 175,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1931,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 40,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1931,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 39,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1931,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 39,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1931,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 39,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1931,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 38,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 33,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1931,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 37,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 254,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1931,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 396,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 771,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 771,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 251,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 667,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 667,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 770,
+   "bericht_nr": 6
+  },
+  {
+   "latenz": 35,
+   "orl_jahr": 1931,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 534,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 360,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 770,
+   "bericht_nr": 6
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 278,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 361,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 35,
+   "orl_jahr": 1931,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 549,
+   "bericht_nr": 4
+  },
+  {
+   "latenz": 35,
+   "orl_jahr": 1931,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 549,
+   "bericht_nr": 4
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 361,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 361,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 278,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 771,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 771,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 362,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 362,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 902,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 362,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 278,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 363,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 903,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 902,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 363,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 35,
+   "orl_jahr": 1931,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 550,
+   "bericht_nr": 4
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 278,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 278,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 35,
+   "orl_jahr": 1931,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 550,
+   "bericht_nr": 4
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 904,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 278,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 904,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 904,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 904,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 905,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 905,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 905,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 905,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 905,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 364,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 906,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 280,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 279,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 907,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 907,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 908,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 908,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 909,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 909,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 909,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 909,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 909,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 909,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 910,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 910,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 912,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 912,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 913,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 913,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 913,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 913,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 914,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 914,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1931,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 914,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 28,
+   "orl_jahr": 1931,
+   "lb_jahr": 1903,
+   "lb_band": 8,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 955,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 28,
+   "orl_jahr": 1931,
+   "lb_jahr": 1903,
+   "lb_band": 8,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 956,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 28,
+   "orl_jahr": 1931,
+   "lb_jahr": 1903,
+   "lb_band": 8,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 956,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 28,
+   "orl_jahr": 1931,
+   "lb_jahr": 1903,
+   "lb_band": 8,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 956,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 28,
+   "orl_jahr": 1931,
+   "lb_jahr": 1903,
+   "lb_band": 8,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 957,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 28,
+   "orl_jahr": 1931,
+   "lb_jahr": 1903,
+   "lb_band": 8,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 957,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 28,
+   "orl_jahr": 1931,
+   "lb_jahr": 1903,
+   "lb_band": 8,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 957,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 28,
+   "orl_jahr": 1931,
+   "lb_jahr": 1903,
+   "lb_band": 8,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 957,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 28,
+   "orl_jahr": 1931,
+   "lb_jahr": 1903,
+   "lb_band": 8,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 958,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 28,
+   "orl_jahr": 1931,
+   "lb_jahr": 1903,
+   "lb_band": 8,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 958,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 28,
+   "orl_jahr": 1931,
+   "lb_jahr": 1903,
+   "lb_band": 8,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 958,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 28,
+   "orl_jahr": 1931,
+   "lb_jahr": 1903,
+   "lb_band": 8,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 958,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 28,
+   "orl_jahr": 1931,
+   "lb_jahr": 1903,
+   "lb_band": 8,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 958,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 28,
+   "orl_jahr": 1931,
+   "lb_jahr": 1903,
+   "lb_band": 8,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 959,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 28,
+   "orl_jahr": 1931,
+   "lb_jahr": 1903,
+   "lb_band": 8,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 959,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 28,
+   "orl_jahr": 1931,
+   "lb_jahr": 1903,
+   "lb_band": 8,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 959,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 28,
+   "orl_jahr": 1931,
+   "lb_jahr": 1903,
+   "lb_band": 8,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 959,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 740,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 359,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 740,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 740,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1931,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 359,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 673,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 740,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 741,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 741,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 741,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 741,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 741,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 741,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 741,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 742,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 674,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 742,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 674,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 742,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 742,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 674,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 674,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 675,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 672,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 672,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 672,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 672,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 672,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 672,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 672,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 671,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 671,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 675,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 671,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 675,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 34,
+   "orl_jahr": 1931,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 670,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1931,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 6,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 35,
+   "orl_jahr": 1931,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 509,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 35,
+   "orl_jahr": 1931,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 509,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 35,
+   "orl_jahr": 1931,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 506,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 823,
+   "bericht_nr": 7
+  },
+  {
+   "latenz": 35,
+   "orl_jahr": 1931,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 505,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 35,
+   "orl_jahr": 1931,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 505,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 35,
+   "orl_jahr": 1931,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 505,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 35,
+   "orl_jahr": 1931,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 508,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1931,
+   "lb_jahr": 1898,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811263",
+   "orl_label": "no.48 1931",
+   "spalte": 823,
+   "bericht_nr": 7
+  },
+  {
+   "latenz": 40,
+   "orl_jahr": 1933,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811289",
+   "orl_label": "no.50 1933",
+   "spalte": 189,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1933,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811289",
+   "orl_label": "no.50 1933",
+   "spalte": 423,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1933,
+   "lb_jahr": 1903,
+   "lb_band": 8,
+   "orl_htid": "mdp.39015039811289",
+   "orl_label": "no.50 1933",
+   "spalte": 943,
+   "bericht_nr": 8
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1933,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811289",
+   "orl_label": "no.50 1933",
+   "spalte": 710,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1933,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811289",
+   "orl_label": "no.50 1933",
+   "spalte": 711,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1933,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811289",
+   "orl_label": "no.50 1933",
+   "spalte": 711,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1933,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811289",
+   "orl_label": "no.50 1933",
+   "spalte": 711,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1933,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811289",
+   "orl_label": "no.50 1933",
+   "spalte": 711,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1933,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811289",
+   "orl_label": "no.50 1933",
+   "spalte": 711,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1933,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811289",
+   "orl_label": "no.50 1933",
+   "spalte": 711,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1933,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811289",
+   "orl_label": "no.50 1933",
+   "spalte": 711,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1933,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811289",
+   "orl_label": "no.50 1933",
+   "spalte": 712,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 40,
+   "orl_jahr": 1933,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811289",
+   "orl_label": "no.50 1933",
+   "spalte": 189,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1933,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811289",
+   "orl_label": "no.50 1933",
+   "spalte": 423,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1933,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811289",
+   "orl_label": "no.50 1933",
+   "spalte": 451,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1933,
+   "lb_jahr": 1903,
+   "lb_band": 8,
+   "orl_htid": "mdp.39015039811289",
+   "orl_label": "no.50 1933",
+   "spalte": 939,
+   "bericht_nr": 8
+  },
+  {
+   "latenz": 30,
+   "orl_jahr": 1933,
+   "lb_jahr": 1903,
+   "lb_band": 8,
+   "orl_htid": "mdp.39015039811289",
+   "orl_label": "no.50 1933",
+   "spalte": 940,
+   "bericht_nr": 8
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1933,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811289",
+   "orl_label": "no.50 1933",
+   "spalte": 519,
+   "bericht_nr": 4
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1935,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 471,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1935,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 471,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1935,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 698,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1935,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 470,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1935,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 474,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1935,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 474,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 43,
+   "orl_jahr": 1935,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 46,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 43,
+   "orl_jahr": 1935,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 46,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 43,
+   "orl_jahr": 1935,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 43,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 43,
+   "orl_jahr": 1935,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 45,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 43,
+   "orl_jahr": 1935,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 45,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 43,
+   "orl_jahr": 1935,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 45,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 43,
+   "orl_jahr": 1935,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 44,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 32,
+   "orl_jahr": 1935,
+   "lb_jahr": 1903,
+   "lb_band": 8,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 950,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1935,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 84,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1935,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 84,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1935,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 84,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 283,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1935,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 518,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1935,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 84,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 283,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 283,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 284,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 284,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 284,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 285,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 285,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 285,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 285,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 286,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 286,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 286,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 286,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 287,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 287,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 287,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 287,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 300,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 300,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 301,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 301,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 302,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1935,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 593,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1935,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 613,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 311,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 43,
+   "orl_jahr": 1935,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811297",
+   "orl_label": "no.51 1935",
+   "spalte": 47,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1935,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 97,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 193,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 205,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 230,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 205,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 302,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 202,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 195,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 216,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1935,
+   "lb_jahr": 1902,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 922,
+   "bericht_nr": 7
+  },
+  {
+   "latenz": 33,
+   "orl_jahr": 1935,
+   "lb_jahr": 1902,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 921,
+   "bericht_nr": 7
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 209,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 210,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 328,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 329,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 328,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 43,
+   "orl_jahr": 1935,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 5,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1935,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 65,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 326,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1935,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 103,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 43,
+   "orl_jahr": 1935,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 1,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1935,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 103,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1935,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 102,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1935,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 102,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1935,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 102,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 204,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1935,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 101,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 204,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 201,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 195,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 226,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 195,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1935,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 65,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 208,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 208,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 208,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 213,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1935,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 764,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 324,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 324,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 195,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 324,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 43,
+   "orl_jahr": 1935,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 3,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 325,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1935,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 65,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 328,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 41,
+   "orl_jahr": 1935,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 325,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1935,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811305",
+   "orl_label": "no.52 1935",
+   "spalte": 105,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 619,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 257,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 323,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 257,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 258,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 258,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 259,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 259,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 259,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 259,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 617,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 44,
+   "orl_jahr": 1936,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 20,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 620,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 44,
+   "orl_jahr": 1936,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 21,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 621,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 621,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 623,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 621,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 622,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 622,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 259,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 44,
+   "orl_jahr": 1936,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 23,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 260,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 624,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 624,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 625,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 628,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 629,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 631,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 631,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 43,
+   "orl_jahr": 1936,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 111,
+   "bericht_nr": 1
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 632,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 632,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 635,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 637,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 262,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 253,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 353,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 354,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 355,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1936,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 765,
+   "bericht_nr": 6
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 638,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 638,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 638,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 638,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 639,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 639,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 639,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 40,
+   "orl_jahr": 1936,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 530,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1936,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 701,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1936,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 701,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 700,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 245,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 244,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 245,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 245,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 245,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 243,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 242,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 242,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1936,
+   "lb_jahr": 1899,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 847,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1936,
+   "lb_jahr": 1899,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 847,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 43,
+   "orl_jahr": 1936,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 167,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 323,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 353,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811313",
+   "orl_label": "no.53 1936",
+   "spalte": 354,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 322,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 37,
+   "orl_jahr": 1936,
+   "lb_jahr": 1899,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 863,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 43,
+   "orl_jahr": 1936,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 162,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 377,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 274,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 377,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 381,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 43,
+   "orl_jahr": 1936,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 162,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 276,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 40,
+   "orl_jahr": 1936,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 526,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 40,
+   "orl_jahr": 1936,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 527,
+   "bericht_nr": 4
+  },
+  {
+   "latenz": 43,
+   "orl_jahr": 1936,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 164,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 40,
+   "orl_jahr": 1936,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 494,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 602,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 43,
+   "orl_jahr": 1936,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 162,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 275,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 274,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 272,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 275,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 381,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 380,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 603,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 603,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 42,
+   "orl_jahr": 1936,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 381,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 606,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 607,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1936,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 769,
+   "bericht_nr": 6
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1936,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 767,
+   "bericht_nr": 6
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1936,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 769,
+   "bericht_nr": 6
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 604,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 610,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1936,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 610,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1936,
+   "lb_jahr": 1898,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 809,
+   "bericht_nr": 7
+  },
+  {
+   "latenz": 40,
+   "orl_jahr": 1936,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 510,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 40,
+   "orl_jahr": 1936,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 515,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 40,
+   "orl_jahr": 1936,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "mdp.39015039811321",
+   "orl_label": "no.54 1936",
+   "spalte": 515,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1937,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 777,
+   "bericht_nr": 6
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1937,
+   "lb_jahr": 1899,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 825,
+   "bericht_nr": 7
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1937,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 889,
+   "bericht_nr": 7
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1937,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 746,
+   "bericht_nr": 6
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1937,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 746,
+   "bericht_nr": 6
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1937,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 748,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1937,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 746,
+   "bericht_nr": 6
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1937,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 747,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1937,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 747,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1937,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 748,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1937,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 749,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1937,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 750,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1937,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 751,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1937,
+   "lb_jahr": 1899,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 829,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1937,
+   "lb_jahr": 1899,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 828,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1937,
+   "lb_jahr": 1899,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 830,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1937,
+   "lb_jahr": 1899,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 825,
+   "bericht_nr": 7
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1937,
+   "lb_jahr": 1899,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 826,
+   "bericht_nr": 7
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1937,
+   "lb_jahr": 1899,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 827,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1937,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 756,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1937,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 891,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1937,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 892,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1937,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 895,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1937,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 754,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1937,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 754,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1937,
+   "lb_jahr": 1899,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 833,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1937,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 755,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 36,
+   "orl_jahr": 1937,
+   "lb_jahr": 1901,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 896,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1937,
+   "lb_jahr": 1899,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 832,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1937,
+   "lb_jahr": 1899,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 830,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1937,
+   "lb_jahr": 1899,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 830,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1937,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 752,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1937,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 752,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 39,
+   "orl_jahr": 1937,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 756,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 38,
+   "orl_jahr": 1937,
+   "lb_jahr": 1899,
+   "lb_band": 7,
+   "orl_htid": "mdp.39015039811339",
+   "orl_label": "no.55 1937",
+   "spalte": 832,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 40,
+   "orl_jahr": 1937,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811347",
+   "orl_label": "no.56 1937",
+   "spalte": 578,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 40,
+   "orl_jahr": 1937,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811347",
+   "orl_label": "no.56 1937",
+   "spalte": 571,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 40,
+   "orl_jahr": 1937,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811347",
+   "orl_label": "no.56 1937",
+   "spalte": 572,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 40,
+   "orl_jahr": 1937,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811347",
+   "orl_label": "no.56 1937",
+   "spalte": 579,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 40,
+   "orl_jahr": 1937,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811347",
+   "orl_label": "no.56 1937",
+   "spalte": 573,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 40,
+   "orl_jahr": 1937,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811347",
+   "orl_label": "no.56 1937",
+   "spalte": 575,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 40,
+   "orl_jahr": 1937,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811347",
+   "orl_label": "no.56 1937",
+   "spalte": 573,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 40,
+   "orl_jahr": 1937,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811347",
+   "orl_label": "no.56 1937",
+   "spalte": 576,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 40,
+   "orl_jahr": 1937,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "mdp.39015039811347",
+   "orl_label": "no.56 1937",
+   "spalte": 579,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 1,
+   "orl_jahr": 1894,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605048",
+   "orl_label": "v. 1",
+   "spalte": 78,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 1,
+   "orl_jahr": 1894,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605048",
+   "orl_label": "v. 1",
+   "spalte": 67,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 2,
+   "orl_jahr": 1894,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605048",
+   "orl_label": "v. 1",
+   "spalte": 31,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 1,
+   "orl_jahr": 1894,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605048",
+   "orl_label": "v. 1",
+   "spalte": 75,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 1,
+   "orl_jahr": 1894,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605048",
+   "orl_label": "v. 1",
+   "spalte": 87,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 1,
+   "orl_jahr": 1894,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605048",
+   "orl_label": "v. 1",
+   "spalte": 88,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 1,
+   "orl_jahr": 1894,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605048",
+   "orl_label": "v. 1",
+   "spalte": 93,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 2,
+   "orl_jahr": 1895,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605049",
+   "orl_label": "v. 2",
+   "spalte": 68,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 3,
+   "orl_jahr": 1895,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605049",
+   "orl_label": "v. 2",
+   "spalte": 42,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 4,
+   "orl_jahr": 1897,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605050",
+   "orl_label": "v. 5",
+   "spalte": 75,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 3,
+   "orl_jahr": 1897,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "uc1.c2605050",
+   "orl_label": "v. 5",
+   "spalte": 364,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 3,
+   "orl_jahr": 1897,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "uc1.c2605050",
+   "orl_label": "v. 5",
+   "spalte": 304,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 1,
+   "orl_jahr": 1897,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "uc1.c2605050",
+   "orl_label": "v. 5",
+   "spalte": 527,
+   "bericht_nr": 4
+  },
+  {
+   "latenz": 4,
+   "orl_jahr": 1897,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605050",
+   "orl_label": "v. 5",
+   "spalte": 118,
+   "bericht_nr": 1
+  },
+  {
+   "latenz": 1,
+   "orl_jahr": 1897,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "uc1.c2605053",
+   "orl_label": "v. 7",
+   "spalte": 539,
+   "bericht_nr": 4
+  },
+  {
+   "latenz": 5,
+   "orl_jahr": 1897,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605055",
+   "orl_label": "v. 8",
+   "spalte": 23,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 5,
+   "orl_jahr": 1897,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605055",
+   "orl_label": "v. 8",
+   "spalte": 24,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 5,
+   "orl_jahr": 1898,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605056",
+   "orl_label": "v. 9",
+   "spalte": 69,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 2,
+   "orl_jahr": 1898,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "uc1.c2605057",
+   "orl_label": "v. 10",
+   "spalte": 457,
+   "bericht_nr": 4
+  },
+  {
+   "latenz": 7,
+   "orl_jahr": 1900,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605058",
+   "orl_label": "v. 11",
+   "spalte": 111,
+   "bericht_nr": 1
+  },
+  {
+   "latenz": 7,
+   "orl_jahr": 1900,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "uc1.c2605060",
+   "orl_label": "v. 13",
+   "spalte": 163,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 3,
+   "orl_jahr": 1900,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "uc1.c2605060",
+   "orl_label": "v. 13",
+   "spalte": 582,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 3,
+   "orl_jahr": 1900,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "uc1.c2605060",
+   "orl_label": "v. 13",
+   "spalte": 581,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 2,
+   "orl_jahr": 1900,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "uc1.c2605060",
+   "orl_label": "v. 13",
+   "spalte": 773,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 1,
+   "orl_jahr": 1900,
+   "lb_jahr": 1899,
+   "lb_band": 7,
+   "orl_htid": "uc1.c2605060",
+   "orl_label": "v. 13",
+   "spalte": 840,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 3,
+   "orl_jahr": 1900,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "uc1.c2605060",
+   "orl_label": "v. 13",
+   "spalte": 593,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 9,
+   "orl_jahr": 1901,
+   "lb_jahr": 1892,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605061",
+   "orl_label": "v. 14",
+   "spalte": 62,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 3,
+   "orl_jahr": 1901,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "uc1.c2605061",
+   "orl_label": "v. 14",
+   "spalte": 766,
+   "bericht_nr": 6
+  },
+  {
+   "latenz": 2,
+   "orl_jahr": 1901,
+   "lb_jahr": 1899,
+   "lb_band": 7,
+   "orl_htid": "uc1.c2605061",
+   "orl_label": "v. 14",
+   "spalte": 887,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 8,
+   "orl_jahr": 1902,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "uc1.c2605063",
+   "orl_label": "v. 16",
+   "spalte": 377,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 9,
+   "orl_jahr": 1902,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "uc1.c2605063",
+   "orl_label": "v. 16",
+   "spalte": 185,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 8,
+   "orl_jahr": 1902,
+   "lb_jahr": 1894,
+   "lb_band": 2,
+   "orl_htid": "uc1.c2605064",
+   "orl_label": "v. 17",
+   "spalte": 263,
+   "bericht_nr": 2
+  },
+  {
+   "latenz": 9,
+   "orl_jahr": 1902,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605064",
+   "orl_label": "v. 17",
+   "spalte": 74,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 3,
+   "orl_jahr": 1902,
+   "lb_jahr": 1899,
+   "lb_band": 7,
+   "orl_htid": "uc1.c2605064",
+   "orl_label": "v. 17",
+   "spalte": 849,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 4,
+   "orl_jahr": 1902,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "uc1.c2605064",
+   "orl_label": "v. 17",
+   "spalte": 777,
+   "bericht_nr": 6
+  },
+  {
+   "latenz": 4,
+   "orl_jahr": 1903,
+   "lb_jahr": 1899,
+   "lb_band": 7,
+   "orl_htid": "uc1.c2605066",
+   "orl_label": "v. 19",
+   "spalte": 840,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 6,
+   "orl_jahr": 1903,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "uc1.c2605066",
+   "orl_label": "v. 19",
+   "spalte": 609,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 6,
+   "orl_jahr": 1903,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "uc1.c2605066",
+   "orl_label": "v. 19",
+   "spalte": 607,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 6,
+   "orl_jahr": 1903,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "uc1.c2605066",
+   "orl_label": "v. 19",
+   "spalte": 610,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 6,
+   "orl_jahr": 1903,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "uc1.c2605066",
+   "orl_label": "v. 19",
+   "spalte": 608,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 6,
+   "orl_jahr": 1903,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "uc1.c2605066",
+   "orl_label": "v. 19",
+   "spalte": 608,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 6,
+   "orl_jahr": 1903,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "uc1.c2605066",
+   "orl_label": "v. 19",
+   "spalte": 608,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 7,
+   "orl_jahr": 1903,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "uc1.c2605067",
+   "orl_label": "v. 20",
+   "spalte": 537,
+   "bericht_nr": 4
+  },
+  {
+   "latenz": 7,
+   "orl_jahr": 1903,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "uc1.c2605067",
+   "orl_label": "v. 20",
+   "spalte": 457,
+   "bericht_nr": 4
+  },
+  {
+   "latenz": 10,
+   "orl_jahr": 1903,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605067",
+   "orl_label": "v. 20",
+   "spalte": 131,
+   "bericht_nr": 1
+  },
+  {
+   "latenz": 10,
+   "orl_jahr": 1903,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "uc1.c2605067",
+   "orl_label": "v. 20",
+   "spalte": 163,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 8,
+   "orl_jahr": 1903,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "uc1.c2605067",
+   "orl_label": "v. 20",
+   "spalte": 442,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 10,
+   "orl_jahr": 1903,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605067",
+   "orl_label": "v. 20",
+   "spalte": 132,
+   "bericht_nr": 1
+  },
+  {
+   "latenz": 10,
+   "orl_jahr": 1903,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605067",
+   "orl_label": "v. 20",
+   "spalte": 131,
+   "bericht_nr": 1
+  },
+  {
+   "latenz": 8,
+   "orl_jahr": 1903,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "uc1.c2605067",
+   "orl_label": "v. 20",
+   "spalte": 440,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 8,
+   "orl_jahr": 1903,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "uc1.c2605067",
+   "orl_label": "v. 20",
+   "spalte": 441,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 5,
+   "orl_jahr": 1903,
+   "lb_jahr": 1898,
+   "lb_band": 6,
+   "orl_htid": "uc1.c2605067",
+   "orl_label": "v. 20",
+   "spalte": 762,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 10,
+   "orl_jahr": 1903,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605067",
+   "orl_label": "v. 20",
+   "spalte": 132,
+   "bericht_nr": 1
+  },
+  {
+   "latenz": 10,
+   "orl_jahr": 1903,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605067",
+   "orl_label": "v. 20",
+   "spalte": 133,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 10,
+   "orl_jahr": 1903,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605067",
+   "orl_label": "v. 20",
+   "spalte": 135,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 10,
+   "orl_jahr": 1903,
+   "lb_jahr": 1893,
+   "lb_band": 1,
+   "orl_htid": "uc1.c2605067",
+   "orl_label": "v. 20",
+   "spalte": 132,
+   "bericht_nr": 1
+  },
+  {
+   "latenz": 8,
+   "orl_jahr": 1903,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "uc1.c2605067",
+   "orl_label": "v. 20",
+   "spalte": 437,
+   "bericht_nr": 3
+  },
+  {
+   "latenz": 10,
+   "orl_jahr": 1903,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "uc1.c2605067",
+   "orl_label": "v. 20",
+   "spalte": 169,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 8,
+   "orl_jahr": 1903,
+   "lb_jahr": 1895,
+   "lb_band": 3,
+   "orl_htid": "uc1.c2605067",
+   "orl_label": "v. 20",
+   "spalte": 441,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 10,
+   "orl_jahr": 1903,
+   "lb_jahr": 1893,
+   "lb_band": 2,
+   "orl_htid": "uc1.c2605067",
+   "orl_label": "v. 20",
+   "spalte": 170,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 7,
+   "orl_jahr": 1904,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "uc1.c2605068",
+   "orl_label": "v. 21",
+   "spalte": 649,
+   "bericht_nr": 5
+  },
+  {
+   "latenz": 7,
+   "orl_jahr": 1904,
+   "lb_jahr": 1897,
+   "lb_band": 5,
+   "orl_htid": "uc1.c2605068",
+   "orl_label": "v. 21",
+   "spalte": 660,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 10,
+   "orl_jahr": 1904,
+   "lb_jahr": 1894,
+   "lb_band": 3,
+   "orl_htid": "uc1.c2605068",
+   "orl_label": "v. 21",
+   "spalte": 366,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 8,
+   "orl_jahr": 1904,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "uc1.c2605068",
+   "orl_label": "v. 21",
+   "spalte": 505,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 8,
+   "orl_jahr": 1904,
+   "lb_jahr": 1896,
+   "lb_band": 4,
+   "orl_htid": "uc1.c2605068",
+   "orl_label": "v. 21",
+   "spalte": 507,
+   "bericht_nr": null
+  },
+  {
+   "latenz": 6,
+   "orl_jahr": 1904,
+   "lb_jahr": 1898,
+   "lb_band": 7,
+   "orl_htid": "uc1.c2605068",
+   "orl_label": "v. 21",
+   "spalte": 823,
+   "bericht_nr": 7
+  }
+ ]
+}
