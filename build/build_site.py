@@ -253,6 +253,7 @@ def page(title, body, depth=0, head=""):
 <li class="has"><a href="{up}register/orl.html">ORL</a><ul>
 <li><a href="{up}register/orl.html">Bandindex</a></li>
 <li><a href="{up}register/orl-inhalt.html">Inhaltsverzeichnis</a></li>
+<li><a href="{up}register/orl-verweise.html">Binnenverweise</a></li>
 <li><a href="{up}register/orl-register.html">Gesamtapparat</a></li>
 <li><a href="{up}register/hathitrust.html">Erschließung (HathiTrust)</a></li></ul></li>
 <li><a href="{up}register/wortschatz.html">Analyse</a></li>
@@ -620,6 +621,7 @@ IIIF-Faksimiles (UB Heidelberg) und mit GND-/Wikidata-/Geo-verknüpften Personen
 <p class="meta">Das Standardwerk, in das das Limesblatt mündete, token-frei über HathiTrust erschlossen.</p>
 <ul><li><a href="register/orl.html">ORL-Bandindex</a> — Abteilung A (Strecken) + B (Kastell-Lieferungen) mit belegter Lieferung, Bearbeiter und Vorbericht-Verweisen</li>
 <li><a href="register/orl-inhalt.html">ORL — vollständiges Inhaltsverzeichnis</a> — alle 92 Kastell-Faszikel und 15 Streckenbände nach ihrem Erscheinen (Lieferung + Jahr), mit Vorbericht-Links</li>
+<li><a href="register/orl-verweise.html">ORL — Binnenverweise</a> — 551 werkinterne Verweise, beidseitig in den Scan verlinkt; warum die frühen Faszikel nie werkintern zitieren</li>
 <li><a href="register/orl-register.html">ORL-Gesamtapparat</a> — Personen- &amp; Ortsregister über alle Bände, Vorbericht→ORL-Konkordanz</li>
 <li><a href="register/hathitrust.html">HathiTrust — Werkzeuge &amp; Ertrag</a> — wie der ORL token-frei und nicht-konsumtiv erschlossen wurde (Workset · Extracted Features · NER · Data Capsule)</li></ul>
 <p class="meta">→ <a href="dokumentation.html"><b>Dokumentation</b></a>: was auf dieser Website steht, wie wir an die Daten kamen und was sie sagen.</p>
@@ -1694,6 +1696,74 @@ def orl_toc_page(idx, bli=None, fasz=None, dseiten=None, abta=None, places=None)
         f'Faszikel in den Scans abgegrenzt. → <a href="hathitrust.html">wie das erschlossen wurde</a></p>')
 
 
+def orl_verweise_page(bl, bv):
+    """Das BINNENVERWEIS-Netz des ORL, beidseitig anklickbar: 551 aufgelöste Stellen
+    (Kapsel-Kombination internal_refs x orl_faszikel x orl_druckseiten), gruppiert nach
+    dem ZIEL — den Referenzkastellen, an denen das Werk seine Typologie festmacht."""
+    links = bl.get("links", [])
+    bilanz = bl.get("bilanz", {})
+    npb = bilanz.get("namensprobe", {})
+    # nach Ziel gruppieren, innerhalb nach zitierter Druckseite
+    grp = {}
+    for l in links:
+        grp.setdefault((l["ziel_nr"], l["ziel_kastell"] or ("ORL " + l["ziel_nr"])), []).append(l)
+    bloecke = []
+    for (nr, kname), ll in sorted(grp.items(), key=lambda kv: -len(kv[1])):
+        ll.sort(key=lambda l: (l["ziel_druckseite"], l["von_label"]))
+        # je (Zielseite, von-Faszikel) EINE Zeile — mdp/uc1-Zwillinge desselben Faszikels
+        # tragen verschiedene Labels (»no.54 1936« / »v. 54«), sind aber EIN Verweis:
+        # auf die Faszikelnummer kollabieren.
+        def fnum(lab):
+            m = re.match(r"(?:no\.|v\.?\s*)(\d+)", lab or "")
+            return m.group(1) if m else lab
+        seen, rows = set(), []
+        for l in ll:
+            key = (l["ziel_druckseite"], fnum(l["von_label"]))
+            if key in seen:
+                continue
+            seen.add(key)
+            von = html.escape(l["von_label"])
+            von_url = f'https://babel.hathitrust.org/cgi/pt?id={l["von_htid"]}&seq={l["von_seq"]}'
+            best = "" if l.get("toponym_bestaetigt") else ' <span class="lc">(Zielseite unbestätigt)</span>'
+            rows.append(f'<tr><td><a href="{html.escape(l["url"])}">S.&#8239;{l["ziel_druckseite"]}</a>{best}</td>'
+                        f'<td><a href="{von_url}">{von}</a></td>'
+                        f'<td class="meta">{html.escape(l["kontext"][:110])}</td></tr>')
+        kurz = html.escape(kname.replace("Kastell ", ""))
+        bloecke.append(
+            f'<details id="ziel-{html.escape(nr)}"><summary><b>ORL&#8239;{html.escape(nr)} {kurz}</b> '
+            f'<span class="meta">— {len(rows)} verweisende Stellen</span></summary>'
+            f'<table class="reg"><thead><tr><th>zitierte Stelle</th><th>verweisender Band</th>'
+            f'<th>Kontext (≤12 Wörter)</th></tr></thead><tbody>{"".join(rows)}</tbody></table></details>')
+    r = (bv.get("richtung") or {}).get("Binnenverweise (ORL→ORL)", {})
+    return (
+        f'<h1>ORL — die Binnenverweise, anklickbar</h1>'
+        f'<p class="lede">Der ORL erschien 45 Jahre lang in 14 Mappen und hatte nie ein Register — aber seine '
+        f'Faszikel <b>verweisen aufeinander</b> (»Abt.&nbsp;B Bd.&nbsp;II Nr.&nbsp;8 Kastell Zugmantel '
+        f'S.&nbsp;107&nbsp;ff.«). Für <b>{bilanz.get("verlinkt", 0)} der {bilanz.get("binnenverweise", 0)}</b> '
+        f'werkinternen Verweise ist die zitierte Stelle im Digitalisat aufgelöst: Ziel-Nummer aus dem Verweis, '
+        f'Druckseite aus dem Kontext, Scanseite über die Faszikel-Zerlegung — <b>beide Seiten</b> jedes '
+        f'Verweises springen direkt in den HathiTrust-Scan.</p>'
+        f'<div class="note"><p><b>Der Befund hinter dem Apparat:</b> Kein einziger der 16 frühen Faszikel '
+        f'(1894–1903) enthält einen werkinternen Verweis — alle 13 späten (1914–1937) tun es '
+        f'(Median {str(r.get("spaet", {}).get("median_je_10k", "?")).replace(".", ",")} je 10.000 Wörter). '
+        f'Nicht, weil es früh nichts zu zitieren gab: dieselben Frühfaszikel zitieren das '
+        f'<a href="../index.html">Limesblatt</a> und die Fachzeitschriften. Ein ORL-Faszikel wurde erst '
+        f'zitierfähig, als Abteilung, Band und Nummer stabile Adressen waren — die Zitierbarkeit einer '
+        f'Publikationsform entscheidet, ob ein Werk sich selbst benutzen kann.</p>'
+        f'<p><b>Verlässlichkeit:</b> Jede Zielseite ist doppelt geprüft — in {str(bilanz.get("quote_bestaetigt_pct", "?")).replace(".", ",")}&#8239;% '
+        f'trägt sie das Toponym des Ziel-Kastells (»unbestätigt« heißt meist nur: die Seite nennt ihr eigenes '
+        f'Kastell gerade nicht), und wo der Verweis das Kastell beim Namen nennt, stimmt der Name in '
+        f'{str(npb.get("quote_pct", "?")).replace(".", ",")}&#8239;% ({npb.get("pruefbar", 0)} prüfbar). '
+        f'Die Namens-Abweichungen gehen auf die <i>Quelle</i> zurück: der ORL zitiert a-Faszikel unter ihrer '
+        f'Grundnummer (Urspring als »Nr.&nbsp;66«, Böhming als »Nr.&nbsp;73«). '
+        f'{bilanz.get("mit_seite_unaufloesbar", 0)} Verweise mit Seitenangabe bleiben unaufgelöst, '
+        f'{bilanz.get("ohne_seitenangabe", 0)} nennen keine Seite. Der Zugriff auf HathiTrust-Scans kann '
+        f'je nach Band eine Anmeldung erfordern.</p></div>'
+        + "".join(bloecke) +
+        f'<p class="meta">Methodik und Rohdaten: Kapsel-Re-Run v2 (<a href="hathitrust.html">Erschließung</a>) · '
+        f'Gruppierung nach dem Ziel; je Zielseite und verweisendem Band eine Zeile (Zwillings-Scans kollabiert).</p>')
+
+
 def orl_apparatus_page(reg, idx, persons=None):
     places = reg.get("places", [])
     p2id = {}                                             # Name/Nachname → Personenregister-ID (Verlinkung)
@@ -2414,6 +2484,11 @@ def main():
         _aj = _load_json_any("orl_abtA.json")
         open(os.path.join(DOCS,"register","orl-inhalt.html"),"w",encoding="utf-8").write(
             page("ORL — Inhaltsverzeichnis", orl_toc_page(orl_idx, orl_bli, _fj, _dj, _aj, places), 1))
+        _blj = _load_json_any("orl_binnenlinks.json")
+        _bvj = _load_json_any("orl_binnenverweise.json")
+        if _blj.get("links"):
+            open(os.path.join(DOCS,"register","orl-verweise.html"),"w",encoding="utf-8").write(
+                page("ORL — Binnenverweise", orl_verweise_page(_blj, _bvj), 1))
         open(os.path.join(DOCS,"register","hathitrust.html"),"w",encoding="utf-8").write(page("HathiTrust", hathitrust_page(orl_idx, orl_reg, orl_lex), 1))
         print(f"ORL: Abt. A {len(orl_idx.get('abteilung_A_strecken',[]))} + Abt. B {len(orl_idx.get('abteilung_B_kastelle',[]))} "
               f"→ register/orl.html · orl-register.html · hathitrust.html")

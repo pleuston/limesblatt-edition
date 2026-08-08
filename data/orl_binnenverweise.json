@@ -1,0 +1,174 @@
+{
+ "_methode": "Vier Apparat-Richtungen desselben Re-Runs, MEDIAN der Bandwerte je 10k Woerter (nicht Aggregat: die Fruehgruppe ist schief — v.13/v.14 Pfuenz treiben die Epigraphik). Zusaetzlich 'Baende mit Belegen' — 0 von 16 ist eine andere Aussage als ein niedriger Mittelwert.",
+ "_warum_der_vergleich_traegt": "Eine Null bei den Binnenverweisen allein waere wertlos ('frueh gab es kaum Vorgaenger'). Dieselben Fruehfaszikel zitieren aber das Limesblatt (12/16) und Zeitschriften (16/16) — der Apparat existiert, er zeigt nur nie nach innen.",
+ "verweise_gesamt": 2159,
+ "richtung": {
+  "Binnenverweise (ORL→ORL)": {
+   "frueh": {
+    "median_je_10k": 0.0,
+    "aggregat_je_10k": 0.0,
+    "baende_mit_belegen": 0,
+    "baende": 16
+   },
+   "spaet": {
+    "median_je_10k": 13.01,
+    "aggregat_je_10k": 15.12,
+    "baende_mit_belegen": 13,
+    "baende": 13
+   },
+   "faktor_median": null
+  },
+  "Limesblatt-Verweise": {
+   "frueh": {
+    "median_je_10k": 1.09,
+    "aggregat_je_10k": 1.69,
+    "baende_mit_belegen": 12,
+    "baende": 16
+   },
+   "spaet": {
+    "median_je_10k": 9.38,
+    "aggregat_je_10k": 11.96,
+    "baende_mit_belegen": 11,
+    "baende": 13
+   },
+   "faktor_median": 8.6
+  },
+  "Zeitschriften-Nennungen": {
+   "frueh": {
+    "median_je_10k": 14.3,
+    "aggregat_je_10k": 12.24,
+    "baende_mit_belegen": 16,
+    "baende": 16
+   },
+   "spaet": {
+    "median_je_10k": 20.38,
+    "aggregat_je_10k": 21.04,
+    "baende_mit_belegen": 13,
+    "baende": 13
+   },
+   "faktor_median": 1.4
+  },
+  "Inschriften-Zitate (CIL u. a.)": {
+   "frueh": {
+    "median_je_10k": 6.72,
+    "aggregat_je_10k": 19.18,
+    "baende_mit_belegen": 15,
+    "baende": 16
+   },
+   "spaet": {
+    "median_je_10k": 3.72,
+    "aggregat_je_10k": 4.3,
+    "baende_mit_belegen": 12,
+    "baende": 13
+   },
+   "faktor_median": 0.6
+  }
+ },
+ "abteilung": {
+  "A_strecken": 376,
+  "B_kastelle": 1783,
+  "verhaeltnis_B_zu_A": 4.7
+ },
+ "referenzkastelle": [
+  {
+   "nr": "31",
+   "kastell": "Kastell Wiesbaden",
+   "verweise": 109
+  },
+  {
+   "nr": "8",
+   "kastell": "Kastell Zugmantel",
+   "verweise": 95
+  },
+  {
+   "nr": "26",
+   "kastell": "Kastell Friedberg",
+   "verweise": 92
+  },
+  {
+   "nr": "33",
+   "kastell": "Kastell Stockstadt",
+   "verweise": 76
+  },
+  {
+   "nr": "27",
+   "kastell": "Kastell Nida",
+   "verweise": 59
+  },
+  {
+   "nr": "73",
+   "kastell": "Kastell Pfünz",
+   "verweise": 57
+  },
+  {
+   "nr": "40",
+   "kastell": "Kastell Osterburken",
+   "verweise": 54
+  },
+  {
+   "nr": "10",
+   "kastell": "Kastell Kleiner Feldberg",
+   "verweise": 51
+  },
+  {
+   "nr": "4",
+   "kastell": "Kastell Ems",
+   "verweise": 48
+  },
+  {
+   "nr": "6",
+   "kastell": "Kastell Holzhausen",
+   "verweise": 37
+  },
+  {
+   "nr": "41",
+   "kastell": "Kastell Jagsthausen",
+   "verweise": 34
+  },
+  {
+   "nr": "29",
+   "kastell": "Kastell Hofheim",
+   "verweise": 34
+  },
+  {
+   "nr": "38",
+   "kastell": "Kastell Miltenberg-Altstadt",
+   "verweise": 33
+  },
+  {
+   "nr": "25",
+   "kastell": "Kastell Heldenbergen",
+   "verweise": 30
+  },
+  {
+   "nr": "12",
+   "kastell": "Kastell Kapersburg",
+   "verweise": 29
+  },
+  {
+   "nr": "16",
+   "kastell": "Kastell Arnsburg",
+   "verweise": 27
+  },
+  {
+   "nr": "22",
+   "kastell": "Kastell Rückingen",
+   "verweise": 27
+  },
+  {
+   "nr": "71",
+   "kastell": "Kastell Gunzenhausen",
+   "verweise": 27
+  },
+  {
+   "nr": "25a",
+   "kastell": "Kastell Okarben",
+   "verweise": 25
+  },
+  {
+   "nr": "1",
+   "kastell": "Kastell Heddesdorf",
+   "verweise": 24
+  }
+ ]
+}
