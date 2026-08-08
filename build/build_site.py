@@ -2614,7 +2614,14 @@ def rlk_jahresberichte_page(data, ner_p=None, ner_pl=None):
     geg = data.get("gegenprobe_limesblatt", {})
     reihe, jb_pers, jb_orte = jb_korpus(data, ner_p or [], ner_pl or [])
     nr_von = {r["jahrgang"]: r["nr"] for r in reihe}
-    fehl_jahr = {9: 1894}                              # Bd. 9 = Jahrgang 1894, nicht digitalisiert
+    # Lücken der Reihe, jede mit ihrem Grund: 1894 fehlt als Digitalisat, 1897 hat gar keinen
+    # Bericht (der Band führt den Titel nur in seiner Bibliographie).
+    fehl_jahr = {b: 1885 + b for b in data.get("fehlend", [])}
+    grund = {1885 + b: "auf archive.org nicht digitalisiert auffindbar" for b in data.get("fehlend", [])}
+    for x in data.get("ohne_bericht", []):
+        fehl_jahr[x["band"]] = x["jahrgang"]
+        grund[x["jahrgang"]] = ("in diesem Band ist kein Bericht der Kommission enthalten — der "
+                                "Titel steht dort nur in der Bibliographie")
     def _tsd(n): return f"{n:,}".replace(",", ".")
     zeilen = []
     for b in berichte:
@@ -2624,20 +2631,27 @@ def rlk_jahresberichte_page(data, ner_p=None, ner_pl=None):
         zeilen.append(dict(b, fehlt=False))
     rows = "".join(
         (f'<tr class="fehlt"><td><b>{z["jahrgang"] - 1891}</b></td><td>{z["jahrgang"]}</td><td>{z["band"]}</td>'
-         f'<td colspan="6" class="meta">nicht digitalisiert auffindbar — die Nummer bleibt vergeben</td></tr>'
+         f'<td colspan="6" class="meta">{html.escape(grund.get(z["jahrgang"], ""))} — '
+         f'die Nummer bleibt vergeben</td></tr>'
          if z["fehlt"] else
          f'<tr><td><b>{nr_von.get(z["jahrgang"], "—")}</b></td><td>{z["jahrgang"]}</td><td>{z["band"]}</td>'
          f'<td>{_tsd(z["woerter"])}</td>'
          f'<td>{sum(1 for n in jb_pers if z["jahrgang"] in jb_pers[n])}</td>'
          f'<td>{sum(1 for n in jb_orte if z["jahrgang"] in jb_orte[n])}</td>'
          f'<td>{z["admin_je_1000"]}</td><td>{z["feld_je_1000"]}</td>'
-         f'<td><a href="#bd{z["band"]:02d}">Volltext ↓</a></td></tr>')
+         f'<td><a href="../jahresberichte/jb{z["jahrgang"]}.html">lesen mit Faksimile</a></td></tr>')
         for z in zeilen)
     details = "".join(
-        f'<details id="bd{b["band"]:02d}"><summary><b>Bd. {b["band"]} ({b["jahrgang"]})</b> '
-        f'— {b["woerter"]:,} Wörter</summary>{_rlk_paragraphs(b["text"])}</details>'
+        f'<p><a href="../jahresberichte/jb{b["jahrgang"]}.html"><b>Bericht {b["jahrgang"]}</b></a> '
+        f'<span class="meta">— Jahrbuch Bd. {b["band"]}, {b["woerter"]:,} Wörter, '
+        f'{len(b.get("seiten") or [])} Blätter</span></p>'.replace(",", ".")
         for b in berichte)
     fehlt = ", ".join(f"Bd. {n}" for n in data.get("fehlend", [])) or "—"
+    ohne = data.get("ohne_bericht", [])
+    ohne_satz = ""
+    if ohne:
+        ohne_satz = (f', und in Band {ohne[0]["band"]} ({ohne[0]["jahrgang"]}) steht überhaupt kein '
+                     f'Bericht — den Titel führt dieser Band nur in seiner Bibliographie')
     return (
         f'<h1>RLK-Jahresberichte (1892–1904)</h1>'
         f'<p class="meta">Die institutionellen Rechenschaftsberichte der Reichs-Limeskommission — jährlich als '
@@ -2647,8 +2661,13 @@ def rlk_jahresberichte_page(data, ner_p=None, ner_pl=None):
         f'das Gründungsjahr der Kommission und damit der erste Bericht, den es geben kann. '
         f'Unabhängig vom Limesblatt (den Feldberichten der Streckenkommissare): das ist die institutionelle '
         f'Selbstauskunft der Kommission an die Öffentlichkeit. Token-frei geharvestet von archive.org '
-        f'(<b>{len(berichte)}/14</b> Jahrgänge frei zugänglich; fehlend: {fehlt}, dort nicht digitalisiert '
-        f'auffindbar).</p>'
+        f'(<b>{len(berichte)} von 14 Jahrgängen</b>; {fehlt} ist nicht digitalisiert auffindbar'
+        f'{ohne_satz}.)</p>'
+        f'<div class="note"><p><b>Woher der Text kommt.</b> Die Berichte sind am Faksimile neu gelesen '
+        f'(macOS Vision, halbseitenweise wegen des zweispaltigen Satzes); die mitgelieferte OCR von '
+        f'archive.org las »l6. Januar« statt »16. Januar« und trennte Wörter über den Zeilenumbruch. '
+        f'Der Umfang jedes Berichts ist über seinen <b>Kolumnentitel</b> bestimmt, der sich auf jeder '
+        f'Berichtsseite wiederholt und mit dem Folgeartikel wechselt.</p></div>'
         f'<h2 id="umfang">Umfang der Berichte</h2>'
         f'<p>Über die erschlossenen Jahrgänge <b>fällt</b> der Berichtsumfang (Spearman ρ = '
         f'<b>{trend.get("umfang", "–")}</b>) — ein Gegenbefund zur wachsenden '
@@ -2679,10 +2698,12 @@ def rlk_jahresberichte_page(data, ner_p=None, ner_pl=None):
         f'<tbody>{rows}</tbody></table>'
         + jb_register_html(reihe, jb_pers, jb_orte, data)
         + jb_ereignis_html(jb_personalia(data, ner_p or []), jb_kampagnen(data, ner_pl or [])) +
-        f'<h2>Volltexte</h2>'
-        f'<p class="meta">Heuristische Extraktion (Zeilen-Cluster um „Limeskommission"-Treffer, am Ende bei der '
-        f'nächsten erkennbaren Kapitelüberschrift gekappt) — kleine Ränder zum Nachbarartikel möglich; '
-        f'Silbentrennung am Zeilenende aufgelöst.</p>{details}'
+        f'<h2 id="lesefassungen">Lesefassungen</h2>'
+        f'<p class="meta">Jeder Bericht steht als eigene Seite: der Text links, das Blatt des Digitalisats '
+        f'rechts, beide aneinander gekoppelt. Gegliedert wird mit den Zwischenüberschriften des Drucks '
+        f'(Versalzeilen) und seinen Aufzählungen; Absatzgrenzen im Fließtext gibt die Vorlage nicht her. '
+        f'Der Umfang des Berichts ist heuristisch bestimmt (zusammenhängender Lauf der Blätter, die die '
+        f'Kommission nennen) — kleine Ränder zum Nachbarartikel sind möglich.</p>{details}'
     )
 
 def jb_register_html(reihe, pers, orte, data):
@@ -2844,8 +2865,8 @@ def netz_page(persons, ner_p, orl_idx, bli, verw, jb, ner_pl, bibls, occ):
         kn(f"lb{v}", f"Limesblatt Bd. {v}", "limesblatt", f"../volumes/bd{v}.html")
     reihe, jbp, _ = jb_korpus_cached(jb, ner_p, ner_pl)
     for r in reihe:
-        kn(f"jb{r['jahrgang']}", f"Bericht {r['nr']} ({r['jahrgang']})", "jahresbericht",
-           f"jahresberichte.html#bd{r['band']:02d}")
+        kn(f"jb{r['jahrgang']}", f"Bericht {r['jahrgang']}", "jahresbericht",
+           f"../jahresberichte/jb{r['jahrgang']}.html")
     knr = {}
     for k in orl_idx.get("abteilung_B_kastelle", []):
         knr[_pn(k["kastell"])] = k["nr"]
@@ -3167,6 +3188,155 @@ def impressum_page():
             f'die Grenzen liegen, steht in der <a href="dokumentation.html">Dokumentation</a>. Die Website '
             f'wird aus einem privaten Forschungs-Vault erzeugt; Aufbereitungs-Code und TEI-Quelltext sind '
             f'offen (<a href="https://github.com/pleuston/limesblatt-edition">GitHub</a>).</p>')
+
+
+# ---------- Lesefassung der Jahresberichte: Text und Faksimile nebeneinander ----------
+# Die Berichte liegen als Blatt-Texte vor (macOS-Vision-Lesung je Scanblatt, s. Vault-Werkzeug
+# rlk_jahresberichte.py --reocr). archive.org stellt zu jedem Blatt einen IIIF-Image-Service
+# bereit — `iiif.archive.org/iiif/<item>$<blatt>` —, also lässt sich dieselbe Zweipanel-Ansicht
+# bauen wie bei den Limesblatt-Bänden: links der Lesetext, rechts das Blatt, aneinander gekoppelt.
+JB_KOPFZEILE = re.compile(r"^[A-ZÄÖÜ][A-ZÄÖÜ0-9 .,:;()\-–']{5,}$")
+# Nur die Klammerform »1)« zählt als Aufzählung. »17. October« ist ein Datum, kein
+# Gliederungspunkt — die Punktform holte in den frühen Berichten reihenweise Datumsangaben herein.
+JB_PUNKT = re.compile(r"^\s*((?:\d{1,2}\))|(?:[IVXLC]{1,5}\.))\s+(?=[A-ZÄÖÜ„])")
+# Normalisierte Lauftitel des Bandes — was ihnen entspricht, ist Kolumnentitel, nicht Gliederung.
+JB_LAUFTITEL = ("ARCHÄOLOGISCHERANZEIGER", "BEIBLATTZUMJAHRBUCHDESARCHÄOLOGISCHENINSTITUTS",
+                "JAHRBUCHDESARCHÄOLOGISCHENINSTITUTS", "BERICHTÜBERDIETHÄTIGKEITDERREICHSLIMESKOMMISSION",
+                "BERICHTÜBERDIEARBEITDERREICHSLIMESKOMMISSION", "DESARCHÄOLOGISCHENINSTITUTS")
+
+
+def jb_struktur(txt):
+    """Blatt-Text → Absätze und Zwischenüberschriften.
+
+    Der Druck gliedert mit Versalzeilen (»ERWERBUNGEN«) und mit Aufzählungen (»1) Hr. Professor
+    Fink in München …«) — beides überlebt die Vision-Lesung als Zeilenanfang und trägt hier die
+    Gliederung. Absatzgrenzen im Fließtext gibt die Vorlage nicht her: die Lesung liefert Zeilen,
+    keine Absätze. Deshalb wird nur dort umbrochen, wo die Quelle selbst gliedert."""
+    absaetze, puffer, kopfe = [], [], []
+    kopfpuffer = []
+
+    def flush():
+        if puffer:
+            absaetze.append(("p", " ".join(puffer)))
+            puffer.clear()
+
+    def flush_kopf():
+        # Der Halbseiten-Schnitt zerlegt jede seitenbreite Zeile in zwei Stücke
+        # (»ARCHÄOLOGISC« + »CHER ANZEIGER«). Aufeinanderfolgende Versalzeilen gehören
+        # deshalb zusammen; und was danach der Kolumnentitel ist, ist keine Gliederung.
+        if not kopfpuffer:
+            return
+        s = " ".join(kopfpuffer); kopfpuffer.clear()
+        n = re.sub(r"[^A-ZÄÖÜ]", "", s.upper())
+        if len(n) < 8:
+            return
+        for lauf in JB_LAUFTITEL:
+            if n in lauf or lauf in n or (len(n) > 12 and n[:12] in lauf):
+                return
+        absaetze.append(("h", s)); kopfe.append(s)
+
+    for roh in txt.split("\n"):
+        z = roh.strip()
+        if not z:
+            continue
+        if JB_KOPFZEILE.match(z) and len(z) < 90 and not re.search(r"[a-zäöüß]{3}", z):
+            flush(); kopfpuffer.append(z); continue
+        flush_kopf()
+        m = JB_PUNKT.match(z)
+        if m:
+            flush(); puffer.append(z); continue
+        puffer.append(z)
+    flush_kopf(); flush()
+    # Die Gliederung des Berichts sind seine Aufzählungen: »1) Hr. Professor Fink in München
+    # förderte …« — jeder Punkt ein Streckenkommissar und sein Abschnitt. Versalzeilen kommen
+    # dazu, wo der Druck welche setzt. Beides wird angesteuert, beides steht in der Gliederung.
+    out, marken = [], []
+    for art, s in absaetze:
+        if art == "h":
+            aid = "jbk-" + gazetteer.slug(s)[:40]
+            lab = s.title() if s.isupper() else s
+            marken.append((lab, aid))
+            out.append(f'<h3 id="{aid}">{html.escape(lab)}</h3>')
+        else:
+            m = JB_PUNKT.match(s)
+            if m:
+                rest = s[m.end():]
+                aid = "jbp-" + gazetteer.slug(m.group(1) + "-" + rest[:30])[:44]
+                lab = m.group(1) + " " + (rest[:60] + "…" if len(rest) > 60 else rest)
+                marken.append((lab, aid))
+                out.append(f'<p class="artp" id="{aid}"><b>{html.escape(m.group(1))}</b> '
+                           f'{html.escape(rest)}</p>')
+            else:
+                out.append(f'<p>{html.escape(s)}</p>')
+    return "".join(out), marken
+
+
+def jahresbericht_reader(b):
+    """Eine Lesefassung je Jahrgang: strukturierter Text links, IIIF-Blatt rechts."""
+    seiten = b.get("seiten") or []
+    if not seiten:
+        return None, None
+    item = b.get("item") or f"jahrbuchdeskaise{b['band']:02d}kaisrich"
+    tiles = [f"https://iiif.archive.org/iiif/{item}%24{s['leaf']}/info.json" for s in seiten]
+    text, alle_kopfe = [], []
+    for i, s in enumerate(seiten):
+        koerper, marken = jb_struktur(s.get("text") or "")
+        alle_kopfe += marken
+        text.append(f'<div class="pb" id="blatt-{s["leaf"]}" data-page="{i}" '
+                    f'onclick="viewer.goToPage({i})" title="Dieses Blatt im Faksimile zeigen">'
+                    f'— Blatt {s["leaf"]} —</div>{koerper}')
+    gliederung = ""
+    if alle_kopfe:
+        gliederung = ('<details class="inhalt" open><summary>Gliederung des Berichts</summary>'
+                      '<ul class="toc">'
+                      + "".join(f'<li><a href="#{aid}">{html.escape(lab)}</a></li>'
+                                for lab, aid in alle_kopfe) + '</ul></details>')
+    head = '<script src="../assets/openseadragon.min.js"></script>'
+    body = f"""<h1>Bericht der Reichs-Limeskommission {b['jahrgang']}</h1>
+<p class="meta">Jahrbuch des Kaiserlich Deutschen Archäologischen Instituts, Band {b['band']} —
+Archäologischer Anzeiger, Blatt {seiten[0]['leaf']}–{seiten[-1]['leaf']} ·
+{len(seiten)} Seiten · Faksimile: <a href="https://archive.org/details/{item}">archive.org</a> ·
+Lesung: {html.escape(b.get('ocr', ''))} ·
+zurück zum <a href="../register/jahresberichte.html">Berichtsindex</a></p>
+{gliederung}
+<div class="reader">
+  <div class="facs"><div id="osd"></div>
+    <div class="osdnav"><button onclick="viewer.goToPage(Math.max(0,viewer.currentPage()-1))">‹ vorige</button>
+    <span class="toggles"><label class="synctoggle"><input type="checkbox" id="syncscroll" checked>
+    Faksimile folgt</label></span>
+    <span id="pgind"></span><button onclick="viewer.goToPage(Math.min({len(tiles)-1},viewer.currentPage()+1))">nächste ›</button></div></div>
+  <div class="text">{''.join(text)}</div>
+</div>
+<script>
+var tiles = {json.dumps(tiles)};
+var viewer = OpenSeadragon({{id:"osd", prefixUrl:"", tileSources:tiles, sequenceMode:true,
+  showNavigationControl:false, showSequenceControl:false, gestureSettingsMouse:{{clickToZoom:false}}}});
+function upd(){{document.getElementById("pgind").textContent=(viewer.currentPage()+1)+" / "+tiles.length;}}
+function syncOn(){{var b=document.getElementById("syncscroll");return !b||b.checked;}}
+var _slock=false;
+viewer.addHandler("open", upd);
+viewer.addHandler("page", function(ev){{
+  upd();
+  if(!syncOn()||_slock) return;
+  var pb=document.querySelector('.reader .text .pb[data-page="'+ev.page+'"]');
+  if(pb){{_slock=true; pb.scrollIntoView({{behavior:"smooth",block:"start"}}); setTimeout(function(){{_slock=false;}},700);}}
+}});
+(function(){{
+  var pane=document.querySelector('.reader .text');
+  if(!pane||!('IntersectionObserver' in window)) return;
+  var io=new IntersectionObserver(function(es){{
+    if(!syncOn()||_slock) return;
+    es.forEach(function(e){{
+      if(e.isIntersecting){{
+        var p=parseInt(e.target.getAttribute('data-page'));
+        if(p>=0 && p!==viewer.currentPage()){{_slock=true; viewer.goToPage(p); setTimeout(function(){{_slock=false;}},350);}}
+      }}
+    }});
+  }},{{root:pane, rootMargin:"0px 0px -82% 0px", threshold:0}});
+  pane.querySelectorAll('.pb[data-page]').forEach(function(pb){{io.observe(pb);}});
+}})();
+</script>"""
+    return body, head
 
 
 def documentation_page(s):
@@ -3701,6 +3871,17 @@ def main():
               f"→ register/orl.html · orl-register.html · hathitrust.html")
     rlk_jb = _orl_load("rlk_jahresberichte.json")
     if rlk_jb:
+        os.makedirs(os.path.join(DOCS, "jahresberichte"), exist_ok=True)
+        _n = 0
+        for _b in rlk_jb.get("berichte", []):
+            _body, _head = jahresbericht_reader(_b)
+            if not _body:
+                continue
+            open(os.path.join(DOCS, "jahresberichte", f'jb{_b["jahrgang"]}.html'), "w",
+                 encoding="utf-8").write(page(f'Bericht der RLK {_b["jahrgang"]}', _body, 1, _head))
+            _n += 1
+        if _n:
+            print(f"Jahresberichte: {_n} Lesefassungen mit Faksimile → jahresberichte/jb<Jahr>.html")
         open(os.path.join(DOCS,"register","jahresberichte.html"),"w",encoding="utf-8").write(
             page("RLK-Jahresberichte", rlk_jahresberichte_page(rlk_jb, ner_p, ner_pl), 1))
         print(f"RLK-Jahresberichte: {rlk_jb.get('baende',0)}/14 Jahrgänge → register/jahresberichte.html")
