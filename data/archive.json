@@ -24,6 +24,20 @@
    ]
   },
   {
+   "notiz": "Archiv des Corpus Inscriptionum Latinarum (BBAW)",
+   "art": "Bestand",
+   "institutionen": [
+    "Corpus Inscriptionum Latinarum, Arbeitsstelle der Berlin-Brandenburgischen Akademie der Wissenschaften (BBAW), Berlin"
+   ],
+   "bestand": "Abklatschsammlung (Papierabklatsche lateinischer Inschriften) · Scheden (Arbeitszettel der Bandbearbeiter) · Korrespondenz der Corpus-Unternehmung",
+   "zugang": "Anfrage an die Arbeitsstelle; bis zu fünf Abklatsch-Fotos je Anfrage, Bearbeitung 4–8 Wochen; Einsicht in größere Schedenmengen nach Voranmeldung",
+   "findmittel_url": "https://cil.bbaw.de/hauptnavigation/archiv/abklatsche",
+   "stand": "2026-08-08",
+   "kurz": "Das Werkarchiv der ältesten deutschen Großforschungsunternehmung — des CIL, das Mommsen 1847 vorschlug und ab 1853 betrieb. Es verwahrt die Abklatsche (Papierabformungen der Inschriftensteine) und die Scheden, die Arbeitszettel, auf denen die Bandbearbeiter Lesung, Fundumstände und Literatur je Inschrift festhielten. Für die RLK ist das kein Nebenbestand: dieselbe Akademie, derselbe Initiator, und die Limesinschriften der RLK-Grabungen gingen in CIL XIII (Germania) ein.",
+   "signaturen": [],
+   "links": []
+  },
+  {
    "notiz": "Archivportal-D",
    "art": "Findmittel",
    "institutionen": [
@@ -281,6 +295,24 @@
   }
  ],
  "arbeitsliste": [
+  {
+   "notiz": "Archiv des Corpus Inscriptionum Latinarum (BBAW)",
+   "prio": "1",
+   "bestellung": "Abklatsche zu den CIL XIII-Nummern, die der ORL für Limeskastelle zitiert (Liste aus ORL-Inschriften-Zitatregister)",
+   "frage": "Wie kam die Lesung zustande, die der ORL übernimmt — und weicht der Abklatsch von der gedruckten Fassung ab?"
+  },
+  {
+   "notiz": "Archiv des Corpus Inscriptionum Latinarum (BBAW)",
+   "prio": "2",
+   "bestellung": "Scheden zu denselben Nummern",
+   "frage": "Welche Fundumstände hielt der Bearbeiter fest, die der Corpus-Eintrag nicht mitteilt?"
+  },
+  {
+   "notiz": "Archiv des Corpus Inscriptionum Latinarum (BBAW)",
+   "prio": "3",
+   "bestellung": "Korrespondenz Mommsen ↔ Zangemeister / Hettner zur Limes-Epigraphik",
+   "frage": "Lief die epigraphische Arbeit der RLK über den Corpus-Apparat oder daneben? Karl Zangemeister war Vorsitzender der RLK und CIL-Bearbeiter — die Personalunion ist belegt, die Arbeitsteilung nicht."
+  },
   {
    "notiz": "Erschließungsplan – RLK-Bestand der RGK",
    "prio": "1",
@@ -644,10 +676,10 @@
   }
  ],
  "bilanz": {
-  "bestandsnotizen": 12,
+  "bestandsnotizen": 13,
   "desiderate": 4,
   "nachlaesse": 35,
-  "arbeitsliste": 5,
+  "arbeitsliste": 8,
   "zugangslage": 15,
   "signaturen": 28
  }

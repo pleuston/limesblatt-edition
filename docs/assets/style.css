@@ -192,3 +192,7 @@ a.startkarte{display:flex;flex-direction:column;gap:.25rem;text-decoration:none;
 a.startkarte:hover{border-color:var(--accent,#8a3b12)}
 a.startkarte b{font-size:1.02rem}
 a.startkarte .meta{font-size:.78rem}
+blockquote.zit{border-left:3px solid var(--accent,#8a3b12);background:var(--card,#fbfaf7);
+  padding:.6rem .9rem;margin:.5rem 0;font-size:.95rem}
+pre.bib{background:var(--card,#fbfaf7);border:1px solid var(--line);border-radius:6px;padding:.7rem;
+  overflow-x:auto;font-size:.82rem}
