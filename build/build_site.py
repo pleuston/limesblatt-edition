@@ -3287,7 +3287,8 @@ def jahresbericht_reader(b):
                     f'— Blatt {s["leaf"]} —</div>{koerper}')
     gliederung = ""
     if alle_kopfe:
-        gliederung = ('<details class="inhalt" open><summary>Gliederung des Berichts</summary>'
+        gliederung = ('<details class="inhalt"><summary>Gliederung des Berichts '
+                      f'({len(alle_kopfe)} Abschnitte)</summary>'
                       '<ul class="toc">'
                       + "".join(f'<li><a href="#{aid}">{html.escape(lab)}</a></li>'
                                 for lab, aid in alle_kopfe) + '</ul></details>')
