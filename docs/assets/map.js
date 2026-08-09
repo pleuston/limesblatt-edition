@@ -1,7 +1,9 @@
 /* Facettierte Limes-Karte: benannte Kastelle (nach Abschnitt gefärbt/filterbar),
    Limesverlauf-Linie und die weiteren Limesstellen (DARE: Türme/Kleinkastelle/Lager
    zwischen den Kastellen) als zuschaltbare Ebenen. Fokus auf eine Strecke via ?strecke=<id>.
-   Erwartet window.MAPDATA.feats; lädt ../data/limes-line.geojson und ../data/sites.geojson.
+   Erwartet window.MAPDATA.feats; lädt die GeoJSON aus MAPDATA.basis (Vorgabe "../data/").
+   Die Karte steht auf zwei Ebenen: im Register (docs/register/) und als eigene Seite
+   (docs/karte.html). Ein fest verdrahtetes "../data/" träfe von oben aus aus docs/ heraus.
 
    Mehrere historische/thematische Kartenebenen als LIVE Drittanbieter-Kacheldienste (kein
    Rehosting, nichts davon liegt in diesem Repo) — deshalb hier möglich, obwohl Breeze &
@@ -14,6 +16,7 @@
    Dienst keinen {z}/{x}/{y}-Kachel-Endpunkt hat, s. Publikationen/Geländerelief (DGM) über
    dem Limes.md im Vault). */
 (function () {
+  var BASIS = (window.MAPDATA && window.MAPDATA.basis) || "../data/";
   var F = (window.MAPDATA && MAPDATA.feats) || [];
   var palette = ["#b3331a", "#1f7a4d", "#3060c0", "#b07d20", "#7a3fae"];
   var absList = [];
@@ -24,17 +27,49 @@
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     { maxZoom: 18, attribution: '© OpenStreetMap · Stellen © <a href="https://imperium.ahlfeldt.se/">DARE</a> (CC BY)' }).addTo(map);
 
+  // Die Ebenen sind GRUPPIERT, nicht in einer Reihe: fünfzehn Schalter nebeneinander sind
+  // keine Auswahl, sondern eine Wand. Was den Limes zeigt (Orte, Linien) steht offen; die
+  // Hintergrundebenen (historische Karten, Geländerelief) sind eingeklappt, weil sie das
+  // Kartenbild ersetzen statt es zu ergänzen und deshalb selten mehr als einzeln gebraucht
+  // werden. Die Gruppe zählt ihre aktiven Ebenen in der Kopfzeile mit.
   var fc = document.getElementById("facets");
-  if (fc) fc.insertAdjacentHTML("beforeend", '<strong>Ebenen:</strong> ');
-  function addToggle(label, dotColor, dotChar, layer, on) {
+  var gruppen = {};
+  function gruppe(name, offen) {
+    if (!fc) return null;
+    if (gruppen[name]) return gruppen[name];
+    var d = document.createElement("details");
+    d.className = "ebenengruppe";
+    if (offen) d.open = true;
+    var s = document.createElement("summary");
+    s.innerHTML = '<span class="gname">' + name + '</span> <span class="gzahl"></span>';
+    d.appendChild(s);
+    var box = document.createElement("div");
+    box.className = "ebenen";
+    d.appendChild(box);
+    fc.appendChild(d);
+    gruppen[name] = { box: box, zahl: s.querySelector(".gzahl"), boxen: [] };
+    return gruppen[name];
+  }
+  function zaehle(g) {
+    if (!g) return;
+    var an = g.boxen.filter(function (c) { return c.checked; }).length;
+    g.zahl.textContent = an + " von " + g.boxen.length;
+  }
+  function addToggle(label, dotColor, dotChar, layer, on, gname, goffen) {
     if (on) layer.addTo(map);
     if (!fc) return;
+    var g = gruppe(gname || "Ebenen", goffen !== false);
     var lab = document.createElement("label");
     var cb = document.createElement("input"); cb.type = "checkbox"; cb.checked = on;
-    cb.addEventListener("change", function () { if (cb.checked) layer.addTo(map); else map.removeLayer(layer); });
+    cb.addEventListener("change", function () {
+      if (cb.checked) layer.addTo(map); else map.removeLayer(layer);
+      zaehle(g);
+    });
     lab.appendChild(cb);
     lab.insertAdjacentHTML("beforeend", ' <span class="dot" style="color:' + dotColor + '">' + dotChar + "</span> " + label);
-    fc.appendChild(lab);
+    g.box.appendChild(lab);
+    g.boxen.push(cb);
+    zaehle(g);
   }
 
   // 1) Benannte Kastelle, nach Limes-Abschnitt
@@ -49,18 +84,18 @@
     m._sid = f.strecke_id || ""; m._ll = [f.lat, f.lng];
     markers.push(m); groups[a].addLayer(m);
   });
-  absList.forEach(function (a) { addToggle("Kastell · " + a, color[a], "●", groups[a], true); });
+  absList.forEach(function (a) { addToggle("Kastell · " + a, color[a], "●", groups[a], true, "Kastelle", true); });
 
   // 2) Limesverlauf-Linie
   var lineLayer = L.layerGroup();
-  fetch("../data/limes-line.geojson").then(function (r) { return r.json(); }).then(function (gj) {
+  fetch(BASIS + "limes-line.geojson").then(function (r) { return r.json(); }).then(function (gj) {
     L.geoJSON(gj, { style: { color: "#6b4f2a", weight: 2.5, opacity: .75, dashArray: "5 4" } }).addTo(lineLayer);
-    addToggle("Limesverlauf", "#6b4f2a", "▬", lineLayer, true);
+    addToggle("Limesverlauf", "#6b4f2a", "▬", lineLayer, true, "Verlauf & Strecken", true);
   }).catch(function () {});
 
   // 2b) Streckenabschnitte (echte Linie, nach Strecke eingefärbt)
   var strLayer = L.layerGroup();
-  fetch("../data/strecken-line.geojson").then(function (r) { return r.json(); }).then(function (gj) {
+  fetch(BASIS + "strecken-line.geojson").then(function (r) { return r.json(); }).then(function (gj) {
     L.geoJSON(gj, {
       style: function (f) { return { color: f.properties.color, weight: 4, opacity: .85 }; },
       onEachFeature: function (f, l) {
@@ -68,13 +103,13 @@
         l.bindTooltip(f.properties.name, { sticky: true });
       }
     }).addTo(strLayer);
-    addToggle("Streckenabschnitte", "#888", "▬", strLayer, false);
+    addToggle("Streckenabschnitte", "#888", "▬", strLayer, false, "Verlauf & Strecken", true);
   }).catch(function () {});
 
   // 3) Weitere Limesstellen (DARE): Türme/Kleinkastelle/Lager zwischen den Kastellen
   var dareColor = { camp: "#8a8a8a", fort: "#8a6d3b" };  // sonst (fortlet/tower):
   var siteLayer = L.layerGroup(), siteById = {};
-  fetch("../data/sites.geojson").then(function (r) { return r.json(); }).then(function (gj) {
+  fetch(BASIS + "sites.geojson").then(function (r) { return r.json(); }).then(function (gj) {
     L.geoJSON(gj, {
       pointToLayer: function (feat, latlng) {
         var p = feat.properties || {}, col = dareColor[p.type] || "#3f6f7a";
@@ -86,12 +121,12 @@
         return mk;
       }
     }).addTo(siteLayer);
-    addToggle("weitere Limesstellen · DARE (" + (gj.features || []).length + ")", "#3f6f7a", "○", siteLayer, true);
+    addToggle("weitere Limesstellen · DARE (" + (gj.features || []).length + ")", "#3f6f7a", "○", siteLayer, true, "Weitere Orte", true);
   }).catch(function () {});
 
   // 4) Im Volltext genannte Orte (LLM-NER, verortet via iDAI-Gazetteer / OSM) – standardmäßig aus
   var nerLayer = L.layerGroup();
-  fetch("../data/ner-sites.geojson").then(function (r) { return r.json(); }).then(function (gj) {
+  fetch(BASIS + "ner-sites.geojson").then(function (r) { return r.json(); }).then(function (gj) {
     L.geoJSON(gj, {
       pointToLayer: function (feat, latlng) {
         var p = feat.properties || {};
@@ -103,7 +138,7 @@
         return L.circleMarker(latlng, { radius: rad, weight: 1, color: "#7a3fae", fillColor: "#b388e0", fillOpacity: .55 }).bindPopup(pop);
       }
     }).addTo(nerLayer);
-    addToggle("im Volltext genannte Orte · NER (" + (gj.features || []).length + ")", "#7a3fae", "◆", nerLayer, false);
+    addToggle("im Volltext genannte Orte · NER (" + (gj.features || []).length + ")", "#7a3fae", "◆", nerLayer, false, "Weitere Orte", true);
   }).catch(function () {});
 
   // 5) Historische Landesaufnahmen Hessen (HLGL-WMTS, live Kachel-Dienst, kein Rehosting):
@@ -114,8 +149,8 @@
   var hlglGHH = L.tileLayer(
     "https://wms.hlgl.uni-marburg.de/mapcache/landesaufnahme/wmts/1.0.0/ghh/default/GoogleMapsCompatible/{z}/{y}/{x}.png",
     { maxZoom: 18, attribution: 'Historische Landesaufnahme © <a href="https://hil.hessen.de">HLGL</a>' });
-  addToggle("Herzogtum Hessen-Nassau, 1819/1848", "#9c6b30", "▦", hlglHN, false);
-  addToggle("Großherzogtum Hessen, 1823–1850", "#9c6b30", "▦", hlglGHH, false);
+  addToggle("Herzogtum Hessen-Nassau, 1819/1848", "#9c6b30", "▦", hlglHN, false, "Historische Karten", false);
+  addToggle("Großherzogtum Hessen, 1823–1850", "#9c6b30", "▦", hlglGHH, false, "Historische Karten", false);
 
   // 6) Karte des Deutschen Reiches 1:100.000, 1909 (Virtuelles Kartenforum SLUB Dresden,
   //    live WMS, kein Rehosting) — RLK-zeitgenössisch, deckt ganz Deutschland.
@@ -123,7 +158,7 @@
     layers: "deutsches_reich_tk100", format: "image/png", transparent: true, maxZoom: 18,
     attribution: '„Karte des Deutschen Reiches" 1909 © <a href="https://kartenforum.slub-dresden.de/">Virtuelles Kartenforum, SLUB Dresden</a>'
   });
-  addToggle("Karte des Deutschen Reiches, 1909", "#5a5a5a", "▦", kdr100, false);
+  addToggle("Karte des Deutschen Reiches, 1909", "#5a5a5a", "▦", kdr100, false, "Historische Karten", false);
 
   // 7) Geländerelief (DGM1) Hessen + Bayern — live WMS/ArcGIS-export, kein Rehosting.
   //    Zeigt Terrainform statt Kartenbild: Wall/Graben/Hohlwege werden als feine lineare
@@ -132,13 +167,13 @@
     layers: "by_relief_kombiniert", format: "image/png", transparent: true, maxZoom: 18,
     attribution: 'Geländerelief © <a href="https://geoservices.bayern.de">Bayerische Vermessungsverwaltung</a>, CC BY 4.0'
   });
-  addToggle("Geländerelief Bayern (DGM1)", "#6b6b6b", "▦", reliefBayern, false);
+  addToggle("Geländerelief Bayern (DGM1)", "#6b6b6b", "▦", reliefBayern, false, "Geländerelief", false);
 
   var reliefBW = L.tileLayer.wms("https://owsproxy.lgl-bw.de/owsproxy/ows/WMS_LGL-BW_ATKIS_DGM_025_Schummerung", {
     layers: "Schummerung_DGM_025_BW", format: "image/png", transparent: true, maxZoom: 18,
     attribution: 'Geländerelief © <a href="https://www.lgl-bw.de">LGL Baden-Württemberg</a>, DL-DE-BY-2.0'
   });
-  addToggle("Geländerelief Baden-Württemberg (DGM 25cm)", "#6b6b6b", "▦", reliefBW, false);
+  addToggle("Geländerelief Baden-Württemberg (DGM 25cm)", "#6b6b6b", "▦", reliefBW, false, "Geländerelief", false);
 
   // Hessens DGM1-Dienst ist ein ArcGIS-ImageServer ohne {z}/{x}/{y}-Kachel-Endpunkt (natives
   // CRS EPSG:25832). Die `export`-Operation reprojiziert aber live über bboxSR/imageSR=3857 —
@@ -159,7 +194,7 @@
     maxZoom: 18, minZoom: 9,
     attribution: 'Geländerelief © HVBG/HLNUG, <a href="https://opendata.hessen.de/dataset/atkis-dgm-1">DL-DE-Zero-2.0</a>'
   });
-  addToggle("Geländerelief Hessen (DGM1)", "#6b6b6b", "▦", reliefHessen, false);
+  addToggle("Geländerelief Hessen (DGM1)", "#6b6b6b", "▦", reliefHessen, false, "Geländerelief", false);
 
   window.focusSite = function (id) {
     var m = siteById[id]; if (!m) return false;

@@ -24,6 +24,39 @@ IIIF_MAN  = "https://digi.ub.uni-heidelberg.de/diglit/iiif/{slug}/manifest"
 LABELS = {1:"Bd. 1 (1892/93)",2:"Bd. 2 (1893/94)",3:"Bd. 3 (1894/95)",4:"Bd. 4 (1896)",
           5:"Bd. 5 (1897)",6:"Bd. 6 (1897/98)",7:"Bd. 7 (1898/1902)",8:"Bd. 8 (1903)"}
 
+def _datenwert(datei, *pfad, vorgabe="?"):
+    """Ein Wert aus einer Datendatei, für Zahlen im Fliesstext.
+
+    Jede Zahl auf der Seite soll aus ihrer Quelle kommen. Der Durchgang über alle festen
+    Zahlen fand fünf, die schon nicht mehr stimmten: 817 statt 842 Inschriften-Zitate,
+    11 statt 12 gemeinsame Inschriften, 37 statt 30 Fehlzuordnungen, 13 statt 12 Jahrgänge
+    und 85 statt 91 Personen."""
+    try:
+        d = json.load(open(os.path.join(REPO, "data", datei + ".json"), encoding="utf-8"))
+    except Exception:
+        return vorgabe
+    for k in pfad:
+        if isinstance(d, dict) and k in d:
+            d = d[k]
+        else:
+            return vorgabe
+    return d
+
+
+def _zj(*pfad):
+    return _datenwert("orl_limesblatt_zitatjoin", *pfad)
+
+
+def _bl_fehl():
+    v = _datenwert("orl_band_lieferung", "fehlzuordnungen_orl_index", vorgabe=[])
+    return len(v) if isinstance(v, list) else "?"
+
+
+def _n_jb():
+    v = _datenwert("rlk_jahresberichte", "berichte", vorgabe=[])
+    return len(v) if isinstance(v, list) else "?"
+
+
 def _tausend(n):
     """Zahl mit deutschem Tausenderpunkt.
 
@@ -263,7 +296,6 @@ def page(title, body, depth=0, head=""):
 <li><a href="{up}register/persons.html">Personen</a></li>
 <li><a href="{up}register/places.html">Orte</a></li>
 <li><a href="{up}register/strecken.html">Strecken</a></li>
-<li><a href="{up}register/organigramm.html">Organigramm</a></li>
 <li><a href="{up}register/fundindex.html">Fundindex</a></li>
 <li><a href="{up}register/inschriften.html">Inschriften</a></li>
 <li><a href="{up}register/namen.html">Namen im Text</a></li>
@@ -272,7 +304,11 @@ def page(title, body, depth=0, head=""):
 <li><a href="{up}register/hintzelmann.html">Register von 1903</a></li>
 <li><a href="{up}register/gesamtregister.html">Gesamtregister (alle Werke)</a></li>
 <li><a href="{up}register/orl-register.html">ORL-Gesamtapparat</a></li>
-<li><a href="{up}register/netz.html">Netzansicht</a></li></ul></li>
+</ul></li>
+<li class="has"><a href="{up}karte.html">Visualisierungen</a><ul>
+<li><a href="{up}karte.html">Karte des Limes</a></li>
+<li><a href="{up}register/netz.html">Beziehungsnetz</a></li>
+<li><a href="{up}register/organigramm.html">Organigramm der RLK</a></li></ul></li>
 <li class="has"><a href="{up}register/wortschatz.html">Analyse</a><ul>
 <li><a href="{up}register/wortschatz.html">Textanalyse</a></li>
 <li><a href="{up}register/genese.html">Genese des ORL</a></li>
@@ -565,7 +601,35 @@ def places_page(places, occ, pname, str_by_id, sites, site_hits):
             f'{sites_html}'
             f'<script>var MAPDATA={{"feats":{json.dumps(feats)}}};</script>'
             f'<script src="../assets/map.js"></script>')
+    return body, head, feats
+
+
+def karte_page(places, sites, feats):
+    """Die Karte als eigene Seite, gross und ohne Registerkarten daneben.
+
+    Im Ortsregister steht sie unter der Liste und teilt sich den Platz mit ihr. Wer die Grenze
+    im Zusammenhang sehen will, braucht sie ganzseitig; die Daten sind dieselben (`MAPDATA`),
+    nur ohne die Karten-Kacheln der einzelnen Orte darunter."""
+    head = ('<link rel="stylesheet" href="assets/leaflet.css">'
+            '<script src="assets/leaflet.js"></script>'
+            '<style>#map{height:min(78vh,760px)}</style>')
+    body = (f'<h1>Karte</h1>'
+            f'<p class="lede">{len(places)} benannte Kastelle und {len(sites)} weitere Limesstellen auf '
+            f'einer Karte. Zuschaltbar sind der <b>Limesverlauf</b>, die <b>Streckenabschnitte</b> (die '
+            f'echte Linie nach Abschnitt eingefärbt, Klick führt zur Streckenseite) und die <b>weiteren '
+            f'Limesstellen</b> aus dem antiken Ortsverzeichnis DARE. Über die Filter lässt sich auf einen '
+            f'Limes-Abschnitt eingrenzen.</p>'
+            f'<div id="facets"></div><div id="map"></div>'
+            f'<p class="meta">Die Kastellpunkte stammen aus den Notizen des Forschungs-Vaults und sind '
+            f'gegen das antike Ortsverzeichnis DARE gegengeprüft (Median-Abweichung 5 m, Höchstwert 79 m '
+            f'bei 18 von 20 prüfbaren Punkten). Die Verlaufslinie ist eine Rekonstruktion aus '
+            f'OpenStreetMap und über weite Strecken interpoliert: auf ihr darf nicht gemessen werden. '
+            f'Zu den Einträgen: <a href="register/places.html">Ortsregister</a> · '
+            f'<a href="register/strecken.html">Strecken</a>.</p>'
+            f'<script>var MAPDATA={{"basis":"data/","feats":{json.dumps(feats)}}};</script>'
+            f'<script src="assets/map.js"></script>')
     return body, head
+
 
 def strecken_page(strecken, str_forts, persons, pname, strecke_sites, orl_idx, volumes):
     byname = {p["name"]: p for p in persons}
@@ -706,8 +770,9 @@ def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh, artliste=None):
               "Fachzeitschriften, aufgelöst zu vollen Referenzen und, wo vorhanden, zum offenen Digitalisat.",
               [f"<b>{len(bibls)} zitierte Werke</b> im Limesblatt, als <code>&lt;ref&gt;</code> im TEI ausgezeichnet",
                f"<b>{n_edh} Inschriften</b> der Limes-Fundorte aus der Epigraphic Database Heidelberg",
-               "817 Inschriften-Zitate des ORL, normalisiert zum Zitatregister",
-               "Befund: nur 11 Inschriften zitieren beide Werke, der ORL-Apparat wurde neu aufgebaut"],
+               f"{_zj('orl', 'eindeutig')} Inschriften-Zitate des ORL, normalisiert zum Zitatregister",
+               f"Befund: nur {_zj('join', 'in_beiden')} Inschriften zitieren beide Werke, "
+               f"der ORL-Apparat wurde neu aufgebaut"],
               [("Bibliographie", "register/bibliographie.html"),
                ("Gesamtbibliographie", "register/gesamtbibliographie.html"),
                ("Inschriften (EDH)", "register/inschriften.html")]),
@@ -736,7 +801,7 @@ def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh, artliste=None):
         block("archive", "Archivbestände", "unveröffentlicht · zum Teil ungesehen",
               "Alles bisher Genannte ist gedruckt. Daneben liegt das <em>unveröffentlichte</em> Material: "
               "Grabungstagebücher, Korrespondenz, Vermessungsunterlagen, Ministerialakten. Hier steht, wo es "
-              "liegt, wie man herankommt, und was noch niemand angesehen hat.",
+              "liegt und wie man herankommt.",
               ["das wissenschaftliche Archiv der Kommission liegt geschlossen bei der "
                "<b>Römisch-Germanischen Kommission</b> des DAI in Frankfurt",
                "die <b>Verwaltungsüberlieferung</b> dagegen verteilt auf die Staatsarchive der Trägerstaaten: "
@@ -828,9 +893,14 @@ def baende_page(volumes, toc=None):
             )
 
 
-def index_page(volumes, toc=None):
+def index_page(volumes, toc=None, zahlen=None):
     """Startseite: ein Einstieg, kein Verzeichnis: was hier zu finden ist, in einem Bildschirm."""
     toc = toc or {}
+    # Die Kennzahlen der Einstiegskarten kommen von aussen, damit sie nicht hier eintrocknen.
+    zahlen = zahlen or {}
+    n_pers = zahlen.get("personen", "?")
+    n_kast = zahlen.get("kastelle", "?")
+    n_str = zahlen.get("strecken", "?")
     n_ber = sum(len(x) for x in toc.values())
     n_seiten = sum(len(v["pages"]) for v in volumes)
     head = '<script src="assets/minisearch.min.js"></script>'
@@ -845,11 +915,11 @@ def index_page(volumes, toc=None):
         karte("ORL", "Die Endpublikation, in die das Feld mündete: Inhalt, Apparat und Binnenverweise "
               "erschlossen.", "register/orl-inhalt.html", "1894–1937 · 92 Kastell-Faszikel"),
         karte("Jahresberichte", "Was die Kommission jährlich über sich selbst berichtete: Personal, "
-              "Beschlüsse, Kampagnen.", "register/jahresberichte.html", "1892–1905 · 13 Jahrgänge"),
-        karte("Archivbestände", "Das unveröffentlichte Material: wo es liegt, wie man herankommt, was noch "
-              "niemand angesehen hat.", "register/archive.html", "Findmittel · Nachlässe · Desiderate"),
+              "Beschlüsse, Kampagnen.", f"register/jahresberichte.html", f"1892–1905 · {_n_jb()} Jahrgänge"),
+        karte("Archivbestände", "Das unveröffentlichte Material: wo es liegt und wie man "
+              "herankommt.", "register/archive.html", "Findmittel · Nachlässe · Desiderate"),
         karte("Personen &amp; Orte", "Wer die Grenze erforschte und wo: mit Normdaten, Karte und den "
-              "Belegen im Text.", "register/persons.html", "85 Personen · 23 Kastelle · 15 Strecken"),
+              "Belegen im Text.", f"register/persons.html", f"{n_pers} Personen · {n_kast} Kastelle · {n_str} Strecken"),
         karte("Funde", "Fundgattungen im Überblick und die Einzelstücke: Stempel-Lesungen, datierte Münzen, "
               "gemeldete Objekte.", "register/fundindex.html", "435 Einzelfunde · 125 Stempel"),
         karte("Werkübergreifend", "Dieselben Namen in allen drei Werken, die Gesamtbibliographie und das "
@@ -2625,7 +2695,7 @@ def orl_apparatus_page(reg, idx, persons=None):
                 "count": e["count"], "gazetteer": e["gazetteer"]} for e in merged.values()]
     def prow(r):
         # Die frühere Spalte „Bände (ORL-Nr.)" ist entfernt: Ihre Nummern kamen aus der htid→Kastell-Nr.-
-        # Abbildung des orl_index, und die war für 37 der 56 Bände falsch (enumcron „v. N" = Lieferung,
+        # Abbildung des orl_index, und die war für 30 der 56 Bände falsch (enumcron „v. N" = Lieferung,
         # nicht Kastell-Nr.). Geprüft und WEITERHIN GÜLTIG sind #Bd. und Nenn.: keine der 130.540 NER-Zeilen
         # fällt weg, und die Abbildung ist injektiv (56 Bände → 56 Nrn.) — sie zählt also richtig, in wie
         # vielen Bänden ein Name steht; falsch war nur, WELCHE genannt wurden.
@@ -2661,7 +2731,7 @@ def orl_apparatus_page(reg, idx, persons=None):
         f'(Jacobi: Louis und Heinrich), bleiben sie getrennt.</p>'
         f'<div class="note"><p><b>Warum hier keine Bandnummern stehen.</b> Bis 2026-07 nannte diese Tabelle '
         f'zu jedem Namen die Bände, in denen er vorkommt. Diese Nummern stammten aus der Zuordnung '
-        f'Scan→Kastell-Nummer, und die war für <b>37 der 56 Bände falsch</b> (die HathiTrust-Signatur '
+        f'Scan→Kastell-Nummer, und die war für <b>{_bl_fehl()} Bände falsch</b> (die HathiTrust-Signatur '
         f'„v.&#8201;N" ist die <i>Lieferung</i>, nicht die Kastell-Nummer). Geprüft und weiterhin gültig '
         f'sind <b>#Bd.</b> und <b>Nenn.</b>: Keine der 130.540 NER-Zeilen fällt weg, und die Abbildung ist '
         f'injektiv (56 Bände → 56 Nummern), sie zählt also richtig, in <i>wie vielen</i> Bänden ein Name '
@@ -3294,7 +3364,7 @@ def gesamtregister_page(ner_p, ner_pl, orl_reg, jb, persons):
             f'<p class="meta">Dieselbe Person, derselbe Ort, gesucht in <b>drei getrennt erschlossenen '
             f'Korpora</b>: dem <a href="../index.html">Limesblatt</a> (Volltext dieser Edition), dem '
             f'<a href="orl-register.html">ORL</a> (HathiTrust-Erschließung über 56 Bände) und den '
-            f'<a href="jahresberichte.html">RLK-Jahresberichten</a> (13 Jahrgänge). Die Spalte '
+            f'<a href="jahresberichte.html">RLK-Jahresberichten</a> ({_n_jb()} Jahrgänge). Die Spalte '
             f'<b>Werke</b> sagt, in wie vielen der drei ein Name überhaupt vorkommt. Sortiert man danach, '
             f'stehen oben die Namen, die das ganze Unternehmen durchziehen: <b>{d3p} Personen</b> und '
             f'<b>{d3o} Orte</b> in allen dreien.</p>'
@@ -3553,7 +3623,13 @@ def archiv_page(a, persons):
                   f'<td>{html.escape(n["verwahrort"])}</td></tr>')
     prows = "".join(f'<tr><td><a href="{html.escape(p["url"])}">{html.escape(p["name"])}</a></td>'
                     f'<td>{html.escape(p["reichweite"])}</td></tr>' for p in a.get("portale", []))
-    zrows = "".join(f'<tr><td class="meta">{html.escape(z["notiz"])}</td><td>{html.escape(z["findmittel"])}</td>'
+    # Der Findmittel-Name wird zum Link, wo die Adresse belegt ist. Eine Liste von Namen ohne
+    # Adresse ist für die Recherche wertlos: sie sagt, dass es etwas gibt, aber nicht wo.
+    def _zfm(z):
+        name = html.escape(z["findmittel"])
+        u = z.get("url")
+        return f'<a href="{html.escape(u)}">{name}</a>' if u else name
+    zrows = "".join(f'<tr><td class="meta">{html.escape(z["notiz"])}</td><td>{_zfm(z)}</td>'
                     f'<td class="meta ktx">{html.escape(z["erreichbarkeit"])}</td>'
                     f'<td class="meta">{html.escape(z.get("deckt_ab", ""))}</td></tr>'
                     for z in a.get("zugangslage", []))
@@ -3561,8 +3637,8 @@ def archiv_page(a, persons):
     return (f'<h1>Archivbestände</h1>'
             f'<p class="lede">Hinter den gedruckten Quellen liegt das unveröffentlichte Material: '
             f'Grabungstagebücher, Korrespondenz, Vermessungsunterlagen, Ministerialakten. Diese Seite '
-            f'veröffentlicht davon nichts: sie führt zusammen, <b>wo es liegt</b>, <b>wie man herankommt</b> '
-            f'und vor allem, <b>was noch niemand angesehen hat</b>. '
+            f'veröffentlicht davon nichts: sie führt zusammen, <b>wo es liegt</b> und <b>wie man '
+            f'herankommt</b>. '
             f'{bil.get("bestandsnotizen", 0)} Bestands- und Findmittelnotizen, '
             f'{bil.get("signaturen", 0)} belegte Signaturen, {bil.get("nachlaesse", 0)} Nachlässe.</p>'
             f'<div class="note"><p><b>Der Grundbefund.</b> Das wissenschaftliche Archiv der Kommission liegt '
@@ -3586,8 +3662,10 @@ def archiv_page(a, persons):
             f'<th>Signaturen</th><th>Zugang</th><th></th></tr></thead><tbody>{brows}</tbody></table>'
             + (f'<h2 id="zugang">Erreichbarkeit</h2>'
                f'<p class="meta">Welches Findmittel maschinell erreichbar ist und welches nicht: die '
-               f'Unterscheidung entscheidet, was sich token-frei erschließen lässt und was eine Reise '
-               f'kostet.</p><table class="reg"><thead><tr><th>Notiz</th><th>Findmittel</th>'
+               f'Unterscheidung entscheidet, was sich maschinell erschließen lässt und was eine Reise '
+               f'kostet. Wo eine Adresse belegt ist, führt der Name des Findmittels direkt dorthin; '
+               f'die übrigen sind nur vor Ort oder auf Anfrage zugänglich.</p>'
+               f'<table class="reg"><thead><tr><th>Notiz</th><th>Findmittel</th>'
                f'<th>Erreichbarkeit</th><th>deckt ab</th></tr></thead><tbody>{zrows}</tbody></table>'
                if zrows else "")
             + f'<h2 id="nachlaesse">Nachlässe</h2>'
@@ -4427,8 +4505,11 @@ def main():
     print(f"DARE-Inline-Tags im Lesetext: {len(dare_hits)}/{len(sites)} Stellen verlinkt")
 
     open(os.path.join(DOCS,"register","persons.html"),"w",encoding="utf-8").write(page("Personenregister", persons_page(persons, occ, digs), 1))
-    plb, plh = places_page(places, occ, pname, str_by_id, sites, dare_hits)
+    plb, plh, mapfeats = places_page(places, occ, pname, str_by_id, sites, dare_hits)
     open(os.path.join(DOCS,"register","places.html"),"w",encoding="utf-8").write(page("Ortsregister", plb, 1, plh))
+    kb, kh = karte_page(places, sites, mapfeats)
+    open(os.path.join(DOCS,"karte.html"),"w",encoding="utf-8").write(page("Karte", kb, 0, kh))
+    print(f"Visualisierungen: Karte ({len(places)} Kastelle, {len(sites)} Stellen) + Netzansicht")
     def _orl_load(name):
         for base in (os.path.join(REPO, "data"), os.path.join(REPO, "..", "limes", "tools")):
             p = os.path.join(base, name)
@@ -4575,7 +4656,8 @@ def main():
     open(os.path.join(DOCS,"dokumentation.html"),"w",encoding="utf-8").write(page("Dokumentation", documentation_page(stats), 0))
     print(f"Dokumentation → dokumentation.html")
     open(os.path.join(DOCS,"uebersicht.html"),"w",encoding="utf-8").write(page("Übersicht", willkommen_page(stats), 0))
-    ib, ih = index_page(volumes, toc)
+    ib, ih = index_page(volumes, toc, {"personen": len(persons), "kastelle": len(places),
+                                       "strecken": len(strecken)})
     open(os.path.join(DOCS,"index.html"),"w",encoding="utf-8").write(page("Startseite", ib, 0, ih))
     open(os.path.join(DOCS,"baende.html"),"w",encoding="utf-8").write(
         page("Limesblatt: Bände", baende_page(volumes, toc), 0))

@@ -349,91 +349,106 @@
    "notiz": "Digitalisate der Limesforschung",
    "findmittel": "archive.org derobergermanis00fabrgoog",
    "erreichbarkeit": "Abt. B 40, Kastell Osterburken (Schumacher 1895)",
-   "deckt_ab": "…_djvu.txt (193 KB)"
+   "deckt_ab": "…_djvu.txt (193 KB)",
+   "url": "https://archive.org/details/derobergermanis00fabrgoog"
   },
   {
    "notiz": "Digitalisate der Limesforschung",
    "findmittel": "HathiTrust Record 012239533",
    "erreichbarkeit": "Lieferung 1–56 (vollständig), uc1.c2605048–c2605103",
-   "deckt_ab": "Seiten-OCR imgsrv/download/plaintext"
+   "deckt_ab": "Seiten-OCR imgsrv/download/plaintext",
+   "url": "https://catalog.hathitrust.org/Record/012239533"
   },
   {
    "notiz": "Digitalisate der Limesforschung",
    "findmittel": "DDB / DFG-Viewer",
    "erreichbarkeit": "alle 14 Bände (A 1–7, B 1–7) gelistet",
-   "deckt_ab": "–"
+   "deckt_ab": "–",
+   "url": "https://www.deutsche-digitale-bibliothek.de/"
   },
   {
    "notiz": "Digitalisate der Limesforschung",
    "findmittel": "Google Books",
    "erreichbarkeit": "≥4 PD-Bände (iEA0AQAAMAAJ u. a.)",
-   "deckt_ab": "–"
+   "deckt_ab": "–",
+   "url": "https://books.google.com/books?id=iEA0AQAAMAAJ"
   },
   {
    "notiz": "Digitalisate der Limesforschung",
    "findmittel": "MDZ/BSB · UB Heidelberg",
    "erreichbarkeit": "–",
-   "deckt_ab": "–"
+   "deckt_ab": "–",
+   "url": "https://digi.ub.uni-heidelberg.de/diglit/limesblatt"
   },
   {
    "notiz": "Digitalisate der Limesforschung",
    "findmittel": "Zenon/iDAI",
    "erreichbarkeit": "nur Katalognachweis",
-   "deckt_ab": "–"
+   "deckt_ab": "–",
+   "url": "https://zenon.dainst.org/"
   },
   {
    "notiz": "Erschließungsplan – RLK-Bestand der RGK",
    "findmittel": "iDAI.archives (AtoM)",
    "erreichbarkeit": "Anubis-Bot-Wall (307 → anubis.archives.dainst.org); OAI-PMH & Browse-API automatisiert blockiert, im Browser aber lesbar und als EAD exportierbar (Anubis manuell passierbar). RLK-Serien publiziert (scope/Umfang/Bestandsgeschichte), Item-Ebene (<dsc) noch leer; Direktoren-Nachlässe teils item-tief (DAI-RGK-A 482 Dragendorff)",
-   "deckt_ab": "das RGK-eigene, laufend fortgeschriebene Findmittel"
+   "deckt_ab": "das RGK-eigene, laufend fortgeschriebene Findmittel",
+   "url": "https://archives.dainst.org/index.php/de-dai-rgk-a-rlk"
   },
   {
    "notiz": "Erschließungsplan – RLK-Bestand der RGK",
    "findmittel": "gedrucktes Findbuch (Ruppel 1981)",
    "erreichbarkeit": "Print / Bibliotheksexemplar",
-   "deckt_ab": "die RGK-Registratur 1902–1956 item-tief — inkl. RLK-Altregistratur"
+   "deckt_ab": "die RGK-Registratur 1902–1956 item-tief — inkl. RLK-Altregistratur",
+   "url": "https://opac.k10plus.de/DB=2.1/CMD?ACT=SRCHA&IKT=1016&SRT=YOP&TRM=Ruppel+Findbuch+RGK"
   },
   {
    "notiz": "Erschließungsplan – RLK-Bestand der RGK",
-   "findmittel": "[[Kalliope-Verbund\\",
-   "erreichbarkeit": "Kalliope]] (SRU/CQL, ISIL DE-F36)",
-   "deckt_ab": "token-frei; ead.repository.isil=DE-F36 → 4203 RGK-Datensätze"
+   "findmittel": "Kalliope (SRU/CQL, ISIL DE-F36)",
+   "erreichbarkeit": "token-frei; ead.repository.isil=DE-F36 → 4203 RGK-Datensätze",
+   "deckt_ab": "v. a. die Autographensammlung + jüngere Nachlässe (Kossack); der historische RLK-Kernbestand ist hier nicht nachgewiesen",
+   "url": "https://kalliope-verbund.info/de/isil?isil.id=DE-F36"
   },
   {
    "notiz": "Erschließungsplan – RLK-Bestand der RGK",
    "findmittel": "Propylaeum-VITAE",
    "erreichbarkeit": "Personen-IDs via Wikidata P12176 token-frei",
-   "deckt_ab": "biografische Aggregation, kein Archiv-Item-Findmittel"
+   "deckt_ab": "biografische Aggregation, kein Archiv-Item-Findmittel",
+   "url": ""
   },
   {
    "notiz": "Erschließungsplan – RLK-Bestand der RGK",
    "findmittel": "Lesesaal RGK",
    "erreichbarkeit": "physisch, Mo/Mi/Do n. V. (archiv.rgk@dainst.de)",
-   "deckt_ab": "die einzige Ebene mit Item-/Signaturzugriff"
+   "deckt_ab": "die einzige Ebene mit Item-/Signaturzugriff",
+   "url": ""
   },
   {
    "notiz": "Landesdenkmalämter & Ortsakten",
    "findmittel": "LAD Baden-Württemberg",
    "erreichbarkeit": "ADABweb (intern, ~82.000 Bodendenkmäler)",
-   "deckt_ab": "Kastelle am obergermanischen Limes BW"
+   "deckt_ab": "Kastelle am obergermanischen Limes BW",
+   "url": "https://www.denkmalpflege-bw.de/denkmale/datenbanken/adabweb"
   },
   {
    "notiz": "Landesdenkmalämter & Ortsakten",
    "findmittel": "BLfD Bayern",
    "erreichbarkeit": "Fachdatenbank (intern)",
-   "deckt_ab": "Raetischer Limes Bayern"
+   "deckt_ab": "Raetischer Limes Bayern",
+   "url": "https://www.blfd.bayern.de/"
   },
   {
    "notiz": "Landesdenkmalämter & Ortsakten",
    "findmittel": "hessenARCHÄOLOGIE (LfDH)",
    "erreichbarkeit": "auf Anfrage",
-   "deckt_ab": "Hessischer Limesabschnitt"
+   "deckt_ab": "Hessischer Limesabschnitt",
+   "url": "https://lfd.hessen.de/"
   },
   {
    "notiz": "Landesdenkmalämter & Ortsakten",
    "findmittel": "GDKE Rheinland-Pfalz (Landesarchäologie)",
    "erreichbarkeit": "Ortsakten auf Anfrage",
-   "deckt_ab": "Niedergermanische Anschlussabschnitte"
+   "deckt_ab": "Niedergermanische Anschlussabschnitte",
+   "url": "https://gdke.rlp.de/kulturerbeonline/lesehaeppchen/landesarchaeologie"
   }
  ],
  "nachlaesse": [
