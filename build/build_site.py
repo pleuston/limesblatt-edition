@@ -57,6 +57,48 @@ def _n_jb():
     return len(v) if isinstance(v, list) else "?"
 
 
+def _lb_spalten():
+    """Wie viele Spalten das Limesblatt zählt: die Einheit, in der es sich selbst zitiert.
+
+    Aus dem TEI gezählt, nicht gesetzt: jede Spalte trägt dort ein <cb>. Die Zahl steht in
+    Aussagen wie »kommt in keiner der N Spalten vor« und muss sich mit dem Bestand bewegen."""
+    n = 0
+    for f in glob.glob(os.path.join(REPO, "tei", "limesblatt-*.xml")):
+        try:
+            n += open(f, encoding="utf-8").read().count("<cb ")
+        except OSError:
+            return "?"
+    return _tausend(n) if n else "?"
+
+
+def _orl_baende():
+    """Wie viele ORL-Bände die HathiTrust-Erschließung umfasst.
+
+    Nicht gezählt aus einer Bandliste, sondern aus den Bandmarken des Gesamtregisters: das
+    ist dieselbe Grundlage, über die die Seiten reden, und sie bewegt sich mit, wenn das
+    Workset wächst. Die Zahl stand an sechs Stellen fest eingetippt."""
+    r = _datenwert("orl_register", vorgabe={})
+    if not isinstance(r, dict):
+        return "?"
+    b = set()
+    for e in (r.get("persons") or []) + (r.get("places") or []):
+        b.update(e.get("bands") or [])
+    return len(b) or "?"
+
+
+def _orl_nerzeilen():
+    """Belegzeilen des ORL-Gesamtregisters (Name × Band), mit Tausenderpunkt.
+
+    Vorher stand hier die Zeilenzahl des HathiTrust-NER-Rohexports (130.540). Die ist
+    richtig, aber auf der Seite nicht nachprüfbar: der Export bleibt aus Lizenzgründen
+    draußen. Gezählt wird deshalb, was der Leser vor sich hat."""
+    r = _datenwert("orl_register", vorgabe={})
+    if not isinstance(r, dict):
+        return "?"
+    n = sum(len(e.get("bands") or []) for e in (r.get("persons") or []) + (r.get("places") or []))
+    return _tausend(n) if n else "?"
+
+
 def _v(pfad):
     """Kurzer Inhalts-Stempel für eine Datei unter docs/assets/.
 
@@ -519,6 +561,13 @@ def persons_page(persons, occ, digs):
             f'geschichte: mit Lebensdaten, Funktion, Normdaten, Korrespondenz/Nachlass, ausgegrabenen Kastellen '
             f'und Volltext-Fundstellen. Alle im Limesblatt namentlich genannten Personen (NER, mehrere hundert) '
             f'stehen im <a href="namen.html">Namenregister</a>.</p>'
+            f'<div class="note"><p><b>Was „kuratiert" hier heißt.</b> Aufgenommen ist, wer eine eigene Notiz im '
+            f'Arbeitsbestand dieser Edition hat: Mitglieder und Herausgeber der Kommission, Streckenkommissare, '
+            f'Ausgräber, dazu Personen des Umfelds, an denen die Forschungsgeschichte hängt. Das ist eine '
+            f'<b>Entscheidung, kein Befund</b>: Wer hier fehlt, ist damit nicht unwichtig, sondern noch nicht '
+            f'erschlossen. Der maschinelle Gegenpol ist das <a href="namen.html">Namenregister</a>, das jeden '
+            f'gefundenen Namen führt, ohne über ihn zu urteilen. Die Spalte <b>Belege</b> zählt Fundstellen im '
+            f'Limesblatt, nicht Bedeutung: wer selten schrieb und viel entschied, steht unten.</p></div>'
             f'<table class="reg pers"><thead><tr><th>Person (Lebensdaten)</th><th>Rolle&#8201;/&#8201;Funktion</th>'
             f'<th>Wirkungsort&#8201;/&#8201;Nachlass</th><th>Normdaten</th><th>Belege</th></tr></thead>'
             f'<tbody>{"".join(rows)}</tbody></table>')
@@ -611,6 +660,17 @@ def places_page(places, occ, pname, str_by_id, sites, site_hits):
             f'{len(sites)} weitere Limesstellen. Auf der Karte zuschaltbar sind der <b>Limesverlauf</b>, die '
             f'<b>Streckenabschnitte</b> (die echte Linie nach Strecke eingefärbt, Klick → Streckenseite) und die '
             f'<b>weiteren Limesstellen</b> (Türme / Kleinkastelle / Lager, DARE). Filter nach Limes-Abschnitt.</p>'
+            f'<div class="note"><p><b>Auf dieser Karte darf nichts gemessen werden.</b> Die Kastellpunkte sind '
+            f'gegengeprüft (Wikidata gegen die Digital Atlas of the Roman Empire, verbunden über die DARE-ID, '
+            f'nicht über Namensgleichheit): 18 von 20 bestanden, Abweichung 0–79&#8239;m, im Mittel 5&#8239;m. '
+            f'Zwei Kastelle sind nicht prüfbar, weil ihre Notiz <i>zwei</i> Plätze behandelt (Öhringen, '
+            f'Welzheim) und nur einen Punkt führt. Übereinstimmung ist dabei kein Beweis: beide Quellen speisen '
+            f'sich teils aus denselben Angaben. Und <b>was der Punkt bezeichnet, ist nirgends festgehalten</b>: '
+            f'Kastellmitte, Ortsmitte oder Fundstelle.</p>'
+            f'<p>Die <b>Strecken tragen mit Absicht keine Koordinate</b>: ein Abschnitt ist ein Verlauf, kein '
+            f'Punkt, und ein Marker müsste einen Mittelpunkt erfinden, den die Quelle nicht nennt. Die '
+            f'{len(sites)} weiteren Stellen stammen aus DARE und sind hier <b>nicht einzeln nachgeprüft</b>; sie '
+            f'zeigen, wo eine Anlage verzeichnet ist, nicht, wie genau.</p></div>'
             f'<div id="facets"></div><div id="map"></div>'
             f'<div class="cards">{"".join(cards)}</div>'
             f'{sites_html}'
@@ -646,8 +706,21 @@ def karte_page(places, sites, feats):
     return body, head
 
 
-def strecken_page(strecken, str_forts, persons, pname, strecke_sites, orl_idx, volumes):
+def strecken_page(strecken, str_forts, persons, pname, strecke_sites, orl_idx, volumes, abta=None):
+    """Die 15 Abschnitte, jeder mit Vorbericht und Endpublikation nebeneinander.
+
+    Der Titel der Notiz ist NICHT der Titel der RLK. Diese Seite nannte die Abschnitte bisher
+    nur von Ort zu Ort („Miltenberg–Rehberg") und belegte das mit der nackten Zeile
+    „ORL Abteilung A, Strecke 7": ein Beleg aus dem eigenen Bestand, also keiner. Die echten
+    Faszikeltitel stehen im Verbundkatalog, und sie benennen anders. Sie stehen jetzt bei
+    jedem Abschnitt, den sie belegen."""
     byname = {p["name"]: p for p in persons}
+    # Die Titel stehen in `vergleich` (Vault-Titel gegen RLK-Titel), nicht in `records`
+    # (das sind die Faszikel als bibliographische Einheiten, oft mehrere Strecken je Band).
+    abtitel = {}
+    for r in (abta or {}).get("vergleich", []):
+        if r.get("orl_titel") and str(r.get("nr", "")).isdigit():
+            abtitel[int(r["nr"])] = r
     slug2nr = {v["slug"]: v["nr"] for v in volumes}
     def _core(k):
         k = re.sub(r"^(Kleinkastell|Kastelle von|Kastell|Kastelle)\s+", "", k or "").lower()
@@ -667,7 +740,13 @@ def strecken_page(strecken, str_forts, persons, pname, strecke_sites, orl_idx, v
             for d in f.get("diggers", []):
                 if d in pname and d not in dig_ids: dig_ids.append(d)
         meta = " · ".join(x for x in [html.escape(s["verlauf"]), html.escape(s["region"]), html.escape(s["abschnitt"])] if x)
-        extra = f'<div class="x">⛏️ Kastelle: {fl}</div>'
+        extra = ""
+        ra = abtitel.get(nr)
+        if ra:
+            jahr = f' <span class="meta">({html.escape(str(ra["orl_jahr"]))})</span>' if ra.get("orl_jahr") else ""
+            extra += (f'<div class="x rlktitel">📜 <b>So nennt ihn die RLK selbst:</b> '
+                      f'„{html.escape(ra["orl_titel"])}"{jahr}</div>')
+        extra += f'<div class="x">⛏️ Kastelle: {fl}</div>'
         # --- Limesblatt (Vorbericht) ↔ ORL (Endpublikation) nebeneinander ---
         orlB, seenB, vols = [], set(), {}
         for f in forts:
@@ -707,11 +786,31 @@ def strecken_page(strecken, str_forts, persons, pname, strecke_sites, orl_idx, v
         if bet: extra += '<div class="x">👤 Beteiligte: ' + " · ".join(bet) + '</div>'
         cards.append(f'<article class="card wide" id="{s["id"]}"><div class="cbody">'
                      f'<h3>{html.escape(s["name"])}</h3><div class="role">{meta}</div>{extra}</div></article>')
-    return (f'<h1>Strecken</h1><p class="meta">{len(strecken)} Limes-Abschnitte, je mit den Kastellen, den '
+    stand = (abta or {}).get("stand", {})
+    mit = stand.get("strecken_mit_orl_titel", len(abtitel))
+    samml = stand.get("sammelfaszikel", [])
+    ohne = stand.get("ohne_orl_titel", [])
+    samml_txt = ", ".join("+".join(str(x) for x in p) for p in samml)
+    return (f'<h1>Strecken</h1><p class="lede">{len(strecken)} Limes-Abschnitte, je mit den Kastellen, den '
             f'zugehörigen <b>Limesblatt-Bänden</b> (Vorbericht) und der <b>ORL</b>-Endpublikation nebeneinander, '
-            f'den beteiligten Personen und den DARE-Stellen entlang der Linie. Die Turmstellen sind über den '
-            f'geokodierten Trassenverlauf dem nächsten Abschnitt zugeordnet (≤ ~15&#8239;km); in Doppellinien-Zonen '
-            f'näherungsweise.</p>'
+            f'den beteiligten Personen und den DARE-Stellen entlang der Linie.</p>'
+            f'<div class="note"><p><b>Die Überschriften hier sind nicht die der Kommission.</b> Ein Abschnitt '
+            f'heißt in dieser Edition von Ort zu Ort („Strecke 07 – Miltenberg–Rehberg"). Die RLK selbst '
+            f'benannte ihre Strecken <b>nach Flüssen und Landschaft</b>: Strecke 1 ist bei ihr „Der Limes '
+            f'<i>vom Rhein bis zur Lahn</i>", Strecke 15 „von Kipfenberg <i>bis zur Donau</i>". Wo der '
+            f'Verbundkatalog den Faszikeltitel führt, steht er beim Abschnitt: <b>{mit} von {len(strecken)}</b>. '
+            f'Für Strecke {", ".join(str(n) for n in ohne)} liefert er ihn nicht.</p>'
+            f'<p>Zwei Folgen daraus, die man beim Zitieren kennen muss. Erstens ist die Einteilung hier '
+            f'<b>feiner als die Publikation</b>: mehrere Abschnitte teilen sich <i>einen</i> Faszikel '
+            f'({samml_txt}). Zweitens ist <b>„Rehberg" keine Grenze der RLK</b>: das Wort steht in keinem '
+            f'Abt.-A-Titel und in keiner der {_lb_spalten()} Limesblatt-Spalten dieser Edition (beides '
+            f'nachgezählt), auch in keinem Normdatensatz. Es ist eine Setzung dieser Edition, kein Befund. Wo die Kommission eine Grenze ohne Ortsnamen '
+            f'zog, benannte sie sie über einen Bezugspunkt („Köpperner Tal <i>bei der Saalburg</i>", „Haghof '
+            f'<i>bei Welzheim</i>"), und die Bezugskastelle sind hier verzeichnet.</p>'
+            f'<p class="meta">Die Turmstellen sind über den geokodierten Trassenverlauf dem nächsten Abschnitt '
+            f'zugeordnet (≤ ~15&#8239;km); in Doppellinien-Zonen näherungsweise. Quelle der RLK-Titel: '
+            f'K10plus-Verbundkatalog über SRU. Der Faszikeltitel <i>benennt</i> die Grenze, er verortet sie '
+            f'nicht.</p></div>'
             f'<div class="cards">{"".join(cards)}</div>')
 
 def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh, artliste=None):
@@ -859,7 +958,10 @@ def baende_page(volumes, toc=None):
     """Die Limesblatt-Bände mit ihren Inhaltsverzeichnissen: eigene Seite, seit die Startseite
     ein Einstieg ist und kein Verzeichnis."""
     toc = toc or {}
-    bl = []
+    # Die acht Bände standen als eine einzige Liste ohne eine einzige Überschrift auf der
+    # Seite: 291 Listenpunkte, kein Sprungziel, und „Band 5" war nicht verlinkbar. Jeder
+    # Band bekommt jetzt seinen eigenen Abschnitt mit Anker, darüber eine Sprungleiste.
+    bl, sprung = [], []
     for v in volumes:
         ents = toc.get(v["nr"], [])
         items = toc_li_hefte(ents, f'volumes/bd{v["nr"]}.html', False, band=v["nr"])
@@ -869,13 +971,18 @@ def baende_page(volumes, toc=None):
         if hf:
             d1, d2 = hf[0].get("datum") or "", hf[-1].get("datum") or ""
             spanne = f' · {len(hf)} Hefte ({html.escape(d1)} – {html.escape(d2)})' if d1 else f' · {len(hf)} Hefte'
-        bl.append(f'<li><a href="volumes/bd{v["nr"]}.html"><b>{html.escape(v["label"])}</b></a> '
-                  f'<span class="meta">{len(v["pages"])} Seiten{spanne} · {len(ents)} Berichte · '
-                  f'<a href="{BASE_DIGLIT}/{html.escape(v["slug"])}">Digitalisat</a></span>{sub}</li>')
+        anker = f'bd{v["nr"]}'
+        sprung.append(f'<a href="#{anker}">Bd.&#160;{v["nr"]}</a>')
+        bl.append(f'<section class="bandblock" id="{anker}">'
+                  f'<h2><a href="volumes/bd{v["nr"]}.html">{html.escape(v["label"])}</a></h2>'
+                  f'<p class="meta">{len(v["pages"])} Seiten{spanne} · {len(ents)} Berichte · '
+                  f'<a href="{BASE_DIGLIT}/{html.escape(v["slug"])}">Digitalisat der UB Heidelberg</a></p>'
+                  f'{sub}</section>')
+    sprungleiste = f'<p class="bandnav">Zum Band: {" · ".join(sprung)}</p>'
     n_ber = sum(len(x) for x in toc.values())
     return (f'<h1>Limesblatt: Bände &amp; Inhaltsverzeichnis</h1>'
-            f'<p class="lede">Das Feldorgan der Reichs-Limeskommission, vollständig: acht Jahrgangsbände, '
-            f'{len(HEFTE)} Hefteinheiten, {n_ber} nummerierte Feldberichte. Jeder Bericht führt an seine '
+            f'<p class="lede">Das Feldorgan der Reichs-Limeskommission, vollständig: {len(volumes)} '
+            f'Jahrgangsbände, {len(HEFTE)} Hefteinheiten, {n_ber} nummerierte Feldberichte. Jeder Bericht führt an seine '
             f'Stelle im Text, jede Seite an das Faksimile der UB Heidelberg.</p>'
             f'<p class="meta">Die Hefte sind mit ihrem Ausgabedatum gegliedert (Quelle: die IIIF-Strukturdaten '
             f'des Digitalisats). Volltextsuche über alle Bände: <a href="index.html#suche">auf der '
@@ -904,7 +1011,7 @@ def baende_page(volumes, toc=None):
             f'Nr. 1–35 des Limesblattes. Von Prof. Dr. P. Hintzelmann"</b>. Dieses zeitgenössische Register steht im letzten Band dieser Edition '
             f'(<a href="volumes/bd8.html">Band 8</a>).</p>'
             f'{heft_rhythmus()}</div>'
-            f'<ul class="bandlist">{"".join(bl)}</ul>'
+            f'{sprungleiste}{"".join(bl)}'
             )
 
 
@@ -1098,16 +1205,16 @@ def analysis_sections(volumes, orl_lex=None):
                    'wäre der Schluss, die Endpublikation habe die Holz-Erde-Evidenz weggelassen. Die '
                    'Auswertung des gesamten Werks stützt ihn nur zur Hälfte:</p>'
                    '<ul><li>Die <b>Ausdünnung ist real und gepaart geprüft</b>: an 16 Orten mit '
-                   'Vorbericht <i>und</i> Faszikel liegt der Median bei <b>0,41</b> — der ORL bringt '
+                   'Vorbericht <i>und</i> Faszikel liegt der Median bei <b>0,41</b>: der ORL bringt '
                    'also weniger als die Hälfte des Vorberichts-Vokabulars. Sie nimmt über die 45 Jahre '
                    'aber <b>nicht zu</b> (ρ = 0,29): kein Abschlussdruck, sondern eine Eigenschaft der '
                    'Gattung, von Anfang an.</li>'
                    '<li>Beim <b>Holz irrt die Einzelprobe in der Ursache</b>. Über alle Bände steigt '
-                   'Holzbau-Vokabular früh→spät um das <b>8,2-fache</b>, Erdkastell um das 5,5-fache — '
+                   'Holzbau-Vokabular früh→spät um das <b>8,2-fache</b>, Erdkastell um das 5,5-fache, '
                    'aber <b>Steinbau steigt mit</b> (5,4-fach). 1895 wurde nicht das Holz verschwiegen, '
                    'sondern <b>Bauphasen überhaupt noch nicht benannt</b>; Stein war der unmarkierte '
                    'Normalfall. Am selben Landstrich 40 Jahre später: Osterburken 1895 nennt in 142 '
-                   'Belegstellen 0× Holzbau, 0× Erdkastell, 0× Steinbau — Oberscheidental 1935 in 591 '
+                   'Belegstellen 0× Holzbau, 0× Erdkastell, 0× Steinbau, Oberscheidental 1935 dagegen in 591 '
                    'Stellen 11×, 41× und 14×.</li></ul>'
                    '<p class="meta">Belege: <a href="genese.html">Genese des Werks</a> '
                    '(Ausdünnung, Bauphasen-Vokabular) · <a href="hathitrust.html">wie gemessen wurde</a>.</p></div>')
@@ -2066,6 +2173,15 @@ def inscriptions_page(edh):
             f'aus den EpiDoc-GitHub-Dumps (CC BY-SA), mit Gattung, Datierung und Direktlink ins EDH. '
             f'Ergänzt den <a href="fundindex.html">Fundindex</a> um die katalogisierte Epigraphik; '
             f'verknüpft mit dem <a href="places.html">Ortsregister</a>.</p>'
+            f'<div class="note"><p><b>Was diese Zahl nicht ist.</b> Sie ist <i>nicht</i> die Epigraphik des '
+            f'Limes, sondern das, was die EDH zu <b>{len(edh.get("kastelle", []))} Fundorten</b> führt, und zwar '
+            f'nur zu denen, für die diese Edition eine Ortsnotiz hat. Fundorte ohne Notiz fehlen hier, auch wenn '
+            f'die EDH sie kennt: der Ausschnitt folgt dem Ortsregister, nicht der Grabungslage. Gattung und '
+            f'Datierung sind <b>die der EDH</b>, unverändert übernommen; wo sie dort offen sind, steht hier ein '
+            f'Strich, keine Schätzung. Ein Abgleich mit den <a href="hathitrust.html#auswertungen">'
+            f'Inschriften-Zitaten des ORL</a> ist nicht möglich, solange die Konkordanz CIL↔HD fehlt: der ORL '
+            f'zitiert nach CIL, die EDH ordnet nach HD-Nummer. Beides sind ohnehin verschiedene Register: '
+            f'hier steht, was <i>gefunden</i> wurde, dort, worauf sich der ORL <i>beruft</i>.</p></div>'
             + tabelle + f'<h2>Nach Fundort</h2>' + "".join(secs))
 
 
@@ -2143,7 +2259,7 @@ def orl_page(idx, lex, bli=None):
             f'<p>Diese Seite zeigte bis 2026-07 vier weitere Spalten (Seitenzahl, Cross-Work, '
             f'Sigillata-Score, „Charakteristik"), die aus dem HathiTrust-Scan abgeleitet waren. Sie wurden '
             f'<b>entfernt</b>: Die Scan-Zuordnung las die Signatur „v.&#8201;N" als Kastell-Nummer, obwohl '
-            f'sie die <i>Lieferung</i> meint: für 30 Bände war sie damit falsch, und selbst bei richtiger '
+            f'sie die <i>Lieferung</i> meint: für {_bl_fehl()} Bände war sie damit falsch, und selbst bei richtiger '
             f'Zuordnung beschreibt ein Scan die ganze Lieferung (bis zu vier Kastelle), nie ein einzelnes. '
             f'Die Gegenprobe an der zeitgenössischen Bibliographie zeigt die Größenordnung: Für Kemel wies '
             f'die Seitenzahl 372 aus, gedruckt sind <b>8</b>. An ihrer Stelle steht jetzt die belegte '
@@ -2263,6 +2379,33 @@ def hintzelmann_page(volumes):
     body = body.replace('href="bd', 'href="../volumes/bd').replace('href="../register/', 'href="')
     body = re.sub(r'href="#pb-', 'href="../volumes/bd8.html#pb-', body)
     n_ref = len(re.findall(r'class="ent xref"', body))
+    # Die drei gedruckten Teile sind im OCR gewöhnliche Absätze. Ohne Überschrift läuft das
+    # Register über 19.000 Zeichen ohne einen einzigen Haltepunkt: das Ortsverzeichnis, der
+    # mit Abstand längste Teil, ist dann nur durch Scrollen erreichbar. Die Köpfe werden
+    # deshalb zu echten Überschriften gemacht, der Wortlaut bleibt der des Drucks.
+    teile = [("teil-1", r"<p>\s*I\. Verzeichnis der Mitarbeiter\.\s*</p>", "I. Verzeichnis der Mitarbeiter"),
+             ("teil-2", r"<p>\s*II\. Ortsverzeichnis\.", "II. Ortsverzeichnis"),
+             ("teil-3", r"<p>\s*III\. Inschriften\s*</p>", "III. Inschriften")]
+    nav, gefunden = [], 0
+    for anker, muster, titel in teile:
+        m = re.search(muster, body)
+        if not m:
+            continue
+        gefunden += 1
+        kopf = f'<h2 id="{anker}" class="regteil">{titel}</h2>'
+        rest = "" if m.group(0).endswith("</p>") else "<p>"      # Teil II trägt Text im selben Absatz
+        body = body[:m.start()] + kopf + rest + body[m.end():]
+        nav.append(f'<a href="#{anker}">{titel}</a>')
+    navbar = (f'<p class="regnav">{" · ".join(nav)}</p>') if gefunden == 3 else ""
+    # Buchstabensprung ins Ortsverzeichnis. Gearbeitet wird auf den vorhandenen Ortslinks,
+    # das Register wird NICHT neu in Lemmata zerlegt (die Zeilenumbrüche des Drucks laufen
+    # mitten durch die Einträge). Welche Strecke das Ortsverzeichnis ist, entscheidet die
+    # längste aufsteigende Kette der Lemmaköpfe, nicht die Überschrift: die steht im
+    # Textstrom an der falschen Stelle, s. den Hinweis unten.
+    az = ("".join(f'<button type="button" data-b="{c}">{c}</button>'
+                  for c in "ABCDEFGHIJKLMNOPQRSTUVWXYZ")) if gefunden == 3 else ""
+    azbar = (f'<div class="azbar" id="azbar" hidden><span class="meta">Ortsverzeichnis:</span>{az}</div>'
+             if az else "")
     return (f'<h1>Hintzelmanns Register zum Limesblatt (1903)</h1>'
             f'<div class="note"><p><b>Das älteste Findmittel zum Limesblatt</b>, und es stammt von der '
             f'Redaktion selbst. Das Schlussheft Nr. 35 (27. Mai 1903) schließt mit einem Gesamtregister '
@@ -2278,7 +2421,17 @@ def hintzelmann_page(volumes):
             f'zerbrach, steht die Lesung des Drucks und die Identifikation im Link. „II et tn er" ist '
             f'Hettner, „S t e i m 1 e" ist Steimle, „Kofier" ist Kofler: Register-Lemmata wurden gesperrt '
             f'gesetzt, und daran scheitert die Schrifterkennung gerade bei den bekanntesten Namen.</p>'
-            f'</div>{body}')
+            f'<p class="meta"><b>Eine Überschrift steht an der falschen Stelle, und zwar nachweislich.</b> '
+            f'Der Kopf <i>„II. Ortsverzeichnis"</i> erscheint im Textstrom <b>hinter</b> seinen eigenen '
+            f'ersten Stichwörtern (Aalen, Aarthal, Adolfseck … bis Bulau) und <b>vor</b> den letzten '
+            f'Einträgen des Mitarbeiter-Verzeichnisses (Wolff, Zangemeister); danach setzt das '
+            f'Ortsverzeichnis bei Butzbach wieder ein. Ursache ist die Layout-Erkennung: über dem '
+            f'Bundsteg von Spalte 963 hat sie eine Spalte gefunden, die keine ist. Der Druck selbst ist '
+            f'in Ordnung, die Lesereihenfolge ist es nicht. Das Ortsverzeichnis läuft alphabetisch von '
+            f'Aalen bis Zugmantel: die Buchstabenleiste findet es deshalb über die längste aufsteigende '
+            f'Kette der Stichwörter, nicht über die Überschrift.</p>'
+            f'</div>{navbar}{azbar}{body}'
+            f'<script src="../assets/regnav.js{_v("regnav.js")}" defer></script>')
 
 
 def namen_page(nm):
@@ -2801,8 +2954,8 @@ def orl_apparatus_page(reg, idx, persons=None):
         f'zu jedem Namen die Bände, in denen er vorkommt. Diese Nummern stammten aus der Zuordnung '
         f'Scan→Kastell-Nummer, und die war für <b>{_bl_fehl()} Bände falsch</b> (die HathiTrust-Signatur '
         f'„v.&#8201;N" ist die <i>Lieferung</i>, nicht die Kastell-Nummer). Geprüft und weiterhin gültig '
-        f'sind <b>#Bd.</b> und <b>Nenn.</b>: Keine der 130.540 NER-Zeilen fällt weg, und die Abbildung ist '
-        f'injektiv (56 Bände → 56 Nummern), sie zählt also richtig, in <i>wie vielen</i> Bänden ein Name '
+        f'sind <b>#Bd.</b> und <b>Nenn.</b>: Keine der {_orl_nerzeilen()} Belegzeilen fällt weg, und die '
+        f'Abbildung ist injektiv ({_orl_baende()} Bände → {_orl_baende()} Nummern), sie zählt also richtig, in <i>wie vielen</i> Bänden ein Name '
         f'steht; falsch war nur, <i>welche</i>. Häufigkeits- und Streuungsaussagen tragen daher, '
         f'diachrone Lesarten („erscheint erst in den späten Bänden") nicht.</p></div>'
         f'<h3 id="bearbeiter">RLK-Bearbeiter und Ausgräber</h3>{_tbl(groups["rlk"][:70])}'
@@ -2845,7 +2998,7 @@ def orl_apparatus_page(reg, idx, persons=None):
             f'sind (Dragendorff/Knorr/Ludowici/Rheinzabern …), ausgezählt über die HathiTrust-Extracted-'
             f'Features. Sie ist <b>zurückgezogen</b>, weil sie am selben Fehler hängt wie die früheren '
             f'Spalten des <a href="orl.html">Bandindex</a>: Die Zuordnung Scan→Kastell las die Signatur '
-            f'„v.&#8201;N" als Kastell-Nummer, obwohl sie die <i>Lieferung</i> meint: für 30 Bände war sie '
+            f'„v.&#8201;N" als Kastell-Nummer, obwohl sie die <i>Lieferung</i> meint: für {_bl_fehl()} Bände war sie '
             f'damit falsch, und ein Scan umfasst ohnehin eine ganze Lieferung (bis zu vier Kastelle), nie '
             f'ein einzelnes. Ein Sigillata-Score „je Kastell" ist auf dieser Grundlage nicht zu haben.</p>'
             f'<p>Der Befund selbst (dass der ORL sprachlich ein Fund-Katalog ist) bleibt unberührt; er '
@@ -3148,7 +3301,7 @@ def hathitrust_page(idx, reg, lex):
                f'<table class="reg"><thead><tr><th>Nr.</th><th>Faszikel</th><th>Seiten</th>'
                f'<th>Zugang</th><th>HathiTrust-ID</th></tr></thead><tbody>{"".join(ws)}</tbody></table>')
     return (f'<h1>Erschließung über HathiTrust</h1>'
-            f'<p class="meta">Wie der ORL token-frei und <b>nicht-konsumtiv</b> erschlossen wurde. Die 56 Bände sind '
+            f'<p class="meta">Wie der ORL token-frei und <b>nicht-konsumtiv</b> erschlossen wurde. Die {_orl_baende()} Bände sind '
             f'gemeinfrei, liegen bei HathiTrust aber nur als Seiten-Scans hinter einer Bot-Wall. Gearbeitet wurde '
             f'ausschließlich mit offenen, abgeleiteten Daten, kein Seitentext wird reproduziert; alles reproduzierbar '
             f'mit Python-Standardbibliothek, ohne API-Schlüssel.</p>'
@@ -3431,7 +3584,7 @@ def gesamtregister_page(ner_p, ner_pl, orl_reg, jb, persons):
     return (f'<h1>Gesamtregister</h1>'
             f'<p class="meta">Dieselbe Person, derselbe Ort, gesucht in <b>drei getrennt erschlossenen '
             f'Korpora</b>: dem <a href="../index.html">Limesblatt</a> (Volltext dieser Edition), dem '
-            f'<a href="orl-register.html">ORL</a> (HathiTrust-Erschließung über 56 Bände) und den '
+            f'<a href="orl-register.html">ORL</a> (HathiTrust-Erschließung über {_orl_baende()} Bände) und den '
             f'<a href="jahresberichte.html">RLK-Jahresberichten</a> ({_n_jb()} Jahrgänge). Die Spalte '
             f'<b>Werke</b> sagt, in wie vielen der drei ein Name überhaupt vorkommt. Sortiert man danach, '
             f'stehen oben die Namen, die das ganze Unternehmen durchziehen: <b>{d3p} Personen</b> und '
@@ -3554,6 +3707,14 @@ def netz_page(persons, ner_p, orl_idx, bli, verw, jb, ner_pl, bibls, occ):
             f'soweit sie im <a href="persons.html">kuratierten Personenregister</a> stehen, damit jeder Punkt '
             f'auf eine geprüfte Person zeigt und nicht auf eine OCR-Form. Das Layout ist vorberechnet und bei '
             f'jedem Build identisch.</p>'
+            f'<div class="note"><p><b>Eine Kante ist keine Beziehung.</b> Drei der vier Quellen verbinden eine '
+            f'Person mit einem <i>Druckwerk</i>, nicht mit einem Menschen: dass zwei Namen an denselben Band '
+            f'hängen, heißt, dass beide dort vorkommen, nicht dass sie miteinander zu tun hatten. Wer '
+            f'Zusammenarbeit sucht, findet sie in der <a href="strecken.html">Streckenzuständigkeit</a>, im '
+            f'<a href="organigramm.html">Organigramm</a> und in den Nachlässen des '
+            f'<a href="persons.html">Personenregisters</a>, nicht hier. Belastbar ist an diesem Bild die '
+            f'<b>Verteilung</b>: welche Namen viele Bände durchziehen und welche an einer einzigen Stelle '
+            f'hängen. Nur die Kante <i>bearbeitet</i> (ORL-Faszikel) behauptet eine Urheberschaft.</p></div>'
             f'<script src="../assets/netz.js{_v("netz.js")}" defer></script>')
 
 
@@ -4257,7 +4418,14 @@ def organigramm_page(persons, pname):
     # Layout
     Wd, bw, bh, gx, gy, per = 1080, 244, 64, 18, 34, 4
     startx = (Wd - (per * bw + (per - 1) * gx)) // 2
-    gridy = 210
+    gridy = 292
+    # Die Leitungsebene stand als EIN Kasten mit fünf Namen im Fliesstext: der einzige
+    # Kasten des Bildes ohne Verweis, ausgerechnet der mit Mommsen, Sarwey, Hettner,
+    # Fabricius und Leonhard. Sie bekommt jetzt je Person einen eigenen, verlinkten Kasten.
+    LEITUNG = [("Oscar von Sarwey", "militärischer Dirigent"),
+               ("Felix Hettner", "archäologischer Dirigent"),
+               ("Ernst Fabricius", "Herausgeber ORL"),
+               ("Friedrich Leonhard", "Herausgeber, Schriftführer")]
     rows = (len(order) + per - 1) // per
     grid_bottom = gridy + rows * bh + (rows - 1) * gy
     ausy = grid_bottom + 26
@@ -4277,14 +4445,25 @@ def organigramm_page(persons, pname):
     cx = Wd / 2
     # Ebene 0: Kommission
     S.append(box(cx - 175, 16, 350, 54, ["Reichs-Limeskommission", "1892–1937"], "#e7eef6", fs=16))
-    # Ebene 1: Leitung / Herausgeber
+    # Ebene 1a: Initiator
+    def phref(name):
+        p = byname.get(name)
+        return f'persons.html#{p["id"]}' if p else None
     S.append(line(cx, 70, cx, 96))
-    S.append(box(cx - 300, 96, 600, 50,
-                 ["Initiator: Theodor Mommsen · Leitung/Herausgeber:", "Sarwey · Hettner · Fabricius · Leonhard"],
-                 "#e7eef6", fs=14))
+    S.append(box(cx - 150, 96, 300, 52, ["Theodor Mommsen", "Initiator"], "#e7eef6",
+                 href=phref("Theodor Mommsen"), fs=15))
+    # Ebene 1b: Leitung und Herausgeber, je Person ein Kasten
+    lby, lbw, lbh = 186, 236, 56
+    lstartx = (Wd - (len(LEITUNG) * lbw + (len(LEITUNG) - 1) * gx)) // 2
+    S.append(line(cx, 148, cx, lby - 18))
+    S.append(line(lstartx + lbw / 2, lby - 18, lstartx + (len(LEITUNG) - 1) * (lbw + gx) + lbw / 2, lby - 18))
+    for i, (n, rolle) in enumerate(LEITUNG):
+        x = lstartx + i * (lbw + gx)
+        S.append(line(x + lbw / 2, lby - 18, x + lbw / 2, lby))
+        S.append(box(x, lby, lbw, lbh, [n, rolle], "#e7eef6", href=phref(n), fs=13))
     # Bus zu den Kommissaren
-    busy = 176
-    S.append(line(cx, 146, cx, busy))
+    busy = 262
+    S.append(line(cx, lby + lbh, cx, busy))
     firstx = startx + bw / 2; lastx = startx + (min(per, len(order)) - 1) * (bw + gx) + bw / 2
     S.append(line(firstx, busy, lastx, busy))
     # Ebene 2: Streckenkommissare
@@ -4318,9 +4497,11 @@ def organigramm_page(persons, pname):
             f'<p class="meta">Die Struktur des ersten länderübergreifenden Großforschungs-Unternehmens des '
             f'Kaiserreichs: initiiert von Theodor Mommsen, geleitet von wenigen Herausgebern, getragen von den '
             f'<b>Streckenkommissaren</b>, die je einen oder mehrere der 15 Abschnitte verantworteten und unter '
-            f'denen die Ausgräber vor Ort arbeiteten. Die Kommissar-Kästen sind mit dem '
-            f'<a href="persons.html">Personenregister</a> verknüpft (die Strecken selbst stehen bei den '
-            f'<a href="strecken.html">Strecken</a>). Unter jedem Kommissar steht seine <b>institutionelle '
+            f'denen die Ausgräber vor Ort arbeiteten. <b>Jeder Namenskasten führt ins '
+            f'<a href="persons.html">Personenregister</a></b>, auch die Leitungsebene (die Strecken selbst stehen '
+            f'bei den <a href="strecken.html">Strecken</a>). Die Doppelspitze ist keine Verlegenheit der '
+            f'Darstellung, sondern Verfassung: die RLK hatte einen <b>militärischen</b> und einen '
+            f'<b>archäologischen Dirigenten</b> nebeneinander. Unter jedem Kommissar steht seine <b>institutionelle '
             f'Verankerung</b> (Museum, Akademie oder Universität): so wird sichtbar, aus welchem Netz von '
             f'Provinzialmuseen und Universitäten sich das Unternehmen speiste. Leitungs-, Institutions- und '
             f'Affiliations-Ebene sind kuratiert; die Kommissar→Strecken-Zuordnung ist datengetrieben.</p>'
@@ -4590,7 +4771,8 @@ def main():
         return None
     orl_idx = _orl_load("orl_index.json") or {"abteilung_A_strecken": [], "abteilung_B_kastelle": []}
     orl_lex = _orl_load("orl_vs_limesblatt.json")
-    open(os.path.join(DOCS,"register","strecken.html"),"w",encoding="utf-8").write(page("Strecken", strecken_page(strecken, str_forts, persons, pname, strecke_sites, orl_idx, volumes), 1))
+    open(os.path.join(DOCS,"register","strecken.html"),"w",encoding="utf-8").write(page("Strecken", strecken_page(strecken, str_forts, persons, pname, strecke_sites, orl_idx, volumes,
+                                                                     _load_json_any("orl_abtA.json") or {}), 1))
     open(os.path.join(DOCS,"register","organigramm.html"),"w",encoding="utf-8").write(page("Organigramm", organigramm_page(persons, pname), 1))
     nerd = os.path.join(REPO, "data")
     def loadj(fn): return json.load(open(os.path.join(nerd,fn),encoding="utf-8")) if os.path.exists(os.path.join(nerd,fn)) else ([] if "ner_" in fn else {})

@@ -64,7 +64,6 @@
 <region>Raetien</region>
 <idno type="Wikidata">Q1735352</idno>
 <idno type="iDAI-Gazetteer">2047393</idno>
-<idno type="ORL">   # KEINE: ORL 75 = Kastell Pförring (Bibliographie Jahrbuch Bd. 17 + K10plus). Eining hat keine Abt.-B-Lieferung — es ist der Endpunkt von Strecke 15 (Abt. A).</idno>
 <trait type="kastelltyp"><desc>Kohortenkastell</desc></trait>
 <note type="strecke" corresp="#str_strecke_15_kipfenbergeining">Strecke 15 – Kipfenberg–Eining</note>
 <note type="edh" n="61"/>

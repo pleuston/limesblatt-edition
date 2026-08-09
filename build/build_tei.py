@@ -162,6 +162,13 @@ def frontmatter(path):
         m = re.match(r"^([A-Za-z_][\w]*):\s*(.*)$", line)
         if not m: continue
         k, v = m.group(1), m.group(2).strip()
+        # YAML-Kommentar hinter einem abgeschlossenen Wert abschneiden. Ohne das las der
+        # Parser die interne Notiz hinter `orl_nr: ""   # KEINE: ORL 75 = …` als Wert, und
+        # sie stand als Rolle auf der Kastellkarte der Website. Nur nach schliessendem
+        # Anführungszeichen bzw. schliessender Klammer, damit ein `#` IM Wert bleibt.
+        c = re.match(r'^(".*?"|\'.*?\'|\[[^\]]*\])\s+#.*$', v)
+        if c:
+            v = c.group(1)
         if v.startswith("[") and v.endswith("]"):
             fm[k] = [x.strip().strip('"').strip("'") for x in v[1:-1].split(",") if x.strip()]
         else:
