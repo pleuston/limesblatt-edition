@@ -1214,7 +1214,8 @@ def wortschatz_page(volumes, attention=None, orl_lex=None):
     th = "".join(f"<th>Bd.{nr}<br>{TM_YEARS.get(nr,'')}</th>" for nr in nrs)
     trs = "".join(f"<tr><td>{html.escape(g)}</td>" + "".join(f"<td>{rates[g][nr]:.1f}</td>" for nr in nrs) + "</tr>" for g in TM_GROUPS)
     table = f'<table class="reg tm"><tr><th>Term-Gruppe · je 1000 Wörter</th>{th}</tr>{trs}</table>'
-    kw = ['<h2 id="kwic">Konkordanz (KWIC)</h2><p class="meta">Jeder Beleg springt ins Faksimile. Aufklappen je Begriff.</p>']
+    kw = ['<h3 id="kwic">Konkordanz (KWIC)</h3><p class="meta">Jeder Beleg springt ins Faksimile: '
+          'aufklappen je Begriff, jede Zeile führt an ihre Stelle im Band.</p>']
     for term in TM_KWIC:
         rx = re.compile(r"(.{0,46})\b(%s\w*)\b(.{0,46})" % re.escape(term), re.I); hits = []
         for v in bands:
@@ -1235,19 +1236,71 @@ def wortschatz_page(volumes, attention=None, orl_lex=None):
             f'<span class="attbar" style="width:{100*tot_/mxa:.0f}%"></span>'
             f'<span class="attval">{tot_}<span class="meta"> · {npl} Orte</span></span></div>'
             for nm, tot_, npl in attention)
-        att = ('<h2>Aufmerksamkeit je Streckenabschnitt</h2>'
+        att = ('<h3>Aufmerksamkeit je Streckenabschnitt</h3>'
                '<p class="meta">Summe der Volltext-Erwähnungen aller verorteten Orte, dem nächstgelegenen '
                'Kastell-Abschnitt zugeordnet (≤ ~22 km): welche Limes-Abschnitte im Limesblatt am meisten '
                f'Aufmerksamkeit bekamen.</p><div class="attwrap">{bars}</div>')
+    # Die Seite hatte neun gleichgewichtige Abschnitte, die vier verschiedene Fragen mischten:
+    # wovon das Blatt handelt, woran es datiert, wie es sich zum ORL verhält, und womit man
+    # selbst weitersuchen kann. Sie sind jetzt als Blöcke geordnet; jeder sagt in einem Satz,
+    # welche Frage er beantwortet, und die Sprungmarken folgen dieser Gliederung.
+    def block(nr, titel, frage, inhalt, anker):
+        return (f'<section class="analyseblock" id="{anker}">'
+                f'<h2 class="blocktitel"><span class="blocknr">{nr}</span> {titel}</h2>'
+                f'<p class="blockfrage">{frage}</p>{inhalt}</section>')
+
+    b1 = block(1, "Wovon das Blatt handelt",
+               "Welches Vokabular tragen die Feldberichte, und welche Abschnitte der Grenze bekommen "
+               "die meiste Aufmerksamkeit?",
+               f'<div class="tmwrap">{chart}</div>'
+               f'<h3>Term-Gruppen über die Zeit</h3>{table}'
+               f'<p class="meta">Befund: Steinbau dominiert; Holzbefund-Vokabular ist präsent und steigt '
+               f'mittig (Bd. 4–6); explizite Datierungssprache fehlt fast; „principia" kommt nicht vor '
+               f'(man schrieb „Prätorium").</p>' + att, "handelt")
+    ab = analysis_sections(volumes, orl_lex)
+    # analysis_sections liefert die übrigen Abschnitte am Stück; sie werden an ihren
+    # <h2 id="…">-Marken zerlegt und in die Blöcke einsortiert.
+    teile = dict(_zerlege_abschnitte(ab))
+    b2 = block(2, "Woran es datiert",
+               "Womit begründen die Berichte ihre Zeitansätze, wenn sie kaum Datierungssprache führen?",
+               teile.get("muenzen", "") + teile.get("truppen", ""), "datiert")
+    b3 = block(3, "Wie es sich zur Endpublikation verhält",
+               "Sagt der ORL über dieselben Plätze dasselbe, und redet er überhaupt dieselbe Sprache?",
+               teile.get("orl", "") + teile.get("gegenprobe", ""), "vergleich")
+    b4 = block(4, "Werkzeuge und Vorbehalte",
+               "Womit lässt sich selbst weitersuchen, und wie belastbar ist die Grundlage?",
+               teile.get("zitate", "") + "".join(kw) + teile.get("ocr", ""), "werkzeug")
+    rest = teile.get("_rest", "")
     return (f'<h1>Textanalyse des Limesblatt</h1>'
-            f'<p class="meta">Token-freie Auswertung des gesamten Fraktur-OCR-Volltexts (8 Bände, 1892–1903; {_tausend(tot)} Wörter). '
-            f'Sprung zu: <a href="#gegenprobe">Wortschatz-Gegenprobe (ORL)</a> · <a href="#orl">Osterburken-Kontrast</a> · <a href="#muenzen">Münzkaiser</a> · <a href="#truppen">Truppen</a> · '
-            f'<a href="#zitate">Zitate</a> · <a href="#ocr">OCR-Qualität</a> · <a href="#kwic">Konkordanz</a>.</p>'
-            f'<div class="tmwrap">{chart}</div>'
-            f'<h2>Term-Gruppen über die Zeit</h2>{table}'
-            f'<p class="meta">Befund: Steinbau dominiert; Holzbefund-Vokabular ist präsent und steigt mittig (Bd. 4–6); '
-            f'explizite Datierungssprache fehlt fast; „principia" kommt nicht vor (man schrieb „Prätorium").</p>'
-            + att + analysis_sections(volumes, orl_lex) + "".join(kw))
+            f'<p class="lede">Token-freie Auswertung des gesamten Fraktur-OCR-Volltexts: 8 Bände, '
+            f'1892–1903, {_tausend(tot)} Wörter. Die Seite beantwortet vier Fragen, in dieser '
+            f'Reihenfolge.</p>'
+            f'<ol class="analysenav">'
+            f'<li><a href="#handelt"><b>Wovon das Blatt handelt</b><span>Vokabular, Abschnitte</span></a></li>'
+            f'<li><a href="#datiert"><b>Woran es datiert</b><span>Münzkaiser, Truppen</span></a></li>'
+            f'<li><a href="#vergleich"><b>Verhältnis zum ORL</b><span>Einzelprobe, Gegenprobe</span></a></li>'
+            f'<li><a href="#werkzeug"><b>Werkzeuge und Vorbehalte</b><span>Konkordanz, Zitate, OCR</span></a></li>'
+            f'</ol>' + b1 + b2 + b3 + b4 + rest)
+
+
+def _zerlege_abschnitte(html_text):
+    """[(anker, abschnitt)] aus einer Folge von <h2 id="…">-Abschnitten.
+
+    `analysis_sections` liefert alles am Stück; für die Blockgliederung müssen die Abschnitte
+    einzeln greifbar sein. Was keinen Anker trägt, kommt unter `_rest` und geht nicht verloren:
+    ein stillschweigend verschluckter Abschnitt wäre schlimmer als ein unsortierter."""
+    aus, marken = [], list(re.finditer(r'<h2 id="([^"]+)"', html_text))
+    if not marken:
+        return [("_rest", html_text)]
+    if marken[0].start() > 0:
+        aus.append(("_rest", html_text[:marken[0].start()]))
+    for i, m in enumerate(marken):
+        ende = marken[i + 1].start() if i + 1 < len(marken) else len(html_text)
+        # h2 → h3: innerhalb eines Blocks sind es Unterabschnitte
+        stueck = html_text[m.start():ende].replace("<h2 id=", "<h3 id=", 1)
+        stueck = stueck.replace("</h2>", "</h3>", 1)
+        aus.append((m.group(1), stueck))
+    return aus
 
 TOC_PAT   = re.compile(r"(?<![A-Za-z0-9])(\d{1,3})[._]\s+([A-ZÄÖÜ][A-Za-zäöüß0-9 .„“”\-]{1,55}?)[.*)]+\s*(\[[^\]]{0,70}\])?")
 TOC_NOISE = re.compile(r"^(Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|De[cz]ember|"

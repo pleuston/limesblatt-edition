@@ -228,3 +228,21 @@ pre.bib{background:var(--card,#fbfaf7);border:1px solid var(--line);border-radiu
 .gradfilter{display:flex;gap:.4rem;align-items:center;font-size:.85rem}
 .gradfilter input[type=range]{width:8rem}
 #netz-gradwert{min-width:3.6rem}
+
+/* Analyse-Seite: vier Blöcke statt neun gleichrangiger Abschnitte. Jeder Block nennt oben
+   seine Leitfrage, damit die Zahlen darunter eine Adresse haben. Die Nummer ist keine
+   Zierde: sie sagt, dass die Reihenfolge eine Argumentation ist, keine Sammlung. */
+.analysenav{list-style:none;padding:0;margin:1rem 0 1.6rem;display:grid;gap:.5rem;
+  grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));counter-reset:an}
+.analysenav li{counter-increment:an}
+.analysenav a{display:block;padding:.55rem .7rem;border:1px solid var(--line,#ddd);
+  border-radius:.4rem;text-decoration:none;color:inherit;background:var(--bg2,#fafafa)}
+.analysenav a:hover{border-color:var(--akzent,#8a2f2f)}
+.analysenav a::before{content:counter(an) " ";font-weight:700;opacity:.4}
+.analysenav a b{display:inline;font-size:.95rem}
+.analysenav a span{display:block;font-size:.8rem;opacity:.65;margin-top:.15rem}
+.analyseblock{margin:2.2rem 0;padding-top:.4rem;border-top:2px solid var(--line,#ddd)}
+.analyseblock .blocktitel{display:flex;align-items:baseline;gap:.55rem;margin-bottom:.2rem}
+.analyseblock .blocknr{font-size:.8em;opacity:.4;font-weight:700}
+.analyseblock .blockfrage{font-style:italic;opacity:.75;margin:.1rem 0 1rem}
+.analyseblock h3{margin-top:1.5rem}
