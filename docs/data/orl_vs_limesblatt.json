@@ -1,0 +1,707 @@
+{
+ "orl_label": "HTRC-Workset (2,766,847 Wörter, 56 Bände)",
+ "orl_words": 2766847,
+ "lb_words": 257738,
+ "frames": {
+  "A · Gelände/Landschaft": {
+   "orl_per10k": 49.8907239901592,
+   "lb_per10k": 58.2374349145256,
+   "terms": {
+    "wald": [
+     3676,
+     470
+    ],
+    "acker": [
+     1151,
+     178
+    ],
+    "wiese": [
+     1964,
+     321
+    ],
+    "feld": [
+     4341,
+     343
+    ],
+    "forst": [
+     412,
+     35
+    ],
+    "gehölz": [
+     5,
+     4
+    ],
+    "gestrüpp": [
+     12,
+     4
+    ],
+    "heide": [
+     2243,
+     146
+    ]
+   }
+  },
+  "B · Eigentum & Aushandlung": {
+   "orl_per10k": 3.9178169230174276,
+   "lb_per10k": 5.509470858003088,
+   "terms": {
+    "besitzer": [
+     354,
+     80
+    ],
+    "eigenthümer": [
+     4,
+     0
+    ],
+    "eigentümer": [
+     182,
+     6
+    ],
+    "grundbesitz": [
+     37,
+     6
+    ],
+    "entschädig": [
+     9,
+     5
+    ],
+    "grundstück": [
+     407,
+     35
+    ],
+    "flurschaden": [
+     1,
+     0
+    ],
+    "einspruch": [
+     1,
+     0
+    ],
+    "pacht": [
+     19,
+     3
+    ],
+    "privatbesitz": [
+     48,
+     1
+    ],
+    "genehmigung": [
+     2,
+     0
+    ],
+    "erlaubnis": [
+     16,
+     6
+    ],
+    "ankauf": [
+     3,
+     0
+    ],
+    "abtret": [
+     1,
+     0
+    ]
+   }
+  },
+  "C · Objekt/Befund": {
+   "orl_per10k": 196.28841059877905,
+   "lb_per10k": 281.4098037542,
+   "terms": {
+    "kastell": [
+     17028,
+     1617
+    ],
+    "graben": [
+     9684,
+     1518
+    ],
+    "wall": [
+     3458,
+     798
+    ],
+    "turm": [
+     6705,
+     782
+    ],
+    "mauer": [
+     12767,
+     2035
+    ],
+    "strecke": [
+     4668,
+     503
+    ]
+   }
+  },
+  "D · Flur-Eingriff (Zusatz)": {
+   "orl_per10k": 0.285523558042783,
+   "lb_per10k": 0.5043881771411278,
+   "terms": {
+    "abgepflügt": [
+     3,
+     0
+    ],
+    "abgeflöss": [
+     10,
+     1
+    ],
+    "feldarbeit": [
+     9,
+     3
+    ],
+    "pflug": [
+     57,
+     9
+    ],
+    "umgepflügt": [
+     0,
+     0
+    ]
+   }
+  }
+ },
+ "orl_distinctive": [
+  {
+   "w": "abgeb",
+   "log2": 7.55,
+   "orl_per10k": 33.0,
+   "lb_per10k": 0.1
+  },
+  {
+   "w": "dragd",
+   "log2": 7.43,
+   "orl_per10k": 17.1,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "tellerboden",
+   "log2": 6.74,
+   "orl_per10k": 10.6,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "ludowici",
+   "log2": 6.68,
+   "orl_per10k": 10.2,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "schüssel",
+   "log2": 6.21,
+   "orl_per10k": 7.3,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "knorr",
+   "log2": 6.17,
+   "orl_per10k": 7.1,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "töpfer",
+   "log2": 6.01,
+   "orl_per10k": 6.4,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "lorbeerkranz",
+   "log2": 5.79,
+   "orl_per10k": 5.4,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "rheinzaberner",
+   "log2": 5.31,
+   "orl_per10k": 3.9,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "randstück",
+   "log2": 5.01,
+   "orl_per10k": 5.6,
+   "lb_per10k": 0.1
+  },
+  {
+   "w": "tassenboden",
+   "log2": 4.99,
+   "orl_per10k": 3.1,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "mittelerz",
+   "log2": 4.97,
+   "orl_per10k": 10.2,
+   "lb_per10k": 0.2
+  },
+  {
+   "w": "tellers",
+   "log2": 4.95,
+   "orl_per10k": 3.0,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "cohen",
+   "log2": 4.84,
+   "orl_per10k": 11.5,
+   "lb_per10k": 0.3
+  },
+  {
+   "w": "kleinkastell",
+   "log2": 4.82,
+   "orl_per10k": 2.7,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "abgebildet",
+   "log2": 4.81,
+   "orl_per10k": 9.1,
+   "lb_per10k": 0.2
+  },
+  {
+   "w": "füllhorn",
+   "log2": 4.79,
+   "orl_per10k": 2.7,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "eierstab",
+   "log2": 4.77,
+   "orl_per10k": 2.6,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "eigentum",
+   "log2": 4.7,
+   "orl_per10k": 2.5,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "gewölbtem",
+   "log2": 4.69,
+   "orl_per10k": 2.5,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "ergibt",
+   "log2": 4.67,
+   "orl_per10k": 2.4,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "viiia",
+   "log2": 4.66,
+   "orl_per10k": 2.4,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "mittelgebäude",
+   "log2": 4.66,
+   "orl_per10k": 2.4,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "ware",
+   "log2": 4.65,
+   "orl_per10k": 8.1,
+   "lb_per10k": 0.2
+  },
+  {
+   "w": "tore",
+   "log2": 4.64,
+   "orl_per10k": 2.4,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "hertlein",
+   "log2": 4.64,
+   "orl_per10k": 2.4,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "rheinzabern",
+   "log2": 4.62,
+   "orl_per10k": 2.4,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "tasse",
+   "log2": 4.61,
+   "orl_per10k": 4.2,
+   "lb_per10k": 0.1
+  },
+  {
+   "w": "kartenbeilage",
+   "log2": 4.59,
+   "orl_per10k": 2.3,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "ebenda",
+   "log2": 4.55,
+   "orl_per10k": 5.8,
+   "lb_per10k": 0.2
+  },
+  {
+   "w": "büste",
+   "log2": 4.53,
+   "orl_per10k": 5.7,
+   "lb_per10k": 0.2
+  },
+  {
+   "w": "teller",
+   "log2": 4.51,
+   "orl_per10k": 7.4,
+   "lb_per10k": 0.2
+  },
+  {
+   "w": "drgd",
+   "log2": 4.49,
+   "orl_per10k": 2.1,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "ruine",
+   "log2": 4.48,
+   "orl_per10k": 2.1,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "urspring",
+   "log2": 4.44,
+   "orl_per10k": 2.1,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "suchier",
+   "log2": 4.43,
+   "orl_per10k": 2.1,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "zoll",
+   "log2": 4.34,
+   "orl_per10k": 1.9,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "deckel",
+   "log2": 4.29,
+   "orl_per10k": 1.9,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "lippe",
+   "log2": 4.29,
+   "orl_per10k": 1.9,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "mittelgebäudes",
+   "log2": 4.26,
+   "orl_per10k": 1.8,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "scepter",
+   "log2": 4.25,
+   "orl_per10k": 1.8,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "bilderschüsseln",
+   "log2": 4.24,
+   "orl_per10k": 1.8,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "cliché",
+   "log2": 4.24,
+   "orl_per10k": 1.8,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "reginus",
+   "log2": 4.23,
+   "orl_per10k": 1.8,
+   "lb_per10k": 0.0
+  },
+  {
+   "w": "déchelette",
+   "log2": 4.23,
+   "orl_per10k": 1.8,
+   "lb_per10k": 0.0
+  }
+ ],
+ "lb_distinctive": [
+  {
+   "w": "prof",
+   "log2": -5.07,
+   "orl_per10k": 0.0,
+   "lb_per10k": 3.5
+  },
+  {
+   "w": "zwischenkastell",
+   "log2": -4.65,
+   "orl_per10k": 0.1,
+   "lb_per10k": 4.6
+  },
+  {
+   "w": "meine",
+   "log2": -3.82,
+   "orl_per10k": 0.2,
+   "lb_per10k": 3.5
+  },
+  {
+   "w": "absteinung",
+   "log2": -3.79,
+   "orl_per10k": 0.2,
+   "lb_per10k": 3.6
+  },
+  {
+   "w": "steindamm",
+   "log2": -3.71,
+   "orl_per10k": 0.1,
+   "lb_per10k": 2.7
+  },
+  {
+   "w": "pfahlreihe",
+   "log2": -3.67,
+   "orl_per10k": 0.1,
+   "lb_per10k": 3.0
+  },
+  {
+   "w": "herbste",
+   "log2": -3.61,
+   "orl_per10k": 0.1,
+   "lb_per10k": 2.2
+  },
+  {
+   "w": "grenzgräbchen",
+   "log2": -3.35,
+   "orl_per10k": 0.1,
+   "lb_per10k": 2.0
+  },
+  {
+   "w": "meiner",
+   "log2": -3.24,
+   "orl_per10k": 0.2,
+   "lb_per10k": 2.7
+  },
+  {
+   "w": "walde",
+   "log2": -3.19,
+   "orl_per10k": 0.8,
+   "lb_per10k": 8.3
+  },
+  {
+   "w": "mich",
+   "log2": -3.18,
+   "orl_per10k": 0.3,
+   "lb_per10k": 3.4
+  },
+  {
+   "w": "fronte",
+   "log2": -3.15,
+   "orl_per10k": 0.1,
+   "lb_per10k": 1.9
+  },
+  {
+   "w": "thatsache",
+   "log2": -3.02,
+   "orl_per10k": 0.3,
+   "lb_per10k": 2.8
+  },
+  {
+   "w": "resultat",
+   "log2": -2.96,
+   "orl_per10k": 0.1,
+   "lb_per10k": 1.8
+  },
+  {
+   "w": "hügeln",
+   "log2": -2.92,
+   "orl_per10k": 0.3,
+   "lb_per10k": 2.9
+  },
+  {
+   "w": "thore",
+   "log2": -2.9,
+   "orl_per10k": 1.2,
+   "lb_per10k": 9.3
+  },
+  {
+   "w": "kastelles",
+   "log2": -2.87,
+   "orl_per10k": 0.2,
+   "lb_per10k": 1.8
+  },
+  {
+   "w": "reichs",
+   "log2": -2.84,
+   "orl_per10k": 0.1,
+   "lb_per10k": 1.7
+  },
+  {
+   "w": "einstigen",
+   "log2": -2.79,
+   "orl_per10k": 0.4,
+   "lb_per10k": 3.3
+  },
+  {
+   "w": "kolonnenweg",
+   "log2": -2.75,
+   "orl_per10k": 0.2,
+   "lb_per10k": 1.7
+  },
+  {
+   "w": "thatsächlich",
+   "log2": -2.73,
+   "orl_per10k": 0.2,
+   "lb_per10k": 1.6
+  },
+  {
+   "w": "einstige",
+   "log2": -2.69,
+   "orl_per10k": 0.2,
+   "lb_per10k": 2.0
+  },
+  {
+   "w": "walle",
+   "log2": -2.67,
+   "orl_per10k": 0.3,
+   "lb_per10k": 2.3
+  },
+  {
+   "w": "limesstrecke",
+   "log2": -2.64,
+   "orl_per10k": 0.3,
+   "lb_per10k": 2.5
+  },
+  {
+   "w": "schichte",
+   "log2": -2.58,
+   "orl_per10k": 0.3,
+   "lb_per10k": 2.1
+  },
+  {
+   "w": "wallgrabens",
+   "log2": -2.57,
+   "orl_per10k": 0.2,
+   "lb_per10k": 1.6
+  },
+  {
+   "w": "limesmauer",
+   "log2": -2.57,
+   "orl_per10k": 1.2,
+   "lb_per10k": 7.6
+  },
+  {
+   "w": "erdwall",
+   "log2": -2.55,
+   "orl_per10k": 0.3,
+   "lb_per10k": 2.4
+  },
+  {
+   "w": "einander",
+   "log2": -2.5,
+   "orl_per10k": 1.8,
+   "lb_per10k": 10.8
+  },
+  {
+   "w": "wallgraben",
+   "log2": -2.5,
+   "orl_per10k": 0.5,
+   "lb_per10k": 3.2
+  },
+  {
+   "w": "palissadengräbchen",
+   "log2": -2.47,
+   "orl_per10k": 0.3,
+   "lb_per10k": 2.1
+  },
+  {
+   "w": "thal",
+   "log2": -2.46,
+   "orl_per10k": 0.6,
+   "lb_per10k": 3.9
+  },
+  {
+   "w": "wachthaus",
+   "log2": -2.44,
+   "orl_per10k": 0.3,
+   "lb_per10k": 2.1
+  },
+  {
+   "w": "sindringen",
+   "log2": -2.44,
+   "orl_per10k": 0.2,
+   "lb_per10k": 1.4
+  },
+  {
+   "w": "kohlenreste",
+   "log2": -2.42,
+   "orl_per10k": 0.3,
+   "lb_per10k": 1.8
+  },
+  {
+   "w": "resp",
+   "log2": -2.4,
+   "orl_per10k": 0.5,
+   "lb_per10k": 3.0
+  },
+  {
+   "w": "tage",
+   "log2": -2.4,
+   "orl_per10k": 1.0,
+   "lb_per10k": 5.9
+  },
+  {
+   "w": "gelang",
+   "log2": -2.4,
+   "orl_per10k": 0.8,
+   "lb_per10k": 4.7
+  },
+  {
+   "w": "nidder",
+   "log2": -2.39,
+   "orl_per10k": 0.3,
+   "lb_per10k": 1.7
+  },
+  {
+   "w": "bauwerk",
+   "log2": -2.39,
+   "orl_per10k": 0.3,
+   "lb_per10k": 1.8
+  },
+  {
+   "w": "flankiert",
+   "log2": -2.36,
+   "orl_per10k": 0.2,
+   "lb_per10k": 1.5
+  },
+  {
+   "w": "konstatiert",
+   "log2": -2.36,
+   "orl_per10k": 0.3,
+   "lb_per10k": 2.1
+  },
+  {
+   "w": "desselben",
+   "log2": -2.33,
+   "orl_per10k": 1.5,
+   "lb_per10k": 7.8
+  },
+  {
+   "w": "gefässscherben",
+   "log2": -2.29,
+   "orl_per10k": 1.0,
+   "lb_per10k": 5.2
+  },
+  {
+   "w": "ergab",
+   "log2": -2.28,
+   "orl_per10k": 2.1,
+   "lb_per10k": 10.5
+  }
+ ]
+}

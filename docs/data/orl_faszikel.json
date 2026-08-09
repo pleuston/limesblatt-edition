@@ -1,0 +1,3300 @@
+{
+ "_methode": "fascicle_titles.csv (GROSSBUCHSTABEN-Koepfe) -> Faszikel-Anfaenge je Band; seq<=1 verworfen (Band-Inhaltsverzeichnis), aufeinanderfolgende Dubletten kollabiert (Schmutztitel+Titelblatt). Spanne bis zum naechsten Kopf.",
+ "_grenze": "Der Kopf muss von der OCR gelesen worden sein — Faszikel ohne erkannten Kopf fehlen (die Zerlegung ist eine UNTERGRENZE, keine Vollstaendigkeit). Baende ohne jeden Kopf stehen gar nicht in dieser Datei.",
+ "validierung": {
+  "_test": "Nennt der Faszikelbereich ueberwiegend SEIN Kastell? (pages_kastell im Bereich, haeufigstes Toponym)",
+  "selbstkonsistenz": "94 von 123",
+  "bestanden": 94,
+  "abweichend": 29,
+  "ohne_belege": 4,
+  "_test2": "Reproduziert die Zerlegung die im enumcron GENANNTE Nummernspanne des Sammelbandes (»Abt. B, Bd. 4 (nr. 39-45)«) — vollstaendig und aufsteigend? Unabhaengig vom Toponym-Tagging.",
+  "spannenprobe": "3 von 3 Sammelbaenden",
+  "spannen": [
+   {
+    "htid": "njp.32101076455177",
+    "label": "Abt. B, Bd. 3 (nr. 32-38)",
+    "soll": "32-38",
+    "gefunden": [
+     "32",
+     "33",
+     "34",
+     "35",
+     "36",
+     "37",
+     "38",
+     "38a"
+    ],
+    "im_bereich": "8 von 8",
+    "aufsteigend": true,
+    "bestanden": true
+   },
+   {
+    "htid": "njp.32101076455185",
+    "label": "Abt. B, Bd. 4 (nr. 39-45)",
+    "soll": "39-45",
+    "gefunden": [
+     "39",
+     "40",
+     "41",
+     "42",
+     "43",
+     "44",
+     "45"
+    ],
+    "im_bereich": "7 von 7",
+    "aufsteigend": true,
+    "bestanden": true
+   },
+   {
+    "htid": "njp.32101076455219",
+    "label": "Abt. B, Bd. 7 (nr. 71-75)",
+    "soll": "71-75",
+    "gefunden": [
+     "71",
+     "71a",
+     "72",
+     "73",
+     "73a",
+     "74",
+     "75"
+    ],
+    "im_bereich": "7 von 7",
+    "aufsteigend": true,
+    "bestanden": true
+   }
+  ]
+ },
+ "stand": {
+  "baende_mit_koepfen": 54,
+  "faszikel": 127,
+  "titel_ohne_kastell": [
+   [
+    "no.38 19uu",
+    "DAS KASTELL KÖSCH"
+   ],
+   [
+    "no.41 1914",
+    "KASTELL ARNHEITER HOF"
+   ],
+   [
+    "no.41 1914",
+    "DAS KASTELL ARNHEITER HOF."
+   ],
+   [
+    "no.42 19uu",
+    "DAS KASTELL UND DIE ERDLAGER"
+   ],
+   [
+    "no.46 1929",
+    "DAS KASTELL MUNNINGEN."
+   ],
+   [
+    "v. 9",
+    "DIE KASTELLE BEI NECKARBURK"
+   ],
+   [
+    "v. 13",
+    "KASTELL UND VICVS BEI WIMPE EN"
+   ],
+   [
+    "v. 35",
+    "DAS KASTELL FAIMINGEN."
+   ],
+   [
+    "v. 41",
+    "KASTELL ARNHEITER HOF"
+   ],
+   [
+    "v. 41",
+    "DAS KASTELL ARNHEITER HOF."
+   ],
+   [
+    "v. 46",
+    "DAS KASTELL MUNNINGEN."
+   ]
+  ]
+ },
+ "baende": {
+  "mdp.39015039811149": {
+   "label": "no.37 19uu",
+   "n_scans": 72,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL ALTENSTADT.",
+     "kastell_nr": "20",
+     "kastell": "Kastell Altenstadt",
+     "seq_bis": 20,
+     "n_seiten": 18,
+     "dominant_im_bereich": [
+      [
+       "20",
+       32
+      ],
+      [
+       "8",
+       7
+      ],
+      [
+       "12",
+       5
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 21,
+     "titelzeile": "DAS KASTELL HÖCHST AM MAIN.",
+     "kastell_nr": "27a",
+     "kastell": "Kastell Frankfurt am Main Domhügel",
+     "seq_bis": 72,
+     "n_seiten": 52,
+     "dominant_im_bereich": [
+      [
+       "29",
+       11
+      ],
+      [
+       "27",
+       4
+      ],
+      [
+       "24",
+       3
+      ]
+     ],
+     "probe": "abweichend"
+    }
+   ]
+  },
+  "mdp.39015039811156": {
+   "label": "no.38 19uu",
+   "n_scans": 106,
+   "faszikel": [
+    {
+     "seq_von": 5,
+     "titelzeile": "DAS KASTELL RÜCKINGEN.",
+     "kastell_nr": "22",
+     "kastell": "Kastell Rückingen",
+     "seq_bis": 50,
+     "n_seiten": 46,
+     "dominant_im_bereich": [
+      [
+       "22",
+       53
+      ],
+      [
+       "8",
+       32
+      ],
+      [
+       "24",
+       27
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 51,
+     "titelzeile": "DAS KASTELL KÖSCH",
+     "kastell_nr": null,
+     "kastell": null,
+     "seq_bis": 106,
+     "n_seiten": 56,
+     "dominant_im_bereich": [
+      [
+       "74",
+       93
+      ],
+      [
+       "73",
+       42
+      ],
+      [
+       "8",
+       13
+      ]
+     ],
+     "probe": "abweichend"
+    }
+   ]
+  },
+  "mdp.39015039811164": {
+   "label": "no.39",
+   "n_scans": 84,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL FRIEDBERG.",
+     "kastell_nr": "26",
+     "kastell": "Kastell Friedberg",
+     "seq_bis": 84,
+     "n_seiten": 82,
+     "dominant_im_bereich": [
+      [
+       "26",
+       171
+      ],
+      [
+       "25a",
+       25
+      ],
+      [
+       "16",
+       22
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "mdp.39015039811180": {
+   "label": "v.40 pt.2 1895",
+   "n_scans": 66,
+   "faszikel": [
+    {
+     "seq_von": 5,
+     "titelzeile": "DAS KASTELL OSTERBURKEN.",
+     "kastell_nr": "40",
+     "kastell": "Kastell Osterburken",
+     "seq_bis": 66,
+     "n_seiten": 62,
+     "dominant_im_bereich": [
+      [
+       "40",
+       85
+      ],
+      [
+       "53",
+       8
+      ],
+      [
+       "14",
+       6
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "mdp.39015039811198": {
+   "label": "no.41 1914",
+   "n_scans": 64,
+   "faszikel": [
+    {
+     "seq_von": 9,
+     "titelzeile": "KASTELL ARNHEITER HOF",
+     "kastell_nr": null,
+     "kastell": null,
+     "seq_bis": 8,
+     "n_seiten": 0,
+     "dominant_im_bereich": [],
+     "probe": "leer"
+    },
+    {
+     "seq_von": 9,
+     "titelzeile": "KASTELL OBERDORF AM IPF",
+     "kastell_nr": "67b",
+     "kastell": "Kastell Oberdorf",
+     "seq_bis": 8,
+     "n_seiten": 0,
+     "dominant_im_bereich": [],
+     "probe": "leer"
+    },
+    {
+     "seq_von": 9,
+     "titelzeile": "KASTELL SELIGENSTADT",
+     "kastell_nr": "32",
+     "kastell": "Kastell Seligenstadt",
+     "seq_bis": 20,
+     "n_seiten": 12,
+     "dominant_im_bereich": [
+      [
+       "32",
+       31
+      ],
+      [
+       "33",
+       8
+      ],
+      [
+       "23",
+       8
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 21,
+     "titelzeile": "DAS KASTELL ARNHEITER HOF.",
+     "kastell_nr": null,
+     "kastell": null,
+     "seq_bis": 34,
+     "n_seiten": 14,
+     "dominant_im_bereich": [
+      [
+       "49",
+       5
+      ],
+      [
+       "51",
+       5
+      ],
+      [
+       "26",
+       2
+      ]
+     ],
+     "probe": "abweichend"
+    },
+    {
+     "seq_von": 35,
+     "titelzeile": "DAS KASTELL OBERDORF AM IPF.",
+     "kastell_nr": "67b",
+     "kastell": "Kastell Oberdorf",
+     "seq_bis": 64,
+     "n_seiten": 30,
+     "dominant_im_bereich": [
+      [
+       "67b",
+       37
+      ],
+      [
+       "66b",
+       13
+      ],
+      [
+       "74",
+       5
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "mdp.39015039811206": {
+   "label": "no.42 19uu",
+   "n_scans": 126,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL UND DIE ERDLAGER",
+     "kastell_nr": null,
+     "kastell": null,
+     "seq_bis": 108,
+     "n_seiten": 106,
+     "dominant_im_bereich": [
+      [
+       "11",
+       75
+      ],
+      [
+       "27",
+       51
+      ],
+      [
+       "25a",
+       43
+      ]
+     ],
+     "probe": "abweichend"
+    },
+    {
+     "seq_von": 109,
+     "titelzeile": "DAS KASTELL FRANKFURT A. M.",
+     "kastell_nr": "27a",
+     "kastell": "Kastell Frankfurt am Main Domhügel",
+     "seq_bis": 126,
+     "n_seiten": 18,
+     "dominant_im_bereich": [
+      [
+       "26",
+       8
+      ],
+      [
+       "29",
+       7
+      ],
+      [
+       "25a",
+       6
+      ]
+     ],
+     "probe": "abweichend"
+    }
+   ]
+  },
+  "mdp.39015039811248": {
+   "label": "no.46 1929",
+   "n_scans": 116,
+   "faszikel": [
+    {
+     "seq_von": 11,
+     "titelzeile": "DAS KASTELL MILTENBERG-OST.",
+     "kastell_nr": "38a",
+     "kastell": "Kastell Miltenberg-Ost",
+     "seq_bis": 24,
+     "n_seiten": 14,
+     "dominant_im_bereich": [
+      [
+       "38",
+       27
+      ],
+      [
+       "1a",
+       12
+      ],
+      [
+       "8",
+       8
+      ]
+     ],
+     "probe": "abweichend"
+    },
+    {
+     "seq_von": 25,
+     "titelzeile": "DAS KASTELL WESTERNBACH.",
+     "kastell_nr": "41a",
+     "kastell": "Kastell Westernbach",
+     "seq_bis": 34,
+     "n_seiten": 10,
+     "dominant_im_bereich": [
+      [
+       "41a",
+       12
+      ],
+      [
+       "42",
+       3
+      ],
+      [
+       "69",
+       2
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 35,
+     "titelzeile": "DAS KASTELL MUNNINGEN.",
+     "kastell_nr": null,
+     "kastell": null,
+     "seq_bis": 116,
+     "n_seiten": 82,
+     "dominant_im_bereich": [
+      [
+       "59",
+       72
+      ],
+      [
+       "73",
+       63
+      ],
+      [
+       "60",
+       61
+      ]
+     ],
+     "probe": "abweichend"
+    }
+   ]
+  },
+  "mdp.39015039811321": {
+   "label": "no.54 1936",
+   "n_scans": 182,
+   "faszikel": [
+    {
+     "seq_von": 107,
+     "titelzeile": "DAS KASTELL ROTTENBURG.",
+     "kastell_nr": "61",
+     "kastell": "Sumelocenna",
+     "seq_bis": 182,
+     "n_seiten": 76,
+     "dominant_im_bereich": [
+      [
+       "61",
+       82
+      ],
+      [
+       "11",
+       17
+      ],
+      [
+       "60",
+       15
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "mdp.39015039811339": {
+   "label": "no.55 1937",
+   "n_scans": 210,
+   "faszikel": [
+    {
+     "seq_von": 9,
+     "titelzeile": "DAS KASTELL NIEDER-BIEBER.",
+     "kastell_nr": "1a",
+     "kastell": "Kastell Niederbieber",
+     "seq_bis": 98,
+     "n_seiten": 90,
+     "dominant_im_bereich": [
+      [
+       "1",
+       22
+      ],
+      [
+       "1a",
+       12
+      ],
+      [
+       "11",
+       5
+      ]
+     ],
+     "probe": "abweichend"
+    },
+    {
+     "seq_von": 99,
+     "titelzeile": "DAS KASTELL HÜFINGEN.",
+     "kastell_nr": "62a",
+     "kastell": "Kastell Hüfingen",
+     "seq_bis": 210,
+     "n_seiten": 112,
+     "dominant_im_bereich": [
+      [
+       "62a",
+       122
+      ],
+      [
+       "29",
+       32
+      ],
+      [
+       "39",
+       7
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "mdp.39015039811347": {
+   "label": "no.56 1937",
+   "n_scans": 144,
+   "faszikel": [
+    {
+     "seq_von": 11,
+     "titelzeile": "DAS KASTELL BENDORF.",
+     "kastell_nr": "2",
+     "kastell": "Kastell Bendorf",
+     "seq_bis": 46,
+     "n_seiten": 36,
+     "dominant_im_bereich": [
+      [
+       "2",
+       64
+      ],
+      [
+       "1",
+       16
+      ],
+      [
+       "29",
+       14
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 47,
+     "titelzeile": "DAS KASTELL SAALBURG.",
+     "kastell_nr": "11",
+     "kastell": "Kastell Saalburg",
+     "seq_bis": 144,
+     "n_seiten": 98,
+     "dominant_im_bereich": [
+      [
+       "11",
+       224
+      ],
+      [
+       "8",
+       18
+      ],
+      [
+       "14",
+       15
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "njp.32101076455177": {
+   "label": "Abt. B, Bd. 3 (nr. 32-38)",
+   "n_scans": 410,
+   "faszikel": [
+    {
+     "seq_von": 11,
+     "titelzeile": "DAS KASTELL SELIGENSTADT.",
+     "kastell_nr": "32",
+     "kastell": "Kastell Seligenstadt",
+     "seq_bis": 18,
+     "n_seiten": 8,
+     "dominant_im_bereich": [
+      [
+       "32",
+       30
+      ],
+      [
+       "33",
+       8
+      ],
+      [
+       "23",
+       8
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 19,
+     "titelzeile": "DAS KASTELL STOCKSTADT.",
+     "kastell_nr": "33",
+     "kastell": "Kastell Stockstadt",
+     "seq_bis": 194,
+     "n_seiten": 176,
+     "dominant_im_bereich": [
+      [
+       "33",
+       236
+      ],
+      [
+       "8",
+       98
+      ],
+      [
+       "11",
+       80
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 195,
+     "titelzeile": "DAS KASTELL NIEDERNBERG.",
+     "kastell_nr": "34",
+     "kastell": "Kastell Niedernberg",
+     "seq_bis": 214,
+     "n_seiten": 20,
+     "dominant_im_bereich": [
+      [
+       "35",
+       31
+      ],
+      [
+       "34",
+       26
+      ],
+      [
+       "14",
+       9
+      ]
+     ],
+     "probe": "abweichend"
+    },
+    {
+     "seq_von": 215,
+     "titelzeile": "DAS KASTELL OBERNBURG",
+     "kastell_nr": "35",
+     "kastell": "Kastell Obernburg",
+     "seq_bis": 268,
+     "n_seiten": 54,
+     "dominant_im_bereich": [
+      [
+       "35",
+       92
+      ],
+      [
+       "25",
+       8
+      ],
+      [
+       "34",
+       6
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 269,
+     "titelzeile": "DAS KASTELL WÖRTH.",
+     "kastell_nr": "36",
+     "kastell": "Kastell Wörth",
+     "seq_bis": 294,
+     "n_seiten": 26,
+     "dominant_im_bereich": [
+      [
+       "36",
+       35
+      ],
+      [
+       "35",
+       10
+      ],
+      [
+       "44",
+       4
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 295,
+     "titelzeile": "DAS KASTELL TRENNFURT.",
+     "kastell_nr": "37",
+     "kastell": "Kastell Trennfurt",
+     "seq_bis": 310,
+     "n_seiten": 16,
+     "dominant_im_bereich": [
+      [
+       "37",
+       35
+      ],
+      [
+       "38",
+       7
+      ],
+      [
+       "35",
+       3
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 311,
+     "titelzeile": "DAS KASTELL ALTSTADT BEI MILTENBERG.",
+     "kastell_nr": "38",
+     "kastell": "Kastell Miltenberg-Altstadt",
+     "seq_bis": 388,
+     "n_seiten": 78,
+     "dominant_im_bereich": [
+      [
+       "38",
+       132
+      ],
+      [
+       "8",
+       53
+      ],
+      [
+       "33",
+       36
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 389,
+     "titelzeile": "DAS KASTELL MILTENBERG-OST",
+     "kastell_nr": "38a",
+     "kastell": "Kastell Miltenberg-Ost",
+     "seq_bis": 410,
+     "n_seiten": 22,
+     "dominant_im_bereich": [
+      [
+       "38",
+       31
+      ],
+      [
+       "1a",
+       12
+      ],
+      [
+       "8",
+       10
+      ]
+     ],
+     "probe": "abweichend"
+    }
+   ]
+  },
+  "njp.32101076455185": {
+   "label": "Abt. B, Bd. 4 (nr. 39-45)",
+   "n_scans": 268,
+   "faszikel": [
+    {
+     "seq_von": 9,
+     "titelzeile": "DAS KASTELL ALTEBURG BEI WALLDÜRN.",
+     "kastell_nr": "39",
+     "kastell": "Kastell Walldürn",
+     "seq_bis": 32,
+     "n_seiten": 24,
+     "dominant_im_bereich": [
+      [
+       "39",
+       42
+      ],
+      [
+       "73",
+       4
+      ],
+      [
+       "16",
+       4
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 33,
+     "titelzeile": "DAS KASTELL OSTERBURKEN.",
+     "kastell_nr": "40",
+     "kastell": "Kastell Osterburken",
+     "seq_bis": 90,
+     "n_seiten": 58,
+     "dominant_im_bereich": [
+      [
+       "40",
+       85
+      ],
+      [
+       "53",
+       7
+      ],
+      [
+       "14",
+       5
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 91,
+     "titelzeile": "DAS KASTELL JAGSTHAUSEN.",
+     "kastell_nr": "41",
+     "kastell": "Kastell Jagsthausen",
+     "seq_bis": 160,
+     "n_seiten": 70,
+     "dominant_im_bereich": [
+      [
+       "41",
+       126
+      ],
+      [
+       "8",
+       21
+      ],
+      [
+       "54",
+       13
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 161,
+     "titelzeile": "DIE KASTELLE BEI ÖHRINGEN.",
+     "kastell_nr": "42",
+     "kastell": "Kastell Öhringen-West",
+     "seq_bis": 198,
+     "n_seiten": 38,
+     "dominant_im_bereich": [
+      [
+       "42",
+       74
+      ],
+      [
+       "42a",
+       14
+      ],
+      [
+       "40",
+       12
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 199,
+     "titelzeile": "DAS KASTELL MAINHARDT.",
+     "kastell_nr": "43",
+     "kastell": "Kastell Mainhardt",
+     "seq_bis": 220,
+     "n_seiten": 22,
+     "dominant_im_bereich": [
+      [
+       "43",
+       41
+      ],
+      [
+       "73",
+       9
+      ],
+      [
+       "42",
+       5
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 221,
+     "titelzeile": "DAS KASTELL MURRHARDT.",
+     "kastell_nr": "44",
+     "kastell": "Kastell Murrhardt",
+     "seq_bis": 236,
+     "n_seiten": 16,
+     "dominant_im_bereich": [
+      [
+       "44",
+       22
+      ],
+      [
+       "14",
+       3
+      ],
+      [
+       "21",
+       3
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 237,
+     "titelzeile": "DIE KASTELLE BEI WELZHEIM.",
+     "kastell_nr": "45",
+     "kastell": "Kastelle von Welzheim",
+     "seq_bis": 268,
+     "n_seiten": 32,
+     "dominant_im_bereich": [
+      [
+       "45",
+       48
+      ],
+      [
+       "73",
+       9
+      ],
+      [
+       "59",
+       4
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "njp.32101076455219": {
+   "label": "Abt. B, Bd. 7 (nr. 71-75)",
+   "n_scans": 372,
+   "faszikel": [
+    {
+     "seq_von": 11,
+     "titelzeile": "DAS KASTELL GUNZENHAUSEN.",
+     "kastell_nr": "71",
+     "kastell": "Kastell Gunzenhausen",
+     "seq_bis": 18,
+     "n_seiten": 8,
+     "dominant_im_bereich": [
+      [
+       "71",
+       20
+      ],
+      [
+       "71a",
+       4
+      ],
+      [
+       "72",
+       3
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 19,
+     "titelzeile": "DAS KASTELL THEILENHOFEN.",
+     "kastell_nr": "71a",
+     "kastell": "Kastell Theilenhofen",
+     "seq_bis": 44,
+     "n_seiten": 26,
+     "dominant_im_bereich": [
+      [
+       "71a",
+       42
+      ],
+      [
+       "73",
+       17
+      ],
+      [
+       "72",
+       10
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 45,
+     "titelzeile": "DAS KASTELL WEISSENBURG.",
+     "kastell_nr": "72",
+     "kastell": "Kastell Weißenburg",
+     "seq_bis": 134,
+     "n_seiten": 90,
+     "dominant_im_bereich": [
+      [
+       "72",
+       125
+      ],
+      [
+       "73",
+       56
+      ],
+      [
+       "25a",
+       7
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 135,
+     "titelzeile": "DAS KASTELL PFÜNZ.",
+     "kastell_nr": "73",
+     "kastell": "Kastell Pfünz",
+     "seq_bis": 264,
+     "n_seiten": 130,
+     "dominant_im_bereich": [
+      [
+       "73",
+       157
+      ],
+      [
+       "40",
+       15
+      ],
+      [
+       "66b",
+       9
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 265,
+     "titelzeile": "DAS KASTELL BÖHMING.",
+     "kastell_nr": "73a",
+     "kastell": "Kastell Böhming",
+     "seq_bis": 284,
+     "n_seiten": 20,
+     "dominant_im_bereich": [
+      [
+       "73",
+       37
+      ],
+      [
+       "73a",
+       28
+      ],
+      [
+       "72",
+       7
+      ]
+     ],
+     "probe": "abweichend"
+    },
+    {
+     "seq_von": 285,
+     "titelzeile": "DAS KASTELL KÖSCHING.",
+     "kastell_nr": "74",
+     "kastell": "Kastell Kösching",
+     "seq_bis": 334,
+     "n_seiten": 50,
+     "dominant_im_bereich": [
+      [
+       "74",
+       99
+      ],
+      [
+       "73",
+       44
+      ],
+      [
+       "8",
+       12
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 335,
+     "titelzeile": "DAS KASTELL PFÖRING.",
+     "kastell_nr": "75",
+     "kastell": "Kastell Pförring",
+     "seq_bis": 372,
+     "n_seiten": 38,
+     "dominant_im_bereich": [
+      [
+       "73",
+       47
+      ],
+      [
+       "74",
+       8
+      ],
+      [
+       "11",
+       6
+      ]
+     ],
+     "probe": "abweichend"
+    }
+   ]
+  },
+  "uc1.c2605048": {
+   "label": "v. 1",
+   "n_scans": 74,
+   "faszikel": [
+    {
+     "seq_von": 9,
+     "titelzeile": "DAS KASTELL BUTZBACH.",
+     "kastell_nr": "14",
+     "kastell": "Kastell Butzbach",
+     "seq_bis": 42,
+     "n_seiten": 34,
+     "dominant_im_bereich": [
+      [
+       "14",
+       83
+      ],
+      [
+       "11",
+       7
+      ],
+      [
+       "22",
+       4
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 43,
+     "titelzeile": "DAS KASTELL MURRHARDT.",
+     "kastell_nr": "44",
+     "kastell": "Kastell Murrhardt",
+     "seq_bis": 58,
+     "n_seiten": 16,
+     "dominant_im_bereich": [
+      [
+       "44",
+       22
+      ],
+      [
+       "14",
+       3
+      ],
+      [
+       "21",
+       3
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 59,
+     "titelzeile": "DAS KASTELL UNTERBÖBINGEN.",
+     "kastell_nr": "65",
+     "kastell": "Kastell Unterböbingen",
+     "seq_bis": 74,
+     "n_seiten": 16,
+     "dominant_im_bereich": [
+      [
+       "65",
+       10
+      ],
+      [
+       "44",
+       3
+      ],
+      [
+       "21",
+       2
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605049": {
+   "label": "v. 2",
+   "n_scans": 66,
+   "faszikel": [
+    {
+     "seq_von": 5,
+     "titelzeile": "DAS KASTELL OSTERBURK",
+     "kastell_nr": "38a",
+     "kastell": "Kastell Miltenberg-Ost",
+     "seq_bis": 66,
+     "n_seiten": 62,
+     "dominant_im_bereich": [
+      [
+       "40",
+       85
+      ],
+      [
+       "53",
+       8
+      ],
+      [
+       "14",
+       5
+      ]
+     ],
+     "probe": "abweichend"
+    }
+   ]
+  },
+  "uc1.c2605050": {
+   "label": "v. 5",
+   "n_scans": 64,
+   "faszikel": [
+    {
+     "seq_von": 5,
+     "titelzeile": "DIE KASTELLE BEI ÖHRINGEN.",
+     "kastell_nr": "42",
+     "kastell": "Kastell Öhringen-West",
+     "seq_bis": 42,
+     "n_seiten": 38,
+     "dominant_im_bereich": [
+      [
+       "42",
+       74
+      ],
+      [
+       "42a",
+       14
+      ],
+      [
+       "40",
+       12
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 43,
+     "titelzeile": "DAS KASTELL HAINHAUS BEI VIELBRUNN.",
+     "kastell_nr": "47",
+     "kastell": "Kastell Hainhaus",
+     "seq_bis": 52,
+     "n_seiten": 10,
+     "dominant_im_bereich": [
+      [
+       "47",
+       8
+      ],
+      [
+       "50",
+       4
+      ],
+      [
+       "49",
+       3
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 53,
+     "titelzeile": "DAS KASTELL LORCH.",
+     "kastell_nr": "63",
+     "kastell": "Kastell Lorch",
+     "seq_bis": 64,
+     "n_seiten": 12,
+     "dominant_im_bereich": [
+      [
+       "63",
+       22
+      ],
+      [
+       "45",
+       5
+      ],
+      [
+       "14",
+       3
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605053": {
+   "label": "v. 7",
+   "n_scans": 66,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL HOFHEIM",
+     "kastell_nr": "29",
+     "kastell": "Kastell Hofheim",
+     "seq_bis": 52,
+     "n_seiten": 50,
+     "dominant_im_bereich": [
+      [
+       "29",
+       76
+      ],
+      [
+       "25a",
+       7
+      ],
+      [
+       "24",
+       4
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 53,
+     "titelzeile": "DAS KASTELL SCHIERENHOF BEI SCHW. GMÜND.",
+     "kastell_nr": "64",
+     "kastell": "Kastell Schirenhof",
+     "seq_bis": 66,
+     "n_seiten": 14,
+     "dominant_im_bereich": [
+      [
+       "63",
+       2
+      ],
+      [
+       "65",
+       2
+      ],
+      [
+       "68",
+       2
+      ]
+     ],
+     "probe": "abweichend"
+    }
+   ]
+  },
+  "uc1.c2605054": {
+   "label": "v. 6",
+   "n_scans": 48,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL HUNZEL.",
+     "kastell_nr": "5",
+     "kastell": "Kastell Hunzel",
+     "seq_bis": 10,
+     "n_seiten": 8,
+     "dominant_im_bereich": [
+      [
+       "5",
+       11
+      ],
+      [
+       "5a",
+       5
+      ],
+      [
+       "10",
+       1
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 11,
+     "titelzeile": "DAS KASTELL OBERSCHEIDENTHAL.",
+     "kastell_nr": "52",
+     "kastell": "Kastell Oberscheidental",
+     "seq_bis": 30,
+     "n_seiten": 20,
+     "dominant_im_bereich": [
+      [
+       "52",
+       28
+      ],
+      [
+       "51",
+       9
+      ],
+      [
+       "53",
+       8
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 31,
+     "titelzeile": "DAS KASTELL WALDMÖSSINGEN.",
+     "kastell_nr": "61b",
+     "kastell": "Kastell Waldmössingen",
+     "seq_bis": 48,
+     "n_seiten": 18,
+     "dominant_im_bereich": [
+      [
+       "61b",
+       17
+      ],
+      [
+       "61a",
+       5
+      ],
+      [
+       "42",
+       1
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605055": {
+   "label": "v. 8",
+   "n_scans": 56,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL LANGENHAIN.",
+     "kastell_nr": "13",
+     "kastell": "Kastell Langenhain",
+     "seq_bis": 18,
+     "n_seiten": 16,
+     "dominant_im_bereich": [
+      [
+       "13",
+       25
+      ],
+      [
+       "26",
+       4
+      ],
+      [
+       "11",
+       4
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 19,
+     "titelzeile": "DAS KASTELL WALHEIM.",
+     "kastell_nr": "57",
+     "kastell": "Kastelle von Walheim",
+     "seq_bis": 40,
+     "n_seiten": 22,
+     "dominant_im_bereich": [
+      [
+       "57",
+       42
+      ],
+      [
+       "56",
+       3
+      ],
+      [
+       "40",
+       2
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 41,
+     "titelzeile": "DAS KASTELL SULZ.",
+     "kastell_nr": "61a",
+     "kastell": "Kastell Sulz",
+     "seq_bis": 56,
+     "n_seiten": 16,
+     "dominant_im_bereich": [
+      [
+       "61a",
+       38
+      ],
+      [
+       "61b",
+       10
+      ],
+      [
+       "29",
+       2
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605056": {
+   "label": "v. 9",
+   "n_scans": 54,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DIE KASTELLE BEI NECKARBURK",
+     "kastell_nr": null,
+     "kastell": null,
+     "seq_bis": 54,
+     "n_seiten": 52,
+     "dominant_im_bereich": [
+      [
+       "53",
+       50
+      ],
+      [
+       "40",
+       27
+      ],
+      [
+       "52",
+       5
+      ]
+     ],
+     "probe": "abweichend"
+    }
+   ]
+  },
+  "uc1.c2605057": {
+   "label": "v. 10",
+   "n_scans": 64,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL KESSELSTADT.",
+     "kastell_nr": "24",
+     "kastell": "Kastell Kesselstadt",
+     "seq_bis": 12,
+     "n_seiten": 10,
+     "dominant_im_bereich": [
+      [
+       "24",
+       36
+      ],
+      [
+       "22",
+       4
+      ],
+      [
+       "40",
+       4
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 13,
+     "titelzeile": "KASTELL KESSELSTADT.",
+     "kastell_nr": "24",
+     "kastell": "Kastell Kesselstadt",
+     "seq_bis": 16,
+     "n_seiten": 4,
+     "dominant_im_bereich": [
+      [
+       "24",
+       3
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 17,
+     "titelzeile": "DAS KASTELL BÖCKINGEN.",
+     "kastell_nr": "56",
+     "kastell": "Kastell Heilbronn-Böckingen",
+     "seq_bis": 42,
+     "n_seiten": 26,
+     "dominant_im_bereich": [
+      [
+       "56",
+       57
+      ],
+      [
+       "53",
+       5
+      ],
+      [
+       "11",
+       4
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 43,
+     "titelzeile": "DAS KASTELL BUCH.",
+     "kastell_nr": "67",
+     "kastell": "Kastell Buch",
+     "seq_bis": 64,
+     "n_seiten": 22,
+     "dominant_im_bereich": [
+      [
+       "11",
+       3
+      ],
+      [
+       "68",
+       3
+      ],
+      [
+       "66",
+       2
+      ]
+     ],
+     "probe": "abweichend"
+    }
+   ]
+  },
+  "uc1.c2605058": {
+   "label": "v. 11",
+   "n_scans": 60,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL WÖRTH.",
+     "kastell_nr": "36",
+     "kastell": "Kastell Wörth",
+     "seq_bis": 28,
+     "n_seiten": 26,
+     "dominant_im_bereich": [
+      [
+       "36",
+       36
+      ],
+      [
+       "35",
+       10
+      ],
+      [
+       "44",
+       4
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 29,
+     "titelzeile": "DAS KASTELL TRENNFURT.",
+     "kastell_nr": "37",
+     "kastell": "Kastell Trennfurt",
+     "seq_bis": 44,
+     "n_seiten": 16,
+     "dominant_im_bereich": [
+      [
+       "37",
+       35
+      ],
+      [
+       "38",
+       7
+      ],
+      [
+       "35",
+       3
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 45,
+     "titelzeile": "DAS KASTELL BEI SCHLOSSAU.",
+     "kastell_nr": "51",
+     "kastell": "Kastell Schloßau",
+     "seq_bis": 60,
+     "n_seiten": 16,
+     "dominant_im_bereich": [
+      [
+       "51",
+       29
+      ],
+      [
+       "52",
+       6
+      ],
+      [
+       "39",
+       5
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605059": {
+   "label": "v. 12",
+   "n_scans": 54,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL NIEDERBERG BEI EHRENBREITSTEIN.",
+     "kastell_nr": "2a",
+     "kastell": "Kastell Niederberg",
+     "seq_bis": 40,
+     "n_seiten": 38,
+     "dominant_im_bereich": [
+      [
+       "2a",
+       41
+      ],
+      [
+       "11",
+       20
+      ],
+      [
+       "33",
+       7
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 41,
+     "titelzeile": "DAS KASTELL ARZBACH.",
+     "kastell_nr": "3",
+     "kastell": "Kastell Arzbach",
+     "seq_bis": 54,
+     "n_seiten": 14,
+     "dominant_im_bereich": [
+      [
+       "3",
+       13
+      ],
+      [
+       "11",
+       7
+      ],
+      [
+       "1a",
+       5
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605060": {
+   "label": "v. 13",
+   "n_scans": 82,
+   "faszikel": [
+    {
+     "seq_von": 35,
+     "titelzeile": "KASTELL UND VICUS BEI WIMPFEN.",
+     "kastell_nr": "54",
+     "kastell": "Kastell Wimpfen",
+     "seq_bis": 47,
+     "n_seiten": 13,
+     "dominant_im_bereich": [
+      [
+       "54",
+       48
+      ],
+      [
+       "53",
+       7
+      ],
+      [
+       "40",
+       7
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 48,
+     "titelzeile": "KASTELL UND VICVS BEI WIMPE EN",
+     "kastell_nr": null,
+     "kastell": null,
+     "seq_bis": 60,
+     "n_seiten": 13,
+     "dominant_im_bereich": [
+      [
+       "54",
+       10
+      ],
+      [
+       "56",
+       1
+      ]
+     ],
+     "probe": "abweichend"
+    },
+    {
+     "seq_von": 61,
+     "titelzeile": "DAS KASTELL HEIDENHEIM.",
+     "kastell_nr": "66b",
+     "kastell": "Kastell Heidenheim",
+     "seq_bis": 82,
+     "n_seiten": 22,
+     "dominant_im_bereich": [
+      [
+       "66b",
+       39
+      ],
+      [
+       "66",
+       9
+      ],
+      [
+       "61a",
+       8
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605061": {
+   "label": "v. 14",
+   "n_scans": 122,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL PFÜNZ.",
+     "kastell_nr": "73",
+     "kastell": "Kastell Pfünz",
+     "seq_bis": 122,
+     "n_seiten": 120,
+     "dominant_im_bereich": [
+      [
+       "73",
+       148
+      ],
+      [
+       "40",
+       15
+      ],
+      [
+       "66b",
+       9
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605062": {
+   "label": "v. 15",
+   "n_scans": 48,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL KEMEL.",
+     "kastell_nr": "7",
+     "kastell": "Kastell Kemel",
+     "seq_bis": 12,
+     "n_seiten": 10,
+     "dominant_im_bereich": [
+      [
+       "7",
+       20
+      ],
+      [
+       "53",
+       5
+      ],
+      [
+       "6",
+       4
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 13,
+     "titelzeile": "DAS KASTELL HALHEIM.",
+     "kastell_nr": "67a",
+     "kastell": "Kastell Halheim",
+     "seq_bis": 18,
+     "n_seiten": 6,
+     "dominant_im_bereich": [
+      [
+       "67a",
+       10
+      ],
+      [
+       "68",
+       3
+      ],
+      [
+       "53",
+       2
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 19,
+     "titelzeile": "DAS KASTELL DAMBACH.",
+     "kastell_nr": "69",
+     "kastell": "Kastell Dambach",
+     "seq_bis": 48,
+     "n_seiten": 30,
+     "dominant_im_bereich": [
+      [
+       "73",
+       53
+      ],
+      [
+       "69",
+       38
+      ],
+      [
+       "72",
+       9
+      ]
+     ],
+     "probe": "abweichend"
+    }
+   ]
+  },
+  "uc1.c2605063": {
+   "label": "v. 16",
+   "n_scans": 82,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL OKARBEN.",
+     "kastell_nr": "25a",
+     "kastell": "Kastell Okarben",
+     "seq_bis": 50,
+     "n_seiten": 48,
+     "dominant_im_bereich": [
+      [
+       "25a",
+       87
+      ],
+      [
+       "73",
+       25
+      ],
+      [
+       "29",
+       20
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 51,
+     "titelzeile": "DAS KASTELL PFÖRING.",
+     "kastell_nr": "75",
+     "kastell": "Kastell Pförring",
+     "seq_bis": 82,
+     "n_seiten": 32,
+     "dominant_im_bereich": [
+      [
+       "73",
+       47
+      ],
+      [
+       "74",
+       8
+      ],
+      [
+       "11",
+       6
+      ]
+     ],
+     "probe": "abweichend"
+    }
+   ]
+  },
+  "uc1.c2605064": {
+   "label": "v. 17",
+   "n_scans": 88,
+   "faszikel": [
+    {
+     "seq_von": 5,
+     "titelzeile": "DAS KASTELL ARNSBURG.",
+     "kastell_nr": "16",
+     "kastell": "Kastell Arnsburg",
+     "seq_bis": 56,
+     "n_seiten": 52,
+     "dominant_im_bereich": [
+      [
+       "16",
+       63
+      ],
+      [
+       "14",
+       12
+      ],
+      [
+       "73",
+       10
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 57,
+     "titelzeile": "DAS KASTELL BENNINGEN.",
+     "kastell_nr": "58",
+     "kastell": "Kastell Benningen",
+     "seq_bis": 88,
+     "n_seiten": 32,
+     "dominant_im_bereich": [
+      [
+       "58",
+       43
+      ],
+      [
+       "73",
+       19
+      ],
+      [
+       "54",
+       6
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605065": {
+   "label": "v. 18",
+   "n_scans": 96,
+   "faszikel": [
+    {
+     "seq_von": 7,
+     "titelzeile": "DAS KASTELL OBER-FLORSTADT.",
+     "kastell_nr": "19",
+     "kastell": "Kastell Ober-Florstadt",
+     "seq_bis": 38,
+     "n_seiten": 32,
+     "dominant_im_bereich": [
+      [
+       "19",
+       43
+      ],
+      [
+       "73",
+       41
+      ],
+      [
+       "2a",
+       13
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 39,
+     "titelzeile": "DAS KASTELL OBERNBURG",
+     "kastell_nr": "35",
+     "kastell": "Kastell Obernburg",
+     "seq_bis": 96,
+     "n_seiten": 58,
+     "dominant_im_bereich": [
+      [
+       "35",
+       95
+      ],
+      [
+       "25",
+       10
+      ],
+      [
+       "34",
+       9
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605066": {
+   "label": "v. 19",
+   "n_scans": 92,
+   "faszikel": [
+    {
+     "seq_von": 5,
+     "titelzeile": "DAS KASTELL HEDDESDORF.",
+     "kastell_nr": "1",
+     "kastell": "Kastell Heddesdorf",
+     "seq_bis": 38,
+     "n_seiten": 34,
+     "dominant_im_bereich": [
+      [
+       "1",
+       63
+      ],
+      [
+       "2a",
+       22
+      ],
+      [
+       "73",
+       12
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 39,
+     "titelzeile": "DAS KASTELL ECHZELL.",
+     "kastell_nr": "18",
+     "kastell": "Kastell Echzell",
+     "seq_bis": 72,
+     "n_seiten": 34,
+     "dominant_im_bereich": [
+      [
+       "18",
+       59
+      ],
+      [
+       "73",
+       25
+      ],
+      [
+       "16",
+       13
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 73,
+     "titelzeile": "DAS KASTELL SECKMAUERN.",
+     "kastell_nr": "46b",
+     "kastell": "Kastell Seckmauern",
+     "seq_bis": 92,
+     "n_seiten": 20,
+     "dominant_im_bereich": [
+      [
+       "46b",
+       19
+      ],
+      [
+       "36",
+       9
+      ],
+      [
+       "35",
+       7
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605067": {
+   "label": "v. 20",
+   "n_scans": 90,
+   "faszikel": [
+    {
+     "seq_von": 27,
+     "titelzeile": "DAS KASTELL GROSS-KROTZENBURG.",
+     "kastell_nr": "23",
+     "kastell": "Kastell Großkrotzenburg",
+     "seq_bis": 90,
+     "n_seiten": 64,
+     "dominant_im_bereich": [
+      [
+       "23",
+       91
+      ],
+      [
+       "11",
+       30
+      ],
+      [
+       "22",
+       29
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605068": {
+   "label": "v. 21",
+   "n_scans": 54,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL ALTEBURG BEI WALLDÜRN.",
+     "kastell_nr": "39",
+     "kastell": "Kastell Walldürn",
+     "seq_bis": 26,
+     "n_seiten": 24,
+     "dominant_im_bereich": [
+      [
+       "39",
+       43
+      ],
+      [
+       "73",
+       4
+      ],
+      [
+       "16",
+       4
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 27,
+     "titelzeile": "DIE KASTELLE BEI WELZHEIM.",
+     "kastell_nr": "45",
+     "kastell": "Kastelle von Welzheim",
+     "seq_bis": 54,
+     "n_seiten": 28,
+     "dominant_im_bereich": [
+      [
+       "45",
+       49
+      ],
+      [
+       "73",
+       10
+      ],
+      [
+       "59",
+       4
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605069": {
+   "label": "v. 22",
+   "n_scans": 64,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL HOLZHAUSEN.",
+     "kastell_nr": "6",
+     "kastell": "Kastell Holzhausen",
+     "seq_bis": 64,
+     "n_seiten": 62,
+     "dominant_im_bereich": [
+      [
+       "6",
+       70
+      ],
+      [
+       "11",
+       25
+      ],
+      [
+       "53",
+       8
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605070": {
+   "label": "v. 23",
+   "n_scans": 64,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL ALTEBURG-HEFTRICH.",
+     "kastell_nr": "9",
+     "kastell": "Kastell Alteburg",
+     "seq_bis": 24,
+     "n_seiten": 22,
+     "dominant_im_bereich": [
+      [
+       "11",
+       38
+      ],
+      [
+       "73",
+       30
+      ],
+      [
+       "40",
+       9
+      ]
+     ],
+     "probe": "abweichend"
+    },
+    {
+     "seq_von": 25,
+     "titelzeile": "DAS KASTELL LÜTZELBACH.",
+     "kastell_nr": "46",
+     "kastell": "Kastell Lützelbach",
+     "seq_bis": 36,
+     "n_seiten": 12,
+     "dominant_im_bereich": [
+      [
+       "46",
+       23
+      ],
+      [
+       "53",
+       14
+      ],
+      [
+       "49",
+       13
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 37,
+     "titelzeile": "DAS KASTELL AALEN.",
+     "kastell_nr": "66",
+     "kastell": "Kastell Aalen",
+     "seq_bis": 64,
+     "n_seiten": 28,
+     "dominant_im_bereich": [
+      [
+       "66",
+       62
+      ],
+      [
+       "73",
+       12
+      ],
+      [
+       "66b",
+       9
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605071": {
+   "label": "v. 24",
+   "n_scans": 84,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL URSPRING.",
+     "kastell_nr": "66a",
+     "kastell": "Kastell Urspring",
+     "seq_bis": 56,
+     "n_seiten": 54,
+     "dominant_im_bereich": [
+      [
+       "66a",
+       106
+      ],
+      [
+       "73",
+       43
+      ],
+      [
+       "61b",
+       19
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 57,
+     "titelzeile": "DAS KASTELL THEILENHOFEN.",
+     "kastell_nr": "71a",
+     "kastell": "Kastell Theilenhofen",
+     "seq_bis": 84,
+     "n_seiten": 28,
+     "dominant_im_bereich": [
+      [
+       "71a",
+       44
+      ],
+      [
+       "73",
+       19
+      ],
+      [
+       "72",
+       10
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605072": {
+   "label": "v. 25",
+   "n_scans": 82,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL FELDBERG.",
+     "kastell_nr": "10",
+     "kastell": "Kastell Kleiner Feldberg",
+     "seq_bis": 82,
+     "n_seiten": 80,
+     "dominant_im_bereich": [
+      [
+       "10",
+       94
+      ],
+      [
+       "11",
+       89
+      ],
+      [
+       "73",
+       45
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605073": {
+   "label": "v. 26",
+   "n_scans": 94,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL WEISSENBURG.",
+     "kastell_nr": "72",
+     "kastell": "Kastell Weißenburg",
+     "seq_bis": 94,
+     "n_seiten": 92,
+     "dominant_im_bereich": [
+      [
+       "72",
+       127
+      ],
+      [
+       "73",
+       58
+      ],
+      [
+       "25a",
+       9
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605074": {
+   "label": "v. 27",
+   "n_scans": 82,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL KAPERSBURG.",
+     "kastell_nr": "12",
+     "kastell": "Kastell Kapersburg",
+     "seq_bis": 82,
+     "n_seiten": 80,
+     "dominant_im_bereich": [
+      [
+       "12",
+       105
+      ],
+      [
+       "11",
+       80
+      ],
+      [
+       "10",
+       39
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605075": {
+   "label": "v. 28",
+   "n_scans": 98,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL CANNSTATT.",
+     "kastell_nr": "59",
+     "kastell": "Kastell Stuttgart-Bad Cannstatt",
+     "seq_bis": 98,
+     "n_seiten": 96,
+     "dominant_im_bereich": [
+      [
+       "59",
+       150
+      ],
+      [
+       "73",
+       54
+      ],
+      [
+       "40",
+       36
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605076": {
+   "label": "v. 29",
+   "n_scans": 76,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL GNOTZHEIM.",
+     "kastell_nr": "70",
+     "kastell": "Kastell Gnotzheim",
+     "seq_bis": 38,
+     "n_seiten": 36,
+     "dominant_im_bereich": [
+      [
+       "70",
+       76
+      ],
+      [
+       "71a",
+       16
+      ],
+      [
+       "73",
+       15
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 39,
+     "titelzeile": "DAS KASTELL GUNZENHAUSEN.",
+     "kastell_nr": "71",
+     "kastell": "Kastell Gunzenhausen",
+     "seq_bis": 54,
+     "n_seiten": 16,
+     "dominant_im_bereich": [
+      [
+       "71",
+       20
+      ],
+      [
+       "73",
+       12
+      ],
+      [
+       "71a",
+       4
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 55,
+     "titelzeile": "DAS KASTELL BÖHMING.",
+     "kastell_nr": "73a",
+     "kastell": "Kastell Böhming",
+     "seq_bis": 76,
+     "n_seiten": 22,
+     "dominant_im_bereich": [
+      [
+       "73",
+       40
+      ],
+      [
+       "73a",
+       30
+      ],
+      [
+       "72",
+       8
+      ]
+     ],
+     "probe": "abweichend"
+    }
+   ]
+  },
+  "uc1.c2605077": {
+   "label": "v. 30",
+   "n_scans": 82,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL KÖNGEN.",
+     "kastell_nr": "60",
+     "kastell": "Kastell Köngen",
+     "seq_bis": 82,
+     "n_seiten": 80,
+     "dominant_im_bereich": [
+      [
+       "60",
+       138
+      ],
+      [
+       "59",
+       60
+      ],
+      [
+       "73",
+       39
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605078": {
+   "label": "v. 31",
+   "n_scans": 180,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL WIESBADEN.",
+     "kastell_nr": "31",
+     "kastell": "Kastell Wiesbaden",
+     "seq_bis": 180,
+     "n_seiten": 178,
+     "dominant_im_bereich": [
+      [
+       "29",
+       76
+      ],
+      [
+       "11",
+       17
+      ],
+      [
+       "60",
+       12
+      ]
+     ],
+     "probe": "abweichend"
+    }
+   ]
+  },
+  "uc1.c2605079": {
+   "label": "v. 32",
+   "n_scans": 372,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL ZUGMANTEL.",
+     "kastell_nr": "8",
+     "kastell": "Kastell Zugmantel",
+     "seq_bis": 278,
+     "n_seiten": 276,
+     "dominant_im_bereich": [
+      [
+       "8",
+       323
+      ],
+      [
+       "11",
+       158
+      ],
+      [
+       "73",
+       92
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 279,
+     "titelzeile": "DAS KASTELL JAGSTHAUSEN.",
+     "kastell_nr": "41",
+     "kastell": "Kastell Jagsthausen",
+     "seq_bis": 348,
+     "n_seiten": 70,
+     "dominant_im_bereich": [
+      [
+       "41",
+       126
+      ],
+      [
+       "8",
+       21
+      ],
+      [
+       "54",
+       13
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 349,
+     "titelzeile": "DAS KASTELL MAINHARDT.",
+     "kastell_nr": "43",
+     "kastell": "Kastell Mainhardt",
+     "seq_bis": 372,
+     "n_seiten": 24,
+     "dominant_im_bereich": [
+      [
+       "43",
+       43
+      ],
+      [
+       "73",
+       10
+      ],
+      [
+       "42",
+       7
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605080": {
+   "label": "v. 33",
+   "n_scans": 180,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL STOCKSTADT.",
+     "kastell_nr": "33",
+     "kastell": "Kastell Stockstadt",
+     "seq_bis": 180,
+     "n_seiten": 178,
+     "dominant_im_bereich": [
+      [
+       "33",
+       238
+      ],
+      [
+       "8",
+       100
+      ],
+      [
+       "11",
+       80
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605081": {
+   "label": "v. 34",
+   "n_scans": 84,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL ALTSTADT BEI MILTENBERG.",
+     "kastell_nr": "38",
+     "kastell": "Kastell Miltenberg-Altstadt",
+     "seq_bis": 84,
+     "n_seiten": 82,
+     "dominant_im_bereich": [
+      [
+       "38",
+       134
+      ],
+      [
+       "8",
+       55
+      ],
+      [
+       "33",
+       37
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605082": {
+   "label": "v. 35",
+   "n_scans": 138,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL FAIMINGEN.",
+     "kastell_nr": null,
+     "kastell": null,
+     "seq_bis": 138,
+     "n_seiten": 136,
+     "dominant_im_bereich": [
+      [
+       "73",
+       96
+      ],
+      [
+       "8",
+       67
+      ],
+      [
+       "59",
+       46
+      ]
+     ],
+     "probe": "abweichend"
+    }
+   ]
+  },
+  "uc1.c2605083": {
+   "label": "v. 36",
+   "n_scans": 62,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL EMS.",
+     "kastell_nr": "4",
+     "kastell": "Kastell Ems",
+     "seq_bis": 46,
+     "n_seiten": 44,
+     "dominant_im_bereich": [
+      [
+       "8",
+       22
+      ],
+      [
+       "3",
+       16
+      ],
+      [
+       "2a",
+       13
+      ]
+     ],
+     "probe": "abweichend"
+    },
+    {
+     "seq_von": 47,
+     "titelzeile": "DAS KASTELL INHEIDEN.",
+     "kastell_nr": "17",
+     "kastell": "Kastell Inheiden",
+     "seq_bis": 62,
+     "n_seiten": 16,
+     "dominant_im_bereich": [
+      [
+       "17",
+       36
+      ],
+      [
+       "8",
+       14
+      ],
+      [
+       "59",
+       6
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605084": {
+   "label": "v. 37",
+   "n_scans": 66,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL ALTENSTADT.",
+     "kastell_nr": "20",
+     "kastell": "Kastell Altenstadt",
+     "seq_bis": 20,
+     "n_seiten": 18,
+     "dominant_im_bereich": [
+      [
+       "20",
+       33
+      ],
+      [
+       "8",
+       7
+      ],
+      [
+       "12",
+       5
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 21,
+     "titelzeile": "DAS KASTELL HÖCHST AM MAIN.",
+     "kastell_nr": "27a",
+     "kastell": "Kastell Frankfurt am Main Domhügel",
+     "seq_bis": 66,
+     "n_seiten": 46,
+     "dominant_im_bereich": [
+      [
+       "29",
+       10
+      ],
+      [
+       "27",
+       4
+      ],
+      [
+       "11",
+       3
+      ]
+     ],
+     "probe": "abweichend"
+    }
+   ]
+  },
+  "uc1.c2605085": {
+   "label": "v. 38",
+   "n_scans": 102,
+   "faszikel": [
+    {
+     "seq_von": 5,
+     "titelzeile": "DAS KASTELL RÜCKINGEN.",
+     "kastell_nr": "22",
+     "kastell": "Kastell Rückingen",
+     "seq_bis": 50,
+     "n_seiten": 46,
+     "dominant_im_bereich": [
+      [
+       "22",
+       63
+      ],
+      [
+       "8",
+       32
+      ],
+      [
+       "24",
+       28
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 51,
+     "titelzeile": "DAS KASTELL KÖSCHING.",
+     "kastell_nr": "74",
+     "kastell": "Kastell Kösching",
+     "seq_bis": 102,
+     "n_seiten": 52,
+     "dominant_im_bereich": [
+      [
+       "74",
+       99
+      ],
+      [
+       "73",
+       44
+      ],
+      [
+       "8",
+       13
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605088": {
+   "label": "v. 41",
+   "n_scans": 60,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "KASTELL ARNHEITER HOF",
+     "kastell_nr": null,
+     "kastell": null,
+     "seq_bis": 2,
+     "n_seiten": 0,
+     "dominant_im_bereich": [],
+     "probe": "leer"
+    },
+    {
+     "seq_von": 3,
+     "titelzeile": "KASTELL OBERDORF AM IPF",
+     "kastell_nr": "67b",
+     "kastell": "Kastell Oberdorf",
+     "seq_bis": 2,
+     "n_seiten": 0,
+     "dominant_im_bereich": [],
+     "probe": "leer"
+    },
+    {
+     "seq_von": 3,
+     "titelzeile": "KASTELL SELIGENSTADT",
+     "kastell_nr": "32",
+     "kastell": "Kastell Seligenstadt",
+     "seq_bis": 14,
+     "n_seiten": 12,
+     "dominant_im_bereich": [
+      [
+       "32",
+       31
+      ],
+      [
+       "33",
+       8
+      ],
+      [
+       "23",
+       8
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 15,
+     "titelzeile": "DAS KASTELL ARNHEITER HOF.",
+     "kastell_nr": null,
+     "kastell": null,
+     "seq_bis": 28,
+     "n_seiten": 14,
+     "dominant_im_bereich": [
+      [
+       "49",
+       5
+      ],
+      [
+       "51",
+       5
+      ],
+      [
+       "26",
+       2
+      ]
+     ],
+     "probe": "abweichend"
+    },
+    {
+     "seq_von": 29,
+     "titelzeile": "DAS KASTELL OBERDORF AM IPF.",
+     "kastell_nr": "67b",
+     "kastell": "Kastell Oberdorf",
+     "seq_bis": 60,
+     "n_seiten": 32,
+     "dominant_im_bereich": [
+      [
+       "67b",
+       37
+      ],
+      [
+       "66b",
+       13
+      ],
+      [
+       "74",
+       5
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605093": {
+   "label": "v. 46",
+   "n_scans": 120,
+   "faszikel": [
+    {
+     "seq_von": 11,
+     "titelzeile": "DAS KASTELL MILTENBERG-OST.",
+     "kastell_nr": "38a",
+     "kastell": "Kastell Miltenberg-Ost",
+     "seq_bis": 22,
+     "n_seiten": 12,
+     "dominant_im_bereich": [
+      [
+       "38",
+       27
+      ],
+      [
+       "1a",
+       12
+      ],
+      [
+       "8",
+       8
+      ]
+     ],
+     "probe": "abweichend"
+    },
+    {
+     "seq_von": 23,
+     "titelzeile": "DAS KASTELL WESTERNBACH.",
+     "kastell_nr": "41a",
+     "kastell": "Kastell Westernbach",
+     "seq_bis": 32,
+     "n_seiten": 10,
+     "dominant_im_bereich": [
+      [
+       "41a",
+       12
+      ],
+      [
+       "42",
+       3
+      ],
+      [
+       "69",
+       2
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 33,
+     "titelzeile": "DAS KASTELL MUNNINGEN.",
+     "kastell_nr": null,
+     "kastell": null,
+     "seq_bis": 120,
+     "n_seiten": 88,
+     "dominant_im_bereich": [
+      [
+       "59",
+       72
+      ],
+      [
+       "73",
+       64
+      ],
+      [
+       "60",
+       61
+      ]
+     ],
+     "probe": "abweichend"
+    }
+   ]
+  },
+  "uc1.c2605101": {
+   "label": "v. 54",
+   "n_scans": 176,
+   "faszikel": [
+    {
+     "seq_von": 101,
+     "titelzeile": "DAS KASTELL ROTTENBURG.",
+     "kastell_nr": "61",
+     "kastell": "Sumelocenna",
+     "seq_bis": 176,
+     "n_seiten": 76,
+     "dominant_im_bereich": [
+      [
+       "61",
+       82
+      ],
+      [
+       "11",
+       17
+      ],
+      [
+       "60",
+       15
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605102": {
+   "label": "v. 55",
+   "n_scans": 204,
+   "faszikel": [
+    {
+     "seq_von": 3,
+     "titelzeile": "DAS KASTELL NIEDER-BIEBER.",
+     "kastell_nr": "1a",
+     "kastell": "Kastell Niederbieber",
+     "seq_bis": 92,
+     "n_seiten": 90,
+     "dominant_im_bereich": [
+      [
+       "1",
+       22
+      ],
+      [
+       "1a",
+       12
+      ],
+      [
+       "11",
+       5
+      ]
+     ],
+     "probe": "abweichend"
+    },
+    {
+     "seq_von": 93,
+     "titelzeile": "DAS KASTELL HÜFINGEN.",
+     "kastell_nr": "62a",
+     "kastell": "Kastell Hüfingen",
+     "seq_bis": 204,
+     "n_seiten": 112,
+     "dominant_im_bereich": [
+      [
+       "62a",
+       122
+      ],
+      [
+       "29",
+       31
+      ],
+      [
+       "39",
+       7
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  },
+  "uc1.c2605103": {
+   "label": "v. 56",
+   "n_scans": 148,
+   "faszikel": [
+    {
+     "seq_von": 17,
+     "titelzeile": "DAS KASTELL BENDORF.",
+     "kastell_nr": "2",
+     "kastell": "Kastell Bendorf",
+     "seq_bis": 52,
+     "n_seiten": 36,
+     "dominant_im_bereich": [
+      [
+       "2",
+       64
+      ],
+      [
+       "1",
+       16
+      ],
+      [
+       "29",
+       14
+      ]
+     ],
+     "probe": "bestanden"
+    },
+    {
+     "seq_von": 53,
+     "titelzeile": "DAS KASTELL SAALBURG.",
+     "kastell_nr": "11",
+     "kastell": "Kastell Saalburg",
+     "seq_bis": 148,
+     "n_seiten": 96,
+     "dominant_im_bereich": [
+      [
+       "11",
+       230
+      ],
+      [
+       "12",
+       15
+      ],
+      [
+       "8",
+       14
+      ]
+     ],
+     "probe": "bestanden"
+    }
+   ]
+  }
+ }
+}

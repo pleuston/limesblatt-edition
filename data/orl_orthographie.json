@@ -1,0 +1,999 @@
+{
+ "_quelle": "term_counts.csv + manifest.csv (Vollzählung) — HTRC Data Capsule v2, nicht-konsumtiv",
+ "_methode": "Marker = Thon/Thor/Thal/giebt (1901er-Schicht), Dichte je 10k Wörter, Schwelle 5.0. Theil:Teil ist KEIN Diskriminator — Teil galt seit den 1880ern (Duden); dokumentiert je Band als theil/teil_gibt.",
+ "_v22_aufgeloest": "v.22 (Lfg. 22 ≈ 1904/05) ist ECHT neu gesetzt (2 Marker-Belege in 12709 Wörtern) — der v1-Trunkierungsverdacht war unbegründet; Umstiegs-fenster Petters: zwischen Lfg. 21 (1904, alt) und Lfg. 22 (neu).",
+ "validierung": {
+  "richtig": 33,
+  "falsch": 0,
+  "kuratierte_pruefungen_bestanden": "4/4"
+ },
+ "baende": {
+  "Abt. A, Bd. 1, pt. 2 (Str. 2)": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 33550,
+   "theil": 0,
+   "teil_gibt": 119,
+   "unabhaengig_datiert": "NEU"
+  },
+  "Abt. B, Bd. 3 (nr. 32-38)": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "Thor": 53,
+    "Thon": 56,
+    "giebt": 4,
+    "Thal": 2
+   },
+   "marker_gesamt": 115,
+   "marker_je_10k": 12.57,
+   "n_tokens": 91460,
+   "theil": 1,
+   "teil_gibt": 385,
+   "unabhaengig_datiert": null
+  },
+  "Abt. B, Bd. 4 (nr. 39-45)": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "giebt": 20,
+    "Thor": 85,
+    "Thon": 41,
+    "Thal": 10
+   },
+   "marker_gesamt": 156,
+   "marker_je_10k": 27.27,
+   "n_tokens": 57211,
+   "theil": 5,
+   "teil_gibt": 260,
+   "unabhaengig_datiert": null
+  },
+  "Abt. B, Bd. 7 (nr. 71-75)": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "Thor": 40,
+    "Thal": 11,
+    "Thon": 135,
+    "giebt": 7
+   },
+   "marker_gesamt": 193,
+   "marker_je_10k": 29.2,
+   "n_tokens": 66093,
+   "theil": 8,
+   "teil_gibt": 234,
+   "unabhaengig_datiert": null,
+   "kuratierte_pruefung": {
+    "erwartet": "ALT",
+    "quelle": "bindet Pfünz (nr. 73) = Lfg. 14, 1901/02, Jahrbuch-Bibliographie",
+    "bestanden": true
+   }
+  },
+  "Abt.A v.1": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thal": 1
+   },
+   "marker_gesamt": 1,
+   "marker_je_10k": 0.12,
+   "n_tokens": 82233,
+   "theil": 0,
+   "teil_gibt": 258,
+   "unabhaengig_datiert": "NEU"
+  },
+  "Abt.A v.2:pt.1-2": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thal": 3
+   },
+   "marker_gesamt": 3,
+   "marker_je_10k": 0.23,
+   "n_tokens": 131214,
+   "theil": 1,
+   "teil_gibt": 406,
+   "unabhaengig_datiert": "NEU"
+  },
+  "no.37 19uu": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 12775,
+   "theil": 2,
+   "teil_gibt": 29,
+   "unabhaengig_datiert": null
+  },
+  "no.38 19uu": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 22274,
+   "theil": 0,
+   "teil_gibt": 66,
+   "unabhaengig_datiert": null
+  },
+  "no.39": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thor": 1
+   },
+   "marker_gesamt": 1,
+   "marker_je_10k": 0.62,
+   "n_tokens": 16152,
+   "theil": 2,
+   "teil_gibt": 29,
+   "unabhaengig_datiert": null
+  },
+  "no.40 pt.1 19uu": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thal": 1
+   },
+   "marker_gesamt": 1,
+   "marker_je_10k": 0.24,
+   "n_tokens": 42227,
+   "theil": 0,
+   "teil_gibt": 123,
+   "unabhaengig_datiert": null
+  },
+  "no.41 1914": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 9257,
+   "theil": 1,
+   "teil_gibt": 48,
+   "unabhaengig_datiert": "NEU"
+  },
+  "no.42 19uu": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 28610,
+   "theil": 0,
+   "teil_gibt": 298,
+   "unabhaengig_datiert": null
+  },
+  "no.43 19uu": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 29117,
+   "theil": 0,
+   "teil_gibt": 110,
+   "unabhaengig_datiert": null
+  },
+  "no.44 1926": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "giebt": 1,
+    "Thor": 1
+   },
+   "marker_gesamt": 2,
+   "marker_je_10k": 0.59,
+   "n_tokens": 33831,
+   "theil": 0,
+   "teil_gibt": 127,
+   "unabhaengig_datiert": "NEU"
+  },
+  "no.45 1928": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 40227,
+   "theil": 4,
+   "teil_gibt": 119,
+   "unabhaengig_datiert": "NEU"
+  },
+  "no.46 1929": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 22548,
+   "theil": 1,
+   "teil_gibt": 48,
+   "unabhaengig_datiert": "NEU"
+  },
+  "no.47 1930": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thon": 2
+   },
+   "marker_gesamt": 2,
+   "marker_je_10k": 0.66,
+   "n_tokens": 30358,
+   "theil": 3,
+   "teil_gibt": 91,
+   "unabhaengig_datiert": "NEU"
+  },
+  "no.48 1931": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 57249,
+   "theil": 2,
+   "teil_gibt": 168,
+   "unabhaengig_datiert": "NEU"
+  },
+  "no.50 1933": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thal": 2
+   },
+   "marker_gesamt": 2,
+   "marker_je_10k": 0.88,
+   "n_tokens": 22737,
+   "theil": 0,
+   "teil_gibt": 65,
+   "unabhaengig_datiert": "NEU"
+  },
+  "no.51 1935": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thon": 2,
+    "Thal": 4
+   },
+   "marker_gesamt": 6,
+   "marker_je_10k": 1.35,
+   "n_tokens": 44581,
+   "theil": 4,
+   "teil_gibt": 157,
+   "unabhaengig_datiert": "NEU"
+  },
+  "no.52 1935": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thal": 1
+   },
+   "marker_gesamt": 1,
+   "marker_je_10k": 0.19,
+   "n_tokens": 53731,
+   "theil": 0,
+   "teil_gibt": 165,
+   "unabhaengig_datiert": "NEU"
+  },
+  "no.53 1936": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thal": 2
+   },
+   "marker_gesamt": 2,
+   "marker_je_10k": 0.32,
+   "n_tokens": 62271,
+   "theil": 1,
+   "teil_gibt": 182,
+   "unabhaengig_datiert": "NEU"
+  },
+  "no.54 1936": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 40521,
+   "theil": 0,
+   "teil_gibt": 118,
+   "unabhaengig_datiert": "NEU"
+  },
+  "no.55 1937": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thal": 1,
+    "Thor": 9,
+    "Thon": 1
+   },
+   "marker_gesamt": 11,
+   "marker_je_10k": 2.6,
+   "n_tokens": 42366,
+   "theil": 0,
+   "teil_gibt": 204,
+   "unabhaengig_datiert": "NEU"
+  },
+  "no.56 1937": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thon": 5
+   },
+   "marker_gesamt": 5,
+   "marker_je_10k": 1.75,
+   "n_tokens": 28540,
+   "theil": 0,
+   "teil_gibt": 112,
+   "unabhaengig_datiert": "NEU"
+  },
+  "v. 1": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "Thon": 21,
+    "Thor": 42,
+    "giebt": 4,
+    "Thal": 3
+   },
+   "marker_gesamt": 70,
+   "marker_je_10k": 51.7,
+   "n_tokens": 13540,
+   "theil": 0,
+   "teil_gibt": 56,
+   "unabhaengig_datiert": "ALT"
+  },
+  "v. 10": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "Thor": 23,
+    "Thon": 24,
+    "Thal": 4,
+    "giebt": 1
+   },
+   "marker_gesamt": 52,
+   "marker_je_10k": 44.89,
+   "n_tokens": 11583,
+   "theil": 0,
+   "teil_gibt": 47,
+   "unabhaengig_datiert": "ALT"
+  },
+  "v. 11": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "Thal": 4,
+    "Thor": 26,
+    "Thon": 5,
+    "giebt": 3
+   },
+   "marker_gesamt": 38,
+   "marker_je_10k": 31.23,
+   "n_tokens": 12167,
+   "theil": 0,
+   "teil_gibt": 45,
+   "unabhaengig_datiert": "ALT"
+  },
+  "v. 12": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "Thor": 4,
+    "Thon": 35
+   },
+   "marker_gesamt": 39,
+   "marker_je_10k": 47.95,
+   "n_tokens": 8134,
+   "theil": 0,
+   "teil_gibt": 44,
+   "unabhaengig_datiert": "ALT"
+  },
+  "v. 13": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "Thal": 13,
+    "Thon": 101,
+    "Thor": 24,
+    "giebt": 2
+   },
+   "marker_gesamt": 140,
+   "marker_je_10k": 100.78,
+   "n_tokens": 13891,
+   "theil": 0,
+   "teil_gibt": 72,
+   "unabhaengig_datiert": "ALT"
+  },
+  "v. 14": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "Thal": 10,
+    "Thon": 109,
+    "Thor": 15,
+    "giebt": 4
+   },
+   "marker_gesamt": 138,
+   "marker_je_10k": 66.53,
+   "n_tokens": 20741,
+   "theil": 0,
+   "teil_gibt": 56,
+   "unabhaengig_datiert": "ALT"
+  },
+  "v. 15": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "Thal": 5,
+    "Thor": 26,
+    "Thon": 43,
+    "giebt": 1
+   },
+   "marker_gesamt": 75,
+   "marker_je_10k": 83.12,
+   "n_tokens": 9023,
+   "theil": 0,
+   "teil_gibt": 33,
+   "unabhaengig_datiert": "ALT"
+  },
+  "v. 16": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "Thor": 33,
+    "Thon": 144,
+    "Thal": 1,
+    "giebt": 3
+   },
+   "marker_gesamt": 181,
+   "marker_je_10k": 103.58,
+   "n_tokens": 17475,
+   "theil": 6,
+   "teil_gibt": 115,
+   "unabhaengig_datiert": "ALT"
+  },
+  "v. 17": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "Thal": 5,
+    "Thon": 55,
+    "giebt": 7,
+    "Thor": 32
+   },
+   "marker_gesamt": 99,
+   "marker_je_10k": 62.94,
+   "n_tokens": 15729,
+   "theil": 3,
+   "teil_gibt": 40,
+   "unabhaengig_datiert": "ALT"
+  },
+  "v. 18": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "Thal": 1,
+    "Thor": 37,
+    "Thon": 88,
+    "giebt": 3
+   },
+   "marker_gesamt": 129,
+   "marker_je_10k": 63.19,
+   "n_tokens": 20414,
+   "theil": 0,
+   "teil_gibt": 65,
+   "unabhaengig_datiert": "ALT"
+  },
+  "v. 19": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "Thon": 79,
+    "Thor": 11,
+    "Thal": 1
+   },
+   "marker_gesamt": 91,
+   "marker_je_10k": 55.12,
+   "n_tokens": 16510,
+   "theil": 0,
+   "teil_gibt": 58,
+   "unabhaengig_datiert": null,
+   "kuratierte_pruefung": {
+    "erwartet": "ALT",
+    "quelle": "Lfg. 19–20 = 1903, RLK-Jahresbericht Bd. 19 (orl_band_lieferung)",
+    "bestanden": true
+   }
+  },
+  "v. 2": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "Thal": 4,
+    "Thor": 38,
+    "giebt": 2,
+    "Thon": 7
+   },
+   "marker_gesamt": 51,
+   "marker_je_10k": 36.04,
+   "n_tokens": 14150,
+   "theil": 0,
+   "teil_gibt": 65,
+   "unabhaengig_datiert": "ALT"
+  },
+  "v. 20": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "Thal": 3,
+    "Thon": 73,
+    "Thor": 10,
+    "giebt": 2
+   },
+   "marker_gesamt": 88,
+   "marker_je_10k": 51.36,
+   "n_tokens": 17133,
+   "theil": 0,
+   "teil_gibt": 104,
+   "unabhaengig_datiert": null,
+   "kuratierte_pruefung": {
+    "erwartet": "ALT",
+    "quelle": "Lfg. 19–20 = 1903, RLK-Jahresbericht Bd. 19",
+    "bestanden": true
+   }
+  },
+  "v. 21": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "giebt": 2,
+    "Thor": 29,
+    "Thon": 16,
+    "Thal": 3
+   },
+   "marker_gesamt": 50,
+   "marker_je_10k": 46.75,
+   "n_tokens": 10696,
+   "theil": 1,
+   "teil_gibt": 47,
+   "unabhaengig_datiert": null,
+   "kuratierte_pruefung": {
+    "erwartet": "ALT",
+    "quelle": "Lfg. 21 = 1904, RLK-Jahresbericht Bd. 20",
+    "bestanden": true
+   }
+  },
+  "v. 22": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thor": 1,
+    "Thon": 1
+   },
+   "marker_gesamt": 2,
+   "marker_je_10k": 1.57,
+   "n_tokens": 12709,
+   "theil": 0,
+   "teil_gibt": 64,
+   "unabhaengig_datiert": null
+  },
+  "v. 23": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thon": 1,
+    "Thor": 1
+   },
+   "marker_gesamt": 2,
+   "marker_je_10k": 1.52,
+   "n_tokens": 13191,
+   "theil": 3,
+   "teil_gibt": 50,
+   "unabhaengig_datiert": null
+  },
+  "v. 24": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thor": 3
+   },
+   "marker_gesamt": 3,
+   "marker_je_10k": 1.74,
+   "n_tokens": 17204,
+   "theil": 0,
+   "teil_gibt": 65,
+   "unabhaengig_datiert": null
+  },
+  "v. 25": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 17126,
+   "theil": 0,
+   "teil_gibt": 53,
+   "unabhaengig_datiert": null
+  },
+  "v. 26": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 16639,
+   "theil": 1,
+   "teil_gibt": 76,
+   "unabhaengig_datiert": null
+  },
+  "v. 27": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thon": 2
+   },
+   "marker_gesamt": 2,
+   "marker_je_10k": 1.18,
+   "n_tokens": 16878,
+   "theil": 0,
+   "teil_gibt": 42,
+   "unabhaengig_datiert": null
+  },
+  "v. 28": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 21901,
+   "theil": 0,
+   "teil_gibt": 66,
+   "unabhaengig_datiert": null
+  },
+  "v. 29": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 14694,
+   "theil": 2,
+   "teil_gibt": 51,
+   "unabhaengig_datiert": null
+  },
+  "v. 30": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thal": 2,
+    "Thor": 3,
+    "giebt": 1
+   },
+   "marker_gesamt": 6,
+   "marker_je_10k": 3.26,
+   "n_tokens": 18397,
+   "theil": 17,
+   "teil_gibt": 66,
+   "unabhaengig_datiert": null
+  },
+  "v. 31": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thon": 4
+   },
+   "marker_gesamt": 4,
+   "marker_je_10k": 0.95,
+   "n_tokens": 42125,
+   "theil": 7,
+   "teil_gibt": 261,
+   "unabhaengig_datiert": null
+  },
+  "v. 32": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thor": 4,
+    "Thal": 1,
+    "Thon": 1
+   },
+   "marker_gesamt": 6,
+   "marker_je_10k": 0.74,
+   "n_tokens": 81039,
+   "theil": 3,
+   "teil_gibt": 275,
+   "unabhaengig_datiert": null
+  },
+  "v. 33": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 40192,
+   "theil": 1,
+   "teil_gibt": 204,
+   "unabhaengig_datiert": null
+  },
+  "v. 34": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thor": 1,
+    "Thon": 1
+   },
+   "marker_gesamt": 2,
+   "marker_je_10k": 0.94,
+   "n_tokens": 21180,
+   "theil": 0,
+   "teil_gibt": 73,
+   "unabhaengig_datiert": null
+  },
+  "v. 35": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thon": 1
+   },
+   "marker_gesamt": 1,
+   "marker_je_10k": 0.29,
+   "n_tokens": 34266,
+   "theil": 0,
+   "teil_gibt": 122,
+   "unabhaengig_datiert": null
+  },
+  "v. 36": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thon": 1
+   },
+   "marker_gesamt": 1,
+   "marker_je_10k": 0.72,
+   "n_tokens": 13899,
+   "theil": 0,
+   "teil_gibt": 41,
+   "unabhaengig_datiert": null
+  },
+  "v. 37": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 12697,
+   "theil": 2,
+   "teil_gibt": 29,
+   "unabhaengig_datiert": null
+  },
+  "v. 38": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 22674,
+   "theil": 0,
+   "teil_gibt": 66,
+   "unabhaengig_datiert": null
+  },
+  "v. 40": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thal": 1
+   },
+   "marker_gesamt": 1,
+   "marker_je_10k": 0.24,
+   "n_tokens": 41915,
+   "theil": 0,
+   "teil_gibt": 123,
+   "unabhaengig_datiert": null
+  },
+  "v. 41": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 9247,
+   "theil": 1,
+   "teil_gibt": 48,
+   "unabhaengig_datiert": null
+  },
+  "v. 43": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 31115,
+   "theil": 0,
+   "teil_gibt": 113,
+   "unabhaengig_datiert": null
+  },
+  "v. 44": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "giebt": 1,
+    "Thor": 1
+   },
+   "marker_gesamt": 2,
+   "marker_je_10k": 0.6,
+   "n_tokens": 33075,
+   "theil": 0,
+   "teil_gibt": 120,
+   "unabhaengig_datiert": null
+  },
+  "v. 45": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 40242,
+   "theil": 4,
+   "teil_gibt": 117,
+   "unabhaengig_datiert": null
+  },
+  "v. 46": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 22056,
+   "theil": 0,
+   "teil_gibt": 45,
+   "unabhaengig_datiert": null
+  },
+  "v. 47": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thon": 2
+   },
+   "marker_gesamt": 2,
+   "marker_je_10k": 0.67,
+   "n_tokens": 29796,
+   "theil": 3,
+   "teil_gibt": 87,
+   "unabhaengig_datiert": null
+  },
+  "v. 48": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 57799,
+   "theil": 2,
+   "teil_gibt": 175,
+   "unabhaengig_datiert": null
+  },
+  "v. 49": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 48824,
+   "theil": 0,
+   "teil_gibt": 105,
+   "unabhaengig_datiert": null
+  },
+  "v. 5": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "Thor": 24,
+    "giebt": 16,
+    "Thon": 18,
+    "Thal": 5
+   },
+   "marker_gesamt": 63,
+   "marker_je_10k": 53.53,
+   "n_tokens": 11769,
+   "theil": 2,
+   "teil_gibt": 52,
+   "unabhaengig_datiert": "ALT"
+  },
+  "v. 50": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thal": 2
+   },
+   "marker_gesamt": 2,
+   "marker_je_10k": 0.88,
+   "n_tokens": 22613,
+   "theil": 0,
+   "teil_gibt": 65,
+   "unabhaengig_datiert": null
+  },
+  "v. 51": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thon": 2,
+    "Thal": 4
+   },
+   "marker_gesamt": 6,
+   "marker_je_10k": 1.39,
+   "n_tokens": 43227,
+   "theil": 4,
+   "teil_gibt": 146,
+   "unabhaengig_datiert": null
+  },
+  "v. 52": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thal": 1
+   },
+   "marker_gesamt": 1,
+   "marker_je_10k": 0.19,
+   "n_tokens": 52073,
+   "theil": 0,
+   "teil_gibt": 161,
+   "unabhaengig_datiert": null
+  },
+  "v. 53": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thal": 2
+   },
+   "marker_gesamt": 2,
+   "marker_je_10k": 0.32,
+   "n_tokens": 62963,
+   "theil": 1,
+   "teil_gibt": 183,
+   "unabhaengig_datiert": null
+  },
+  "v. 54": {
+   "klassifikation": "NEU",
+   "marker_belege": {},
+   "marker_gesamt": 0,
+   "marker_je_10k": 0.0,
+   "n_tokens": 40589,
+   "theil": 0,
+   "teil_gibt": 118,
+   "unabhaengig_datiert": null
+  },
+  "v. 55": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thal": 1,
+    "Thor": 9,
+    "Thon": 1
+   },
+   "marker_gesamt": 11,
+   "marker_je_10k": 2.59,
+   "n_tokens": 42433,
+   "theil": 0,
+   "teil_gibt": 204,
+   "unabhaengig_datiert": null
+  },
+  "v. 56": {
+   "klassifikation": "NEU",
+   "marker_belege": {
+    "Thon": 5
+   },
+   "marker_gesamt": 5,
+   "marker_je_10k": 1.72,
+   "n_tokens": 29113,
+   "theil": 0,
+   "teil_gibt": 112,
+   "unabhaengig_datiert": null
+  },
+  "v. 6": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "Thal": 6,
+    "Thor": 18,
+    "Thon": 22
+   },
+   "marker_gesamt": 46,
+   "marker_je_10k": 62.87,
+   "n_tokens": 7317,
+   "theil": 0,
+   "teil_gibt": 29,
+   "unabhaengig_datiert": "ALT"
+  },
+  "v. 7": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "Thal": 24,
+    "Thor": 26,
+    "Thon": 31
+   },
+   "marker_gesamt": 81,
+   "marker_je_10k": 67.5,
+   "n_tokens": 12000,
+   "theil": 0,
+   "teil_gibt": 59,
+   "unabhaengig_datiert": "ALT"
+  },
+  "v. 8": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "Thal": 9,
+    "Thor": 30,
+    "giebt": 4,
+    "Thon": 23
+   },
+   "marker_gesamt": 66,
+   "marker_je_10k": 66.88,
+   "n_tokens": 9869,
+   "theil": 0,
+   "teil_gibt": 42,
+   "unabhaengig_datiert": "ALT"
+  },
+  "v. 9": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "Thal": 3,
+    "giebt": 2,
+    "Thor": 18,
+    "Thon": 63
+   },
+   "marker_gesamt": 86,
+   "marker_je_10k": 88.95,
+   "n_tokens": 9668,
+   "theil": 0,
+   "teil_gibt": 28,
+   "unabhaengig_datiert": "ALT"
+  },
+  "v.40 pt.2 1895": {
+   "klassifikation": "ALT",
+   "marker_belege": {
+    "Thal": 4,
+    "Thor": 38,
+    "giebt": 2,
+    "Thon": 7
+   },
+   "marker_gesamt": 51,
+   "marker_je_10k": 36.13,
+   "n_tokens": 14116,
+   "theil": 0,
+   "teil_gibt": 65,
+   "unabhaengig_datiert": "ALT"
+  }
+ }
+}

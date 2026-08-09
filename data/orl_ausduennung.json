@@ -1,0 +1,186 @@
+{
+ "bands": 54,
+ "trend_spearman": {
+  "pages": 0.735,
+  "tokens": 0.758,
+  "holz": 0.553,
+  "fund": -0.31
+ },
+ "h1_retest_echte_jahre": {
+  "n_datiert": 32,
+  "jahre": "1894-1937",
+  "trend_spearman_jahr": {
+   "pages": 0.773,
+   "tokens": 0.764,
+   "holz": 0.642,
+   "fund": -0.451
+  },
+  "vorbehalte": [
+   "Zeitachse bimodal (1894-1904 + 1914-1937, Lücke dazwischen) — ρ misst v. a. den Gruppenkontrast.",
+   "Jahre für nr>=41 via mdp-Zwilling (inhaltliche Paarung, capsule_match) — Transfer, keine Direktdatierung.",
+   "nr 22-40 bleiben mangels Jahr draußen (ehrliche Lücke)."
+  ]
+ },
+ "drittel": {
+  "frueh": {
+   "von": 1,
+   "bis": 20,
+   "seiten": 72.6,
+   "holz": 0.71,
+   "fund": 5.9
+  },
+  "mitte": {
+   "von": 21,
+   "bis": 38,
+   "seiten": 109.1,
+   "holz": 1.3,
+   "fund": 5.44
+  },
+  "spaet": {
+   "von": 39,
+   "bis": 56,
+   "seiten": 173.2,
+   "holz": 3.03,
+   "fund": 4.04
+  }
+ },
+ "paare": [
+  {
+   "nr": 1,
+   "kastell": "Kastell Heddesdorf",
+   "orl_holz": 0.67,
+   "lb_holz": 2.37,
+   "lb_woerter": 1264,
+   "quotient": 0.28
+  },
+  {
+   "nr": 2,
+   "kastell": "Kastell Bendorf",
+   "orl_holz": 0.85,
+   "lb_holz": 0.51,
+   "lb_woerter": 1973,
+   "quotient": 1.67
+  },
+  {
+   "nr": 6,
+   "kastell": "Kastell Holzhausen",
+   "orl_holz": 0.75,
+   "lb_holz": 6.94,
+   "lb_woerter": 3313,
+   "quotient": 0.11
+  },
+  {
+   "nr": 7,
+   "kastell": "Kastell Kemel",
+   "orl_holz": 1.15,
+   "lb_holz": 6.09,
+   "lb_woerter": 3777,
+   "quotient": 0.19
+  },
+  {
+   "nr": 8,
+   "kastell": "Kastell Zugmantel",
+   "orl_holz": 0.49,
+   "lb_holz": 6.16,
+   "lb_woerter": 1949,
+   "quotient": 0.08
+  },
+  {
+   "nr": 9,
+   "kastell": "Kastell Alteburg",
+   "orl_holz": 1.23,
+   "lb_holz": 0.99,
+   "lb_woerter": 5047,
+   "quotient": 1.25
+  },
+  {
+   "nr": 10,
+   "kastell": "Kastell Kleiner Feldberg",
+   "orl_holz": 0.85,
+   "lb_holz": 1.06,
+   "lb_woerter": 4707,
+   "quotient": 0.8
+  },
+  {
+   "nr": 12,
+   "kastell": "Kastell Kapersburg",
+   "orl_holz": 1.19,
+   "lb_holz": 5.56,
+   "lb_woerter": 1259,
+   "quotient": 0.21
+  },
+  {
+   "nr": 16,
+   "kastell": "Kastell Arnsburg",
+   "orl_holz": 0.69,
+   "lb_holz": 0.62,
+   "lb_woerter": 1622,
+   "quotient": 1.12
+  },
+  {
+   "nr": 21,
+   "kastell": "Kastell Marköbel",
+   "orl_holz": 0.69,
+   "lb_holz": 0.24,
+   "lb_woerter": 4162,
+   "quotient": 2.85
+  },
+  {
+   "nr": 22,
+   "kastell": "Kastell Rückingen",
+   "orl_holz": 4.55,
+   "lb_holz": 1.39,
+   "lb_woerter": 3610,
+   "quotient": 3.29
+  },
+  {
+   "nr": 25,
+   "kastell": "Kastell Heldenbergen",
+   "orl_holz": 1.78,
+   "lb_holz": 5.29,
+   "lb_woerter": 2459,
+   "quotient": 0.34
+  },
+  {
+   "nr": 29,
+   "kastell": "Kastell Hofheim",
+   "orl_holz": 0.82,
+   "lb_holz": 3.18,
+   "lb_woerter": 6921,
+   "quotient": 0.26
+  },
+  {
+   "nr": 31,
+   "kastell": "Kastell Wiesbaden",
+   "orl_holz": 1.22,
+   "lb_holz": 2.97,
+   "lb_woerter": 6065,
+   "quotient": 0.41
+  },
+  {
+   "nr": 39,
+   "kastell": "Kastell Walldürn",
+   "orl_holz": 0.35,
+   "lb_holz": 1.57,
+   "lb_woerter": 5719,
+   "quotient": 0.22
+  },
+  {
+   "nr": 42,
+   "kastell": "Kastell Öhringen-West",
+   "orl_holz": 1.47,
+   "lb_holz": 0.75,
+   "lb_woerter": 2675,
+   "quotient": 1.97
+  }
+ ],
+ "median_quotient": 0.41,
+ "orl_aermer": 10,
+ "n_paare": 16,
+ "rho_lieferung_quotient": 0.288,
+ "vorbehalte": [
+  "EF-pubDate ist das Mikrofilm-Datum (52/56 = 1989) — H1 nutzt die Lieferungsnummer (ordinal); der RETEST ersetzt sie für die datierbaren Bände durch echte Jahre (s. h1_retest_echte_jahre).",
+  "Der ORL-Band enthält Fundkatalog/Tafeln, der Vorbericht ist reine Feldnarration → ein Teil der Ausdünnung ist Gattungs-Verdünnung.",
+  "Vorbericht-Spanne heuristisch (Startseite bis zum nächsten Bericht, gekappt bei 8 Seiten)."
+ ]
+}

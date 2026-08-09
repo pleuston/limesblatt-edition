@@ -1,0 +1,669 @@
+{
+ "_quelle": "HTRC Data Capsule, kwic.csv (nicht-konsumtiv, 1 Beleg je Term+Seite)",
+ "_gruppen": {
+  "frueh": "uc1 v.1-18 = Merten Lfg. 1-18 (1894-1903)",
+  "spaet": "mdp-Faszikel mit enumcron-Jahr >= 1914 (1914-1937)",
+  "ausgeschlossen": "alle undatierten Baende (Luecke, kein Bias)"
+ },
+ "n_belege": {
+  "frueh": 2771,
+  "spaet": 4510,
+  "spaet_ohne_odenwald": 1865
+ },
+ "odenwald_ausschluss": [
+  "46",
+  "47",
+  "48",
+  "50",
+  "51",
+  "52",
+  "53"
+ ],
+ "terme": {
+  "Abbildung": {
+   "frueh_pct": 3.39,
+   "spaet_pct": 2.28,
+   "faktor": 0.7,
+   "spaet_ohne_odenwald_pct": 2.52,
+   "faktor_ohne_odenwald": 0.7
+  },
+  "Analyse": {
+   "frueh_pct": 0.0,
+   "spaet_pct": 0.04,
+   "faktor": null,
+   "spaet_ohne_odenwald_pct": 0.0,
+   "faktor_ohne_odenwald": null
+  },
+  "Arbeiter": {
+   "frueh_pct": 0.43,
+   "spaet_pct": 0.64,
+   "faktor": 1.5,
+   "spaet_ohne_odenwald_pct": 0.59,
+   "faktor_ohne_odenwald": 1.4
+  },
+  "Brandschicht": {
+   "frueh_pct": 0.58,
+   "spaet_pct": 1.04,
+   "faktor": 1.8,
+   "spaet_ohne_odenwald_pct": 1.34,
+   "faktor_ohne_odenwald": 2.3
+  },
+  "Brittonen": {
+   "frueh_pct": 0.07,
+   "spaet_pct": 0.75,
+   "faktor": 10.4,
+   "spaet_ohne_odenwald_pct": 0.64,
+   "faktor_ohne_odenwald": 8.9
+  },
+  "Dirigent": {
+   "frueh_pct": 1.77,
+   "spaet_pct": 1.22,
+   "faktor": 0.7,
+   "spaet_ohne_odenwald_pct": 1.5,
+   "faktor_ohne_odenwald": 0.8
+  },
+  "Erdkastell": {
+   "frueh_pct": 0.72,
+   "spaet_pct": 4.01,
+   "faktor": 5.6,
+   "spaet_ohne_odenwald_pct": 3.59,
+   "faktor_ohne_odenwald": 5.0
+  },
+  "Fibel": {
+   "frueh_pct": 1.34,
+   "spaet_pct": 1.2,
+   "faktor": 0.9,
+   "spaet_ohne_odenwald_pct": 1.61,
+   "faktor_ohne_odenwald": 1.2
+  },
+  "Fuss": {
+   "frueh_pct": 6.03,
+   "spaet_pct": 6.27,
+   "faktor": 1.0,
+   "spaet_ohne_odenwald_pct": 6.33,
+   "faktor_ohne_odenwald": 1.0
+  },
+  "Grenzwehr": {
+   "frueh_pct": 0.0,
+   "spaet_pct": 0.84,
+   "faktor": null,
+   "spaet_ohne_odenwald_pct": 0.97,
+   "faktor_ohne_odenwald": null
+  },
+  "Holzbau": {
+   "frueh_pct": 0.14,
+   "spaet_pct": 1.44,
+   "faktor": 10.0,
+   "spaet_ohne_odenwald_pct": 1.45,
+   "faktor_ohne_odenwald": 10.0
+  },
+  "Inschrift": {
+   "frueh_pct": 5.23,
+   "spaet_pct": 5.52,
+   "faktor": 1.1,
+   "spaet_ohne_odenwald_pct": 6.7,
+   "faktor_ohne_odenwald": 1.3
+  },
+  "Lagerdorf": {
+   "frueh_pct": 3.1,
+   "spaet_pct": 0.89,
+   "faktor": 0.3,
+   "spaet_ohne_odenwald_pct": 1.02,
+   "faktor_ohne_odenwald": 0.3
+  },
+  "Meter": {
+   "frueh_pct": 2.53,
+   "spaet_pct": 2.2,
+   "faktor": 0.9,
+   "spaet_ohne_odenwald_pct": 1.98,
+   "faktor_ohne_odenwald": 0.8
+  },
+  "Münze": {
+   "frueh_pct": 5.49,
+   "spaet_pct": 5.14,
+   "faktor": 0.9,
+   "spaet_ohne_odenwald_pct": 4.56,
+   "faktor_ohne_odenwald": 0.8
+  },
+  "Palisade": {
+   "frueh_pct": 0.0,
+   "spaet_pct": 0.93,
+   "faktor": null,
+   "spaet_ohne_odenwald_pct": 0.7,
+   "faktor_ohne_odenwald": null
+  },
+  "Principia": {
+   "frueh_pct": 0.07,
+   "spaet_pct": 0.09,
+   "faktor": 1.2,
+   "spaet_ohne_odenwald_pct": 0.16,
+   "faktor_ohne_odenwald": 2.2
+  },
+  "Sigillata": {
+   "frueh_pct": 5.52,
+   "spaet_pct": 5.83,
+   "faktor": 1.1,
+   "spaet_ohne_odenwald_pct": 4.93,
+   "faktor_ohne_odenwald": 0.9
+  },
+  "Spitzgraben": {
+   "frueh_pct": 0.94,
+   "spaet_pct": 1.71,
+   "faktor": 1.8,
+   "spaet_ohne_odenwald_pct": 1.82,
+   "faktor_ohne_odenwald": 1.9
+  },
+  "Steinbau": {
+   "frueh_pct": 0.22,
+   "spaet_pct": 1.49,
+   "faktor": 6.9,
+   "spaet_ohne_odenwald_pct": 1.23,
+   "faktor_ohne_odenwald": 5.7
+  },
+  "Streckenkommissar": {
+   "frueh_pct": 4.33,
+   "spaet_pct": 7.23,
+   "faktor": 1.7,
+   "spaet_ohne_odenwald_pct": 7.08,
+   "faktor_ohne_odenwald": 1.6
+  },
+  "Tafel": {
+   "frueh_pct": 7.8,
+   "spaet_pct": 9.38,
+   "faktor": 1.2,
+   "spaet_ohne_odenwald_pct": 10.88,
+   "faktor_ohne_odenwald": 1.4
+  },
+  "Tagelöhner": {
+   "frueh_pct": 0.0,
+   "spaet_pct": 0.02,
+   "faktor": null,
+   "spaet_ohne_odenwald_pct": 0.05,
+   "faktor_ohne_odenwald": null
+  },
+  "Taglöhner": {
+   "frueh_pct": 0.04,
+   "spaet_pct": 0.02,
+   "faktor": 0.6,
+   "spaet_ohne_odenwald_pct": 0.0,
+   "faktor_ohne_odenwald": 0.0
+  },
+  "Teil": {
+   "frueh_pct": 15.3,
+   "spaet_pct": 18.65,
+   "faktor": 1.2,
+   "spaet_ohne_odenwald_pct": 19.2,
+   "faktor_ohne_odenwald": 1.3
+  },
+  "Terra sigillata": {
+   "frueh_pct": 0.61,
+   "spaet_pct": 1.29,
+   "faktor": 2.1,
+   "spaet_ohne_odenwald_pct": 0.86,
+   "faktor_ohne_odenwald": 1.4
+  },
+  "Thal": {
+   "frueh_pct": 2.45,
+   "spaet_pct": 0.16,
+   "faktor": 0.1,
+   "spaet_ohne_odenwald_pct": 0.05,
+   "faktor_ohne_odenwald": 0.0
+  },
+  "Theil": {
+   "frueh_pct": 0.25,
+   "spaet_pct": 0.27,
+   "faktor": 1.1,
+   "spaet_ohne_odenwald_pct": 0.21,
+   "faktor_ohne_odenwald": 0.8
+  },
+  "Thon": {
+   "frueh_pct": 6.86,
+   "spaet_pct": 0.16,
+   "faktor": 0.0,
+   "spaet_ohne_odenwald_pct": 0.16,
+   "faktor_ohne_odenwald": 0.0
+  },
+  "Thor": {
+   "frueh_pct": 6.13,
+   "spaet_pct": 0.11,
+   "faktor": 0.0,
+   "spaet_ohne_odenwald_pct": 0.27,
+   "faktor_ohne_odenwald": 0.0
+  },
+  "Tierknochen": {
+   "frueh_pct": 0.04,
+   "spaet_pct": 0.33,
+   "faktor": 9.2,
+   "spaet_ohne_odenwald_pct": 0.32,
+   "faktor_ohne_odenwald": 8.9
+  },
+  "Töpferofen": {
+   "frueh_pct": 0.58,
+   "spaet_pct": 0.18,
+   "faktor": 0.3,
+   "spaet_ohne_odenwald_pct": 0.16,
+   "faktor_ohne_odenwald": 0.3
+  },
+  "Vicus": {
+   "frueh_pct": 1.15,
+   "spaet_pct": 0.42,
+   "faktor": 0.4,
+   "spaet_ohne_odenwald_pct": 0.38,
+   "faktor_ohne_odenwald": 0.3
+  },
+  "Wachtturm": {
+   "frueh_pct": 0.0,
+   "spaet_pct": 4.32,
+   "faktor": null,
+   "spaet_ohne_odenwald_pct": 2.41,
+   "faktor_ohne_odenwald": null
+  },
+  "Weihestein": {
+   "frueh_pct": 0.0,
+   "spaet_pct": 0.07,
+   "faktor": null,
+   "spaet_ohne_odenwald_pct": 0.11,
+   "faktor_ohne_odenwald": null
+  },
+  "Ziegelstempel": {
+   "frueh_pct": 0.79,
+   "spaet_pct": 1.53,
+   "faktor": 1.9,
+   "spaet_ohne_odenwald_pct": 1.61,
+   "faktor_ohne_odenwald": 2.0
+  },
+  "chemisch": {
+   "frueh_pct": 0.0,
+   "spaet_pct": 0.04,
+   "faktor": null,
+   "spaet_ohne_odenwald_pct": 0.11,
+   "faktor_ohne_odenwald": null
+  },
+  "cohors": {
+   "frueh_pct": 1.66,
+   "spaet_pct": 1.42,
+   "faktor": 0.9,
+   "spaet_ohne_odenwald_pct": 1.23,
+   "faktor_ohne_odenwald": 0.7
+  },
+  "cohorte": {
+   "frueh_pct": 1.34,
+   "spaet_pct": 0.09,
+   "faktor": 0.1,
+   "spaet_ohne_odenwald_pct": 0.11,
+   "faktor_ohne_odenwald": 0.1
+  },
+  "gibt": {
+   "frueh_pct": 0.29,
+   "spaet_pct": 3.92,
+   "faktor": 13.6,
+   "spaet_ohne_odenwald_pct": 3.32,
+   "faktor_ohne_odenwald": 11.5
+  },
+  "giebt": {
+   "frueh_pct": 1.66,
+   "spaet_pct": 0.02,
+   "faktor": 0.0,
+   "spaet_ohne_odenwald_pct": 0.05,
+   "faktor_ohne_odenwald": 0.0
+  },
+  "legion": {
+   "frueh_pct": 3.9,
+   "spaet_pct": 3.17,
+   "faktor": 0.8,
+   "spaet_ohne_odenwald_pct": 3.27,
+   "faktor_ohne_odenwald": 0.8
+  },
+  "numeri": {
+   "frueh_pct": 0.11,
+   "spaet_pct": 0.78,
+   "faktor": 7.2,
+   "spaet_ohne_odenwald_pct": 0.64,
+   "faktor_ohne_odenwald": 5.9
+  },
+  "numerus": {
+   "frueh_pct": 0.54,
+   "spaet_pct": 1.31,
+   "faktor": 2.4,
+   "spaet_ohne_odenwald_pct": 1.07,
+   "faktor_ohne_odenwald": 2.0
+  },
+  "pedes": {
+   "frueh_pct": 0.07,
+   "spaet_pct": 0.35,
+   "faktor": 4.9,
+   "spaet_ohne_odenwald_pct": 0.8,
+   "faktor_ohne_odenwald": 11.1
+  },
+  "praetorium": {
+   "frueh_pct": 6.39,
+   "spaet_pct": 1.02,
+   "faktor": 0.2,
+   "spaet_ohne_odenwald_pct": 1.88,
+   "faktor_ohne_odenwald": 0.3
+  },
+  "vexillatio": {
+   "frueh_pct": 0.14,
+   "spaet_pct": 0.2,
+   "faktor": 1.4,
+   "spaet_ohne_odenwald_pct": 0.11,
+   "faktor_ohne_odenwald": 0.7
+  }
+ },
+ "regionalpaar": {
+  "v.40 pt.2 1895": {
+   "n_kwic": 142,
+   "Holzbau": 0,
+   "Erdkastell": 0,
+   "Brandschicht": 2,
+   "Steinbau": 0
+  },
+  "no.52 1935": {
+   "n_kwic": 591,
+   "Holzbau": 11,
+   "Erdkastell": 41,
+   "Brandschicht": 5,
+   "Steinbau": 14
+  }
+ },
+ "dichten_je_10k": {
+  "gruppen_tokens": {
+   "spaet": 488217,
+   "frueh": 207470
+  },
+  "terme": {
+   "Streckenkommissar": {
+    "frueh_je_10k": 7.37,
+    "spaet_je_10k": 10.59,
+    "faktor": 1.4
+   },
+   "Dirigent": {
+    "frueh_je_10k": 3.18,
+    "spaet_je_10k": 1.62,
+    "faktor": 0.5
+   },
+   "Teil": {
+    "frueh_je_10k": 40.39,
+    "spaet_je_10k": 28.63,
+    "faktor": 0.7
+   },
+   "Abbildung": {
+    "frueh_je_10k": 6.02,
+    "spaet_je_10k": 2.54,
+    "faktor": 0.4
+   },
+   "Inschrift": {
+    "frueh_je_10k": 18.7,
+    "spaet_je_10k": 12.8,
+    "faktor": 0.7
+   },
+   "legion": {
+    "frueh_je_10k": 9.54,
+    "spaet_je_10k": 5.74,
+    "faktor": 0.6
+   },
+   "Tafel": {
+    "frueh_je_10k": 11.52,
+    "spaet_je_10k": 12.64,
+    "faktor": 1.1
+   },
+   "Sigillata": {
+    "frueh_je_10k": 11.09,
+    "spaet_je_10k": 9.67,
+    "faktor": 0.9
+   },
+   "Münze": {
+    "frueh_je_10k": 15.57,
+    "spaet_je_10k": 10.0,
+    "faktor": 0.6
+   },
+   "gibt": {
+    "frueh_je_10k": 0.48,
+    "spaet_je_10k": 4.22,
+    "faktor": 8.8
+   },
+   "Spitzgraben": {
+    "frueh_je_10k": 1.3,
+    "spaet_je_10k": 2.03,
+    "faktor": 1.6
+   },
+   "Fuss": {
+    "frueh_je_10k": 12.39,
+    "spaet_je_10k": 8.48,
+    "faktor": 0.7
+   },
+   "cohors": {
+    "frueh_je_10k": 3.9,
+    "spaet_je_10k": 2.03,
+    "faktor": 0.5
+   },
+   "Ziegelstempel": {
+    "frueh_je_10k": 1.2,
+    "spaet_je_10k": 1.86,
+    "faktor": 1.5
+   },
+   "pedes": {
+    "frueh_je_10k": 0.1,
+    "spaet_je_10k": 0.51,
+    "faktor": 5.3
+   },
+   "Meter": {
+    "frueh_je_10k": 3.61,
+    "spaet_je_10k": 2.25,
+    "faktor": 0.6
+   },
+   "Theil": {
+    "frueh_je_10k": 0.53,
+    "spaet_je_10k": 0.33,
+    "faktor": 0.6
+   },
+   "Steinbau": {
+    "frueh_je_10k": 0.29,
+    "spaet_je_10k": 1.56,
+    "faktor": 5.4
+   },
+   "numeri": {
+    "frueh_je_10k": 0.14,
+    "spaet_je_10k": 1.17,
+    "faktor": 8.1
+   },
+   "Brittonen": {
+    "frueh_je_10k": 0.1,
+    "spaet_je_10k": 1.52,
+    "faktor": 15.7
+   },
+   "Erdkastell": {
+    "frueh_je_10k": 1.4,
+    "spaet_je_10k": 7.68,
+    "faktor": 5.5
+   },
+   "Arbeiter": {
+    "frueh_je_10k": 0.58,
+    "spaet_je_10k": 0.63,
+    "faktor": 1.1
+   },
+   "Terra sigillata": {
+    "frueh_je_10k": 0.87,
+    "spaet_je_10k": 1.43,
+    "faktor": 1.7
+   },
+   "Vicus": {
+    "frueh_je_10k": 2.75,
+    "spaet_je_10k": 0.47,
+    "faktor": 0.2
+   },
+   "Palisade": {
+    "frueh_je_10k": 0.0,
+    "spaet_je_10k": 2.44,
+    "faktor": null
+   },
+   "Wachtturm": {
+    "frueh_je_10k": 0.0,
+    "spaet_je_10k": 5.04,
+    "faktor": null
+   },
+   "numerus": {
+    "frueh_je_10k": 1.35,
+    "spaet_je_10k": 2.13,
+    "faktor": 1.6
+   },
+   "giebt": {
+    "frueh_je_10k": 2.51,
+    "spaet_je_10k": 0.02,
+    "faktor": 0.0
+   },
+   "Holzbau": {
+    "frueh_je_10k": 0.19,
+    "spaet_je_10k": 1.58,
+    "faktor": 8.2
+   },
+   "praetorium": {
+    "frueh_je_10k": 20.34,
+    "spaet_je_10k": 1.47,
+    "faktor": 0.1
+   },
+   "Fibel": {
+    "frueh_je_10k": 4.05,
+    "spaet_je_10k": 1.76,
+    "faktor": 0.4
+   },
+   "Grenzwehr": {
+    "frueh_je_10k": 0.0,
+    "spaet_je_10k": 0.84,
+    "faktor": null
+   },
+   "Thor": {
+    "frueh_je_10k": 20.05,
+    "spaet_je_10k": 0.2,
+    "faktor": 0.0
+   },
+   "vexillatio": {
+    "frueh_je_10k": 0.24,
+    "spaet_je_10k": 0.18,
+    "faktor": 0.8
+   },
+   "Brandschicht": {
+    "frueh_je_10k": 1.01,
+    "spaet_je_10k": 1.23,
+    "faktor": 1.2
+   },
+   "Lagerdorf": {
+    "frueh_je_10k": 6.7,
+    "spaet_je_10k": 1.02,
+    "faktor": 0.2
+   },
+   "chemisch": {
+    "frueh_je_10k": 0.0,
+    "spaet_je_10k": 0.04,
+    "faktor": null
+   },
+   "Tierknochen": {
+    "frueh_je_10k": 0.05,
+    "spaet_je_10k": 0.31,
+    "faktor": 6.4
+   },
+   "Principia": {
+    "frueh_je_10k": 0.1,
+    "spaet_je_10k": 0.27,
+    "faktor": 2.8
+   },
+   "Thon": {
+    "frueh_je_10k": 38.03,
+    "spaet_je_10k": 0.2,
+    "faktor": 0.0
+   },
+   "Töpferofen": {
+    "frueh_je_10k": 0.92,
+    "spaet_je_10k": 0.2,
+    "faktor": 0.2
+   },
+   "Thal": {
+    "frueh_je_10k": 4.68,
+    "spaet_je_10k": 0.2,
+    "faktor": 0.0
+   },
+   "Weihestein": {
+    "frueh_je_10k": 0.0,
+    "spaet_je_10k": 0.06,
+    "faktor": null
+   },
+   "Taglöhner": {
+    "frueh_je_10k": 0.05,
+    "spaet_je_10k": 0.02,
+    "faktor": 0.4
+   },
+   "cohorte": {
+    "frueh_je_10k": 2.99,
+    "spaet_je_10k": 0.08,
+    "faktor": 0.0
+   },
+   "Analyse": {
+    "frueh_je_10k": 0.0,
+    "spaet_je_10k": 0.04,
+    "faktor": null
+   },
+   "Tagelöhner": {
+    "frueh_je_10k": 0.0,
+    "spaet_je_10k": 0.02,
+    "faktor": null
+   }
+  },
+  "_lesart": "term_counts (ALLE Treffer) / manifest-Wortzahl — echte Dichten"
+ },
+ "dichten_proxy_erweitert": {
+  "zusatz_baende_alt": [
+   "Abt. B, Bd. 3 (nr. 32-38)",
+   "Abt. B, Bd. 4 (nr. 39-45)",
+   "Abt. B, Bd. 7 (nr. 71-75)",
+   "v. 19",
+   "v. 20",
+   "v. 21"
+  ],
+  "gruppen_tokens": {
+   "spaet": 488217,
+   "frueh": 466573
+  },
+  "terme": {
+   "Holzbau": {
+    "frueh_je_10k": 0.19,
+    "spaet_je_10k": 1.58,
+    "faktor": 8.2
+   },
+   "Erdkastell": {
+    "frueh_je_10k": 0.99,
+    "spaet_je_10k": 7.68,
+    "faktor": 7.8
+   },
+   "Brandschicht": {
+    "frueh_je_10k": 1.11,
+    "spaet_je_10k": 1.23,
+    "faktor": 1.1
+   },
+   "Steinbau": {
+    "frueh_je_10k": 0.24,
+    "spaet_je_10k": 1.56,
+    "faktor": 6.6
+   },
+   "Spitzgraben": {
+    "frueh_je_10k": 1.2,
+    "spaet_je_10k": 2.03,
+    "faktor": 1.7
+   },
+   "Palisade": {
+    "frueh_je_10k": 0.04,
+    "spaet_je_10k": 2.44,
+    "faktor": 56.9
+   },
+   "Sigillata": {
+    "frueh_je_10k": 10.72,
+    "spaet_je_10k": 9.67,
+    "faktor": 0.9
+   },
+   "Ziegelstempel": {
+    "frueh_je_10k": 1.33,
+    "spaet_je_10k": 1.86,
+    "faktor": 1.4
+   }
+  }
+ }
+}

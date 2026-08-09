@@ -686,7 +686,8 @@ def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh, artliste=None):
                ("Gesamtapparat", "register/orl-register.html"),
                ("Genese des Werks", "register/genese.html"),
                ("Erschließung", "register/hathitrust.html"),
-               ("↗ Original-Scans (HathiTrust)", "register/hathitrust.html#workset")]),
+               ("↗ Original-Scans (HathiTrust)", "register/hathitrust.html#workset"),
+               ("Auswertungen &amp; Daten", "register/hathitrust.html#auswertungen")]),
         block("jahresberichte", "Jahresberichte der Reichs-Limeskommission", "1892–1905 · institutionelle Selbstauskunft",
               "Was die Kommission jährlich über sich selbst veröffentlichte, als Anhang im "
               "<em>Jahrbuch des Deutschen Archäologischen Instituts</em>. Kein Feldbericht und keine "
@@ -2719,6 +2720,149 @@ def orl_apparatus_page(reg, idx, persons=None):
             f'<table class="reg"><thead><tr><th>ORL</th><th>Kastell</th><th>Bearbeiter</th><th>Limesblatt-Vorberichte</th></tr></thead>'
             f'<tbody>{conrows}</tbody></table>')
 
+# --- Was aus der Kapsel geworden ist ----------------------------------------
+# Der Export selbst ist nicht öffentlich (HathiTrust erlaubt nur nicht-konsumtive Nutzung), die
+# daraus abgeleiteten Auswertungen sind es. Damit die Befunde der Seite nachprüfbar bleiben,
+# steht hier jede einzelne mit ihrer Frage, ihrem Ergebnis, ihrer Grenze — und ihrer Datei.
+# Reihenfolge: erst was WO liegt, dann die Apparate, dann die Befunde.
+KAPSEL_AUSWERTUNGEN = [
+ ("Struktur: was liegt wo", [
+  ("capsule_match.json", "Welcher Scan enthält welches Kastell?",
+   "78 Bände inhaltlich zugeordnet: Trefferseiten × geglättete Inverse Dokumenthäufigkeit, je Band "
+   "eine Rangliste statt einer Behauptung. Ersetzt den Weg über die Bandnummer, der no. 37 "
+   "»Trennfurt« nannte, obwohl der Inhalt Wetterau und Mainz-Kastel ist.",
+   "Einzelkastellscharf ist aus Band-Aggregaten prinzipiell nicht zu haben. Ein klarer Sieger "
+   "(Spitze ≥ 2,5× Zweiter) heißt Einzelband, mehrere starke heißen Sammelband."),
+  ("orl_faszikel.json", "Wo beginnt und endet ein Faszikel im Scan?",
+   "127 Faszikel in 54 Bänden abgegrenzt, 5736 Scanseiten zugeordnet. Damit wird aus »auf dieser "
+   "Seite wird X erwähnt« ein »diese Seite gehört zum X-Faszikel«.",
+   "Untergrenze: erkannt wird der Faszikel an seiner Titelzeile in Großbuchstaben. Wo die "
+   "Schrifterkennung sie verlor, fehlt er; 11 der 127 bleiben ohne Zuordnung."),
+  ("orl_druckseiten.json", "Welche Scanseite ist welche gedruckte Seite?",
+   "100 von 151 Blöcken mit belastbarem Versatz. Gerechnet je Faszikel, nicht je Band, denn jeder "
+   "gebundene Faszikel beginnt neu bei Seite 1; entschieden wird über den häufigsten Versatz, "
+   "nicht über die längste Kette.",
+   "Blöcke mit schwacher Konfidenz bekommen KEINEN Versatz: lieber keine Seitenzahl als eine "
+   "falsche in einer Fußnote."),
+  ("orl_band_lieferung.json", "Welche Lieferung enthält welches Kastell?",
+   "55 Kastelle mit belegter Lieferung, 50 davon kastellscharf. Drei unabhängige Quellen: "
+   "Hettners Herausgeberliste bei Merten 2002, die RLK-Jahresberichte und die Bibliographie des "
+   "Jahrbuchs, die jede Lieferung bei Erscheinen anzeigte.",
+   "Die Bibliographie widerspricht Merten an keiner Stelle. 5 Angaben bleiben Spannen und werden "
+   "nicht auf ein Kastell zugespitzt."),
+ ]),
+ ("Apparate: was der ORL nie hatte", [
+  ("orl_register.json", "Wer und was kommt über alle Bände vor?",
+   "Ein Generalregister mit 1241 Personen und 1856 Orten, gegen den Gazetteer der Edition "
+   "geerdet: das Werk erschien in 14 Mappen über 45 Jahre und besaß deshalb nie eines.",
+   "Die Bandangaben zählen richtig, WIE VIELE Bände einen Namen führen; welche Bände es sind, "
+   "hing an der korrigierten Zuordnung. Diachrone Lesarten des Registers bleiben gesperrt."),
+  ("orl_register_kastell.json", "Welche Person erscheint bei welchem Kastell?",
+   "190 Personen an 84 Kastellnummern, über den Seiten-Join von Entitäten und Ortsmarken "
+   "(91 % Join-Quote). Stichprobe: Cohausen bei Saalburg und Taunus, Ludowici bei Zugmantel, "
+   "Cannstatt, Pfünz, den Sigillata-Komplexen.",
+   "Ein Register, kein Tätigkeitsnachweis: dass ein Name auf einer Seite steht, heißt nicht, "
+   "dass die Person dort gegraben hat."),
+  ("orl_inschriften_register.json", "Auf welche Inschriften beruft sich der ORL?",
+   "842 normalisierte Zitatschlüssel aus 1990 Belegstellen (CIL, Brambach, Dessau). Der "
+   "konsolidierte Apparat, den die Reihe nie hatte.",
+   "Ein Zitat-, kein Fundregister: verzeichnet ist, worauf sich der ORL BERUFT, samt auswärtiger "
+   "Vergleichsstücke aus Britannien und von der Donau."),
+  ("orl_binnenlinks.json", "Wohin zeigt ein werkinterner Verweis?",
+   "551 von 2159 Verweisen bis auf die Scanseite aufgelöst und anklickbar. Doppelt geprüft: "
+   "87,3 % der Zielseiten tragen das Toponym des Zielkastells, 96,8 % bestehen die Namensprobe.",
+   "1360 Verweise nennen gar keine Seite, 248 lassen sich nicht auflösen. Gezählt, nicht geraten."),
+  ("orl_limesblatt_links.json", "Wo zitiert der ORL das Limesblatt?",
+   "1751 von 1778 Zitaten aufgelöst (98,5 %) und in den Lesetext dieser Edition verlinkt. "
+   "Möglich, weil das Limesblatt durchgehend in Spalten zählt und das TEI das modelliert.",
+   "Zwillingsexemplare zählen Verweise doppelt (Faktor ≤ 2). Die Ortsprobe ergibt 15,4 % gegen "
+   "3 % Zufallserwartung: die Anreicherung trägt den Beleg, nicht die Absolutquote."),
+  ("orl_zeitschriften.json", "Welche Zeitschriften trägt der Apparat?",
+   "Vollzählung je Organ und Seite über 13 Organe. Befund: der Apparat ist föderal: "
+   "Nassauische Annalen zum Taunus, Fundberichte aus Schwaben zu Württemberg. Mommsens Klage "
+   "über »so viele Limeslitteraturen wie beteiligte Staaten« wurde nicht stillgelegt, sondern "
+   "eingebaut.",
+   "Zeitschriften werden als PHRASE zitiert, nicht als Wort: eine Wortliste allein konfliert "
+   "zwei Organe. Eine ehrliche Revision: die frühere »dünne Gegenrichtung« war ein Artefakt der "
+   "Stichprobe, die Vollzählung zeigt alle 13 Organe."),
+ ]),
+ ("Befunde: was sich über 45 Jahre ändert", [
+  ("orl_binnenverweise.json", "Wann wurde der ORL ein Werk?",
+   "Kein einziger der 16 datierten Frühfaszikel enthält einen werkinternen Verweis, alle 13 "
+   "späten tun es (Median 13,0 je 10 000 Wörter). »Die Frühen hatten keine Vorgänger« erklärt "
+   "das nicht: dieselben Faszikel zitieren das Limesblatt und Zeitschriften. Der Apparat ist da, "
+   "er zeigt nur nie nach innen.",
+   "Median je Band, nicht Aggregat: die Frühgruppe ist schief. 27 der 56 Bände sind nicht "
+   "datierbar und bleiben außen vor."),
+  ("orl_ausduennung.json", "Wurde der ORL abgeschlossen, indem er wegließ?",
+   "Nein. Die späten Faszikel sind LÄNGER (ρ = +0,74 für die Seitenzahl). Gepaart am selben "
+   "Fundort (16 Orte mit Vorbericht und Faszikel): Median 0,41, aber ρ = 0,29, also kein Trend. "
+   "Die Ausdünnung ist eine Eigenschaft der Gattung, von Anfang an.",
+   "Der ORL-Band enthält Fundkatalog und Tafeln, der Vorbericht ist reine Feldnarration: ein "
+   "Teil des Unterschieds ist Gattung, nicht Auswahl."),
+  ("orl_holzerde.json", "Entzogen sich die Holz-Erde-Kastelle der Grabungstechnik um 1900?",
+   "Holzbau-Vokabular steigt früh→spät um das 8,2-fache, Erdkastell um das 5,5-fache, aber "
+   "Steinbau steigt mit (5,4-fach). Nicht »der späte ORL entdeckt das Holz«, sondern "
+   "Bauphasen-Differenzierung: früh war Stein der unmarkierte Normalfall.",
+   "Zeit und Region sind verschränkt. Zwei Gegenproben: ohne die Odenwald-Faszikel bleibt der "
+   "Anstieg; im Regionalpaar nennt Osterburken 1895 in 142 Belegen 0× Holzbau, 0× Erdkastell, "
+   "0× Steinbau, Oberscheidental 1935 in 591 Belegen 11×, 41× und 14×."),
+  ("orl_autoritaeten.json", "Auf wen beruft sich der ORL?",
+   "214 Personen-Autoritäten, seitengenau über 78 Bände. Der aus der Kommission ausgeschlossene "
+   "Cohausen steht auf Rang 5 und ist Nummer 1 der Streckenbände (212 Seiten vor Jacobi 140), "
+   "die in den 1930ern erschienen, vier Jahrzehnte nach seinem Tod.",
+   "Der Blindfleck ist selbst ein Befund: der Gazetteer stammt aus dem Limesblatt (1892–1903), "
+   "die nach 1903 entstandenen Autoritäten fehlen ihm und sind nur im Rohkorpus messbar "
+   "(Ludowici 1921×, Knorr 1641×)."),
+  ("orl_orthographie.json", "Lassen sich die undatierten Bände datieren?",
+   "Ja, an der Rechtschreibreform von 1901. Die Marker sind Thon, Thor, Thal, nicht »Theil«, "
+   "das schon 1880 fiel. 33 von 33 unabhängig datierten Bänden richtig eingeordnet, dazu 4 von 4 "
+   "kuratierten Prüfungen. Nebenbefund: die Druckerei stellte zwischen Lieferung 21 und 22 um, "
+   "abrupt statt gleitend.",
+   "Sammelbände bleiben ein Mischungsverhältnis und bekommen kein Datum."),
+  ("orl_latenz.json", "Wie lange trug das Feldarchiv?",
+   "643 Zitate datierbar: frühe Faszikel zitieren das Limesblatt mit 6 Jahren Abstand, späte mit "
+   "37 (max. 44). Träger des Befunds ist nicht die Latenz selbst, sondern Dichte (×8,6) und "
+   "Streubreite (früh 4, spät 6 von 8 Bänden je Faszikel): das Limesblatt veraltete nicht, es "
+   "wurde kanonisiert.",
+   "Späte Faszikel KÖNNEN nur Älteres zitieren, das Blatt endete 1903. Der Einwand ist Teil des "
+   "Designs, deshalb zählen Dichte und Streubreite."),
+  ("orl_limesblatt_zitatjoin.json", "Übernahm der ORL den Apparat des Vorberichts?",
+   "Nein. Nur 11 Inschriften werden in beiden Werken zitiert; 806 der 817 ORL-Zitate standen nie "
+   "im Limesblatt. Der Apparat wurde bei der Endredaktion neu aufgebaut. Der Fluss läuft "
+   "umgekehrt: der ORL zitiert das Limesblatt 1946× als Feldarchiv.",
+   "Derselbe Suchausdruck auf beiden Korpora, damit der Vergleich symmetrisch bleibt; die "
+   "Fraktur-Gegenprobe schließt eine Unterzählung aus."),
+  ("orl_vs_limesblatt.json", "Wie unterscheiden sich Feldbericht und Endpublikation sprachlich?",
+   "2 766 847 Wörter ORL gegen 257 738 Limesblatt, verglichen über das Log2-Verhältnis der "
+   "relativen Häufigkeiten. Der Befund ist ein Wechsel der Textsorte: das Blatt trassiert in der "
+   "Ich-Form, der ORL katalogisiert Funde mit dem Apparat der Keramiktypologie.",
+   "Beide Seiten sind Schrifterkennung; die Wortlisten erben deren Fehler."),
+ ]),
+]
+
+
+def kapsel_liste():
+    """Die Auswertungen mit Frage, Ergebnis, Grenze und Datei — als Abschnitt der Methodenseite."""
+    teile = []
+    for gruppe, eintraege in KAPSEL_AUSWERTUNGEN:
+        zeilen = "".join(
+            f'<tr><td><b>{html.escape(frage)}</b><div class="meta">{befund}</div>'
+            f'<div class="meta"><i>Grenze:</i> {grenze}</div></td>'
+            f'<td><a href="../data/{datei}"><code>{datei}</code></a></td></tr>'
+            for datei, frage, befund, grenze in eintraege)
+        teile.append(f'<h3>{html.escape(gruppe)}</h3>'
+                     f'<table class="reg nofilter"><thead><tr><th>Frage, Ergebnis und Grenze</th>'
+                     f'<th>Daten</th></tr></thead><tbody>{zeilen}</tbody></table>')
+    n = sum(len(e) for _, e in KAPSEL_AUSWERTUNGEN)
+    return (f'<h2 id="auswertungen">Die {n} Auswertungen und ihre Daten</h2>'
+            f'<p class="meta">Der Export selbst darf nicht weitergegeben werden: HathiTrust erlaubt '
+            f'nur die nicht-konsumtive Nutzung, und kein Seitentext verlässt die Kapsel. Die daraus '
+            f'<b>abgeleiteten</b> Auswertungen dürfen es, und sie stehen hier vollständig, jede mit '
+            f'der Frage, die sie beantwortet, dem Ergebnis, ihrer Grenze und der Datei zum '
+            f'Nachrechnen (JSON, CC&nbsp;BY&nbsp;4.0).</p>' + "".join(teile))
+
+
 def hathitrust_page(idx, reg, lex):
     b = idx.get("abteilung_B_kastelle", [])
     nef = sum(1 for r in b if r.get("pages")); nner = sum(1 for r in b if r.get("schicht_c", {}).get("ner_terms"))
@@ -2769,7 +2913,7 @@ def hathitrust_page(idx, reg, lex):
             f'gemeinfrei, liegen bei HathiTrust aber nur als Seiten-Scans hinter einer Bot-Wall. Gearbeitet wurde '
             f'ausschließlich mit offenen, abgeleiteten Daten, kein Seitentext wird reproduziert; alles reproduzierbar '
             f'mit Python-Standardbibliothek, ohne API-Schlüssel.</p>'
-            + workset + grenzen +
+            + workset + grenzen + kapsel_liste() +
             f'<h2>1 · Workset: die Bände identifizieren</h2>'
             f'<p>Aus vier HathiTrust-Katalog-Records (RIS-Exporte) die echten Volume-IDs (htids) geparst → ein sauberes '
             f'<b>56-Bände-Workset</b>, ein Exemplar je Lieferung. Decke: no.57–70 und die a/b-Unterhefte sind in '
@@ -4086,6 +4230,20 @@ def main():
             shutil.copy(f, os.path.join(DOCS, "tei", unter))
     for f in glob.glob(os.path.join(REPO,"registers","*.xml")): shutil.copy(f, os.path.join(DOCS,"registers"))
     for f in glob.glob(os.path.join(REPO,"geo","*.geojson")): shutil.copy(f, os.path.join(DOCS,"data"))
+    # Die Kapsel-Auswertungen mit ausliefern: sie sind bisher nur Bau-Eingabe, die Methodenseite
+    # verlinkt sie aber zum Nachrechnen. Kopiert wird genau, was dort aufgeführt ist — keine
+    # stillen Zusatzdateien, und ein fehlender Eintrag fällt beim Bauen auf.
+    fehlend = []
+    for _, eintraege in KAPSEL_AUSWERTUNGEN:
+        for datei, *_ in eintraege:
+            q = os.path.join(REPO, "data", datei)
+            if os.path.exists(q):
+                shutil.copy(q, os.path.join(DOCS, "data"))
+            else:
+                fehlend.append(datei)
+    n_k = sum(len(e) for _, e in KAPSEL_AUSWERTUNGEN)
+    print(f"Kapsel-Auswertungen veröffentlicht: {n_k - len(fehlend)}/{n_k} → data/"
+          + (f"  FEHLEND: {', '.join(fehlend)}" if fehlend else ""))
 
     for f in glob.glob(os.path.join(REPO,"tei","*.xml")):   # Token→Band für interne Selbstverweise
         nr = int(re.search(r'limesblatt-bd(\d+)-', os.path.basename(f)).group(1))

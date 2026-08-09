@@ -1,0 +1,2819 @@
+{
+ "_befund": "enumcron „v. N“ des UC-Exemplars (Record 012239533) = ORL-Abt.-B-LIEFERUNG N (Erscheinungsreihenfolge), NICHT Kastell-Nr. N. orl_index.py hat beides verwechselt. Kastell-Nrn. sind geografisch (nr 1 = Nordende), Lieferungen chronologisch.",
+ "_quellen": "Merten 2002 (Lfg. 1–18) via tools/orl_abtB_lieferungen.json × tools/orl_hathitrust_holdings.json (enumcron)",
+ "lieferung_zu_kastellen": {
+  "1": {
+   "jahr": "1894-11",
+   "kastelle": [
+    {
+     "nr": "14",
+     "kastell": "Butzbach",
+     "bearbeiter": "Kofler",
+     "orl_band": 2
+    },
+    {
+     "nr": "44",
+     "kastell": "Murrhardt",
+     "bearbeiter": "Hämmerle",
+     "orl_band": 4
+    },
+    {
+     "nr": "65",
+     "kastell": "Unterböbingen",
+     "bearbeiter": "Steimle",
+     "orl_band": 6
+    }
+   ]
+  },
+  "2": {
+   "jahr": "1895-08",
+   "kastelle": [
+    {
+     "nr": "40",
+     "kastell": "Osterburken",
+     "bearbeiter": "Schumacher",
+     "orl_band": 4
+    }
+   ]
+  },
+  "3": {
+   "jahr": "1896-06",
+   "kastelle": [
+    {
+     "nr": "21",
+     "kastell": "Marköbel",
+     "bearbeiter": "Wolff",
+     "orl_band": 2
+    },
+    {
+     "nr": "34",
+     "kastell": "Niedernberg",
+     "bearbeiter": "Conrady",
+     "orl_band": 3
+    }
+   ]
+  },
+  "4": {
+   "jahr": "1896-11",
+   "kastelle": [
+    {
+     "nr": "48",
+     "kastell": "Eulbach",
+     "bearbeiter": "Kofler",
+     "orl_band": 5
+    },
+    {
+     "nr": "49",
+     "kastell": "Würzberg",
+     "bearbeiter": "Kofler",
+     "orl_band": 5
+    },
+    {
+     "nr": "50",
+     "kastell": "Hesselbach",
+     "bearbeiter": "Kofler",
+     "orl_band": 5
+    },
+    {
+     "nr": "68",
+     "kastell": "Ruffenhofen",
+     "bearbeiter": "Kohl",
+     "orl_band": 6
+    }
+   ]
+  },
+  "5": {
+   "jahr": "1897-07",
+   "kastelle": [
+    {
+     "nr": "42",
+     "kastell": "Öhringen",
+     "bearbeiter": "v. Herzog",
+     "orl_band": 4
+    },
+    {
+     "nr": "47",
+     "kastell": "Vielbrunn",
+     "bearbeiter": "Kofler",
+     "orl_band": 5
+    },
+    {
+     "nr": "63",
+     "kastell": "Lorch",
+     "bearbeiter": "Steimle",
+     "orl_band": 6
+    }
+   ]
+  },
+  "6": {
+   "jahr": "1897-08",
+   "kastelle": [
+    {
+     "nr": "5",
+     "kastell": "Hunzel",
+     "bearbeiter": "Bodewig",
+     "orl_band": 1
+    },
+    {
+     "nr": "52",
+     "kastell": "Oberscheidenthal",
+     "bearbeiter": "Schumacher",
+     "orl_band": 5
+    },
+    {
+     "nr": "61b",
+     "kastell": "Waldmössingen",
+     "bearbeiter": "Naegele",
+     "orl_band": 5
+    }
+   ]
+  },
+  "7": {
+   "jahr": "1897-09",
+   "kastelle": [
+    {
+     "nr": "29",
+     "kastell": "Hofheim",
+     "bearbeiter": "Wolff",
+     "orl_band": 2
+    },
+    {
+     "nr": "64",
+     "kastell": "Schierenhof",
+     "bearbeiter": "Steimle",
+     "orl_band": 6
+    }
+   ]
+  },
+  "8": {
+   "jahr": "1897-11",
+   "kastelle": [
+    {
+     "nr": "13",
+     "kastell": "Langenhain",
+     "bearbeiter": "Kofler",
+     "orl_band": 2
+    },
+    {
+     "nr": "57",
+     "kastell": "Walheim",
+     "bearbeiter": "Mettler",
+     "orl_band": 5
+    },
+    {
+     "nr": "61a",
+     "kastell": "Sulz",
+     "bearbeiter": "Herzog",
+     "orl_band": 5
+    }
+   ]
+  },
+  "9": {
+   "jahr": "1898-06",
+   "kastelle": [
+    {
+     "nr": "53",
+     "kastell": "Neckarburken",
+     "bearbeiter": "Schumacher",
+     "orl_band": 5
+    }
+   ]
+  },
+  "10": {
+   "jahr": "1898-09",
+   "kastelle": [
+    {
+     "nr": "24",
+     "kastell": "Kesselstadt",
+     "bearbeiter": "Wolff",
+     "orl_band": 2
+    },
+    {
+     "nr": "56",
+     "kastell": "Böckingen",
+     "bearbeiter": "Steimle",
+     "orl_band": 5
+    },
+    {
+     "nr": "67",
+     "kastell": "Buch",
+     "bearbeiter": "Herzog",
+     "orl_band": 6
+    }
+   ]
+  },
+  "11": {
+   "jahr": "1900-09",
+   "kastelle": [
+    {
+     "nr": "36",
+     "kastell": "Wörth",
+     "bearbeiter": "Conrady",
+     "orl_band": 3
+    },
+    {
+     "nr": "37",
+     "kastell": "Trennfurt",
+     "bearbeiter": "Conrady",
+     "orl_band": 3
+    },
+    {
+     "nr": "51",
+     "kastell": "Schloßau",
+     "bearbeiter": "Schumacher",
+     "orl_band": 5
+    }
+   ]
+  },
+  "12": {
+   "jahr": "1900-10",
+   "kastelle": [
+    {
+     "nr": "2a",
+     "kastell": "Niederberg",
+     "bearbeiter": "Dahm",
+     "orl_band": 1
+    },
+    {
+     "nr": "3",
+     "kastell": "Arzbach",
+     "bearbeiter": "Dahm",
+     "orl_band": 1
+    }
+   ]
+  },
+  "13": {
+   "jahr": "1900-12",
+   "kastelle": [
+    {
+     "nr": "25",
+     "kastell": "Heldenbergen",
+     "bearbeiter": "Wolff",
+     "orl_band": 2
+    },
+    {
+     "nr": "54",
+     "kastell": "Wimpfen",
+     "bearbeiter": "Schumacher",
+     "orl_band": 5
+    },
+    {
+     "nr": "66b",
+     "kastell": "Heidenheim",
+     "bearbeiter": "Prescher",
+     "orl_band": 6
+    }
+   ]
+  },
+  "14": {
+   "jahr": "1901-08",
+   "kastelle": [
+    {
+     "nr": "73",
+     "kastell": "Pfünz",
+     "bearbeiter": "Winkelmann",
+     "orl_band": 7
+    }
+   ]
+  },
+  "15": {
+   "jahr": "1901-11",
+   "kastelle": [
+    {
+     "nr": "7",
+     "kastell": "Kemel",
+     "bearbeiter": "Lehner",
+     "orl_band": 1
+    },
+    {
+     "nr": "67a",
+     "kastell": "Halheim",
+     "bearbeiter": "Steimle",
+     "orl_band": 6
+    },
+    {
+     "nr": "69",
+     "kastell": "Dambach",
+     "bearbeiter": "Kohl/Popp",
+     "orl_band": 6
+    }
+   ]
+  },
+  "16": {
+   "jahr": "1902-02",
+   "kastelle": [
+    {
+     "nr": "25a",
+     "kastell": "Okarben",
+     "bearbeiter": "Wolff",
+     "orl_band": 2
+    },
+    {
+     "nr": "75",
+     "kastell": "Pföring",
+     "bearbeiter": "Fink",
+     "orl_band": 7
+    }
+   ]
+  },
+  "17": {
+   "jahr": "1902-04",
+   "kastelle": [
+    {
+     "nr": "16",
+     "kastell": "Arnsburg",
+     "bearbeiter": "Kofler",
+     "orl_band": 2
+    },
+    {
+     "nr": "58",
+     "kastell": "Benningen",
+     "bearbeiter": "Mettler",
+     "orl_band": 5
+    }
+   ]
+  },
+  "18": {
+   "jahr": "1903-03",
+   "kastelle": [
+    {
+     "nr": "19",
+     "kastell": "Ober-Florstadt",
+     "bearbeiter": "Kofler",
+     "orl_band": 2
+    },
+    {
+     "nr": "35",
+     "kastell": "Obernburg",
+     "bearbeiter": "Conrady",
+     "orl_band": 3
+    }
+   ]
+  }
+ },
+ "scans": [
+  {
+   "htid": "mdp.39015039811149",
+   "enumcron": "no.37 19uu",
+   "record": "000059460",
+   "rights": "ic",
+   "in_workset": false,
+   "typ": "kastell_nr",
+   "kastell_nrn": [
+    "37"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Trennfurt"
+   ]
+  },
+  {
+   "htid": "mdp.39015039811156",
+   "enumcron": "no.38 19uu",
+   "record": "000059460",
+   "rights": "ic",
+   "in_workset": false,
+   "typ": "kastell_nr",
+   "kastell_nrn": [
+    "38"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Miltenberg-Altstadt"
+   ]
+  },
+  {
+   "htid": "mdp.39015039811164",
+   "enumcron": "no.39",
+   "record": "000059460",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "kastell_nr",
+   "kastell_nrn": [
+    "39"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Walldürn"
+   ]
+  },
+  {
+   "htid": "mdp.39015039811172",
+   "enumcron": "no.40 pt.1 19uu",
+   "record": "000059460",
+   "rights": "ic",
+   "in_workset": false,
+   "typ": "kastell_nr",
+   "kastell_nrn": [
+    "40"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Osterburken"
+   ]
+  },
+  {
+   "htid": "mdp.39015039811198",
+   "enumcron": "no.41 1914",
+   "record": "000059460",
+   "rights": "pdus",
+   "in_workset": false,
+   "typ": "kastell_nr",
+   "kastell_nrn": [
+    "41"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Jagsthausen"
+   ]
+  },
+  {
+   "htid": "mdp.39015039811206",
+   "enumcron": "no.42 19uu",
+   "record": "000059460",
+   "rights": "ic",
+   "in_workset": true,
+   "typ": "kastell_nr",
+   "kastell_nrn": [
+    "42"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Öhringen-West"
+   ]
+  },
+  {
+   "htid": "mdp.39015039811214",
+   "enumcron": "no.43 19uu",
+   "record": "000059460",
+   "rights": "pdus",
+   "in_workset": false,
+   "typ": "kastell_nr",
+   "kastell_nrn": [
+    "43"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Mainhardt"
+   ]
+  },
+  {
+   "htid": "mdp.39015039811222",
+   "enumcron": "no.44 1926",
+   "record": "000059460",
+   "rights": "pdus",
+   "in_workset": false,
+   "typ": "kastell_nr",
+   "kastell_nrn": [
+    "44"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Murrhardt"
+   ]
+  },
+  {
+   "htid": "mdp.39015039811230",
+   "enumcron": "no.45 1928",
+   "record": "000059460",
+   "rights": "pdus",
+   "in_workset": false,
+   "typ": "kastell_nr",
+   "kastell_nrn": [
+    "45"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastelle von Welzheim"
+   ]
+  },
+  {
+   "htid": "mdp.39015039811248",
+   "enumcron": "no.46 1929",
+   "record": "000059460",
+   "rights": "pdus",
+   "in_workset": false,
+   "typ": "kastell_nr",
+   "kastell_nrn": [
+    "46"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Lützelbach"
+   ]
+  },
+  {
+   "htid": "mdp.39015039811255",
+   "enumcron": "no.47 1930",
+   "record": "000059460",
+   "rights": "pdus",
+   "in_workset": false,
+   "typ": "kastell_nr",
+   "kastell_nrn": [
+    "47"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Hainhaus"
+   ]
+  },
+  {
+   "htid": "mdp.39015039811263",
+   "enumcron": "no.48 1931",
+   "record": "000059460",
+   "rights": "ic",
+   "in_workset": false,
+   "typ": "kastell_nr",
+   "kastell_nrn": [
+    "48"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Eulbach"
+   ]
+  },
+  {
+   "htid": "mdp.39015039811289",
+   "enumcron": "no.50 1933",
+   "record": "000059460",
+   "rights": "ic",
+   "in_workset": false,
+   "typ": "kastell_nr",
+   "kastell_nrn": [
+    "50"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Hesselbach"
+   ]
+  },
+  {
+   "htid": "mdp.39015039811297",
+   "enumcron": "no.51 1935",
+   "record": "000059460",
+   "rights": "ic",
+   "in_workset": false,
+   "typ": "kastell_nr",
+   "kastell_nrn": [
+    "51"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Schloßau"
+   ]
+  },
+  {
+   "htid": "mdp.39015039811305",
+   "enumcron": "no.52 1935",
+   "record": "000059460",
+   "rights": "ic",
+   "in_workset": false,
+   "typ": "kastell_nr",
+   "kastell_nrn": [
+    "52"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Oberscheidental"
+   ]
+  },
+  {
+   "htid": "mdp.39015039811313",
+   "enumcron": "no.53 1936",
+   "record": "000059460",
+   "rights": "ic",
+   "in_workset": false,
+   "typ": "kastell_nr",
+   "kastell_nrn": [
+    "53"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastelle von Neckarburken"
+   ]
+  },
+  {
+   "htid": "mdp.39015039811321",
+   "enumcron": "no.54 1936",
+   "record": "000059460",
+   "rights": "ic",
+   "in_workset": false,
+   "typ": "kastell_nr",
+   "kastell_nrn": [
+    "54"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Wimpfen"
+   ]
+  },
+  {
+   "htid": "mdp.39015039811339",
+   "enumcron": "no.55 1937",
+   "record": "000059460",
+   "rights": "ic",
+   "in_workset": false,
+   "typ": "kastell_nr",
+   "kastell_nrn": [
+    "55"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "(laut Katalog)"
+   ]
+  },
+  {
+   "htid": "mdp.39015039811347",
+   "enumcron": "no.56 1937",
+   "record": "000059460",
+   "rights": "ic",
+   "in_workset": false,
+   "typ": "kastell_nr",
+   "kastell_nrn": [
+    "56"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Heilbronn-Böckingen"
+   ]
+  },
+  {
+   "htid": "mdp.39015039811180",
+   "enumcron": "v.40 pt.2 1895",
+   "record": "000059460",
+   "rights": "pd",
+   "in_workset": false,
+   "typ": "unklar",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "umn.319510023867599",
+   "enumcron": "Abd.B:bd.7",
+   "record": "009032475",
+   "rights": "pdus",
+   "in_workset": false,
+   "typ": "unklar",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "njp.32101076455417",
+   "enumcron": "Abt. A, Bd. 1, pt. 2 (Str. 2)",
+   "record": "009032475",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "unklar",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "njp.32101076455177",
+   "enumcron": "Abt. B, Bd. 3 (nr. 32-38)",
+   "record": "009032475",
+   "rights": "pdus",
+   "in_workset": false,
+   "typ": "kastell_spanne",
+   "kastell_nrn": [
+    "32",
+    "33",
+    "34",
+    "35",
+    "36",
+    "37",
+    "38"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Seligenstadt",
+    "Kastell Stockstadt",
+    "Kastell Niedernberg",
+    "Kastell Obernburg",
+    "Kastell Wörth",
+    "Kastell Trennfurt",
+    "Kastell Miltenberg-Altstadt"
+   ]
+  },
+  {
+   "htid": "njp.32101076455185",
+   "enumcron": "Abt. B, Bd. 4 (nr. 39-45)",
+   "record": "009032475",
+   "rights": "ic",
+   "in_workset": false,
+   "typ": "kastell_spanne",
+   "kastell_nrn": [
+    "39",
+    "40",
+    "41",
+    "42",
+    "43",
+    "44",
+    "45"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Walldürn",
+    "Kastell Osterburken",
+    "Kastell Jagsthausen",
+    "Kastell Öhringen-West",
+    "Kastell Mainhardt",
+    "Kastell Murrhardt",
+    "Kastelle von Welzheim"
+   ]
+  },
+  {
+   "htid": "njp.32101076455219",
+   "enumcron": "Abt. B, Bd. 7 (nr. 71-75)",
+   "record": "009032475",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "kastell_spanne",
+   "kastell_nrn": [
+    "71",
+    "72",
+    "73",
+    "74",
+    "75"
+   ],
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Gunzenhausen",
+    "Kastell Weißenburg",
+    "Kastell Pfünz",
+    "Kastell Kösching",
+    "Kastell Pförring"
+   ]
+  },
+  {
+   "htid": "inu.30000134469349",
+   "enumcron": "",
+   "record": "011803475",
+   "rights": "pdus",
+   "in_workset": false,
+   "typ": "unklar",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "inu.30000134469356",
+   "enumcron": "",
+   "record": "011803475",
+   "rights": "ic",
+   "in_workset": false,
+   "typ": "unklar",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "coo.31924088444033",
+   "enumcron": "Abt.A v.1",
+   "record": "012239533",
+   "rights": "ic",
+   "in_workset": false,
+   "typ": "unklar",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "coo.31924088444041",
+   "enumcron": "Abt.A v.2:pt.1-2",
+   "record": "012239533",
+   "rights": "ic",
+   "in_workset": false,
+   "typ": "unklar",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "coo.31924088444082",
+   "enumcron": "Abt.B v.2:pt.1",
+   "record": "012239533",
+   "rights": "ic",
+   "in_workset": false,
+   "typ": "unklar",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605048",
+   "enumcron": "v. 1",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "1",
+   "kastell_nrn": [
+    "14",
+    "44",
+    "65"
+   ],
+   "jahr": "1894-11",
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Butzbach",
+    "Kastell Murrhardt",
+    "Kastell Unterböbingen"
+   ]
+  },
+  {
+   "htid": "uc1.c2605057",
+   "enumcron": "v. 10",
+   "record": "012239533",
+   "rights": "ic",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "10",
+   "kastell_nrn": [
+    "24",
+    "56",
+    "67"
+   ],
+   "jahr": "1898-09",
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Kesselstadt",
+    "Kastell Heilbronn-Böckingen",
+    "Kastell Buch"
+   ]
+  },
+  {
+   "htid": "uc1.c2605058",
+   "enumcron": "v. 11",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "11",
+   "kastell_nrn": [
+    "36",
+    "37",
+    "51"
+   ],
+   "jahr": "1900-09",
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Wörth",
+    "Kastell Trennfurt",
+    "Kastell Schloßau"
+   ]
+  },
+  {
+   "htid": "uc1.c2605059",
+   "enumcron": "v. 12",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "12",
+   "kastell_nrn": [
+    "2a",
+    "3"
+   ],
+   "jahr": "1900-10",
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Niederberg",
+    "Kastell Arzbach"
+   ]
+  },
+  {
+   "htid": "uc1.c2605060",
+   "enumcron": "v. 13",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "13",
+   "kastell_nrn": [
+    "25",
+    "54",
+    "66b"
+   ],
+   "jahr": "1900-12",
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Heldenbergen",
+    "Kastell Wimpfen",
+    "Kastell Heidenheim"
+   ]
+  },
+  {
+   "htid": "uc1.c2605061",
+   "enumcron": "v. 14",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "14",
+   "kastell_nrn": [
+    "73"
+   ],
+   "jahr": "1901-08",
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Pfünz"
+   ]
+  },
+  {
+   "htid": "uc1.c2605062",
+   "enumcron": "v. 15",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "15",
+   "kastell_nrn": [
+    "7",
+    "67a",
+    "69"
+   ],
+   "jahr": "1901-11",
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Kemel",
+    "Kastell Halheim",
+    "Kastell Dambach"
+   ]
+  },
+  {
+   "htid": "uc1.c2605063",
+   "enumcron": "v. 16",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "16",
+   "kastell_nrn": [
+    "25a",
+    "75"
+   ],
+   "jahr": "1902-02",
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Okarben",
+    "Kastell Pförring"
+   ]
+  },
+  {
+   "htid": "uc1.c2605064",
+   "enumcron": "v. 17",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "17",
+   "kastell_nrn": [
+    "16",
+    "58"
+   ],
+   "jahr": "1902-04",
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Arnsburg",
+    "Kastell Benningen"
+   ]
+  },
+  {
+   "htid": "uc1.c2605065",
+   "enumcron": "v. 18",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "18",
+   "kastell_nrn": [
+    "19",
+    "35"
+   ],
+   "jahr": "1903-03",
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Ober-Florstadt",
+    "Kastell Obernburg"
+   ]
+  },
+  {
+   "htid": "uc1.c2605066",
+   "enumcron": "v. 19",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "19",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605049",
+   "enumcron": "v. 2",
+   "record": "012239533",
+   "rights": "ic",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "2",
+   "kastell_nrn": [
+    "40"
+   ],
+   "jahr": "1895-08",
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Osterburken"
+   ]
+  },
+  {
+   "htid": "uc1.c2605067",
+   "enumcron": "v. 20",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "20",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605068",
+   "enumcron": "v. 21",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "21",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605069",
+   "enumcron": "v. 22",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "22",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605070",
+   "enumcron": "v. 23",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "23",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605071",
+   "enumcron": "v. 24",
+   "record": "012239533",
+   "rights": "ic",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "24",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605072",
+   "enumcron": "v. 25",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "25",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605073",
+   "enumcron": "v. 26",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "26",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605074",
+   "enumcron": "v. 27",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "27",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605075",
+   "enumcron": "v. 28",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "28",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605076",
+   "enumcron": "v. 29",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "29",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605077",
+   "enumcron": "v. 30",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "30",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605078",
+   "enumcron": "v. 31",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "31",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605079",
+   "enumcron": "v. 32",
+   "record": "012239533",
+   "rights": "ic",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "32",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605080",
+   "enumcron": "v. 33",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "33",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605081",
+   "enumcron": "v. 34",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "34",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605082",
+   "enumcron": "v. 35",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "35",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605083",
+   "enumcron": "v. 36",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "36",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605084",
+   "enumcron": "v. 37",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "37",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605085",
+   "enumcron": "v. 38",
+   "record": "012239533",
+   "rights": "ic",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "38",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605087",
+   "enumcron": "v. 40",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "40",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605088",
+   "enumcron": "v. 41",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "41",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605090",
+   "enumcron": "v. 43",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "43",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605091",
+   "enumcron": "v. 44",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "44",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605092",
+   "enumcron": "v. 45",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "45",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605093",
+   "enumcron": "v. 46",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "46",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605094",
+   "enumcron": "v. 47",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "47",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605095",
+   "enumcron": "v. 48",
+   "record": "012239533",
+   "rights": "ic",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "48",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605096",
+   "enumcron": "v. 49",
+   "record": "012239533",
+   "rights": "ic",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "49",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605050",
+   "enumcron": "v. 5",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "5",
+   "kastell_nrn": [
+    "42",
+    "47",
+    "63"
+   ],
+   "jahr": "1897-07",
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Öhringen-West",
+    "Kastell Hainhaus",
+    "Kastell Lorch"
+   ]
+  },
+  {
+   "htid": "uc1.c2605097",
+   "enumcron": "v. 50",
+   "record": "012239533",
+   "rights": "ic",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "50",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605098",
+   "enumcron": "v. 51",
+   "record": "012239533",
+   "rights": "ic",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "51",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605099",
+   "enumcron": "v. 52",
+   "record": "012239533",
+   "rights": "ic",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "52",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605100",
+   "enumcron": "v. 53",
+   "record": "012239533",
+   "rights": "ic",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "53",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605101",
+   "enumcron": "v. 54",
+   "record": "012239533",
+   "rights": "ic",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "54",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605102",
+   "enumcron": "v. 55",
+   "record": "012239533",
+   "rights": "ic",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "55",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605103",
+   "enumcron": "v. 56",
+   "record": "012239533",
+   "rights": "ic",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "56",
+   "kastell_nrn": [],
+   "jahr": "",
+   "aufloesbar": false,
+   "kastelle": []
+  },
+  {
+   "htid": "uc1.c2605054",
+   "enumcron": "v. 6",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "6",
+   "kastell_nrn": [
+    "5",
+    "52",
+    "61b"
+   ],
+   "jahr": "1897-08",
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Hunzel",
+    "Kastell Oberscheidental",
+    "Kastell Waldmössingen"
+   ]
+  },
+  {
+   "htid": "uc1.c2605053",
+   "enumcron": "v. 7",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "7",
+   "kastell_nrn": [
+    "29",
+    "64"
+   ],
+   "jahr": "1897-09",
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Hofheim",
+    "Kastell Schirenhof"
+   ]
+  },
+  {
+   "htid": "uc1.c2605055",
+   "enumcron": "v. 8",
+   "record": "012239533",
+   "rights": "pdus",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "8",
+   "kastell_nrn": [
+    "13",
+    "57",
+    "61a"
+   ],
+   "jahr": "1897-11",
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastell Langenhain",
+    "Kastelle von Walheim",
+    "Kastell Sulz"
+   ]
+  },
+  {
+   "htid": "uc1.c2605056",
+   "enumcron": "v. 9",
+   "record": "012239533",
+   "rights": "ic",
+   "in_workset": true,
+   "typ": "lieferung",
+   "lieferung": "9",
+   "kastell_nrn": [
+    "53"
+   ],
+   "jahr": "1898-06",
+   "aufloesbar": true,
+   "kastelle": [
+    "Kastelle von Neckarburken"
+   ]
+  }
+ ],
+ "merten_rechenprobe": {
+  "merten_lfg_1_17": 41,
+  "jahresbericht_bd19": 41,
+  "stimmt": true,
+  "merten_lfg_18": 2,
+  "jahresbericht_bd19_18te": 2,
+  "stimmt_18": true
+ },
+ "erweiterung_jahresberichte": {
+  "18": {
+   "lieferung": "19-20",
+   "jahr": "1903",
+   "bearbeiter": "Kofler",
+   "quelle": "jahresbericht",
+   "band": 19,
+   "kastellscharf": false,
+   "kastell": "Echzell"
+  },
+  "1": {
+   "lieferung": "19-20",
+   "jahr": "1903",
+   "bearbeiter": "Bodewig",
+   "quelle": "jahresbericht",
+   "band": 19,
+   "kastellscharf": false,
+   "kastell": "Heddesdorf"
+  },
+  "5a": {
+   "lieferung": "20",
+   "jahr": "1903",
+   "bearbeiter": "Bodewig",
+   "quelle": "jahresbericht",
+   "band": 19,
+   "kastellscharf": true,
+   "kastell": "Marienfels"
+  },
+  "46b": {
+   "lieferung": "19-20",
+   "jahr": "1903",
+   "bearbeiter": "Anthes",
+   "quelle": "jahresbericht",
+   "band": 19,
+   "kastellscharf": false,
+   "kastell": "Seckmauern"
+  },
+  "23": {
+   "lieferung": "19-20",
+   "jahr": "1903",
+   "bearbeiter": "Wolff",
+   "quelle": "jahresbericht",
+   "band": 19,
+   "kastellscharf": false,
+   "kastell": "Gross-Krotzenburg"
+  },
+  "39": {
+   "lieferung": "21",
+   "jahr": "1904",
+   "bearbeiter": "Conrady",
+   "quelle": "jahresbericht",
+   "band": 20,
+   "kastellscharf": true,
+   "kastell": "Wallduern"
+  },
+  "45": {
+   "lieferung": "21-23",
+   "jahr": "1904",
+   "bearbeiter": "Schultz/Mettler",
+   "quelle": "jahresbericht",
+   "band": 20,
+   "kastellscharf": false,
+   "kastell": "Welzheim-West + Welzheim-Ost"
+  },
+  "6": {
+   "lieferung": "21-23",
+   "jahr": "1904",
+   "bearbeiter": "Pallat",
+   "quelle": "jahresbericht",
+   "band": 20,
+   "kastellscharf": false,
+   "kastell": "Holzhausen"
+  },
+  "9": {
+   "lieferung": "21-23",
+   "jahr": "1904",
+   "bearbeiter": "Jacobi",
+   "quelle": "jahresbericht",
+   "band": 20,
+   "kastellscharf": false,
+   "kastell": "Alteburg-Heftrich"
+  },
+  "46": {
+   "lieferung": "21-23",
+   "jahr": "1904",
+   "bearbeiter": "Kofler",
+   "quelle": "jahresbericht",
+   "band": 20,
+   "kastellscharf": false,
+   "kastell": "Luetzelbach"
+  },
+  "66": {
+   "lieferung": "21-23",
+   "jahr": "1904",
+   "bearbeiter": "Steimle",
+   "quelle": "jahresbericht",
+   "band": 20,
+   "kastellscharf": false,
+   "kastell": "Aalen"
+  }
+ },
+ "bibliographie_kastellscharf": {
+  "73": {
+   "lieferung": "14",
+   "jahr": "1901/02",
+   "bearbeiter": "Winkelmann",
+   "quelle": "bibliographie",
+   "band": 17,
+   "kastellscharf": true,
+   "kastell": "Pfuenz",
+   "seiten": 75,
+   "tafeln": 22
+  },
+  "7": {
+   "lieferung": "15",
+   "jahr": "1901/02",
+   "bearbeiter": "Lehner",
+   "quelle": "bibliographie",
+   "band": 17,
+   "kastellscharf": true,
+   "kastell": "Kemel",
+   "seiten": 8,
+   "tafeln": 1
+  },
+  "67a": {
+   "lieferung": "15",
+   "jahr": "1901/02",
+   "bearbeiter": "Steimle",
+   "quelle": "bibliographie",
+   "band": 17,
+   "kastellscharf": true,
+   "kastell": "Halheim",
+   "seiten": 4,
+   "tafeln": 1
+  },
+  "69": {
+   "lieferung": "15",
+   "jahr": "1901/02",
+   "bearbeiter": "Popp",
+   "quelle": "bibliographie",
+   "band": 17,
+   "kastellscharf": true,
+   "kastell": "Dambach",
+   "seiten": 22,
+   "tafeln": 4
+  },
+  "25a": {
+   "lieferung": "16",
+   "jahr": "1901/02",
+   "bearbeiter": "Wolff",
+   "quelle": "bibliographie",
+   "band": 17,
+   "kastellscharf": true,
+   "kastell": "Okarben",
+   "seiten": 37,
+   "tafeln": 5
+  },
+  "75": {
+   "lieferung": "16",
+   "jahr": "1901/02",
+   "bearbeiter": "Fink",
+   "quelle": "bibliographie",
+   "band": 17,
+   "kastellscharf": true,
+   "kastell": "Pfoering",
+   "seiten": 24,
+   "tafeln": 4
+  },
+  "1": {
+   "lieferung": "19",
+   "jahr": "1904",
+   "bearbeiter": "Bodewig",
+   "quelle": "bibliographie",
+   "band": 19,
+   "kastellscharf": true,
+   "kastell": "Heddesdorf",
+   "seiten": 21,
+   "tafeln": 6
+  },
+  "18": {
+   "lieferung": "19",
+   "jahr": "1904",
+   "bearbeiter": "Kofler",
+   "quelle": "bibliographie",
+   "band": 19,
+   "kastellscharf": true,
+   "kastell": "Echzell",
+   "seiten": 26,
+   "tafeln": 4
+  },
+  "46b": {
+   "lieferung": "19",
+   "jahr": "1904",
+   "bearbeiter": "Anthes",
+   "quelle": "bibliographie",
+   "band": 19,
+   "kastellscharf": true,
+   "kastell": "Seckmauern",
+   "seiten": 11,
+   "tafeln": 2
+  },
+  "5a": {
+   "lieferung": "20",
+   "jahr": "1904",
+   "bearbeiter": "Bodewig",
+   "quelle": "bibliographie",
+   "band": 19,
+   "kastellscharf": true,
+   "kastell": "Marienfels",
+   "seiten": 15,
+   "tafeln": 3
+  },
+  "23": {
+   "lieferung": "20",
+   "jahr": "1904",
+   "bearbeiter": "Wolff",
+   "quelle": "bibliographie",
+   "band": 19,
+   "kastellscharf": true,
+   "kastell": "Gross-Krotzenburg",
+   "seiten": 43,
+   "tafeln": 8
+  },
+  "10": {
+   "lieferung": "25",
+   "jahr": "1905",
+   "bearbeiter": "Jacobi",
+   "quelle": "bibliographie",
+   "band": 20,
+   "kastellscharf": true,
+   "kastell": "Feldberg",
+   "seiten": 56,
+   "tafeln": 11
+  }
+ },
+ "bibliographie_konflikte": [],
+ "jahresbericht_unaufloesbar": [],
+ "kastell_nr_zu_lieferung": {
+  "1": {
+   "lieferung": "19",
+   "jahr": "1904",
+   "bearbeiter": "Bodewig",
+   "quelle": "bibliographie",
+   "band": 19,
+   "kastellscharf": true,
+   "kastell": "Heddesdorf",
+   "seiten": 21,
+   "tafeln": 6
+  },
+  "3": {
+   "lieferung": "12",
+   "jahr": "1900-10",
+   "bearbeiter": "Dahm",
+   "orl_band": 1,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Niederberg"
+   ]
+  },
+  "5": {
+   "lieferung": "6",
+   "jahr": "1897-08",
+   "bearbeiter": "Bodewig",
+   "orl_band": 1,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Oberscheidenthal",
+    "Waldmössingen"
+   ]
+  },
+  "6": {
+   "lieferung": "21-23",
+   "jahr": "1904",
+   "bearbeiter": "Pallat",
+   "quelle": "jahresbericht",
+   "band": 20,
+   "kastellscharf": false,
+   "kastell": "Holzhausen"
+  },
+  "7": {
+   "lieferung": "15",
+   "jahr": "1901-11",
+   "bearbeiter": "Lehner",
+   "orl_band": 1,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Halheim",
+    "Dambach"
+   ],
+   "bestaetigt_durch_bibliographie": 17,
+   "seiten_bibliographie": 8
+  },
+  "9": {
+   "lieferung": "21-23",
+   "jahr": "1904",
+   "bearbeiter": "Jacobi",
+   "quelle": "jahresbericht",
+   "band": 20,
+   "kastellscharf": false,
+   "kastell": "Alteburg-Heftrich"
+  },
+  "10": {
+   "lieferung": "25",
+   "jahr": "1905",
+   "bearbeiter": "Jacobi",
+   "quelle": "bibliographie",
+   "band": 20,
+   "kastellscharf": true,
+   "kastell": "Feldberg",
+   "seiten": 56,
+   "tafeln": 11
+  },
+  "13": {
+   "lieferung": "8",
+   "jahr": "1897-11",
+   "bearbeiter": "Kofler",
+   "orl_band": 2,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Walheim",
+    "Sulz"
+   ]
+  },
+  "14": {
+   "lieferung": "1",
+   "jahr": "1894-11",
+   "bearbeiter": "Kofler",
+   "orl_band": 2,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Murrhardt",
+    "Unterböbingen"
+   ]
+  },
+  "16": {
+   "lieferung": "17",
+   "jahr": "1902-04",
+   "bearbeiter": "Kofler",
+   "orl_band": 2,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Benningen"
+   ]
+  },
+  "18": {
+   "lieferung": "19",
+   "jahr": "1904",
+   "bearbeiter": "Kofler",
+   "quelle": "bibliographie",
+   "band": 19,
+   "kastellscharf": true,
+   "kastell": "Echzell",
+   "seiten": 26,
+   "tafeln": 4
+  },
+  "19": {
+   "lieferung": "18",
+   "jahr": "1903-03",
+   "bearbeiter": "Kofler",
+   "orl_band": 2,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Obernburg"
+   ],
+   "bestaetigt_durch_jahresbericht": 19
+  },
+  "21": {
+   "lieferung": "3",
+   "jahr": "1896-06",
+   "bearbeiter": "Wolff",
+   "orl_band": 2,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Niedernberg"
+   ]
+  },
+  "23": {
+   "lieferung": "20",
+   "jahr": "1904",
+   "bearbeiter": "Wolff",
+   "quelle": "bibliographie",
+   "band": 19,
+   "kastellscharf": true,
+   "kastell": "Gross-Krotzenburg",
+   "seiten": 43,
+   "tafeln": 8
+  },
+  "24": {
+   "lieferung": "10",
+   "jahr": "1898-09",
+   "bearbeiter": "Wolff",
+   "orl_band": 2,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Böckingen",
+    "Buch"
+   ]
+  },
+  "25": {
+   "lieferung": "13",
+   "jahr": "1900-12",
+   "bearbeiter": "Wolff",
+   "orl_band": 2,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Wimpfen",
+    "Heidenheim"
+   ]
+  },
+  "29": {
+   "lieferung": "7",
+   "jahr": "1897-09",
+   "bearbeiter": "Wolff",
+   "orl_band": 2,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Schierenhof"
+   ]
+  },
+  "2a": {
+   "lieferung": "12",
+   "jahr": "1900-10",
+   "bearbeiter": "Dahm",
+   "orl_band": 1,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Arzbach"
+   ]
+  },
+  "34": {
+   "lieferung": "3",
+   "jahr": "1896-06",
+   "bearbeiter": "Conrady",
+   "orl_band": 3,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Marköbel"
+   ]
+  },
+  "35": {
+   "lieferung": "18",
+   "jahr": "1903-03",
+   "bearbeiter": "Conrady",
+   "orl_band": 3,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Ober-Florstadt"
+   ],
+   "bestaetigt_durch_jahresbericht": 19
+  },
+  "36": {
+   "lieferung": "11",
+   "jahr": "1900-09",
+   "bearbeiter": "Conrady",
+   "orl_band": 3,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Trennfurt",
+    "Schloßau"
+   ]
+  },
+  "37": {
+   "lieferung": "11",
+   "jahr": "1900-09",
+   "bearbeiter": "Conrady",
+   "orl_band": 3,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Wörth",
+    "Schloßau"
+   ]
+  },
+  "39": {
+   "lieferung": "21",
+   "jahr": "1904",
+   "bearbeiter": "Conrady",
+   "quelle": "jahresbericht",
+   "band": 20,
+   "kastellscharf": true,
+   "kastell": "Wallduern"
+  },
+  "40": {
+   "lieferung": "2",
+   "jahr": "1895-08",
+   "bearbeiter": "Schumacher",
+   "orl_band": 4,
+   "quelle": "merten",
+   "mit_im_heft": []
+  },
+  "42": {
+   "lieferung": "5",
+   "jahr": "1897-07",
+   "bearbeiter": "v. Herzog",
+   "orl_band": 4,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Vielbrunn",
+    "Lorch"
+   ]
+  },
+  "44": {
+   "lieferung": "1",
+   "jahr": "1894-11",
+   "bearbeiter": "Hämmerle",
+   "orl_band": 4,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Butzbach",
+    "Unterböbingen"
+   ]
+  },
+  "45": {
+   "lieferung": "21-23",
+   "jahr": "1904",
+   "bearbeiter": "Schultz/Mettler",
+   "quelle": "jahresbericht",
+   "band": 20,
+   "kastellscharf": false,
+   "kastell": "Welzheim-West + Welzheim-Ost"
+  },
+  "46": {
+   "lieferung": "21-23",
+   "jahr": "1904",
+   "bearbeiter": "Kofler",
+   "quelle": "jahresbericht",
+   "band": 20,
+   "kastellscharf": false,
+   "kastell": "Luetzelbach"
+  },
+  "47": {
+   "lieferung": "5",
+   "jahr": "1897-07",
+   "bearbeiter": "Kofler",
+   "orl_band": 5,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Öhringen",
+    "Lorch"
+   ]
+  },
+  "48": {
+   "lieferung": "4",
+   "jahr": "1896-11",
+   "bearbeiter": "Kofler",
+   "orl_band": 5,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Würzberg",
+    "Hesselbach",
+    "Ruffenhofen"
+   ]
+  },
+  "49": {
+   "lieferung": "4",
+   "jahr": "1896-11",
+   "bearbeiter": "Kofler",
+   "orl_band": 5,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Eulbach",
+    "Hesselbach",
+    "Ruffenhofen"
+   ]
+  },
+  "50": {
+   "lieferung": "4",
+   "jahr": "1896-11",
+   "bearbeiter": "Kofler",
+   "orl_band": 5,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Eulbach",
+    "Würzberg",
+    "Ruffenhofen"
+   ]
+  },
+  "51": {
+   "lieferung": "11",
+   "jahr": "1900-09",
+   "bearbeiter": "Schumacher",
+   "orl_band": 5,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Wörth",
+    "Trennfurt"
+   ]
+  },
+  "52": {
+   "lieferung": "6",
+   "jahr": "1897-08",
+   "bearbeiter": "Schumacher",
+   "orl_band": 5,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Hunzel",
+    "Waldmössingen"
+   ]
+  },
+  "53": {
+   "lieferung": "9",
+   "jahr": "1898-06",
+   "bearbeiter": "Schumacher",
+   "orl_band": 5,
+   "quelle": "merten",
+   "mit_im_heft": []
+  },
+  "54": {
+   "lieferung": "13",
+   "jahr": "1900-12",
+   "bearbeiter": "Schumacher",
+   "orl_band": 5,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Heldenbergen",
+    "Heidenheim"
+   ]
+  },
+  "56": {
+   "lieferung": "10",
+   "jahr": "1898-09",
+   "bearbeiter": "Steimle",
+   "orl_band": 5,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Kesselstadt",
+    "Buch"
+   ]
+  },
+  "57": {
+   "lieferung": "8",
+   "jahr": "1897-11",
+   "bearbeiter": "Mettler",
+   "orl_band": 5,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Langenhain",
+    "Sulz"
+   ]
+  },
+  "58": {
+   "lieferung": "17",
+   "jahr": "1902-04",
+   "bearbeiter": "Mettler",
+   "orl_band": 5,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Arnsburg"
+   ]
+  },
+  "5a": {
+   "lieferung": "20",
+   "jahr": "1904",
+   "bearbeiter": "Bodewig",
+   "quelle": "bibliographie",
+   "band": 19,
+   "kastellscharf": true,
+   "kastell": "Marienfels",
+   "seiten": 15,
+   "tafeln": 3
+  },
+  "63": {
+   "lieferung": "5",
+   "jahr": "1897-07",
+   "bearbeiter": "Steimle",
+   "orl_band": 6,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Öhringen",
+    "Vielbrunn"
+   ]
+  },
+  "64": {
+   "lieferung": "7",
+   "jahr": "1897-09",
+   "bearbeiter": "Steimle",
+   "orl_band": 6,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Hofheim"
+   ]
+  },
+  "65": {
+   "lieferung": "1",
+   "jahr": "1894-11",
+   "bearbeiter": "Steimle",
+   "orl_band": 6,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Butzbach",
+    "Murrhardt"
+   ]
+  },
+  "66": {
+   "lieferung": "21-23",
+   "jahr": "1904",
+   "bearbeiter": "Steimle",
+   "quelle": "jahresbericht",
+   "band": 20,
+   "kastellscharf": false,
+   "kastell": "Aalen"
+  },
+  "67": {
+   "lieferung": "10",
+   "jahr": "1898-09",
+   "bearbeiter": "Herzog",
+   "orl_band": 6,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Kesselstadt",
+    "Böckingen"
+   ]
+  },
+  "68": {
+   "lieferung": "4",
+   "jahr": "1896-11",
+   "bearbeiter": "Kohl",
+   "orl_band": 6,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Eulbach",
+    "Würzberg",
+    "Hesselbach"
+   ]
+  },
+  "69": {
+   "lieferung": "15",
+   "jahr": "1901-11",
+   "bearbeiter": "Kohl/Popp",
+   "orl_band": 6,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Kemel",
+    "Halheim"
+   ],
+   "bestaetigt_durch_bibliographie": 17,
+   "seiten_bibliographie": 22
+  },
+  "73": {
+   "lieferung": "14",
+   "jahr": "1901-08",
+   "bearbeiter": "Winkelmann",
+   "orl_band": 7,
+   "quelle": "merten",
+   "mit_im_heft": [],
+   "bestaetigt_durch_bibliographie": 17,
+   "seiten_bibliographie": 75
+  },
+  "75": {
+   "lieferung": "16",
+   "jahr": "1902-02",
+   "bearbeiter": "Fink",
+   "orl_band": 7,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Okarben"
+   ],
+   "bestaetigt_durch_bibliographie": 17,
+   "seiten_bibliographie": 24
+  },
+  "25a": {
+   "lieferung": "16",
+   "jahr": "1902-02",
+   "bearbeiter": "Wolff",
+   "orl_band": 2,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Pföring"
+   ],
+   "bestaetigt_durch_bibliographie": 17,
+   "seiten_bibliographie": 37
+  },
+  "46b": {
+   "lieferung": "19",
+   "jahr": "1904",
+   "bearbeiter": "Anthes",
+   "quelle": "bibliographie",
+   "band": 19,
+   "kastellscharf": true,
+   "kastell": "Seckmauern",
+   "seiten": 11,
+   "tafeln": 2
+  },
+  "61a": {
+   "lieferung": "8",
+   "jahr": "1897-11",
+   "bearbeiter": "Herzog",
+   "orl_band": 5,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Langenhain",
+    "Walheim"
+   ]
+  },
+  "61b": {
+   "lieferung": "6",
+   "jahr": "1897-08",
+   "bearbeiter": "Naegele",
+   "orl_band": 5,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Hunzel",
+    "Oberscheidenthal"
+   ]
+  },
+  "66b": {
+   "lieferung": "13",
+   "jahr": "1900-12",
+   "bearbeiter": "Prescher",
+   "orl_band": 6,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Heldenbergen",
+    "Wimpfen"
+   ]
+  },
+  "67a": {
+   "lieferung": "15",
+   "jahr": "1901-11",
+   "bearbeiter": "Steimle",
+   "orl_band": 6,
+   "quelle": "merten",
+   "mit_im_heft": [
+    "Kemel",
+    "Dambach"
+   ],
+   "bestaetigt_durch_bibliographie": 17,
+   "seiten_bibliographie": 4
+  }
+ },
+ "kastell_nr_zu_htids": {
+  "3": [
+   "uc1.c2605059"
+  ],
+  "5": [
+   "uc1.c2605054"
+  ],
+  "7": [
+   "uc1.c2605062"
+  ],
+  "13": [
+   "uc1.c2605055"
+  ],
+  "14": [
+   "uc1.c2605048"
+  ],
+  "16": [
+   "uc1.c2605064"
+  ],
+  "19": [
+   "uc1.c2605065"
+  ],
+  "24": [
+   "uc1.c2605057"
+  ],
+  "25": [
+   "uc1.c2605060"
+  ],
+  "29": [
+   "uc1.c2605053"
+  ],
+  "2a": [
+   "uc1.c2605059"
+  ],
+  "32": [
+   "njp.32101076455177"
+  ],
+  "33": [
+   "njp.32101076455177"
+  ],
+  "34": [
+   "njp.32101076455177"
+  ],
+  "35": [
+   "njp.32101076455177",
+   "uc1.c2605065"
+  ],
+  "36": [
+   "njp.32101076455177",
+   "uc1.c2605058"
+  ],
+  "37": [
+   "mdp.39015039811149",
+   "njp.32101076455177",
+   "uc1.c2605058"
+  ],
+  "38": [
+   "mdp.39015039811156",
+   "njp.32101076455177"
+  ],
+  "39": [
+   "mdp.39015039811164",
+   "njp.32101076455185"
+  ],
+  "40": [
+   "mdp.39015039811172",
+   "njp.32101076455185",
+   "uc1.c2605049"
+  ],
+  "41": [
+   "mdp.39015039811198",
+   "njp.32101076455185"
+  ],
+  "42": [
+   "mdp.39015039811206",
+   "njp.32101076455185",
+   "uc1.c2605050"
+  ],
+  "43": [
+   "mdp.39015039811214",
+   "njp.32101076455185"
+  ],
+  "44": [
+   "mdp.39015039811222",
+   "njp.32101076455185",
+   "uc1.c2605048"
+  ],
+  "45": [
+   "mdp.39015039811230",
+   "njp.32101076455185"
+  ],
+  "46": [
+   "mdp.39015039811248"
+  ],
+  "47": [
+   "mdp.39015039811255",
+   "uc1.c2605050"
+  ],
+  "48": [
+   "mdp.39015039811263"
+  ],
+  "50": [
+   "mdp.39015039811289"
+  ],
+  "51": [
+   "mdp.39015039811297",
+   "uc1.c2605058"
+  ],
+  "52": [
+   "mdp.39015039811305",
+   "uc1.c2605054"
+  ],
+  "53": [
+   "mdp.39015039811313",
+   "uc1.c2605056"
+  ],
+  "54": [
+   "mdp.39015039811321",
+   "uc1.c2605060"
+  ],
+  "55": [
+   "mdp.39015039811339"
+  ],
+  "56": [
+   "mdp.39015039811347",
+   "uc1.c2605057"
+  ],
+  "57": [
+   "uc1.c2605055"
+  ],
+  "58": [
+   "uc1.c2605064"
+  ],
+  "63": [
+   "uc1.c2605050"
+  ],
+  "64": [
+   "uc1.c2605053"
+  ],
+  "65": [
+   "uc1.c2605048"
+  ],
+  "67": [
+   "uc1.c2605057"
+  ],
+  "69": [
+   "uc1.c2605062"
+  ],
+  "71": [
+   "njp.32101076455219"
+  ],
+  "72": [
+   "njp.32101076455219"
+  ],
+  "73": [
+   "njp.32101076455219",
+   "uc1.c2605061"
+  ],
+  "74": [
+   "njp.32101076455219"
+  ],
+  "75": [
+   "njp.32101076455219",
+   "uc1.c2605063"
+  ],
+  "25a": [
+   "uc1.c2605063"
+  ],
+  "61a": [
+   "uc1.c2605055"
+  ],
+  "61b": [
+   "uc1.c2605054"
+  ],
+  "66b": [
+   "uc1.c2605060"
+  ],
+  "67a": [
+   "uc1.c2605062"
+  ]
+ },
+ "fehlzuordnungen_orl_index": [
+  {
+   "nr": "1",
+   "kastell": "Kastell Heddesdorf",
+   "htid_orl_index": "uc1.c2605048",
+   "htid_korrekt": [],
+   "hinweis": "kein Merten-Eintrag (Lfg. >18)"
+  },
+  {
+   "nr": "2",
+   "kastell": "Kastell Bendorf",
+   "htid_orl_index": "uc1.c2605049",
+   "htid_korrekt": [],
+   "hinweis": "kein Merten-Eintrag (Lfg. >18)"
+  },
+  {
+   "nr": "5",
+   "kastell": "Kastell Hunzel",
+   "htid_orl_index": "uc1.c2605050",
+   "htid_korrekt": [
+    "uc1.c2605054"
+   ]
+  },
+  {
+   "nr": "6",
+   "kastell": "Kastell Holzhausen",
+   "htid_orl_index": "uc1.c2605054",
+   "htid_korrekt": [],
+   "hinweis": "kein Merten-Eintrag (Lfg. >18)"
+  },
+  {
+   "nr": "7",
+   "kastell": "Kastell Kemel",
+   "htid_orl_index": "uc1.c2605053",
+   "htid_korrekt": [
+    "uc1.c2605062"
+   ]
+  },
+  {
+   "nr": "8",
+   "kastell": "Kastell Zugmantel",
+   "htid_orl_index": "uc1.c2605055",
+   "htid_korrekt": [],
+   "hinweis": "kein Merten-Eintrag (Lfg. >18)"
+  },
+  {
+   "nr": "9",
+   "kastell": "Kastell Alteburg",
+   "htid_orl_index": "uc1.c2605056",
+   "htid_korrekt": [],
+   "hinweis": "kein Merten-Eintrag (Lfg. >18)"
+  },
+  {
+   "nr": "10",
+   "kastell": "Kastell Kleiner Feldberg",
+   "htid_orl_index": "uc1.c2605057",
+   "htid_korrekt": [],
+   "hinweis": "kein Merten-Eintrag (Lfg. >18)"
+  },
+  {
+   "nr": "11",
+   "kastell": "Kastell Saalburg",
+   "htid_orl_index": "uc1.c2605058",
+   "htid_korrekt": [],
+   "hinweis": "kein Merten-Eintrag (Lfg. >18)"
+  },
+  {
+   "nr": "12",
+   "kastell": "Kastell Kapersburg",
+   "htid_orl_index": "uc1.c2605059",
+   "htid_korrekt": [],
+   "hinweis": "kein Merten-Eintrag (Lfg. >18)"
+  },
+  {
+   "nr": "13",
+   "kastell": "Kastell Langenhain",
+   "htid_orl_index": "uc1.c2605060",
+   "htid_korrekt": [
+    "uc1.c2605055"
+   ]
+  },
+  {
+   "nr": "14",
+   "kastell": "Kastell Butzbach",
+   "htid_orl_index": "uc1.c2605061",
+   "htid_korrekt": [
+    "uc1.c2605048"
+   ]
+  },
+  {
+   "nr": "15",
+   "kastell": "(laut Katalog)",
+   "htid_orl_index": "uc1.c2605062",
+   "htid_korrekt": [],
+   "hinweis": "kein Merten-Eintrag (Lfg. >18)"
+  },
+  {
+   "nr": "16",
+   "kastell": "Kastell Arnsburg",
+   "htid_orl_index": "uc1.c2605063",
+   "htid_korrekt": [
+    "uc1.c2605064"
+   ]
+  },
+  {
+   "nr": "17",
+   "kastell": "Kastell Inheiden",
+   "htid_orl_index": "uc1.c2605064",
+   "htid_korrekt": [],
+   "hinweis": "kein Merten-Eintrag (Lfg. >18)"
+  },
+  {
+   "nr": "18",
+   "kastell": "Kastell Echzell",
+   "htid_orl_index": "uc1.c2605065",
+   "htid_korrekt": [],
+   "hinweis": "kein Merten-Eintrag (Lfg. >18)"
+  },
+  {
+   "nr": "19",
+   "kastell": "Kastell Ober-Florstadt",
+   "htid_orl_index": "uc1.c2605066",
+   "htid_korrekt": [
+    "uc1.c2605065"
+   ]
+  },
+  {
+   "nr": "20",
+   "kastell": "Kastell Altenstadt",
+   "htid_orl_index": "uc1.c2605067",
+   "htid_korrekt": [],
+   "hinweis": "kein Merten-Eintrag (Lfg. >18)"
+  },
+  {
+   "nr": "21",
+   "kastell": "Kastell Marköbel",
+   "htid_orl_index": "uc1.c2605068",
+   "htid_korrekt": [],
+   "hinweis": "kein Merten-Eintrag (Lfg. >18)"
+  },
+  {
+   "nr": "22",
+   "kastell": "Kastell Rückingen",
+   "htid_orl_index": "uc1.c2605069",
+   "htid_korrekt": [],
+   "hinweis": "kein Merten-Eintrag (Lfg. >18)"
+  },
+  {
+   "nr": "23",
+   "kastell": "Kastell Großkrotzenburg",
+   "htid_orl_index": "uc1.c2605070",
+   "htid_korrekt": [],
+   "hinweis": "kein Merten-Eintrag (Lfg. >18)"
+  },
+  {
+   "nr": "24",
+   "kastell": "Kastell Kesselstadt",
+   "htid_orl_index": "uc1.c2605071",
+   "htid_korrekt": [
+    "uc1.c2605057"
+   ]
+  },
+  {
+   "nr": "25",
+   "kastell": "Kastell Heldenbergen",
+   "htid_orl_index": "uc1.c2605072",
+   "htid_korrekt": [
+    "uc1.c2605060"
+   ]
+  },
+  {
+   "nr": "26",
+   "kastell": "Kastell Friedberg",
+   "htid_orl_index": "uc1.c2605073",
+   "htid_korrekt": [],
+   "hinweis": "kein Merten-Eintrag (Lfg. >18)"
+  },
+  {
+   "nr": "27",
+   "kastell": "Kastell Nida",
+   "htid_orl_index": "uc1.c2605074",
+   "htid_korrekt": [],
+   "hinweis": "kein Merten-Eintrag (Lfg. >18)"
+  },
+  {
+   "nr": "28",
+   "kastell": "Kastell Höchst am Main",
+   "htid_orl_index": "uc1.c2605075",
+   "htid_korrekt": [],
+   "hinweis": "kein Merten-Eintrag (Lfg. >18)"
+  },
+  {
+   "nr": "29",
+   "kastell": "Kastell Hofheim",
+   "htid_orl_index": "uc1.c2605076",
+   "htid_korrekt": [
+    "uc1.c2605053"
+   ]
+  },
+  {
+   "nr": "30",
+   "kastell": "Kastell Mainz",
+   "htid_orl_index": "uc1.c2605077",
+   "htid_korrekt": [],
+   "hinweis": "kein Merten-Eintrag (Lfg. >18)"
+  },
+  {
+   "nr": "31",
+   "kastell": "Kastell Wiesbaden",
+   "htid_orl_index": "uc1.c2605078",
+   "htid_korrekt": [],
+   "hinweis": "kein Merten-Eintrag (Lfg. >18)"
+  },
+  {
+   "nr": "49",
+   "kastell": "Kastell Würzberg",
+   "htid_orl_index": "uc1.c2605096",
+   "htid_korrekt": [],
+   "hinweis": "kein Merten-Eintrag (Lfg. >18)"
+  }
+ ]
+}

@@ -1,0 +1,4001 @@
+{
+ "coo.31924088444033": {
+  "label": "Abt.A v.1",
+  "ranked": [
+   [
+    "Kastell Holzhausen",
+    57.9
+   ],
+   [
+    "Kastell Kemel",
+    50.4
+   ],
+   [
+    "Kastell Bendorf",
+    41.6
+   ],
+   [
+    "Kastell Heddesdorf",
+    27.5
+   ],
+   [
+    "Kastell Niederberg",
+    26.3
+   ]
+  ],
+  "hits": {
+   "Kastell Holzhausen": [
+    [
+     "holzhausen",
+     49,
+     1.18
+    ]
+   ],
+   "Kastell Kemel": [
+    [
+     "kemel",
+     41,
+     1.23
+    ]
+   ],
+   "Kastell Bendorf": [
+    [
+     "bendorf",
+     18,
+     2.31
+    ]
+   ]
+  }
+ },
+ "coo.31924088444041": {
+  "label": "Abt.A v.2:pt.1-2",
+  "ranked": [
+   [
+    "Kastell Saalburg",
+    206.2
+   ],
+   [
+    "Kastell Friedberg",
+    93.1
+   ],
+   [
+    "Kastell Butzbach",
+    90.4
+   ],
+   [
+    "Kastell Zugmantel",
+    88.6
+   ],
+   [
+    "Kastell Kapersburg",
+    87.5
+   ]
+  ],
+  "hits": {
+   "Kastell Saalburg": [
+    [
+     "saalburg",
+     201,
+     1.03
+    ]
+   ],
+   "Kastell Friedberg": [
+    [
+     "friedberg",
+     84,
+     1.11
+    ]
+   ],
+   "Kastell Butzbach": [
+    [
+     "butzbach",
+     87,
+     1.04
+    ]
+   ]
+  },
+  "abteilung": "A",
+  "aufnehmer_strecke": "Strecke 3",
+  "hinweis": "Taunus Aar–Köpperner Tal, A Bd. II, 1935",
+  "titelei": "Heinrich Jacobi und nach eigenen Aufnahmen ⟨bearbeitet von Ernst Fabricius ⟩ (Tafel 1-12 und Kartenbeilage 1-2). Die",
+  "_lesart": "Streckenband der Abteilung A — die Rangliste nennt die Kastelle ENTLANG der Strecke, nicht das Thema des Bandes."
+ },
+ "mdp.39015039811149": {
+  "label": "no.37 19uu",
+  "ranked": [
+   [
+    "Kastell Altenstadt",
+    23.3
+   ],
+   [
+    "Kastell Hofheim",
+    9.2
+   ],
+   [
+    "Kastell Zugmantel",
+    7.7
+   ],
+   [
+    "Kastell Kapersburg",
+    6.8
+   ],
+   [
+    "Kastell Ober-Florstadt",
+    4.7
+   ]
+  ],
+  "hits": {
+   "Kastell Altenstadt": [
+    [
+     "altenstadt",
+     17,
+     1.37
+    ]
+   ],
+   "Kastell Hofheim": [
+    [
+     "hofheim",
+     9,
+     1.03
+    ]
+   ],
+   "Kastell Zugmantel": [
+    [
+     "zugmantel",
+     7,
+     1.09
+    ]
+   ]
+  }
+ },
+ "mdp.39015039811156": {
+  "label": "no.38 19uu",
+  "ranked": [
+   [
+    "Kastell Kösching",
+    53.7
+   ],
+   [
+    "Kastell Rückingen",
+    43.8
+   ],
+   [
+    "Kastell Pfünz",
+    25.0
+   ],
+   [
+    "Kastell Zugmantel",
+    20.8
+   ],
+   [
+    "Kastell Großkrotzenburg",
+    18.0
+   ]
+  ],
+  "hits": {
+   "Kastell Kösching": [
+    [
+     "kosching",
+     42,
+     1.28
+    ],
+    [
+     "koesching",
+     1,
+     1.28
+    ]
+   ],
+   "Kastell Rückingen": [
+    [
+     "ruckingen",
+     38,
+     1.15
+    ]
+   ],
+   "Kastell Pfünz": [
+    [
+     "pfunz",
+     22,
+     1.14
+    ]
+   ]
+  }
+ },
+ "mdp.39015039811164": {
+  "label": "no.39",
+  "ranked": [
+   [
+    "Kastell Friedberg",
+    70.9
+   ],
+   [
+    "Kastell Okarben",
+    17.3
+   ],
+   [
+    "Kastell Arnsburg",
+    14.6
+   ],
+   [
+    "Kastell Kapersburg",
+    13.7
+   ],
+   [
+    "Kastell Butzbach",
+    11.4
+   ]
+  ],
+  "hits": {
+   "Kastell Friedberg": [
+    [
+     "friedberg",
+     64,
+     1.11
+    ]
+   ],
+   "Kastell Okarben": [
+    [
+     "okarben",
+     15,
+     1.15
+    ]
+   ],
+   "Kastell Arnsburg": [
+    [
+     "arnsburg",
+     13,
+     1.12
+    ]
+   ]
+  }
+ },
+ "mdp.39015039811172": {
+  "label": "no.40 pt.1 19uu",
+  "ranked": [
+   [
+    "Kastell Bendorf",
+    37.0
+   ],
+   [
+    "Kastell Heddesdorf",
+    25.2
+   ],
+   [
+    "Kastell Niederberg",
+    17.5
+   ],
+   [
+    "Kastell Arzbach",
+    15.4
+   ],
+   [
+    "Kastell Saalburg",
+    8.2
+   ]
+  ],
+  "hits": {
+   "Kastell Bendorf": [
+    [
+     "bendorf",
+     16,
+     2.31
+    ]
+   ],
+   "Kastell Heddesdorf": [
+    [
+     "heddesdorf",
+     14,
+     1.2
+    ],
+    [
+     "neuwied",
+     11,
+     1.2
+    ]
+   ],
+   "Kastell Niederberg": [
+    [
+     "niederberg",
+     12,
+     1.09
+    ],
+    [
+     "koblenz",
+     6,
+     1.09
+    ]
+   ]
+  }
+ },
+ "mdp.39015039811180": {
+  "label": "v.40 pt.2 1895",
+  "ranked": [
+   [
+    "Kastell Osterburken",
+    54.0
+   ],
+   [
+    "Kastell Butzbach",
+    6.2
+   ],
+   [
+    "Kastelle von Neckarburken",
+    6.2
+   ],
+   [
+    "Kastell Marköbel",
+    3.0
+   ],
+   [
+    "Sumelocenna",
+    2.5
+   ]
+  ],
+  "hits": {
+   "Kastell Osterburken": [
+    [
+     "osterburken",
+     52,
+     1.04
+    ]
+   ],
+   "Kastell Butzbach": [
+    [
+     "butzbach",
+     6,
+     1.04
+    ]
+   ],
+   "Kastelle von Neckarburken": [
+    [
+     "neckarburken",
+     6,
+     1.04
+    ]
+   ]
+  }
+ },
+ "mdp.39015039811198": {
+  "label": "no.41 1914",
+  "ranked": [
+   [
+    "Kastell Oberdorf",
+    30.9
+   ],
+   [
+    "Kastell Seligenstadt",
+    14.6
+   ],
+   [
+    "Kastell Heidenheim",
+    9.7
+   ],
+   [
+    "Kastell Stockstadt",
+    7.9
+   ],
+   [
+    "Kastell Schloßau",
+    6.7
+   ]
+  ],
+  "hits": {
+   "Kastell Oberdorf": [
+    [
+     "oberdorf",
+     18,
+     1.72
+    ]
+   ],
+   "Kastell Seligenstadt": [
+    [
+     "seligenstadt",
+     12,
+     1.21
+    ]
+   ],
+   "Kastell Heidenheim": [
+    [
+     "heidenheim",
+     8,
+     1.21
+    ]
+   ]
+  }
+ },
+ "mdp.39015039811206": {
+  "label": "no.42 19uu",
+  "ranked": [
+   [
+    "Kastell Nida",
+    69.4
+   ],
+   [
+    "Kastell Hofheim",
+    38.0
+   ],
+   [
+    "Kastell Okarben",
+    36.9
+   ],
+   [
+    "Kastell Saalburg",
+    32.8
+   ],
+   [
+    "Kastell Friedberg",
+    19.9
+   ]
+  ],
+  "hits": {
+   "Kastell Nida": [
+    [
+     "nida",
+     30,
+     2.31
+    ]
+   ],
+   "Kastell Hofheim": [
+    [
+     "hofheim",
+     37,
+     1.03
+    ]
+   ],
+   "Kastell Okarben": [
+    [
+     "okarben",
+     32,
+     1.15
+    ]
+   ]
+  }
+ },
+ "mdp.39015039811214": {
+  "label": "no.43 19uu",
+  "ranked": [
+   [
+    "Kastell Holzhausen",
+    52.0
+   ],
+   [
+    "Kastell Kemel",
+    36.9
+   ],
+   [
+    "Kastell Hunzel",
+    23.3
+   ],
+   [
+    "Kastell Marienfels",
+    19.4
+   ],
+   [
+    "Kastell Lorch",
+    8.2
+   ]
+  ],
+  "hits": {
+   "Kastell Holzhausen": [
+    [
+     "holzhausen",
+     44,
+     1.18
+    ]
+   ],
+   "Kastell Kemel": [
+    [
+     "kemel",
+     30,
+     1.23
+    ]
+   ],
+   "Kastell Hunzel": [
+    [
+     "hunzel",
+     20,
+     1.17
+    ]
+   ]
+  }
+ },
+ "mdp.39015039811222": {
+  "label": "no.44 1926",
+  "ranked": [
+   [
+    "Kastell Wörth",
+    76.2
+   ],
+   [
+    "Kastell Wimpfen",
+    75.2
+   ],
+   [
+    "Kastell Schloßau",
+    42.7
+   ],
+   [
+    "Kastelle von Neckarburken",
+    32.2
+   ],
+   [
+    "Kastell Hesselbach",
+    30.0
+   ]
+  ],
+  "hits": {
+   "Kastell Wörth": [
+    [
+     "worth",
+     67,
+     1.14
+    ]
+   ],
+   "Kastell Wimpfen": [
+    [
+     "wimpfen",
+     67,
+     1.12
+    ]
+   ],
+   "Kastell Schloßau": [
+    [
+     "schloßau",
+     33,
+     1.12
+    ],
+    [
+     "schlossau",
+     6,
+     1.12
+    ]
+   ]
+  }
+ },
+ "mdp.39015039811230": {
+  "label": "no.45 1928",
+  "ranked": [
+   [
+    "Kastell Gunzenhausen",
+    112.9
+   ],
+   [
+    "Kastell Weißenburg",
+    40.7
+   ],
+   [
+    "Kastell Theilenhofen",
+    29.0
+   ],
+   [
+    "Kastell Pfünz",
+    28.4
+   ],
+   [
+    "Kastell Gnotzheim",
+    16.6
+   ]
+  ],
+  "hits": {
+   "Kastell Gunzenhausen": [
+    [
+     "gunzenhausen",
+     110,
+     1.03
+    ]
+   ],
+   "Kastell Weißenburg": [
+    [
+     "weißenburg",
+     33,
+     1.2
+    ],
+    [
+     "weissenburg",
+     1,
+     1.2
+    ]
+   ],
+   "Kastell Theilenhofen": [
+    [
+     "theilenhofen",
+     23,
+     1.26
+    ]
+   ]
+  }
+ },
+ "mdp.39015039811248": {
+  "label": "no.46 1929",
+  "ranked": [
+   [
+    "Kastell Stuttgart-Bad Cannstatt",
+    31.1
+   ],
+   [
+    "Kastell Pfünz",
+    25.0
+   ],
+   [
+    "Kastell Zugmantel",
+    24.1
+   ],
+   [
+    "Kastell Köngen",
+    23.1
+   ],
+   [
+    "Kastell Westernbach",
+    21.8
+   ]
+  ],
+  "hits": {
+   "Kastell Stuttgart-Bad Cannstatt": [
+    [
+     "cannstatt",
+     26,
+     1.2
+    ]
+   ],
+   "Kastell Pfünz": [
+    [
+     "pfunz",
+     22,
+     1.14
+    ]
+   ],
+   "Kastell Zugmantel": [
+    [
+     "zugmantel",
+     22,
+     1.09
+    ]
+   ]
+  }
+ },
+ "mdp.39015039811255": {
+  "label": "no.47 1930",
+  "ranked": [
+   [
+    "Kastell Gunzenhausen",
+    81.1
+   ],
+   [
+    "Kastell Dambach",
+    32.3
+   ],
+   [
+    "Kastell Gnotzheim",
+    20.5
+   ],
+   [
+    "Kastell Ruffenhofen",
+    16.3
+   ],
+   [
+    "Kastell Oberdorf",
+    15.5
+   ]
+  ],
+  "hits": {
+   "Kastell Gunzenhausen": [
+    [
+     "gunzenhausen",
+     79,
+     1.03
+    ]
+   ],
+   "Kastell Dambach": [
+    [
+     "dambach",
+     27,
+     1.15
+    ],
+    [
+     "ehingen",
+     7,
+     1.15
+    ]
+   ],
+   "Kastell Gnotzheim": [
+    [
+     "gnotzheim",
+     16,
+     1.28
+    ]
+   ]
+  }
+ },
+ "mdp.39015039811263": {
+  "label": "no.48 1931",
+  "ranked": [
+   [
+    "Kastelle von Welzheim",
+    169.9
+   ],
+   [
+    "Kastell Miltenberg-Altstadt",
+    122.0
+   ],
+   [
+    "Kastell Walldürn",
+    51.4
+   ],
+   [
+    "Kastell Öhringen-West",
+    49.7
+   ],
+   [
+    "Kastell Osterburken",
+    42.6
+   ]
+  ],
+  "hits": {
+   "Kastelle von Welzheim": [
+    [
+     "welzheim",
+     140,
+     1.21
+    ]
+   ],
+   "Kastell Miltenberg-Altstadt": [
+    [
+     "miltenberg",
+     122,
+     1.0
+    ]
+   ],
+   "Kastell Walldürn": [
+    [
+     "walldurn",
+     47,
+     1.09
+    ]
+   ]
+  }
+ },
+ "mdp.39015039811289": {
+  "label": "no.50 1933",
+  "ranked": [
+   [
+    "Kastell Kösching",
+    26.9
+   ],
+   [
+    "Kastell Pfünz",
+    15.9
+   ],
+   [
+    "Kastell Böhming",
+    11.2
+   ],
+   [
+    "Kastell Weißenburg",
+    6.0
+   ],
+   [
+    "Kastell Gnotzheim",
+    5.1
+   ]
+  ],
+  "hits": {
+   "Kastell Kösching": [
+    [
+     "kosching",
+     21,
+     1.28
+    ]
+   ],
+   "Kastell Pfünz": [
+    [
+     "pfunz",
+     14,
+     1.14
+    ]
+   ],
+   "Kastell Böhming": [
+    [
+     "bohming",
+     9,
+     1.25
+    ]
+   ]
+  }
+ },
+ "mdp.39015039811297": {
+  "label": "no.51 1935",
+  "ranked": [
+   [
+    "Kastell Hüfingen",
+    82.1
+   ],
+   [
+    "Kastelle von Welzheim",
+    75.2
+   ],
+   [
+    "Kastell Wimpfen",
+    50.5
+   ],
+   [
+    "Kastell Lorch",
+    46.2
+   ],
+   [
+    "Kastell Aalen",
+    37.3
+   ]
+  ],
+  "hits": {
+   "Kastell Hüfingen": [
+    [
+     "hufingen",
+     31,
+     2.65
+    ]
+   ],
+   "Kastelle von Welzheim": [
+    [
+     "welzheim",
+     62,
+     1.21
+    ]
+   ],
+   "Kastell Wimpfen": [
+    [
+     "wimpfen",
+     45,
+     1.12
+    ]
+   ]
+  }
+ },
+ "mdp.39015039811305": {
+  "label": "no.52 1935",
+  "ranked": [
+   [
+    "Kastell Saalburg",
+    157.0
+   ],
+   [
+    "Kastell Zugmantel",
+    61.3
+   ],
+   [
+    "Kastell Kleiner Feldberg",
+    34.8
+   ],
+   [
+    "Kastell Alteburg",
+    31.8
+   ],
+   [
+    "Kastell Hofheim",
+    24.6
+   ]
+  ],
+  "hits": {
+   "Kastell Saalburg": [
+    [
+     "saalburg",
+     153,
+     1.03
+    ]
+   ],
+   "Kastell Zugmantel": [
+    [
+     "zugmantel",
+     53,
+     1.09
+    ],
+    [
+     "orlen",
+     8,
+     1.09
+    ]
+   ],
+   "Kastell Kleiner Feldberg": [
+    [
+     "feldberg",
+     30,
+     1.12
+    ],
+    [
+     "schmitten",
+     4,
+     1.12
+    ]
+   ]
+  }
+ },
+ "mdp.39015039811313": {
+  "label": "no.53 1936",
+  "ranked": [
+   [
+    "Kastell Hainhaus",
+    64.2
+   ],
+   [
+    "Kastell Butzbach",
+    61.3
+   ],
+   [
+    "Kastell Kesselstadt",
+    57.6
+   ],
+   [
+    "Kastell Kapersburg",
+    53.3
+   ],
+   [
+    "Kastell Arnsburg",
+    51.6
+   ]
+  ],
+  "hits": {
+   "Kastell Hainhaus": [
+    [
+     "hainhaus",
+     23,
+     2.79
+    ]
+   ],
+   "Kastell Butzbach": [
+    [
+     "butzbach",
+     59,
+     1.04
+    ]
+   ],
+   "Kastell Kesselstadt": [
+    [
+     "hanau",
+     49,
+     1.07
+    ],
+    [
+     "kesselstadt",
+     11,
+     1.07
+    ]
+   ]
+  }
+ },
+ "mdp.39015039811321": {
+  "label": "no.54 1936",
+  "ranked": [
+   [
+    "Kastell Friedberg",
+    44.3
+   ],
+   [
+    "Kastell Okarben",
+    33.4
+   ],
+   [
+    "Kastell Hofheim",
+    30.8
+   ],
+   [
+    "Kastell Zugmantel",
+    29.5
+   ],
+   [
+    "Kastell Saalburg",
+    28.7
+   ]
+  ],
+  "hits": {
+   "Kastell Friedberg": [
+    [
+     "friedberg",
+     40,
+     1.11
+    ]
+   ],
+   "Kastell Okarben": [
+    [
+     "okarben",
+     29,
+     1.15
+    ]
+   ],
+   "Kastell Hofheim": [
+    [
+     "hofheim",
+     30,
+     1.03
+    ]
+   ]
+  }
+ },
+ "mdp.39015039811339": {
+  "label": "no.55 1937",
+  "ranked": [
+   [
+    "Kastell Hüfingen",
+    219.8
+   ],
+   [
+    "Kastell Hofheim",
+    21.5
+   ],
+   [
+    "Kastell Heddesdorf",
+    15.6
+   ],
+   [
+    "Kastell Niederbieber",
+    13.5
+   ],
+   [
+    "Kastelle von Welzheim",
+    7.3
+   ]
+  ],
+  "hits": {
+   "Kastell Hüfingen": [
+    [
+     "hufingen",
+     83,
+     2.65
+    ]
+   ],
+   "Kastell Hofheim": [
+    [
+     "hofheim",
+     21,
+     1.03
+    ]
+   ],
+   "Kastell Heddesdorf": [
+    [
+     "neuwied",
+     9,
+     1.2
+    ],
+    [
+     "heddesdorf",
+     6,
+     1.2
+    ]
+   ]
+  }
+ },
+ "mdp.39015039811347": {
+  "label": "no.56 1937",
+  "ranked": [
+   [
+    "Kastell Saalburg",
+    93.4
+   ],
+   [
+    "Kastell Bendorf",
+    83.2
+   ],
+   [
+    "Kastell Zugmantel",
+    19.7
+   ],
+   [
+    "Kastell Kapersburg",
+    15.0
+   ],
+   [
+    "Kastell Butzbach",
+    13.5
+   ]
+  ],
+  "hits": {
+   "Kastell Saalburg": [
+    [
+     "saalburg",
+     91,
+     1.03
+    ]
+   ],
+   "Kastell Bendorf": [
+    [
+     "bendorf",
+     36,
+     2.31
+    ]
+   ],
+   "Kastell Zugmantel": [
+    [
+     "zugmantel",
+     18,
+     1.09
+    ]
+   ]
+  }
+ },
+ "njp.32101076455177": {
+  "label": "Abt. B, Bd. 3 (nr. 32-38)",
+  "ranked": [
+   [
+    "Kastell Stockstadt",
+    209.9
+   ],
+   [
+    "Kastell Miltenberg-Altstadt",
+    99.0
+   ],
+   [
+    "Kastell Obernburg",
+    92.1
+   ],
+   [
+    "Kastell Zugmantel",
+    54.7
+   ],
+   [
+    "Kastell Saalburg",
+    52.3
+   ]
+  ],
+  "hits": {
+   "Kastell Stockstadt": [
+    [
+     "stockstadt",
+     187,
+     1.12
+    ]
+   ],
+   "Kastell Miltenberg-Altstadt": [
+    [
+     "miltenberg",
+     99,
+     1.0
+    ]
+   ],
+   "Kastell Obernburg": [
+    [
+     "obernburg",
+     82,
+     1.12
+    ]
+   ]
+  }
+ },
+ "njp.32101076455185": {
+  "label": "Abt. B, Bd. 4 (nr. 39-45)",
+  "ranked": [
+   [
+    "Kastell Jagsthausen",
+    82.9
+   ],
+   [
+    "Kastell Osterburken",
+    70.7
+   ],
+   [
+    "Kastell Öhringen-West",
+    45.4
+   ],
+   [
+    "Kastell Mainhardt",
+    31.6
+   ],
+   [
+    "Kastelle von Welzheim",
+    30.3
+   ]
+  ],
+  "hits": {
+   "Kastell Jagsthausen": [
+    [
+     "jagsthausen",
+     72,
+     1.15
+    ]
+   ],
+   "Kastell Osterburken": [
+    [
+     "osterburken",
+     68,
+     1.04
+    ]
+   ],
+   "Kastell Öhringen-West": [
+    [
+     "ohringen",
+     38,
+     1.08
+    ],
+    [
+     "burgkastell",
+     10,
+     1.08
+    ],
+    [
+     "oehringen",
+     4,
+     1.08
+    ]
+   ]
+  }
+ },
+ "njp.32101076455219": {
+  "label": "Abt. B, Bd. 7 (nr. 71-75)",
+  "ranked": [
+   [
+    "Kastell Pfünz",
+    192.2
+   ],
+   [
+    "Kastell Weißenburg",
+    112.6
+   ],
+   [
+    "Kastell Kösching",
+    75.5
+   ],
+   [
+    "Kastell Theilenhofen",
+    39.1
+   ],
+   [
+    "Kastell Böhming",
+    29.9
+   ]
+  ],
+  "hits": {
+   "Kastell Pfünz": [
+    [
+     "pfunz",
+     169,
+     1.14
+    ]
+   ],
+   "Kastell Weißenburg": [
+    [
+     "weissenburg",
+     94,
+     1.2
+    ]
+   ],
+   "Kastell Kösching": [
+    [
+     "kosching",
+     59,
+     1.28
+    ],
+    [
+     "koesching",
+     1,
+     1.28
+    ]
+   ]
+  }
+ },
+ "njp.32101076455417": {
+  "label": "Abt. A, Bd. 1, pt. 2 (Str. 2)",
+  "ranked": [
+   [
+    "Kastell Holzhausen",
+    54.4
+   ],
+   [
+    "Kastell Kemel",
+    50.4
+   ],
+   [
+    "Kastell Hunzel",
+    25.7
+   ],
+   [
+    "Kastell Marienfels",
+    23.1
+   ],
+   [
+    "Kastell Zugmantel",
+    13.1
+   ]
+  ],
+  "hits": {
+   "Kastell Holzhausen": [
+    [
+     "holzhausen",
+     46,
+     1.18
+    ]
+   ],
+   "Kastell Kemel": [
+    [
+     "kemel",
+     41,
+     1.23
+    ]
+   ],
+   "Kastell Hunzel": [
+    [
+     "hunzel",
+     22,
+     1.17
+    ]
+   ]
+  }
+ },
+ "uc1.c2605048": {
+  "label": "v. 1",
+  "ranked": [
+   [
+    "Kastell Butzbach",
+    37.4
+   ],
+   [
+    "Kastell Murrhardt",
+    20.2
+   ],
+   [
+    "Kastell Unterböbingen",
+    13.3
+   ],
+   [
+    "Kastell Saalburg",
+    6.2
+   ],
+   [
+    "Kastelle von Neckarburken",
+    5.2
+   ]
+  ],
+  "hits": {
+   "Kastell Butzbach": [
+    [
+     "butzbach",
+     36,
+     1.04
+    ],
+    [
+     "hunneburg",
+     11,
+     1.04
+    ]
+   ],
+   "Kastell Murrhardt": [
+    [
+     "murrhardt",
+     18,
+     1.12
+    ]
+   ],
+   "Kastell Unterböbingen": [
+    [
+     "unterbobingen",
+     11,
+     1.11
+    ],
+    [
+     "unterboebingen",
+     1,
+     1.11
+    ]
+   ]
+  }
+ },
+ "uc1.c2605049": {
+  "label": "v. 2",
+  "ranked": [
+   [
+    "Kastell Osterburken",
+    54.0
+   ],
+   [
+    "Kastelle von Neckarburken",
+    6.2
+   ],
+   [
+    "Kastell Butzbach",
+    5.2
+   ],
+   [
+    "Kastell Marköbel",
+    3.0
+   ],
+   [
+    "Kastell Großkrotzenburg",
+    3.0
+   ]
+  ],
+  "hits": {
+   "Kastell Osterburken": [
+    [
+     "osterburken",
+     52,
+     1.04
+    ]
+   ],
+   "Kastelle von Neckarburken": [
+    [
+     "neckarburken",
+     6,
+     1.04
+    ]
+   ],
+   "Kastell Butzbach": [
+    [
+     "butzbach",
+     5,
+     1.04
+    ]
+   ]
+  }
+ },
+ "uc1.c2605050": {
+  "label": "v. 5",
+  "ranked": [
+   [
+    "Kastell Öhringen-West",
+    36.7
+   ],
+   [
+    "Kastell Öhringen-Ost",
+    28.5
+   ],
+   [
+    "Kastell Hainhaus",
+    19.5
+   ],
+   [
+    "Kastell Lorch",
+    11.3
+   ],
+   [
+    "Kastell Osterburken",
+    8.3
+   ]
+  ],
+  "hits": {
+   "Kastell Öhringen-West": [
+    [
+     "ohringen",
+     31,
+     1.08
+    ],
+    [
+     "burgkastell",
+     10,
+     1.08
+    ],
+    [
+     "oehringen",
+     3,
+     1.08
+    ]
+   ],
+   "Kastell Öhringen-Ost": [
+    [
+     "rendelkastell",
+     8,
+     3.56
+    ]
+   ],
+   "Kastell Hainhaus": [
+    [
+     "hainhaus",
+     7,
+     2.79
+    ]
+   ]
+  }
+ },
+ "uc1.c2605053": {
+  "label": "v. 7",
+  "ranked": [
+   [
+    "Kastell Hofheim",
+    43.1
+   ],
+   [
+    "Kastell Okarben",
+    5.8
+   ],
+   [
+    "Kastell Kesselstadt",
+    4.3
+   ],
+   [
+    "Kastell Ruffenhofen",
+    3.5
+   ],
+   [
+    "Kastell Butzbach",
+    3.1
+   ]
+  ],
+  "hits": {
+   "Kastell Hofheim": [
+    [
+     "hofheim",
+     42,
+     1.03
+    ]
+   ],
+   "Kastell Okarben": [
+    [
+     "okarben",
+     5,
+     1.15
+    ]
+   ],
+   "Kastell Kesselstadt": [
+    [
+     "kesselstadt",
+     3,
+     1.07
+    ],
+    [
+     "hanau",
+     1,
+     1.07
+    ]
+   ]
+  }
+ },
+ "uc1.c2605054": {
+  "label": "v. 6",
+  "ranked": [
+   [
+    "Kastell Oberscheidental",
+    18.6
+   ],
+   [
+    "Kastell Waldmössingen",
+    14.0
+   ],
+   [
+    "Kastell Hunzel",
+    8.2
+   ],
+   [
+    "Kastell Osterburken",
+    5.2
+   ],
+   [
+    "Kastell Sulz",
+    4.6
+   ]
+  ],
+  "hits": {
+   "Kastell Oberscheidental": [
+    [
+     "oberscheidenthal",
+     17,
+     1.09
+    ],
+    [
+     "mudau",
+     1,
+     1.09
+    ]
+   ],
+   "Kastell Waldmössingen": [
+    [
+     "waldmossingen",
+     12,
+     1.17
+    ],
+    [
+     "schramberg",
+     3,
+     1.17
+    ]
+   ],
+   "Kastell Hunzel": [
+    [
+     "hunzel",
+     7,
+     1.17
+    ]
+   ]
+  }
+ },
+ "uc1.c2605055": {
+  "label": "v. 8",
+  "ranked": [
+   [
+    "Kastelle von Walheim",
+    24.6
+   ],
+   [
+    "Kastell Sulz",
+    17.3
+   ],
+   [
+    "Kastell Langenhain",
+    15.1
+   ],
+   [
+    "Kastell Osterburken",
+    4.2
+   ],
+   [
+    "Kastell Saalburg",
+    4.1
+   ]
+  ],
+  "hits": {
+   "Kastelle von Walheim": [
+    [
+     "walheim",
+     19,
+     1.3
+    ]
+   ],
+   "Kastell Sulz": [
+    [
+     "sulz",
+     15,
+     1.15
+    ]
+   ],
+   "Kastell Langenhain": [
+    [
+     "langenhain",
+     14,
+     1.08
+    ]
+   ]
+  }
+ },
+ "uc1.c2605056": {
+  "label": "v. 9",
+  "ranked": [
+   [
+    "Kastelle von Neckarburken",
+    44.7
+   ],
+   [
+    "Kastell Osterburken",
+    15.6
+   ],
+   [
+    "Kastell Oberscheidental",
+    5.5
+   ],
+   [
+    "Kastell Hüfingen",
+    2.6
+   ],
+   [
+    "Kastell Hesselbach",
+    2.3
+   ]
+  ],
+  "hits": {
+   "Kastelle von Neckarburken": [
+    [
+     "neckarburken",
+     43,
+     1.04
+    ]
+   ],
+   "Kastell Osterburken": [
+    [
+     "osterburken",
+     15,
+     1.04
+    ]
+   ],
+   "Kastell Oberscheidental": [
+    [
+     "oberscheidenthal",
+     5,
+     1.09
+    ]
+   ]
+  }
+ },
+ "uc1.c2605057": {
+  "label": "v. 10",
+  "ranked": [
+   [
+    "Kastell Heilbronn-Böckingen",
+    24.8
+   ],
+   [
+    "Kastell Kesselstadt",
+    13.9
+   ],
+   [
+    "Kastell Osterburken",
+    6.2
+   ],
+   [
+    "Kastell Butzbach",
+    5.2
+   ],
+   [
+    "Kastell Hofheim",
+    5.1
+   ]
+  ],
+  "hits": {
+   "Kastell Heilbronn-Böckingen": [
+    [
+     "bockingen",
+     23,
+     1.08
+    ],
+    [
+     "heilbronn",
+     9,
+     1.08
+    ],
+    [
+     "boeckingen",
+     2,
+     1.08
+    ]
+   ],
+   "Kastell Kesselstadt": [
+    [
+     "kesselstadt",
+     13,
+     1.07
+    ],
+    [
+     "hanau",
+     6,
+     1.07
+    ]
+   ],
+   "Kastell Osterburken": [
+    [
+     "osterburken",
+     6,
+     1.04
+    ]
+   ]
+  }
+ },
+ "uc1.c2605058": {
+  "label": "v. 11",
+  "ranked": [
+   [
+    "Kastell Wörth",
+    29.6
+   ],
+   [
+    "Kastell Trennfurt",
+    21.3
+   ],
+   [
+    "Kastell Schloßau",
+    15.7
+   ],
+   [
+    "Kastell Obernburg",
+    9.0
+   ],
+   [
+    "Kastell Miltenberg-Altstadt",
+    8.0
+   ]
+  ],
+  "hits": {
+   "Kastell Wörth": [
+    [
+     "worth",
+     25,
+     1.14
+    ],
+    [
+     "woerth",
+     2,
+     1.14
+    ]
+   ],
+   "Kastell Trennfurt": [
+    [
+     "trennfurt",
+     17,
+     1.18
+    ],
+    [
+     "klingenberg",
+     4,
+     1.18
+    ]
+   ],
+   "Kastell Schloßau": [
+    [
+     "schlossau",
+     14,
+     1.12
+    ]
+   ]
+  }
+ },
+ "uc1.c2605059": {
+  "label": "v. 12",
+  "ranked": [
+   [
+    "Kastell Niederberg",
+    35.0
+   ],
+   [
+    "Kastell Arzbach",
+    15.4
+   ],
+   [
+    "Kastell Saalburg",
+    9.2
+   ],
+   [
+    "Kastell Hofheim",
+    7.2
+   ],
+   [
+    "Kastell Niedernberg",
+    6.6
+   ]
+  ],
+  "hits": {
+   "Kastell Niederberg": [
+    [
+     "niederberg",
+     31,
+     1.09
+    ],
+    [
+     "koblenz",
+     2,
+     1.09
+    ]
+   ],
+   "Kastell Arzbach": [
+    [
+     "arzbach",
+     13,
+     1.18
+    ]
+   ],
+   "Kastell Saalburg": [
+    [
+     "saalburg",
+     9,
+     1.03
+    ]
+   ]
+  }
+ },
+ "uc1.c2605060": {
+  "label": "v. 13",
+  "ranked": [
+   [
+    "Kastell Heldenbergen",
+    32.6
+   ],
+   [
+    "Kastell Wimpfen",
+    25.8
+   ],
+   [
+    "Kastell Heidenheim",
+    21.8
+   ],
+   [
+    "Kastell Saalburg",
+    14.4
+   ],
+   [
+    "Kastell Osterburken",
+    10.4
+   ]
+  ],
+  "hits": {
+   "Kastell Heldenbergen": [
+    [
+     "heldenbergen",
+     29,
+     1.12
+    ]
+   ],
+   "Kastell Wimpfen": [
+    [
+     "wimpfen",
+     23,
+     1.12
+    ]
+   ],
+   "Kastell Heidenheim": [
+    [
+     "heidenheim",
+     18,
+     1.21
+    ]
+   ]
+  }
+ },
+ "uc1.c2605061": {
+  "label": "v. 14",
+  "ranked": [
+   [
+    "Kastell Pfünz",
+    109.2
+   ],
+   [
+    "Kastell Osterburken",
+    11.4
+   ],
+   [
+    "Kastell Kösching",
+    9.0
+   ],
+   [
+    "Kastell Heidenheim",
+    8.5
+   ],
+   [
+    "Kastell Marköbel",
+    7.1
+   ]
+  ],
+  "hits": {
+   "Kastell Pfünz": [
+    [
+     "pfunz",
+     96,
+     1.14
+    ]
+   ],
+   "Kastell Osterburken": [
+    [
+     "osterburken",
+     11,
+     1.04
+    ]
+   ],
+   "Kastell Kösching": [
+    [
+     "kosching",
+     7,
+     1.28
+    ]
+   ]
+  }
+ },
+ "uc1.c2605062": {
+  "label": "v. 15",
+  "ranked": [
+   [
+    "Kastell Dambach",
+    31.1
+   ],
+   [
+    "Kastell Kemel",
+    12.3
+   ],
+   [
+    "Kastell Pfünz",
+    10.2
+   ],
+   [
+    "Kastell Weißenburg",
+    9.6
+   ],
+   [
+    "Kastell Halheim",
+    7.8
+   ]
+  ],
+  "hits": {
+   "Kastell Dambach": [
+    [
+     "dambach",
+     27,
+     1.15
+    ],
+    [
+     "ehingen",
+     3,
+     1.15
+    ]
+   ],
+   "Kastell Kemel": [
+    [
+     "kemel",
+     10,
+     1.23
+    ]
+   ],
+   "Kastell Pfünz": [
+    [
+     "pfunz",
+     9,
+     1.14
+    ]
+   ]
+  }
+ },
+ "uc1.c2605063": {
+  "label": "v. 16",
+  "ranked": [
+   [
+    "Kastell Okarben",
+    47.2
+   ],
+   [
+    "Kastell Pfünz",
+    22.7
+   ],
+   [
+    "Kastell Friedberg",
+    13.3
+   ],
+   [
+    "Kastell Hofheim",
+    12.3
+   ],
+   [
+    "Kastell Saalburg",
+    9.2
+   ]
+  ],
+  "hits": {
+   "Kastell Okarben": [
+    [
+     "okarben",
+     41,
+     1.15
+    ]
+   ],
+   "Kastell Pfünz": [
+    [
+     "pfunz",
+     20,
+     1.14
+    ]
+   ],
+   "Kastell Friedberg": [
+    [
+     "friedberg",
+     12,
+     1.11
+    ]
+   ]
+  }
+ },
+ "uc1.c2605064": {
+  "label": "v. 17",
+  "ranked": [
+   [
+    "Kastell Arnsburg",
+    52.8
+   ],
+   [
+    "Kastell Benningen",
+    32.8
+   ],
+   [
+    "Kastell Butzbach",
+    12.5
+   ],
+   [
+    "Kastell Saalburg",
+    10.3
+   ],
+   [
+    "Kastell Pfünz",
+    9.1
+   ]
+  ],
+  "hits": {
+   "Kastell Arnsburg": [
+    [
+     "arnsburg",
+     47,
+     1.12
+    ]
+   ],
+   "Kastell Benningen": [
+    [
+     "benningen",
+     27,
+     1.21
+    ]
+   ],
+   "Kastell Butzbach": [
+    [
+     "butzbach",
+     12,
+     1.04
+    ],
+    [
+     "hunneburg",
+     1,
+     1.04
+    ]
+   ]
+  }
+ },
+ "uc1.c2605065": {
+  "label": "v. 18",
+  "ranked": [
+   [
+    "Kastell Obernburg",
+    59.5
+   ],
+   [
+    "Kastell Ober-Florstadt",
+    37.3
+   ],
+   [
+    "Kastell Pfünz",
+    17.1
+   ],
+   [
+    "Kastell Heldenbergen",
+    10.1
+   ],
+   [
+    "Kastell Friedberg",
+    8.9
+   ]
+  ],
+  "hits": {
+   "Kastell Obernburg": [
+    [
+     "obernburg",
+     53,
+     1.12
+    ]
+   ],
+   "Kastell Ober-Florstadt": [
+    [
+     "florstadt",
+     30,
+     1.17
+    ],
+    [
+     "oberflorstadt",
+     2,
+     1.17
+    ]
+   ],
+   "Kastell Pfünz": [
+    [
+     "pfunz",
+     15,
+     1.14
+    ]
+   ]
+  }
+ },
+ "uc1.c2605066": {
+  "label": "v. 19",
+  "ranked": [
+   [
+    "Kastell Echzell",
+    39.8
+   ],
+   [
+    "Kastell Heddesdorf",
+    38.3
+   ],
+   [
+    "Kastell Pfünz",
+    21.6
+   ],
+   [
+    "Kastell Seckmauern",
+    21.5
+   ],
+   [
+    "Kastell Arnsburg",
+    15.7
+   ]
+  ],
+  "hits": {
+   "Kastell Echzell": [
+    [
+     "echzell",
+     35,
+     1.14
+    ]
+   ],
+   "Kastell Heddesdorf": [
+    [
+     "heddesdorf",
+     32,
+     1.2
+    ],
+    [
+     "neuwied",
+     10,
+     1.2
+    ]
+   ],
+   "Kastell Pfünz": [
+    [
+     "pfunz",
+     19,
+     1.14
+    ]
+   ]
+  }
+ },
+ "uc1.c2605067": {
+  "label": "v. 20",
+  "ranked": [
+   [
+    "Kastell Großkrotzenburg",
+    58.0
+   ],
+   [
+    "Kastell Marienfels",
+    26.7
+   ],
+   [
+    "Kastell Rückingen",
+    17.3
+   ],
+   [
+    "Kastell Saalburg",
+    14.4
+   ],
+   [
+    "Kastell Arnsburg",
+    12.3
+   ]
+  ],
+  "hits": {
+   "Kastell Großkrotzenburg": [
+    [
+     "krotzenburg",
+     57,
+     1.0
+    ],
+    [
+     "grosskrotzenburg",
+     2,
+     1.0
+    ]
+   ],
+   "Kastell Marienfels": [
+    [
+     "marienfels",
+     22,
+     1.21
+    ]
+   ],
+   "Kastell Rückingen": [
+    [
+     "ruckingen",
+     15,
+     1.15
+    ]
+   ]
+  }
+ },
+ "uc1.c2605068": {
+  "label": "v. 21",
+  "ranked": [
+   [
+    "Kastelle von Welzheim",
+    30.3
+   ],
+   [
+    "Kastell Walldürn",
+    27.4
+   ],
+   [
+    "Kastell Pfünz",
+    8.0
+   ],
+   [
+    "Kastell Arnsburg",
+    6.7
+   ],
+   [
+    "Kastell Osterburken",
+    5.2
+   ]
+  ],
+  "hits": {
+   "Kastelle von Welzheim": [
+    [
+     "welzheim",
+     25,
+     1.21
+    ]
+   ],
+   "Kastell Walldürn": [
+    [
+     "walldurn",
+     25,
+     1.09
+    ]
+   ],
+   "Kastell Pfünz": [
+    [
+     "pfunz",
+     7,
+     1.14
+    ]
+   ]
+  }
+ },
+ "uc1.c2605069": {
+  "label": "v. 22",
+  "ranked": [
+   [
+    "Kastell Holzhausen",
+    62.7
+   ],
+   [
+    "Kastell Saalburg",
+    12.3
+   ],
+   [
+    "Kastell Niederberg",
+    6.6
+   ],
+   [
+    "Kastell Kemel",
+    6.1
+   ],
+   [
+    "Kastell Pfünz",
+    4.5
+   ]
+  ],
+  "hits": {
+   "Kastell Holzhausen": [
+    [
+     "holzhausen",
+     53,
+     1.18
+    ]
+   ],
+   "Kastell Saalburg": [
+    [
+     "saalburg",
+     12,
+     1.03
+    ]
+   ],
+   "Kastell Niederberg": [
+    [
+     "niederberg",
+     5,
+     1.09
+    ],
+    [
+     "koblenz",
+     1,
+     1.09
+    ]
+   ]
+  }
+ },
+ "uc1.c2605070": {
+  "label": "v. 23",
+  "ranked": [
+   [
+    "Kastell Aalen",
+    28.0
+   ],
+   [
+    "Kastell Lützelbach",
+    17.2
+   ],
+   [
+    "Kastell Pfünz",
+    17.1
+   ],
+   [
+    "Kastelle von Neckarburken",
+    12.5
+   ],
+   [
+    "Kastell Saalburg",
+    12.3
+   ]
+  ],
+  "hits": {
+   "Kastell Aalen": [
+    [
+     "aalen",
+     24,
+     1.17
+    ]
+   ],
+   "Kastell Lützelbach": [
+    [
+     "lutzelbach",
+     14,
+     1.23
+    ]
+   ],
+   "Kastell Pfünz": [
+    [
+     "pfunz",
+     15,
+     1.14
+    ]
+   ]
+  }
+ },
+ "uc1.c2605071": {
+  "label": "v. 24",
+  "ranked": [
+   [
+    "Kastell Urspring",
+    64.5
+   ],
+   [
+    "Kastell Theilenhofen",
+    31.6
+   ],
+   [
+    "Kastell Pfünz",
+    23.9
+   ],
+   [
+    "Kastell Waldmössingen",
+    14.0
+   ],
+   [
+    "Kastell Heidenheim",
+    8.5
+   ]
+  ],
+  "hits": {
+   "Kastell Urspring": [
+    [
+     "urspring",
+     56,
+     1.15
+    ]
+   ],
+   "Kastell Theilenhofen": [
+    [
+     "theilenhofen",
+     25,
+     1.26
+    ]
+   ],
+   "Kastell Pfünz": [
+    [
+     "pfunz",
+     21,
+     1.14
+    ]
+   ]
+  }
+ },
+ "uc1.c2605072": {
+  "label": "v. 25",
+  "ranked": [
+   [
+    "Kastell Kleiner Feldberg",
+    78.6
+   ],
+   [
+    "Kastell Saalburg",
+    35.9
+   ],
+   [
+    "Kastell Pfünz",
+    26.2
+   ],
+   [
+    "Kastell Großkrotzenburg",
+    12.0
+   ],
+   [
+    "Kastell Holzhausen",
+    9.5
+   ]
+  ],
+  "hits": {
+   "Kastell Kleiner Feldberg": [
+    [
+     "feldberg",
+     70,
+     1.12
+    ]
+   ],
+   "Kastell Saalburg": [
+    [
+     "saalburg",
+     35,
+     1.03
+    ]
+   ],
+   "Kastell Pfünz": [
+    [
+     "pfunz",
+     23,
+     1.14
+    ]
+   ]
+  }
+ },
+ "uc1.c2605073": {
+  "label": "v. 26",
+  "ranked": [
+   [
+    "Kastell Weißenburg",
+    91.0
+   ],
+   [
+    "Kastell Pfünz",
+    23.9
+   ],
+   [
+    "Kastell Osterburken",
+    7.3
+   ],
+   [
+    "Kastell Urspring",
+    6.9
+   ],
+   [
+    "Kastell Theilenhofen",
+    6.3
+   ]
+  ],
+  "hits": {
+   "Kastell Weißenburg": [
+    [
+     "weissenburg",
+     76,
+     1.2
+    ]
+   ],
+   "Kastell Pfünz": [
+    [
+     "pfunz",
+     21,
+     1.14
+    ]
+   ],
+   "Kastell Osterburken": [
+    [
+     "osterburken",
+     7,
+     1.04
+    ]
+   ]
+  }
+ },
+ "uc1.c2605074": {
+  "label": "v. 27",
+  "ranked": [
+   [
+    "Kastell Kapersburg",
+    94.4
+   ],
+   [
+    "Kastell Saalburg",
+    33.9
+   ],
+   [
+    "Kastell Kleiner Feldberg",
+    29.2
+   ],
+   [
+    "Kastell Großkrotzenburg",
+    17.0
+   ],
+   [
+    "Kastell Pfünz",
+    14.8
+   ]
+  ],
+  "hits": {
+   "Kastell Kapersburg": [
+    [
+     "kapersburg",
+     69,
+     1.37
+    ],
+    [
+     "wehrheim",
+     2,
+     1.37
+    ]
+   ],
+   "Kastell Saalburg": [
+    [
+     "saalburg",
+     33,
+     1.03
+    ]
+   ],
+   "Kastell Kleiner Feldberg": [
+    [
+     "feldberg",
+     26,
+     1.12
+    ]
+   ]
+  }
+ },
+ "uc1.c2605075": {
+  "label": "v. 28",
+  "ranked": [
+   [
+    "Kastell Stuttgart-Bad Cannstatt",
+    104.2
+   ],
+   [
+    "Kastell Pfünz",
+    30.7
+   ],
+   [
+    "Kastell Öhringen-West",
+    17.3
+   ],
+   [
+    "Kastell Osterburken",
+    16.6
+   ],
+   [
+    "Kastell Köngen",
+    13.3
+   ]
+  ],
+  "hits": {
+   "Kastell Stuttgart-Bad Cannstatt": [
+    [
+     "cannstatt",
+     87,
+     1.2
+    ]
+   ],
+   "Kastell Pfünz": [
+    [
+     "pfunz",
+     27,
+     1.14
+    ]
+   ],
+   "Kastell Öhringen-West": [
+    [
+     "ohringen",
+     15,
+     1.08
+    ],
+    [
+     "oehringen",
+     1,
+     1.08
+    ]
+   ]
+  }
+ },
+ "uc1.c2605076": {
+  "label": "v. 29",
+  "ranked": [
+   [
+    "Kastell Gnotzheim",
+    46.1
+   ],
+   [
+    "Kastell Pfünz",
+    34.1
+   ],
+   [
+    "Kastell Böhming",
+    28.7
+   ],
+   [
+    "Kastell Weißenburg",
+    18.0
+   ],
+   [
+    "Kastell Gunzenhausen",
+    15.4
+   ]
+  ],
+  "hits": {
+   "Kastell Gnotzheim": [
+    [
+     "gnotzheim",
+     36,
+     1.28
+    ]
+   ],
+   "Kastell Pfünz": [
+    [
+     "pfunz",
+     30,
+     1.14
+    ]
+   ],
+   "Kastell Böhming": [
+    [
+     "bohming",
+     23,
+     1.25
+    ]
+   ]
+  }
+ },
+ "uc1.c2605077": {
+  "label": "v. 30",
+  "ranked": [
+   [
+    "Kastell Köngen",
+    88.6
+   ],
+   [
+    "Kastell Stuttgart-Bad Cannstatt",
+    25.2
+   ],
+   [
+    "Kastell Pfünz",
+    20.5
+   ],
+   [
+    "Kastell Saalburg",
+    9.2
+   ],
+   [
+    "Kastell Heidenheim",
+    8.5
+   ]
+  ],
+  "hits": {
+   "Kastell Köngen": [
+    [
+     "kongen",
+     73,
+     1.21
+    ],
+    [
+     "koengen",
+     2,
+     1.21
+    ]
+   ],
+   "Kastell Stuttgart-Bad Cannstatt": [
+    [
+     "cannstatt",
+     21,
+     1.2
+    ]
+   ],
+   "Kastell Pfünz": [
+    [
+     "pfunz",
+     18,
+     1.14
+    ]
+   ]
+  }
+ },
+ "uc1.c2605078": {
+  "label": "v. 31",
+  "ranked": [
+   [
+    "Kastell Hofheim",
+    45.1
+   ],
+   [
+    "Kastell Saalburg",
+    12.3
+   ],
+   [
+    "Kastell Niederbieber",
+    10.8
+   ],
+   [
+    "Kastell Okarben",
+    10.4
+   ],
+   [
+    "Kastell Arnsburg",
+    9.0
+   ]
+  ],
+  "hits": {
+   "Kastell Hofheim": [
+    [
+     "hofheim",
+     44,
+     1.03
+    ]
+   ],
+   "Kastell Saalburg": [
+    [
+     "saalburg",
+     12,
+     1.03
+    ]
+   ],
+   "Kastell Niederbieber": [
+    [
+     "niederbieber",
+     8,
+     1.35
+    ]
+   ]
+  }
+ },
+ "uc1.c2605079": {
+  "label": "v. 32",
+  "ranked": [
+   [
+    "Kastell Zugmantel",
+    280.1
+   ],
+   [
+    "Kastell Saalburg",
+    106.7
+   ],
+   [
+    "Kastell Jagsthausen",
+    100.2
+   ],
+   [
+    "Kastell Pfünz",
+    76.2
+   ],
+   [
+    "Kastell Stuttgart-Bad Cannstatt",
+    63.5
+   ]
+  ],
+  "hits": {
+   "Kastell Zugmantel": [
+    [
+     "zugmantel",
+     256,
+     1.09
+    ],
+    [
+     "orlen",
+     5,
+     1.09
+    ]
+   ],
+   "Kastell Saalburg": [
+    [
+     "saalburg",
+     104,
+     1.03
+    ]
+   ],
+   "Kastell Jagsthausen": [
+    [
+     "jagsthausen",
+     87,
+     1.15
+    ]
+   ]
+  }
+ },
+ "uc1.c2605080": {
+  "label": "v. 33",
+  "ranked": [
+   [
+    "Kastell Stockstadt",
+    178.5
+   ],
+   [
+    "Kastell Zugmantel",
+    39.4
+   ],
+   [
+    "Kastell Saalburg",
+    38.0
+   ],
+   [
+    "Kastell Stuttgart-Bad Cannstatt",
+    15.6
+   ],
+   [
+    "Kastell Obernburg",
+    14.6
+   ]
+  ],
+  "hits": {
+   "Kastell Stockstadt": [
+    [
+     "stockstadt",
+     159,
+     1.12
+    ]
+   ],
+   "Kastell Zugmantel": [
+    [
+     "zugmantel",
+     36,
+     1.09
+    ]
+   ],
+   "Kastell Saalburg": [
+    [
+     "saalburg",
+     37,
+     1.03
+    ]
+   ]
+  }
+ },
+ "uc1.c2605081": {
+  "label": "v. 34",
+  "ranked": [
+   [
+    "Kastell Miltenberg-Altstadt",
+    78.0
+   ],
+   [
+    "Kastell Stockstadt",
+    19.1
+   ],
+   [
+    "Kastell Zugmantel",
+    15.3
+   ],
+   [
+    "Kastell Großkrotzenburg",
+    12.0
+   ],
+   [
+    "Kastelle von Neckarburken",
+    10.4
+   ]
+  ],
+  "hits": {
+   "Kastell Miltenberg-Altstadt": [
+    [
+     "miltenberg",
+     78,
+     1.0
+    ]
+   ],
+   "Kastell Stockstadt": [
+    [
+     "stockstadt",
+     17,
+     1.12
+    ]
+   ],
+   "Kastell Zugmantel": [
+    [
+     "zugmantel",
+     14,
+     1.09
+    ]
+   ]
+  }
+ },
+ "uc1.c2605082": {
+  "label": "v. 35",
+  "ranked": [
+   [
+    "Kastell Pfünz",
+    46.6
+   ],
+   [
+    "Kastell Zugmantel",
+    33.9
+   ],
+   [
+    "Kastell Stuttgart-Bad Cannstatt",
+    32.3
+   ],
+   [
+    "Kastell Urspring",
+    18.4
+   ],
+   [
+    "Kastell Weißenburg",
+    18.0
+   ]
+  ],
+  "hits": {
+   "Kastell Pfünz": [
+    [
+     "pfunz",
+     41,
+     1.14
+    ]
+   ],
+   "Kastell Zugmantel": [
+    [
+     "zugmantel",
+     31,
+     1.09
+    ]
+   ],
+   "Kastell Stuttgart-Bad Cannstatt": [
+    [
+     "cannstatt",
+     27,
+     1.2
+    ]
+   ]
+  }
+ },
+ "uc1.c2605083": {
+  "label": "v. 36",
+  "ranked": [
+   [
+    "Kastell Inheiden",
+    19.4
+   ],
+   [
+    "Kastell Zugmantel",
+    16.4
+   ],
+   [
+    "Kastell Niederberg",
+    10.9
+   ],
+   [
+    "Kastell Arzbach",
+    9.5
+   ],
+   [
+    "Kastell Stuttgart-Bad Cannstatt",
+    8.4
+   ]
+  ],
+  "hits": {
+   "Kastell Inheiden": [
+    [
+     "inheiden",
+     16,
+     1.21
+    ],
+    [
+     "hungen",
+     5,
+     1.21
+    ]
+   ],
+   "Kastell Zugmantel": [
+    [
+     "zugmantel",
+     15,
+     1.09
+    ]
+   ],
+   "Kastell Niederberg": [
+    [
+     "niederberg",
+     10,
+     1.09
+    ]
+   ]
+  }
+ },
+ "uc1.c2605084": {
+  "label": "v. 37",
+  "ranked": [
+   [
+    "Kastell Altenstadt",
+    23.3
+   ],
+   [
+    "Kastell Hofheim",
+    8.2
+   ],
+   [
+    "Kastell Zugmantel",
+    6.6
+   ],
+   [
+    "Kastell Kapersburg",
+    5.5
+   ],
+   [
+    "Kastell Ober-Florstadt",
+    4.7
+   ]
+  ],
+  "hits": {
+   "Kastell Altenstadt": [
+    [
+     "altenstadt",
+     17,
+     1.37
+    ]
+   ],
+   "Kastell Hofheim": [
+    [
+     "hofheim",
+     8,
+     1.03
+    ]
+   ],
+   "Kastell Zugmantel": [
+    [
+     "zugmantel",
+     6,
+     1.09
+    ]
+   ]
+  }
+ },
+ "uc1.c2605085": {
+  "label": "v. 38",
+  "ranked": [
+   [
+    "Kastell Kösching",
+    58.8
+   ],
+   [
+    "Kastell Rückingen",
+    50.7
+   ],
+   [
+    "Kastell Pfünz",
+    26.2
+   ],
+   [
+    "Kastell Zugmantel",
+    20.8
+   ],
+   [
+    "Kastell Großkrotzenburg",
+    19.0
+   ]
+  ],
+  "hits": {
+   "Kastell Kösching": [
+    [
+     "kosching",
+     46,
+     1.28
+    ],
+    [
+     "koesching",
+     1,
+     1.28
+    ]
+   ],
+   "Kastell Rückingen": [
+    [
+     "ruckingen",
+     44,
+     1.15
+    ]
+   ],
+   "Kastell Pfünz": [
+    [
+     "pfunz",
+     23,
+     1.14
+    ]
+   ]
+  }
+ },
+ "uc1.c2605087": {
+  "label": "v. 40",
+  "ranked": [
+   [
+    "Kastell Bendorf",
+    39.3
+   ],
+   [
+    "Kastell Heddesdorf",
+    27.5
+   ],
+   [
+    "Kastell Niederberg",
+    17.5
+   ],
+   [
+    "Kastell Arzbach",
+    15.4
+   ],
+   [
+    "Kastell Saalburg",
+    7.2
+   ]
+  ],
+  "hits": {
+   "Kastell Bendorf": [
+    [
+     "bendorf",
+     17,
+     2.31
+    ]
+   ],
+   "Kastell Heddesdorf": [
+    [
+     "heddesdorf",
+     15,
+     1.2
+    ],
+    [
+     "neuwied",
+     13,
+     1.2
+    ]
+   ],
+   "Kastell Niederberg": [
+    [
+     "niederberg",
+     13,
+     1.09
+    ],
+    [
+     "koblenz",
+     6,
+     1.09
+    ]
+   ]
+  }
+ },
+ "uc1.c2605088": {
+  "label": "v. 41",
+  "ranked": [
+   [
+    "Kastell Oberdorf",
+    30.9
+   ],
+   [
+    "Kastell Seligenstadt",
+    14.6
+   ],
+   [
+    "Kastell Heidenheim",
+    9.7
+   ],
+   [
+    "Kastell Stockstadt",
+    7.9
+   ],
+   [
+    "Kastell Schloßau",
+    6.7
+   ]
+  ],
+  "hits": {
+   "Kastell Oberdorf": [
+    [
+     "oberdorf",
+     18,
+     1.72
+    ]
+   ],
+   "Kastell Seligenstadt": [
+    [
+     "seligenstadt",
+     12,
+     1.21
+    ]
+   ],
+   "Kastell Heidenheim": [
+    [
+     "heidenheim",
+     8,
+     1.21
+    ]
+   ]
+  }
+ },
+ "uc1.c2605090": {
+  "label": "v. 43",
+  "ranked": [
+   [
+    "Kastell Holzhausen",
+    56.8
+   ],
+   [
+    "Kastell Kemel",
+    40.6
+   ],
+   [
+    "Kastell Hunzel",
+    29.2
+   ],
+   [
+    "Kastell Marienfels",
+    23.1
+   ],
+   [
+    "Kastell Lorch",
+    9.2
+   ]
+  ],
+  "hits": {
+   "Kastell Holzhausen": [
+    [
+     "holzhausen",
+     48,
+     1.18
+    ]
+   ],
+   "Kastell Kemel": [
+    [
+     "kemel",
+     33,
+     1.23
+    ]
+   ],
+   "Kastell Hunzel": [
+    [
+     "hunzel",
+     25,
+     1.17
+    ]
+   ]
+  },
+  "abteilung": "A",
+  "aufnehmer_strecke": "Strecke 1–2",
+  "hinweis": "Rhein–Lahn–Aar, A Bd. I, 1914/15",
+  "titelei": "ROBERT BODEWIG UND NACH EIGENEN UNTERSUCHUNGEN ⟨BEARBEITET VON ERNST FABRICIUS Obergerm.-⟩ raet. Limes A Bd. I 2.",
+  "_lesart": "Streckenband der Abteilung A — die Rangliste nennt die Kastelle ENTLANG der Strecke, nicht das Thema des Bandes."
+ },
+ "uc1.c2605091": {
+  "label": "v. 44",
+  "ranked": [
+   [
+    "Kastell Wörth",
+    73.9
+   ],
+   [
+    "Kastell Wimpfen",
+    73.0
+   ],
+   [
+    "Kastell Schloßau",
+    40.4
+   ],
+   [
+    "Kastelle von Neckarburken",
+    30.1
+   ],
+   [
+    "Kastell Hesselbach",
+    30.0
+   ]
+  ],
+  "hits": {
+   "Kastell Wörth": [
+    [
+     "worth",
+     65,
+     1.14
+    ]
+   ],
+   "Kastell Wimpfen": [
+    [
+     "wimpfen",
+     65,
+     1.12
+    ]
+   ],
+   "Kastell Schloßau": [
+    [
+     "schloßau",
+     32,
+     1.12
+    ],
+    [
+     "schlossau",
+     5,
+     1.12
+    ]
+   ]
+  }
+ },
+ "uc1.c2605092": {
+  "label": "v. 45",
+  "ranked": [
+   [
+    "Kastell Gunzenhausen",
+    111.8
+   ],
+   [
+    "Kastell Weißenburg",
+    39.5
+   ],
+   [
+    "Kastell Theilenhofen",
+    30.3
+   ],
+   [
+    "Kastell Pfünz",
+    29.6
+   ],
+   [
+    "Kastell Gnotzheim",
+    17.9
+   ]
+  ],
+  "hits": {
+   "Kastell Gunzenhausen": [
+    [
+     "gunzenhausen",
+     109,
+     1.03
+    ]
+   ],
+   "Kastell Weißenburg": [
+    [
+     "weißenburg",
+     32,
+     1.2
+    ],
+    [
+     "weissenburg",
+     1,
+     1.2
+    ]
+   ],
+   "Kastell Theilenhofen": [
+    [
+     "theilenhofen",
+     24,
+     1.26
+    ]
+   ]
+  }
+ },
+ "uc1.c2605093": {
+  "label": "v. 46",
+  "ranked": [
+   [
+    "Kastell Stuttgart-Bad Cannstatt",
+    29.9
+   ],
+   [
+    "Kastell Zugmantel",
+    23.0
+   ],
+   [
+    "Kastell Pfünz",
+    22.7
+   ],
+   [
+    "Kastell Westernbach",
+    21.8
+   ],
+   [
+    "Kastell Köngen",
+    20.6
+   ]
+  ],
+  "hits": {
+   "Kastell Stuttgart-Bad Cannstatt": [
+    [
+     "cannstatt",
+     25,
+     1.2
+    ]
+   ],
+   "Kastell Zugmantel": [
+    [
+     "zugmantel",
+     21,
+     1.09
+    ]
+   ],
+   "Kastell Pfünz": [
+    [
+     "pfunz",
+     20,
+     1.14
+    ]
+   ]
+  }
+ },
+ "uc1.c2605094": {
+  "label": "v. 47",
+  "ranked": [
+   [
+    "Kastell Gunzenhausen",
+    80.0
+   ],
+   [
+    "Kastell Dambach",
+    32.3
+   ],
+   [
+    "Kastell Gnotzheim",
+    20.5
+   ],
+   [
+    "Kastell Ruffenhofen",
+    17.5
+   ],
+   [
+    "Kastell Oberdorf",
+    15.5
+   ]
+  ],
+  "hits": {
+   "Kastell Gunzenhausen": [
+    [
+     "gunzenhausen",
+     78,
+     1.03
+    ]
+   ],
+   "Kastell Dambach": [
+    [
+     "dambach",
+     27,
+     1.15
+    ],
+    [
+     "ehingen",
+     7,
+     1.15
+    ]
+   ],
+   "Kastell Gnotzheim": [
+    [
+     "gnotzheim",
+     16,
+     1.28
+    ]
+   ]
+  }
+ },
+ "uc1.c2605095": {
+  "label": "v. 48",
+  "ranked": [
+   [
+    "Kastelle von Welzheim",
+    172.3
+   ],
+   [
+    "Kastell Miltenberg-Altstadt",
+    123.0
+   ],
+   [
+    "Kastell Walldürn",
+    53.6
+   ],
+   [
+    "Kastell Öhringen-West",
+    48.6
+   ],
+   [
+    "Kastell Osterburken",
+    43.6
+   ]
+  ],
+  "hits": {
+   "Kastelle von Welzheim": [
+    [
+     "welzheim",
+     142,
+     1.21
+    ]
+   ],
+   "Kastell Miltenberg-Altstadt": [
+    [
+     "miltenberg",
+     123,
+     1.0
+    ]
+   ],
+   "Kastell Walldürn": [
+    [
+     "walldurn",
+     49,
+     1.09
+    ]
+   ]
+  }
+ },
+ "uc1.c2605096": {
+  "label": "v. 49",
+  "ranked": [
+   [
+    "Kastell Stockstadt",
+    92.1
+   ],
+   [
+    "Kastell Miltenberg-Altstadt",
+    88.0
+   ],
+   [
+    "Kastell Seligenstadt",
+    63.1
+   ],
+   [
+    "Kastell Großkrotzenburg",
+    37.0
+   ],
+   [
+    "Kastelle von Welzheim",
+    36.4
+   ]
+  ],
+  "hits": {
+   "Kastell Stockstadt": [
+    [
+     "stockstadt",
+     82,
+     1.12
+    ]
+   ],
+   "Kastell Miltenberg-Altstadt": [
+    [
+     "miltenberg",
+     88,
+     1.0
+    ]
+   ],
+   "Kastell Seligenstadt": [
+    [
+     "seligenstadt",
+     52,
+     1.21
+    ]
+   ]
+  },
+  "abteilung": "A",
+  "aufnehmer_strecke": "Strecke 6–10?",
+  "hinweis": "Main-/Odenwaldlinie — Aufnehmer mehrdeutig",
+  "titelei": "Friedrich Leonhard und nach eigenen Aufnahmen ⟨bearbeitet von Ernst Fabricius ⟩ (mit Tafel 1-24 und Kartenbeilage 1-5).",
+  "_lesart": "Streckenband der Abteilung A — die Rangliste nennt die Kastelle ENTLANG der Strecke, nicht das Thema des Bandes."
+ },
+ "uc1.c2605097": {
+  "label": "v. 50",
+  "ranked": [
+   [
+    "Kastell Kösching",
+    26.9
+   ],
+   [
+    "Kastell Pfünz",
+    14.8
+   ],
+   [
+    "Kastell Böhming",
+    11.2
+   ],
+   [
+    "Kastell Theilenhofen",
+    5.0
+   ],
+   [
+    "Kastell Heidenheim",
+    4.9
+   ]
+  ],
+  "hits": {
+   "Kastell Kösching": [
+    [
+     "kosching",
+     21,
+     1.28
+    ]
+   ],
+   "Kastell Pfünz": [
+    [
+     "pfunz",
+     13,
+     1.14
+    ]
+   ],
+   "Kastell Böhming": [
+    [
+     "bohming",
+     9,
+     1.25
+    ]
+   ]
+  },
+  "abteilung": "A",
+  "aufnehmer_strecke": "Strecke 13–14",
+  "hinweis": "Raetischer Limes, 1927/30",
+  "titelei": "Joseph Fink und nach eigenen Aufnahmen ⟨bearbeitet von Friedrich Winkelmann ⟩ und Ernst Fabricius (mit Tafel 1-6",
+  "_lesart": "Streckenband der Abteilung A — die Rangliste nennt die Kastelle ENTLANG der Strecke, nicht das Thema des Bandes."
+ },
+ "uc1.c2605098": {
+  "label": "v. 51",
+  "ranked": [
+   [
+    "Kastell Hüfingen",
+    82.1
+   ],
+   [
+    "Kastelle von Welzheim",
+    72.8
+   ],
+   [
+    "Kastell Wimpfen",
+    49.4
+   ],
+   [
+    "Kastell Lorch",
+    44.1
+   ],
+   [
+    "Kastell Aalen",
+    33.8
+   ]
+  ],
+  "hits": {
+   "Kastell Hüfingen": [
+    [
+     "hufingen",
+     31,
+     2.65
+    ]
+   ],
+   "Kastelle von Welzheim": [
+    [
+     "welzheim",
+     60,
+     1.21
+    ]
+   ],
+   "Kastell Wimpfen": [
+    [
+     "wimpfen",
+     44,
+     1.12
+    ]
+   ]
+  }
+ },
+ "uc1.c2605099": {
+  "label": "v. 52",
+  "ranked": [
+   [
+    "Kastell Saalburg",
+    150.8
+   ],
+   [
+    "Kastell Zugmantel",
+    60.2
+   ],
+   [
+    "Kastell Alteburg",
+    31.8
+   ],
+   [
+    "Kastell Kleiner Feldberg",
+    31.4
+   ],
+   [
+    "Kastell Hofheim",
+    22.6
+   ]
+  ],
+  "hits": {
+   "Kastell Saalburg": [
+    [
+     "saalburg",
+     147,
+     1.03
+    ]
+   ],
+   "Kastell Zugmantel": [
+    [
+     "zugmantel",
+     52,
+     1.09
+    ],
+    [
+     "orlen",
+     8,
+     1.09
+    ]
+   ],
+   "Kastell Alteburg": [
+    [
+     "idstein",
+     12,
+     2.65
+    ]
+   ]
+  },
+  "abteilung": "A",
+  "aufnehmer_strecke": "Strecke 3",
+  "hinweis": "Taunus Aar–Köpperner Tal, A Bd. II, 1935",
+  "titelei": "HEINRICH JACOBI UND NACH EIGENEN AUFNAHMEN ⟨BEARBEITET VON ERNST FABRICIUS Obergerm.-⟩ rät. Limes A Bd. II. 1",
+  "_lesart": "Streckenband der Abteilung A — die Rangliste nennt die Kastelle ENTLANG der Strecke, nicht das Thema des Bandes."
+ },
+ "uc1.c2605100": {
+  "label": "v. 53",
+  "ranked": [
+   [
+    "Kastell Hainhaus",
+    64.2
+   ],
+   [
+    "Kastell Butzbach",
+    63.4
+   ],
+   [
+    "Kastell Kesselstadt",
+    57.6
+   ],
+   [
+    "Kastell Arnsburg",
+    53.9
+   ],
+   [
+    "Kastell Kapersburg",
+    53.3
+   ]
+  ],
+  "hits": {
+   "Kastell Hainhaus": [
+    [
+     "hainhaus",
+     23,
+     2.79
+    ]
+   ],
+   "Kastell Butzbach": [
+    [
+     "butzbach",
+     61,
+     1.04
+    ]
+   ],
+   "Kastell Kesselstadt": [
+    [
+     "hanau",
+     50,
+     1.07
+    ],
+    [
+     "kesselstadt",
+     11,
+     1.07
+    ]
+   ]
+  },
+  "abteilung": "A",
+  "aufnehmer_strecke": "Strecke 4–5",
+  "hinweis": "Wetteraulinie bis Groß-Krotzenburg, A Bd. II, 1936",
+  "titelei": "GEORG WOLFF UND NACH EIGENEN AUFNAΗΜΕΝ ⟨BEARBEITET VON ERNST FABRICIUS Obergerm.-⟩ rät. Limes A Bd. II. 1",
+  "_lesart": "Streckenband der Abteilung A — die Rangliste nennt die Kastelle ENTLANG der Strecke, nicht das Thema des Bandes."
+ },
+ "uc1.c2605101": {
+  "label": "v. 54",
+  "ranked": [
+   [
+    "Kastell Friedberg",
+    43.2
+   ],
+   [
+    "Kastell Okarben",
+    33.4
+   ],
+   [
+    "Kastell Hofheim",
+    30.8
+   ],
+   [
+    "Kastell Zugmantel",
+    29.5
+   ],
+   [
+    "Kastell Saalburg",
+    28.7
+   ]
+  ],
+  "hits": {
+   "Kastell Friedberg": [
+    [
+     "friedberg",
+     39,
+     1.11
+    ]
+   ],
+   "Kastell Okarben": [
+    [
+     "okarben",
+     29,
+     1.15
+    ]
+   ],
+   "Kastell Hofheim": [
+    [
+     "hofheim",
+     30,
+     1.03
+    ]
+   ]
+  }
+ },
+ "uc1.c2605102": {
+  "label": "v. 55",
+  "ranked": [
+   [
+    "Kastell Hüfingen",
+    217.2
+   ],
+   [
+    "Kastell Hofheim",
+    20.5
+   ],
+   [
+    "Kastell Niederbieber",
+    13.5
+   ],
+   [
+    "Kastell Heddesdorf",
+    13.2
+   ],
+   [
+    "Kastelle von Welzheim",
+    7.3
+   ]
+  ],
+  "hits": {
+   "Kastell Hüfingen": [
+    [
+     "hufingen",
+     82,
+     2.65
+    ]
+   ],
+   "Kastell Hofheim": [
+    [
+     "hofheim",
+     20,
+     1.03
+    ]
+   ],
+   "Kastell Niederbieber": [
+    [
+     "niederbieber",
+     10,
+     1.35
+    ]
+   ]
+  }
+ },
+ "uc1.c2605103": {
+  "label": "v. 56",
+  "ranked": [
+   [
+    "Kastell Saalburg",
+    94.4
+   ],
+   [
+    "Kastell Bendorf",
+    83.2
+   ],
+   [
+    "Kastell Zugmantel",
+    18.6
+   ],
+   [
+    "Kastell Kapersburg",
+    16.4
+   ],
+   [
+    "Kastell Kleiner Feldberg",
+    14.6
+   ]
+  ],
+  "hits": {
+   "Kastell Saalburg": [
+    [
+     "saalburg",
+     92,
+     1.03
+    ]
+   ],
+   "Kastell Bendorf": [
+    [
+     "bendorf",
+     36,
+     2.31
+    ]
+   ],
+   "Kastell Zugmantel": [
+    [
+     "zugmantel",
+     17,
+     1.09
+    ]
+   ]
+  }
+ }
+}

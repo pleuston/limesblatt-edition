@@ -1,0 +1,3448 @@
+{
+ "_quelle": "HTRC Data Capsule entities.csv + freq_corpus.csv (nicht-konsumtiv)",
+ "_vorbehalte": [
+  "Gazetteer-Einwortformen konflieren Namensträger (»Jacobi« = Louis+Heinrich).",
+  "count = Token-Vorkommen; Gruppenwerte = Seiten mit Nennung.",
+  "Gazetteer stammt aus der Limesblatt-Edition → Apparat-Autoritäten nach 1903 fehlen (s. blindfleck).",
+  "früh/spät wie orl_holzerde.py; undatierte Bände = sonst."
+ ],
+ "n_personen": 214,
+ "klassen_counts": {
+  "referenzwerk": 2682,
+  "rlk_umfeld": 20951,
+  "unklassifiziert": 11508,
+  "kaiser": 4694
+ },
+ "cohausen": {
+  "name": "Karl August von Cohausen",
+  "klasse": "rlk_umfeld",
+  "count": 1388,
+  "n_baende": 58,
+  "seiten": {
+   "abtA": 212,
+   "frueh": 29,
+   "spaet": 153,
+   "sonst": 398
+  },
+  "abtA_anteil_pct": 26.8,
+  "frueh_je_band": 1.8,
+  "spaet_je_band": 11.8,
+  "gestorben": 1894,
+  "limesblatt_befund": "meistzitierter Feldautor (92×, militaria.py)",
+  "abtA_rang": 1
+ },
+ "abtA_top": [
+  {
+   "name": "Karl August von Cohausen",
+   "seiten_abtA": 212
+  },
+  {
+   "name": "Jacobi",
+   "seiten_abtA": 140
+  },
+  {
+   "name": "Georg Wolff",
+   "seiten_abtA": 114
+  },
+  {
+   "name": "Friedrich Kofler",
+   "seiten_abtA": 110
+  },
+  {
+   "name": "Wilhelm Soldan",
+   "seiten_abtA": 106
+  },
+  {
+   "name": "Ernst Fabricius",
+   "seiten_abtA": 102
+  },
+  {
+   "name": "Paulus der Ältere",
+   "seiten_abtA": 90
+  },
+  {
+   "name": "Rossel",
+   "seiten_abtA": 67
+  },
+  {
+   "name": "Dahm",
+   "seiten_abtA": 60
+  },
+  {
+   "name": "Emil Ritterling",
+   "seiten_abtA": 55
+  },
+  {
+   "name": "Domitian",
+   "seiten_abtA": 51
+  },
+  {
+   "name": "Felix Hettner",
+   "seiten_abtA": 50
+  }
+ ],
+ "blindfleck": {
+  "Ludowici": {
+   "tokens": [
+    "ludowici"
+   ],
+   "korpus_gesamt": 1921
+  },
+  "Knorr": {
+   "tokens": [
+    "knorr"
+   ],
+   "korpus_gesamt": 1641
+  },
+  "Cumont": {
+   "tokens": [
+    "cumont"
+   ],
+   "korpus_gesamt": 144
+  },
+  "Suchier": {
+   "tokens": [
+    "suchier"
+   ],
+   "korpus_gesamt": 346
+  },
+  "Dragendorff (Typenkürzel)": {
+   "tokens": [
+    "dragd",
+    "drgd",
+    "drag"
+   ],
+   "korpus_gesamt": 4127
+  },
+  "Déchelette": {
+   "tokens": [
+    "dechelette",
+    "chelette"
+   ],
+   "korpus_gesamt": 308
+  }
+ },
+ "kaiser_diachron": {
+  "Hadrian": {
+   "frueh_je_band": 3.9,
+   "spaet_je_band": 8.0,
+   "faktor": 2.0
+  },
+  "Septimius Severus": {
+   "frueh_je_band": 3.2,
+   "spaet_je_band": 6.7,
+   "faktor": 2.1
+  },
+  "Domitian": {
+   "frueh_je_band": 2.8,
+   "spaet_je_band": 7.6,
+   "faktor": 2.8
+  },
+  "Traian": {
+   "frueh_je_band": 1.3,
+   "spaet_je_band": 5.6,
+   "faktor": 4.3
+  },
+  "Vespasian": {
+   "frueh_je_band": 1.9,
+   "spaet_je_band": 3.5,
+   "faktor": 1.8
+  },
+  "Augustus": {
+   "frueh_je_band": 2.1,
+   "spaet_je_band": 2.5,
+   "faktor": 1.2
+  },
+  "Commodus": {
+   "frueh_je_band": 1.6,
+   "spaet_je_band": 3.1,
+   "faktor": 2.0
+  },
+  "Caracalla": {
+   "frueh_je_band": 1.0,
+   "spaet_je_band": 2.5,
+   "faktor": 2.5
+  },
+  "Claudius": {
+   "frueh_je_band": 0.8,
+   "spaet_je_band": 1.8,
+   "faktor": 2.2
+  },
+  "Gallienus": {
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 1.5,
+   "faktor": 12.3
+  },
+  "Elagabal": {
+   "frueh_je_band": 1.0,
+   "spaet_je_band": 0.6,
+   "faktor": 0.6
+  },
+  "_baseline_median_faktor": 2.1,
+  "_lesart": "Gallienus (Limesfall-Kaiser, 259/260) steigt um ein Vielfaches der Baseline — das Ende des Limes wird erst im Spätwerk Thema."
+ },
+ "arbeiter_asymmetrie": {
+  "elite_namen": [
+   "fabricius",
+   "hettner",
+   "sarwey",
+   "kofler",
+   "wolff",
+   "conrady",
+   "steimle",
+   "ritterling",
+   "schumacher",
+   "jacobi"
+  ],
+  "elite_summe": 11605,
+  "arbeiter_tokens": [
+   "arbeiter",
+   "arbeitern",
+   "tagelohner",
+   "taglohner"
+  ],
+  "arbeiter_summe": 151,
+  "grabungs_nennungen": 4641,
+  "verhaeltnis_elite_zu_arbeiter": 77
+ },
+ "blindstellen": {
+  "schriftquellen": {
+   "tacitus": 82,
+   "ammianus": 4,
+   "plinius": 16,
+   "cassius": 24,
+   "ptolemaus": 5,
+   "ptolemaeus": 3
+  },
+  "schriftquellen_ambig": {
+   "caesar": 333
+  },
+  "naturwissenschaft": {
+   "chemisch": 2,
+   "chemische": 0,
+   "analyse": 14,
+   "botanisch": 0,
+   "anthropologisch": 0,
+   "geologisch": 7,
+   "schlacke": 4,
+   "schlacken": 33
+  },
+  "fund_nicht_analyse": {
+   "knochen": 262,
+   "tierknochen": 68
+  },
+  "_lesart": "Der ORL ist ein reines Bodenevidenz-Werk: selbst der Limesfall wird ohne Ammianus (4×) erschlossen; die Naturwissenschaft fehlt als Werkzeug (chemisch 2×, botanisch 0×) — Knochen erscheinen als Fund, nie als Analyse."
+ },
+ "personen": [
+  {
+   "name": "Cohen",
+   "klasse": "referenzwerk",
+   "count": 2266,
+   "n_baende": 60,
+   "seiten": {
+    "abtA": 14,
+    "frueh": 18,
+    "spaet": 37,
+    "sonst": 186
+   },
+   "abtA_anteil_pct": 5.5,
+   "frueh_je_band": 1.1,
+   "spaet_je_band": 2.8
+  },
+  {
+   "name": "Georg Wolff",
+   "klasse": "rlk_umfeld",
+   "count": 2167,
+   "n_baende": 74,
+   "seiten": {
+    "abtA": 114,
+    "frueh": 56,
+    "spaet": 142,
+    "sonst": 404
+   },
+   "abtA_anteil_pct": 15.9,
+   "frueh_je_band": 3.5,
+   "spaet_je_band": 10.9
+  },
+  {
+   "name": "Friedrich Kofler",
+   "klasse": "rlk_umfeld",
+   "count": 1911,
+   "n_baende": 65,
+   "seiten": {
+    "abtA": 110,
+    "frueh": 27,
+    "spaet": 170,
+    "sonst": 287
+   },
+   "abtA_anteil_pct": 18.5,
+   "frueh_je_band": 1.7,
+   "spaet_je_band": 13.1
+  },
+  {
+   "name": "Jacobi",
+   "klasse": "unklassifiziert",
+   "count": 1789,
+   "n_baende": 75,
+   "seiten": {
+    "abtA": 140,
+    "frueh": 88,
+    "spaet": 153,
+    "sonst": 557
+   },
+   "abtA_anteil_pct": 14.9,
+   "frueh_je_band": 5.5,
+   "spaet_je_band": 11.8
+  },
+  {
+   "name": "Karl August von Cohausen",
+   "klasse": "rlk_umfeld",
+   "count": 1388,
+   "n_baende": 58,
+   "seiten": {
+    "abtA": 212,
+    "frueh": 29,
+    "spaet": 153,
+    "sonst": 398
+   },
+   "abtA_anteil_pct": 26.8,
+   "frueh_je_band": 1.8,
+   "spaet_je_band": 11.8
+  },
+  {
+   "name": "Ernst Fabricius",
+   "klasse": "rlk_umfeld",
+   "count": 1334,
+   "n_baende": 71,
+   "seiten": {
+    "abtA": 102,
+    "frueh": 31,
+    "spaet": 199,
+    "sonst": 438
+   },
+   "abtA_anteil_pct": 13.2,
+   "frueh_je_band": 1.9,
+   "spaet_je_band": 15.3
+  },
+  {
+   "name": "Wilhelm Conrady",
+   "klasse": "rlk_umfeld",
+   "count": 1166,
+   "n_baende": 66,
+   "seiten": {
+    "abtA": 4,
+    "frueh": 17,
+    "spaet": 80,
+    "sonst": 363
+   },
+   "abtA_anteil_pct": 0.9,
+   "frueh_je_band": 1.1,
+   "spaet_je_band": 6.2
+  },
+  {
+   "name": "Gustav Sixt",
+   "klasse": "rlk_umfeld",
+   "count": 1036,
+   "n_baende": 46,
+   "seiten": {
+    "abtA": 3,
+    "frueh": 26,
+    "spaet": 117,
+    "sonst": 244
+   },
+   "abtA_anteil_pct": 0.8,
+   "frueh_je_band": 1.6,
+   "spaet_je_band": 9.0
+  },
+  {
+   "name": "Emil Ritterling",
+   "klasse": "rlk_umfeld",
+   "count": 976,
+   "n_baende": 69,
+   "seiten": {
+    "abtA": 55,
+    "frueh": 18,
+    "spaet": 147,
+    "sonst": 390
+   },
+   "abtA_anteil_pct": 9.0,
+   "frueh_je_band": 1.1,
+   "spaet_je_band": 11.3
+  },
+  {
+   "name": "Karl Schumacher",
+   "klasse": "rlk_umfeld",
+   "count": 885,
+   "n_baende": 71,
+   "seiten": {
+    "abtA": 25,
+    "frueh": 22,
+    "spaet": 144,
+    "sonst": 277
+   },
+   "abtA_anteil_pct": 5.3,
+   "frueh_je_band": 1.4,
+   "spaet_je_band": 11.1
+  },
+  {
+   "name": "Felix Hettner",
+   "klasse": "rlk_umfeld",
+   "count": 880,
+   "n_baende": 78,
+   "seiten": {
+    "abtA": 50,
+    "frueh": 70,
+    "spaet": 126,
+    "sonst": 414
+   },
+   "abtA_anteil_pct": 7.6,
+   "frueh_je_band": 4.4,
+   "spaet_je_band": 9.7
+  },
+  {
+   "name": "Hadrian",
+   "klasse": "kaiser",
+   "count": 858,
+   "n_baende": 77,
+   "seiten": {
+    "abtA": 45,
+    "frueh": 63,
+    "spaet": 104,
+    "sonst": 340
+   },
+   "abtA_anteil_pct": 8.2,
+   "frueh_je_band": 3.9,
+   "spaet_je_band": 8.0
+  },
+  {
+   "name": "Septimius Severus",
+   "klasse": "kaiser",
+   "count": 795,
+   "n_baende": 69,
+   "seiten": {
+    "abtA": 40,
+    "frueh": 51,
+    "spaet": 87,
+    "sonst": 338
+   },
+   "abtA_anteil_pct": 7.8,
+   "frueh_je_band": 3.2,
+   "spaet_je_band": 6.7
+  },
+  {
+   "name": "Heinrich Steimle",
+   "klasse": "rlk_umfeld",
+   "count": 794,
+   "n_baende": 66,
+   "seiten": {
+    "abtA": 5,
+    "frueh": 19,
+    "spaet": 103,
+    "sonst": 134
+   },
+   "abtA_anteil_pct": 1.9,
+   "frueh_je_band": 1.2,
+   "spaet_je_band": 7.9
+  },
+  {
+   "name": "Eduard Anthes",
+   "klasse": "rlk_umfeld",
+   "count": 719,
+   "n_baende": 63,
+   "seiten": {
+    "abtA": 48,
+    "frueh": 6,
+    "spaet": 125,
+    "sonst": 220
+   },
+   "abtA_anteil_pct": 12.0,
+   "frueh_je_band": 0.4,
+   "spaet_je_band": 9.6
+  },
+  {
+   "name": "Wilhelm Soldan",
+   "klasse": "rlk_umfeld",
+   "count": 652,
+   "n_baende": 26,
+   "seiten": {
+    "abtA": 106,
+    "frueh": 0,
+    "spaet": 102,
+    "sonst": 157
+   },
+   "abtA_anteil_pct": 29.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 7.8
+  },
+  {
+   "name": "Eduard Paulus",
+   "klasse": "rlk_umfeld",
+   "count": 642,
+   "n_baende": 36,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 37,
+    "spaet": 118,
+    "sonst": 200
+   },
+   "abtA_anteil_pct": 0.3,
+   "frueh_je_band": 2.3,
+   "spaet_je_band": 9.1
+  },
+  {
+   "name": "Paulus der Ältere",
+   "klasse": "unklassifiziert",
+   "count": 640,
+   "n_baende": 68,
+   "seiten": {
+    "abtA": 90,
+    "frueh": 30,
+    "spaet": 112,
+    "sonst": 295
+   },
+   "abtA_anteil_pct": 17.1,
+   "frueh_je_band": 1.9,
+   "spaet_je_band": 8.6
+  },
+  {
+   "name": "Domitian",
+   "klasse": "kaiser",
+   "count": 625,
+   "n_baende": 73,
+   "seiten": {
+    "abtA": 51,
+    "frueh": 44,
+    "spaet": 99,
+    "sonst": 285
+   },
+   "abtA_anteil_pct": 10.6,
+   "frueh_je_band": 2.8,
+   "spaet_je_band": 7.6
+  },
+  {
+   "name": "Traian",
+   "klasse": "kaiser",
+   "count": 590,
+   "n_baende": 63,
+   "seiten": {
+    "abtA": 32,
+    "frueh": 21,
+    "spaet": 73,
+    "sonst": 256
+   },
+   "abtA_anteil_pct": 8.4,
+   "frueh_je_band": 1.3,
+   "spaet_je_band": 5.6
+  },
+  {
+   "name": "Winkelmann",
+   "klasse": "rlk_umfeld",
+   "count": 567,
+   "n_baende": 63,
+   "seiten": {
+    "abtA": 16,
+    "frueh": 13,
+    "spaet": 125,
+    "sonst": 196
+   },
+   "abtA_anteil_pct": 4.6,
+   "frueh_je_band": 0.8,
+   "spaet_je_band": 9.6
+  },
+  {
+   "name": "Dahm",
+   "klasse": "rlk_umfeld",
+   "count": 564,
+   "n_baende": 63,
+   "seiten": {
+    "abtA": 60,
+    "frueh": 14,
+    "spaet": 37,
+    "sonst": 166
+   },
+   "abtA_anteil_pct": 21.7,
+   "frueh_je_band": 0.9,
+   "spaet_je_band": 2.8
+  },
+  {
+   "name": "Friedrich Leonhard",
+   "klasse": "rlk_umfeld",
+   "count": 561,
+   "n_baende": 52,
+   "seiten": {
+    "abtA": 15,
+    "frueh": 0,
+    "spaet": 136,
+    "sonst": 215
+   },
+   "abtA_anteil_pct": 4.1,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 10.5
+  },
+  {
+   "name": "Dieffenbach, Ph",
+   "klasse": "unklassifiziert",
+   "count": 557,
+   "n_baende": 20,
+   "seiten": {
+    "abtA": 35,
+    "frueh": 35,
+    "spaet": 51,
+    "sonst": 142
+   },
+   "abtA_anteil_pct": 13.3,
+   "frueh_je_band": 2.2,
+   "spaet_je_band": 3.9
+  },
+  {
+   "name": "Heinrich Eidam",
+   "klasse": "rlk_umfeld",
+   "count": 551,
+   "n_baende": 54,
+   "seiten": {
+    "abtA": 4,
+    "frueh": 0,
+    "spaet": 97,
+    "sonst": 148
+   },
+   "abtA_anteil_pct": 1.6,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 7.5
+  },
+  {
+   "name": "Ernst von Herzog",
+   "klasse": "rlk_umfeld",
+   "count": 524,
+   "n_baende": 65,
+   "seiten": {
+    "abtA": 5,
+    "frueh": 17,
+    "spaet": 110,
+    "sonst": 178
+   },
+   "abtA_anteil_pct": 1.6,
+   "frueh_je_band": 1.1,
+   "spaet_je_band": 8.5
+  },
+  {
+   "name": "Rossel",
+   "klasse": "unklassifiziert",
+   "count": 503,
+   "n_baende": 18,
+   "seiten": {
+    "abtA": 67,
+    "frueh": 1,
+    "spaet": 64,
+    "sonst": 127
+   },
+   "abtA_anteil_pct": 25.9,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 4.9
+  },
+  {
+   "name": "Karl Zangemeister",
+   "klasse": "rlk_umfeld",
+   "count": 473,
+   "n_baende": 61,
+   "seiten": {
+    "abtA": 12,
+    "frueh": 61,
+    "spaet": 47,
+    "sonst": 207
+   },
+   "abtA_anteil_pct": 3.7,
+   "frueh_je_band": 3.8,
+   "spaet_je_band": 3.6
+  },
+  {
+   "name": "Mettler",
+   "klasse": "rlk_umfeld",
+   "count": 407,
+   "n_baende": 63,
+   "seiten": {
+    "abtA": 3,
+    "frueh": 8,
+    "spaet": 42,
+    "sonst": 108
+   },
+   "abtA_anteil_pct": 1.9,
+   "frueh_je_band": 0.5,
+   "spaet_je_band": 3.2
+  },
+  {
+   "name": "Robert Bodewig",
+   "klasse": "rlk_umfeld",
+   "count": 386,
+   "n_baende": 63,
+   "seiten": {
+    "abtA": 45,
+    "frueh": 9,
+    "spaet": 18,
+    "sonst": 104
+   },
+   "abtA_anteil_pct": 25.6,
+   "frueh_je_band": 0.6,
+   "spaet_je_band": 1.4
+  },
+  {
+   "name": "Vespasian",
+   "klasse": "kaiser",
+   "count": 384,
+   "n_baende": 68,
+   "seiten": {
+    "abtA": 18,
+    "frueh": 31,
+    "spaet": 46,
+    "sonst": 153
+   },
+   "abtA_anteil_pct": 7.3,
+   "frueh_je_band": 1.9,
+   "spaet_je_band": 3.5
+  },
+  {
+   "name": "Augustus",
+   "klasse": "kaiser",
+   "count": 368,
+   "n_baende": 68,
+   "seiten": {
+    "abtA": 15,
+    "frueh": 33,
+    "spaet": 33,
+    "sonst": 179
+   },
+   "abtA_anteil_pct": 5.8,
+   "frueh_je_band": 2.1,
+   "spaet_je_band": 2.5
+  },
+  {
+   "name": "Friedrich Drexel",
+   "klasse": "rlk_umfeld",
+   "count": 365,
+   "n_baende": 47,
+   "seiten": {
+    "abtA": 9,
+    "frueh": 0,
+    "spaet": 81,
+    "sonst": 189
+   },
+   "abtA_anteil_pct": 3.2,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 6.2
+  },
+  {
+   "name": "Severus Alexander",
+   "klasse": "unklassifiziert",
+   "count": 357,
+   "n_baende": 65,
+   "seiten": {
+    "abtA": 17,
+    "frueh": 37,
+    "spaet": 48,
+    "sonst": 190
+   },
+   "abtA_anteil_pct": 5.8,
+   "frueh_je_band": 2.3,
+   "spaet_je_band": 3.7
+  },
+  {
+   "name": "Friedrich Ohlenschlager",
+   "klasse": "rlk_umfeld",
+   "count": 350,
+   "n_baende": 18,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 9,
+    "spaet": 94,
+    "sonst": 112
+   },
+   "abtA_anteil_pct": 0.5,
+   "frueh_je_band": 0.6,
+   "spaet_je_band": 7.2
+  },
+  {
+   "name": "Commodus",
+   "klasse": "kaiser",
+   "count": 343,
+   "n_baende": 66,
+   "seiten": {
+    "abtA": 15,
+    "frueh": 25,
+    "spaet": 40,
+    "sonst": 171
+   },
+   "abtA_anteil_pct": 6.0,
+   "frueh_je_band": 1.6,
+   "spaet_je_band": 3.1
+  },
+  {
+   "name": "Christian Ernst Hanßelmann",
+   "klasse": "rlk_umfeld",
+   "count": 338,
+   "n_baende": 22,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 32,
+    "spaet": 17,
+    "sonst": 107
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 2.0,
+   "spaet_je_band": 1.3
+  },
+  {
+   "name": "Buchner",
+   "klasse": "unklassifiziert",
+   "count": 326,
+   "n_baende": 30,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 20,
+    "spaet": 84,
+    "sonst": 106
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 1.2,
+   "spaet_je_band": 6.5
+  },
+  {
+   "name": "Caracalla",
+   "klasse": "kaiser",
+   "count": 295,
+   "n_baende": 50,
+   "seiten": {
+    "abtA": 15,
+    "frueh": 16,
+    "spaet": 33,
+    "sonst": 159
+   },
+   "abtA_anteil_pct": 6.7,
+   "frueh_je_band": 1.0,
+   "spaet_je_band": 2.5
+  },
+  {
+   "name": "Oscar von Sarwey",
+   "klasse": "rlk_umfeld",
+   "count": 294,
+   "n_baende": 78,
+   "seiten": {
+    "abtA": 21,
+    "frueh": 38,
+    "spaet": 58,
+    "sonst": 154
+   },
+   "abtA_anteil_pct": 7.7,
+   "frueh_je_band": 2.4,
+   "spaet_je_band": 4.5
+  },
+  {
+   "name": "Schmidt",
+   "klasse": "unklassifiziert",
+   "count": 293,
+   "n_baende": 55,
+   "seiten": {
+    "abtA": 28,
+    "frueh": 7,
+    "spaet": 23,
+    "sonst": 102
+   },
+   "abtA_anteil_pct": 17.5,
+   "frueh_je_band": 0.4,
+   "spaet_je_band": 1.8
+  },
+  {
+   "name": "Knapp",
+   "klasse": "unklassifiziert",
+   "count": 291,
+   "n_baende": 44,
+   "seiten": {
+    "abtA": 13,
+    "frueh": 20,
+    "spaet": 55,
+    "sonst": 100
+   },
+   "abtA_anteil_pct": 6.9,
+   "frueh_je_band": 1.2,
+   "spaet_je_band": 4.2
+  },
+  {
+   "name": "Habel",
+   "klasse": "unklassifiziert",
+   "count": 277,
+   "n_baende": 22,
+   "seiten": {
+    "abtA": 11,
+    "frueh": 15,
+    "spaet": 17,
+    "sonst": 92
+   },
+   "abtA_anteil_pct": 8.1,
+   "frueh_je_band": 0.9,
+   "spaet_je_band": 1.3
+  },
+  {
+   "name": "Robert Forrer",
+   "klasse": "unklassifiziert",
+   "count": 267,
+   "n_baende": 32,
+   "seiten": {
+    "abtA": 2,
+    "frueh": 2,
+    "spaet": 25,
+    "sonst": 88
+   },
+   "abtA_anteil_pct": 1.7,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 1.9
+  },
+  {
+   "name": "Steiner",
+   "klasse": "unklassifiziert",
+   "count": 243,
+   "n_baende": 61,
+   "seiten": {
+    "abtA": 7,
+    "frueh": 26,
+    "spaet": 19,
+    "sonst": 125
+   },
+   "abtA_anteil_pct": 4.0,
+   "frueh_je_band": 1.6,
+   "spaet_je_band": 1.5
+  },
+  {
+   "name": "Hammer",
+   "klasse": "unklassifiziert",
+   "count": 226,
+   "n_baende": 46,
+   "seiten": {
+    "abtA": 3,
+    "frueh": 13,
+    "spaet": 51,
+    "sonst": 110
+   },
+   "abtA_anteil_pct": 1.7,
+   "frueh_je_band": 0.8,
+   "spaet_je_band": 3.9
+  },
+  {
+   "name": "Dorow",
+   "klasse": "unklassifiziert",
+   "count": 221,
+   "n_baende": 31,
+   "seiten": {
+    "abtA": 7,
+    "frueh": 12,
+    "spaet": 21,
+    "sonst": 93
+   },
+   "abtA_anteil_pct": 5.3,
+   "frueh_je_band": 0.8,
+   "spaet_je_band": 1.6
+  },
+  {
+   "name": "Ernst Wagner",
+   "klasse": "rlk_umfeld",
+   "count": 216,
+   "n_baende": 41,
+   "seiten": {
+    "abtA": 15,
+    "frueh": 13,
+    "spaet": 50,
+    "sonst": 90
+   },
+   "abtA_anteil_pct": 8.9,
+   "frueh_je_band": 0.8,
+   "spaet_je_band": 3.8
+  },
+  {
+   "name": "Ottmer Petters",
+   "klasse": "unklassifiziert",
+   "count": 215,
+   "n_baende": 77,
+   "seiten": {
+    "abtA": 6,
+    "frueh": 27,
+    "spaet": 53,
+    "sonst": 129
+   },
+   "abtA_anteil_pct": 2.8,
+   "frueh_je_band": 1.7,
+   "spaet_je_band": 4.1
+  },
+  {
+   "name": "Theodor Mommsen",
+   "klasse": "referenzwerk",
+   "count": 200,
+   "n_baende": 52,
+   "seiten": {
+    "abtA": 11,
+    "frueh": 27,
+    "spaet": 21,
+    "sonst": 88
+   },
+   "abtA_anteil_pct": 7.5,
+   "frueh_je_band": 1.7,
+   "spaet_je_band": 1.6
+  },
+  {
+   "name": "Georg Loeschcke",
+   "klasse": "rlk_umfeld",
+   "count": 197,
+   "n_baende": 32,
+   "seiten": {
+    "abtA": 25,
+    "frueh": 1,
+    "spaet": 29,
+    "sonst": 77
+   },
+   "abtA_anteil_pct": 18.9,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 2.2
+  },
+  {
+   "name": "Konrad Miller",
+   "klasse": "rlk_umfeld",
+   "count": 193,
+   "n_baende": 28,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 27,
+    "spaet": 7,
+    "sonst": 67
+   },
+   "abtA_anteil_pct": 1.0,
+   "frueh_je_band": 1.7,
+   "spaet_je_band": 0.5
+  },
+  {
+   "name": "Domaszewski",
+   "klasse": "unklassifiziert",
+   "count": 186,
+   "n_baende": 52,
+   "seiten": {
+    "abtA": 4,
+    "frueh": 16,
+    "spaet": 12,
+    "sonst": 112
+   },
+   "abtA_anteil_pct": 2.8,
+   "frueh_je_band": 1.0,
+   "spaet_je_band": 0.9
+  },
+  {
+   "name": "Ludwig Pallat",
+   "klasse": "rlk_umfeld",
+   "count": 177,
+   "n_baende": 60,
+   "seiten": {
+    "abtA": 30,
+    "frueh": 7,
+    "spaet": 17,
+    "sonst": 79
+   },
+   "abtA_anteil_pct": 22.6,
+   "frueh_je_band": 0.4,
+   "spaet_je_band": 1.3
+  },
+  {
+   "name": "Hölder",
+   "klasse": "unklassifiziert",
+   "count": 177,
+   "n_baende": 36,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 27,
+    "spaet": 7,
+    "sonst": 77
+   },
+   "abtA_anteil_pct": 0.9,
+   "frueh_je_band": 1.7,
+   "spaet_je_band": 0.5
+  },
+  {
+   "name": "Ludwig",
+   "klasse": "unklassifiziert",
+   "count": 173,
+   "n_baende": 38,
+   "seiten": {
+    "abtA": 6,
+    "frueh": 8,
+    "spaet": 51,
+    "sonst": 70
+   },
+   "abtA_anteil_pct": 4.4,
+   "frueh_je_band": 0.5,
+   "spaet_je_band": 3.9
+  },
+  {
+   "name": "Marcus Aurelius",
+   "klasse": "unklassifiziert",
+   "count": 152,
+   "n_baende": 44,
+   "seiten": {
+    "abtA": 9,
+    "frueh": 6,
+    "spaet": 23,
+    "sonst": 70
+   },
+   "abtA_anteil_pct": 8.3,
+   "frueh_je_band": 0.4,
+   "spaet_je_band": 1.8
+  },
+  {
+   "name": "Maximinus",
+   "klasse": "unklassifiziert",
+   "count": 152,
+   "n_baende": 38,
+   "seiten": {
+    "abtA": 8,
+    "frueh": 9,
+    "spaet": 24,
+    "sonst": 79
+   },
+   "abtA_anteil_pct": 6.7,
+   "frueh_je_band": 0.6,
+   "spaet_je_band": 1.8
+  },
+  {
+   "name": "Claudius",
+   "klasse": "kaiser",
+   "count": 149,
+   "n_baende": 48,
+   "seiten": {
+    "abtA": 7,
+    "frueh": 13,
+    "spaet": 23,
+    "sonst": 74
+   },
+   "abtA_anteil_pct": 6.0,
+   "frueh_je_band": 0.8,
+   "spaet_je_band": 1.8
+  },
+  {
+   "name": "Gallienus",
+   "klasse": "kaiser",
+   "count": 144,
+   "n_baende": 32,
+   "seiten": {
+    "abtA": 8,
+    "frueh": 2,
+    "spaet": 20,
+    "sonst": 58
+   },
+   "abtA_anteil_pct": 9.1,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 1.5
+  },
+  {
+   "name": "Minerva",
+   "klasse": "unklassifiziert",
+   "count": 143,
+   "n_baende": 48,
+   "seiten": {
+    "abtA": 3,
+    "frueh": 22,
+    "spaet": 14,
+    "sonst": 74
+   },
+   "abtA_anteil_pct": 2.7,
+   "frueh_je_band": 1.4,
+   "spaet_je_band": 1.1
+  },
+  {
+   "name": "Elagabal",
+   "klasse": "kaiser",
+   "count": 143,
+   "n_baende": 44,
+   "seiten": {
+    "abtA": 3,
+    "frueh": 16,
+    "spaet": 8,
+    "sonst": 81
+   },
+   "abtA_anteil_pct": 2.8,
+   "frueh_je_band": 1.0,
+   "spaet_je_band": 0.6
+  },
+  {
+   "name": "Julia Mamaea",
+   "klasse": "unklassifiziert",
+   "count": 135,
+   "n_baende": 41,
+   "seiten": {
+    "abtA": 4,
+    "frueh": 12,
+    "spaet": 13,
+    "sonst": 75
+   },
+   "abtA_anteil_pct": 3.8,
+   "frueh_je_band": 0.8,
+   "spaet_je_band": 1.0
+  },
+  {
+   "name": "Schmall",
+   "klasse": "unklassifiziert",
+   "count": 126,
+   "n_baende": 54,
+   "seiten": {
+    "abtA": 12,
+    "frueh": 11,
+    "spaet": 19,
+    "sonst": 81
+   },
+   "abtA_anteil_pct": 9.8,
+   "frueh_je_band": 0.7,
+   "spaet_je_band": 1.5
+  },
+  {
+   "name": "Prescher",
+   "klasse": "unklassifiziert",
+   "count": 123,
+   "n_baende": 59,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 8,
+    "spaet": 24,
+    "sonst": 62
+   },
+   "abtA_anteil_pct": 1.1,
+   "frueh_je_band": 0.5,
+   "spaet_je_band": 1.8
+  },
+  {
+   "name": "Schäfer",
+   "klasse": "unklassifiziert",
+   "count": 117,
+   "n_baende": 17,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 2,
+    "spaet": 21,
+    "sonst": 45
+   },
+   "abtA_anteil_pct": 1.4,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 1.6
+  },
+  {
+   "name": "Müller",
+   "klasse": "unklassifiziert",
+   "count": 117,
+   "n_baende": 29,
+   "seiten": {
+    "abtA": 18,
+    "frueh": 9,
+    "spaet": 23,
+    "sonst": 42
+   },
+   "abtA_anteil_pct": 19.6,
+   "frueh_je_band": 0.6,
+   "spaet_je_band": 1.8
+  },
+  {
+   "name": "Studion",
+   "klasse": "unklassifiziert",
+   "count": 112,
+   "n_baende": 41,
+   "seiten": {
+    "abtA": 7,
+    "frueh": 11,
+    "spaet": 29,
+    "sonst": 55
+   },
+   "abtA_anteil_pct": 6.9,
+   "frueh_je_band": 0.7,
+   "spaet_je_band": 2.2
+  },
+  {
+   "name": "Hoffmann",
+   "klasse": "unklassifiziert",
+   "count": 111,
+   "n_baende": 8,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 6,
+    "spaet": 20,
+    "sonst": 28
+   },
+   "abtA_anteil_pct": 1.8,
+   "frueh_je_band": 0.4,
+   "spaet_je_band": 1.5
+  },
+  {
+   "name": "Dessau",
+   "klasse": "referenzwerk",
+   "count": 108,
+   "n_baende": 26,
+   "seiten": {
+    "abtA": 7,
+    "frueh": 0,
+    "spaet": 16,
+    "sonst": 47
+   },
+   "abtA_anteil_pct": 10.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 1.2
+  },
+  {
+   "name": "Lucilla",
+   "klasse": "unklassifiziert",
+   "count": 108,
+   "n_baende": 37,
+   "seiten": {
+    "abtA": 5,
+    "frueh": 11,
+    "spaet": 11,
+    "sonst": 66
+   },
+   "abtA_anteil_pct": 5.4,
+   "frueh_je_band": 0.7,
+   "spaet_je_band": 0.8
+  },
+  {
+   "name": "Brambach",
+   "klasse": "referenzwerk",
+   "count": 108,
+   "n_baende": 29,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 30,
+    "spaet": 1,
+    "sonst": 44
+   },
+   "abtA_anteil_pct": 1.3,
+   "frueh_je_band": 1.9,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Helmke",
+   "klasse": "unklassifiziert",
+   "count": 108,
+   "n_baende": 7,
+   "seiten": {
+    "abtA": 19,
+    "frueh": 1,
+    "spaet": 19,
+    "sonst": 42
+   },
+   "abtA_anteil_pct": 23.5,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 1.5
+  },
+  {
+   "name": "Kallee, General von",
+   "klasse": "unklassifiziert",
+   "count": 100,
+   "n_baende": 14,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 10,
+    "spaet": 18,
+    "sonst": 35
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.6,
+   "spaet_je_band": 1.4
+  },
+  {
+   "name": "Hammeran",
+   "klasse": "unklassifiziert",
+   "count": 95,
+   "n_baende": 24,
+   "seiten": {
+    "abtA": 2,
+    "frueh": 9,
+    "spaet": 9,
+    "sonst": 51
+   },
+   "abtA_anteil_pct": 2.8,
+   "frueh_je_band": 0.6,
+   "spaet_je_band": 0.7
+  },
+  {
+   "name": "Trajan",
+   "klasse": "unklassifiziert",
+   "count": 93,
+   "n_baende": 37,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 39,
+    "spaet": 6,
+    "sonst": 29
+   },
+   "abtA_anteil_pct": 1.3,
+   "frueh_je_band": 2.4,
+   "spaet_je_band": 0.5
+  },
+  {
+   "name": "Iucunius Victorinus",
+   "klasse": "unklassifiziert",
+   "count": 93,
+   "n_baende": 30,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 7,
+    "spaet": 5,
+    "sonst": 59
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.4,
+   "spaet_je_band": 0.4
+  },
+  {
+   "name": "Traianus",
+   "klasse": "unklassifiziert",
+   "count": 90,
+   "n_baende": 34,
+   "seiten": {
+    "abtA": 7,
+    "frueh": 3,
+    "spaet": 19,
+    "sonst": 41
+   },
+   "abtA_anteil_pct": 10.0,
+   "frueh_je_band": 0.2,
+   "spaet_je_band": 1.5
+  },
+  {
+   "name": "Schultz, Oberförster",
+   "klasse": "unklassifiziert",
+   "count": 88,
+   "n_baende": 56,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 2,
+    "spaet": 17,
+    "sonst": 62
+   },
+   "abtA_anteil_pct": 1.2,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 1.3
+  },
+  {
+   "name": "Koenen",
+   "klasse": "unklassifiziert",
+   "count": 86,
+   "n_baende": 27,
+   "seiten": {
+    "abtA": 2,
+    "frueh": 15,
+    "spaet": 4,
+    "sonst": 41
+   },
+   "abtA_anteil_pct": 3.2,
+   "frueh_je_band": 0.9,
+   "spaet_je_band": 0.3
+  },
+  {
+   "name": "Konstantin",
+   "klasse": "unklassifiziert",
+   "count": 86,
+   "n_baende": 30,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 7,
+    "spaet": 6,
+    "sonst": 45
+   },
+   "abtA_anteil_pct": 1.7,
+   "frueh_je_band": 0.4,
+   "spaet_je_band": 0.5
+  },
+  {
+   "name": "Oscar Almgren",
+   "klasse": "unklassifiziert",
+   "count": 85,
+   "n_baende": 18,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 5,
+    "spaet": 2,
+    "sonst": 35
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.3,
+   "spaet_je_band": 0.2
+  },
+  {
+   "name": "Wehner",
+   "klasse": "unklassifiziert",
+   "count": 84,
+   "n_baende": 13,
+   "seiten": {
+    "abtA": 14,
+    "frueh": 1,
+    "spaet": 16,
+    "sonst": 21
+   },
+   "abtA_anteil_pct": 26.9,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 1.2
+  },
+  {
+   "name": "Constantius",
+   "klasse": "unklassifiziert",
+   "count": 77,
+   "n_baende": 31,
+   "seiten": {
+    "abtA": 2,
+    "frueh": 9,
+    "spaet": 9,
+    "sonst": 36
+   },
+   "abtA_anteil_pct": 3.6,
+   "frueh_je_band": 0.6,
+   "spaet_je_band": 0.7
+  },
+  {
+   "name": "Stichaner, von",
+   "klasse": "unklassifiziert",
+   "count": 74,
+   "n_baende": 10,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 29,
+    "sonst": 31
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 2.2
+  },
+  {
+   "name": "Fischer, W",
+   "klasse": "unklassifiziert",
+   "count": 73,
+   "n_baende": 31,
+   "seiten": {
+    "abtA": 2,
+    "frueh": 3,
+    "spaet": 16,
+    "sonst": 34
+   },
+   "abtA_anteil_pct": 3.6,
+   "frueh_je_band": 0.2,
+   "spaet_je_band": 1.2
+  },
+  {
+   "name": "Frontinus",
+   "klasse": "unklassifiziert",
+   "count": 73,
+   "n_baende": 24,
+   "seiten": {
+    "abtA": 16,
+    "frueh": 1,
+    "spaet": 16,
+    "sonst": 28
+   },
+   "abtA_anteil_pct": 26.2,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 1.2
+  },
+  {
+   "name": "Vespasianus",
+   "klasse": "unklassifiziert",
+   "count": 73,
+   "n_baende": 37,
+   "seiten": {
+    "abtA": 5,
+    "frueh": 7,
+    "spaet": 10,
+    "sonst": 32
+   },
+   "abtA_anteil_pct": 9.3,
+   "frueh_je_band": 0.4,
+   "spaet_je_band": 0.8
+  },
+  {
+   "name": "Schreiner",
+   "klasse": "unklassifiziert",
+   "count": 73,
+   "n_baende": 28,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 2,
+    "spaet": 17,
+    "sonst": 37
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 1.3
+  },
+  {
+   "name": "Gordian",
+   "klasse": "unklassifiziert",
+   "count": 71,
+   "n_baende": 31,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 10,
+    "spaet": 7,
+    "sonst": 41
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.6,
+   "spaet_je_band": 0.5
+  },
+  {
+   "name": "Hämmerle",
+   "klasse": "rlk_umfeld",
+   "count": 70,
+   "n_baende": 60,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 7,
+    "spaet": 16,
+    "sonst": 46
+   },
+   "abtA_anteil_pct": 1.4,
+   "frueh_je_band": 0.4,
+   "spaet_je_band": 1.2
+  },
+  {
+   "name": "Schuermans",
+   "klasse": "unklassifiziert",
+   "count": 70,
+   "n_baende": 10,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 22,
+    "spaet": 0,
+    "sonst": 9
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 1.4,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Clodius Albinus",
+   "klasse": "unklassifiziert",
+   "count": 66,
+   "n_baende": 22,
+   "seiten": {
+    "abtA": 5,
+    "frueh": 7,
+    "spaet": 9,
+    "sonst": 43
+   },
+   "abtA_anteil_pct": 7.8,
+   "frueh_je_band": 0.4,
+   "spaet_je_band": 0.7
+  },
+  {
+   "name": "Joseph von Hefner",
+   "klasse": "unklassifiziert",
+   "count": 66,
+   "n_baende": 25,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 5,
+    "spaet": 6,
+    "sonst": 33
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.3,
+   "spaet_je_band": 0.5
+  },
+  {
+   "name": "Tischler",
+   "klasse": "unklassifiziert",
+   "count": 63,
+   "n_baende": 13,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 8,
+    "spaet": 2,
+    "sonst": 17
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.5,
+   "spaet_je_band": 0.2
+  },
+  {
+   "name": "Aventin",
+   "klasse": "unklassifiziert",
+   "count": 60,
+   "n_baende": 9,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 3,
+    "spaet": 6,
+    "sonst": 24
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.2,
+   "spaet_je_band": 0.5
+  },
+  {
+   "name": "Johann Alexander Döderlein",
+   "klasse": "rlk_umfeld",
+   "count": 53,
+   "n_baende": 11,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 18,
+    "sonst": 17
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 1.4
+  },
+  {
+   "name": "Decius",
+   "klasse": "unklassifiziert",
+   "count": 52,
+   "n_baende": 22,
+   "seiten": {
+    "abtA": 6,
+    "frueh": 2,
+    "spaet": 9,
+    "sonst": 26
+   },
+   "abtA_anteil_pct": 14.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.7
+  },
+  {
+   "name": "Quilling",
+   "klasse": "unklassifiziert",
+   "count": 51,
+   "n_baende": 23,
+   "seiten": {
+    "abtA": 3,
+    "frueh": 4,
+    "spaet": 4,
+    "sonst": 33
+   },
+   "abtA_anteil_pct": 6.8,
+   "frueh_je_band": 0.2,
+   "spaet_je_band": 0.3
+  },
+  {
+   "name": "Marcus",
+   "klasse": "unklassifiziert",
+   "count": 45,
+   "n_baende": 29,
+   "seiten": {
+    "abtA": 4,
+    "frueh": 2,
+    "spaet": 6,
+    "sonst": 26
+   },
+   "abtA_anteil_pct": 10.5,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.5
+  },
+  {
+   "name": "Magnus Scheller",
+   "klasse": "unklassifiziert",
+   "count": 45,
+   "n_baende": 14,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 3,
+    "spaet": 2,
+    "sonst": 23
+   },
+   "abtA_anteil_pct": 3.4,
+   "frueh_je_band": 0.2,
+   "spaet_je_band": 0.2
+  },
+  {
+   "name": "Könen",
+   "klasse": "unklassifiziert",
+   "count": 45,
+   "n_baende": 13,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 11,
+    "spaet": 2,
+    "sonst": 13
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.7,
+   "spaet_je_band": 0.2
+  },
+  {
+   "name": "Walther",
+   "klasse": "unklassifiziert",
+   "count": 44,
+   "n_baende": 29,
+   "seiten": {
+    "abtA": 4,
+    "frueh": 3,
+    "spaet": 6,
+    "sonst": 25
+   },
+   "abtA_anteil_pct": 10.5,
+   "frueh_je_band": 0.2,
+   "spaet_je_band": 0.5
+  },
+  {
+   "name": "Becker",
+   "klasse": "unklassifiziert",
+   "count": 44,
+   "n_baende": 15,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 11,
+    "spaet": 1,
+    "sonst": 19
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.7,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Lucius",
+   "klasse": "unklassifiziert",
+   "count": 44,
+   "n_baende": 23,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 15,
+    "spaet": 0,
+    "sonst": 26
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.9,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Weiler",
+   "klasse": "unklassifiziert",
+   "count": 44,
+   "n_baende": 20,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 3,
+    "spaet": 14,
+    "sonst": 21
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.2,
+   "spaet_je_band": 1.1
+  },
+  {
+   "name": "Wilhelmi",
+   "klasse": "unklassifiziert",
+   "count": 43,
+   "n_baende": 10,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 9,
+    "spaet": 3,
+    "sonst": 17
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.6,
+   "spaet_je_band": 0.2
+  },
+  {
+   "name": "Weller",
+   "klasse": "unklassifiziert",
+   "count": 43,
+   "n_baende": 12,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 2,
+    "spaet": 14,
+    "sonst": 17
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 1.1
+  },
+  {
+   "name": "Lachenmaier",
+   "klasse": "unklassifiziert",
+   "count": 40,
+   "n_baende": 12,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 2,
+    "spaet": 8,
+    "sonst": 26
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.6
+  },
+  {
+   "name": "Kehrein",
+   "klasse": "unklassifiziert",
+   "count": 38,
+   "n_baende": 26,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 2,
+    "spaet": 4,
+    "sonst": 30
+   },
+   "abtA_anteil_pct": 2.7,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.3
+  },
+  {
+   "name": "Drusus",
+   "klasse": "unklassifiziert",
+   "count": 38,
+   "n_baende": 19,
+   "seiten": {
+    "abtA": 3,
+    "frueh": 2,
+    "spaet": 7,
+    "sonst": 17
+   },
+   "abtA_anteil_pct": 10.3,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.5
+  },
+  {
+   "name": "Schmid",
+   "klasse": "unklassifiziert",
+   "count": 38,
+   "n_baende": 10,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 8,
+    "sonst": 21
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.6
+  },
+  {
+   "name": "Johannes Aventinus",
+   "klasse": "rlk_umfeld",
+   "count": 36,
+   "n_baende": 11,
+   "seiten": {
+    "abtA": 2,
+    "frueh": 5,
+    "spaet": 3,
+    "sonst": 15
+   },
+   "abtA_anteil_pct": 8.0,
+   "frueh_je_band": 0.3,
+   "spaet_je_band": 0.2
+  },
+  {
+   "name": "Hübner",
+   "klasse": "unklassifiziert",
+   "count": 35,
+   "n_baende": 21,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 2,
+    "spaet": 4,
+    "sonst": 23
+   },
+   "abtA_anteil_pct": 3.3,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.3
+  },
+  {
+   "name": "Gussmann",
+   "klasse": "unklassifiziert",
+   "count": 32,
+   "n_baende": 4,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 1,
+    "sonst": 23
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Goldmann",
+   "klasse": "unklassifiziert",
+   "count": 31,
+   "n_baende": 4,
+   "seiten": {
+    "abtA": 3,
+    "frueh": 0,
+    "spaet": 3,
+    "sonst": 11
+   },
+   "abtA_anteil_pct": 17.6,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.2
+  },
+  {
+   "name": "Heinrich Nissen",
+   "klasse": "rlk_umfeld",
+   "count": 28,
+   "n_baende": 25,
+   "seiten": {
+    "abtA": 4,
+    "frueh": 1,
+    "spaet": 5,
+    "sonst": 18
+   },
+   "abtA_anteil_pct": 14.3,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.4
+  },
+  {
+   "name": "Iulinus",
+   "klasse": "unklassifiziert",
+   "count": 28,
+   "n_baende": 15,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 9,
+    "spaet": 0,
+    "sonst": 14
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.6,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Rausenberger",
+   "klasse": "unklassifiziert",
+   "count": 28,
+   "n_baende": 4,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 1,
+    "sonst": 21
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Herennia Etruscilla",
+   "klasse": "unklassifiziert",
+   "count": 26,
+   "n_baende": 11,
+   "seiten": {
+    "abtA": 4,
+    "frueh": 3,
+    "spaet": 5,
+    "sonst": 11
+   },
+   "abtA_anteil_pct": 17.4,
+   "frueh_je_band": 0.2,
+   "spaet_je_band": 0.4
+  },
+  {
+   "name": "Bössler, von",
+   "klasse": "unklassifiziert",
+   "count": 26,
+   "n_baende": 9,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 1,
+    "sonst": 12
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Günther",
+   "klasse": "unklassifiziert",
+   "count": 24,
+   "n_baende": 7,
+   "seiten": {
+    "abtA": 2,
+    "frueh": 7,
+    "spaet": 1,
+    "sonst": 3
+   },
+   "abtA_anteil_pct": 15.4,
+   "frueh_je_band": 0.4,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Carl Schuchhardt",
+   "klasse": "rlk_umfeld",
+   "count": 21,
+   "n_baende": 9,
+   "seiten": {
+    "abtA": 9,
+    "frueh": 0,
+    "spaet": 1,
+    "sonst": 11
+   },
+   "abtA_anteil_pct": 42.9,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Belatullus",
+   "klasse": "unklassifiziert",
+   "count": 20,
+   "n_baende": 15,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 0,
+    "sonst": 17
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Hundeshagen",
+   "klasse": "unklassifiziert",
+   "count": 20,
+   "n_baende": 2,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 8,
+    "sonst": 8
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.6
+  },
+  {
+   "name": "Spartianus",
+   "klasse": "unklassifiziert",
+   "count": 19,
+   "n_baende": 10,
+   "seiten": {
+    "abtA": 5,
+    "frueh": 0,
+    "spaet": 4,
+    "sonst": 10
+   },
+   "abtA_anteil_pct": 26.3,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.3
+  },
+  {
+   "name": "Latinnus",
+   "klasse": "unklassifiziert",
+   "count": 19,
+   "n_baende": 10,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 0,
+    "sonst": 14
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Marcellus",
+   "klasse": "unklassifiziert",
+   "count": 19,
+   "n_baende": 11,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 3,
+    "sonst": 16
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.2
+  },
+  {
+   "name": "Groller",
+   "klasse": "unklassifiziert",
+   "count": 19,
+   "n_baende": 7,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 14
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Maximian",
+   "klasse": "unklassifiziert",
+   "count": 18,
+   "n_baende": 10,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 2,
+    "sonst": 14
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.2
+  },
+  {
+   "name": "Julia Aquilia Severa",
+   "klasse": "unklassifiziert",
+   "count": 17,
+   "n_baende": 9,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 2,
+    "spaet": 1,
+    "sonst": 8
+   },
+   "abtA_anteil_pct": 8.3,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Bühler",
+   "klasse": "unklassifiziert",
+   "count": 17,
+   "n_baende": 9,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 2,
+    "spaet": 3,
+    "sonst": 7
+   },
+   "abtA_anteil_pct": 7.7,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.2
+  },
+  {
+   "name": "Jupiter",
+   "klasse": "unklassifiziert",
+   "count": 17,
+   "n_baende": 16,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 3,
+    "spaet": 3,
+    "sonst": 11
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.2,
+   "spaet_je_band": 0.2
+  },
+  {
+   "name": "Diokletian",
+   "klasse": "unklassifiziert",
+   "count": 17,
+   "n_baende": 11,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 3,
+    "spaet": 1,
+    "sonst": 13
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.2,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Streng",
+   "klasse": "unklassifiziert",
+   "count": 16,
+   "n_baende": 13,
+   "seiten": {
+    "abtA": 2,
+    "frueh": 2,
+    "spaet": 4,
+    "sonst": 8
+   },
+   "abtA_anteil_pct": 12.5,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.3
+  },
+  {
+   "name": "Aiacius Modestus",
+   "klasse": "unklassifiziert",
+   "count": 16,
+   "n_baende": 9,
+   "seiten": {
+    "abtA": 2,
+    "frueh": 0,
+    "spaet": 3,
+    "sonst": 7
+   },
+   "abtA_anteil_pct": 16.7,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.2
+  },
+  {
+   "name": "Halbey",
+   "klasse": "unklassifiziert",
+   "count": 16,
+   "n_baende": 2,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 6,
+    "sonst": 6
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.5
+  },
+  {
+   "name": "Scriba",
+   "klasse": "unklassifiziert",
+   "count": 15,
+   "n_baende": 5,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 3,
+    "spaet": 3,
+    "sonst": 7
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.2,
+   "spaet_je_band": 0.2
+  },
+  {
+   "name": "Wiener",
+   "klasse": "unklassifiziert",
+   "count": 15,
+   "n_baende": 10,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 4,
+    "sonst": 10
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.3
+  },
+  {
+   "name": "Leonhardi, Freiherr von",
+   "klasse": "unklassifiziert",
+   "count": 14,
+   "n_baende": 2,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 10,
+    "spaet": 0,
+    "sonst": 0
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.6,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Severinus",
+   "klasse": "unklassifiziert",
+   "count": 14,
+   "n_baende": 6,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 2,
+    "spaet": 0,
+    "sonst": 7
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Pervincus",
+   "klasse": "unklassifiziert",
+   "count": 13,
+   "n_baende": 6,
+   "seiten": {
+    "abtA": 2,
+    "frueh": 0,
+    "spaet": 2,
+    "sonst": 7
+   },
+   "abtA_anteil_pct": 18.2,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.2
+  },
+  {
+   "name": "Servandus",
+   "klasse": "unklassifiziert",
+   "count": 13,
+   "n_baende": 10,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 2,
+    "sonst": 9
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.2
+  },
+  {
+   "name": "Erlenmeyer",
+   "klasse": "unklassifiziert",
+   "count": 13,
+   "n_baende": 3,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 3,
+    "sonst": 3
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.2
+  },
+  {
+   "name": "Heinrich von Brunn",
+   "klasse": "rlk_umfeld",
+   "count": 12,
+   "n_baende": 12,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 1,
+    "spaet": 5,
+    "sonst": 5
+   },
+   "abtA_anteil_pct": 8.3,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.4
+  },
+  {
+   "name": "Andreae, General",
+   "klasse": "unklassifiziert",
+   "count": 12,
+   "n_baende": 6,
+   "seiten": {
+    "abtA": 4,
+    "frueh": 0,
+    "spaet": 1,
+    "sonst": 7
+   },
+   "abtA_anteil_pct": 33.3,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Gareis",
+   "klasse": "unklassifiziert",
+   "count": 12,
+   "n_baende": 7,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 3,
+    "spaet": 1,
+    "sonst": 4
+   },
+   "abtA_anteil_pct": 11.1,
+   "frueh_je_band": 0.2,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Valerius",
+   "klasse": "unklassifiziert",
+   "count": 12,
+   "n_baende": 7,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 1,
+    "sonst": 9
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Gradmann",
+   "klasse": "unklassifiziert",
+   "count": 12,
+   "n_baende": 9,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 4,
+    "sonst": 6
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.3
+  },
+  {
+   "name": "Lillus",
+   "klasse": "unklassifiziert",
+   "count": 11,
+   "n_baende": 9,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 0,
+    "spaet": 1,
+    "sonst": 8
+   },
+   "abtA_anteil_pct": 10.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Gärtner",
+   "klasse": "unklassifiziert",
+   "count": 10,
+   "n_baende": 6,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 2,
+    "spaet": 0,
+    "sonst": 7
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Eichner",
+   "klasse": "unklassifiziert",
+   "count": 10,
+   "n_baende": 1,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 8
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Scharff, Fr",
+   "klasse": "unklassifiziert",
+   "count": 9,
+   "n_baende": 7,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 0,
+    "spaet": 2,
+    "sonst": 6
+   },
+   "abtA_anteil_pct": 11.1,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.2
+  },
+  {
+   "name": "Siculus Flaccus",
+   "klasse": "unklassifiziert",
+   "count": 8,
+   "n_baende": 5,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 0,
+    "spaet": 1,
+    "sonst": 3
+   },
+   "abtA_anteil_pct": 20.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Julian",
+   "klasse": "unklassifiziert",
+   "count": 8,
+   "n_baende": 4,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 0,
+    "sonst": 7
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Feucht",
+   "klasse": "unklassifiziert",
+   "count": 7,
+   "n_baende": 7,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 1,
+    "spaet": 1,
+    "sonst": 4
+   },
+   "abtA_anteil_pct": 14.3,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Cobnertus",
+   "klasse": "unklassifiziert",
+   "count": 7,
+   "n_baende": 5,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 1,
+    "sonst": 5
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Sodalis",
+   "klasse": "unklassifiziert",
+   "count": 7,
+   "n_baende": 5,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 0,
+    "sonst": 6
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Mamertinus Iustus",
+   "klasse": "unklassifiziert",
+   "count": 7,
+   "n_baende": 7,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 3,
+    "spaet": 0,
+    "sonst": 4
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.2,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Fortunionius Dubitatus",
+   "klasse": "unklassifiziert",
+   "count": 7,
+   "n_baende": 4,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 0,
+    "sonst": 5
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Trautwein, M",
+   "klasse": "unklassifiziert",
+   "count": 6,
+   "n_baende": 6,
+   "seiten": {
+    "abtA": 2,
+    "frueh": 0,
+    "spaet": 1,
+    "sonst": 3
+   },
+   "abtA_anteil_pct": 33.3,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Friedrich Zollmann",
+   "klasse": "rlk_umfeld",
+   "count": 6,
+   "n_baende": 3,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 0,
+    "spaet": 1,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 33.3,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Huth",
+   "klasse": "unklassifiziert",
+   "count": 6,
+   "n_baende": 2,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 6
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Arnoldi",
+   "klasse": "unklassifiziert",
+   "count": 6,
+   "n_baende": 3,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 2,
+    "spaet": 2,
+    "sonst": 2
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.2
+  },
+  {
+   "name": "Capitolinus",
+   "klasse": "unklassifiziert",
+   "count": 6,
+   "n_baende": 4,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 6
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Statutus",
+   "klasse": "unklassifiziert",
+   "count": 6,
+   "n_baende": 4,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 0,
+    "sonst": 5
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Bergmann, Joseph",
+   "klasse": "unklassifiziert",
+   "count": 6,
+   "n_baende": 1,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 5
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Otto von Bismarck",
+   "klasse": "rlk_umfeld",
+   "count": 5,
+   "n_baende": 5,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 0,
+    "spaet": 1,
+    "sonst": 3
+   },
+   "abtA_anteil_pct": 20.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Engelhardt",
+   "klasse": "unklassifiziert",
+   "count": 5,
+   "n_baende": 5,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 1,
+    "spaet": 1,
+    "sonst": 2
+   },
+   "abtA_anteil_pct": 20.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Honorius",
+   "klasse": "unklassifiziert",
+   "count": 5,
+   "n_baende": 5,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 1,
+    "sonst": 4
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Kotier",
+   "klasse": "unklassifiziert",
+   "count": 5,
+   "n_baende": 2,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 2
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Vaterculus Proculus",
+   "klasse": "unklassifiziert",
+   "count": 5,
+   "n_baende": 5,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 1,
+    "sonst": 3
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Donatus",
+   "klasse": "unklassifiziert",
+   "count": 5,
+   "n_baende": 5,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 5
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Ernst Förstemann",
+   "klasse": "unklassifiziert",
+   "count": 5,
+   "n_baende": 5,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 2,
+    "spaet": 0,
+    "sonst": 3
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Claudius Quartinus",
+   "klasse": "unklassifiziert",
+   "count": 5,
+   "n_baende": 4,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 0,
+    "sonst": 3
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Koller",
+   "klasse": "unklassifiziert",
+   "count": 4,
+   "n_baende": 2,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 2
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Wilhelm Oechelhäuser",
+   "klasse": "rlk_umfeld",
+   "count": 4,
+   "n_baende": 2,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 2,
+    "sonst": 2
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.2
+  },
+  {
+   "name": "Koffer",
+   "klasse": "unklassifiziert",
+   "count": 4,
+   "n_baende": 4,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 1,
+    "sonst": 3
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Hasselmann",
+   "klasse": "unklassifiziert",
+   "count": 4,
+   "n_baende": 2,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 1,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Acilius Glabrio",
+   "klasse": "unklassifiziert",
+   "count": 4,
+   "n_baende": 4,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 4
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Kammerer",
+   "klasse": "unklassifiziert",
+   "count": 4,
+   "n_baende": 2,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 0,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Patricianus",
+   "klasse": "unklassifiziert",
+   "count": 4,
+   "n_baende": 4,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 0,
+    "sonst": 3
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Friedrich Althoff",
+   "klasse": "rlk_umfeld",
+   "count": 3,
+   "n_baende": 3,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 0,
+    "spaet": 1,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 33.3,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Lachmann, Karl",
+   "klasse": "unklassifiziert",
+   "count": 3,
+   "n_baende": 3,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 2
+   },
+   "abtA_anteil_pct": 33.3,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Schell",
+   "klasse": "unklassifiziert",
+   "count": 3,
+   "n_baende": 3,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 0,
+    "spaet": 1,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 33.3,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Jakobi",
+   "klasse": "unklassifiziert",
+   "count": 3,
+   "n_baende": 3,
+   "seiten": {
+    "abtA": 1,
+    "frueh": 0,
+    "spaet": 1,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 33.3,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Hammerau",
+   "klasse": "unklassifiziert",
+   "count": 3,
+   "n_baende": 2,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 3
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Henzen",
+   "klasse": "unklassifiziert",
+   "count": 3,
+   "n_baende": 3,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 0,
+    "sonst": 2
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Weckerling",
+   "klasse": "unklassifiziert",
+   "count": 3,
+   "n_baende": 3,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 1,
+    "sonst": 2
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Eschenbrenner",
+   "klasse": "unklassifiziert",
+   "count": 3,
+   "n_baende": 2,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 2,
+    "spaet": 0,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Schattenbrand",
+   "klasse": "unklassifiziert",
+   "count": 3,
+   "n_baende": 1,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 3
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "G. von Roessler",
+   "klasse": "unklassifiziert",
+   "count": 3,
+   "n_baende": 1,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 3
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Schlemmer",
+   "klasse": "unklassifiziert",
+   "count": 2,
+   "n_baende": 1,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Carl Wilhelm von Gümbel",
+   "klasse": "unklassifiziert",
+   "count": 2,
+   "n_baende": 2,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 1,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Eichler, E",
+   "klasse": "unklassifiziert",
+   "count": 2,
+   "n_baende": 2,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 1,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Wiedmann",
+   "klasse": "unklassifiziert",
+   "count": 2,
+   "n_baende": 2,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 1,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Friedrich Thudichum",
+   "klasse": "unklassifiziert",
+   "count": 2,
+   "n_baende": 2,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 1,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.1
+  },
+  {
+   "name": "Kellermann",
+   "klasse": "unklassifiziert",
+   "count": 2,
+   "n_baende": 2,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 0,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Ringler",
+   "klasse": "unklassifiziert",
+   "count": 2,
+   "n_baende": 2,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 0,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Löschcke",
+   "klasse": "unklassifiziert",
+   "count": 2,
+   "n_baende": 1,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 2,
+    "spaet": 0,
+    "sonst": 0
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Schaack",
+   "klasse": "unklassifiziert",
+   "count": 2,
+   "n_baende": 1,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 2
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Patruinus",
+   "klasse": "unklassifiziert",
+   "count": 2,
+   "n_baende": 1,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Küthe",
+   "klasse": "unklassifiziert",
+   "count": 1,
+   "n_baende": 1,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 0,
+    "sonst": 0
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Boissieu",
+   "klasse": "unklassifiziert",
+   "count": 1,
+   "n_baende": 1,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 0,
+    "sonst": 0
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Borghesi",
+   "klasse": "unklassifiziert",
+   "count": 1,
+   "n_baende": 1,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 0,
+    "sonst": 0
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Joseph Aschbach",
+   "klasse": "unklassifiziert",
+   "count": 1,
+   "n_baende": 1,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 0,
+    "sonst": 0
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Hestermann",
+   "klasse": "unklassifiziert",
+   "count": 1,
+   "n_baende": 1,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 1,
+    "spaet": 0,
+    "sonst": 0
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.1,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Kochhäuser",
+   "klasse": "unklassifiziert",
+   "count": 1,
+   "n_baende": 1,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Singhof",
+   "klasse": "unklassifiziert",
+   "count": 1,
+   "n_baende": 1,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Minucius Fatalis",
+   "klasse": "unklassifiziert",
+   "count": 1,
+   "n_baende": 1,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Arrian",
+   "klasse": "unklassifiziert",
+   "count": 1,
+   "n_baende": 1,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Annianus",
+   "klasse": "unklassifiziert",
+   "count": 1,
+   "n_baende": 1,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Costutus",
+   "klasse": "unklassifiziert",
+   "count": 1,
+   "n_baende": 1,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  },
+  {
+   "name": "Schatzmann, Hofrat",
+   "klasse": "unklassifiziert",
+   "count": 1,
+   "n_baende": 1,
+   "seiten": {
+    "abtA": 0,
+    "frueh": 0,
+    "spaet": 0,
+    "sonst": 1
+   },
+   "abtA_anteil_pct": 0.0,
+   "frueh_je_band": 0.0,
+   "spaet_je_band": 0.0
+  }
+ ]
+}
