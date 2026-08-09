@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-build_site.py — statische GitHub-Pages-Edition aus tei/ + registers/ erzeugen.
+build_site.py: statische GitHub-Pages-Edition aus tei/ + registers/ erzeugen.
 ================================================================================
 Rendert die (selbst erzeugten) TEI-Bände build-zeitlich zu HTML (kein client-
 seitiges TEI-Framework nötig), bindet je Band einen IIIF-Faksimile-Viewer
@@ -21,6 +21,14 @@ IIIF_INFO = "https://digi.ub.uni-heidelberg.de/iiif/2/{slug}%3A{tok}.jpg/info.js
 IIIF_MAN  = "https://digi.ub.uni-heidelberg.de/diglit/iiif/{slug}/manifest"
 LABELS = {1:"Bd. 1 (1892/93)",2:"Bd. 2 (1893/94)",3:"Bd. 3 (1894/95)",4:"Bd. 4 (1896)",
           5:"Bd. 5 (1897)",6:"Bd. 6 (1897/98)",7:"Bd. 7 (1898/1902)",8:"Bd. 8 (1903)"}
+
+def _tausend(n):
+    """Zahl mit deutschem Tausenderpunkt.
+
+    NICHT über `str.replace(",", ".")` auf dem fertigen Satz: das trifft auch die
+    Satzkommas und machte aus »43 Aufsätze, 389.430 Wörter« ein »43 Aufsätze. 389.430 Wörter«."""
+    return f"{n:,}".replace(",", ".")
+
 
 def unesc(s): return html.unescape(s)
 def strip_tags(s): return re.sub(r"<[^>]+>", "", s)
@@ -81,12 +89,12 @@ def render_page(inner, tafel=None):
             iiif = f"https://digi.ub.uni-heidelberg.de/iiif/2/{slug_}%3A{tok}.jpg"
             return (f'<figure class="tafel" style="margin:1em 0;text-align:center">'
                     f'<a href="{iiif}/full/max/0/default.jpg" title="Faksimile in voller Auflösung">'
-                    f'<img loading="lazy" alt="Tafel, Spalten {no}/{no+1} — Faksimile" '
+                    f'<img loading="lazy" alt="Tafel, Spalten {no}/{no+1}: Faksimile" '
                     f'style="max-width:100%;border:1px solid var(--line,#ddd)" '
                     f'src="{iiif}/full/700,/0/default.jpg">'
-                    f'</a><figcaption class="meta" style="text-align:left"><b>Tafel — Spalten {no}/{no+1}.</b> Die Seite trägt keinen Satztext: '
+                    f'</a><figcaption class="meta" style="text-align:left"><b>Tafel: Spalten {no}/{no+1}.</b> Die Seite trägt keinen Satztext: '
                     f'Sie ist <b>handschriftlich in Kurrent</b> beschriftet, weshalb die '
-                    f'Schrifterkennung sie leer lässt. Zitierbar ist sie trotzdem — '
+                    f'Schrifterkennung sie leer lässt. Zitierbar ist sie trotzdem: '
                     f'<a href="../register/hintzelmann.html">Hintzelmanns Register</a> von 1903 verweist '
                     f'darauf. <a href="{iiif}/full/max/0/default.jpg">Volle Auflösung</a> · '
                     f'Seitenbilder &#169; UB Heidelberg.</figcaption></figure>')
@@ -230,7 +238,7 @@ def page(title, body, depth=0, head=""):
     up = "../" * depth
     return f"""<!doctype html><html lang="de"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{html.escape(title)} — RLK-digital</title>
+<title>{html.escape(title)}: RLK-digital</title>
 <link rel="stylesheet" href="{up}assets/style.css">
 <script src="{up}assets/tables.js" defer></script>{head}</head><body>
 <header><a class="home" href="{up}index.html">🏛 RLK-digital</a>
@@ -238,9 +246,9 @@ def page(title, body, depth=0, head=""):
 <li><a href="{up}uebersicht.html">Übersicht</a></li>
 <li class="has"><a href="{up}quellen.html">Quellen</a><ul>
 <li><a href="{up}quellen.html">Alle Quellen im Überblick</a></li>
-<li><a href="{up}quellen.html#limesblatt"><b>Limesblatt</b> — das Feldorgan</a></li>
+<li><a href="{up}quellen.html#limesblatt"><b>Limesblatt</b>: das Feldorgan</a></li>
 <li><a href="{up}baende.html">· Bände &amp; Inhaltsverzeichnis</a></li>
-<li><a href="{up}quellen.html#orl"><b>ORL</b> — die Endpublikation</a></li>
+<li><a href="{up}quellen.html#orl"><b>ORL</b>: die Endpublikation</a></li>
 <li><a href="{up}register/orl-inhalt.html">· Inhaltsverzeichnis</a></li>
 <li><a href="{up}register/orl-verweise.html">· Binnenverweise</a></li>
 <li><a href="{up}register/genese.html">· Genese des Werks</a></li>
@@ -273,7 +281,7 @@ def page(title, body, depth=0, head=""):
 <li><a href="{up}edit.html" title="TEI-Quelle bearbeiten (GitHub-Login)">Bearbeiten ✎</a></li></ul></li>
 <li><a href="{up}index.html#suche">🔍 Suche</a></li>
 </ul></nav></header><main>{body}</main>
-<footer><b>RLK-digital</b> — die Quellen der Reichs-Limeskommission (1892–1937), digital erschlossen:
+<footer><b>RLK-digital</b>: die Quellen der Reichs-Limeskommission (1892–1937), digital erschlossen:
 <em>Limesblatt</em> · <em>Obergermanisch-Raetischer Limes</em> · Jahresberichte · Text &amp; Register
 <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · Seitenbilder © UB Heidelberg
 (<a href="http://rightsstatements.org/vocab/InC/1.0/">In Copyright</a>, via IIIF verlinkt) ·
@@ -323,7 +331,7 @@ def vol_page(v, toc=None):
     if toc:
         items = toc_li_hefte(toc, "", True, band=v["nr"])
         nh = sum(1 for h in HEFTE if h["band"] == v["nr"])
-        inh = (f'<details class="inhalt" open><summary>Inhalt — {nh} Hefte, '
+        inh = (f'<details class="inhalt" open><summary>Inhalt: {nh} Hefte, '
                f'{len(toc)} nummerierte Berichte</summary><ul class="toc">{items}</ul></details>')
     body = f"""<h1>Limesblatt · {html.escape(v['label'])}</h1>
 <p class="meta">IIIF-Faksimile: <a href="{IIIF_MAN.format(slug=slug)}">Manifest</a> (UB Heidelberg) ·
@@ -448,7 +456,7 @@ def persons_page(persons, occ, digs):
         rows.append(f'<tr id="{p["id"]}"><td class="pn">{name}</td><td>{rolle}</td><td>{wirk}</td>'
                     f'<td class="nd">{norm}</td><td class="beleg">{belc}</td></tr>')
     return (f'<h1>Personenregister</h1><p class="meta">{len(persons)} kuratierte Personen der RLK-Forschungs'
-            f'geschichte — mit Lebensdaten, Funktion, Normdaten, Korrespondenz/Nachlass, ausgegrabenen Kastellen '
+            f'geschichte: mit Lebensdaten, Funktion, Normdaten, Korrespondenz/Nachlass, ausgegrabenen Kastellen '
             f'und Volltext-Fundstellen. Alle im Limesblatt namentlich genannten Personen (NER, mehrere hundert) '
             f'stehen im <a href="namen.html">Namenregister</a>.</p>'
             f'<table class="reg pers"><thead><tr><th>Person (Lebensdaten)</th><th>Rolle&#8201;/&#8201;Funktion</th>'
@@ -511,13 +519,13 @@ def places_page(places, occ, pname, str_by_id, sites, site_hits):
     nvt = sum(1 for s in sites if site_hits.get(s.get("properties",{}).get("id")))
     sites_html = (f'<h2 id="weitere">Weitere Limesstellen (DARE)</h2>'
                   '<p class="meta">Türme, Kleinkastelle und Lager <i>zwischen</i> den benannten Kastellen, '
-                  f'je mit DARE-Datensatz, 📍 Karten-Fokus und — bei {nvt} Stellen — 📄 <b>heuristischen '
+                  f'je mit DARE-Datensatz, 📍 Karten-Fokus und, bei {nvt} Stellen, 📄 <b>heuristischen '
                   'Volltext-Treffern</b> (Toponym-Abgleich auf Fraktur-OCR; nicht jede Nennung meint zwingend '
                   'diese Stelle). Gazetteer-Stellen ohne RLK-Wachtposten-Nr.</p>'
                   + "".join(secs)) if sites else ""
     head = '<link rel="stylesheet" href="../assets/leaflet.css"><script src="../assets/leaflet.js"></script>'
     body = (f'<h1>Ortsregister</h1><p class="meta">{len(places)} benannte Kastelle (Karten unten) plus '
-            f'{len(sites)} weitere Limesstellen — auf der Karte zuschaltbar: der <b>Limesverlauf</b>, die '
+            f'{len(sites)} weitere Limesstellen. Auf der Karte zuschaltbar sind der <b>Limesverlauf</b>, die '
             f'<b>Streckenabschnitte</b> (die echte Linie nach Strecke eingefärbt, Klick → Streckenseite) und die '
             f'<b>weiteren Limesstellen</b> (Türme / Kleinkastelle / Lager, DARE). Filter nach Limes-Abschnitt.</p>'
             f'<div id="facets"></div><div id="map"></div>'
@@ -585,7 +593,7 @@ def strecken_page(strecken, str_forts, persons, pname, strecke_sites, orl_idx, v
             f'<a href="persons.html#{p["id"]}">{html.escape(p["name"])}</a>' for p in komm))
         if dig_ids: bet.append("Ausgräber: " + ", ".join(
             f'<a href="persons.html#{d}">{html.escape(pname[d])}</a>' for d in dig_ids))
-        if bet: extra += '<div class="x">👤 Beteiligte — ' + " · ".join(bet) + '</div>'
+        if bet: extra += '<div class="x">👤 Beteiligte: ' + " · ".join(bet) + '</div>'
         cards.append(f'<article class="card wide" id="{s["id"]}"><div class="cbody">'
                      f'<h3>{html.escape(s["name"])}</h3><div class="role">{meta}</div>{extra}</div></article>')
     return (f'<h1>Strecken</h1><p class="meta">{len(strecken)} Limes-Abschnitte, je mit den Kastellen, den '
@@ -620,7 +628,7 @@ def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh, artliste=None):
 
     teile = [
         block("limesblatt", "Limesblatt", "1892–1903 · Feldorgan",
-              "Die <em>Mitteilungen der Streckenkommissare</em> — das laufende Berichtsorgan der Kommission, "
+              "Die <em>Mitteilungen der Streckenkommissare</em>: das laufende Berichtsorgan der Kommission, "
               "in dem die Streckenkommissare ihre Kampagne noch im Gange beschreiben. Hier vollständig als "
               "diplomatische OCR-Edition mit Faksimile-Anschluss.",
               [f"<b>{n_seiten} Seiten</b> in 8 Bänden, durchlaufend in 967 Spalten gezählt",
@@ -632,12 +640,12 @@ def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh, artliste=None):
                ("Hintzelmanns Register 1903", "register/hintzelmann.html"),
                ("Textanalyse", "register/wortschatz.html")]),
         block("orl", "Obergermanisch-Raetischer Limes (ORL)", "1894–1937 · Endpublikation",
-              "Das Werk, in das die Feldarbeit mündete — in 14 Mappen über 45 Jahre erschienen und deshalb nie "
+              "Das Werk, in das die Feldarbeit mündete: in 14 Mappen über 45 Jahre erschienen und deshalb nie "
               "als Ganzes erschlossen. Hier token-frei über HathiTrust aufgeschlüsselt: Inhalt, Apparat, "
               "Binnenverweise und die Schichten seiner Entstehung.",
               [f"<b>{len(b)} Kastell-Faszikel</b> und <b>{len(a)} Streckenbände</b>, nach Lieferung geordnet",
                "551 Binnenverweise beidseitig in den Scan verlinkt, doppelt validiert",
-               "1751 Verweise auf das Limesblatt aufgelöst — das Feldarchiv, auf das sich der ORL beruft",
+               "1751 Verweise auf das Limesblatt aufgelöst: das Feldarchiv, auf das sich der ORL beruft",
                "Gesamtregister über alle Bände, das die Reihe selbst nie hatte"],
               [("Inhaltsverzeichnis", "register/orl-inhalt.html"), ("Bandindex", "register/orl.html"),
                ("Binnenverweise", "register/orl-verweise.html"),
@@ -649,7 +657,7 @@ def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh, artliste=None):
               "<em>Jahrbuch des Deutschen Archäologischen Instituts</em>. Kein Feldbericht und keine "
               "Endpublikation, sondern die dritte Stimme: Personal, Beschlüsse, Fortschritt.",
               [f"<b>{n_jb} von 14 Jahrgängen</b> erschlossen (1894 nicht digitalisiert auffindbar)",
-               "durchnummeriert nach Jahrgang — die Bandzahl gehört dem Jahrbuch, nicht den Berichten",
+               "durchnummeriert nach Jahrgang: die Bandzahl gehört dem Jahrbuch, nicht den Berichten",
                "Register der genannten Personen und Orte, dazu das Verwaltungsvokabular",
                "Befund: der Berichtsumfang <b>fällt</b>, während die ORL-Lieferungen zunehmen"],
               [("Die Berichte", "register/jahresberichte.html"),
@@ -657,22 +665,22 @@ def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh, artliste=None):
                ("Welche Orte", "register/jahresberichte.html#wo")]),
         block("extern", "Zitierte externe Quellen", "Apparat der drei Werke",
               "Worauf sich die Limesforschung beruft: Inschriftencorpora, Referenzwerke, "
-              "Fachzeitschriften — aufgelöst zu vollen Referenzen und, wo vorhanden, zum offenen Digitalisat.",
+              "Fachzeitschriften, aufgelöst zu vollen Referenzen und, wo vorhanden, zum offenen Digitalisat.",
               [f"<b>{len(bibls)} zitierte Werke</b> im Limesblatt, als <code>&lt;ref&gt;</code> im TEI ausgezeichnet",
                f"<b>{n_edh} Inschriften</b> der Limes-Fundorte aus der Epigraphic Database Heidelberg",
                "817 Inschriften-Zitate des ORL, normalisiert zum Zitatregister",
-               "Befund: nur 11 Inschriften zitieren beide Werke — der ORL-Apparat wurde neu aufgebaut"],
+               "Befund: nur 11 Inschriften zitieren beide Werke, der ORL-Apparat wurde neu aufgebaut"],
               [("Bibliographie", "register/bibliographie.html"),
                ("Gesamtbibliographie", "register/gesamtbibliographie.html"),
                ("Inschriften (EDH)", "register/inschriften.html")]),
         block("lokal", "Lokale &amp; regionale Publikationen", "das föderale Ökosystem",
-              "Die Limesforschung erschien nicht nur zentral. Die Regionalorgane der beteiligten Staaten — "
-              "Westdeutsche Zeitschrift, Nassauische Annalen, Fundberichte aus Schwaben, Mainzer Zeitschrift — "
+              "Die Limesforschung erschien nicht nur zentral. Die Regionalorgane der beteiligten Staaten: "
+              "Westdeutsche Zeitschrift, Nassauische Annalen, Fundberichte aus Schwaben, Mainzer Zeitschrift, "
               "tragen einen erheblichen Teil des Apparats. Mommsens Klage über „so viele Limeslitteraturen wie "
               "beteiligte Staaten“ wurde nicht stillgelegt, sondern eingebaut.",
               [f"<b>{len(organe)} Organe</b> im ORL-Apparat vollständig ausgezählt",
                "Organ und Region des Bandinhalts entsprechen einander in fünf geprüften Fällen",
-               "das Ökosystem wuchs zwischen Vorbericht und Endpublikation — die Mainzer Zeitschrift "
+               "das Ökosystem wuchs zwischen Vorbericht und Endpublikation, denn die Mainzer Zeitschrift "
                "(gegr. 1906) konnte im Limesblatt gar nicht stehen",
                f"<b>{n_rez} Nachweise</b> zur Rezeption des Limesblatts außerhalb seiner Bände"],
               [("Organe im Gesamtapparat", "register/orl-register.html"),
@@ -680,9 +688,9 @@ def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh, artliste=None):
         block("aufsaetze", "Einzelne Aufsätze", "Nachrufe · Streitschriften · Gründungstexte",
               "Neben den drei Beständen stehen einzelne Aufsätze, an denen die Gründungsgeschichte hängt. "
               "Wo sie bei der UB Heidelberg digitalisiert sind, liegen sie in derselben Form vor wie das "
-              "Limesblatt — Faksimile plus OCR — und stehen hier ebenso nebeneinander: Text links, Blatt rechts.",
+              "Limesblatt (Faksimile plus OCR) und stehen hier ebenso nebeneinander: Text links, Blatt rechts.",
               [f'<b>{len(artliste or [])} Aufsätze</b> erschlossen, '
-               f'{sum(x.get("woerter", 0) for x in (artliste or [])):,} Wörter'.replace(",", "."),
+               f'{_tausend(sum(x.get("woerter", 0) for x in (artliste or [])))} Wörter',
                "darunter Florschütz’ Nachruf auf Cohausen (1895) und Cohausens Streitschrift (1892)",
                "der Bestand stammt aus dem Aufsatzverzeichnis des Vaults; der Jahrgang wird nicht "
                "geraten, sondern an den Seitenbeschriftungen der Bildfolge geprüft"],
@@ -690,17 +698,17 @@ def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh, artliste=None):
         block("archive", "Archivbestände", "unveröffentlicht · zum Teil ungesehen",
               "Alles bisher Genannte ist gedruckt. Daneben liegt das <em>unveröffentlichte</em> Material: "
               "Grabungstagebücher, Korrespondenz, Vermessungsunterlagen, Ministerialakten. Hier steht, wo es "
-              "liegt, wie man herankommt — und was noch niemand angesehen hat.",
+              "liegt, wie man herankommt, und was noch niemand angesehen hat.",
               ["das wissenschaftliche Archiv der Kommission liegt geschlossen bei der "
                "<b>Römisch-Germanischen Kommission</b> des DAI in Frankfurt",
-               "die <b>Verwaltungsüberlieferung</b> dagegen verteilt auf die Staatsarchive der Trägerstaaten — "
+               "die <b>Verwaltungsüberlieferung</b> dagegen verteilt auf die Staatsarchive der Trägerstaaten: "
                "die Kommission war keine Behörde, sondern ein Verbund",
                "Nachlässe der Beteiligten, über Kalliope und die DAI-Findmittel ermittelt",
                "eine priorisierte <b>Bestell-Liste</b>: welche Akte welche offene Frage beantworten würde"],
               [("Archivbestände &amp; Desiderate", "register/archive.html")]),
     ]
     return (f'<h1>Die Quellen</h1>'
-            f'<p class="lede">Fünf Bestände, die die Reichs-Limeskommission hinterlassen hat — jeder mit eigener '
+            f'<p class="lede">Fünf Bestände, die die Reichs-Limeskommission hinterlassen hat, jeder mit eigener '
             f'Entstehung, eigenem Zuschnitt und eigenen Grenzen. Sie erzählen dasselbe Unternehmen dreimal '
             f'verschieden: im Gange (Limesblatt), abgeschlossen (ORL) und von der Verwaltung her '
             f'(Jahresberichte); dazu die Literatur, auf die sie sich berufen, und die regionalen Organe, '
@@ -730,7 +738,7 @@ fetch("data/search.json").then(r=>r.json()).then(docs=>{
 
 
 def baende_page(volumes, toc=None):
-    """Die Limesblatt-Bände mit ihren Inhaltsverzeichnissen — eigene Seite, seit die Startseite
+    """Die Limesblatt-Bände mit ihren Inhaltsverzeichnissen: eigene Seite, seit die Startseite
     ein Einstieg ist und kein Verzeichnis."""
     toc = toc or {}
     bl = []
@@ -746,7 +754,7 @@ def baende_page(volumes, toc=None):
         bl.append(f'<li><a href="volumes/bd{v["nr"]}.html"><b>{html.escape(v["label"])}</b></a> '
                   f'<span class="meta">— {len(v["pages"])} Seiten{spanne} · {len(ents)} Berichte</span>{sub}</li>')
     n_ber = sum(len(x) for x in toc.values())
-    return (f'<h1>Limesblatt — Bände &amp; Inhaltsverzeichnis</h1>'
+    return (f'<h1>Limesblatt: Bände &amp; Inhaltsverzeichnis</h1>'
             f'<p class="lede">Das Feldorgan der Reichs-Limeskommission, vollständig: acht Jahrgangsbände, '
             f'{len(HEFTE)} Hefteinheiten, {n_ber} nummerierte Feldberichte. Jeder Bericht führt an seine '
             f'Stelle im Text, jede Seite an das Faksimile der UB Heidelberg.</p>'
@@ -754,9 +762,9 @@ def baende_page(volumes, toc=None):
             f'des Digitalisats). Volltextsuche über alle Bände: <a href="index.html#suche">auf der '
             f'Startseite</a>.</p>'
             f'<div class="note"><p><b>Das Erscheinen: 35 Nummern, 1892–1903.</b> Das Limesblatt erschien in '
-            f'<b>35 Nummern</b> — „Er[schein]t jährlich i[n] 5–6 Nrn. zum Preise von 3 Mark", wie sein Kopf sagt —, '
+            f'<b>35 Nummern</b>: „Er[schein]t jährlich i[n] 5–6 Nrn. zum Preise von 3 Mark", wie sein Kopf sagt, '
             f'gebunden in acht Jahrgangsbände. Die letzte trägt den Vermerk „<i>Nr. 35. Ausgegeben am 27. Mai '
-            f'[1903]</i>". <span class="lc">(Eckige Klammern: Lesungen, wo die Fraktur-OCR versagt — sie liest '
+            f'[1903]</i>". <span class="lc">(Eckige Klammern stehen für Lesungen, wo die Fraktur-OCR versagt: sie liest '
             f'„Kracheiut jährlich iu" und „27. Mai Ulli:]". Das Jahr ist über den Jahrgangsband und den '
             f'Jahresbericht gesichert.)</span> Warum es endete, sagt die Kommission in ihrem Jahresbericht '
             f'selbst:</p>'
@@ -768,11 +776,11 @@ def baende_page(volumes, toc=None):
             f'(<a href="register/jahresberichte.html">Jahresberichte</a>)</footer></blockquote>'
             f'<p>Die Einstellung war demnach kein Abbruch, sondern das vorgesehene Ende eines Organs der '
             f'laufenden Feldarbeit: Mit dem Abschluss der Grabungen entfiel sein Gegenstand. Die Ergebnisse '
-            f'gingen in die Endpublikation ein, den <a href="register/orl.html">ORL</a> — wie beides '
+            f'gingen in die Endpublikation ein, den <a href="register/orl.html">ORL</a>: wie beides '
             f'zusammenhängt, zeigt die Seite zur <a href="register/genese.html">Genese des ORL</a>.</p>'
             f'<p>Das Schlussheft ist entsprechend gebaut: Es enthält einen <b>Nachruf auf Karl Zangemeister und '
-            f'Felix Hettner</b> — die beiden, die dem Blatt den Namen gaben und laut Fabricius „von Anbeginn an '
-            f'der Spitze unseres Unternehmens gestanden hatten"; beide starben 1902 —, Beiträge von Popp, '
+            f'Felix Hettner</b>, die beiden, die dem Blatt den Namen gaben und laut Fabricius „von Anbeginn an '
+            f'der Spitze unseres Unternehmens gestanden hatten" (beide starben 1902), Beiträge von Popp, '
             f'Winkelmann, Schuchhardt, Fabricius, Steimle und Leonhard, und schließlich ein <b>„Register zu '
             f'Nr. 1–35 des Limesblattes. Von Prof. Dr. P. Hintzelmann"</b>. Dieses zeitgenössische Register steht im letzten Band dieser Edition '
             f'(<a href="volumes/bd8.html">Band 8</a>).</p>'
@@ -782,7 +790,7 @@ def baende_page(volumes, toc=None):
 
 
 def index_page(volumes, toc=None):
-    """Startseite: ein Einstieg, kein Verzeichnis — was hier zu finden ist, in einem Bildschirm."""
+    """Startseite: ein Einstieg, kein Verzeichnis: was hier zu finden ist, in einem Bildschirm."""
     toc = toc or {}
     n_ber = sum(len(x) for x in toc.values())
     n_seiten = sum(len(v["pages"]) for v in volumes)
@@ -795,13 +803,13 @@ def index_page(volumes, toc=None):
     karten = [
         karte("Limesblatt", "Die laufenden Feldberichte der Streckenkommissare, vollständig lesbar neben dem "
               "Faksimile.", "baende.html", f"1892–1903 · {n_seiten} Seiten · {n_ber} Berichte"),
-        karte("ORL", "Die Endpublikation, in die das Feld mündete — Inhalt, Apparat und Binnenverweise "
+        karte("ORL", "Die Endpublikation, in die das Feld mündete: Inhalt, Apparat und Binnenverweise "
               "erschlossen.", "register/orl-inhalt.html", "1894–1937 · 92 Kastell-Faszikel"),
         karte("Jahresberichte", "Was die Kommission jährlich über sich selbst berichtete: Personal, "
               "Beschlüsse, Kampagnen.", "register/jahresberichte.html", "1892–1905 · 13 Jahrgänge"),
-        karte("Archivbestände", "Das unveröffentlichte Material — wo es liegt, wie man herankommt, was noch "
+        karte("Archivbestände", "Das unveröffentlichte Material: wo es liegt, wie man herankommt, was noch "
               "niemand angesehen hat.", "register/archive.html", "Findmittel · Nachlässe · Desiderate"),
-        karte("Personen &amp; Orte", "Wer die Grenze erforschte und wo — mit Normdaten, Karte und den "
+        karte("Personen &amp; Orte", "Wer die Grenze erforschte und wo: mit Normdaten, Karte und den "
               "Belegen im Text.", "register/persons.html", "85 Personen · 23 Kastelle · 15 Strecken"),
         karte("Funde", "Fundgattungen im Überblick und die Einzelstücke: Stempel-Lesungen, datierte Münzen, "
               "gemeldete Objekte.", "register/fundindex.html", "435 Einzelfunde · 125 Stempel"),
@@ -811,10 +819,10 @@ def index_page(volumes, toc=None):
               "ORL entstand.", "register/wortschatz.html", "Wortschatz · Genese · Methode"),
     ]
     body = (f'<h1>RLK-digital</h1>'
-            f'<p class="lede">Die <b>Reichs-Limeskommission</b> (1892–1937) — das erste länderübergreifende '
-            f'Großforschungsunternehmen des Kaiserreichs — mit ihren Quellen: dem Feldorgan <em>Limesblatt</em>, '
-            f'der Endpublikation <em>Obergermanisch-Raetischer Limes</em>, den Jahresberichten der Kommission, '
-            f'der zitierten Literatur und den Archivbeständen, die dahinter liegen.</p>'
+            f'<p class="lede">Die <b>Reichs-Limeskommission</b> (1892–1937) war das erste länderübergreifende '
+            f'Großforschungsunternehmen des Kaiserreichs. Hier stehen ihre Quellen: das Feldorgan <em>Limesblatt</em>, '
+            f'die Endpublikation <em>Obergermanisch-Raetischer Limes</em>, die Jahresberichte der Kommission, '
+            f'die zitierte Literatur und die Archivbestände, die dahinter liegen.</p>'
             f'<section id="suche"><h2>Volltextsuche im Limesblatt</h2>'
             f'<input id="q" type="search" placeholder="z. B. Saalburg, Entschädigung, Mommsen …" '
             f'autocomplete="off"><div id="res"></div></section>'
@@ -840,7 +848,7 @@ def page_links(pages, tok2anchor, tok2any=None):
 
     Zwei Korrekturen, beide aus dem Anker-Gate: (1) die Polsterung (»S.043«) traf keinen
     TEI-Token und ließ 413 Belege ins Leere laufen; (2) das Bandlabel des NER weicht an den
-    Bandgrenzen ab (»Bd.8 S.921«, aber Seite 921 steht in Band 7) — die Druckseiten laufen
+    Bandgrenzen ab (»Bd.8 S.921«, aber Seite 921 steht in Band 7): die Druckseiten laufen
     durch (1–968), also entscheidet die Seite, nicht das Label."""
     out = []
     for s in pages:
@@ -896,7 +904,7 @@ def ner_index_page(items, what, tok2anchor, recon, tok2any=None):
     art = "Rolle" if what == "persons" else "Art"
     body = (f'<h1>{lab} im Limesblatt</h1>'
             f'<p class="meta">{rows} {lab}, per <b>LLM-NER</b> aus dem gesamten Volltext extrahiert '
-            f'(heuristisch, Fraktur-OCR; <span class="lc">grau = unsichere OCR-Lesung</span>) — token-frei {rec}. '
+            f'(heuristisch, Fraktur-OCR; <span class="lc">grau = unsichere OCR-Lesung</span>): token-frei {rec}. '
             f'<b>Jede Spalte sortiert</b> (Klick auf den Kopf), das Suchfeld filtert; die Zahlen springen ins '
             f'Faksimile. Nach <b>Belegen</b> sortiert steht oben, was das Limesblatt am häufigsten nennt.</p>'
             f'<table class="reg nerreg"><thead><tr><th>{lab[:-1] if lab.endswith("n") else lab}</th>'
@@ -952,7 +960,7 @@ def analysis_sections(volumes, orl_lex=None):
         out.append('<h2 id="orl">ORL-Gegenprobe (Osterburken)</h2>'
                    '<p class="meta">Derselbe Standort: der polierte ORL-Band (Schumacher 1895) gegen die Limesblatt-Osterburken-Seiten (Treffer je 1000 Wörter).</p>'
                    '<table class="reg tm"><tr><th>Term-Gruppe</th>' + "".join(f"<th>{html.escape(c[0])}</th>" for c in cols) + f'</tr>{rows}</table>'
-                   '<p class="meta">Für dasselbe Kastell nennt das ORL <b>Holzbefunde ~4× seltener</b> als die Feldberichte — die Ausdünnung der Holz-Erde-Evidenz ist <b>editorial</b>, nicht feldbedingt.</p>')
+                   '<p class="meta">Für dasselbe Kastell nennt das ORL <b>Holzbefunde ~4× seltener</b> als die Feldberichte: die Ausdünnung der Holz-Erde-Evidenz ist <b>editorial</b>, nicht feldbedingt.</p>')
     # Wortschatz-Gegenprobe über das ganze Werk (Keyness, aus orl_vs_limesblatt.json)
     if orl_lex:
         od = orl_lex.get("orl_distinctive", [])[:20]; ld = orl_lex.get("lb_distinctive", [])[:20]
@@ -963,15 +971,15 @@ def analysis_sections(volumes, orl_lex=None):
             f'<h2 id="gegenprobe">Wortschatz-Gegenprobe: das ganze Werk (Limesblatt ↔ ORL)</h2>'
             f'<p class="meta">Nicht nur ein Band: der <b>gesamte</b> ORL-Korpus ({orl_lex.get("orl_words",0):,} Wörter) '
             f'gegen das ganze Limesblatt ({orl_lex.get("lb_words",0):,}). Gezeigt sind die Wörter, die jedes Werk am '
-            f'stärksten kennzeichnen — als Log2 des Verhältnisses ihrer relativen Häufigkeiten (pro 10 000 Wörter). '
+            f'stärksten kennzeichnen: als Log2 des Verhältnisses ihrer relativen Häufigkeiten (pro 10 000 Wörter). '
             f'Der Befund ist ein <b>Wechsel der Textsorte</b>, keine bloße Straffung: die Feldberichte spüren die '
-            f'Grenzlinie auf und stecken sie ab — in der Ich-Form des Ausgräbers, voller Geländevokabular; die '
+            f'Grenzlinie auf und stecken sie ab: in der Ich-Form des Ausgräbers, voller Geländevokabular; die '
             f'Endpublikation katalogisiert die Funde, mit dem ganzen Apparat der Keramik-Typologie.</p>'
             f'<div style="display:grid;grid-template-columns:1fr 1fr;gap:1em">'
-            f'<div><b>Distinktiv für den ORL</b> — Fund-Typologie<table class="reg tm">{_kh}{_kr(od)}</table></div>'
-            f'<div><b>Distinktiv für das Limesblatt</b> — Trassierung, erste Person<table class="reg tm">{_kh}{_kr(ld)}</table></div>'
+            f'<div><b>Distinktiv für den ORL</b>: Fund-Typologie<table class="reg tm">{_kh}{_kr(od)}</table></div>'
+            f'<div><b>Distinktiv für das Limesblatt</b>: Trassierung, erste Person<table class="reg tm">{_kh}{_kr(ld)}</table></div>'
             f'</div>'
-            f'<p class="meta">Der Textsortenwechsel ist Teil einer längeren Entwicklung — die Schichten des '
+            f'<p class="meta">Der Textsortenwechsel ist Teil einer längeren Entwicklung: die Schichten des '
             f'Werks ordnet die Seite zur <a href="genese.html">Genese des ORL</a>.</p>'
             f'<p class="meta">Caveat: die Formen stammen aus der maschinellen Umschrift der Frakturschrift; '
             f'Kürzungen wie „dragd" stehen für „Dragendorff". Die Richtung des Befunds ist davon unberührt.</p>')
@@ -983,7 +991,7 @@ def analysis_sections(volumes, orl_lex=None):
     epages = [t for _, lab in BANDS for _, t in corp[lab]]
     ec = [(n, sum(1 for t in epages if re.search(rx, t, re.I))) for n, rx in EMP]; mx = max([c for _, c in ec] + [1])
     bars = "".join(f'<div class="attrow"><span class="attlabel">{html.escape(n)}</span><span class="attbar" style="width:{100*c/mx:.0f}%"></span><span class="attval">{c}</span></div>' for n, c in ec)
-    out.append('<h2 id="muenzen">Münzkaiser-Chronologie</h2><p class="meta">Kaisernennungen (Münz-/Datierungsevidenz), chronologisch — bildet die Limes-Belegung ab: flavisch-trajanische Errichtung, severischer Sekundärpeak, Auslaufen vor 260.</p>'
+    out.append('<h2 id="muenzen">Münzkaiser-Chronologie</h2><p class="meta">Kaisernennungen (Münz-/Datierungsevidenz), chronologisch: bildet die Limes-Belegung ab: flavisch-trajanische Errichtung, severischer Sekundärpeak, Auslaufen vor 260.</p>'
                f'<div class="attwrap">{bars}</div>')
     # Truppen
     ROM = {"i": 1, "v": 5, "x": 10, "l": 50, "c": 100}
@@ -1002,7 +1010,7 @@ def analysis_sections(volumes, orl_lex=None):
         v = r2i(m.group(1))
         if v: legs[v] += 1
     legtxt = ", ".join(f"Legio {i2r(v)} ({c})" for v, c in sorted(legs.items(), key=lambda x: -x[1])[:5])
-    out.append(f'<h2 id="truppen">Truppen</h2><p class="meta">Häufigste Legionsnennungen (Stempel/Text): <b>{legtxt}</b> — erwartungsgemäß dominiert <b>Legio XXII Primigenia</b> (Mainz).</p>')
+    out.append(f'<h2 id="truppen">Truppen</h2><p class="meta">Häufigste Legionsnennungen (Stempel/Text): <b>{legtxt}</b>: erwartungsgemäß dominiert <b>Legio XXII Primigenia</b> (Mainz).</p>')
     # Zitate
     jour = [("Westdeutsche Zeitschrift", r"westd\w*\.?\s*(?:zeitschr|ztschr|z\.)"), ("Korrespondenzblatt", r"korr\w*\.?\s*-?\s*bl"), ("Bonner Jahrbücher", r"bonn\w*\.?\s*jahrb")]
     jrows = "".join(f"<tr><td>{html.escape(n)}</td><td>{len(re.findall(rx, low, re.I))}</td></tr>" for n, rx in jour)
@@ -1024,7 +1032,7 @@ def analysis_sections(volumes, orl_lex=None):
     for slug, label in BANDS:
         qs = [sum(1 for w in tpp[(label, tok)] if w in good) / len(tpp[(label, tok)]) for tok, t in corp[label] if len(tpp[(label, tok)]) >= 25]
         if qs: qrows += f"<tr><td>{html.escape(label)}</td><td>{100*sum(qs)/len(qs):.1f} %</td></tr>"
-    out.append('<h2 id="ocr">OCR-Qualität</h2><p class="meta">Proxy = Anteil im Korpus wiederkehrender Wörter (Garble ist meist Unikat) — ~85 % gleichmäßig über die Bände.</p>'
+    out.append('<h2 id="ocr">OCR-Qualität</h2><p class="meta">Proxy = Anteil im Korpus wiederkehrender Wörter (Garble ist meist Unikat): ~85 % gleichmäßig über die Bände.</p>'
                f'<table class="reg tm"><tr><th>Band</th><th>Ø-Qualität</th></tr>{qrows}</table>')
     return "".join(out)
 
@@ -1079,7 +1087,7 @@ def wortschatz_page(volumes, attention=None, orl_lex=None):
             for nm, tot_, npl in attention)
         att = ('<h2>Aufmerksamkeit je Streckenabschnitt</h2>'
                '<p class="meta">Summe der Volltext-Erwähnungen aller verorteten Orte, dem nächstgelegenen '
-               'Kastell-Abschnitt zugeordnet (≤ ~22 km) — welche Limes-Abschnitte im Limesblatt am meisten '
+               'Kastell-Abschnitt zugeordnet (≤ ~22 km): welche Limes-Abschnitte im Limesblatt am meisten '
                f'Aufmerksamkeit bekamen.</p><div class="attwrap">{bars}</div>')
     return (f'<h1>Textanalyse des Limesblatt</h1>'
             f'<p class="meta">Token-freie Auswertung des gesamten Fraktur-OCR-Volltexts (8 Bände, 1892–1903; {tot:,} Wörter). '
@@ -1190,7 +1198,7 @@ def heft_label(h):
 
 def tokkey(t):
     """Token-Normalform. Der OCR-Cache polstert die Druckseiten fuer die Sortierung
-    (»001«), die IIIF-Canvas-Labels tun es nicht (»1«) — ohne Normalisierung faende
+    (»001«), die IIIF-Canvas-Labels tun es nicht (»1«): ohne Normalisierung faende
     Band 1 kein einziges seiner Hefte."""
     t = str(t or "").strip()
     m = re.match(r"^0*(\d+)([a-z]*)$", t)
@@ -1202,14 +1210,14 @@ ANCHOR_TOK = {}
 
 def register_anchors(volumes):
     """img_tok je Band merken: die Bandseiten polstern Band 1 (»001«), die IIIF-Labels
-    nicht (»1«) — ein Heft-Link auf das rohe Manifest-Token liefe ins Leere."""
+    nicht (»1«): ein Heft-Link auf das rohe Manifest-Token liefe ins Leere."""
     for v in volumes:
         for pg in v["pages"]:
             ANCHOR_TOK.setdefault((v["nr"], tokkey(pg["img_tok"])), pg["img_tok"])
 
 
 def heft_anchor(h):
-    """Sprungziel eines Heftes: erste Druckseite, Spalte a — mit dem ECHTEN Ankertoken."""
+    """Sprungziel eines Heftes: erste Druckseite, Spalte a: mit dem ECHTEN Ankertoken."""
     t = ANCHOR_TOK.get((h["band"], tokkey(h.get("erste_seite"))))
     return "#pb-%s-a" % t if t else ""
 
@@ -1239,7 +1247,7 @@ def toc_li(entries, hrefpre, with_page):
 
 def toc_li_hefte(entries, hrefpre, with_page, band=None):
     """Wie toc_li, aber nach HEFTEN gegliedert: vor jeder Gruppe eine Zeile »Nr. N · Datum«.
-    Hefte ohne eigenen nummerierten Bericht erscheinen trotzdem — die Publikationsfolge soll
+    Hefte ohne eigenen nummerierten Bericht erscheinen trotzdem: die Publikationsfolge soll
     vollstaendig sein. Berichte ohne Heft-Zuordnung stehen am Ende, ausgewiesen."""
     if not HEFTE:
         return toc_li(entries, hrefpre, with_page)
@@ -1342,7 +1350,7 @@ JB_VETO = {"Graben", "Wall", "Kastell", "Limes", "Turm", "Berg", "Bach", "Feld",
 
 
 def jb_korpus(jb, ner_p, ner_pl):
-    """Personen-/Ortsnennungen je Jahresbericht — derselbe Gazetteer wie im Limesblatt.
+    """Personen-/Ortsnennungen je Jahresbericht: derselbe Gazetteer wie im Limesblatt.
 
     Einwortnamen werden über die Wortliste gezählt (schnell und exakt an Wortgrenzen),
     mehrteilige Namen über eine Phrasensuche im normalisierten Text."""
@@ -1377,7 +1385,7 @@ JB_GELD = re.compile(r"([\d][\d.\s]{2,12})\s*(?:M\.|Mark|Mk\.)")
 
 
 def jb_stellen(jb):
-    """Institutionelles Vokabular und Geldbeträge mit Fundstelle — die Verwaltungsseite der RLK."""
+    """Institutionelles Vokabular und Geldbeträge mit Fundstelle: die Verwaltungsseite der RLK."""
     amt, geld = defaultdict(list), []
     for b in sorted(jb.get("berichte", []), key=lambda x: x["jahrgang"]):
         txt = re.sub(r"\s+", " ", b.get("text") or "")
@@ -1456,7 +1464,7 @@ def stempel_lesungen(volumes):
     """Konkrete Stempel-Lesungen: Truppenstempel (Leg./Coh. + Zahl + Beiname) und Töpferstempel.
 
     Der Töpferstempel wird über den KONTEXT erkannt (»Stempel«, »Töpfermarke« im Umfeld) oder
-    über die Stempelform selbst (OF…/…F/…FEC) — reine Versalfolgen aus Inschriftentext sind
+    über die Stempelform selbst (OF…/…F/…FEC): reine Versalfolgen aus Inschriftentext sind
     keine Stempel, deshalb reicht Großschreibung als Signal nicht."""
     trp, toep = [], []
     caps = re.compile(r"\b([A-ZÄÖÜ]{3,16})\b")
@@ -1496,7 +1504,7 @@ MUENZ_KAISER = (r"Vespasian|Titus|Domitian|Nerva|Tra[ij]an|Hadrian|Antoninus Piu
 
 
 def muenz_funde(volumes):
-    """Datierbare Einzelmünzen: Nominal + Kaiser — die Datierungsevidenz des Feldberichts."""
+    """Datierbare Einzelmünzen: Nominal + Kaiser: die Datierungsevidenz des Feldberichts."""
     rx = re.compile(rf"\b({MUENZ_NOMINAL})[a-zäöüß]{{0,4}}\s+(?:des|der|von|d\.)\s+({MUENZ_KAISER})")
     out = []
     for v in volumes:
@@ -1558,7 +1566,7 @@ def fundindex_page(volumes):
 
     body = (f'<h1>Fundindex</h1><p class="meta">Token-frei aus dem Volltext, in zwei Auflösungen: die '
             f'<b>Gattungen</b> zählen, wovon überhaupt die Rede ist; die <b>Einzelfund-Register</b> führen '
-            f'auf, was der Feldbericht als konkretes Stück meldet — jedes mit Kontextzeile und Sprung ins '
+            f'auf, was der Feldbericht als konkretes Stück meldet, jedes mit Kontextzeile und Sprung ins '
             f'Faksimile. Alle Tabellen sind über die Spaltenköpfe sortierbar, längere zusätzlich durchsuchbar. '
             f'Heuristischer Abgleich auf Fraktur-OCR: eine Nennung belegt die <i>Rede</i> vom Fund, nicht den '
             f'Fund an dieser Stelle. Die katalogisierte Epigraphik steht unter '
@@ -1576,13 +1584,13 @@ def fundindex_page(volumes):
             f'<h2 id="stempellesungen">Stempel-Lesungen</h2>'
             f'<p class="meta">Der Stempel ist der genaueste Einzelfund des Limes: er nennt die Einheit oder den '
             f'Töpfer beim Namen. <b>{len(trp)} Truppenstempel-Lesungen</b> (Einheit + Zahl + Beiname) und '
-            f'<b>{len(toep)} Töpfer- bzw. Fabrikstempel</b> — letztere erkannt entweder an der Stempelform '
+            f'<b>{len(toep)} Töpfer- bzw. Fabrikstempel</b>: letztere erkannt entweder an der Stempelform '
             f'selbst (OF…, …F, …FEC) oder daran, dass im Umfeld von einem Stempel die Rede ist; bloße '
             f'Großschreibung genügt nicht, sonst zöge der Inschriftentext mit ein.</p>'
             f'<h3>Truppenstempel</h3>{trp_t}<h3>Töpfer- &amp; Fabrikstempel</h3>{toep_t}'
 
             f'<h2 id="muenzfunde">Datierte Münzen</h2>'
-            f'<p class="meta">Nominal <i>und</i> Kaiser in einer Nennung — die datierende Einzelmünze, nicht nur '
+            f'<p class="meta">Nominal <i>und</i> Kaiser in einer Nennung: die datierende Einzelmünze, nicht nur '
             f'die Erwähnung eines Kaisernamens (die zählt die Tabelle <a href="#muenzkaiser">Münzkaiser</a>).</p>'
             f'{mz_t}'
 
@@ -1590,9 +1598,9 @@ def fundindex_page(volumes):
             f'<h2 id="muenzkaiser">Münzkaiser (Datierungsevidenz)</h2>'
             f'<p class="meta">Bildet die Limes-Belegung ab: flavisch-trajanische Errichtung, severischer Peak, Auslaufen vor 260.</p>{emp_t}'
             f'<h2 id="sigillata">Terra-Sigillata-Formen</h2>'
-            f'<p class="meta">Die Dragendorff-Formtypen als laufendes Datierungsraster — vgl. <a href="bibliographie.html">Dragendorff 1895</a>.</p>{drag_t}'
+            f'<p class="meta">Die Dragendorff-Formtypen als laufendes Datierungsraster: vgl. <a href="bibliographie.html">Dragendorff 1895</a>.</p>{drag_t}'
             f'<h2 id="stempel">Truppenstempel</h2>'
-            f'<p class="meta">Legio-/Cohors-Nennungen (Ziegelstempel &amp; Text) — erwartungsgemäß dominiert <b>Legio XXII Primigenia</b> (Mainz).</p>{leg_t}{coh_t}'
+            f'<p class="meta">Legio-/Cohors-Nennungen (Ziegelstempel &amp; Text): erwartungsgemäß dominiert <b>Legio XXII Primigenia</b> (Mainz).</p>{leg_t}{coh_t}'
             f'<h2 id="legenden">Versal-Legenden</h2>'
             f'<p class="meta">Alle Großbuchstaben-Folgen des Volltextes, ungefiltert: Stempellegenden und '
             f'Inschriftentext gemischt. Die aussortierte Teilmenge steht oben unter '
@@ -1622,10 +1630,10 @@ def gesamtbibliographie_page(bibls, idx, abta, jb, rez, zs, bli, hefte):
     """Alle bibliographischen Einheiten der Edition in EINER sortierbaren Tabelle.
 
     Die Einzelregister sind nach Herkunft getrennt (zitierte Werke, ORL-Lieferungen,
-    Jahresberichte, Rezeption, Organe) — sie beantworten je eine Frage. Wer aber wissen will,
+    Jahresberichte, Rezeption, Organe): sie beantworten je eine Frage. Wer aber wissen will,
     was in einem bestimmten Organ oder Jahr erschien, muss quer dazu lesen können; deshalb hier
     dieselben Einheiten in einem Raster: Urheber · Jahr · Titel · Organ/Reihe · Gattung · Nachweis.
-    Jede Spalte sortiert, das Suchfeld filtert. Was eine Quelle nicht hergibt, bleibt leer —
+    Jede Spalte sortiert, das Suchfeld filtert. Was eine Quelle nicht hergibt, bleibt leer:
     nichts wird ergänzt, um die Tabelle voll aussehen zu lassen."""
     rows = []
 
@@ -1681,7 +1689,7 @@ def gesamtbibliographie_page(bibls, idx, abta, jb, rez, zs, bli, hefte):
     for it in rez.get("items", []):                            # Rezeption / Nachleben
         au = ", ".join(it.get("authors") or [])
         nw = f'<a href="{it["url"]}">{html.escape((it.get("srcs") or ["Nachweis"])[0])}</a>' if it.get("url") else ""
-        add(au, it.get("year", ""), html.escape(it.get("title", "")), "", f'Rezeption — {it.get("era", "")}',
+        add(au, it.get("year", ""), html.escape(it.get("title", "")), "", f'Rezeption: {it.get("era", "")}',
             nw, it.get("type", ""))
     for org, d in sorted((zs.get("organe_vollzaehlung") or {}).items(), key=lambda x: -x[1].get("seiten", 0)):
         add("", "", html.escape(org), html.escape(org), "Organ im ORL-Apparat",
@@ -1694,12 +1702,12 @@ def gesamtbibliographie_page(bibls, idx, abta, jb, rez, zs, bli, hefte):
         f'<td>{r["t"]}{f"<div class=meta>{html.escape(r[chr(110) + chr(111) + chr(116) + chr(101)])}</div>" if r["note"] else ""}</td>'
         f'<td>{r["o"]}</td><td>{html.escape(r["g"])}</td><td>{r["n"]}</td></tr>' for r in rows)
     return (f'<h1>Gesamtbibliographie</h1>'
-            f'<p class="meta">Alle bibliographischen Einheiten dieser Edition in einem Raster — '
-            f'<b>{len(rows)} Titel</b> aus sechs getrennt gepflegten Registern: die im Limesblatt zitierte '
+            f'<p class="meta">Alle bibliographischen Einheiten dieser Edition in einem Raster: '
+            f'<b>{len(rows)} Titel</b> aus sechs getrennt gepflegten Registern, nämlich der im Limesblatt zitierten '
             f'Apparatur, die Lieferungen des <a href="orl-inhalt.html">ORL</a> (Abt. A und B), die '
             f'<a href="jahresberichte.html">Jahresberichte der RLK</a>, die Hefte des Limesblatts selbst, '
             f'die Rezeption (Nachweise aus OpenAlex, Crossref und archive.org) und die Zeitschriften-Organe '
-            f'des ORL-Apparats. <b>Jede Spalte ist sortierbar</b> (Klick auf den Kopf), das Suchfeld filtert die Zeilen — '
+            f'des ORL-Apparats. <b>Jede Spalte ist sortierbar</b> (Klick auf den Kopf), das Suchfeld filtert die Zeilen: '
             f'so lässt sich das Material auch nach Organ oder Jahr lesen, quer zu seiner Herkunft. '
             f'Leere Felder sind Lücken der Quelle, nicht der Darstellung: Erscheinungsjahre etwa liegen für '
             f'die ORL-Lieferungen nur dort vor, wo der Verbundkatalog sie führt.</p>'
@@ -1753,18 +1761,18 @@ def bibliography_page(bibls, occ):
                     f'<td>{cnt}</td><td class="beleg">{bel}</td></tr>')
     n_oa = sum(1 for b in bibls if b["oa"]); n_iiif = sum(1 for b in bibls if b.get("iiif"))
     return (f'<h1>Bibliographie &amp; Quellen</h1>'
-            f'<p class="meta">Die im Limesblatt zitierte Apparatur — <b>im TEI-Fließtext als <code>&lt;ref&gt;</code> '
+            f'<p class="meta">Die im Limesblatt zitierte Apparatur: <b>im TEI-Fließtext als <code>&lt;ref&gt;</code> '
             f'ausgezeichnet</b> (Journale, Inschriftencorpora, Dragendorff-Formen) bzw. über das Personenregister '
-            f'(Autor-Werke) — aufgelöst zu vollen Referenzen mit <b>{n_oa} Open-Access-Digitalisaten</b> '
+            f'(Autor-Werke): aufgelöst zu vollen Referenzen mit <b>{n_oa} Open-Access-Digitalisaten</b> '
             f'(v. a. UB Heidelberg) und seiten-/spaltengenauen Belegen. Bei <b>{n_iiif} Werken</b> lässt sich das '
             f'Faksimile per <b>IIIF</b> direkt hier im Fenster öffnen (UB Heidelberg / archive.org; Werk-/Beispielband-Ebene). '
             f'Jedes Werk ist zudem an den <b>Fachinformationsdienst Altertumswissenschaften (Propylaeum SEARCH</b>, '
-            f'UB Heidelberg) angeschlossen — wie die Personen an <a href="namen.html">Propylaeum-VITAE</a> und die '
+            f'UB Heidelberg) angeschlossen: wie die Personen an <a href="namen.html">Propylaeum-VITAE</a> und die '
             f'Inschriften an die <a href="inschriften.html">EDH</a>. '
             f'Journal-zentriert: dominant die Westdeutsche Zeitschrift und ihr Korrespondenzblatt.</p>'
             f'<div class="note"><p><b>Jede Titelaufnahme ist geprüft.</b> Anlass war ein Eintrag, den es '
             f'nicht gab: »Ferdinand Haug, zu den römischen Inschriften Südwestdeutschlands« war eine '
-            f'Umschreibung, mit der ein Namenstreffer im Volltext beschriftet worden war — das Werk heißt '
+            f'Umschreibung, mit der ein Namenstreffer im Volltext beschriftet worden war: das Werk heißt '
             f'<i>Die römischen Inschriften und Bildwerke Württembergs</i> (Haug/Sixt 1900). Seither läuft '
             f'jede Aufnahme gegen den Verbundkatalog K10plus (Monographien) bzw. die Zeitschriftendatenbank '
             f'ZDB (Reihen); geprüft wird Verfasser <i>und</i> Titel, weil die Titelwörter allein '
@@ -1823,15 +1831,15 @@ def inscriptions_page(edh):
         span = f'{k["von"]}–{k["bis"]} n. Chr.' if k.get("von") else "—"
         rows = "".join(
             f'<li><a href="https://edh.ub.uni-heidelberg.de/edh/inschrift/{html.escape(i["hd"])}">{html.escape(i["hd"])}</a> '
-            f'<span class="meta">{html.escape(i["art"])}{(" · " + html.escape(i["datierung"])) if i.get("datierung") else ""}</span> — '
+            f'<span class="meta">{html.escape(i["art"])}{(" · " + html.escape(i["datierung"])) if i.get("datierung") else ""}</span>: '
             f'{html.escape(i["titel"])}</li>' for i in k["inschriften"][:60])
         more = f'<li class="lc">… +{k["n"] - 60} weitere bei EDH</li>' if k["n"] > 60 else ""
         secs.append(f'<details><summary><a href="places.html#{pid}">{html.escape(k["label"])}</a> '
-                    f'<span class="meta">— {k["n"]} Inschriften · {span} · {html.escape(gat)}</span></summary>'
+                    f'<span class="meta">{k["n"]} Inschriften · {span} · {html.escape(gat)}</span></summary>'
                     f'<ul class="nerlist">{rows}{more}</ul></details>')
     return (f'<h1>Inschriften (EDH)</h1>'
             f'<p class="meta">{edh.get("total", 0)} Inschriften der '
-            f'<a href="https://edh.ub.uni-heidelberg.de/">Epigraphic Database Heidelberg</a> von den Limes-Fundorten — '
+            f'<a href="https://edh.ub.uni-heidelberg.de/">Epigraphic Database Heidelberg</a> von den Limes-Fundorten: '
             f'aus den EpiDoc-GitHub-Dumps (CC BY-SA), nach Kastell gruppiert, mit Gattung, Datierung und Direktlink ins EDH. '
             f'Ergänzt den <a href="fundindex.html">Fundindex</a> um die katalogisierte Epigraphik; '
             f'verknüpft mit dem <a href="places.html">Ortsregister</a>.</p>'
@@ -1876,7 +1884,7 @@ def orl_page(idx, lex, bli=None):
             lk.append(f'<a href="https://hdl.handle.net/2027/{html.escape(ht)}" title="Geprüfter Scan bei HathiTrust">HT</a>')
         place = r.get("ort") or re.sub(r"^(Kastelle? von |Kleinkastell |Kastell )", "", r["kastell"])
         if place and not place.startswith("("):
-            lk.append(f'<a href="https://de.wikisource.org/w/index.php?search={urllib.parse.quote(place)}&amp;fulltext=1" title="Realencyclopädie (RE) / Wikisource — offenes Altertums-Lexikon">RE</a>')
+            lk.append(f'<a href="https://de.wikisource.org/w/index.php?search={urllib.parse.quote(place)}&amp;fulltext=1" title="Realencyclopädie (RE) / Wikisource: offenes Altertums-Lexikon">RE</a>')
         links = f' <span class="lc">[{" · ".join(lk)}]</span>' if lk else ""
         return (f'<tr id="orl-{html.escape(r["nr"])}"><td>{html.escape(r["nr"])}</td><td>{html.escape(r["kastell"])}{links}</td>'
                 f'<td class="meta">{html.escape(r.get("linie",""))}</td>{lfgc}'
@@ -1891,35 +1899,35 @@ def orl_page(idx, lex, bli=None):
                 f'({od}…), für die <b>Limesblatt-Vorberichte</b> die Trassierung in erster Person ({ld}…). '
                 f'Die vollständige <a href="wortschatz.html#gegenprobe">Wortschatz-Gegenprobe</a> mit beiden '
                 f'Wortlisten steht in der <a href="wortschatz.html">Analyse</a>.</p>')
-    return (f'<h1>ORL — Der obergermanisch-raetische Limes des Römerreiches</h1>'
+    return (f'<h1>ORL: Der obergermanisch-raetische Limes des Römerreiches</h1>'
             f'<p class="meta">Die <b>Endpublikation</b> der Reichs-Limeskommission (1894–1937): '
             f'{c.get("abt_A",len(a))} Strecken-Bände (Abt. A) + {c.get("abt_B",len(b))} Kastell-Lieferungen '
-            f'(Abt. B) — das Standardwerk, in das die laufenden Feldberichte des '
+            f'(Abt. B): das Standardwerk, in das die laufenden Feldberichte des '
             f'<a href="../index.html">Limesblatt</a> mündeten. Für <b>{n_lfg} Kastelle</b> ist die '
             f'<b>Lieferung</b> quellenmäßig belegt ({n_scharf} kastellscharf), dazu ein konsolidierter '
             f'<a href="orl-register.html">Gesamtapparat</a>, den die in 14 Mappen erschienene Reihe nie besaß.</p>'
             f'{keyn}'
-            f'<h2>Abteilung A — Strecken-Bände (Trassierung)</h2>'
+            f'<h2>Abteilung A: Strecken-Bände (Trassierung)</h2>'
             f'<table class="reg"><thead><tr><th>Str.</th><th>Verlauf</th><th>Region</th></tr></thead>'
             f'<tbody>{arows}</tbody></table>'
-            f'<h2>Abteilung B — Kastell-Lieferungen</h2>'
+            f'<h2>Abteilung B: Kastell-Lieferungen</h2>'
             f'<div class="note"><p><b>Zwei Zählungen, die man nicht verwechseln darf.</b> Die '
-            f'<b>ORL-Nummer ist geografisch</b> vergeben — von Rheinbrohl (1) im Norden bis zur Donau. Die '
+            f'<b>ORL-Nummer ist geografisch</b> vergeben: von Rheinbrohl (1) im Norden bis zur Donau. Die '
             f'<b>Lieferung ist chronologisch</b>: Sie erschien, wenn der Bearbeiter fertig war. Lieferung 1 '
-            f'(1894) enthält deshalb Butzbach (14), Murrhardt (44) <i>und</i> Unterböbingen (65) — drei '
+            f'(1894) enthält deshalb Butzbach (14), Murrhardt (44) <i>und</i> Unterböbingen (65): drei '
             f'Kastelle aus drei Landschaften. Die Lieferungsfolge ist ein <b>Arbeitsstands-, kein '
             f'Ortsregister</b>.</p>'
             f'<p>Diese Seite zeigte bis 2026-07 vier weitere Spalten (Seitenzahl, Cross-Work, '
             f'Sigillata-Score, „Charakteristik"), die aus dem HathiTrust-Scan abgeleitet waren. Sie wurden '
             f'<b>entfernt</b>: Die Scan-Zuordnung las die Signatur „v.&#8201;N" als Kastell-Nummer, obwohl '
-            f'sie die <i>Lieferung</i> meint — für 30 Bände war sie damit falsch, und selbst bei richtiger '
+            f'sie die <i>Lieferung</i> meint: für 30 Bände war sie damit falsch, und selbst bei richtiger '
             f'Zuordnung beschreibt ein Scan die ganze Lieferung (bis zu vier Kastelle), nie ein einzelnes. '
             f'Die Gegenprobe an der zeitgenössischen Bibliographie zeigt die Größenordnung: Für Kemel wies '
-            f'die Seitenzahl 372 aus — gedruckt sind <b>8</b>. An ihrer Stelle steht jetzt die belegte '
+            f'die Seitenzahl 372 aus, gedruckt sind <b>8</b>. An ihrer Stelle steht jetzt die belegte '
             f'Lieferung.</p></div>'
             f'<p class="meta">Lieferung: <b>fett</b> = Nummer, dahinter das Erscheinungsjahr; die Spalte '
             f'<b>Beleg</b> nennt die Quelle und ob die Zuordnung kastellscharf ist oder nur eine Spanne '
-            f'(dann nennt die Quelle die Lieferungen und die Kastelle, ordnet sie aber nicht einander zu — '
+            f'(dann nennt die Quelle die Lieferungen und die Kastelle, ordnet sie aber nicht einander zu: '
             f'das wird nicht geraten). · Vorb. = Anzahl Limesblatt-Vorberichte '
             f'(<a href="orl-register.html#konkordanz">Konkordanz</a>). Verweise je Kastell: '
             f'<b>W</b> = Wikipedia · <b>HT</b> = <i>geprüfter</i> Scan bei HathiTrust · <b>RE</b> = '
@@ -1965,7 +1973,7 @@ def namensfamilien(rows, vornamen):
 
     Vetorecht hat die Quelle: liefern die Formen zwei verschiedene Vornamen-Initialen, sind es
     zwei Personen (Jacobi H./L.) und die Familie bleibt ungetrennt stehen. Klebeformen tragen
-    keine Initiale bei — »Randfries« ist kein Vorname, sondern ein Ornamentbegriff, der davor
+    keine Initiale bei: »Randfries« ist kein Vorname, sondern ein Ornamentbegriff, der davor
     stand; deshalb zählt nur, was als Initial gesetzt oder als Vorname belegt ist."""
     fam = {}
     for r in rows:
@@ -2016,7 +2024,7 @@ def hintzelmann_page(volumes):
     Das Register steht gedruckt im Schlussheft und damit im Lesetext von Band 8. Diese Seite
     hebt es aus dem Fließtext heraus und macht es benutzbar: als das aelteste Findmittel zum
     Limesblatt, mit auflösbaren Spaltenverweisen. Der Text wird NICHT neu gesetzt, sondern aus
-    dem gebauten Bandtext übernommen — eine Quelle, keine zweite Wahrheit.
+    dem gebauten Bandtext übernommen: eine Quelle, keine zweite Wahrheit.
     """
     v8 = next((v for v in volumes if v["nr"] == 8), None)
     if not v8: return None
@@ -2033,19 +2041,19 @@ def hintzelmann_page(volumes):
     body = re.sub(r'href="#pb-', 'href="../volumes/bd8.html#pb-', body)
     n_ref = len(re.findall(r'class="ent xref"', body))
     return (f'<h1>Hintzelmanns Register zum Limesblatt (1903)</h1>'
-            f'<div class="note"><p><b>Das älteste Findmittel zum Limesblatt</b> — und es stammt von der '
+            f'<div class="note"><p><b>Das älteste Findmittel zum Limesblatt</b>, und es stammt von der '
             f'Redaktion selbst. Das Schlussheft Nr. 35 (27. Mai 1903) schließt mit einem Gesamtregister '
             f'über alle 35 Hefte, verfasst von Prof. Dr. P. Hintzelmann: Mitarbeiter, Orte, Inschriften. '
             f'Die Zeitschrift schließt sich zum Abschied selbst auf.</p>'
             f'<p>Seine Vorbemerkung sagt, worauf die Zahlen zeigen: <i>„Die Ziffern bezeichnen die '
-            f'Spalten."</i> Das Limesblatt zählt nämlich <b>Spalten, nicht Seiten</b> — jede Druckseite '
+            f'Spalten."</i> Das Limesblatt zählt nämlich <b>Spalten, nicht Seiten</b>, jede Druckseite '
             f'trägt zwei Nummern. Alle <b>{n_ref}</b> Verweise sind hier aufgelöst und führen in den '
             f'Lesetext; sie streuen aus dem Schlussheft in alle acht Bände. Abkürzungen wie im Original: '
             f'<b>K.</b> = Kastell · <b>Zk.</b> = Zwischenkastell · <b>L.</b> = Limes.</p>'
             f'<p class="meta">Der Text ist der des <a href="../volumes/bd8.html#pb-959-a">Bandes 8</a>, '
-            f'Spalten 959–968 — diplomatisch, mit den Fraktur-Fehlern des Drucks. Wo die OCR einen Namen '
-            f'zerbrach, steht die Lesung des Drucks und die Identifikation im Link: „II et tn er" ist '
-            f'Hettner, „S t e i m 1 e" ist Steimle, „Kofier" ist Kofler — Register-Lemmata wurden gesperrt '
+            f'Spalten 959–968: diplomatisch, mit den Fraktur-Fehlern des Drucks. Wo die OCR einen Namen '
+            f'zerbrach, steht die Lesung des Drucks und die Identifikation im Link. „II et tn er" ist '
+            f'Hettner, „S t e i m 1 e" ist Steimle, „Kofier" ist Kofler: Register-Lemmata wurden gesperrt '
             f'gesetzt, und daran scheitert die Schrifterkennung gerade bei den bekanntesten Namen.</p>'
             f'</div>{body}')
 
@@ -2053,7 +2061,7 @@ def hintzelmann_page(volumes):
 def namen_page(nm):
     """Orts-Crosswalk antik ↔ modern ↔ Flurname.
 
-    Warum die Seite existiert: Das Limesblatt benennt seine Orte MODERN. Wer „Nida" sucht, findet 0 Treffer —
+    Warum die Seite existiert: Das Limesblatt benennt seine Orte MODERN. Wer „Nida" sucht, findet 0 Treffer,
     obwohl 60 Stellen über den Ort reden, alle unter „Heddernheim". Die Tabelle sagt daher nicht, wie ein Ort
     HIESS, sondern unter welchem String er im jeweiligen Korpus AUFFINDBAR ist.
     """
@@ -2082,20 +2090,20 @@ def namen_page(nm):
                  f'<td>{e.get("n_limesblatt_flur") or 0}</td><td>{e.get("n_limesblatt_modern") or 0}</td>'
                  f'<td class="meta">{html.escape((e.get("flurname") or {}).get("quelle","") if isinstance(e.get("flurname"), dict) else "")}</td></tr>'
                  for e in flur)
-    return (f'<h1>Ortsnamen — antik, modern, Flurname</h1>'
-            f'<div class="note"><p><b>Wer hier „Nida" sucht, findet im Limesblatt nichts</b> — und das ist kein '
+    return (f'<h1>Ortsnamen: antik, modern, Flurname</h1>'
+            f'<div class="note"><p><b>Wer hier „Nida" sucht, findet im Limesblatt nichts</b>, und das ist kein '
             f'Fehler der Edition, sondern eine Eigenschaft der Quelle. Der Feldbericht der Reichs-Limeskommission '
             f'<b>benennt seine Orte modern</b>: „Nida" steht in den acht Bänden <b>0×</b>, „Heddernheim" <b>65×</b>. '
-            f'Auch „Mogontiacum" kommt <b>0×</b> vor, während „Mainz" <b>37×</b> dasteht — bei Mainz war der '
+            f'Auch „Mogontiacum" kommt <b>0×</b> vor, während „Mainz" <b>37×</b> dasteht. Bei Mainz war der '
             f'römische Name nie strittig, es geht also nicht um Unsicherheit, sondern um das Register der Gattung: '
-            f'Wer im Gelände gräbt, benennt Orte wie eine Postanschrift — nach Dorf, Flur, Gewann.</p>'
+            f'Wer im Gelände gräbt, benennt Orte wie eine Postanschrift: nach Dorf, Flur, Gewann.</p>'
             f'<p>Diese Tabelle ist deshalb ein <b>Recherche-Instrument, keine Namenskunde</b>. Sie beantwortet '
-            f'nicht „wie hieß Heddernheim in der Antike?", sondern: <i>Ich suche Nida — welchen String muss ich '
+            f'nicht „wie hieß Heddernheim in der Antike?", sondern: <i>Ich suche Nida, welchen String muss ich '
             f'eingeben?</i> Antwort: <code>Heddernheim</code>.</p></div>'
             f'<h2>Antike Namen</h2>'
             f'<p class="meta">Jede Gleichsetzung ist gegen <a href="https://pleiades.stoa.org">Pleiades</a> '
             f'und/oder DARE geerdet; ungesicherte stehen nicht in der Tabelle. Die Zahlenspalten lesen sich '
-            f'<i>antik · modern</i> — sie sagen, unter welchem Namen der Ort im jeweiligen Werk auffindbar ist. '
+            f'<i>antik · modern</i>: sie sagen, unter welchem Namen der Ort im jeweiligen Werk auffindbar ist. '
             f'Für die meisten Kastelle ist <b>kein</b> antiker Name überliefert (darunter die Saalburg); sie '
             f'fehlen hier zu Recht.</p>'
             f'<table class="reg"><thead><tr><th>antik</th><th>modern</th><th>Flurname</th>'
@@ -2105,20 +2113,20 @@ def namen_page(nm):
             f'ORL benennt überwiegend modern: <i>Vetoniana</i> kommt dort <b>0×</b> vor, <i>Pfünz</i> 478×; '
             f'<i>Arae Flaviae</i> <b>0×</b>, <i>Rottweil</i> 488×. Und wo der ORL den antiken Namen führt, '
             f'erdrückt ihn der moderne (Nida 91 : Heddernheim 469). Der Unterschied ist graduell, aber real: '
-            f'Die Endpublikation <i>lässt den antiken Namen zu</i> — als gelehrte Glosse neben dem Arbeitsnamen. '
+            f'Die Endpublikation <i>lässt den antiken Namen zu</i>, als gelehrte Glosse neben dem Arbeitsnamen. '
             f'Der Feldbericht lässt ihn nur ins Zitat: Der einzige antike Ortsname im ganzen Limesblatt ist '
-            f'<i>Abusina</i> (2×), und beide Belege zitieren eine Schriftquelle — ein Itinerar und eine '
-            f'Truppendislokation —, keiner benennt den Boden, auf dem gegraben wird.</p>'
+            f'<i>Abusina</i> (2×), und beide Belege zitieren eine Schriftquelle: ein Itinerar und eine '
+            f'Truppendislokation. Keiner benennt den Boden, auf dem gegraben wird.</p>'
             + (f'<h2>Flurnamen</h2>'
                f'<p class="meta">Namen, unter denen der Feldbericht einen Platz führte, bevor die Endpublikation '
-               f'ihn umtaufte — systematisch hebbar nur dort, wo ein ORL-Titel sie konserviert hat („Das Kastell '
+               f'ihn umtaufte: systematisch hebbar nur dort, wo ein ORL-Titel sie konserviert hat („Das Kastell '
                f'<i>Alteburg</i> bei Walldürn"). Zahlen: Flurname · moderner Name im Limesblatt.</p>'
                f'<table class="reg"><thead><tr><th>Flurname</th><th>modern</th><th>Flur im LB</th>'
                f'<th>modern im LB</th><th>Beleg</th></tr></thead><tbody>{fl}</tbody></table>' if fl else ""))
 
 
 def orl_toc_page(idx, bli=None, fasz=None, dseiten=None, abta=None, places=None):
-    """Das vollständige ORL-Inhaltsverzeichnis nach PUBLIKATIONSEINHEIT — das Gegenstück
+    """Das vollständige ORL-Inhaltsverzeichnis nach PUBLIKATIONSEINHEIT: das Gegenstück
     zum Limesblatt-Verzeichnis, wo die Hefte gliedern. Beim ORL gliedert die Lieferung:
     die Kastell-Nummern laufen GEOGRAFISCH (1 = Rheinbrohl im Norden), erschienen sind
     die Faszikel CHRONOLOGISCH, nach Fertigstellung durch die Bearbeiter."""
@@ -2218,7 +2226,7 @@ def orl_toc_page(idx, bli=None, fasz=None, dseiten=None, abta=None, places=None)
                 f'<h3 id="lfg-offen">Ohne belegte Lieferung <span class="meta">· {len(rows)} Faszikel</span></h3>'
                 f'<p class="meta">Für diese Faszikel nennt keine der drei Quellen (Merten&nbsp;2002, '
                 f'Bibliographie des Jahrbuchs, RLK-Jahresberichte) eine Lieferung. Sie fehlen nicht im '
-                f'Werk — nur ihr Erscheinungsdatum ist nicht belegt.</p>'
+                f'Werk: nur ihr Erscheinungsdatum ist nicht belegt.</p>'
                 f'<ul class="toc orltoc">{"".join(zeile(r) for r in rows)}</ul>')
             sprung.append('<a href="#lfg-offen">ohne Lfg.</a>')
             continue
@@ -2283,35 +2291,35 @@ def orl_toc_page(idx, bli=None, fasz=None, dseiten=None, abta=None, places=None)
     return (
         f'<h1>Inhaltsverzeichnis des ORL</h1>'
         f'<p class="lede">Alle <b>{len(b)} Kastell-Faszikel</b> der Abteilung&nbsp;B und die '
-        f'Streckenbände der Abteilung&nbsp;A — geordnet nicht nach ihrer Nummer, sondern nach '
-        f'ihrem <b>Erscheinen</b>. Das ist beim ORL zweierlei: die Nummern laufen '
+        f'Streckenbände der Abteilung&nbsp;A: geordnet nicht nach ihrer Nummer, sondern nach '
+        f'ihrem <b>Erscheinen</b>. Das ist beim ORL zweierlei. Die Nummern laufen '
         f'<b>geografisch</b> (ORL&nbsp;1 = Rheinbrohl im Norden, ORL&nbsp;75 = Pförring an der '
         f'Donau), die Faszikel erschienen aber <b>chronologisch</b>, wie die Bearbeiter fertig '
-        f'wurden — Lieferung&nbsp;1 bindet Butzbach, Murrhardt und Unterböbingen zusammen, drei '
+        f'wurden: Lieferung&nbsp;1 bindet Butzbach, Murrhardt und Unterböbingen zusammen, drei '
         f'weit auseinanderliegende Plätze. Die nummerngeordnete Ansicht steht im '
         f'<a href="orl.html">Bandindex</a>.</p>'
-        f'<div class="note"><p><b>Was hier belegt ist — und was nicht.</b> Eine Lieferung mit Jahr '
+        f'<div class="note"><p><b>Was hier belegt ist, und was nicht.</b> Eine Lieferung mit Jahr '
         f'ist für <b>{n_lfg} der {len(b)}</b> Faszikel aus einer zeitgenössischen Quelle belegt '
-        f'({n_lief} Lieferungen): Hettners Herausgeberliste bei Merten&nbsp;2002, die '
-        f'<a href="jahresberichte.html">RLK-Jahresberichte</a> und — kastellscharf, mit Seiten- und '
-        f'Tafelzahl — die <b>Bibliographie des Jahrbuchs</b>, die jede Lieferung bei Erscheinen '
+        f'({n_lief} Lieferungen), nämlich Hettners Herausgeberliste bei Merten&nbsp;2002, die '
+        f'<a href="jahresberichte.html">RLK-Jahresberichte</a> und: kastellscharf, mit Seiten- und '
+        f'Tafelzahl: die <b>Bibliographie des Jahrbuchs</b>, die jede Lieferung bei Erscheinen '
         f'anzeigte. Wo diese fehlt, steht der aus dem Digitalisat errechnete Druckseiten-Bereich '
         f'(gekennzeichnet). Die Faszikel ohne belegte Lieferung stehen unten in einem eigenen '
         f'Block; unbelegt ist ihr Datum, nicht ihr Vorhandensein.</p></div>'
-        f'<h2 id="abt-a">Abteilung A — die Strecken</h2>'
+        f'<h2 id="abt-a">Abteilung A: die Strecken</h2>'
         f'<p class="meta">Die Beschreibung der Linie selbst, erschienen 1914–1936. Gezeigt sind die '
         f'<b>Faszikeltitel der RLK</b> (Verbundkatalog K10plus), nicht die geläufige Kurzform: '
         f'die Kommission benannte ihre Abschnitte nach <b>Flüssen und Landschaft</b>, nicht nach '
-        f'Städten — und mehrere Strecken erschienen in <b>einem</b> Faszikel.</p>'
+        f'Städten, und mehrere Strecken erschienen in <b>einem</b> Faszikel.</p>'
         f'<ul class="toc orltoc">{"".join(arows)}</ul>'
         + (f'<p class="meta">Ohne eigenen Titelnachweis in K10plus: '
-           f'{", ".join("Strecke&#8239;%s" % n for n in fehlt)} — sie stecken in den Sammelfaszikeln '
+           f'{", ".join("Strecke&#8239;%s" % n for n in fehlt)}: sie stecken in den Sammelfaszikeln '
            f'oben oder liefert der Katalog mit dieser Abfrage nicht.</p>' if fehlt else "")
-        + f'<h2 id="abt-b">Abteilung B — die Kastelle, nach Lieferungen</h2>'
+        + f'<h2 id="abt-b">Abteilung B: die Kastelle, nach Lieferungen</h2>'
         f'<p class="meta">Springen zu: {" · ".join(sprung)}</p>'
         + "".join(blocks) +
         f'<p class="meta">Seitenumfang: wo die Bibliographie ihn nennt, ist es ihre Angabe samt '
-        f'Tafelzahl; sonst der aus dem Digitalisat errechnete Bereich — dafür wurden {n_fasz} '
+        f'Tafelzahl; sonst der aus dem Digitalisat errechnete Bereich, dafür wurden {n_fasz} '
         f'Faszikel in den Scans abgegrenzt. → <a href="hathitrust.html">wie das erschlossen wurde</a></p>')
 
 
@@ -2340,14 +2348,14 @@ def genese_page(bv, bl, lat, zj, hefte, toc):
         f'<p>Drei Bestände waren da, bevor die Kommission 1892 zu graben begann, und alle drei '
         f'tragen das fertige Werk erkennbar mit:</p><ul>'
         f'<li><b>Die Epigraphik.</b> Das Corpus Inscriptionum Latinarum und Brambachs rheinisches '
-        f'Corpus (1867) liefern den Datierungsapparat der frühen Faszikel: Deren Inschriften-Zitatdichte '
+        f'Corpus (1867) liefern den Datierungsapparat der frühen Faszikel. Deren Inschriften-Zitatdichte '
         f'liegt mit {kom(r_ep.get("frueh", {}).get("median_je_10k", "?"))} je 10.000 Wörter fast doppelt '
-        f'so hoch wie in den späten ({kom(r_ep.get("spaet", {}).get("median_je_10k", "?"))}) — die erste '
+        f'so hoch wie in den späten ({kom(r_ep.get("spaet", {}).get("median_je_10k", "?"))}): die erste '
         f'Generation datiert über die Inschrift (<a href="orl-register.html">Gesamtapparat</a>).</li>'
         f'<li><b>Die Vorgänger-Forschung.</b> Karl August von Cohausens »Der römische Grenzwall in '
-        f'Deutschland« (1884) bleibt Referenz über das ganze Werk hinweg: Cohausen ist der '
+        f'Deutschland« (1884) bleibt Referenz über das ganze Werk hinweg. Cohausen ist der '
         f'meistzitierte Feldautor des Limesblatts und in den zuletzt erschienenen Streckenbänden der '
-        f'Abteilung A die präsenteste Person überhaupt — vier Jahrzehnte nach seinem Tod 1894.</li>'
+        f'Abteilung A die präsenteste Person überhaupt: vier Jahrzehnte nach seinem Tod 1894.</li>'
         f'<li><b>Die föderalen Vereinsorgane.</b> Nassauische Annalen, Bonner Jahrbücher, die '
         f'Westdeutsche Zeitschrift und die Lokalorgane: Alle dreizehn geprüften Organe erscheinen im '
         f'Apparat des fertigen ORL, jeweils konzentriert in den Bänden ihrer Region. Die vor 1892 '
@@ -2357,12 +2365,12 @@ def genese_page(bv, bl, lat, zj, hefte, toc):
         f'<p>Ab Dezember 1892 erscheint das <a href="../index.html">Limesblatt</a>: '
         f'<b>{n_ber} nummerierte Feldberichte</b> der Streckenkommissare in {n_hefte} Heften, '
         f'durchgehend in Spalten gezählt. Diese durchlaufende Zählung macht das Blatt vom ersten '
-        f'Heft an präzise zitierbar — eine Eigenschaft, die dem ORL selbst noch lange fehlt.</p>'
+        f'Heft an präzise zitierbar: eine Eigenschaft, die dem ORL selbst noch lange fehlt.</p>'
         f'<p>Für das spätere Werk wird das Blatt zum Feldarchiv: Der ORL verweist '
         f'<b>{(zj.get("gegenrichtung_orl_zitiert_limesblatt") or {}).get("echte_verweise_mit_stelle", "—")}-mal '
         f'mit Stellenangabe</b> auf Limesblatt-Spalten. Die frühen Faszikel zitieren ihren Vorbericht '
         f'mit im Median <b>{kom(lz.get("zitierende_frueh_bis_1904", {}).get("median", "?"))} Jahren</b> '
-        f'Abstand, die späten mit <b>{kom(lz.get("zitierende_spaet_ab_1914", {}).get("median", "?"))}</b> — '
+        f'Abstand, die späten mit <b>{kom(lz.get("zitierende_spaet_ab_1914", {}).get("median", "?"))}</b>, '
         f'und dabei nicht seltener, sondern dichter und quer durch alle Jahrgänge '
         f'(im Median {kom(sb.get("spaet", {}).get("median", "?"))} von 8 Bänden je Faszikel, '
         f'früh {kom(sb.get("frueh", {}).get("median", "?"))}). Das Blatt veraltete nicht; es wurde '
@@ -2372,8 +2380,8 @@ def genese_page(bv, bl, lat, zj, hefte, toc):
         f'<p>Parallel zur Feldarbeit beginnt 1894 die Endpublikation: einzelne Kastell-Faszikel der '
         f'Abteilung B, nach Fertigstellung der Bearbeiter geliefert '
         f'(<a href="orl-inhalt.html">Inhaltsverzeichnis nach Lieferungen</a>). Diese frühen Faszikel '
-        f'sind Monographien für sich: <b>Kein einziger der 16 datierten Frühfaszikel enthält einen '
-        f'werkinternen Verweis</b> — ihr Apparat zeigt auf die Fachzeitschriften (16 von 16) und '
+        f'sind Monographien für sich. <b>Kein einziger der 16 datierten Frühfaszikel enthält einen '
+        f'werkinternen Verweis</b>; ihr Apparat zeigt auf die Fachzeitschriften (16 von 16) und '
         f'zurück ins Limesblatt (12 von 16), aber nie auf die eigene Reihe '
         f'(<a href="orl-verweise.html">Binnenverweise</a>). Der Stein ist der unmarkierte Normalfall '
         f'der Beschreibung; datiert wird über die Inschrift.</p>'
@@ -2381,14 +2389,14 @@ def genese_page(bv, bl, lat, zj, hefte, toc):
         f'1900 kein Limesblatt-Heft; 1902/03 sterben Zangemeister, Hettner und Mommsen; 1903 wird '
         f'das Limesblatt eingestellt (<a href="jahresberichte.html">Jahresberichte</a>). Auch '
         f'druckhistorisch ist der Einschnitt fassbar: Zwischen Lieferung 21 und 22 stellt die '
-        f'Druckerei Petters auf die Orthographie von 1901 um — abrupt, nicht gleitend.</p>')
+        f'Druckerei Petters auf die Orthographie von 1901 um, abrupt und nicht gleitend.</p>')
 
     s4 = (
         f'<p>Nach der Kriegs- und Nachkriegslücke erscheinen ab 1914 die übrigen Kastell-Faszikel '
         f'und 1914–1936 die Streckenbände der Abteilung A. Was jetzt hinzukommt, stammt zum großen '
         f'Teil aus einer Fachwelt, die es 1903 noch nicht gab:</p><ul>'
         f'<li><b>Ein neuer Apparat.</b> Von den {orl_ein} im ORL zitierten Inschriften standen '
-        f'<b>{nur_neu} nie im Limesblatt</b> — der Zitierapparat wurde bei der Endredaktion neu '
+        f'<b>{nur_neu} nie im Limesblatt</b>: der Zitierapparat wurde bei der Endredaktion neu '
         f'aufgebaut, nicht übernommen. Die Sigillata-Autoritäten der Zwischenzeit (Dragendorff, '
         f'Ludowici, Knorr) und Organe wie die 1906 gegründete Mainzer Zeitschrift treten hinzu.</li>'
         f'<li><b>Das Werk wird System.</b> Alle 13 datierten Spätfaszikel verweisen werkintern '
@@ -2400,7 +2408,7 @@ def genese_page(bv, bl, lat, zj, hefte, toc):
         f'Palisade) vervielfacht sich, der Limesfall wird über die Gallienus-Münzreihen zum Thema, '
         f'während das Zivilsiedlungs-Vokabular zurücktritt '
         f'(<a href="wortschatz.html">Analyse</a>).</li>'
-        f'<li><b>Die Linie zuletzt.</b> Die Abteilung A beschreibt den Grenzverlauf selbst — nach '
+        f'<li><b>Die Linie zuletzt.</b> Die Abteilung A beschreibt den Grenzverlauf selbst: nach '
         f'Flüssen und Landschaft benannt (»Der Limes vom Rhein bis zur Lahn«), auf den Aufnahmen '
         f'der 1890er beruhend, redigiert von Ernst Fabricius. Ihr präsentester Gewährsmann bleibt '
         f'Cohausen.</li></ul>')
@@ -2425,7 +2433,7 @@ def genese_page(bv, bl, lat, zj, hefte, toc):
 def orl_verweise_page(bl, bv):
     """Das BINNENVERWEIS-Netz des ORL, beidseitig anklickbar: 551 aufgelöste Stellen
     (Kapsel-Kombination internal_refs x orl_faszikel x orl_druckseiten), gruppiert nach
-    dem ZIEL — den Referenzkastellen, an denen das Werk seine Typologie festmacht."""
+    dem ZIEL: den Referenzkastellen, an denen das Werk seine Typologie festmacht."""
     links = bl.get("links", [])
     bilanz = bl.get("bilanz", {})
     npb = bilanz.get("namensprobe", {})
@@ -2463,19 +2471,19 @@ def orl_verweise_page(bl, bv):
     r = (bv.get("richtung") or {}).get("Binnenverweise (ORL→ORL)", {})
     return (
         f'<h1>ORL-Binnenverweise</h1>'
-        f'<p class="lede">Der ORL erschien 45 Jahre lang in 14 Mappen und hatte nie ein Register — aber seine '
+        f'<p class="lede">Der ORL erschien 45 Jahre lang in 14 Mappen und hatte nie ein Register, aber seine '
         f'Faszikel <b>verweisen aufeinander</b> (»Abt.&nbsp;B Bd.&nbsp;II Nr.&nbsp;8 Kastell Zugmantel '
         f'S.&nbsp;107&nbsp;ff.«). Für <b>{bilanz.get("verlinkt", 0)} der {bilanz.get("binnenverweise", 0)}</b> '
-        f'werkinternen Verweise ist die zitierte Stelle im Digitalisat aufgelöst: Ziel-Nummer aus dem Verweis, '
-        f'Druckseite aus dem Kontext, Scanseite über die Faszikel-Zerlegung — <b>beide Seiten</b> jedes '
+        f'werkinternen Verweise ist die zitierte Stelle im Digitalisat aufgelöst (Ziel-Nummer aus dem Verweis, '
+        f'Druckseite aus dem Kontext, Scanseite über die Faszikel-Zerlegung); <b>beide Seiten</b> jedes '
         f'Verweises springen direkt in den HathiTrust-Scan.</p>'
         f'<div class="note"><p><b>Der Befund hinter dem Apparat:</b> Kein einziger der 16 frühen Faszikel '
-        f'(1894–1903) enthält einen werkinternen Verweis — alle 13 späten (1914–1937) tun es '
+        f'(1894–1903) enthält einen werkinternen Verweis, alle 13 späten (1914–1937) dagegen schon '
         f'(Median {str(r.get("spaet", {}).get("median_je_10k", "?")).replace(".", ",")} je 10.000 Wörter). '
         f'Nicht, weil es früh nichts zu zitieren gab: dieselben Frühfaszikel zitieren das '
         f'<a href="../index.html">Limesblatt</a> und die Fachzeitschriften. Ein ORL-Faszikel wurde erst '
         f'zitierfähig, als Abteilung, Band und Nummer als stabile Adressen etabliert waren.</p>'
-        f'<p><b>Verlässlichkeit:</b> Jede Zielseite ist doppelt geprüft — in {str(bilanz.get("quote_bestaetigt_pct", "?")).replace(".", ",")}&#8239;% '
+        f'<p><b>Verlässlichkeit:</b> Jede Zielseite ist doppelt geprüft: in {str(bilanz.get("quote_bestaetigt_pct", "?")).replace(".", ",")}&#8239;% '
         f'trägt sie das Toponym des Ziel-Kastells (»unbestätigt« heißt meist nur: die Seite nennt ihr eigenes '
         f'Kastell gerade nicht), und wo der Verweis das Kastell beim Namen nennt, stimmt der Name in '
         f'{str(npb.get("quote_pct", "?")).replace(".", ",")}&#8239;% ({npb.get("pruefbar", 0)} prüfbar). '
@@ -2535,28 +2543,28 @@ def orl_apparatus_page(reg, idx, persons=None):
         f'<p class="meta">Aufgeschlüsselt nach Art. ✓ = auch im Limesblatt-Gazetteer der Edition belegt; '
         f'<b>verlinkte Namen</b> führen ins <a href="persons.html">Personenregister</a>. '
         f'Genitivformen sind zusammengeführt; aus automatischer Eigennamenerkennung über Fraktur-OCR. '
-        f'<b>Formen desselben Nachnamens</b> — Initiale, Vollname und die Klebeformen der OCR '
-        f'(»Randfries Ludowici«) — stehen in <i>einer</i> Zeile, mit den Varianten daneben; '
+        f'<b>Formen desselben Nachnamens</b>: Initiale, Vollname und die Klebeformen der OCR '
+        f'(»Randfries Ludowici«) stehen in <i>einer</i> Zeile, mit den Varianten daneben; '
         f'<b>#Bd.</b> ist dabei die Vereinigung, nicht die Summe. Zusammengefasst wird nach dem '
-        f'Nachnamen, nicht nach der Person: wo die Quelle selbst zwei Träger unterscheidet '
-        f'(Jacobi — Louis und Heinrich), bleiben sie getrennt.</p>'
+        f'Nachnamen, nicht nach der Person; wo die Quelle selbst zwei Träger unterscheidet '
+        f'(Jacobi: Louis und Heinrich), bleiben sie getrennt.</p>'
         f'<div class="note"><p><b>Warum hier keine Bandnummern stehen.</b> Bis 2026-07 nannte diese Tabelle '
         f'zu jedem Namen die Bände, in denen er vorkommt. Diese Nummern stammten aus der Zuordnung '
         f'Scan→Kastell-Nummer, und die war für <b>37 der 56 Bände falsch</b> (die HathiTrust-Signatur '
         f'„v.&#8201;N" ist die <i>Lieferung</i>, nicht die Kastell-Nummer). Geprüft und weiterhin gültig '
         f'sind <b>#Bd.</b> und <b>Nenn.</b>: Keine der 130.540 NER-Zeilen fällt weg, und die Abbildung ist '
-        f'injektiv (56 Bände → 56 Nummern) — sie zählt also richtig, in <i>wie vielen</i> Bänden ein Name '
+        f'injektiv (56 Bände → 56 Nummern), sie zählt also richtig, in <i>wie vielen</i> Bänden ein Name '
         f'steht; falsch war nur, <i>welche</i>. Häufigkeits- und Streuungsaussagen tragen daher, '
         f'diachrone Lesarten („erscheint erst in den späten Bänden") nicht.</p></div>'
         f'<h3 id="bearbeiter">RLK-Bearbeiter und Ausgräber</h3>{_tbl(groups["rlk"][:70])}'
         f'<h3 id="sigillata-forscher">Sigillata-Forscher</h3>'
         f'<p class="meta">Die Terra-Sigillata-Typologen (Dragendorff, Knorr, Ludowici …), die den '
-        f'charakteristischen Fund-Apparat des ORL prägten — der Grund, warum der ORL sprachlich als '
+        f'charakteristischen Fund-Apparat des ORL prägten: der Grund, warum der ORL sprachlich als '
         f'Fund-Katalog erscheint (vgl. <a href="wortschatz.html#gegenprobe">Wortschatz-Gegenprobe</a>).</p>{_tbl(groups["sig"])}'
         f'<h3>Antike Personen</h3>'
         f'<p class="meta">Kaiser (als Datierungsanker), Gottheiten und antike Autoren.</p>{_tbl(groups["ant"][:40])}'
         f'<details><summary>Übrige, automatisch erkannt &amp; ungeprüft ({len(groups["rest"])})</summary>'
-        f'<p class="meta">Ohne Gazetteer-Beleg — darunter auch OCR-Artefakte (Gemeinwörter).</p>'
+        f'<p class="meta">Ohne Gazetteer-Beleg: darunter auch OCR-Artefakte (Gemeinwörter).</p>'
         f'{_tbl(groups["rest"][:60])}</details>')
     plc = [r for r in places if r.get("gazetteer") or r["nbands"] >= 3][:80]
     b = idx.get("abteilung_B_kastelle", [])
@@ -2571,7 +2579,7 @@ def orl_apparatus_page(reg, idx, persons=None):
                       f'<td class="meta">{", ".join("Nr. "+str(v["num"]) for v in r["vorberichte"][:10])}'
                       f'{"…" if len(r["vorberichte"])>10 else ""}</td></tr>' for r in con)
     return (f'<h1>ORL-Gesamtapparat</h1>'
-            f'<p class="meta">Register, Apparate und Konkordanzen über <b>alle</b> ORL-Bände — token-frei aus '
+            f'<p class="meta">Register, Apparate und Konkordanzen über <b>alle</b> ORL-Bände: token-frei aus '
             f'HathiTrust-NER und Extracted Features aggregiert (<a href="hathitrust.html">Methode</a>); '
             f'das Generalwerkzeug, das die 14-Mappen-Reihe nie hatte. Zurück zum '
             f'<a href="orl.html">ORL-Bandindex</a>.</p>'
@@ -2579,20 +2587,20 @@ def orl_apparatus_page(reg, idx, persons=None):
             f'<h2 id="orte">Ortsregister ({len(plc)} bandübergreifend)</h2>'
             f'<table class="reg"><thead><tr><th>Ort</th><th>#Bd.</th><th>Nenn.</th></tr></thead>'
             f'<tbody>{"".join(prow(r) for r in plc)}</tbody></table>'
-            f'<h2 id="sigillata">Terra-Sigillata-Apparat — zurückgezogen</h2>'
+            f'<h2 id="sigillata">Terra-Sigillata-Apparat: zurückgezogen</h2>'
             f'<div class="note"><p>Diese Tabelle wies aus, welche Lieferungen die großen Fund-Katalogbände '
             f'sind (Dragendorff/Knorr/Ludowici/Rheinzabern …), ausgezählt über die HathiTrust-Extracted-'
             f'Features. Sie ist <b>zurückgezogen</b>, weil sie am selben Fehler hängt wie die früheren '
             f'Spalten des <a href="orl.html">Bandindex</a>: Die Zuordnung Scan→Kastell las die Signatur '
-            f'„v.&#8201;N" als Kastell-Nummer, obwohl sie die <i>Lieferung</i> meint — für 30 Bände war sie '
+            f'„v.&#8201;N" als Kastell-Nummer, obwohl sie die <i>Lieferung</i> meint: für 30 Bände war sie '
             f'damit falsch, und ein Scan umfasst ohnehin eine ganze Lieferung (bis zu vier Kastelle), nie '
             f'ein einzelnes. Ein Sigillata-Score „je Kastell" ist auf dieser Grundlage nicht zu haben.</p>'
-            f'<p>Der Befund selbst — dass der ORL sprachlich ein Fund-Katalog ist — bleibt unberührt; er '
+            f'<p>Der Befund selbst (dass der ORL sprachlich ein Fund-Katalog ist) bleibt unberührt; er '
             f'ruht auf der <a href="wortschatz.html#gegenprobe">Wortschatz-Gegenprobe</a> über den gesamten '
             f'Korpus, die keine Band-Zuordnung braucht. Die Tabelle kehrt zurück, sobald die Scans über den '
             f'geprüften Lieferungsindex neu zugeordnet sind.</p></div>'
             f'<h2 id="konkordanz">Vorbericht → ORL-Konkordanz</h2>'
-            f'<p class="meta">Je Kastell der Limesblatt-Vorbericht (Bericht-Nr.) und der Bearbeiter — die Brücke '
+            f'<p class="meta">Je Kastell der Limesblatt-Vorbericht (Bericht-Nr.) und der Bearbeiter: die Brücke '
             f'Vorbericht ↔ Endpublikation.</p>'
             f'<table class="reg"><thead><tr><th>ORL</th><th>Kastell</th><th>Bearbeiter</th><th>Limesblatt-Vorberichte</th></tr></thead>'
             f'<tbody>{conrows}</tbody></table>')
@@ -2605,22 +2613,22 @@ def hathitrust_page(idx, reg, lex):
     return (f'<h1>Erschließung über HathiTrust</h1>'
             f'<p class="meta">Wie der ORL token-frei und <b>nicht-konsumtiv</b> erschlossen wurde. Die 56 Bände sind '
             f'gemeinfrei, liegen bei HathiTrust aber nur als Seiten-Scans hinter einer Bot-Wall. Gearbeitet wurde '
-            f'ausschließlich mit offenen, abgeleiteten Daten — kein Seitentext wird reproduziert; alles reproduzierbar '
+            f'ausschließlich mit offenen, abgeleiteten Daten, kein Seitentext wird reproduziert; alles reproduzierbar '
             f'mit Python-Standardbibliothek, ohne API-Schlüssel.</p>'
-            f'<h2>1 · Workset — die Bände identifizieren</h2>'
+            f'<h2>1 · Workset: die Bände identifizieren</h2>'
             f'<p>Aus vier HathiTrust-Katalog-Records (RIS-Exporte) die echten Volume-IDs (htids) geparst → ein sauberes '
             f'<b>56-Bände-Workset</b>, ein Exemplar je Lieferung. Decke: no.57–70 und die a/b-Unterhefte sind in '
             f'HathiTrust nicht digitalisiert.</p>'
-            f'<h2>2 · Extracted Features — Vokabular &amp; Seiten</h2>'
+            f'<h2>2 · Extracted Features: Vokabular &amp; Seiten</h2>'
             f'<p>Die HTRC <b>Extracted Features 2.5</b> (seitenweise Wortmengen, mitgliedsfrei) direkt per '
-            f'<code>rsync</code> gezogen — am defekten <code>RSyncGenerator</code> vorbei (dessen HTTPS-Zertifikat '
+            f'<code>rsync</code> gezogen: am defekten <code>RSyncGenerator</code> vorbei (dessen HTTPS-Zertifikat '
             f'abgelaufen war), indem die Stubbytree-Pfade selbst aus den htids abgeleitet wurden. Ertrag: Seitenzahlen + '
             f'distinktive Vokabular-Profile (TF-IDF) für <b>{nef}</b> Bände.</p>'
-            f'<h2>3 · HTRC Analytics — Entitäten &amp; Frequenzen</h2>'
+            f'<h2>3 · HTRC Analytics: Entitäten &amp; Frequenzen</h2>'
             f'<p>Über das HTRC-Algorithmus-Portal auf dem Workset: <b>Named-Entity-Recognition</b> (≈130 000 '
             f'Entitäten → Schicht C + Cross-Work-Register für <b>{nner}</b> Bände) und <b>Token-Count</b> '
             f'(≈{ow:,}-Wörter-Korpusfrequenz → die <a href="orl.html#keyness">Wortschatz-Gegenprobe</a>).</p>'
-            f'<h2>4 · Data Capsule — Volltext (abgeschlossen, zwei Zyklen)</h2>'
+            f'<h2>4 · Data Capsule: Volltext (abgeschlossen, zwei Zyklen)</h2>'
             f'<p>Für das, was nur fortlaufender Volltext liefert, lief eine nicht-konsumtive <b>HTRC Data '
             f'Capsule</b>: Volltext der 78 Scans geladen, Analyse per stdlib-Python in der Kapsel, Export '
             f'ausschließlich aggregierter Ableitungen über den HTRC-Review. Der zweite Lauf (August 2026) '
@@ -2633,7 +2641,7 @@ def hathitrust_page(idx, reg, lex):
             f'<p>Aus diesen offenen Schichten entstand der konsolidierte <a href="orl-register.html">Gesamtapparat</a>: '
             f'ein <b>{np}-Personen-</b> und <b>{npl}-Orte-Generalregister</b>, die '
             f'<a href="orl-register.html#sigillata">Sigillata-Konkordanz</a>, die '
-            f'<a href="orl-register.html#konkordanz">Vorbericht-Konkordanz</a> und die Wortschatz-Gegenprobe — '
+            f'<a href="orl-register.html#konkordanz">Vorbericht-Konkordanz</a> und die Wortschatz-Gegenprobe: '
             f'Apparate, die der in 14 Mappen über 40 Jahre erschienene ORL selbst nie besaß.</p>')
 
 def _rlk_paragraphs(text):
@@ -2660,7 +2668,7 @@ def rlk_jahresberichte_page(data, ner_p=None, ner_pl=None):
     grund = {1885 + b: "auf archive.org nicht digitalisiert auffindbar" for b in data.get("fehlend", [])}
     for x in data.get("ohne_bericht", []):
         fehl_jahr[x["band"]] = x["jahrgang"]
-        grund[x["jahrgang"]] = ("in diesem Band ist kein Bericht der Kommission enthalten — der "
+        grund[x["jahrgang"]] = ("in diesem Band ist kein Bericht der Kommission enthalten: der "
                                 "Titel steht dort nur in der Bibliographie")
     def _tsd(n): return f"{n:,}".replace(",", ".")
     zeilen = []
@@ -2684,20 +2692,20 @@ def rlk_jahresberichte_page(data, ner_p=None, ner_pl=None):
     details = "".join(
         f'<p><a href="../jahresberichte/jb{b["jahrgang"]}.html"><b>Bericht {b["jahrgang"]}</b></a> '
         f'<span class="meta">— Jahrbuch Bd. {b["band"]}, {b["woerter"]:,} Wörter, '
-        f'{len(b.get("seiten") or [])} Blätter</span></p>'.replace(",", ".")
+        f'{len(b.get("seiten") or [])} Blätter</span></p>'
         for b in berichte)
     fehlt = ", ".join(f"Bd. {n}" for n in data.get("fehlend", [])) or "—"
     ohne = data.get("ohne_bericht", [])
     ohne_satz = ""
     if ohne:
         ohne_satz = (f', und in Band {ohne[0]["band"]} ({ohne[0]["jahrgang"]}) steht überhaupt kein '
-                     f'Bericht — den Titel führt dieser Band nur in seiner Bibliographie')
+                     f'Bericht: den Titel führt dieser Band nur in seiner Bibliographie')
     return (
         f'<h1>RLK-Jahresberichte (1892–1904)</h1>'
-        f'<p class="meta">Die institutionellen Rechenschaftsberichte der Reichs-Limeskommission — jährlich als '
+        f'<p class="meta">Die institutionellen Rechenschaftsberichte der Reichs-Limeskommission: jährlich als '
         f'„Bericht über die Thätigkeit/die Arbeiten der Reichs-Limeskommission" im Archäologischer-Anzeiger-Anhang '
         f'des <i>Jahrbuch des Kaiserlich Deutschen Archäologischen Instituts</i> veröffentlicht (Bd. 7–20, 1892–1905). '
-        f'Die Bandzahlen sind die des Jahrbuchs, das 1886 mit Band 1 beginnt: <b>Bd. 7 ist der Jahrgang 1892</b> — '
+        f'Die Bandzahlen sind die des Jahrbuchs, das 1886 mit Band 1 beginnt: <b>Bd. 7 ist der Jahrgang 1892</b>: '
         f'das Gründungsjahr der Kommission und damit der erste Bericht, den es geben kann. '
         f'Unabhängig vom Limesblatt (den Feldberichten der Streckenkommissare): das ist die institutionelle '
         f'Selbstauskunft der Kommission an die Öffentlichkeit. Token-frei geharvestet von archive.org '
@@ -2710,15 +2718,15 @@ def rlk_jahresberichte_page(data, ner_p=None, ner_pl=None):
         f'Berichtsseite wiederholt und mit dem Folgeartikel wechselt.</p></div>'
         f'<h2 id="umfang">Umfang der Berichte</h2>'
         f'<p>Über die erschlossenen Jahrgänge <b>fällt</b> der Berichtsumfang (Spearman ρ = '
-        f'<b>{trend.get("umfang", "–")}</b>) — ein Gegenbefund zur wachsenden '
+        f'<b>{trend.get("umfang", "–")}</b>): ein Gegenbefund zur wachsenden '
         f'<a href="orl.html">ORL-Lieferungsreihe</a> über deren 45 Jahre. Beide widersprechen sich nicht: die '
         f'ORL-Lieferungen sind die wissenschaftliche Endpublikation über 45 Jahre, die Jahresberichte sind die '
-        f'institutionelle Selbstauskunft über die ersten 13 Jahre — und die schrumpft, je mehr die Kommission von '
+        f'institutionelle Selbstauskunft über die ersten 13 Jahre, und die schrumpft, je mehr die Kommission von '
         f'der Gründungs- in die Verwaltungsroutine übergeht. Der Bruch fällt mit dem Tod Theodor Mommsens, Felix '
         f'Hettners und Karl Zangemeisters 1902/03 zusammen (Bd. 19/1904 spricht selbst von „großer Zurückhaltung" '
         f'bei neuen Grabungen).</p>'
         f'<p class="meta">Wie sich Feldorgan, Jahresberichte und Endpublikation zeitlich zueinander '
-        f'verhalten — einschließlich des Lieferungslochs 1899 und des heftlosen Jahres 1900 — ordnet '
+        f'verhalten (einschließlich des Lieferungslochs 1899 und des heftlosen Jahres 1900) ordnet '
         f'die Seite zur <a href="genese.html">Genese des ORL</a> ein.</p>'
         f'<p><b>Gegenprobe gegen das Limesblatt-Korpus</b> ({geg.get("limesblatt_woerter", 0):,} Wörter): '
         f'Verwaltungssprache {geg.get("jahresbericht_admin_je_1000")}/1000 W. (Jahresbericht) vs. '
@@ -2730,7 +2738,7 @@ def rlk_jahresberichte_page(data, ner_p=None, ner_pl=None):
         f'<h2 id="berichte">Die Berichte</h2>'
         f'<p class="meta">Der Bericht führt keine eigene Zählung: er erscheint als Anhang und erbt die Bandzahl '
         f'des Jahrbuchs. Die laufende Nummer hier ist nach Jahrgang vergeben; der fehlende Jahrgang 1894 '
-        f'(Jahrbuch Bd. 9) bleibt als Lücke stehen und wird nicht weggezählt — sonst verschöbe sich alles '
+        f'(Jahrbuch Bd. 9) bleibt als Lücke stehen und wird nicht weggezählt: sonst verschöbe sich alles '
         f'dahinter. <b>Personen</b> und <b>Orte</b> zählen, wie viele verschiedene Namen des '
         f'<a href="namen.html">Limesblatt-Gazetteers</a> im jeweiligen Bericht vorkommen.</p>'
         f'<table class="reg"><thead><tr><th>Nr.</th><th>Jahrgang</th><th>Jahrbuch-Bd.</th><th>Wörter</th>'
@@ -2743,7 +2751,7 @@ def rlk_jahresberichte_page(data, ner_p=None, ner_pl=None):
         f'rechts, beide aneinander gekoppelt. Gegliedert wird mit den Zwischenüberschriften des Drucks '
         f'(Versalzeilen) und seinen Aufzählungen; Absatzgrenzen im Fließtext gibt die Vorlage nicht her. '
         f'Der Umfang des Berichts ist heuristisch bestimmt (zusammenhängender Lauf der Blätter, die die '
-        f'Kommission nennen) — kleine Ränder zum Nachbarartikel sind möglich.</p>{details}'
+        f'Kommission nennen): kleine Ränder zum Nachbarartikel sind möglich.</p>{details}'
     )
 
 def jb_register_html(reihe, pers, orte, data):
@@ -2769,21 +2777,21 @@ def jb_register_html(reihe, pers, orte, data):
                     f'<td class="meta ktx">{html.escape(g["kontext"])}</td></tr>'
                     for g in sorted(geld, key=lambda x: (x["jahr"], -x["betrag"])))
     return (f'<h2 id="wer">Genannte Personen</h2>'
-            f'<p class="meta">Personen des Limesblatt-Gazetteers in den Jahresberichten — dieselben Namen, '
-            f'anderes Genre: hier stehen sie als Beauftragte der Kommission, nicht als Erzähler ihrer Grabung. '
+            f'<p class="meta">Personen des Limesblatt-Gazetteers in den Jahresberichten: dieselben Namen, '
+            f'anderes Genre, denn hier stehen sie als Beauftragte der Kommission, nicht als Erzähler ihrer Grabung. '
             f'Sortierbar; „Berichte" ist die Zahl der Jahrgänge, in denen der Name vorkommt.</p>{tab(pers, "Person", "namen")}'
             f'<h2 id="wo">Genannte Orte</h2>'
             f'<p class="meta">Ein Jahr-für-Jahr-Bild der Kampagne: welche Plätze der Bericht überhaupt erwähnt. '
-            f'Gemeinwörter, die zugleich Ortsnamen sind (»Graben«, »Wall«), sind ausgenommen — sie stünden sonst '
+            f'Gemeinwörter, die zugleich Ortsnamen sind (»Graben«, »Wall«), sind ausgenommen: sie stünden sonst '
             f'an der Spitze und meinten nichts.</p>{tab(orte, "Ort", "orte-index")}'
             f'<h2 id="verwaltung">Das Verwaltungsvokabular</h2>'
             f'<p class="meta">Womit sich der Bericht als <i>institutioneller</i> Text zu erkennen gibt: '
-            f'Streckenkommissare und Dirigenten, Reichstag und Etat, Sitzungen und Denkschriften — je Begriff '
+            f'Streckenkommissare und Dirigenten, Reichstag und Etat, Sitzungen und Denkschriften, je Begriff '
             f'die Jahrgänge und eine Belegstelle.</p>'
             f'<table class="reg"><thead><tr><th>Begriff</th><th>Belege</th><th>Jahrgänge</th><th>Erste Fundstelle</th>'
             f'</tr></thead><tbody>{arows}</tbody></table>'
-            + (f'<h3>Beträge</h3><p class="meta">Alle Markbeträge, die die Fraktur-OCR lesbar hergibt — '
-               f'wenige, und die Ziffern sind der unzuverlässigste Teil dieser Vorlage: Beträge bitte am '
+            + (f'<h3>Beträge</h3><p class="meta">Alle Markbeträge, die die Fraktur-OCR lesbar hergibt: '
+               f'wenige, und die Ziffern sind der unzuverlässigste Teil dieser Vorlage. Beträge bitte am '
                f'Volltext prüfen, sie stehen hier als Fundstellen-Hinweis, nicht als Etatzahlen.</p>'
                f'<table class="reg"><thead><tr><th>Jahrgang</th><th>Betrag (M.)</th><th>Kontext</th></tr></thead>'
                f'<tbody>{grows}</tbody></table>' if grows else ""))
@@ -2812,7 +2820,7 @@ def gesamtregister_page(ner_p, ner_pl, orl_reg, jb, persons):
 
     Die drei Korpora sind getrennt erschlossen (Volltext-NER · HathiTrust-NER · Gazetteer-Abgleich)
     und haben je eigene Register. Diese Tabelle legt sie nebeneinander, damit sichtbar wird, wer
-    und was in mehr als einem Werk vorkommt — die Frage, die kein Einzelregister beantwortet.
+    und was in mehr als einem Werk vorkommt: die Frage, die kein Einzelregister beantwortet.
 
     Verbunden wird über den normalisierten Namen. Das ist eine Anzeige-Zusammenführung, keine
     Identitätsaussage: derselbe Nachname kann zwei Träger haben (Jacobi), und die Korpora sind
@@ -2874,11 +2882,11 @@ def gesamtregister_page(ner_p, ner_pl, orl_reg, jb, persons):
             f'Korpora</b>: dem <a href="../index.html">Limesblatt</a> (Volltext dieser Edition), dem '
             f'<a href="orl-register.html">ORL</a> (HathiTrust-Erschließung über 56 Bände) und den '
             f'<a href="jahresberichte.html">RLK-Jahresberichten</a> (13 Jahrgänge). Die Spalte '
-            f'<b>Werke</b> sagt, in wie vielen der drei ein Name überhaupt vorkommt — sortiert man danach, '
+            f'<b>Werke</b> sagt, in wie vielen der drei ein Name überhaupt vorkommt. Sortiert man danach, '
             f'stehen oben die Namen, die das ganze Unternehmen durchziehen: <b>{d3p} Personen</b> und '
             f'<b>{d3o} Orte</b> in allen dreien.</p>'
             f'<div class="note"><p><b>Was der Vergleich trägt und was nicht.</b> Verbunden wird über den '
-            f'normalisierten Namen — eine Zusammenführung für die Anzeige, keine Identitätsaussage: derselbe '
+            f'normalisierten Namen: eine Zusammenführung für die Anzeige, keine Identitätsaussage, denn derselbe '
             f'Nachname kann zwei Träger haben (Jacobi: Louis und Heinrich), und die drei Korpora sind '
             f'unterschiedlich zuverlässig erschlossen. Die Zahlen sind <i>nicht</i> untereinander '
             f'vergleichbar: „Belege" im Limesblatt sind Seiten, „Bände" im ORL sind Faszikel, „Nennungen" '
@@ -2888,7 +2896,7 @@ def gesamtregister_page(ner_p, ner_pl, orl_reg, jb, persons):
 
 
 def netz_page(persons, ner_p, orl_idx, bli, verw, jb, ner_pl, bibls, occ):
-    """Personen · Publikationen · Zitate als Netz — was die Register nur zeilenweise zeigen.
+    """Personen · Publikationen · Zitate als Netz: was die Register nur zeilenweise zeigen.
 
     Vier Kantenfamilien, jede aus einer belegten Quelle: wer in einem Limesblatt-Band genannt wird,
     wer einen ORL-Faszikel bearbeitet hat, wer in einem Jahresbericht vorkommt, und welcher
@@ -2973,8 +2981,8 @@ def netz_page(persons, ner_p, orl_idx, bli, verw, jb, ner_pl, bibls, occ):
         f'<input type="checkbox" value="{k}" checked> {LAB[k]} ({zahl[k]})</label>'
         for k in ("person", "limesblatt", "orl", "jahresbericht", "werk") if zahl.get(k))
     return (f'<h1>Netzansicht</h1>'
-            f'<p class="meta">Dieselben Daten wie in den Registern, nur als Beziehungsbild: '
-            f'<b>{len(nl)} Knoten</b> und <b>{len(kl)} Kanten</b> aus vier belegten Quellen — wer in einem '
+            f'<p class="meta">Dieselben Daten wie in den Registern, nur als Beziehungsbild. '
+            f'<b>{len(nl)} Knoten</b> und <b>{len(kl)} Kanten</b> aus vier belegten Quellen: wer in einem '
             f'Limesblatt-Band <i>genannt</i> wird, wer einen ORL-Faszikel <i>bearbeitet</i> hat, wer in einem '
             f'<i>Jahresbericht</i> vorkommt, und welcher ORL-Faszikel welchen Limesblatt-Band <i>zitiert</i> '
             f'(<a href="orl-verweise.html">Binnenverweise</a>). Dazu die im Limesblatt zitierte Literatur. '
@@ -2985,7 +2993,7 @@ def netz_page(persons, ner_p, orl_idx, bli, verw, jb, ner_pl, bibls, occ):
             f'<button id="netz-reset" class="iiifbtn">Ansicht zurücksetzen</button></div>'
             f'<div class="netz-typ netzsteuer">{filt}</div>'
             f'<div class="netzbox">{graph.svg(nl, kl, pos)}</div>'
-            f'<p class="meta">Die Knotengröße ist die Summe der Kantengewichte — sie zeigt Verflechtung, '
+            f'<p class="meta">Die Knotengröße ist die Summe der Kantengewichte: sie zeigt Verflechtung, '
             f'nicht Bedeutung. Nur Knoten mit mindestens einer Kante sind aufgenommen; Personen erscheinen, '
             f'soweit sie im <a href="persons.html">kuratierten Personenregister</a> stehen, damit jeder Punkt '
             f'auf eine geprüfte Person zeigt und nicht auf eine OCR-Form. Das Layout ist vorberechnet und bei '
@@ -3016,7 +3024,7 @@ def _saetze(txt):
 
 
 def jb_personalia(jb, ner_p):
-    """Personalereignisse je Jahrgang — Ereignisart, genannte Personen, Belegstelle.
+    """Personalereignisse je Jahrgang: Ereignisart, genannte Personen, Belegstelle.
 
     Gesucht wird in einem FENSTER um das Ereigniswort, nicht im Satz: die OCR setzt Punkte
     unzuverlässig (»Zange- meister«, »z. D.«), und ein Satzsplitter zerlegt genau dort, wo
@@ -3043,7 +3051,7 @@ def jb_personalia(jb, ner_p):
 
 
 def jb_kampagnen(jb, ner_pl):
-    """Wo in welchem Jahr gegraben wurde — Ort × Jahrgang aus den Grabungssätzen."""
+    """Wo in welchem Jahr gegraben wurde: Ort × Jahrgang aus den Grabungssätzen."""
     orte = {p["name"] for p in ner_pl if len(p["name"]) > 4 and " " not in p["name"]} - JB_VETO
     treffer = defaultdict(lambda: {"n": 0, "beleg": "", "strecken": set()})
     for b in sorted(jb.get("berichte", []), key=lambda x: x["jahrgang"]):
@@ -3079,9 +3087,9 @@ def jb_ereignis_html(pers, kamp):
             f'<p class="meta">Stellen, an denen ein Personalereignis <i>und</i> ein bekannter Name '
             f'beieinanderstehen: '
             f'{" · ".join(f"{a} {n}" for a, n in art.most_common())}. Der Jahresbericht ist die einzige der '
-            f'drei Quellen, die über Personal spricht — das Limesblatt berichtet vom Feld, der ORL von der '
+            f'drei Quellen, die über Personal spricht: das Limesblatt berichtet vom Feld, der ORL von der '
             f'Sache. Die Zuordnung Person↔Ereignis ist die der Textstelle, nicht eine geprüfte '
-            f'Biographie — gesucht wird in einem Fenster um das Ereigniswort, weil die OCR Satzgrenzen '
+            f'Biographie: gesucht wird in einem Fenster um das Ereigniswort, weil die OCR Satzgrenzen '
             f'unzuverlässig setzt.</p>'
             f'<table class="reg"><thead><tr><th>Jahrgang</th><th>Art</th><th>Personen</th><th>Beleg</th>'
             f'</tr></thead><tbody>{prows}</tbody></table>'
@@ -3089,10 +3097,10 @@ def jb_ereignis_html(pers, kamp):
             f'<p class="meta">{orte_k} Orte über {jahre_k} Jahrgänge, aus Sätzen mit Grabungsvokabular '
             f'(ausgegraben, aufgedeckt, untersucht …). Nach <b>Ort</b> sortiert wird daraus die Chronologie '
             f'eines Platzes, nach <b>Jahrgang</b> das Arbeitsprogramm einer Saison. Nennung in einem '
-            f'Grabungssatz heißt nicht, dass dort in diesem Jahr gegraben wurde — der Satz kann vergleichen '
+            f'Grabungssatz heißt nicht, dass dort in diesem Jahr gegraben wurde: der Satz kann vergleichen '
             f'oder zurückblicken; der Beleg steht daneben. Eine Strecken-Spalte fehlt mit Absicht: der '
             f'Bericht benennt seine Strecken nach ihrem Verlauf („die Strecke von Dambach über Gunzenhausen '
-            f'zur Rezat“), nicht nach Nummern — dieselbe Gewohnheit, die auch die Titel der '
+            f'zur Rezat“), nicht nach Nummern. Es ist dieselbe Gewohnheit, die auch die Titel der '
             f'<a href="orl-inhalt.html#abt-a">Abteilung A</a> prägt.</p>'
             f'<table class="reg"><thead><tr><th>Jahrgang</th><th>Ort</th><th>Stellen</th>'
             f'<th>Beleg</th></tr></thead><tbody>{krows}</tbody></table>')
@@ -3102,7 +3110,7 @@ def archiv_page(a, persons):
     """Die Archivlage: was hinter den digitalen Quellen liegt und was davon noch aussteht.
 
     Diese Seite veröffentlicht kein Archivgut. Sie führt zusammen, was die Recherche über die
-    Bestände ergeben hat — Signaturen, Findmittel, Zugangswege — und benennt, was ungesehen
+    Bestände ergeben hat (Signaturen, Findmittel, Zugangswege) und benennt, was ungesehen
     geblieben ist. Die Vorbehalte sind Zitate aus den Rechercheprotokollen, keine Bewertung."""
     if not a:
         return ""
@@ -3140,13 +3148,13 @@ def archiv_page(a, persons):
     return (f'<h1>Archivbestände</h1>'
             f'<p class="lede">Hinter den gedruckten Quellen liegt das unveröffentlichte Material: '
             f'Grabungstagebücher, Korrespondenz, Vermessungsunterlagen, Ministerialakten. Diese Seite '
-            f'veröffentlicht davon nichts — sie führt zusammen, <b>wo es liegt</b>, <b>wie man herankommt</b> '
+            f'veröffentlicht davon nichts: sie führt zusammen, <b>wo es liegt</b>, <b>wie man herankommt</b> '
             f'und vor allem, <b>was noch niemand angesehen hat</b>. '
             f'{bil.get("bestandsnotizen", 0)} Bestands- und Findmittelnotizen, '
             f'{bil.get("signaturen", 0)} belegte Signaturen, {bil.get("nachlaesse", 0)} Nachlässe.</p>'
             f'<div class="note"><p><b>Der Grundbefund.</b> Das wissenschaftliche Archiv der Kommission liegt '
             f'geschlossen bei der Römisch-Germanischen Kommission des DAI in Frankfurt; ihre <i>Verwaltungs</i>'
-            f'überlieferung dagegen verteilt sich auf die Staatsarchive der Trägerstaaten — die Kommission war '
+            f'überlieferung dagegen verteilt sich auf die Staatsarchive der Trägerstaaten: die Kommission war '
             f'keine Behörde, sondern ein Verbund. Wer das Unternehmen als Institution untersuchen will, muss '
             f'daher an mehreren Orten suchen; wer die Grabungen untersuchen will, an einem.</p></div>'
             + (f'<h2 id="arbeitsliste">Bestellliste</h2>'
@@ -3156,7 +3164,7 @@ def archiv_page(a, persons):
                f'<th>beantwortet welche offene Frage</th></tr></thead><tbody>{arows}</tbody></table>'
                if arb else "")
             + (f'<h2 id="vorbehalte">Vorbehalte</h2>'
-               f'<p class="meta">Was die Recherche selbst als ungeprüft festgehalten hat — zitiert, nicht '
+               f'<p class="meta">Was die Recherche selbst als ungeprüft festgehalten hat: zitiert, nicht '
                f'zusammengefasst.</p>'
                f'<table class="reg"><thead><tr><th>Notiz</th><th>Vorbehalt</th></tr></thead>'
                f'<tbody>{drows}</tbody></table>' if drows else "")
@@ -3164,13 +3172,13 @@ def archiv_page(a, persons):
             f'<table class="reg"><thead><tr><th>Bestand / Findmittel</th><th>Institution</th>'
             f'<th>Signaturen</th><th>Zugang</th><th></th></tr></thead><tbody>{brows}</tbody></table>'
             + (f'<h2 id="zugang">Erreichbarkeit</h2>'
-               f'<p class="meta">Welches Findmittel maschinell erreichbar ist und welches nicht — die '
+               f'<p class="meta">Welches Findmittel maschinell erreichbar ist und welches nicht: die '
                f'Unterscheidung entscheidet, was sich token-frei erschließen lässt und was eine Reise '
                f'kostet.</p><table class="reg"><thead><tr><th>Notiz</th><th>Findmittel</th>'
                f'<th>Erreichbarkeit</th><th>deckt ab</th></tr></thead><tbody>{zrows}</tbody></table>'
                if zrows else "")
             + f'<h2 id="nachlaesse">Nachlässe</h2>'
-            f'<p class="meta">Wo die persönliche Überlieferung der Kommissionsmitglieder liegt — ermittelt '
+            f'<p class="meta">Wo die persönliche Überlieferung der Kommissionsmitglieder liegt: ermittelt '
             f'über den <a href="https://kalliope-verbund.info">Kalliope-Verbund</a> und die Findmittel des '
             f'DAI. Sortierbar nach Person und Verwahrort.</p>'
             f'<table class="reg"><thead><tr><th>Person</th><th>Rolle</th><th>Verwahrort / Nachweis</th>'
@@ -3182,7 +3190,7 @@ def archiv_page(a, persons):
 
 
 def impressum_page():
-    """Impressum, Lizenz und Zitiervorschlag — eine Website, die zitierfähig sein will,
+    """Impressum, Lizenz und Zitiervorschlag: eine Website, die zitierfähig sein will,
     muss sagen, wie sie zitiert werden möchte, und wer für sie einsteht."""
     zit = ("Manuel Sassmann: RLK-digital. Die Quellen der Reichs-Limeskommission (1892–1937), "
            "digital erschlossen. 2026. "
@@ -3208,15 +3216,15 @@ def impressum_page():
             f'<blockquote class="zit">{html.escape(zit)}</blockquote>'
             f'<p>Für eine einzelne Seite:</p>'
             f'<blockquote class="zit">{html.escape(zit_seite)}</blockquote>'
-            f'<p class="meta">Wer einzelne <b>Daten</b> weiterverwendet — Register, Konkordanzen, '
-            f'Fundlisten —, zitiert bitte zusätzlich die Seite, auf der die Angabe steht, und ihren Stand: '
+            f'<p class="meta">Wer einzelne <b>Daten</b> weiterverwendet (Register, Konkordanzen, '
+            f'Fundlisten), zitiert bitte zusätzlich die Seite, auf der die Angabe steht, und ihren Stand: '
             f'die Register werden fortgeschrieben. Für Belege aus dem Quellentext gilt die Zählung der '
             f'Quelle selbst (Limesblatt: Spalte; ORL: Abteilung, Band, Nummer, Seite), nicht die dieser '
             f'Website.</p>'
             f'<details><summary>BibTeX</summary><pre class="bib">{html.escape(bib)}</pre></details>'
             f'<h2 id="lizenz">Lizenz</h2>'
             f'<p><b>Text, Register und abgeleitete Daten dieser Website:</b> '
-            f'<a href="https://creativecommons.org/licenses/by/4.0/deed.de">CC BY 4.0</a> — '
+            f'<a href="https://creativecommons.org/licenses/by/4.0/deed.de">CC BY 4.0</a>: '
             f'Weiterverwendung mit Namensnennung erlaubt, auch kommerziell und in Bearbeitung.</p>'
             f'<p><b>Nicht davon erfasst</b> sind die verlinkten Quellen selbst: die Seitenbilder des '
             f'Limesblatt liegen bei der <a href="https://www.ub.uni-heidelberg.de/">UB Heidelberg</a> und '
@@ -3249,7 +3257,7 @@ def jb_struktur(txt):
     """Blatt-Text → Absätze und Zwischenüberschriften.
 
     Der Druck gliedert mit Versalzeilen (»ERWERBUNGEN«) und mit Aufzählungen (»1) Hr. Professor
-    Fink in München …«) — beides überlebt die Vision-Lesung als Zeilenanfang und trägt hier die
+    Fink in München …«): beides überlebt die Vision-Lesung als Zeilenanfang und trägt hier die
     Gliederung. Absatzgrenzen im Fließtext gibt die Vorlage nicht her: die Lesung liefert Zeilen,
     keine Absätze. Deshalb wird nur dort umbrochen, wo die Quelle selbst gliedert."""
     absaetze, puffer, kopfe = [], [], []
@@ -3336,8 +3344,7 @@ def jahresbericht_reader(b):
                                 for lab, aid in alle_kopfe) + '</ul></details>')
     head = '<script src="../assets/openseadragon.min.js"></script>'
     body = f"""<h1>Bericht der Reichs-Limeskommission {b['jahrgang']}</h1>
-<p class="meta">Jahrbuch des Kaiserlich Deutschen Archäologischen Instituts, Band {b['band']} —
-Archäologischer Anzeiger, Blatt {seiten[0]['leaf']}–{seiten[-1]['leaf']} ·
+<p class="meta">Jahrbuch des Kaiserlich Deutschen Archäologischen Instituts, Band {b['band']}: Archäologischer Anzeiger, Blatt {seiten[0]['leaf']}–{seiten[-1]['leaf']} ·
 {len(seiten)} Seiten · Faksimile: <a href="https://archive.org/details/{item}">archive.org</a> ·
 Lesung: {html.escape(b.get('ocr', ''))} ·
 TEI: <a href="../tei/jahresberichte/jb{b['jahrgang']}.xml">XML</a> ·
@@ -3359,7 +3366,7 @@ function upd(){{document.getElementById("pgind").textContent=(viewer.currentPage
 function syncOn(){{var b=document.getElementById("syncscroll");return !b||b.checked;}}
 var _slock=false;
 // goHome nach dem Öffnen: der Viewer startet sonst weit außerhalb des Blattes (die Kachelgröße
-// steht erst fest, wenn info.json da ist) — die Fläche bleibt schwarz, das Blatt ein Fleck.
+// steht erst fest, wenn info.json da ist): die Fläche bleibt schwarz, das Blatt ein Fleck.
 viewer.addHandler("open", function(){{ upd(); viewer.viewport.goHome(true); }});
 viewer.addHandler("page", function(ev){{
   upd();
@@ -3452,7 +3459,7 @@ viewer.addHandler("page", function(ev){{
 
 
 def artikel_index(arts, offen=()):
-    """Verzeichnis der einzeln erschlossenen Aufsätze — nach Organ gruppiert.
+    """Verzeichnis der einzeln erschlossenen Aufsätze: nach Organ gruppiert.
 
     `offen` sind die Aufsätze des Verzeichnisses, die KEIN erreichbares Digitalisat haben. Sie
     werden mit ihrem Grund genannt, statt zu verschwinden: eine Lücke, die man sieht, ist eine
@@ -3473,8 +3480,8 @@ def artikel_index(arts, offen=()):
             f'<tr><td><a href="{a["id"]}.html"><b>{html.escape(a["titel"][:90])}</b></a></td>'
             f'<td>{html.escape(a.get("verfasser", "") or "—")}</td>'
             f'<td class="meta">{html.escape(a.get("quelle", ""))}</td>'
-            f'<td>{len(a.get("seiten") or [])}</td><td>{a.get("woerter", 0):,}</td>'
-            f'<td class="meta">{"archive.org" if a.get("anbieter") == "archive.org" else "UB Heidelberg"}</td></tr>'.replace(",", ".")
+            f'<td>{len(a.get("seiten") or [])}</td><td>{_tausend(a.get("woerter", 0))}</td>'
+            f'<td class="meta">{"archive.org" if a.get("anbieter") == "archive.org" else "UB Heidelberg"}</td></tr>'
             for a in sorted(grp[organ], key=lambda x: x.get("quelle", "")))
         teile.append(f'<h2>{html.escape(organ)}</h2>'
                      f'<table class="reg"><thead><tr><th>Aufsatz</th><th>Verfasser</th><th>Fundstelle</th>'
@@ -3498,29 +3505,29 @@ def artikel_index(arts, offen=()):
             f'<td class="meta">{html.escape(_stelle(o))}</td>'
             f'<td class="meta">{html.escape(o.get("grund", ""))}</td></tr>'
             for o in sorted(offen, key=lambda x: (x.get("organ", ""), str(x.get("band", "")))))
-        luecke = (f'<h2>Nicht erschlossen — und warum</h2>'
+        luecke = (f'<h2>Nicht erschlossen, und warum</h2>'
                   f'<p class="meta">{len(offen)} Einträge des Verzeichnisses konnten nicht als '
                   f'Volltext beigebracht werden. Sie bleiben hier stehen, damit die Lücke sichtbar '
                   f'ist: teils fehlt der Band in allen erreichbaren Sammlungen, teils nennt das '
                   f'Verzeichnis selbst keine schließende Seitenzahl (»S. 266–«), teils fällt im '
-                  f'Ausweichband der Titelbeleg nicht mit dem Seitenbeleg zusammen — dann wird die '
+                  f'Ausweichband der Titelbeleg nicht mit dem Seitenbeleg zusammen: dann wird die '
                   f'Stelle nicht geraten.</p>'
                   f'<table class="reg sortierbar"><thead><tr><th>Aufsatz</th><th>Organ</th>'
                   f'<th>Fundstelle</th><th>Warum nicht hier</th></tr></thead>'
                   f'<tbody>{zeilen}</tbody></table>')
     return (f'<h1>Aufsätze</h1>'
-            f'<p class="lede">Einzelne Aufsätze, die für die Gründungs- und Forschungsgeschichte zählen — '
+            f'<p class="lede">Einzelne Aufsätze, die für die Gründungs- und Forschungsgeschichte zählen: '
             f'jeder als Volltext neben seinem Faksimile. <b>{len(arts)} Aufsätze</b>, '
-            f'{n_w:,} Wörter.</p>'.replace(",", ".") +
+            f'{_tausend(n_w)} Wörter.</p>' +
             f'<p class="meta">Der Bestand kommt aus dem Aufsatzverzeichnis des Forschungs-Vaults, das die '
             f'Inhaltsverzeichnisse der Digitalisate ausgewertet hat; Text und Blatt liefern die '
-            f'Digitalisate selbst — bei der UB Heidelberg über IIIF-Manifest und ALTO-OCR, bei '
+            f'Digitalisate selbst: bei der UB Heidelberg über IIIF-Manifest und ALTO-OCR, bei '
             f'archive.org über die Bildfolge und den mitgelieferten Text. Welche Stelle eines Bandes '
             f'den Aufsatz führt, wird nicht geraten. Bei der UB Heidelberg gilt der Jahrgang erst als '
             f'gefunden, wenn die Seitenbeschriftungen seiner Bildfolge die gesuchte Spanne wirklich '
             f'enthalten. Bei archive.org reicht das nicht, denn dort sind mehrere Bände in einen Scan '
             f'gebunden und dieselbe Seitenzahl kommt mehrfach vor: dort müssen <b>zwei</b> Belege '
-            f'zusammenfallen — Verfasser- und Titelwörter auf dem Blatt selbst, und eine passende '
+            f'zusammenfallen: Verfasser- und Titelwörter auf dem Blatt selbst, und eine passende '
             f'Folgenummer in Reichweite. Fällt beides nicht zusammen, bleibt der Aufsatz unerschlossen.</p>'
             + "".join(teile) + luecke +
             f'<p class="meta">Zurück zu den <a href="../quellen.html">Quellen</a>.</p>')
@@ -3529,13 +3536,13 @@ def artikel_index(arts, offen=()):
 def documentation_page(s):
     # Datenherkunft — jede offene Quelle in klarer Sprache (kein Fachjargon)
     src = [
-        ("Universitätsbibliothek Heidelberg", "Die eingescannten Originalseiten und ihre maschinelle Umschrift — Grundlage des Volltexts, der Suche, der Namens- und Ortslisten und der Analyse."),
+        ("Universitätsbibliothek Heidelberg", "Die eingescannten Originalseiten und ihre maschinelle Umschrift: Grundlage des Volltexts, der Suche, der Namens- und Ortslisten und der Analyse."),
         ("Normdaten der Bibliotheken (GND) &amp; Wikidata", "Zu den Personen: gesicherte Lebensdaten, Rollen und Verweise auf Standard-Nachschlagewerke."),
         ("Kalliope (Nachlass-Verbund)", "Wo die Nachlässe und Briefe der beteiligten Forscher heute aufbewahrt werden."),
         ("Epigraphische Datenbank Heidelberg", "Die von den Limes-Fundorten bekannten römischen Inschriften."),
         ("Antike-Ortsverzeichnisse &amp; OpenStreetMap", "Die Karte, der Verlauf der Grenzlinie und die Wachttürme und Kleinkastelle je Abschnitt."),
-        ("HLGL (Uni Marburg) &amp; Virtuelles Kartenforum (SLUB Dresden)", "Zwei zuschaltbare historische Kartenebenen — live eingebundene Kacheldienste, hier nicht kopiert: die hessische Landesaufnahme 1819–1850 und die »Karte des Deutschen Reiches« von 1909."),
-        ("Digitale Geländemodelle Hessen (HVBG/HLNUG), Bayern (LDBV) &amp; Baden-Württemberg (LGL)", "Ein zuschaltbares Geländerelief statt Kartenbild — live eingebundene Dienste, hier nicht kopiert: zeigt die Terrainform, in der Wall und Graben des Limes stellenweise noch als flache Erhebung erkennbar sind."),
+        ("HLGL (Uni Marburg) &amp; Virtuelles Kartenforum (SLUB Dresden)", "Zwei zuschaltbare historische Kartenebenen: live eingebundene Kacheldienste, hier nicht kopiert: die hessische Landesaufnahme 1819–1850 und die »Karte des Deutschen Reiches« von 1909."),
+        ("Digitale Geländemodelle Hessen (HVBG/HLNUG), Bayern (LDBV) &amp; Baden-Württemberg (LGL)", "Ein zuschaltbares Geländerelief statt Kartenbild: live eingebundene Dienste, hier nicht kopiert: zeigt die Terrainform, in der Wall und Graben des Limes stellenweise noch als flache Erhebung erkennbar sind."),
         ("archive.org", "Frei lesbare Digitalisate der zitierten Literatur und der eine offen zugängliche Band der Endpublikation."),
         ("Digitale Bibliothek HathiTrust", "Die eingescannten Bände der Endpublikation (ORL), aus denen ihre Verzeichnisse gewonnen wurden."),
     ]
@@ -3547,7 +3554,7 @@ def documentation_page(s):
         f'<a href="index.html"><b>Feldberichte des Limesblatt</b></a> (1892–1903), die große '
         f'<a href="register/orl.html"><b>Endpublikation ORL</b></a> (1894–1937), die '
         f'<a href="register/jahresberichte.html"><b>Jahresberichte</b></a> der Kommission (1892–1905), die '
-        f'zitierte Literatur und die regionalen Organe — und zeigt, wie das eine ins andere überging. Alles, was '
+        f'zitierte Literatur und die regionalen Organe, und zeigt, wie das eine ins andere überging. Alles, was '
         f'sich verlässlich nachschlagen lässt (Lebensdaten, Orte, Nachweise), wurde automatisch aus frei '
         f'zugänglichen Quellen zusammengetragen; das Deuten, Prüfen und Schreiben blieb Handarbeit. Diese Seite '
         f'erklärt <b>was</b> hier zu finden ist, <b>woher</b> die Angaben stammen und <b>was</b> sie erkennen '
@@ -3559,64 +3566,64 @@ def documentation_page(s):
 
         f'<h3>Der Text der Bände</h3>'
         f'<ul>'
-        f'<li><a href="baende.html"><b>Bände</b></a> — die {s["nvol"]} Hefte des Limesblatt vollständig lesbar, '
+        f'<li><a href="baende.html"><b>Bände</b></a>: die {s["nvol"]} Hefte des Limesblatt vollständig lesbar, '
         f'Seite für Seite neben dem eingescannten Original; die zweispaltige Druckanordnung bleibt erhalten. '
         f'Personen, Orte und zitierte Werke sind im Text anklickbar und führen in die Verzeichnisse.</li>'
-        f'<li><a href="index.html#suche"><b>Suche</b></a> — durchsucht den gesamten Text aller Bände.</li>'
+        f'<li><a href="index.html#suche"><b>Suche</b></a>: durchsucht den gesamten Text aller Bände.</li>'
         f'</ul>'
 
-        f'<h3>Verzeichnisse — von Hand erstellt</h3>'
+        f'<h3>Verzeichnisse: von Hand erstellt</h3>'
         f'<ul>'
-        f'<li><a href="register/persons.html"><b>Personen</b></a> — die {s["npers"]} zentralen Beteiligten der '
-        f'Reichs-Limeskommission: Lebensdaten, Funktion, wo ihre Nachlässe liegen, welche Kastelle sie ausgruben, '
+        f'<li><a href="register/persons.html"><b>Personen</b></a>: die {s["npers"]} zentralen Beteiligten der '
+        f'Reichs-Limeskommission, mit Lebensdaten, Funktion, dem Ort ihres Nachlasses und den Kastellen, die sie ausgruben, '
         f'mit Verweisen auf die üblichen biografischen Nachschlagewerke.</li>'
-        f'<li><a href="register/places.html"><b>Orte</b></a> — die {s["nplac"]} benannten Kastelle auf einer nach '
+        f'<li><a href="register/places.html"><b>Orte</b></a>: die {s["nplac"]} benannten Kastelle auf einer nach '
         f'Abschnitt filterbaren Karte, je mit heutigem Ortsnamen, Kastelltyp, Ausgräber und Inschriften.</li>'
-        f'<li><a href="register/strecken.html"><b>Strecken</b></a> — die 15 Abschnitte, in die man die Grenze für '
+        f'<li><a href="register/strecken.html"><b>Strecken</b></a>: die 15 Abschnitte, in die man die Grenze für '
         f'die Vermessung einteilte, je mit ihren Kastellen und dem zuständigen Streckenkommissar.</li>'
         f'</ul>'
 
-        f'<h3>Verzeichnisse — automatisch aus dem Text gewonnen</h3>'
+        f'<h3>Verzeichnisse: automatisch aus dem Text gewonnen</h3>'
         f'<ul>'
-        f'<li><a href="register/fundindex.html"><b>Fundindex</b></a> — was gefunden wurde: Münzen (nach Kaisern '
-        f'geordnet), die gängigen Gefäßformen der Terra Sigillata, Ziegelstempel der Truppen und die Fundgattungen '
-        f'— jeweils mit genauem Seiten- und Spaltennachweis.</li>'
+        f'<li><a href="register/fundindex.html"><b>Fundindex</b></a>: was gefunden wurde, also Münzen (nach '
+        f'Kaisern geordnet), die gängigen Gefäßformen der Terra Sigillata, Ziegelstempel der Truppen und die '
+        f'Fundgattungen, jeweils mit genauem Seiten- und Spaltennachweis.</li>'
         f'<li><a href="register/namen.html"><b>Namen im Text</b></a> &amp; '
-        f'<a href="register/orte-index.html"><b>Orte im Text</b></a> — jeder Personen- bzw. Ortsname, den die '
+        f'<a href="register/orte-index.html"><b>Orte im Text</b></a>, jeder Personen- bzw. Ortsname, den die '
         f'Auswertung im umgeschriebenen Text erkannt hat (rund {s["nner_p"]} Personen, etwa {s["nner_pl"]} Orte); '
         f'jeder ist mit den Fundstellen im Text und, wo möglich, mit den Standard-Verzeichnissen verknüpft. Weil '
         f'maschinell gelesen, sind unsichere Lesungen eigens gekennzeichnet.</li>'
-        f'<li><a href="register/inschriften.html"><b>Inschriften</b></a> — die {s["nedh"]} römischen Inschriften '
+        f'<li><a href="register/inschriften.html"><b>Inschriften</b></a>: die {s["nedh"]} römischen Inschriften '
         f'von den Limes-Fundorten, aus der Heidelberger Inschriften-Datenbank, nach Kastell geordnet und je direkt '
         f'zum Datensatz verlinkt.</li>'
-        f'<li><a href="register/bibliographie.html"><b>Bibliographie</b></a> — die im Limesblatt zitierten Werke, '
+        f'<li><a href="register/bibliographie.html"><b>Bibliographie</b></a>: die im Limesblatt zitierten Werke, '
         f'zu vollständigen Angaben aufgelöst und, wo frei verfügbar, mit Digitalisaten verlinkt.</li>'
-        f'<li><a href="register/wortschatz.html"><b>Analyse</b></a> — statistische Blicke auf die Sprache: wie '
+        f'<li><a href="register/wortschatz.html"><b>Analyse</b></a>: statistische Blicke auf die Sprache, also wie '
         f'sich der Wortschatz über die Jahre verschiebt, welche datierenden Münzen und Kaiser auftreten, eine '
         f'Übersicht zentraler Begriffe im Satzzusammenhang und ein grobes Maß für die Qualität der Umschrift.</li>'
         f'</ul>'
 
         f'<h3>Die Endpublikation (ORL)</h3>'
         f'<ul>'
-        f'<li><a href="register/orl.html"><b>ORL — die Endpublikation</b></a> — das mehrbändige Standardwerk, in '
+        f'<li><a href="register/orl.html"><b>ORL (die Endpublikation</b></a>) das mehrbändige Standardwerk, in '
         f'das die Feldberichte mündeten: der Bandindex (Abteilung A mit {s["norlA"]} Strecken-Bänden, Abteilung B '
         f'mit {s["norlB"]} Kastell-Lieferungen), je mit Seitenzahl, kurzer Inhaltskennzeichnung und den '
         f'vorangehenden Limesblatt-Berichten.</li>'
-        f'<li><a href="register/orl-register.html"><b>ORL-Gesamtapparat</b></a> — ein zusammengeführtes Personen- '
+        f'<li><a href="register/orl-register.html"><b>ORL-Gesamtapparat</b></a>: ein zusammengeführtes Personen- '
         f'und Ortsverzeichnis über alle Bände ({s["norlpers"]} Personen, {s["norlplac"]} Orte); das '
         f'Gesamtregister, das dieses über 40 Jahre in Einzelheften erschienene Werk selbst nie besaß, dazu eine '
         f'Übersicht der großen Fund-Katalogbände und die Zuordnung Feldbericht → ORL-Band.</li>'
-        f'<li><a href="register/hathitrust.html"><b>Wie die Endpublikation erschlossen wurde</b></a> — der Weg von '
+        f'<li><a href="register/hathitrust.html"><b>Wie die Endpublikation erschlossen wurde</b></a>: der Weg von '
         f'den eingescannten Bibliotheksseiten zu diesen Verzeichnissen.</li>'
-        f'<li><a href="edit.html"><b>Bearbeiten</b></a> — ein eingebautes Werkzeug, um die Umschrift zu '
+        f'<li><a href="edit.html"><b>Bearbeiten</b></a>: ein eingebautes Werkzeug, um die Umschrift zu '
         f'korrigieren (für angemeldete Mitarbeiter).</li>'
         f'</ul>'
 
         f'<h2>2 · Woher die Angaben stammen</h2>'
-        f'<p>Grundsatz: Was sich verlässlich <b>nachschlagen</b> lässt — Lebensdaten, Koordinaten, die Nachweise '
-        f'in den Normdaten der Bibliotheken — wird <b>automatisch aus frei zugänglichen Quellen</b> geholt und in '
+        f'<p>Grundsatz: Was sich verlässlich <b>nachschlagen</b> lässt (Lebensdaten, Koordinaten, die Nachweise '
+        f'in den Normdaten der Bibliotheken), wird <b>automatisch aus frei zugänglichen Quellen</b> geholt und in '
         f'die Daten geschrieben; das <b>Deuten und Schreiben</b> geschieht von Hand. Die historischen Seitenbilder '
-        f'werden hier nicht kopiert — sie bleiben bei der Universitätsbibliothek Heidelberg und sind nur verlinkt. '
+        f'werden hier nicht kopiert: sie bleiben bei der Universitätsbibliothek Heidelberg und sind nur verlinkt. '
         f'Die Auswertung der Endpublikation fand in einer <b>geschützten Auswertungsumgebung</b> der digitalen '
         f'Bibliothek HathiTrust statt: dort darf man zählen und Listen erstellen, ohne den Text je erneut zu '
         f'veröffentlichen.</p>'
@@ -3627,22 +3634,22 @@ def documentation_page(s):
         f'<h3>Vom Feldbericht zum Standardwerk</h3>'
         f'<p class="meta">Ein Vergleich der Worthäufigkeiten beider Werke (die Endpublikation umfasst rund '
         f'{s["orl_words"]:,} Wörter, das Limesblatt rund {s["lb_words"]:,}) zeigt keine bloße Straffung, sondern '
-        f'zwei Textsorten: das <b>Limesblatt</b> spürt die Grenzlinie auf und steckt sie ab — in der Ich-Form des '
+        f'zwei Textsorten: das <b>Limesblatt</b> spürt die Grenzlinie auf und steckt sie ab: in der Ich-Form des '
         f'Ausgräbers, voller Geländevokabular (Pfahlreihe, Grenzgräbchen, Absteinung); die <b>Endpublikation</b> '
         f'katalogisiert die Funde, mit dem ganzen Apparat der Keramik-Typologie (Dragendorff, Knorr, Ludowici, '
         f'Rheinzabern).</p>'
         f'<h3>Was beide Werke teilen</h3>'
         f'<p class="meta">Das <a href="register/orl-register.html">Gesamtregister der Endpublikation</a> ist gegen '
-        f'die Namen des Limesblatt abgeglichen — die gemeinsamen Personen (die Ausgräber Jacobi, Wolff, Schumacher, '
+        f'die Namen des Limesblatt abgeglichen: die gemeinsamen Personen (die Ausgräber Jacobi, Wolff, Schumacher, '
         f'Kofler …) verbinden Vorbericht und Standardwerk am Gegenstand.</p>'
         f'<h3>Eine Lücke in den Normdaten</h3>'
         f'<p class="meta">Bemerkenswert: das Limesblatt als Zeitschrift hat in den überregionalen Normdaten der '
-        f'Bibliotheken bislang <b>keinen eigenen Eintrag</b> — ein offener Punkt seiner Erschließung.</p>'
+        f'Bibliotheken bislang <b>keinen eigenen Eintrag</b>, ein offener Punkt seiner Erschließung.</p>'
         f'<h3>Alles hängt an der Umschrift</h3>'
         f'<p class="meta">Sämtliche Befunde aus dem Volltext ruhen auf der maschinellen Umschrift der alten '
         f'Frakturschrift: wo diese fehlerhaft ist, ist es der Befund auch. Die <a href="register/wortschatz.html">'
         f'Analyse</a> schätzt die Qualität ab, und die Verzeichnisse kennzeichnen unsichere Lesungen. Das ist die '
-        f'methodische Grundbedingung — die Qualität der Erschließung bestimmt, was man findet.</p>'
+        f'methodische Grundbedingung: die Qualität der Erschließung bestimmt, was man findet.</p>'
 
         f'<h2>4 · Rechte &amp; Nachnutzung</h2>'
         f'<p class="meta">Editionstext, Verzeichnisse und Daten stehen unter '
@@ -3736,7 +3743,7 @@ def organigramm_page(persons, pname):
             f'denen die Ausgräber vor Ort arbeiteten. Die Kommissar-Kästen sind mit dem '
             f'<a href="persons.html">Personenregister</a> verknüpft (die Strecken selbst stehen bei den '
             f'<a href="strecken.html">Strecken</a>). Unter jedem Kommissar steht seine <b>institutionelle '
-            f'Verankerung</b> (Museum, Akademie oder Universität) — so wird sichtbar, aus welchem Netz von '
+            f'Verankerung</b> (Museum, Akademie oder Universität): so wird sichtbar, aus welchem Netz von '
             f'Provinzialmuseen und Universitäten sich das Unternehmen speiste. Leitungs-, Institutions- und '
             f'Affiliations-Ebene sind kuratiert; die Kommissar→Strecken-Zuordnung ist datengetrieben.</p>'
             f'<div style="overflow-x:auto">{"".join(S)}</div>')
@@ -3754,7 +3761,7 @@ def willkommen_page(s):
          '<b>Jahresberichte</b> der Kommission, die zitierte Literatur und die regionalen Organe.',
          "quellen.html"),
         ("📖", "Die Bände lesen",
-         f'Alle <b>35 Hefte</b> des Limesblatt (1892–1903), gebunden in {s["nvol"]} Jahrgangsbände — neben den eingescannten Originalseiten, mit Volltextsuche.',
+         f'Alle <b>35 Hefte</b> des Limesblatt (1892–1903), gebunden in {s["nvol"]} Jahrgangsbände: neben den eingescannten Originalseiten, mit Volltextsuche.',
          "baende.html"),
         ("👥", "Menschen &amp; Orte",
          f'Wer die Grenze erforschte und wo: {s["npers"]} Personen, {s["nplac"]} Kastelle auf der Karte, die 15 Abschnitte und das <b>Organigramm</b> der Kommission.',
@@ -3763,7 +3770,7 @@ def willkommen_page(s):
          f'Münzen, Keramik und Truppenstempel aus dem Fundindex sowie die {s["nedh"]} römischen Inschriften der Fundorte.',
          "register/fundindex.html"),
         ("📗", "Die Endpublikation (ORL)",
-         'Das mehrbändige Standardwerk, in das die Feldberichte mündeten — Bandindex, Gesamtregister, Bearbeiter.',
+         'Das mehrbändige Standardwerk, in das die Feldberichte mündeten: Bandindex, Gesamtregister, Bearbeiter.',
          "register/orl.html"),
         ("📊", "Analyse",
          'Wie sich die Sprache über die Jahre wandelt, welche Kaiser und Münzen datieren, und der Vergleich Feldbericht ↔ Standardwerk.',
@@ -3775,8 +3782,8 @@ def willkommen_page(s):
     grid = ('<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1em;margin:1.3em 0">'
             + "".join(tile(*t) for t in tiles) + '</div>')
     return (f'<h1>Übersicht</h1>'
-            f'<p><b>RLK-digital</b> macht die <b>Anfänge der Limesforschung</b> lesbar und durchsuchbar — die '
-            f'Quellen der <b>Reichs-Limeskommission</b> (1892–1937) in fünf Beständen: die laufenden Feldberichte '
+            f'<p><b>RLK-digital</b> macht die <b>Anfänge der Limesforschung</b> lesbar und durchsuchbar. Die '
+            f'Quellen der <b>Reichs-Limeskommission</b> (1892–1937) liegen hier in fünf Beständen: die laufenden Feldberichte '
             f'des <i>Limesblatt</i> (1892–1903), das Standardwerk, in das sie mündeten (<i>Obergermanisch-'
             f'Raetischer Limes</i>, 1894–1937), die <a href="register/jahresberichte.html">Jahresberichte</a> der '
             f'Kommission, die zitierte Literatur und die regionalen Organe '
@@ -3787,7 +3794,7 @@ def willkommen_page(s):
 
 def orl_spiegel():
     """Die Gegenreihe: ORL-Faszikel je Jahr aus der Merten-Lieferungstabelle des Vaults.
-    Nur ausgeben, wenn die Daten wirklich vorliegen — sonst schweigen statt behaupten."""
+    Nur ausgeben, wenn die Daten wirklich vorliegen: sonst schweigen statt behaupten."""
     f = next((p for p in (os.path.join(REPO, "data", "orl_abtB_lieferungen.json"),
                           os.path.join(REPO, "..", "limes", "tools", "orl_abtB_lieferungen.json"))
               if os.path.exists(p)), None)
@@ -3806,7 +3813,7 @@ def orl_spiegel():
     if not jahre or 1900 not in jahre or jahre.get(1899):
         return ""
     return (f' Die Endpublikation zeigt das umgekehrte Muster: 1899 erschien keine '
-            f'ORL-Lieferung, 1900 dagegen {jahre[1900]} Faszikel — in dem Jahr, in dem kein '
+            f'ORL-Lieferung, 1900 dagegen {jahre[1900]} Faszikel, also in dem Jahr, in dem kein '
             f'Limesblatt herauskam. Die Arbeitskraft der Kommission verlagerte sich in diesen '
             f'Jahren erkennbar vom Vorbericht auf die '
             f'<a href="register/orl.html">Endpublikation</a>.')
@@ -3832,7 +3839,7 @@ def heft_rhythmus():
     letzte = [f'{a["nr"]}→{b["nr"]}' for a, b in zip(d, d[1:])][-3:]
     return (f'<p><b>Der Erscheinungsrhythmus.</b> Aus den Ausgabedaten der Hefte '
             f'(im <a href="baende.html">Inhaltsverzeichnis</a> bei jeder Nummer) lässt sich der '
-            f'Rhythmus ablesen: bis 1899 im Median <b>{med} Tage</b> von Heft zu Heft — das '
+            f'Rhythmus ablesen: bis 1899 im Median <b>{med} Tage</b> von Heft zu Heft, was '
             f'entspricht den angekündigten „5–6 Nrn. jährlich". Danach dehnt sich die Folge '
             f'erheblich: Zwischen Nr. 32 (25. Juli 1899) und Nr. 33 (1. Februar 1901) liegen '
             f'<b>556 Tage</b>, im Jahr 1900 erschien kein Heft, und die letzten drei Nummern '
@@ -3840,7 +3847,7 @@ def heft_rhythmus():
             f'<p style="margin:.2em 0 .1em"><span class="meta">Hefte je Jahr:</span></p>'
             f'<div style="display:flex;align-items:flex-end;gap:0">{bal}</div>'
             f'<p class="meta">Quelle der Daten: die <i>structures</i> der IIIF-Manifeste '
-            f'(UB Heidelberg) — die gedruckten Impressumszeilen selbst sind für die '
+            f'(UB Heidelberg); die gedruckten Impressumszeilen selbst sind für die '
             f'Fraktur-OCR unlesbar.</p>')
 
 
@@ -4042,19 +4049,19 @@ def main():
     nm = _orl_load("namen.json")
     if nm:
         open(os.path.join(DOCS,"register","ortsnamen.html"),"w",encoding="utf-8").write(
-            page("Ortsnamen — antik, modern, Flurname", namen_page(nm), 1))
+            page("Ortsnamen: antik, modern, Flurname", namen_page(nm), 1))
         open(os.path.join(DOCS,"register","orl.html"),"w",encoding="utf-8").write(page("ORL", orl_page(orl_idx, orl_lex, orl_bli), 1))
-        open(os.path.join(DOCS,"register","orl-register.html"),"w",encoding="utf-8").write(page("ORL — Gesamtapparat", orl_apparatus_page(orl_reg, orl_idx, persons), 1))
+        open(os.path.join(DOCS,"register","orl-register.html"),"w",encoding="utf-8").write(page("ORL: Gesamtapparat", orl_apparatus_page(orl_reg, orl_idx, persons), 1))
         _fj = _load_json_any("orl_faszikel.json")
         _dj = _load_json_any("orl_druckseiten.json")
         _aj = _load_json_any("orl_abtA.json")
         open(os.path.join(DOCS,"register","orl-inhalt.html"),"w",encoding="utf-8").write(
-            page("ORL — Inhaltsverzeichnis", orl_toc_page(orl_idx, orl_bli, _fj, _dj, _aj, places), 1))
+            page("ORL: Inhaltsverzeichnis", orl_toc_page(orl_idx, orl_bli, _fj, _dj, _aj, places), 1))
         _blj = _load_json_any("orl_binnenlinks.json")
         _bvj = _load_json_any("orl_binnenverweise.json")
         if _blj.get("links"):
             open(os.path.join(DOCS,"register","orl-verweise.html"),"w",encoding="utf-8").write(
-                page("ORL — Binnenverweise", orl_verweise_page(_blj, _bvj), 1))
+                page("ORL: Binnenverweise", orl_verweise_page(_blj, _bvj), 1))
         _latj = _load_json_any("orl_latenz.json")
         _zjj = _load_json_any("orl_limesblatt_zitatjoin.json")
         _tocj = _load_json_any("toc.json")
@@ -4130,7 +4137,7 @@ def main():
     ib, ih = index_page(volumes, toc)
     open(os.path.join(DOCS,"index.html"),"w",encoding="utf-8").write(page("Startseite", ib, 0, ih))
     open(os.path.join(DOCS,"baende.html"),"w",encoding="utf-8").write(
-        page("Limesblatt — Bände", baende_page(volumes, toc), 0))
+        page("Limesblatt: Bände", baende_page(volumes, toc), 0))
     open(os.path.join(DOCS,"impressum.html"),"w",encoding="utf-8").write(
         page("Impressum & Zitieren", impressum_page(), 0))
     print(f"docs/: index + {len(volumes)} Bände + 3 Register (Personen {len(persons)}, Orte {len(places)}, "
