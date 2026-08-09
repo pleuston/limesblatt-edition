@@ -14,10 +14,27 @@ import math
 
 
 def layout(nodes, edges, iters=300, breite=1900.0, hoehe=1150.0):
-    """nodes: [{"id","label","typ","gewicht","href"}], edges: [(a, b, w)] → {id: (x, y)}"""
-    n = len(nodes)
-    if not n:
+    """nodes: [{"id","label","typ","gewicht","href"}], edges: [(a, b, w)] → {id: (x, y)}
+
+    **Knoten ohne Kante bleiben draussen.** Sie spüren nur Abstossung und Schwerkraft und
+    wandern deshalb auf einen Kreis mit festem Radius: im Bild ein Ring aus Quadraten, der
+    den verbundenen Kern in die Mitte quetscht und dort unlesbar macht. Sie bekommen statt
+    dessen ein Raster am unteren Rand, wo sie zeigen, dass es sie gibt, ohne Platz zu nehmen,
+    den die Beziehungen brauchen."""
+    n_alle = len(nodes)
+    if not n_alle:
         return {}
+    verbunden = set()
+    for a, b, _ in edges:
+        verbunden.add(a); verbunden.add(b)
+    kern = [d for d in nodes if d["id"] in verbunden]
+    einzeln = [d for d in nodes if d["id"] not in verbunden]
+    if not kern:
+        kern, einzeln = nodes, []
+    hoehe_kern = hoehe - (110.0 if einzeln else 0.0)
+    pos_einzeln = _raster(einzeln, breite, hoehe, hoehe_kern)
+    nodes, hoehe = kern, hoehe_kern
+    n = len(nodes)
     idx = {d["id"]: i for i, d in enumerate(nodes)}
     r = min(breite, hoehe) * 0.45
     x = [breite / 2 + r * math.cos(2 * math.pi * i / n) for i in range(n)]
@@ -54,7 +71,24 @@ def layout(nodes, edges, iters=300, breite=1900.0, hoehe=1150.0):
             x[i] = min(breite - 20, max(20, x[i]))
             y[i] = min(hoehe - 20, max(20, y[i]))
         temp = max(0.5, temp * (1.0 - schritt / float(iters)) ** 0.5 * 0.985)
-    return {d["id"]: (round(x[i], 1), round(y[i], 1)) for d, i in ((d, idx[d["id"]]) for d in nodes)}
+    aus = {d["id"]: (round(x[i], 1), round(y[i], 1)) for d, i in ((d, idx[d["id"]]) for d in nodes)}
+    aus.update(pos_einzeln)
+    return aus
+
+
+def _raster(knoten, breite, hoehe, oberkante):
+    """Verbindungslose Knoten in ein Raster am unteren Rand, gleichmässig verteilt."""
+    if not knoten:
+        return {}
+    je_zeile = max(1, int(breite // 46))
+    zeilen = max(1, (len(knoten) + je_zeile - 1) // je_zeile)
+    schritt_y = min(34.0, (hoehe - oberkante - 18) / zeilen) if zeilen else 24.0
+    aus = {}
+    for i, d in enumerate(sorted(knoten, key=lambda z: z.get("label", ""))):
+        sp, ze = i % je_zeile, i // je_zeile
+        aus[d["id"]] = (round(26 + sp * (breite - 52) / max(1, je_zeile - 1), 1),
+                        round(oberkante + 26 + ze * schritt_y, 1))
+    return aus
 
 
 TYP_FARBE = {"person": "#b5560f", "limesblatt": "#1f6f8b", "orl": "#4b6b2f",
@@ -76,15 +110,33 @@ def svg(nodes, edges, pos, breite=1900.0, hoehe=1150.0, labelgrenze=None):
     if labelgrenze is None:
         gew = sorted((d.get("gewicht", 0) for d in nodes), reverse=True)
         labelgrenze = gew[min(len(gew) - 1, 59)] if gew else 0
+    # Und selbst die tragenden überlagern sich, wo das Netz dicht ist: im Kern standen
+    # »Karl Zangemeister« und »Bericht 1899« übereinander. Deshalb ein Belegungstest, der
+    # von den wichtigsten Knoten abwärts vergibt: wo der Platz schon genommen ist, bleibt
+    # die Beschriftung weg und der Name steht beim Überfahren.
+    belegt = []
+
+    def platz_frei(x, y, laenge):
+        w, h = 7.4 * laenge, 15.0
+        for bx, by, bw, bh in belegt:
+            if abs(x - bx) < (w + bw) / 2 and abs(y - by) < (h + bh) / 2:
+                return False
+        belegt.append((x, y, w, h))
+        return True
+
     ns = []
-    for d in nodes:
+    for d in sorted(nodes, key=lambda z: -z.get("gewicht", 0)):
         if d["id"] not in pos: continue
         x, y = pos[d["id"]]
         r = 4 + min(14, math.sqrt(d.get("gewicht", 1)) * 1.6)
         farbe = TYP_FARBE.get(d["typ"], "#666")
         href = d.get("href") or ""
         titel = html.escape(d.get("titel") or d["label"])
-        klein = " klein" if (d.get("gewicht", 0) < labelgrenze and d["typ"] not in ("limesblatt", "jahresbericht")) else ""
+        gross_genug = (d.get("gewicht", 0) >= labelgrenze
+                       or d["typ"] in ("limesblatt", "jahresbericht"))
+        r_vor = 4 + min(14, math.sqrt(d.get("gewicht", 1)) * 1.6)
+        klein = "" if (gross_genug and platz_frei(x + r_vor + 3 + 3.7 * len(d["label"]),
+                                                  y, len(d["label"]))) else " klein"
         g = [f'<g class="knoten{klein} t-{d["typ"]}" data-id="{html.escape(d["id"])}" '
              f'data-label="{html.escape(d["label"].lower())}" transform="translate({x},{y})">']
         if d["typ"] == "person":

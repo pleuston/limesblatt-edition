@@ -57,6 +57,21 @@ def _n_jb():
     return len(v) if isinstance(v, list) else "?"
 
 
+def _v(pfad):
+    """Kurzer Inhalts-Stempel für eine Datei unter docs/assets/.
+
+    Ohne ihn behalten Browser eine geänderte Skript- oder Stildatei nach dem Neubau bei: beim
+    Umbau der Netzansicht lief im Browser minutenlang die alte Fassung, obwohl der Server längst
+    die neue auslieferte. Der Stempel hängt am INHALT, nicht an der Zeit, damit ein Neubau ohne
+    Änderung auch keine neue Adresse erzeugt."""
+    p = os.path.join(DOCS, "assets", pfad)
+    try:
+        import hashlib
+        return "?v=" + hashlib.md5(open(p, "rb").read()).hexdigest()[:8]
+    except Exception:
+        return ""
+
+
 def _tausend(n):
     """Zahl mit deutschem Tausenderpunkt.
 
@@ -274,8 +289,8 @@ def page(title, body, depth=0, head=""):
     return f"""<!doctype html><html lang="de"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(title)}: RLK-digital</title>
-<link rel="stylesheet" href="{up}assets/style.css">
-<script src="{up}assets/tables.js" defer></script>{head}</head><body>
+<link rel="stylesheet" href="{up}assets/style.css{_v('style.css')}">
+<script src="{up}assets/tables.js{_v('tables.js')}" defer></script>{head}</head><body>
 <header><a class="home" href="{up}index.html">🏛 RLK-digital</a>
 <nav><ul class="nav">
 <li><a href="{up}uebersicht.html">Übersicht</a></li>
@@ -600,7 +615,7 @@ def places_page(places, occ, pname, str_by_id, sites, site_hits):
             f'<div class="cards">{"".join(cards)}</div>'
             f'{sites_html}'
             f'<script>var MAPDATA={{"feats":{json.dumps(feats)}}};</script>'
-            f'<script src="../assets/map.js"></script>')
+            f'<script src="../assets/map.js{_v("map.js")}"></script>')
     return body, head, feats
 
 
@@ -627,7 +642,7 @@ def karte_page(places, sites, feats):
             f'Zu den Einträgen: <a href="register/places.html">Ortsregister</a> · '
             f'<a href="register/strecken.html">Strecken</a>.</p>'
             f'<script>var MAPDATA={{"basis":"data/","feats":{json.dumps(feats)}}};</script>'
-            f'<script src="assets/map.js"></script>')
+            f'<script src="assets/map.js{_v("map.js")}"></script>')
     return body, head
 
 
@@ -3470,8 +3485,13 @@ def netz_page(persons, ner_p, orl_idx, bli, verw, jb, ner_pl, bibls, occ):
             f'<i>Jahresbericht</i> vorkommt, und welcher ORL-Faszikel welchen Limesblatt-Band <i>zitiert</i> '
             f'(<a href="orl-verweise.html">Binnenverweise</a>). Dazu die im Limesblatt zitierte Literatur. '
             f'Ziehen verschiebt, Mausrad zoomt, Überfahren hebt die Nachbarschaft hervor, ein Klick auf die '
-            f'Beschriftung führt zum Register.</p>'
+            f'Beschriftung führt zum Register. Der Regler <b>Verbindungen</b> blendet schwach '
+            f'vernetzte Knoten aus: rund die Hälfte hängt an genau einer Kante, und erst ohne sie '
+            f'wird das Gerüst sichtbar.</p>'
             f'<div class="netzsteuer"><input type="search" id="netz-suche" placeholder="Knoten suchen …">'
+            f'<label class="gradfilter" title="Knoten mit weniger Verbindungen ausblenden">'
+            f'Verbindungen: <input type="range" id="netz-grad" min="0" max="12" value="0" step="1">'
+            f'<span id="netz-gradwert" class="meta">alle</span></label>'
             f'<span class="meta" id="netz-zahl"></span>'
             f'<button id="netz-reset" class="iiifbtn">Ansicht zurücksetzen</button></div>'
             f'<div class="netz-typ netzsteuer">{filt}</div>'
@@ -3481,7 +3501,7 @@ def netz_page(persons, ner_p, orl_idx, bli, verw, jb, ner_pl, bibls, occ):
             f'soweit sie im <a href="persons.html">kuratierten Personenregister</a> stehen, damit jeder Punkt '
             f'auf eine geprüfte Person zeigt und nicht auf eine OCR-Form. Das Layout ist vorberechnet und bei '
             f'jedem Build identisch.</p>'
-            f'<script src="../assets/netz.js" defer></script>')
+            f'<script src="../assets/netz.js{_v("netz.js")}" defer></script>')
 
 
 # ---------- Personalia und Kampagnen: was der Jahresbericht als Institution meldet ----------

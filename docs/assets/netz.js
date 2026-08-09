@@ -27,7 +27,14 @@
       px = e.clientX; py = e.clientY; anwenden();
     });
     var zur = document.getElementById("netz-reset");
-    if (zur) zur.addEventListener("click", function () { k = 1; tx = 0; ty = 0; anwenden(); });
+    if (zur) zur.addEventListener("click", function () {
+      var g_ = document.getElementById("netz-grad");
+      if (g_) { g_.value = 0; }
+      var s_ = document.getElementById("netz-suche");
+      if (s_) { s_.value = ""; }
+      k = 1; tx = 0; ty = 0; anwenden();
+      if (typeof neuzeichnen === "function") neuzeichnen();
+    });
 
     var knoten = Array.prototype.slice.call(document.querySelectorAll("#knoten .knoten"));
     var kanten = Array.prototype.slice.call(document.querySelectorAll("#kanten .kante"));
@@ -45,14 +52,27 @@
       });
       return an;
     }
+    // Grad = Zahl der Verbindungen. Der Gradfilter ist der wirksamste Hebel dieser Ansicht:
+    // die Hälfte der Knoten hängt an genau einer Kante und trägt zum Bild nichts bei; wer sie
+    // ausblendet, sieht das Gerüst. Er sitzt deshalb neben der Suche, nicht in einem Menü.
+    var grad = {};
+    knoten.forEach(function (n) { grad[n.dataset.id] = Object.keys(nachbarn[n.dataset.id] || {}).length; });
+    var maxGrad = Math.max.apply(null, [1].concat(Object.keys(grad).map(function (i) { return grad[i]; })));
+
+    function mindestgrad() {
+      var s = document.getElementById("netz-grad");
+      return s ? parseInt(s.value, 10) || 0 : 0;
+    }
     function neuzeichnen() {
       var an = typenAktiv();
       var q = (document.getElementById("netz-suche") || {}).value || "";
       q = q.toLowerCase();
+      var mg = mindestgrad();
       var sichtbar = {};
       knoten.forEach(function (n) {
         var typ = (n.getAttribute("class").match(/t-(\w+)/) || [])[1];
-        var ok = an[typ] !== false && (!q || n.dataset.label.indexOf(q) >= 0);
+        var ok = an[typ] !== false && (!q || n.dataset.label.indexOf(q) >= 0)
+                 && (grad[n.dataset.id] || 0) >= mg;
         n.style.display = ok ? "" : "none";
         n.classList.toggle("treffer", !!q && ok);
         if (ok) sichtbar[n.dataset.id] = 1;
@@ -61,13 +81,46 @@
         l.style.display = (sichtbar[l.dataset.a] && sichtbar[l.dataset.b]) ? "" : "none";
       });
       var z = document.getElementById("netz-zahl");
-      if (z) z.textContent = Object.keys(sichtbar).length + " Knoten sichtbar";
+      if (z) {
+        var n_s = Object.keys(sichtbar).length;
+        z.textContent = n_s + " von " + knoten.length + " Knoten"
+          + (mg > 0 ? " (ab " + mg + " Verbindungen)" : "");
+      }
+      var ga = document.getElementById("netz-gradwert");
+      if (ga) ga.textContent = mg === 0 ? "alle" : "ab " + mg;
+      einpassen();
+    }
+
+    // Nach dem Filtern auf die übrigen Knoten zoomen. Das Layout ist statisch (es kommt fertig
+    // aus dem Build), also bleibt der Kern sonst klein in der Mitte stehen und die gewonnene
+    // Fläche bleibt leer: der Filter hätte aufgeräumt, ohne dass man mehr sieht.
+    function einpassen() {
+      var x1 = 1e9, y1 = 1e9, x2 = -1e9, y2 = -1e9, n = 0;
+      knoten.forEach(function (m) {
+        if (m.style.display === "none") return;
+        var tr = (m.getAttribute("transform") || "").match(/translate\(([-\d.]+),([-\d.]+)\)/);
+        if (!tr) return;
+        var x = parseFloat(tr[1]), y = parseFloat(tr[2]);
+        if (x < x1) x1 = x; if (y < y1) y1 = y;
+        if (x > x2) x2 = x; if (y > y2) y2 = y;
+        n++;
+      });
+      if (n < 2) return;
+      var vb = svg.viewBox.baseVal, rand = 90;
+      var bw = Math.max(1, x2 - x1 + 2 * rand), bh = Math.max(1, y2 - y1 + 2 * rand);
+      k = Math.min(6, Math.max(0.4, Math.min(vb.width / bw, vb.height / bh)));
+      tx = vb.width / 2 - ((x1 + x2) / 2) * k;
+      ty = vb.height / 2 - ((y1 + y2) / 2) * k;
+      anwenden();
     }
     Array.prototype.forEach.call(document.querySelectorAll(".netz-typ input"), function (c) {
       c.addEventListener("change", neuzeichnen);
     });
     var s = document.getElementById("netz-suche");
     if (s) s.addEventListener("input", neuzeichnen);
+    var gs = document.getElementById("netz-grad");
+    if (gs) { gs.max = Math.min(12, maxGrad); gs.addEventListener("input", neuzeichnen); }
+    neuzeichnen();
 
     knoten.forEach(function (n) {                       // Nachbarschaft beim Überfahren hervorheben
       n.addEventListener("mouseenter", function () {

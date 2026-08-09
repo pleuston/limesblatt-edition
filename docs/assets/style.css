@@ -221,3 +221,10 @@ pre.bib{background:var(--card,#fbfaf7);border:1px solid var(--line);border-radiu
 .ebenengruppe .ebenen label{display:flex;gap:.4rem;align-items:baseline;font-size:.84rem;
   cursor:pointer;line-height:1.3}
 @media (max-width:640px){.ebenengruppe{min-width:100%}}
+
+/* Gradfilter der Netzansicht: der Regler steht neben der Suche, weil er der wirksamste
+   Hebel ist. Ohne ihn zeigt das Bild 155 Knoten, von denen die Hälfte an einer Kante hängt. */
+.netzsteuer{display:flex;flex-wrap:wrap;gap:.6rem .9rem;align-items:center;margin:.5rem 0}
+.gradfilter{display:flex;gap:.4rem;align-items:center;font-size:.85rem}
+.gradfilter input[type=range]{width:8rem}
+#netz-gradwert{min-width:3.6rem}
