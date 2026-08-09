@@ -517,12 +517,35 @@ def places_page(places, occ, pname, str_by_id, sites, site_hits):
             lis.append(f'<li id="dare_{did}">{html.escape(p.get("name", "?"))}{anc}{dare}{foc}{vt}</li>')
         secs.append(f'<details><summary>{tlabel.get(t, t)} ({len(items)})</summary><ul class="sites">{"".join(lis)}</ul></details>')
     nvt = sum(1 for s in sites if site_hits.get(s.get("properties",{}).get("id")))
+    # Neben den nach Typ aufgeklappten Listen eine flache, sortierbare Tabelle: sie beantwortet
+    # die Querfragen, an denen die Gruppierung scheitert — »welche Stellen sind im Volltext
+    # belegt«, »alphabetisch über alle Typen«, »welche tragen einen antiken Namen«.
+    zeilen = []
+    for s in sorted(sites, key=lambda x: (x.get("properties", {}).get("name") or "")):
+        p = s.get("properties", {})
+        did = html.escape(str(p.get("id", "")))
+        hh = site_hits.get(p.get("id"), [])
+        belege = ("".join(f'<a href="../volumes/bd{v}.html#pb-{html.escape(a)}">{v}/{html.escape(pp)}</a> '
+                          for v, a, pp in hh[:3]) + (f'+{len(hh)-3}' if len(hh) > 3 else "")) if hh else "—"
+        zeilen.append(
+            f'<tr><td>{html.escape(p.get("name", "?"))}</td>'
+            f'<td class="meta">{html.escape(p.get("ancient") or "—")}</td>'
+            f'<td class="meta">{tlabel.get(p.get("type", ""), html.escape(p.get("type", "?")))}</td>'
+            f'<td>{len(hh) or "—"}</td><td class="meta">{belege}</td>'
+            + (f'<td><a href="https://imperium.ahlfeldt.se/places/{did}">{did}</a></td></tr>'
+               if did else '<td class="meta">—</td></tr>'))
+    tab_stellen = (f'<h3>Alle Stellen in einer Tabelle</h3>'
+                   f'<p class="meta">{len(zeilen)} Einträge, nach jeder Spalte sortierbar und über das '
+                   f'Suchfeld filterbar.</p>'
+                   f'<table class="reg"><thead><tr><th>Name</th><th>antiker Name</th><th>Typ</th>'
+                   f'<th>Belege</th><th>Fundstellen</th><th>DARE</th></tr></thead>'
+                   f'<tbody>{"".join(zeilen)}</tbody></table>')
     sites_html = (f'<h2 id="weitere">Weitere Limesstellen (DARE)</h2>'
                   '<p class="meta">Türme, Kleinkastelle und Lager <i>zwischen</i> den benannten Kastellen, '
                   f'je mit DARE-Datensatz, 📍 Karten-Fokus und, bei {nvt} Stellen, 📄 <b>heuristischen '
                   'Volltext-Treffern</b> (Toponym-Abgleich auf Fraktur-OCR; nicht jede Nennung meint zwingend '
                   'diese Stelle). Gazetteer-Stellen ohne RLK-Wachtposten-Nr.</p>'
-                  + "".join(secs)) if sites else ""
+                  + tab_stellen + f'<h3>Nach Typ</h3>' + "".join(secs)) if sites else ""
     head = '<link rel="stylesheet" href="../assets/leaflet.css"><script src="../assets/leaflet.js"></script>'
     body = (f'<h1>Ortsregister</h1><p class="meta">{len(places)} benannte Kastelle (Karten unten) plus '
             f'{len(sites)} weitere Limesstellen. Auf der Karte zuschaltbar sind der <b>Limesverlauf</b>, die '
@@ -1837,13 +1860,33 @@ def inscriptions_page(edh):
         secs.append(f'<details><summary><a href="places.html#{pid}">{html.escape(k["label"])}</a> '
                     f'<span class="meta">{k["n"]} Inschriften · {span} · {html.escape(gat)}</span></summary>'
                     f'<ul class="nerlist">{rows}{more}</ul></details>')
+    # Zweite Ansicht: EINE flache Tabelle über alle Fundorte. Die Gruppierung nach Kastell ist gut
+    # zum Blättern, aber sie beantwortet keine Querfrage — »alle Militärdiplome«, »alles vor 100 n.
+    # Chr.«, »alle Weihinschriften von Osterburken«. Dafür braucht es Sortierung und Filter, und die
+    # hängen an einer Tabelle; die Gruppenansicht bleibt daneben stehen.
+    alle = []
+    for k in edh.get("kastelle", []):
+        pid = "pl_" + gazetteer.slug(k["note"])
+        for i in k["inschriften"]:
+            alle.append(
+                f'<tr><td><a href="places.html#{pid}">{html.escape(k["label"])}</a></td>'
+                f'<td>{html.escape(i["art"])}</td>'
+                f'<td class="meta">{html.escape(i.get("datierung") or "—")}</td>'
+                f'<td>{html.escape(i["titel"])}</td>'
+                f'<td><a href="https://edh.ub.uni-heidelberg.de/edh/inschrift/{html.escape(i["hd"])}">'
+                f'{html.escape(i["hd"])}</a></td></tr>')
+    tabelle = (f'<h2 id="tabelle">Alle Inschriften in einer Tabelle</h2>'
+               f'<p class="meta">{len(alle)} Einträge, nach jeder Spalte sortierbar und über das '
+               f'Suchfeld filterbar. Die Gruppen darunter zeigen dieselben Inschriften nach Fundort.</p>'
+               f'<table class="reg"><thead><tr><th>Fundort</th><th>Gattung</th><th>Datierung</th>'
+               f'<th>Inschrift</th><th>EDH</th></tr></thead><tbody>{"".join(alle)}</tbody></table>')
     return (f'<h1>Inschriften (EDH)</h1>'
             f'<p class="meta">{edh.get("total", 0)} Inschriften der '
             f'<a href="https://edh.ub.uni-heidelberg.de/">Epigraphic Database Heidelberg</a> von den Limes-Fundorten: '
-            f'aus den EpiDoc-GitHub-Dumps (CC BY-SA), nach Kastell gruppiert, mit Gattung, Datierung und Direktlink ins EDH. '
+            f'aus den EpiDoc-GitHub-Dumps (CC BY-SA), mit Gattung, Datierung und Direktlink ins EDH. '
             f'Ergänzt den <a href="fundindex.html">Fundindex</a> um die katalogisierte Epigraphik; '
             f'verknüpft mit dem <a href="places.html">Ortsregister</a>.</p>'
-            + "".join(secs))
+            + tabelle + f'<h2>Nach Fundort</h2>' + "".join(secs))
 
 
 def orl_page(idx, lex, bli=None):
@@ -2288,6 +2331,30 @@ def orl_toc_page(idx, bli=None, fasz=None, dseiten=None, abta=None, places=None)
     n_lief = len([k for k in grp if k is not None])
     n_fasz = sum(len(v["faszikel"]) for v in (fasz or {}).get("baende", {}).values())
 
+    # Flache Gesamttabelle neben der Gruppierung nach Lieferung: nur so lässt sich der ORL nach
+    # Kastellnummer, Bearbeiter oder Jahr durchsehen — die Lieferungsgruppen beantworten das nicht.
+    trows = []
+    for r in sorted(b, key=lambda x: int(re.sub(r"\D", "", str(x.get("nr") or "0")) or 0)):
+        # Dieselben Felder wie die Lieferungsblöcke: der Lieferungsindex ist die bessere
+        # Bearbeiter-Quelle (55 belegt gegen 13 in orl_index), und der Schlüssel heißt
+        # »lieferung«, nicht »lfg« — mit dem falschen Namen bleibt die Spalte leer.
+        lf = lfg_ok.get(r["nr"]) or {}
+        bearb = (lf.get("bearbeiter") or ", ".join(str(x) for x in (r.get("bearbeiter") or []))) or "—"
+        lfg = str(lf.get("lieferung") or "—")
+        jahr = str(lf.get("jahr") or r.get("year_k10") or "—")
+        trows.append(
+            f'<tr><td>{html.escape(str(r.get("nr") or ""))}</td>'
+            f'<td>{html.escape(str(r.get("kastell") or "—"))}</td>'
+            f'<td class="meta">{html.escape(str(r.get("ort") or "—"))}</td>'
+            f'<td class="meta">{html.escape(bearb)}</td>'
+            f'<td>{html.escape(lfg)}</td><td>{html.escape(jahr)}</td>'
+            f'<td>{len(r.get("vorberichte") or []) or "—"}</td></tr>')
+    tab_b = (f'<h2 id="tabelle">Alle Faszikel in einer Tabelle</h2>'
+             f'<p class="meta">{len(trows)} Kastell-Faszikel, nach jeder Spalte sortierbar und über '
+             f'das Suchfeld filterbar. <b>Vorb.</b> = Zahl der zugehörigen Limesblatt-Vorberichte.</p>'
+             f'<table class="reg"><thead><tr><th>ORL-Nr.</th><th>Kastell</th><th>Ort</th>'
+             f'<th>Bearbeiter</th><th>Lfg.</th><th>Jahr</th><th>Vorb.</th></tr></thead>'
+             f'<tbody>{"".join(trows)}</tbody></table>')
     return (
         f'<h1>Inhaltsverzeichnis des ORL</h1>'
         f'<p class="lede">Alle <b>{len(b)} Kastell-Faszikel</b> der Abteilung&nbsp;B und die '
@@ -2317,6 +2384,7 @@ def orl_toc_page(idx, bli=None, fasz=None, dseiten=None, abta=None, places=None)
            f'oben oder liefert der Katalog mit dieser Abfrage nicht.</p>' if fehlt else "")
         + f'<h2 id="abt-b">Abteilung B: die Kastelle, nach Lieferungen</h2>'
         f'<p class="meta">Springen zu: {" · ".join(sprung)}</p>'
+        + tab_b + f'<h2>Nach Lieferung geordnet</h2>'
         + "".join(blocks) +
         f'<p class="meta">Seitenumfang: wo die Bibliographie ihn nennt, ist es ihre Angabe samt '
         f'Tafelzahl; sonst der aus dem Digitalisat errechnete Bereich, dafür wurden {n_fasz} '
