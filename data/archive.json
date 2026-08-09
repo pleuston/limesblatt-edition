@@ -395,7 +395,7 @@
   },
   {
    "notiz": "Erschließungsplan – RLK-Bestand der RGK",
-   "findmittel": "[[Kalliope-Verbund",
+   "findmittel": "[[Kalliope-Verbund\\",
    "erreichbarkeit": "Kalliope]] (SRU/CQL, ISIL DE-F36)",
    "deckt_ab": "token-frei; ead.repository.isil=DE-F36 → 4203 RGK-Datensätze"
   },
@@ -483,7 +483,7 @@
    "person": "Eugen Nägele",
    "verwahrort": "Korrespondenz im RGK-Archiv (iDAI.archives, DAI-RGK-A 80: Briefwechsel mit Friedrich Drexel, 1928)",
    "gnd": "101044917",
-   "rolle": "1895 von der RLK zum Streckenkommissar auf württembergischem Boden berufen; württembergischer Gymnasialprofessor und Albvereins-Vorsitzender — Musterfall des Rekrutierungspools ‚höherer Lehrerstand + Vereinsanbindung‘"
+   "rolle": "1895 von der RLK zum Streckenkommissar auf württembergischem Boden berufen; württembergischer Gymnasialprofessor und Albvereins-Vorsitzender: Musterfall des Rekrutierungspools ‚höherer Lehrerstand + Vereinsanbindung‘"
   },
   {
    "person": "Felix Hettner",
@@ -567,7 +567,7 @@
    "person": "Karl August von Cohausen",
    "verwahrort": "Freies Deutsches Hochstift - Frankfurter Goethe-Museum",
    "gnd": "116627824",
-   "rolle": "Pionier der Limesforschung; aus Heidelberg 1890 ausgeschlossen, 1892 aber zur Berliner Gründungskonferenz einberufen — kein ständiges RLK-Mitglied"
+   "rolle": "Pionier der Limesforschung; aus Heidelberg 1890 ausgeschlossen, 1892 aber zur Berliner Gründungskonferenz einberufen, aber kein ständiges RLK-Mitglied"
   },
   {
    "person": "Karl Popp",

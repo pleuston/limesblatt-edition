@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de">
 <teiHeader><fileDesc>
-<titleStmt><title>Der römische Grenzwall in Deutschland — Streitschrift</title><author>August von Cohausen</author><respStmt><resp>Transkription (OCR, maschinell)</resp><name>RLK-digital</name></respStmt></titleStmt>
+<titleStmt><title>Der römische Grenzwall in Deutschland (Streitschrift)</title><author>August von Cohausen</author><respStmt><resp>Transkription (OCR, maschinell)</resp><name>RLK-digital</name></respStmt></titleStmt>
 <publicationStmt><publisher>RLK-digital</publisher><availability status="restricted"><licence target="https://creativecommons.org/licenses/by/4.0/">Transkription und Auszeichnung: CC BY 4.0.</licence><p>Seitenbilder werden nur verlinkt (IIIF), nicht nachgenutzt; die Rechte liegen bei der besitzenden Einrichtung.</p></availability></publicationStmt>
 <sourceDesc><bibl>Wiesbaden 1892</bibl><bibl type="digitalisat"><ref target="https://digi.ub.uni-heidelberg.de/diglit/cohausen1892">https://digi.ub.uni-heidelberg.de/diglit/cohausen1892</ref></bibl></sourceDesc>
 </fileDesc>
