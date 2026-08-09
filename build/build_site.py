@@ -18,6 +18,8 @@ import gazetteer
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(HERE)
 DOCS = os.path.join(REPO, "docs")
 IIIF_INFO = "https://digi.ub.uni-heidelberg.de/iiif/2/{slug}%3A{tok}.jpg/info.json"
+# Blattgenauer Einstieg ins Original: diglit adressiert <slug>/<Blatt-Token>.
+BASE_DIGLIT = "https://digi.ub.uni-heidelberg.de/diglit"
 IIIF_MAN  = "https://digi.ub.uni-heidelberg.de/diglit/iiif/{slug}/manifest"
 LABELS = {1:"Bd. 1 (1892/93)",2:"Bd. 2 (1893/94)",3:"Bd. 3 (1894/95)",4:"Bd. 4 (1896)",
           5:"Bd. 5 (1897)",6:"Bd. 6 (1897/98)",7:"Bd. 7 (1898/1902)",8:"Bd. 8 (1903)"}
@@ -309,7 +311,13 @@ def vol_page(v, toc=None):
             mut = "" if p["type"] == "head" else " inferred"
             seg.append(f'<div class="pb{mut}" id="pb-{html.escape(p["anchor"])}" data-page="{i}" data-col="{p["col"]}" '
                        f'data-pb="pb_{html.escape(img_tok)}_{html.escape(p["col"])}" '
-                       f'onclick="viewer.goToPage({i})" title="Faksimile (Blatt {html.escape(img_tok)}) zeigen">— {lbl} —</div>')
+                       f'onclick="viewer.goToPage({i})" title="Faksimile (Blatt {html.escape(img_tok)}) zeigen">{lbl}</div>')
+            # Nur einmal je Blatt (nicht je Spalte): Link auf dieselbe Seite beim Digitalisat-
+            # geber. Der eingebaute Betrachter zeigt das Blatt, dieser Link macht es zitierbar.
+            if p is cols[0]:
+                seg.append(f'<div class="pblink"><a href="{BASE_DIGLIT}/{html.escape(slug)}/'
+                           f'{html.escape(img_tok)}" onclick="event.stopPropagation()">'
+                           f'Blatt {html.escape(img_tok)} bei der UB Heidelberg</a></div>')
             ph = p["html"]
             if nums:
                 def wrap(m):                             # Überschrift inline an ihrer echten Stelle markieren
@@ -334,7 +342,8 @@ def vol_page(v, toc=None):
         inh = (f'<details class="inhalt" open><summary>Inhalt: {nh} Hefte, '
                f'{len(toc)} nummerierte Berichte</summary><ul class="toc">{items}</ul></details>')
     body = f"""<h1>Limesblatt · {html.escape(v['label'])}</h1>
-<p class="meta">IIIF-Faksimile: <a href="{IIIF_MAN.format(slug=slug)}">Manifest</a> (UB Heidelberg) ·
+<p class="meta">Original-Digitalisat: <a href="{BASE_DIGLIT}/{slug}">UB Heidelberg</a>
+(<a href="{IIIF_MAN.format(slug=slug)}">IIIF-Manifest</a>) ·
 TEI: <a href="../tei/{teiname}">XML</a></p>
 <p class="meta legend">Eigennamen im Text öffnen das Register · Konfidenz:
 <span class="ent persName c-high">kuratiert + Normdaten</span> ·
@@ -661,7 +670,9 @@ def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh, artliste=None):
               [("Bände &amp; Inhaltsverzeichnis", "baende.html"),
                ("Namen im Text", "register/namen.html"), ("Orte im Text", "register/orte-index.html"),
                ("Hintzelmanns Register 1903", "register/hintzelmann.html"),
-               ("Textanalyse", "register/wortschatz.html")]),
+               ("Textanalyse", "register/wortschatz.html"),
+               ("↗ Original-Digitalisat (UB Heidelberg)",
+                "https://digi.ub.uni-heidelberg.de/diglit/limesblatt1892_1893")]),
         block("orl", "Obergermanisch-Raetischer Limes (ORL)", "1894–1937 · Endpublikation",
               "Das Werk, in das die Feldarbeit mündete: in 14 Mappen über 45 Jahre erschienen und deshalb nie "
               "als Ganzes erschlossen. Hier token-frei über HathiTrust aufgeschlüsselt: Inhalt, Apparat, "
@@ -674,7 +685,8 @@ def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh, artliste=None):
                ("Binnenverweise", "register/orl-verweise.html"),
                ("Gesamtapparat", "register/orl-register.html"),
                ("Genese des Werks", "register/genese.html"),
-               ("Erschließung", "register/hathitrust.html")]),
+               ("Erschließung", "register/hathitrust.html"),
+               ("↗ Original-Scans (HathiTrust)", "register/hathitrust.html#workset")]),
         block("jahresberichte", "Jahresberichte der Reichs-Limeskommission", "1892–1905 · institutionelle Selbstauskunft",
               "Was die Kommission jährlich über sich selbst veröffentlichte, als Anhang im "
               "<em>Jahrbuch des Deutschen Archäologischen Instituts</em>. Kein Feldbericht und keine "
@@ -685,7 +697,9 @@ def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh, artliste=None):
                "Befund: der Berichtsumfang <b>fällt</b>, während die ORL-Lieferungen zunehmen"],
               [("Die Berichte", "register/jahresberichte.html"),
                ("Wer genannt wird", "register/jahresberichte.html#wer"),
-               ("Welche Orte", "register/jahresberichte.html#wo")]),
+               ("Welche Orte", "register/jahresberichte.html#wo"),
+               ("↗ Original-Digitalisate (archive.org)",
+                "https://archive.org/details/jahrbuchdeskaise07kaisrich")]),
         block("extern", "Zitierte externe Quellen", "Apparat der drei Werke",
               "Worauf sich die Limesforschung beruft: Inschriftencorpora, Referenzwerke, "
               "Fachzeitschriften, aufgelöst zu vollen Referenzen und, wo vorhanden, zum offenen Digitalisat.",
@@ -775,7 +789,8 @@ def baende_page(volumes, toc=None):
             d1, d2 = hf[0].get("datum") or "", hf[-1].get("datum") or ""
             spanne = f' · {len(hf)} Hefte ({html.escape(d1)} – {html.escape(d2)})' if d1 else f' · {len(hf)} Hefte'
         bl.append(f'<li><a href="volumes/bd{v["nr"]}.html"><b>{html.escape(v["label"])}</b></a> '
-                  f'<span class="meta">— {len(v["pages"])} Seiten{spanne} · {len(ents)} Berichte</span>{sub}</li>')
+                  f'<span class="meta">{len(v["pages"])} Seiten{spanne} · {len(ents)} Berichte · '
+                  f'<a href="{BASE_DIGLIT}/{html.escape(v["slug"])}">Digitalisat</a></span>{sub}</li>')
     n_ber = sum(len(x) for x in toc.values())
     return (f'<h1>Limesblatt: Bände &amp; Inhaltsverzeichnis</h1>'
             f'<p class="lede">Das Feldorgan der Reichs-Limeskommission, vollständig: acht Jahrgangsbände, '
@@ -2650,7 +2665,11 @@ def orl_apparatus_page(reg, idx, persons=None):
             f'<p class="meta">Register, Apparate und Konkordanzen über <b>alle</b> ORL-Bände: token-frei aus '
             f'HathiTrust-NER und Extracted Features aggregiert (<a href="hathitrust.html">Methode</a>); '
             f'das Generalwerkzeug, das die 14-Mappen-Reihe nie hatte. Zurück zum '
-            f'<a href="orl.html">ORL-Bandindex</a>.</p>'
+            f'<a href="orl.html">ORL-Bandindex</a>; die zugrunde liegenden Scans stehen mit '
+            f'Direktlink in der <a href="hathitrust.html#workset">Bandliste</a>. Die Bandangaben '
+            f'unten sind Zählnummern des Worksets und werden hier <b>nicht</b> einzeln auf Scans '
+            f'verlinkt: welche Nummer welchen Faszikel meint, war schon einmal falsch, und die '
+            f'geprüfte Zuordnung steht im <a href="orl-inhalt.html#tabelle">Inhaltsverzeichnis</a>.</p>'
             f'{persons_html}'
             f'<h2 id="orte">Ortsregister ({len(plc)} bandübergreifend)</h2>'
             f'<table class="reg"><thead><tr><th>Ort</th><th>#Bd.</th><th>Nenn.</th></tr></thead>'
@@ -2678,11 +2697,37 @@ def hathitrust_page(idx, reg, lex):
     nef = sum(1 for r in b if r.get("pages")); nner = sum(1 for r in b if r.get("schicht_c", {}).get("ner_terms"))
     np = reg.get("counts", {}).get("persons", 0); npl = reg.get("counts", {}).get("places", 0)
     ow = lex.get("orl_words", 0) if lex else 0
+    # Das Workset selbst, mit Link auf jeden Scan. Die Seite erklärte bisher, WIE der ORL
+    # erschlossen wurde, nannte aber keine einzige Adresse — wer nachsehen wollte, wo ein
+    # Befund herkommt, musste ihn im Katalog selbst suchen.
+    ws, gesehen = [], set()
+    for r in b + idx.get("abteilung_A_strecken", []):
+        h = r.get("htid")
+        if not h or h in gesehen:
+            continue
+        gesehen.add(h)
+        titel = r.get("kastell") or (f'Strecke {r.get("strecke")}' if r.get("strecke") else "—")
+        ws.append(
+            f'<tr><td>{html.escape(str(r.get("nr") or r.get("strecke") or ""))}</td>'
+            f'<td>{html.escape(str(titel))}</td>'
+            f'<td class="meta">{html.escape(str(r.get("pages") or "—"))}</td>'
+            f'<td class="meta">{html.escape(str(r.get("access") or "—"))}</td>'
+            f'<td><a href="https://babel.hathitrust.org/cgi/pt?id={html.escape(h)}">'
+            f'<code>{html.escape(h)}</code></a></td></tr>')
+    workset = (f'<h2 id="workset">Die Bände im Original</h2>'
+               f'<p class="meta">Die {len(ws)} Scans, auf denen alles Folgende beruht, je mit '
+               f'Direktlink zu HathiTrust. <b>Seiten</b> = Blattzahl laut Extracted Features, '
+               f'<b>Zugang</b> = HathiTrust-Rechtestatus (<code>pd</code> = gemeinfrei). Die Bände '
+               f'sind gemeinfrei, ihre Seitenbilder aber bot-gewallt: der Link führt zum Betrachter '
+               f'des Anbieters, nicht zu einer Kopie hier.</p>'
+               f'<table class="reg"><thead><tr><th>Nr.</th><th>Faszikel</th><th>Seiten</th>'
+               f'<th>Zugang</th><th>HathiTrust-ID</th></tr></thead><tbody>{"".join(ws)}</tbody></table>')
     return (f'<h1>Erschließung über HathiTrust</h1>'
             f'<p class="meta">Wie der ORL token-frei und <b>nicht-konsumtiv</b> erschlossen wurde. Die 56 Bände sind '
             f'gemeinfrei, liegen bei HathiTrust aber nur als Seiten-Scans hinter einer Bot-Wall. Gearbeitet wurde '
             f'ausschließlich mit offenen, abgeleiteten Daten, kein Seitentext wird reproduziert; alles reproduzierbar '
             f'mit Python-Standardbibliothek, ohne API-Schlüssel.</p>'
+            + workset +
             f'<h2>1 · Workset: die Bände identifizieren</h2>'
             f'<p>Aus vier HathiTrust-Katalog-Records (RIS-Exporte) die echten Volume-IDs (htids) geparst → ein sauberes '
             f'<b>56-Bände-Workset</b>, ein Exemplar je Lieferung. Decke: no.57–70 und die a/b-Unterhefte sind in '
@@ -2739,6 +2784,17 @@ def rlk_jahresberichte_page(data, ner_p=None, ner_pl=None):
         grund[x["jahrgang"]] = ("in diesem Band ist kein Bericht der Kommission enthalten: der "
                                 "Titel steht dort nur in der Bibliographie")
     def _tsd(n): return f"{n:,}".replace(",", ".")
+    def _ia_link(z):
+        """Link ins Original-Digitalisat: der Bandscan bei archive.org, und wo das erste
+        Berichtsblatt bekannt ist, direkt dorthin (`/page/n<Blatt>` zählt wie der djvu-Index)."""
+        item = z.get("item")
+        if not item:
+            return '<span class="meta">—</span>'
+        seiten = z.get("seiten") or []
+        blatt = seiten[0].get("leaf") if seiten else None
+        u = f"https://archive.org/details/{item}" + (f"/page/n{blatt}" if blatt is not None else "")
+        return f'<a href="{html.escape(u)}">Scan</a>'
+
     zeilen = []
     for b in berichte:
         for fb, fj in sorted(fehl_jahr.items()):
@@ -2747,7 +2803,7 @@ def rlk_jahresberichte_page(data, ner_p=None, ner_pl=None):
         zeilen.append(dict(b, fehlt=False))
     rows = "".join(
         (f'<tr class="fehlt"><td><b>{z["jahrgang"] - 1891}</b></td><td>{z["jahrgang"]}</td><td>{z["band"]}</td>'
-         f'<td colspan="6" class="meta">{html.escape(grund.get(z["jahrgang"], ""))} — '
+         f'<td colspan="7" class="meta">{html.escape(grund.get(z["jahrgang"], ""))}; '
          f'die Nummer bleibt vergeben</td></tr>'
          if z["fehlt"] else
          f'<tr><td><b>{nr_von.get(z["jahrgang"], "—")}</b></td><td>{z["jahrgang"]}</td><td>{z["band"]}</td>'
@@ -2755,12 +2811,13 @@ def rlk_jahresberichte_page(data, ner_p=None, ner_pl=None):
          f'<td>{sum(1 for n in jb_pers if z["jahrgang"] in jb_pers[n])}</td>'
          f'<td>{sum(1 for n in jb_orte if z["jahrgang"] in jb_orte[n])}</td>'
          f'<td>{z["admin_je_1000"]}</td><td>{z["feld_je_1000"]}</td>'
-         f'<td><a href="../jahresberichte/jb{z["jahrgang"]}.html">lesen mit Faksimile</a></td></tr>')
+         f'<td><a href="../jahresberichte/jb{z["jahrgang"]}.html">lesen mit Faksimile</a></td>'
+         f'<td>{_ia_link(z)}</td></tr>')
         for z in zeilen)
     details = "".join(
         f'<p><a href="../jahresberichte/jb{b["jahrgang"]}.html"><b>Bericht {b["jahrgang"]}</b></a> '
-        f'<span class="meta">— Jahrbuch Bd. {b["band"]}, {b["woerter"]:,} Wörter, '
-        f'{len(b.get("seiten") or [])} Blätter</span></p>'
+        f'<span class="meta">Jahrbuch Bd. {b["band"]}, {_tsd(b["woerter"])} Wörter, '
+        f'{len(b.get("seiten") or [])} Blätter</span> · {_ia_link(b)}</p>'
         for b in berichte)
     fehlt = ", ".join(f"Bd. {n}" for n in data.get("fehlend", [])) or "—"
     ohne = data.get("ohne_bericht", [])
@@ -2810,7 +2867,8 @@ def rlk_jahresberichte_page(data, ner_p=None, ner_pl=None):
         f'dahinter. <b>Personen</b> und <b>Orte</b> zählen, wie viele verschiedene Namen des '
         f'<a href="namen.html">Limesblatt-Gazetteers</a> im jeweiligen Bericht vorkommen.</p>'
         f'<table class="reg"><thead><tr><th>Nr.</th><th>Jahrgang</th><th>Jahrbuch-Bd.</th><th>Wörter</th>'
-        f'<th>Personen</th><th>Orte</th><th>Admin/1000 W.</th><th>Feld/1000 W.</th><th></th></tr></thead>'
+        f'<th>Personen</th><th>Orte</th><th>Admin/1000 W.</th><th>Feld/1000 W.</th>'
+        f'<th>Lesefassung</th><th>Digitalisat</th></tr></thead>'
         f'<tbody>{rows}</tbody></table>'
         + jb_register_html(reihe, jb_pers, jb_orte, data)
         + jb_ereignis_html(jb_personalia(data, ner_p or []), jb_kampagnen(data, ner_pl or [])) +
@@ -3400,9 +3458,14 @@ def jahresbericht_reader(b):
     for i, s in enumerate(seiten):
         koerper, marken = jb_struktur(s.get("text") or "")
         alle_kopfe += marken
+        # Neben der Blattmarke ein Link ins Original: nicht in den eingebauten Betrachter,
+        # sondern auf die Seite beim Anbieter — damit jede Stelle einzeln zitierbar bleibt.
         text.append(f'<div class="pb" id="blatt-{s["leaf"]}" data-page="{i}" '
                     f'onclick="viewer.goToPage({i})" title="Dieses Blatt im Faksimile zeigen">'
-                    f'— Blatt {s["leaf"]} —</div>{koerper}')
+                    f'Blatt {s["leaf"]}</div>'
+                    f'<div class="pblink"><a href="https://archive.org/details/{item}/page/n{s["leaf"]}"'
+                    f' onclick="event.stopPropagation()">Blatt {s["leaf"]} bei archive.org</a></div>'
+                    f'{koerper}')
     gliederung = ""
     if alle_kopfe:
         gliederung = ('<details class="inhalt"><summary>Gliederung des Berichts '
@@ -3413,7 +3476,7 @@ def jahresbericht_reader(b):
     head = '<script src="../assets/openseadragon.min.js"></script>'
     body = f"""<h1>Bericht der Reichs-Limeskommission {b['jahrgang']}</h1>
 <p class="meta">Jahrbuch des Kaiserlich Deutschen Archäologischen Instituts, Band {b['band']}: Archäologischer Anzeiger, Blatt {seiten[0]['leaf']}–{seiten[-1]['leaf']} ·
-{len(seiten)} Seiten · Faksimile: <a href="https://archive.org/details/{item}">archive.org</a> ·
+{len(seiten)} Seiten · Original-Digitalisat: <a href="https://archive.org/details/{item}/page/n{seiten[0]['leaf']}">archive.org, Bd. {b['band']}</a> ·
 Lesung: {html.escape(b.get('ocr', ''))} ·
 TEI: <a href="../tei/jahresberichte/jb{b['jahrgang']}.xml">XML</a> ·
 zurück zum <a href="../register/jahresberichte.html">Berichtsindex</a></p>
@@ -3526,6 +3589,15 @@ viewer.addHandler("page", function(ev){{
     return body, head
 
 
+def _digilink(a):
+    """Link auf das Original-Digitalisat eines Aufsatzes, in der Adressform seines Anbieters."""
+    slug = a.get("slug") or ""
+    if a.get("anbieter") == "archive.org":
+        return f'<a href="https://archive.org/details/{html.escape(slug)}">archive.org</a>'
+    return (f'<a href="https://digi.ub.uni-heidelberg.de/diglit/{html.escape(slug)}">UB Heidelberg</a>'
+            if slug else "—")
+
+
 def artikel_index(arts, offen=()):
     """Verzeichnis der einzeln erschlossenen Aufsätze: nach Organ gruppiert.
 
@@ -3549,7 +3621,7 @@ def artikel_index(arts, offen=()):
             f'<td>{html.escape(a.get("verfasser", "") or "—")}</td>'
             f'<td class="meta">{html.escape(a.get("quelle", ""))}</td>'
             f'<td>{len(a.get("seiten") or [])}</td><td>{_tausend(a.get("woerter", 0))}</td>'
-            f'<td class="meta">{"archive.org" if a.get("anbieter") == "archive.org" else "UB Heidelberg"}</td></tr>'
+            f'<td class="meta">{_digilink(a)}</td></tr>'
             for a in sorted(grp[organ], key=lambda x: x.get("quelle", "")))
         teile.append(f'<h2>{html.escape(organ)}</h2>'
                      f'<table class="reg"><thead><tr><th>Aufsatz</th><th>Verfasser</th><th>Fundstelle</th>'
