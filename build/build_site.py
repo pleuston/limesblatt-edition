@@ -1033,8 +1033,8 @@ def analysis_sections(volumes, orl_lex=None):
         _kh = '<tr><th>Wort</th><th>Log2</th><th>ORL/10k</th><th>LB/10k</th></tr>'
         out.append(
             f'<h2 id="gegenprobe">Wortschatz-Gegenprobe: das ganze Werk (Limesblatt ↔ ORL)</h2>'
-            f'<p class="meta">Nicht nur ein Band: der <b>gesamte</b> ORL-Korpus ({orl_lex.get("orl_words",0):,} Wörter) '
-            f'gegen das ganze Limesblatt ({orl_lex.get("lb_words",0):,}). Gezeigt sind die Wörter, die jedes Werk am '
+            f'<p class="meta">Nicht nur ein Band: der <b>gesamte</b> ORL-Korpus ({_tausend(orl_lex.get("orl_words",0))} Wörter) '
+            f'gegen das ganze Limesblatt ({_tausend(orl_lex.get("lb_words",0))}). Gezeigt sind die Wörter, die jedes Werk am '
             f'stärksten kennzeichnen: als Log2 des Verhältnisses ihrer relativen Häufigkeiten (pro 10 000 Wörter). '
             f'Der Befund ist ein <b>Wechsel der Textsorte</b>, keine bloße Straffung: die Feldberichte spüren die '
             f'Grenzlinie auf und stecken sie ab: in der Ich-Form des Ausgräbers, voller Geländevokabular; die '
@@ -1154,7 +1154,7 @@ def wortschatz_page(volumes, attention=None, orl_lex=None):
                'Kastell-Abschnitt zugeordnet (≤ ~22 km): welche Limes-Abschnitte im Limesblatt am meisten '
                f'Aufmerksamkeit bekamen.</p><div class="attwrap">{bars}</div>')
     return (f'<h1>Textanalyse des Limesblatt</h1>'
-            f'<p class="meta">Token-freie Auswertung des gesamten Fraktur-OCR-Volltexts (8 Bände, 1892–1903; {tot:,} Wörter). '
+            f'<p class="meta">Token-freie Auswertung des gesamten Fraktur-OCR-Volltexts (8 Bände, 1892–1903; {_tausend(tot)} Wörter). '
             f'Sprung zu: <a href="#gegenprobe">Wortschatz-Gegenprobe (ORL)</a> · <a href="#orl">Osterburken-Kontrast</a> · <a href="#muenzen">Münzkaiser</a> · <a href="#truppen">Truppen</a> · '
             f'<a href="#zitate">Zitate</a> · <a href="#ocr">OCR-Qualität</a> · <a href="#kwic">Konkordanz</a>.</p>'
             f'<div class="tmwrap">{chart}</div>'
@@ -2198,7 +2198,7 @@ def namen_page(nm):
             f'<i>Arae Flaviae</i> <b>0×</b>, <i>Rottweil</i> 488×. Und wo der ORL den antiken Namen führt, '
             f'erdrückt ihn der moderne (Nida 91 : Heddernheim 469). Der Unterschied ist graduell, aber real: '
             f'Die Endpublikation <i>lässt den antiken Namen zu</i>, als gelehrte Glosse neben dem Arbeitsnamen. '
-            f'Der Feldbericht lässt ihn nur ins Zitat: Der einzige antike Ortsname im ganzen Limesblatt ist '
+            f'Der Feldbericht lässt ihn nur ins Zitat: Von den 18 Orten mit gesicherter antiker Gleichsetzung trägt genau einer seinen antiken Namen im Limesblatt: '
             f'<i>Abusina</i> (2×), und beide Belege zitieren eine Schriftquelle: ein Itinerar und eine '
             f'Truppendislokation. Keiner benennt den Boden, auf dem gegraben wird.</p>'
             + (f'<h2>Flurnamen</h2>'
@@ -2429,7 +2429,8 @@ def orl_toc_page(idx, bli=None, fasz=None, dseiten=None, abta=None, places=None)
         + "".join(blocks) +
         f'<p class="meta">Seitenumfang: wo die Bibliographie ihn nennt, ist es ihre Angabe samt '
         f'Tafelzahl; sonst der aus dem Digitalisat errechnete Bereich, dafür wurden {n_fasz} '
-        f'Faszikel in den Scans abgegrenzt. → <a href="hathitrust.html">wie das erschlossen wurde</a></p>')
+        f'Faszikel in den Scans abgegrenzt. Diese Zerlegung ist eine <b>Untergrenze</b>: sie '
+        f'erkennt einen Faszikel an seiner Titelzeile, und wo die OCR die Zeile verlor, fehlt er. → <a href="hathitrust.html">wie das erschlossen wurde</a></p>')
 
 
 def genese_page(bv, bl, lat, zj, hefte, toc):
@@ -2740,6 +2741,21 @@ def hathitrust_page(idx, reg, lex):
             f'<td class="meta">{html.escape(str(r.get("access") or "—"))}</td>'
             f'<td><a href="https://babel.hathitrust.org/cgi/pt?id={html.escape(h)}">'
             f'<code>{html.escape(h)}</code></a></td></tr>')
+    grenzen = ('<div class="note"><p><b>Was diese Grundlage nicht hergibt.</b> Drei Grenzen gelten '
+               'für jede Zahl, die aus dem Workset stammt, und sie stehen hier einmal statt in jeder '
+               'Fußnote:</p><ul>'
+               '<li><b>Zwillinge zählen doppelt.</b> Für einen Teil der Lieferungen liegen zwei '
+               'Bibliotheksexemplare im Workset (mdp und uc1). Wo eine Auswertung Belegstellen '
+               'summiert, kann derselbe Beleg zweimal gezählt sein — Faktor höchstens 2. '
+               '<i>Verhältnisse</i> sind davon unberührt, absolute Belegzahlen nicht.</li>'
+               '<li><b>Das Erscheinungsjahr der Datei ist nicht das des Buchs.</b> Die Extracted '
+               'Features tragen als Datum die Verfilmung (bei 52 der 56 Bände: 1989). Alles '
+               'Zeitliche läuft deshalb über die Lieferungsnummer oder über eigens belegte Jahre, '
+               'nie über dieses Feld.</li>'
+               '<li><b>Nicht jeder Band ist datierbar.</b> Die diachronen Auswertungen vergleichen '
+               '16 frühe gegen 13 späte Faszikel; die übrigen 27 bleiben außen vor. Das ist eine '
+               'Lücke, kein Gegenbefund.</li>'
+               '</ul></div>')
     workset = (f'<h2 id="workset">Die Bände im Original</h2>'
                f'<p class="meta">Die {len(ws)} Scans, auf denen alles Folgende beruht, je mit '
                f'Direktlink zu HathiTrust. <b>Seiten</b> = Blattzahl laut Extracted Features, '
@@ -2753,7 +2769,7 @@ def hathitrust_page(idx, reg, lex):
             f'gemeinfrei, liegen bei HathiTrust aber nur als Seiten-Scans hinter einer Bot-Wall. Gearbeitet wurde '
             f'ausschließlich mit offenen, abgeleiteten Daten, kein Seitentext wird reproduziert; alles reproduzierbar '
             f'mit Python-Standardbibliothek, ohne API-Schlüssel.</p>'
-            + workset +
+            + workset + grenzen +
             f'<h2>1 · Workset: die Bände identifizieren</h2>'
             f'<p>Aus vier HathiTrust-Katalog-Records (RIS-Exporte) die echten Volume-IDs (htids) geparst → ein sauberes '
             f'<b>56-Bände-Workset</b>, ein Exemplar je Lieferung. Decke: no.57–70 und die a/b-Unterhefte sind in '
@@ -2766,7 +2782,7 @@ def hathitrust_page(idx, reg, lex):
             f'<h2>3 · HTRC Analytics: Entitäten &amp; Frequenzen</h2>'
             f'<p>Über das HTRC-Algorithmus-Portal auf dem Workset: <b>Named-Entity-Recognition</b> (≈130 000 '
             f'Entitäten → Schicht C + Cross-Work-Register für <b>{nner}</b> Bände) und <b>Token-Count</b> '
-            f'(≈{ow:,}-Wörter-Korpusfrequenz → die <a href="orl.html#keyness">Wortschatz-Gegenprobe</a>).</p>'
+            f'(≈{_tausend(ow)}-Wörter-Korpusfrequenz → die <a href="orl.html#keyness">Wortschatz-Gegenprobe</a>).</p>'
             f'<h2>4 · Data Capsule: Volltext (abgeschlossen, zwei Zyklen)</h2>'
             f'<p>Für das, was nur fortlaufender Volltext liefert, lief eine nicht-konsumtive <b>HTRC Data '
             f'Capsule</b>: Volltext der 78 Scans geladen, Analyse per stdlib-Python in der Kapsel, Export '
@@ -2879,7 +2895,7 @@ def rlk_jahresberichte_page(data, ner_p=None, ner_pl=None):
         f'<p class="meta">Wie sich Feldorgan, Jahresberichte und Endpublikation zeitlich zueinander '
         f'verhalten (einschließlich des Lieferungslochs 1899 und des heftlosen Jahres 1900) ordnet '
         f'die Seite zur <a href="genese.html">Genese des ORL</a> ein.</p>'
-        f'<p><b>Gegenprobe gegen das Limesblatt-Korpus</b> ({geg.get("limesblatt_woerter", 0):,} Wörter): '
+        f'<p><b>Gegenprobe gegen das Limesblatt-Korpus</b> ({_tausend(geg.get("limesblatt_woerter", 0))} Wörter): '
         f'Verwaltungssprache {geg.get("jahresbericht_admin_je_1000")}/1000 W. (Jahresbericht) vs. '
         f'{geg.get("limesblatt_admin_je_1000")}/1000 W. (Limesblatt); Feldsprache '
         f'{geg.get("jahresbericht_feld_je_1000")}/1000 W. vs. {geg.get("limesblatt_feld_je_1000")}/1000 W. — in '
@@ -2925,7 +2941,7 @@ def jb_register_html(reihe, pers, orte, data):
         f'<td class="meta">{", ".join(str(j) for j in sorted({x[0] for x in v}))}</td>'
         f'<td class="meta ktx">{html.escape(v[0][1])}</td></tr>'
         for w, v in sorted(amt.items(), key=lambda kv: -len(kv[1])))
-    grows = "".join(f'<tr><td>{g["jahr"]}</td><td>{g["betrag"]:,}</td>'
+    grows = "".join(f'<tr><td>{g["jahr"]}</td><td>{_tausend(g["betrag"])}</td>'
                     f'<td class="meta ktx">{html.escape(g["kontext"])}</td></tr>'
                     for g in sorted(geld, key=lambda x: (x["jahr"], -x["betrag"])))
     return (f'<h2 id="wer">Genannte Personen</h2>'
@@ -3799,7 +3815,7 @@ def documentation_page(s):
         f'<h2>3 · Was die Daten erkennen lassen</h2>'
         f'<h3>Vom Feldbericht zum Standardwerk</h3>'
         f'<p class="meta">Ein Vergleich der Worthäufigkeiten beider Werke (die Endpublikation umfasst rund '
-        f'{s["orl_words"]:,} Wörter, das Limesblatt rund {s["lb_words"]:,}) zeigt keine bloße Straffung, sondern '
+        f'{_tausend(s["orl_words"])} Wörter, das Limesblatt rund {_tausend(s["lb_words"])}) zeigt keine bloße Straffung, sondern '
         f'zwei Textsorten: das <b>Limesblatt</b> spürt die Grenzlinie auf und steckt sie ab: in der Ich-Form des '
         f'Ausgräbers, voller Geländevokabular (Pfahlreihe, Grenzgräbchen, Absteinung); die <b>Endpublikation</b> '
         f'katalogisiert die Funde, mit dem ganzen Apparat der Keramik-Typologie (Dragendorff, Knorr, Ludowici, '
