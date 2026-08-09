@@ -3460,7 +3460,12 @@ def artikel_index(arts, offen=()):
     from collections import defaultdict
     grp = defaultdict(list)
     for a in arts:
-        organ = re.split(r"\s+\d", a.get("quelle", "Einzeldruck"))[0].strip() or "Einzeldruck"
+        # Das Organ steht seit dem Mehr-Organ-Ausbau im Datensatz. Der frühere Notbehelf — die
+        # Quellenangabe vor der ersten Ziffer abschneiden — erzeugte Scheingruppen wie
+        # »Bayern (1888/1889)« und »Wiesbaden«, weil jede Reihe ihre Quelle anders schreibt.
+        organ = (a.get("organ")
+                 or re.split(r"\s+\d", a.get("quelle", "Einzeldruck"))[0].strip()
+                 or "Einzeldruck")
         grp[organ].append(a)
     teile = []
     for organ in sorted(grp):
@@ -3478,17 +3483,31 @@ def artikel_index(arts, offen=()):
     n_w = sum(a.get("woerter", 0) for a in arts)
     luecke = ""
     if offen:
+        def _stelle(o):
+            teile = []
+            if str(o.get("band") or "").strip():
+                teile.append("Bd. " + str(o["band"]).strip())
+            if o.get("von") is not None:
+                teile.append(f'S. {o["von"]}–{o["bis"]}')
+            elif o.get("seitenangabe"):
+                teile.append("S. " + str(o["seitenangabe"]))
+            return ", ".join(teile) or "—"
         zeilen = "".join(
             f'<tr><td>{html.escape(o.get("wer_was", ""))}</td>'
-            f'<td class="meta">Bd. {html.escape(str(o.get("band", "")))}, '
-            f'S. {o.get("von")}–{o.get("bis")}</td>'
-            f'<td class="meta">{html.escape(o.get("grund", ""))}</td></tr>' for o in offen)
-        luecke = (f'<h2>Ohne erreichbares Digitalisat</h2>'
-                  f'<p class="meta">Diese Aufsätze stehen im Verzeichnis, ihr Band ist aber in keiner '
-                  f'der abgefragten Sammlungen digitalisiert. Sie bleiben hier stehen, damit die '
-                  f'Lücke sichtbar ist.</p>'
-                  f'<table class="reg"><thead><tr><th>Aufsatz</th><th>Fundstelle</th>'
-                  f'<th>Warum nicht hier</th></tr></thead><tbody>{zeilen}</tbody></table>')
+            f'<td class="meta">{html.escape(o.get("organ", ""))}</td>'
+            f'<td class="meta">{html.escape(_stelle(o))}</td>'
+            f'<td class="meta">{html.escape(o.get("grund", ""))}</td></tr>'
+            for o in sorted(offen, key=lambda x: (x.get("organ", ""), str(x.get("band", "")))))
+        luecke = (f'<h2>Nicht erschlossen — und warum</h2>'
+                  f'<p class="meta">{len(offen)} Einträge des Verzeichnisses konnten nicht als '
+                  f'Volltext beigebracht werden. Sie bleiben hier stehen, damit die Lücke sichtbar '
+                  f'ist: teils fehlt der Band in allen erreichbaren Sammlungen, teils nennt das '
+                  f'Verzeichnis selbst keine schließende Seitenzahl (»S. 266–«), teils fällt im '
+                  f'Ausweichband der Titelbeleg nicht mit dem Seitenbeleg zusammen — dann wird die '
+                  f'Stelle nicht geraten.</p>'
+                  f'<table class="reg sortierbar"><thead><tr><th>Aufsatz</th><th>Organ</th>'
+                  f'<th>Fundstelle</th><th>Warum nicht hier</th></tr></thead>'
+                  f'<tbody>{zeilen}</tbody></table>')
     return (f'<h1>Aufsätze</h1>'
             f'<p class="lede">Einzelne Aufsätze, die für die Gründungs- und Forschungsgeschichte zählen — '
             f'jeder als Volltext neben seinem Faksimile. <b>{len(arts)} Aufsätze</b>, '
