@@ -995,10 +995,36 @@ def analysis_sections(volumes, orl_lex=None):
         cols = [("ORL·Osterburken", orl), ("LB·Osterburken", ost), ("LB·gesamt", low)]
         keep = ["Grabungsmethode", "Holzbefund", "Steinbau", "Funde – Münzen", "Funde – Inschrift/Stempel"]
         rows = "".join(f"<tr><td>{html.escape(g)}</td>" + "".join(f"<td>{rt(t, TM_GROUPS[g][0]):.1f}</td>" for _, t in cols) + "</tr>" for g in keep)
-        out.append('<h2 id="orl">ORL-Gegenprobe (Osterburken)</h2>'
-                   '<p class="meta">Derselbe Standort: der polierte ORL-Band (Schumacher 1895) gegen die Limesblatt-Osterburken-Seiten (Treffer je 1000 Wörter).</p>'
+        # ACHTUNG, Reichweite: das ist EIN Ort und EIN früher Faszikel (1895). Der Abschnitt zog
+        # daraus früher den allgemeinen Schluss, die Ausdünnung der Holz-Erde-Evidenz sei
+        # »editorial« — eine Kausalaussage aus n=1. Die Kapsel-Auswertung erlaubt seither den
+        # gepaarten Test an 16 Orten und die diachrone Messung über 56 Bände, und beide
+        # präzisieren den Befund: die Ausdünnung ist real, aber konstant (kein Abschlussdruck),
+        # und beim Holz irrt die Einzelprobe in der Ursache. Der Schluss steht deshalb jetzt
+        # dort, wo die Belege sind.
+        out.append('<h2 id="orl">Einzelprobe an einem Ort: Osterburken 1895</h2>'
+                   '<p class="meta">Derselbe Fundplatz in beiden Werken: der ORL-Band (Schumacher 1895) '
+                   'gegen die Limesblatt-Seiten zu Osterburken (Treffer je 1000 Wörter). Eine '
+                   '<b>Stichprobe</b>, kein Beleg für das Werk: ein Ort, ein früher Faszikel.</p>'
                    '<table class="reg tm"><tr><th>Term-Gruppe</th>' + "".join(f"<th>{html.escape(c[0])}</th>" for c in cols) + f'</tr>{rows}</table>'
-                   '<p class="meta">Für dasselbe Kastell nennt das ORL <b>Holzbefunde ~4× seltener</b> als die Feldberichte: die Ausdünnung der Holz-Erde-Evidenz ist <b>editorial</b>, nicht feldbedingt.</p>')
+                   '<div class="note"><p><b>Was daraus folgt, und was nicht.</b> Für dieses Kastell '
+                   'nennt der ORL Holzbefunde rund <b>4× seltener</b> als die Feldberichte. Naheliegend '
+                   'wäre der Schluss, die Endpublikation habe die Holz-Erde-Evidenz weggelassen. Die '
+                   'Auswertung des gesamten Werks stützt ihn nur zur Hälfte:</p>'
+                   '<ul><li>Die <b>Ausdünnung ist real und gepaart geprüft</b>: an 16 Orten mit '
+                   'Vorbericht <i>und</i> Faszikel liegt der Median bei <b>0,41</b> — der ORL bringt '
+                   'also weniger als die Hälfte des Vorberichts-Vokabulars. Sie nimmt über die 45 Jahre '
+                   'aber <b>nicht zu</b> (ρ = 0,29): kein Abschlussdruck, sondern eine Eigenschaft der '
+                   'Gattung, von Anfang an.</li>'
+                   '<li>Beim <b>Holz irrt die Einzelprobe in der Ursache</b>. Über alle Bände steigt '
+                   'Holzbau-Vokabular früh→spät um das <b>8,2-fache</b>, Erdkastell um das 5,5-fache — '
+                   'aber <b>Steinbau steigt mit</b> (5,4-fach). 1895 wurde nicht das Holz verschwiegen, '
+                   'sondern <b>Bauphasen überhaupt noch nicht benannt</b>; Stein war der unmarkierte '
+                   'Normalfall. Am selben Landstrich 40 Jahre später: Osterburken 1895 nennt in 142 '
+                   'Belegstellen 0× Holzbau, 0× Erdkastell, 0× Steinbau — Oberscheidental 1935 in 591 '
+                   'Stellen 11×, 41× und 14×.</li></ul>'
+                   '<p class="meta">Belege: <a href="genese.html">Genese des Werks</a> '
+                   '(Ausdünnung, Bauphasen-Vokabular) · <a href="hathitrust.html">wie gemessen wurde</a>.</p></div>')
     # Wortschatz-Gegenprobe über das ganze Werk (Keyness, aus orl_vs_limesblatt.json)
     if orl_lex:
         od = orl_lex.get("orl_distinctive", [])[:20]; ld = orl_lex.get("lb_distinctive", [])[:20]
