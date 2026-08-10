@@ -117,6 +117,31 @@ NO_NOMI = {'flur', 'wald', 'gewann'}     # zu lokale Namen → kein Nominatim-Fa
 
 def nrm(s): return re.sub(r'[^a-zäöüß]', '', s.lower())
 
+# ---------- kuratierte Schicht: sie darf die Maschine überstimmen ----------
+# Der Wortabgleich unten kann nicht wissen, WELCHES gleichnamige Nest gemeint ist. Für
+# „Saalburg" nahm er den erstbesten Gazetteer-Treffer, und das war Saalburg-Ebersdorf in
+# Thüringen: 226 km vom Kastell im Taunus entfernt, mit Koordinate, Link und allem Anschein
+# von Genauigkeit. Ein solcher Treffer ist schlimmer als gar keiner. Geprüft wird das gegen
+# die Koordinaten der Ortsnotizen (--pruefen); wer hier einträgt, muss den Grund nennen.
+KURATIERT = {
+    "saalburg": ({"gazId": "2049257", "gazName": "Saalburg (Kastell, Taunus)",
+                  "geo": [50.2715, 8.56666], "src": "kuratiert"},
+                 "Wortabgleich traf Saalburg-Ebersdorf (Thüringen, gazId 2053128), 226 km "
+                 "entfernt. Gemeint ist immer das Kastell im Taunus."),
+}
+
+
+def kuratiere(rl):
+    """Kuratierte Korrekturen einspielen. Idempotent, meldet jede Überstimmung laut."""
+    for k, (wert, grund) in KURATIERT.items():
+        alt = rl.get(k)
+        if alt == wert:
+            continue
+        vorher = (alt or {}).get("gazName") or (alt or {}).get("nomName") or "ohne Treffer"
+        rl[k] = dict(wert)
+        print(f"  kuratiert: „{k}\" {vorher} → {wert.get('gazName')}  ({grund})")
+    return rl
+
 def recon_place(nm, kind):
     q = re.sub(r'\([^)]*\)', '', nm).strip()
     key = nrm(q)
@@ -175,6 +200,7 @@ def main():
             idai = sum(1 for v in rl.values() if v and v.get("src") == "iDAI")
             osm  = sum(1 for v in rl.values() if v and v.get("src") == "OSM")
             print(f"  {i+1}/{len(places)} · iDAI {idai} · OSM {osm}")
+    kuratiere(rl)                      # nach dem Lauf, damit sie den Lauf überstimmt
     save(L_OUT, rl)
     idai = sum(1 for v in rl.values() if v and v.get("src") == "iDAI")
     osm  = sum(1 for v in rl.values() if v and v.get("src") == "OSM")
@@ -182,5 +208,52 @@ def main():
     print(f"✓ Orte: {geo}/{len(places)} mit Koordinaten (iDAI {idai}, OSM {osm}); "
           f"iDAI-gazId {sum(1 for v in rl.values() if v and v.get('gazId'))}")
 
+def pruefen():
+    """Gegenprobe gegen die Ortsnotizen: welcher Treffer liegt weit von der bekannten Lage?
+
+    Die Reconciliation kann sich nicht selbst prüfen: sie hat nur den Namen. Prüfbar ist sie
+    dort, wo eine kuratierte Ortsnotiz eine Koordinate führt. Das sind wenige Dutzend von über
+    tausend Orten, aber genau die, auf die es ankommt, und der Saalburg-Fehlgriff ist so
+    gefunden worden. Netzfrei, liest nur lokale Dateien."""
+    import glob, math
+    vault = os.environ.get("LIMES_VAULT") or os.path.join(os.path.dirname(REPO), "limes")
+    wahr = {}
+    for p in glob.glob(os.path.join(vault, "Orte", "**", "*.md"), recursive=True):
+        t = open(p, encoding="utf-8").read()
+        m = re.search(r"(?m)^location:\s*\[([\d.]+),\s*([\d.]+)\]", t)
+        if not m:
+            continue
+        name = os.path.basename(p)[:-3]
+        schl = {name.lower(), re.sub(r"^(kastell|kleinkastell)\s+", "", name.lower())}
+        a = re.search(r'(?m)^aliases:\s*\[(.*?)\]', t)
+        if a:
+            schl |= {x.strip().strip('"\'').lower() for x in a.group(1).split(",") if x.strip()}
+        for s in schl:
+            wahr[s] = (float(m.group(1)), float(m.group(2)), name)
+    rl = load(os.path.join(DATA, "recon_places.json"))
+    def km(a, b, c, d):
+        R, p = 6371, math.radians
+        return 2 * R * math.asin(math.sqrt(math.sin(p(c - a) / 2) ** 2 +
+                                           math.cos(p(a)) * math.cos(p(c)) * math.sin(p(d - b) / 2) ** 2))
+    prueb, schlecht = 0, []
+    for k, v in rl.items():
+        w = wahr.get(k.lower())
+        if not (w and isinstance(v, dict) and v.get("geo")):
+            continue
+        prueb += 1
+        d = km(v["geo"][0], v["geo"][1], w[0], w[1])
+        if d > 3:
+            schlecht.append((d, k, v.get("gazName") or v.get("nomName") or v.get("gazId"), w[2]))
+    schlecht.sort(reverse=True)
+    print(f"gegen Ortsnotizen prüfbar: {prueb} von {len(rl)} Einträgen")
+    for d, k, g, n in schlecht:
+        print(f"  {d:7.0f} km  „{k}\" → {g}   (Notiz: {n})")
+    print(f"{'!! ' if schlecht else ''}Abweichung über 3 km: {len(schlecht)}")
+    return len(schlecht)
+
+
 if __name__ == "__main__":
+    import sys
+    if "--pruefen" in sys.argv:
+        raise SystemExit(1 if pruefen() else 0)
     main()

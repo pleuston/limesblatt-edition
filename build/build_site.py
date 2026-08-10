@@ -71,6 +71,27 @@ def _lb_spalten():
     return _tausend(n) if n else "?"
 
 
+def _arbeiter_satz():
+    """Wer im ORL genannt wird und wer nicht: die Elite/Arbeiter-Asymmetrie, ausgezählt.
+
+    Die Zahl lag bisher nur im Arbeitsbestand, während das Organigramm auf sie verwies. Ein
+    Verweis auf eine Aussage, die auf keiner Seite steht, ist ein leeres Versprechen: also
+    steht sie jetzt dort, wo die Frage entsteht. Fehlt die Datei, entfällt der Absatz, statt
+    eine Zahl zu erfinden."""
+    a = _datenwert("orl_autoritaeten", "arbeiter_asymmetrie", vorgabe=None)
+    if not isinstance(a, dict) or not a.get("verhaeltnis_elite_zu_arbeiter"):
+        return ""
+    return (f'<p><b>Die Asymmetrie ist selbst ein Befund.</b> Im Volltext des '
+            f'<a href="orl.html">ORL</a> stehen die zehn führenden Namen der Kommission '
+            f'<b>{_tausend(a["elite_summe"])}</b>-mal, das Wort für die Menschen, die gruben '
+            f'(Arbeiter, Tagelöhner), <b>{a["arbeiter_summe"]}</b>-mal: ein Verhältnis von '
+            f'<b>{a["verhaeltnis_elite_zu_arbeiter"]}:1</b> bei {_tausend(a["grabungs_nennungen"])} '
+            f'Grabungs-Nennungen. Gezählt sind Wortformen ohne Kontextfenster, das trägt eine '
+            f'Tendenz, keine Personenzahl: die Grabungsmannschaften der RLK sind aus ihrer eigenen '
+            f'Endpublikation nicht zu rekonstruieren. Datei: '
+            f'<a href="../data/orl_autoritaeten.json">orl_autoritaeten.json</a>.</p>')
+
+
 def _orl_baende():
     """Wie viele ORL-Bände die HathiTrust-Erschließung umfasst.
 
@@ -1132,12 +1153,53 @@ def ner_index_page(items, what, tok2anchor, recon, tok2any=None):
     rec = (f'<b>{matched}</b> mit GND bzw. dem Personenregister verknüpft' if what == "persons"
            else f'<b>{matched}</b> über iDAI-Gazetteer/Koordinaten verortet')
     head = ""
+    # Grenzangabe. Diese beiden Register sind die maschinellsten der Website: was hier steht,
+    # ist eine LESUNG, keine geprüfte Person und kein geprüfter Ort. Das muss dabeistehen, und
+    # zwar mit gezählten Werten statt als allgemeiner Vorbehalt.
+    unsicher = sum(1 for it in items if it.get("cert") != "high")
+    if what == "persons":
+        grenze = (f'<div class="note"><p><b>Ein Eintrag ist eine Lesung, keine Person.</b> Jede Zeile sagt: '
+                  f'diese Zeichenfolge wurde auf diesen Spalten als Name erkannt. Ob dahinter ein Mensch '
+                  f'steht, ob es <i>der</i> Mensch ist und ob der Name richtig gelesen wurde, sagt sie nicht. '
+                  f'<b>{matched} von {rows}</b> sind an ein Normdatum gebunden (GND oder das kuratierte '
+                  f'<a href="persons.html">Personenregister</a>); bei den übrigen führt „GND?" auf eine '
+                  f'<i>Suche</i>, nicht auf eine Identifikation. <b>{unsicher}</b> Zeilen stehen grau: dort '
+                  f'ist schon die Lesung unsicher. Sie bleiben stehen, weil ihr Löschen die Schwäche der '
+                  f'Erkennung verstecken, nicht beheben würde.</p>'
+                  f'<p>Zwei Fallen beim Lesen. <b>Ein Nachname kann zwei Menschen sein</b>: „Jacobi" meint im '
+                  f'Limesblatt Louis <i>und</i> Heinrich Jacobi, die Zeile führt beide zusammen. Und die '
+                  f'Spalte <b>Belege</b> zählt Fundstellen der Zeichenfolge, nicht Beteiligung: wer viel '
+                  f'anordnete und wenig schrieb, steht weit unten.</p></div>')
+    else:
+        vk = Counter()
+        for it in items:
+            r = recon.get(it["name"].lower())
+            vk[((it.get("kind") or "Ort"), bool(r and r.get("geo")))] += 1
+        def quote(a):
+            j, n = vk[(a, True)], vk[(a, False)]
+            return f'{j} von {j + n}' if j + n else "0"
+        grenze = (f'<div class="note"><p><b>Ein Eintrag ist eine Lesung, kein geprüfter Ort.</b> Jede Zeile '
+                  f'sagt: diese Zeichenfolge wurde auf diesen Spalten als Ortsname erkannt. '
+                  f'<b>{matched} von {rows}</b> tragen eine Koordinate; ein Gazetteer-Link ist ein '
+                  f'<i>Vorschlag</i>, keine Bestätigung. Wie nötig dieser Vorbehalt ist, zeigt der eine '
+                  f'Fehlgriff, den die Gegenprobe gegen die Ortsnotizen gefunden hat: „Saalburg" landete auf '
+                  f'Saalburg-Ebersdorf in Thüringen, 226&#8239;km daneben. Er ist korrigiert, und die Probe '
+                  f'läuft jetzt bei jedem Lauf mit. <b>{unsicher}</b> Zeilen stehen grau, weil schon die '
+                  f'Lesung unsicher ist.</p>'
+                  f'<p><b>Die Lücke sitzt in der Referenz, nicht in der Erkennung.</b> Gazetteers halten '
+                  f'Siedlungen: von den Ortsnamen sind {quote("Ort")} verortet, von den <b>Flurnamen nur '
+                  f'{quote("Flur")}</b>, von den Waldnamen {quote("Wald")}. Das Limesblatt aber benennt die '
+                  f'Landschaft: Täler, Waldabteilungen, Gewanne, Übergänge. Dasselbe zeigt die Gegenprobe '
+                  f'gegen <a href="hintzelmann.html">Hintzelmanns Register</a> von 1903, das ebenfalls '
+                  f'Landschaft verzeichnet. Und wer einen antiken Namen sucht, findet ihn hier selten: '
+                  f'warum, steht bei den <a href="ortsnamen.html">Ortsnamen</a>.</p></div>')
     art = "Rolle" if what == "persons" else "Art"
     body = (f'<h1>{lab} im Limesblatt</h1>'
-            f'<p class="meta">{rows} {lab}, per <b>LLM-NER</b> aus dem gesamten Volltext extrahiert '
+            f'<p class="lede">{rows} {lab}, per <b>LLM-NER</b> aus dem gesamten Volltext extrahiert '
             f'(heuristisch, Fraktur-OCR; <span class="lc">grau = unsichere OCR-Lesung</span>): token-frei {rec}. '
             f'<b>Jede Spalte sortiert</b> (Klick auf den Kopf), das Suchfeld filtert; die Zahlen springen ins '
             f'Faksimile. Nach <b>Belegen</b> sortiert steht oben, was das Limesblatt am häufigsten nennt.</p>'
+            f'{grenze}'
             f'<table class="reg nerreg"><thead><tr><th>{lab[:-1] if lab.endswith("n") else lab}</th>'
             f'<th>{art}</th><th>Belege</th><th>Normdaten</th><th>Seiten (Band/Druckseite)</th></tr></thead>'
             f'<tbody>{"".join(lis)}</tbody></table>')
@@ -1881,6 +1943,15 @@ def fundindex_page(volumes):
             f'Heuristischer Abgleich auf Fraktur-OCR: eine Nennung belegt die <i>Rede</i> vom Fund, nicht den '
             f'Fund an dieser Stelle. Die katalogisierte Epigraphik steht unter '
             f'<a href="inschriften.html">Inschriften (EDH)</a>.</p>'
+            f'<div class="note"><p><b>Jede Zahl hier ist eine Untergrenze.</b> Gefunden wird, was das Muster '
+            f'trifft; was der Bericht anders benennt oder die Fraktur-OCR zerbricht, fehlt, und zwar '
+            f'ungezählt. Ein Register wie dieses kann sagen, <i>dass</i> etwas vorkommt, nie, dass etwas '
+            f'<i>nicht</i> vorkommt. Wer eine Gattung vermisst, hat damit keinen Negativbefund.</p>'
+            f'<p><b>Und das Limesblatt ist kein Fundkatalog.</b> Es meldet, was während der Grabung auffiel, '
+            f'in der Sprache des Feldberichts. Der Katalog steht in der Endpublikation: der '
+            f'<a href="orl.html">ORL</a> ist sprachlich ein Fundapparat, das Limesblatt eine Trassierung in '
+            f'der ersten Person (<a href="wortschatz.html#gegenprobe">gemessen</a>). Ein Stück, das hier '
+            f'einmal genannt ist, kann dort über Seiten abgehandelt sein, und umgekehrt.</p></div>'
             f'<p class="meta"><b>Springe zu:</b> <a href="#objekte">Einzelfunde ({len(obj)})</a> · '
             f'<a href="#stempellesungen">Stempel-Lesungen ({len(trp) + len(toep)})</a> · '
             f'<a href="#muenzfunde">Datierte Münzen ({len(mz)})</a> · <a href="#gattungen">Gattungen</a> · '
@@ -1905,8 +1976,13 @@ def fundindex_page(volumes):
             f'{mz_t}'
 
             f'<h2 id="gattungen">Fundgattungen</h2>{cat_t}'
-            f'<h2 id="muenzkaiser">Münzkaiser (Datierungsevidenz)</h2>'
-            f'<p class="meta">Bildet die Limes-Belegung ab: flavisch-trajanische Errichtung, severischer Peak, Auslaufen vor 260.</p>{emp_t}'
+            f'<h2 id="muenzkaiser">Münzkaiser: wie oft ein Herrschername fällt</h2>'
+            f'<p class="meta">Gezählt werden <b>Nennungen des Namens</b> im Volltext, nicht bestimmte Münzen: '
+            f'ein Kaiser steht auch dort, wo der Bericht eine Bauphase datiert oder eine Inschrift zitiert. '
+            f'Die Reihenfolge ähnelt der bekannten Belegungsgeschichte (flavisch-trajanische Errichtung, '
+            f'severischer Schwerpunkt, Ende vor 260), <b>belegt sie aber nicht</b>: dafür braucht es bestimmte '
+            f'Fundmünzen, und die stehen, soweit der Bericht Nominal und Kaiser zusammen nennt, oben unter '
+            f'<a href="#muenzfunde">Datierte Münzen</a>.</p>{emp_t}'
             f'<h2 id="sigillata">Terra-Sigillata-Formen</h2>'
             f'<p class="meta">Die Dragendorff-Formtypen als laufendes Datierungsraster: vgl. <a href="bibliographie.html">Dragendorff 1895</a>.</p>{drag_t}'
             f'<h2 id="stempel">Truppenstempel</h2>'
@@ -2022,6 +2098,16 @@ def gesamtbibliographie_page(bibls, idx, abta, jb, rez, zs, bli, hefte):
             f'Leere Felder sind Lücken der Quelle, nicht der Darstellung: Erscheinungsjahre etwa liegen für '
             f'die ORL-Lieferungen nur dort vor, wo der Verbundkatalog sie führt.</p>'
             f'<p class="meta"><b>Bestand:</b> ' + " · ".join(f'{html.escape(g)} {n}' for g, n in gcnt.most_common()) + '</p>'
+            f'<div class="note"><p><b>Diese Tabelle ist ein Raster, kein geprüfter Katalog.</b> Sie führt '
+            f'zusammen, was sechs Register je für sich erschlossen haben, und übernimmt deren Angaben '
+            f'unverändert. Gegen einen Verbundkatalog geprüft ist nur die '
+            f'<a href="bibliographie.html">zitierte Apparatur des Limesblatt</a>, und dort steht das Ergebnis '
+            f'in der Spalte <b>Nachweis</b>. Der Anlass für diese Prüfung war ein Eintrag, den es nicht gab: '
+            f'ein Regex-Namenstreffer war mit einer Umschreibung beschriftet worden, die nach einem Werktitel '
+            f'aussah. Antike Werke bleiben ausgenommen, sie haben keine Titelaufnahme, sondern Ausgaben.</p>'
+            f'<p>Was hier steht, ist außerdem <b>zitierte, nicht erschöpfende Literatur</b>: die Apparatur des '
+            f'Limesblatt, die Lieferungen des ORL und die Organe, in denen die Beteiligten publizierten. Eine '
+            f'Bibliographie der Limesforschung ist es nicht.</p></div>'
             f'<table class="reg fund"><thead><tr><th>Urheber</th><th>Jahr</th><th>Titel</th>'
             f'<th>Organ / Reihe</th><th>Gattung</th><th>Nachweis</th></tr></thead><tbody>{trs}</tbody></table>')
 
@@ -2185,7 +2271,7 @@ def inscriptions_page(edh):
             + tabelle + f'<h2>Nach Fundort</h2>' + "".join(secs))
 
 
-def orl_page(idx, lex, bli=None):
+def orl_page(idx, lex, bli=None, abta=None):
     # bli = orl_band_lieferung.json — der GEPRÜFTE Index. Alles Scan-Abgeleitete (Seitenzahl, EF-Profil,
     # Sigillata-Score, Cross-Work) hing an orl_index.htid, und die Zuordnung war für 30 Bände falsch:
     # die HathiTrust-enumcron „v. N" ist die LIEFERUNG, nicht die Kastell-Nr. Diese Spalten sind daher
@@ -2196,8 +2282,18 @@ def orl_page(idx, lex, bli=None):
     a = idx.get("abteilung_A_strecken", []); b = idx.get("abteilung_B_kastelle", []); c = idx.get("counts", {})
     n_lfg = sum(1 for r in b if lfg_ok.get(r["nr"]))
     n_scharf = sum(1 for r in b if lfg_ok.get(r["nr"]) and "-" not in str(lfg_ok[r["nr"]].get("lieferung", "")))
-    arows = "".join(f'<tr id="orl-a-{s.get("strecke","")}"><td>{s.get("strecke","")}</td><td>{html.escape(s.get("verlauf",""))}</td>'
-                    f'<td>{html.escape(s.get("region",""))}</td></tr>' for s in a)
+    # Der Faszikeltitel der RLK gehört in die Tabelle: die Spalte „Verlauf" ist die Benennung
+    # dieser Edition (von Ort zu Ort), die Kommission benannte nach Flüssen und Landschaft.
+    atitel = {int(r["nr"]): r for r in (abta or {}).get("vergleich", [])
+              if r.get("orl_titel") and str(r.get("nr", "")).isdigit()}
+    def arow(s):
+        nr = s.get("strecke", "")
+        r = atitel.get(int(nr)) if str(nr).isdigit() else None
+        rt = (f'{html.escape(r["orl_titel"])} <span class="meta">{html.escape(str(r.get("orl_jahr") or ""))}</span>'
+              if r else '<span class="meta">kein Titel im Verbundkatalog</span>')
+        return (f'<tr id="orl-a-{nr}"><td>{nr}</td><td>{html.escape(s.get("verlauf",""))}</td>'
+                f'<td>{html.escape(s.get("region",""))}</td><td>{rt}</td></tr>')
+    arows = "".join(arow(s) for s in a)
     QUELLE = {"merten": "Merten 2002", "bibliographie": "Bibliographie des Jahrbuchs",
               "jahresbericht": "RLK-Jahresbericht"}
     def brow(r):
@@ -2238,16 +2334,26 @@ def orl_page(idx, lex, bli=None):
                 f'({od}…), für die <b>Limesblatt-Vorberichte</b> die Trassierung in erster Person ({ld}…). '
                 f'Die vollständige <a href="wortschatz.html#gegenprobe">Wortschatz-Gegenprobe</a> mit beiden '
                 f'Wortlisten steht in der <a href="wortschatz.html">Analyse</a>.</p>')
+    # „15 Strecken-Bände" war sachlich falsch: 15 ist die Zahl der STRECKEN, nicht der Faszikel.
+    # Die RLK fasste mehrere Strecken in einem Band zusammen („Strecke 4 und 5", „Strecke 7-9").
+    n_fasz = len((abta or {}).get("records", []))
+    abt_a = (f'{c.get("abt_A", len(a))} Strecken (Abt.&#8201;A, erschienen in {n_fasz} Faszikeln)'
+             if n_fasz else f'{c.get("abt_A", len(a))} Strecken (Abt.&#8201;A)')
     return (f'<h1>ORL: Der obergermanisch-raetische Limes des Römerreiches</h1>'
             f'<p class="meta">Die <b>Endpublikation</b> der Reichs-Limeskommission (1894–1937): '
-            f'{c.get("abt_A",len(a))} Strecken-Bände (Abt. A) + {c.get("abt_B",len(b))} Kastell-Lieferungen '
+            f'{abt_a} + {c.get("abt_B",len(b))} Kastell-Lieferungen '
             f'(Abt. B): das Standardwerk, in das die laufenden Feldberichte des '
             f'<a href="../index.html">Limesblatt</a> mündeten. Für <b>{n_lfg} Kastelle</b> ist die '
             f'<b>Lieferung</b> quellenmäßig belegt ({n_scharf} kastellscharf), dazu ein konsolidierter '
             f'<a href="orl-register.html">Gesamtapparat</a>, den die in 14 Mappen erschienene Reihe nie besaß.</p>'
             f'{keyn}'
-            f'<h2>Abteilung A: Strecken-Bände (Trassierung)</h2>'
-            f'<table class="reg"><thead><tr><th>Str.</th><th>Verlauf</th><th>Region</th></tr></thead>'
+            f'<h2>Abteilung A: die Strecken (Trassierung)</h2>'
+            f'<p class="meta">Die Spalte <b>Verlauf</b> benennt den Abschnitt von Ort zu Ort, so wie diese '
+            f'Edition ihn führt. Die Spalte <b>Titel der RLK</b> nennt ihn so, wie er erschien: nach Flüssen '
+            f'und Landschaft, und teils zu zweit oder zu dritt in einem Faszikel. Mehr dazu bei den '
+            f'<a href="strecken.html">Strecken</a>.</p>'
+            f'<table class="reg"><thead><tr><th>Str.</th><th>Verlauf</th><th>Region</th>'
+            f'<th>Titel der RLK (Verbundkatalog)</th></tr></thead>'
             f'<tbody>{arows}</tbody></table>'
             f'<h2>Abteilung B: Kastell-Lieferungen</h2>'
             f'<div class="note"><p><b>Zwei Zählungen, die man nicht verwechseln darf.</b> Die '
@@ -4505,7 +4611,15 @@ def organigramm_page(persons, pname):
             f'Verankerung</b> (Museum, Akademie oder Universität): so wird sichtbar, aus welchem Netz von '
             f'Provinzialmuseen und Universitäten sich das Unternehmen speiste. Leitungs-, Institutions- und '
             f'Affiliations-Ebene sind kuratiert; die Kommissar→Strecken-Zuordnung ist datengetrieben.</p>'
-            f'<div style="overflow-x:auto">{"".join(S)}</div>')
+            f'<div style="overflow-x:auto">{"".join(S)}</div>'
+            f'<div class="note"><p><b>Ein Organigramm zeigt Ämter, nicht Arbeit.</b> Die Kästen geben die '
+            f'Zuständigkeit wieder, wie das Statut und die Jahresberichte sie beschreiben; wer tatsächlich mit '
+            f'wem korrespondierte, grub und schrieb, steht nicht darin. Die unterste Ebene ist bewusst ein '
+            f'Sammelkasten: die <b>Ausgräber vor Ort</b> waren die Mehrzahl der Beteiligten, sie erscheinen '
+            f'aber nicht als eigene Amtsstufe, sondern namentlich im '
+            f'<a href="persons.html">Personenregister</a> und bei ihrer '
+            f'<a href="strecken.html">Strecke</a>.</p>'
+            f'{_arbeiter_satz()}</div>')
 
 def willkommen_page(s):
     def tile(icon, title, desc, href):
@@ -4827,7 +4941,7 @@ def main():
     if nm:
         open(os.path.join(DOCS,"register","ortsnamen.html"),"w",encoding="utf-8").write(
             page("Ortsnamen: antik, modern, Flurname", namen_page(nm), 1))
-        open(os.path.join(DOCS,"register","orl.html"),"w",encoding="utf-8").write(page("ORL", orl_page(orl_idx, orl_lex, orl_bli), 1))
+        open(os.path.join(DOCS,"register","orl.html"),"w",encoding="utf-8").write(page("ORL", orl_page(orl_idx, orl_lex, orl_bli, _load_json_any("orl_abtA.json") or {}), 1))
         open(os.path.join(DOCS,"register","orl-register.html"),"w",encoding="utf-8").write(page("ORL: Gesamtapparat", orl_apparatus_page(orl_reg, orl_idx, persons), 1))
         _fj = _load_json_any("orl_faszikel.json")
         _dj = _load_json_any("orl_druckseiten.json")
