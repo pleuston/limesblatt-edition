@@ -1207,11 +1207,39 @@ def page_links(pages, tok2anchor, tok2any=None):
             out.append(f'<a href="../volumes/bd{vol}.html#pb-{html.escape(a)}">{vol}/{html.escape(_tokn(tok))}</a>')
     return ", ".join(out)
 
-def ner_index_page(items, what, tok2anchor, recon, tok2any=None):
+def ner_index_page(items, what, tok2anchor, recon, tok2any=None, occ=None):
+    """Register der Namen bzw. Orte im Text.
+
+    Die Seitenspalte kommt aus dem BELEGINDEX, nicht aus den NER-Seitenangaben: der Index
+    weiß, in welcher SPALTE die Stelle steht, die NER-Angabe kennt nur das Blatt. Bis zum
+    10.08.2026 lief die Spalte über `tok2anchor`, und das ist ein `setdefault` auf die erste
+    Spalte eines Blattes: jeder Verweis zeigte auf Spalte a. Da 3317 von 6856 Belegen in
+    Spalte b stehen, führte fast die Hälfte der Links neben die Stelle, die sie meinte.
+
+    Was der NER kennt, der Lesetext aber nicht ausweist, wird nicht stillschweigend
+    verschwiegen, sondern als eigene, gekennzeichnete Gruppe angehängt: dort gibt es keine
+    ausgezeichnete Stelle zum Anspringen, wohl aber die Seite."""
     lab = "Namen" if what == "persons" else "Orte"
     rows = 0; matched = 0; lis = []; ohne = 0
+    occ = occ or {}
     for it in items:
-        pl = page_links(it.get("pages", []), tok2anchor, tok2any)
+        eid0 = ("psnN_" if what == "persons" else "plcN_") + gazetteer.slug(gazetteer._primary(it["name"])[0])
+        belege = occ.get(eid0) or []
+        gesehen, genau, blaetter = set(), [], set()
+        for band, anker, gedruckt in sorted(belege, key=lambda e: (e[0], int(re.sub(r"\D", "", str(e[2])) or 0))):
+            if (band, anker) in gesehen:
+                continue
+            gesehen.add((band, anker)); blaetter.add(str(anker).split("-")[0].lstrip("0"))
+            genau.append(f'<a href="../volumes/bd{band}.html#pb-{html.escape(str(anker))}">'
+                         f'{band}/{html.escape(str(gedruckt))}</a>')
+        # NER-Seiten, die kein ausgezeichneter Beleg abdeckt
+        rest = [s for s in (it.get("pages") or [])
+                if (m := re.match(r"Bd\.(\d+)\s+S\.(\S+)", s)) and _tokn(m.group(2)) not in blaetter]
+        nur_ner = page_links(rest, tok2anchor, tok2any)
+        pl = ", ".join(genau)
+        if nur_ner:
+            pl += ('<span class="meta"> · ohne Auszeichnung im Lesetext: </span>' if pl
+                   else '<span class="meta">ohne Auszeichnung im Lesetext: </span>') + nur_ner
         if not pl:
             # Eintrag NICHT verwerfen: der Lesetext verlinkt diese Entität, der Anker muss stehen.
             pl = '<span class="meta">Seitenbeleg nicht auflösbar</span>'; ohne += 1
@@ -1238,7 +1266,7 @@ def ner_index_page(items, what, tok2anchor, recon, tok2any=None):
         em = f'<span class="meta">{html.escape(extra)}</span>' if extra else ""
         lc = ' lc' if it.get("cert") != "high" else ""
         eid = ("psnN_" if what == "persons" else "plcN_") + gazetteer.slug(gazetteer._primary(nm)[0])
-        nbel = len(it.get("pages", []))
+        nbel = len(gesehen) or len(it.get("pages", []))
         badge, hz = hz_marke(nm, "person" if what == "persons" else "ort")
         lis.append(f'<tr id="{eid}" class="ix{lc}"{" data-hz=1" if hz else ""}>'
                    f'<td><b>{disp}</b>{badge}</td><td>{em}</td>'
@@ -4408,6 +4436,20 @@ def impressum_page():
 # rlk_jahresberichte.py --reocr). archive.org stellt zu jedem Blatt einen IIIF-Image-Service
 # bereit — `iiif.archive.org/iiif/<item>$<blatt>` —, also lässt sich dieselbe Zweipanel-Ansicht
 # bauen wie bei den Limesblatt-Bänden: links der Lesetext, rechts das Blatt, aneinander gekoppelt.
+# Versalzeilen werden für die Anzeige zurückgesetzt. `str.title()` schreibt dabei JEDES Wort
+# gross (»Bericht Über Die Arbeit Der Reichslimeskommission«); im Deutschen sind das Funktions-
+# wörter und bleiben klein. Substantive erkennt kein Verfahren ohne Wörterbuch, aber die
+# geschlossene Klasse der Funktionswörter ist abzählbar, und mehr braucht es für Titelzeilen.
+JB_KLEIN = {"über", "die", "der", "des", "dem", "den", "das", "im", "in", "von", "vom", "bis",
+            "und", "am", "an", "zu", "zur", "zum", "für", "auf", "aus", "bei", "mit", "nach",
+            "seit"}          # »Ende«/»Mitte« NICHT: in »von Mitte Dezember« sind es Substantive
+
+
+def _jb_kopf_lesbar(s):
+    w = [t.capitalize() for t in s.split()]
+    return " ".join([w[0]] + [t if t.lower() not in JB_KLEIN else t.lower() for t in w[1:]])
+
+
 JB_KOPFZEILE = re.compile(r"^[A-ZÄÖÜ][A-ZÄÖÜ0-9 .,:;()\-–']{5,}$")
 # Nur die Klammerform »1)« zählt als Aufzählung. »17. October« ist ein Datum, kein
 # Gliederungspunkt — die Punktform holte in den frühen Berichten reihenweise Datumsangaben herein.
@@ -4443,6 +4485,14 @@ def jb_struktur(txt):
         n = re.sub(r"[^A-ZÄÖÜ]", "", s.upper())
         if len(n) < 8:
             return
+        # Der ERSTE Versalblock eines Berichts ist seine Überschrift, nie ein Kolumnentitel:
+        # vor der ersten Seite gibt es keine Seite, deren Titel wiederholt werden könnte. Ohne
+        # diese Ausnahme verschwand die Überschrift genau dort, wo sie steht, denn sie ist mit
+        # dem Kolumnentitel wortgleich (»Bericht über die Arbeiten der Reichslimeskommission
+        # im Jahre 1899«) und fiel dem Lauftitel-Abgleich zum Opfer.
+        if not absaetze:
+            absaetze.append(("h", s)); kopfe.append(s)
+            return
         for lauf in JB_LAUFTITEL:
             if n in lauf or lauf in n or (len(n) > 12 and n[:12] in lauf):
                 return
@@ -4467,7 +4517,7 @@ def jb_struktur(txt):
     for art, s in absaetze:
         if art == "h":
             aid = "jbk-" + gazetteer.slug(s)[:40]
-            lab = s.title() if s.isupper() else s
+            lab = _jb_kopf_lesbar(s) if s.isupper() else s
             marken.append((lab, aid))
             out.append(f'<h3 id="{aid}">{html.escape(lab)}</h3>')
         else:
@@ -5241,9 +5291,9 @@ def main():
     def loadj(fn): return json.load(open(os.path.join(nerd,fn),encoding="utf-8")) if os.path.exists(os.path.join(nerd,fn)) else ([] if "ner_" in fn else {})
     ner_p, ner_pl = loadj("ner_persons.json"), loadj("ner_places.json")
     rec_p, rec_pl = loadj("recon_persons.json"), loadj("recon_places.json")
-    nb, nh = ner_index_page(ner_p, "persons", tok2anchor, rec_p, tok2any)
+    nb, nh = ner_index_page(ner_p, "persons", tok2anchor, rec_p, tok2any, occ)
     open(os.path.join(DOCS,"register","namen.html"),"w",encoding="utf-8").write(page("Namen im Limesblatt", nb, 1, nh))
-    ob, oh = ner_index_page(ner_pl, "places", tok2anchor, rec_pl, tok2any)
+    ob, oh = ner_index_page(ner_pl, "places", tok2anchor, rec_pl, tok2any, occ)
     open(os.path.join(DOCS,"register","orte-index.html"),"w",encoding="utf-8").write(page("Orte im Limesblatt", ob, 1, oh))
     # GeoJSON der im Volltext genannten, verorteten Orte (Map-Layer)
     nsites = []; ner_attention = defaultdict(lambda: [0, 0])   # sid -> [Erwähnungen, Orte]
