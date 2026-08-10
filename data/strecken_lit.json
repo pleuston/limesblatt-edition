@@ -1,0 +1,98 @@
+{
+ "_beschreibung": "Artikel zu den Linienabschnitten des Limes, je Strecke zugeordnet.",
+ "_befund": "Keine der 15 RLK-Strecken hat einen eigenen Artikel oder eine Infobox. Die Wikipedia teilt die Linie nach LANDSCHAFTEN ein (Wetterau-Limes, Mainlimes, Neckar-Odenwald-Limes), nicht nach der Streckeneinteilung der Kommission. Das ist dieselbe Beobachtung wie beim Gazetteer: verzeichnet werden Plätze und benannte Landschaften, nicht Verläufe.",
+ "stand": "2026-08-10",
+ "zuordnung": {
+  "4": "Wetterau-Limes",
+  "5": "Wetterau-Limes",
+  "6": "Mainlimes",
+  "10": "Neckar-Odenwald-Limes",
+  "11": "Neckar-Odenwald-Limes"
+ },
+ "artikel": {
+  "Mainlimes": {
+   "titel": "Mainlimes",
+   "wikidata": "Q1885643",
+   "wd": {
+    "staat": "Deutschland (Q183)"
+   },
+   "literatur": [
+    "Dietwulf Baatz, Fritz-Rudolf Herrmann (Hrsg.): Die Römer in Hessen. Lizenzausgabe der 3. Auflage von 1989. Nikol, Hamburg 2002, ISBN 3-933203-58-9.",
+    "Bernhard Beckmann: Neuere Untersuchungen zum römischen Limeskastell Miltenberg-Altstadt. Verlag Michael Lassleben, Kallmünz 2004, ISBN 3-7847-5085-0.",
+    "Bernd Steidl: Welterbe Limes – Roms Grenze am Main. Begleitband zur Ausstellung in der Archäologischen Staatssammlung München 2008. Logo, Obernburg 2008, ISBN 3-939462-06-3.",
+    "Kurt Stade: Die Mainlinie von Seligenstadt bis Miltenberg mit einem Nachtrage zur Abt. B Nr. 33 Kastell Stockstadt. In: Ernst Fabricius, Felix Hettner, Oscar von Sarwey (Hrsg.): Der obergermanisch-raetische Limes des Roemerreiches. (ORL) Abt. A, Strecke 6 (1933), S. 3–70.",
+    "Britta Rabold, Egon Schallmayer, Andreas Thiel: Der Limes. Die Deutsche Limes-Straße vom Rhein bis zur Donau. Verein Deutsche Limes-Straße, K. Theiss Verlag, Stuttgart 2000, ISBN 3-8062-1461-1."
+   ],
+   "artikel": "https://de.wikipedia.org/wiki/Mainlimes",
+   "infobox": false
+  },
+  "Neckar-Odenwald-Limes": {
+   "titel": "Neckar-Odenwald-Limes",
+   "wikidata": "Q1973672",
+   "wd": {
+    "staat": "Deutschland (Q183)",
+    "denkmalstatus": "Kulturdenkmal in Deutschland (Q11691318)",
+    "commons": "Neckar-Odenwald-Limes"
+   },
+   "literatur": [
+    "Dietwulf Baatz: Der Römische Limes. Archäologische Ausflüge zwischen Rhein und Donau. 4., völlig neu bearbeitete und erweiterte Auflage. Gebr. Mann, Berlin 2000, ISBN 3-7861-2347-0; insbes. S. 70–73, 179–214 und 343–346.",
+    "Egon Schallmayer: Der Odenwaldlimes. Theiss, Stuttgart 1984, ISBN 3-8062-0328-8.",
+    "Egon Schallmayer: Der Odenwaldlimes. Entlang der römischen Grenze zwischen Main und Neckar. Theiss, Stuttgart 2010, ISBN 978-3-8062-2309-5.",
+    "Egon Schallmayer: Der Odenwaldlimes. Neueste Forschungsergebnisse, Beiträge zum wissenschaftlichen Kolloquium am 19. März 2010 in Michelstadt, Saalburg-Schriften 8, Römerkastell Saalburg Archäologischer Park, Bad Homburg v. d. H. 2012, ISBN 978-3-931267-07-0.",
+    "Rainer Türk: Wanderungen am Limes. Brunnengräber, Lorsch 2008, ISBN 978-3-9811444-1-3.",
+    "Géza Alföldy: Caius Popilius Carus Pedo und die Vorverlegung des obergermanischen Limes. In: Fundberichte aus Baden-Württemberg 8. 1983, S. 55–67, doi:10.11588/fbbw.1983.0.26572.",
+    "Dietwulf Baatz: Kastell Hesselbach und andere Forschungen am Odenwaldlimes. Gebr. Mann, Berlin 1973, ISBN 3-7861-1059-X, (= Limesforschungen, 12).",
+    "Dietwulf Baatz: Die Wachttürme am Limes (= Kleine Schriften zur Kenntnis der römischen Besetzungsgeschichte Südwestdeutschlands, Nr. 15). Stuttgart 1976.",
+    "Dietwulf Baatz, Fritz-Rudolf Herrmann: Die Römer in Hessen. Lizenzausgabe. Nikol, Hamburg 2002, ISBN 3-933203-58-9.",
+    "Willi Beck, Dieter Planck: Der Limes in Südwestdeutschland. 2. Auflage. Theiss, Stuttgart 1987, ISBN 3-8062-0496-9.",
+    "Stephan Bender: [http://www.rp.baden-wuerttemberg.de/servlet/PB/show/1329850/rps-pr-11-07-13-Welterbe_Limes.pdf Unser Bild vom Neckarlimes: bald nur noch Geschichte?] (PDF; 6 MB). In: Archäologie in Deutschland. 3/2011, Theiss, Stuttgart 2011, , S. 38f.",
+    "Stephan Bender: Einem neuen Limes auf der Spur – Forschungen an der Nahtstelle von Odenwald- und Neckarlimes in Bad Friedrichshall. In: Archäologische Ausgrabungen in Baden-Württemberg 2011, S. 44–49.",
+    "Stephan Bender: Der Neckarlimes. Forschungsfortschritt und Neubewertung. In: Der Limes. Nachrichtenblatt der Deutschen Limeskommission, 12. Jahrgang 2018, Heft 1–2, S. 26–29.",
+    "Helmut Castritius, Manfred Clauss, Leo Hefner: Die römischen Steininschriften des Odenwaldes (RSO). In: Winfried Wackerfuß (Hrsg.): Beiträge zur Erforschung des Odenwaldes und seiner Randlandschaften II. Festschrift für Hans H. Weber. Breuberg-Bund, Breuberg-Neustadt 1977, S. 237–308.",
+    "Helmut Castritius, Manfred Clauss, Leo Hefner: Die römischen Steininschriften des Odenwaldes und seiner Randlandschaften (RSOR). In: Winfried Wackerfuß (Hrsg.): Beiträge zur Erforschung des Odenwaldes und seiner Randlandschaften III. Breuberg-Bund, Breuberg-Neustadt 1980, S. 193–222.",
+    "Philipp Filtzinger (Hrsg.): Die Römer in Baden-Württemberg. 3. Auflage. Theiss, Stuttgart 1986, ISBN 3-8062-0287-7.",
+    "Anita Gaubatz-Sattler: Zur zivilen Besiedlung zwischen den Limites im Neckar-Odenwald-Kreis. In: Andreas Thiel (Hrsg.): Neue Forschungen am Limes. 4. Fachkolloquium der Deutschen Limeskommission 27./28. Februar 2007 in Osterburken. Theiss, Stuttgart 2008, ISBN 978-3-8062-2251-7, S. 111–121 (= Beiträge zum Welterbe Limes, 3)",
+    "Claus-Michael Hüssen: Die römische Besiedlung im Umland von Heilbronn. Theiss, Stuttgart 2000, ISBN 3-8062-1493-X, (= Forschungen und Berichte zur Vor- und Frühgeschichte in Baden-Württemberg, 78).",
+    "Anne Johnson: Römische Kastelle des 1. und 2. Jahrhunderts n. Chr. in Britannien und in den germanischen Provinzen des Römerreiches. Philipp von Zabern, Mainz 1987, ISBN 3-8053-0868-X, (= Kulturgeschichte der antiken Welt, 37).",
+    "Martin Kemkes: Vom Rhein an den Limes und wieder zurück. Die Besetzungsgeschichte Südwestdeutschlands. In: Dieter Planck u. a.: Imperium Romanum. Roms Provinzen an Neckar, Rhein und Donau. Theiss, Stuttgart 2005, ISBN 3-8062-2140-5, S. 44–53.",
+    "Margot Klee: Der römische Limes im Hessen. Geschichte und Schauplätze des UNESCO-Welterbes. Verlag Friedrich Pustet, Regensburg 2009, ISBN 978-3-7917-2232-0.",
+    "Margot Klee: Der Limes zwischen Rhein und Main. Vom Beginn des obergermanischen Limes bei Rheinbrohl bis zum Main bei Grosskrotzenburg. Theiss, Stuttgart 1989, ISBN 3-8062-0276-1.",
+    "Klaus Kortüm: Zur Datierung der römischen Militäranlagen im obergermanisch-raetischen Limesgebiet. In: Saalburg-Jahrbuch. 49, 1998. Zabern, Mainz 1998, S. 5–65.",
+    "Dieter Planck (Hrsg.): Die Römer in Baden-Württemberg. Theiss, Stuttgart 2005, ISBN 3-8062-1555-3.",
+    "Dieter Planck: Das römische Walheim. Ausgrabungen 1980–1988. LDA Baden-Württemberg, Stuttgart 1991, ISBN 3-927714-10-0, (= Archäologische Informationen aus Baden-Württemberg, 18).",
+    "Britta Rabold: Der Odenwaldlimes in neuem Licht. Forschungsstand 2005 zum Kastellvicus von Mudau-Schloßau. In: Gabriele Seitz (Hrsg.): Im Dienste Roms. Festschrift für Hans Ulrich Nuber. Greiner, Remshalden 2006, ISBN 3-935383-49-5, S. 279–284.",
+    "Jörg Scheuerbrandt et al.: Die Römer auf dem Gebiet des Neckar-Odenwald-Kreises. Grenzzone des Imperium Romanum. Herausgegeben vom Kreisarchiv des Neckar-Odenwald-Kreises. verlag regionalkultur, Ubstadt-Weiher 2009, ISBN 978-3-89735-524-8, (Beiträge zur Geschichte des Neckar-Odenwald-Kreises, 3).",
+    "Hans Schönberger: Die römischen Truppenlager der frühen und mittleren Kaiserzeit zwischen Nordsee und Inn. In: Berichte der Römisch-Germanischen Kommission, 66 (1985), S. 321ff.",
+    "Michael P. Speidel: Die Brittones Elantienses und die Vorverlegung des obergermanisch-raetischen Limes. In: Fundberichte aus Baden-Württemberg, 11 (1986), S. 309ff, doi:10.11588/fbbw.1986.0.27801.",
+    "Bernd Steidl: Welterbe Limes – Roms Grenze am Main. Begleitband zur Ausstellung in der Archäologischen Staatssammlung München 2008. Logo, Obernburg 2008, ISBN 978-3-939462-06-4.",
+    "Bruno Trunk: Am Odenwaldlimes. Römerspuren in Schloßau und Umgebung. Buchen 2007, ISBN 978-3-936866-17-9.",
+    "Christoph Unz: Grinario. Das römische Kastell und Dorf in Köngen. Theiss, Stuttgart 1982, ISBN 3-8062-0302-4, (= Führer zu archäologischen Denkmälern in Baden-Württemberg, 8).",
+    "Johann Friedrich Knapp: Römische Denkmale des Odenwaldes, insbesondere der Grafschaft Erbach und Herrschaft Breuberg. (1813, 1814²,1854³)",
+    "Der obergermanisch-raetische Limes des Roemerreiches. Abteilung A, Band 5: Strecke 10 (Der Odenwaldlimes von Wörth am Main bis Wimpfen am Neckar), 1926, 1935; und Strecke 11 (Die Neckarlinie von Wimpfen bis Rottweil und Hüfingen), 1935.",
+    "Der obergermanisch-raetische Limes des Roemerreiches. Abteilung B, Band 5: Kastelle 46 (Friedrich Kofler: Das Kastell Lützelbach, 1904), 46a (Ernst Fabricius: Das Kastell Arnheiter Hof, 1915), 46b (Eduard Anthes: Das Kastell Seckmauern, 1914), 47 (Friedrich Kofler: Das Kastell Hainhaus bei Vielbrunn, 1897), 48 (Friedrich Kofler: Das Kastell Eulbach, 1896), 49 (Friedrich Kofler: Das Kastell Wuerzberg, 1896), 50 (Friedrich Kofler: Das Kastell Hesselbach, 1896), 51 (Karl Schumacher: Das Kastell bei Schlossau, 1900), 52 (Karl Schumacher: Das Kastell Oberscheidenthal, 1897), 53/53.1 (Karl Schumacher: Die Kastelle bei Neckarburken, 1898), 54/55 (Karl Schumacher: Kastell und Vicus bei Wimpfen, 1900), 56 (Heinrich Steimle: Das Kastell Böckingen, 1898), 57 (Adolf Mettler: Kastell Walheim, 1897), 58 (Adolf Mettler: Das Kastell Benningen, 1902), 59 (Ernst Kapf, Walter Barthel: Das Kastell Cannstatt, 1907), 60 (Adolf Mettler: Das Kastell Köngen, 1907), 61 (Oscar Paret: Das Kastell Rottenburg, 1936), 61a (Rudolf Herzog: Das Kastell Sulz, 1897), 61b (Eugen Nägele: Das Kastell Waldmoessingen, 1897), 62 (Wilhelm Schleiermacher: Das große Lager und die Kastelle von Rottweil, 1936), 62a (Paul Revellio: Das Kastell Hüfingen, 1937)."
+   ],
+   "artikel": "https://de.wikipedia.org/wiki/Neckar-Odenwald-Limes",
+   "infobox": false
+  },
+  "Wetterau-Limes": {
+   "titel": "Wetterau-Limes",
+   "wikidata": "Q1400012",
+   "wd": {
+    "koordinaten": "50.4997, 8.69917",
+    "verwaltungseinheit": "Hessen (Q1199)",
+    "staat": "Deutschland (Q183)",
+    "denkmalstatus": "Kulturdenkmal in Deutschland (Q11691318)",
+    "bild": "Wetteraulimes Wp 5 9.jpg",
+    "commons": "Wetterau-Limes"
+   },
+   "literatur": [
+    "Dietwulf Baatz und Fritz-Rudolf Herrmann (Hrsg.): Die Römer in Hessen. Lizenzausgabe der 3. Auflage von 1989. Nikol, Hamburg 2002, ISBN 3-933203-58-9.",
+    "Marion Mattern: Römische Steindenkmäler vom Taunus- und Wetteraulimes mit Hinterland zwischen Heftrich und Großkrotzenburg. Habelt, Bonn 2001, ISBN 3-88467-056-5, (Corpus Signorum Imperii Romani, Deutschland, 2,12)",
+    "Barbara Oldenstein-Pferdehirt: Die römischen Hilfstruppen nördlich des Mains. Forschungen zum Obergermanischen Heer I. In: Jahrbuch des Römisch-Germanischen Zentralmuseums 30, 1983, S. 303–348.",
+    "Vera Rupp, Heide Birley: Wanderungen am Wetteraulimes. Archäologische Wanderungen am Limes vom Köpperner Tal im Taunus bis zur Drususeiche bei Limeshain. Theiss, Stuttgart 2005, ISBN 3-8062-1551-0, (Führer zur hessischen Vor- und Frühgeschichte, 6)"
+   ],
+   "artikel": "https://de.wikipedia.org/wiki/Wetterau-Limes",
+   "infobox": false
+  }
+ }
+}

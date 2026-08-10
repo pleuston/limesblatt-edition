@@ -782,7 +782,7 @@ def karte_page(places, sites, feats):
     return body, head
 
 
-def strecken_page(strecken, str_forts, persons, pname, strecke_sites, orl_idx, volumes, abta=None):
+def strecken_page(strecken, str_forts, persons, pname, strecke_sites, orl_idx, volumes, abta=None, slit=None):
     """Die 15 Abschnitte, jeder mit Vorbericht und Endpublikation nebeneinander.
 
     Der Titel der Notiz ist NICHT der Titel der RLK. Diese Seite nannte die Abschnitte bisher
@@ -853,6 +853,31 @@ def strecken_page(strecken, str_forts, persons, pname, strecke_sites, orl_idx, v
         if ds:
             shown = ", ".join(f'<a href="places.html#dare_{html.escape(str(x.get("id","")))}">{html.escape(x.get("name","?"))}</a>' for x in ds[:24])
             extra += f'<div class="x">○ Türme/Stellen (DARE, {len(ds)}): {shown}{" +"+str(len(ds)-24) if len(ds) > 24 else ""}</div>'
+        # Literatur: der Abt.-A-Faszikel ist die Erstpublikation der Strecke, der
+        # Landschaftsartikel kommt nur dazu, wo einer dieselbe Linie meint.
+        lit = []
+        if ra:
+            jj = f' ({html.escape(str(ra["orl_jahr"]))})' if ra.get("orl_jahr") else ""
+            lit.append(f'<li><b>ORL, Abteilung A</b>: „{html.escape(ra["orl_titel"])}"{jj} '
+                       f'<span class="meta">(Erstpublikation der Strecke, Nachweis K10plus)</span></li>')
+        art = ((slit or {}).get("artikel") or {}).get(((slit or {}).get("zuordnung") or {}).get(str(nr), ""))
+        if art:
+            q = art.get("wikidata") or ""
+            tt = art.get("literatur") or []
+            # Die Titel gehören dem LANDSCHAFTSARTIKEL, nicht der Strecke: bei Strecke 4 und 5
+            # steht deshalb zweimal dieselbe Liste, und das ist richtig so.
+            aufk = ("<details><summary>Literatur des Artikels anzeigen</summary>"
+                    '<ul class="nerlist lit">'
+                    + "".join(f"<li>{html.escape(t)}</li>" for t in tt) + "</ul></details>") if tt else ""
+            lit.append(f'<li><a href="{html.escape(art["artikel"])}">{html.escape(art["titel"])}</a> '
+                       f'<span class="meta">(de.wikipedia, Artikel zum Linienabschnitt, {len(tt)} Literaturtitel'
+                       + (f', <a href="https://www.wikidata.org/wiki/{html.escape(q)}">{html.escape(q)}</a>' if q else "")
+                       + f')</span>{aufk}</li>')
+        if lit:
+            extra += ('<div class="x">📚 Literatur: <ul class="nerlist">' + "".join(lit) + "</ul></div>")
+        else:
+            extra += ('<div class="x meta">📚 Für diesen Abschnitt führt der Verbundkatalog keinen '
+                      'Faszikeltitel und die Wikipedia keinen Artikel.</div>')
         if forts: extra += f'<div class="x">🗺️ <a href="places.html?strecke={s["id"]}">Auf der Karte zeigen</a></div>'
         bet = []
         if komm: bet.append("Streckenkommissar: " + ", ".join(
@@ -886,7 +911,16 @@ def strecken_page(strecken, str_forts, persons, pname, strecke_sites, orl_idx, v
             f'nachgezählt), auch in keinem Normdatensatz. Es ist eine Setzung dieser Edition, kein Befund. Wo die Kommission eine Grenze ohne Ortsnamen '
             f'zog, benannte sie sie über einen Bezugspunkt („Köpperner Tal <i>bei der Saalburg</i>", „Haghof '
             f'<i>bei Welzheim</i>"), und die Bezugskastelle sind hier verzeichnet.</p>'
-            f'<p class="meta">Die Turmstellen sind über den geokodierten Trassenverlauf dem nächsten Abschnitt '
+            + ((f'<p><b>Für die Strecken gibt es keine Basisdaten von außen, und das hat einen Grund.</b> '
+                f'Während jedes Kastell in der Wikipedia eine Infobox mit Typ, Truppe und Fläche trägt '
+                f'(<a href="kastelle.html">Kastelltabelle</a>), hat <b>keine der 15 Strecken einen eigenen '
+                f'Artikel oder eine Infobox</b>. Die Wikipedia teilt die Linie nach <i>Landschaften</i> ein '
+                f'(Wetterau-Limes, Mainlimes, Neckar-Odenwald-Limes), nicht nach der Streckeneinteilung der '
+                f'Kommission: nur {len((slit or {}).get("zuordnung") or {})} der 15 Abschnitte lassen sich '
+                f'einem solchen Artikel überhaupt zuordnen. Das ist dieselbe Beobachtung wie beim Gazetteer, '
+                f'der Siedlungen führt und keine Verläufe. Was es je Strecke gibt, hat diese Edition selbst: '
+                f'den Faszikel, die Kastelle, die Vorberichte.</p>') if slit else "")
+            + f'<p class="meta">Die Turmstellen sind über den geokodierten Trassenverlauf dem nächsten Abschnitt '
             f'zugeordnet (≤ ~15&#8239;km); in Doppellinien-Zonen näherungsweise. Quelle der RLK-Titel: '
             f'K10plus-Verbundkatalog über SRU. Der Faszikeltitel <i>benennt</i> die Grenze, er verortet sie '
             f'nicht.</p></div>'
@@ -5206,7 +5240,8 @@ def main():
     orl_idx = _orl_load("orl_index.json") or {"abteilung_A_strecken": [], "abteilung_B_kastelle": []}
     orl_lex = _orl_load("orl_vs_limesblatt.json")
     open(os.path.join(DOCS,"register","strecken.html"),"w",encoding="utf-8").write(page("Strecken", strecken_page(strecken, str_forts, persons, pname, strecke_sites, orl_idx, volumes,
-                                                                     _load_json_any("orl_abtA.json") or {}), 1))
+                                                                     _load_json_any("orl_abtA.json") or {},
+                                                                     _load_json_any("strecken_lit.json") or {}), 1))
     open(os.path.join(DOCS,"register","organigramm.html"),"w",encoding="utf-8").write(page("Organigramm", organigramm_page(persons, pname), 1))
     nerd = os.path.join(REPO, "data")
     def loadj(fn): return json.load(open(os.path.join(nerd,fn),encoding="utf-8")) if os.path.exists(os.path.join(nerd,fn)) else ([] if "ner_" in fn else {})
