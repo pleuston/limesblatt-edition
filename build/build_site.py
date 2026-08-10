@@ -819,8 +819,9 @@ def strecken_page(strecken, str_forts, persons, pname, strecke_sites, orl_idx, v
             f'heißt in dieser Edition von Ort zu Ort („Strecke 07 – Miltenberg–Rehberg"). Die RLK selbst '
             f'benannte ihre Strecken <b>nach Flüssen und Landschaft</b>: Strecke 1 ist bei ihr „Der Limes '
             f'<i>vom Rhein bis zur Lahn</i>", Strecke 15 „von Kipfenberg <i>bis zur Donau</i>". Wo der '
-            f'Verbundkatalog den Faszikeltitel führt, steht er beim Abschnitt: <b>{mit} von {len(strecken)}</b>. '
-            f'Für Strecke {", ".join(str(n) for n in ohne)} liefert er ihn nicht.</p>'
+            f'Verbundkatalog den Faszikeltitel führt, steht er beim Abschnitt: <b>{mit} von {len(strecken)}</b>.'
+            + (f' Für Strecke {", ".join(str(n) for n in ohne)} liefert er ihn nicht.' if ohne else "")
+            + f'</p>'
             f'<p>Zwei Folgen daraus, die man beim Zitieren kennen muss. Erstens ist die Einteilung hier '
             f'<b>feiner als die Publikation</b>: mehrere Abschnitte teilen sich <i>einen</i> Faszikel '
             f'({samml_txt}). Zweitens ist <b>„Rehberg" keine Grenze der RLK</b>: das Wort steht in keinem '

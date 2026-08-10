@@ -2,8 +2,8 @@
  "_beschreibung": "ORL Abteilung A: die Streckentitel der RLK selbst (K10plus/SRU) gegen die Vault-Titel. Siehe Docstring — der Vault-Beleg war zirkulär.",
  "_vorbehalt": "Der Faszikeltitel BENENNT die Grenze, er verortet sie nicht. Strecke 11 und 12 liefert K10plus mit diesem Query nicht.",
  "stand": {
-  "records": 14,
-  "strecken_mit_orl_titel": 12,
+  "records": 21,
+  "strecken_mit_orl_titel": 15,
   "vault_strecken": 15,
   "sammelfaszikel": [
    [
@@ -11,23 +11,39 @@
     2
    ],
    [
+    3,
+    4,
+    5
+   ],
+   [
     4,
     5
    ],
    [
     6,
+    7,
+    8,
     9
    ],
    [
     7,
+    8,
     9
+   ],
+   [
+    10,
+    11
+   ],
+   [
+    12,
+    13
+   ],
+   [
+    14,
+    15
    ]
   ],
-  "ohne_orl_titel": [
-   8,
-   11,
-   12
-  ]
+  "ohne_orl_titel": []
  },
  "vergleich": [
   {
@@ -102,6 +118,7 @@
    "orl_jahr": "1933",
    "orl_band": "Abt. A, Bd. 4",
    "orl_sammelfaszikel_mit": [
+    8,
     9
    ],
    "beleg": "k10plus"
@@ -110,11 +127,14 @@
    "nr": 8,
    "vault_notiz": "Strecke 08 – Rehberg–Jagsthausen (Odenwaldlinie)",
    "vault_verlauf": "Rehberg–Jagsthausen",
-   "orl_titel": null,
-   "orl_jahr": null,
-   "orl_band": null,
-   "orl_sammelfaszikel_mit": [],
-   "beleg": "offen"
+   "orl_titel": "Strecke 7 - 9 : der obergermansche Limes von Miltenberg am Main bis zum Haghof bei Welzheim; nach den Untersuchungen der Streckenkommissare Wilhelm Conrady, Karl Schumacher, Gustav Sixt und Friedrich Leonhard / bearb. von Ernst Fabricius",
+   "orl_jahr": "1933",
+   "orl_band": "Abt. A, Bd. 4",
+   "orl_sammelfaszikel_mit": [
+    7,
+    9
+   ],
+   "beleg": "k10plus"
   },
   {
    "nr": 9,
@@ -124,7 +144,8 @@
    "orl_jahr": "1933",
    "orl_band": "Abt. A, Bd. 4",
    "orl_sammelfaszikel_mit": [
-    7
+    7,
+    8
    ],
    "beleg": "k10plus"
   },
@@ -142,21 +163,25 @@
    "nr": 11,
    "vault_notiz": "Strecke 11 – Bad Wimpfen–Köngen (Neckarlinie)",
    "vault_verlauf": "Bad Wimpfen–Köngen",
-   "orl_titel": null,
-   "orl_jahr": null,
-   "orl_band": null,
-   "orl_sammelfaszikel_mit": [],
-   "beleg": "offen"
+   "orl_titel": "Die Strecken 10 und 11",
+   "orl_jahr": "1935",
+   "orl_band": "",
+   "orl_sammelfaszikel_mit": [
+    10
+   ],
+   "beleg": "k10plus"
   },
   {
    "nr": 12,
    "vault_notiz": "Strecke 12 – Haghof–Lorch–Aalen–Mönchsroth",
    "vault_verlauf": "Haghof–Lorch–Aalen–Mönchsroth",
-   "orl_titel": null,
-   "orl_jahr": null,
-   "orl_band": null,
-   "orl_sammelfaszikel_mit": [],
-   "beleg": "offen"
+   "orl_titel": "Die Strecken 12 und 13",
+   "orl_jahr": "1935",
+   "orl_band": "Abt. A, Bd. 6",
+   "orl_sammelfaszikel_mit": [
+    13
+   ],
+   "beleg": "k10plus"
   },
   {
    "nr": 13,
@@ -240,6 +265,8 @@
   {
    "strecken": [
     6,
+    7,
+    8,
     9
    ],
    "jahr": "1933",
@@ -250,6 +277,7 @@
   {
    "strecken": [
     7,
+    8,
     9
    ],
    "jahr": "1933",
@@ -313,12 +341,88 @@
   },
   {
    "strecken": [
-    1
+    3,
+    4,
+    5
    ],
-   "jahr": "1914",
-   "band": "1",
-   "titel": "Strecke 1: Der Limes vom Rhein bis zur Lahn / bearb. von Ernst Fabricius",
-   "sammelband": false
+   "jahr": "1936",
+   "band": "",
+   "titel": "Die Strecken 3 - 5 : (Tafeln und Kartenbeilagen) : hrsg. von Ernst Fabricius ...",
+   "sammelband": true
+  },
+  {
+   "strecken": [
+    3,
+    4,
+    5
+   ],
+   "jahr": "1936",
+   "band": "",
+   "titel": "Die Strecken 3 - 5 : (Text) : hrsg. von Ernst Fabricius ...",
+   "sammelband": true
+  },
+  {
+   "strecken": [
+    3,
+    4,
+    5
+   ],
+   "jahr": "1936",
+   "band": "Abt. A, Bd. 2,2",
+   "titel": "Die Strecken 3 - 5 (Tafeln und Kartenbeilagen)",
+   "sammelband": true
+  },
+  {
+   "strecken": [
+    3,
+    4,
+    5
+   ],
+   "jahr": "1936",
+   "band": "Abt. A, Bd. 2,1",
+   "titel": "Die Strecken 3 - 5",
+   "sammelband": true
+  },
+  {
+   "strecken": [
+    12,
+    13
+   ],
+   "jahr": "1935",
+   "band": "Abt. A, Bd. 6",
+   "titel": "Die Strecken 12 und 13",
+   "sammelband": true
+  },
+  {
+   "strecken": [
+    10,
+    11
+   ],
+   "jahr": "1935",
+   "band": "",
+   "titel": "Die Strecken 10 und 11",
+   "sammelband": true
+  },
+  {
+   "strecken": [
+    14,
+    15
+   ],
+   "jahr": "1933",
+   "band": "",
+   "titel": "Die Strecken 14 - 15",
+   "sammelband": true
+  },
+  {
+   "strecken": [
+    7,
+    8,
+    9
+   ],
+   "jahr": "1933",
+   "band": "Abt. A, Bd. 4",
+   "titel": "Die Strecken 7 - 9",
+   "sammelband": true
   }
  ]
 }
