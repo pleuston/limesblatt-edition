@@ -743,14 +743,19 @@ def jahresberichte_tei(repo, quelle=None):
         if not seiten:
             continue
         item = b.get("item") or f"jahrbuchdeskaise{b['band']:02d}kaisrich"
-        sn = [{"n": str(s["leaf"]),
+        # n = DRUCKSEITE des Anzeigers, wo sie am Kolumnentitel belegt ist: danach wird
+        # zitiert. Nur wo keine belegbar war, steht ersatzweise die Blattnummer des Scans.
+        sn = [{"n": str(s.get("seite") or s["leaf"]),
                "facs": f"https://iiif.archive.org/iiif/{item}%24{s['leaf'] + 1}/full/max/0/default.jpg",
                "text": s.get("text", "")} for s in seiten]
         _tei_datei(os.path.join(repo, "tei", "jahresberichte"), f'jb{b["jahrgang"]}',
                    f'Bericht über die Thätigkeit der Reichs-Limeskommission {b["jahrgang"]}',
                    "Reichs-Limeskommission",
                    f'Jahrbuch des Kaiserlich Deutschen Archäologischen Instituts, Band {b["band"]} — '
-                   f'Archäologischer Anzeiger, Blatt {seiten[0]["leaf"]}–{seiten[-1]["leaf"]}',
+                   f'Archäologischer Anzeiger, '
+                   + (f'S. {seiten[0]["seite"]}–{seiten[-1]["seite"]}'
+                      if seiten[0].get('seite') and seiten[-1].get('seite')
+                      else f'Blatt {seiten[0]["leaf"]}–{seiten[-1]["leaf"]} des Scans'),
                    f"https://archive.org/details/{item}",
                    sn,
                    "Volltext am Faksimile gelesen (macOS Vision, halbseitenweise wegen des "

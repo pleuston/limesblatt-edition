@@ -3,7 +3,7 @@
 <teiHeader><fileDesc>
 <titleStmt><title>Bericht über die Thätigkeit der Reichs-Limeskommission 1905</title><author>Reichs-Limeskommission</author><respStmt><resp>Transkription (OCR, maschinell)</resp><name>RLK-digital</name></respStmt></titleStmt>
 <publicationStmt><publisher>RLK-digital</publisher><availability status="restricted"><licence target="https://creativecommons.org/licenses/by/4.0/">Transkription und Auszeichnung: CC BY 4.0.</licence><p>Seitenbilder werden nur verlinkt (IIIF), nicht nachgenutzt; die Rechte liegen bei der besitzenden Einrichtung.</p></availability></publicationStmt>
-<sourceDesc><bibl>Jahrbuch des Kaiserlich Deutschen Archäologischen Instituts, Band 20 — Archäologischer Anzeiger, Blatt 336–338</bibl><bibl type="digitalisat"><ref target="https://archive.org/details/jahrbuchdeskaise20kaisrich">https://archive.org/details/jahrbuchdeskaise20kaisrich</ref></bibl></sourceDesc>
+<sourceDesc><bibl>Jahrbuch des Kaiserlich Deutschen Archäologischen Instituts, Band 20 — Archäologischer Anzeiger, Blatt 336–338 des Scans</bibl><bibl type="digitalisat"><ref target="https://archive.org/details/jahrbuchdeskaise20kaisrich">https://archive.org/details/jahrbuchdeskaise20kaisrich</ref></bibl></sourceDesc>
 </fileDesc>
 <encodingDesc><projectDesc><p>Volltext am Faksimile gelesen (macOS Vision, halbseitenweise wegen des zweispaltigen Satzes); Kolumnentitel entfernt, Silbentrennung am Zeilenende aufgelöst. Die Seitenzählung ist die des Scans (Blatt), nicht die Druckseite.</p></projectDesc></encodingDesc>
 </teiHeader>

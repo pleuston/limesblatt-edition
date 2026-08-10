@@ -3479,6 +3479,19 @@ def rlk_jahresberichte_page(data, ner_p=None, ner_pl=None):
         u = f"https://archive.org/details/{item}" + (f"/page/n{blatt}" if blatt is not None else "")
         return f'<a href="{html.escape(u)}">Scan</a>'
 
+    def _jb_spanne(z):
+        """Druckseiten im Anzeiger, wo sie am Kolumnentitel belegt sind, sonst die Blattspanne.
+
+        Ein Bericht wird nach der Seite des Jahrbuchs zitiert, nicht nach der Position im Scan.
+        Wo die Kopfzahl nicht lesbar war, steht die Blattspanne abgeblendet: sichtbar als Behelf."""
+        s = z.get("seiten") or []
+        if not s:
+            return "—"
+        if s[0].get("seite") and s[-1].get("seite"):
+            return f'{s[0]["seite"]}–{s[-1]["seite"]}'
+        return (f'<span class="lc" title="Druckseite nicht am Kolumnentitel belegbar">'
+                f'Bl. {s[0]["leaf"]}–{s[-1]["leaf"]}</span>')
+
     zeilen = []
     for b in berichte:
         for fb, fj in sorted(fehl_jahr.items()):
@@ -3487,11 +3500,11 @@ def rlk_jahresberichte_page(data, ner_p=None, ner_pl=None):
         zeilen.append(dict(b, fehlt=False))
     rows = "".join(
         (f'<tr class="fehlt"><td><b>{z["jahrgang"] - 1891}</b></td><td>{z["jahrgang"]}</td><td>{z["band"]}</td>'
-         f'<td colspan="7" class="meta">{html.escape(grund.get(z["jahrgang"], ""))}; '
+         f'<td colspan="8" class="meta">{html.escape(grund.get(z["jahrgang"], ""))}; '
          f'die Nummer bleibt vergeben</td></tr>'
          if z["fehlt"] else
          f'<tr><td><b>{nr_von.get(z["jahrgang"], "—")}</b></td><td>{z["jahrgang"]}</td><td>{z["band"]}</td>'
-         f'<td>{_tsd(z["woerter"])}</td>'
+         f'<td>{_jb_spanne(z)}</td><td>{_tsd(z["woerter"])}</td>'
          f'<td>{sum(1 for n in jb_pers if z["jahrgang"] in jb_pers[n])}</td>'
          f'<td>{sum(1 for n in jb_orte if z["jahrgang"] in jb_orte[n])}</td>'
          f'<td>{z["admin_je_1000"]}</td><td>{z["feld_je_1000"]}</td>'
@@ -3550,7 +3563,7 @@ def rlk_jahresberichte_page(data, ner_p=None, ner_pl=None):
         f'(Jahrbuch Bd. 9) bleibt als Lücke stehen und wird nicht weggezählt: sonst verschöbe sich alles '
         f'dahinter. <b>Personen</b> und <b>Orte</b> zählen, wie viele verschiedene Namen des '
         f'<a href="namen.html">Limesblatt-Gazetteers</a> im jeweiligen Bericht vorkommen.</p>'
-        f'<table class="reg"><thead><tr><th>Nr.</th><th>Jahrgang</th><th>Jahrbuch-Bd.</th><th>Wörter</th>'
+        f'<table class="reg"><thead><tr><th>Nr.</th><th>Jahrgang</th><th>Jahrbuch-Bd.</th><th>Druckseiten</th><th>Wörter</th>'
         f'<th>Personen</th><th>Orte</th><th>Admin/1000 W.</th><th>Feld/1000 W.</th>'
         f'<th>Lesefassung</th><th>Digitalisat</th></tr></thead>'
         f'<tbody>{rows}</tbody></table>'
@@ -4165,12 +4178,26 @@ def jahresbericht_reader(b):
         alle_kopfe += marken
         # Neben der Blattmarke ein Link ins Original: nicht in den eingebauten Betrachter,
         # sondern auf die Seite beim Anbieter — damit jede Stelle einzeln zitierbar bleibt.
-        text.append(f'<div class="pb" id="blatt-{s["leaf"]}" data-page="{i}" '
-                    f'onclick="viewer.goToPage({i})" title="Dieses Blatt im Faksimile zeigen">'
-                    f'Blatt {s["leaf"]}</div>'
+        # Die Marke trägt die DRUCKSEITE, wo sie belegt ist: „Blatt 443" ist eine Position im
+        # Scan, zitiert wird die Seite des Anzeigers. Die Blattnummer bleibt als Sprungziel
+        # ins Digitalisat daneben stehen. Ohne belegte Druckseite (Bd. 1903/04/05) bleibt es
+        # bei der Blattmarke, statt eine Zahl zu erfinden.
+        seite = s.get("seite")
+        anker = f's-{seite}' if seite else f'blatt-{s["leaf"]}'
+        marke = f'S.&#8239;{seite}' if seite else f'Blatt {s["leaf"]}'
+        text.append(f'<div class="pb" id="{anker}" data-page="{i}" '
+                    f'onclick="viewer.goToPage({i})" title="Diese Seite im Faksimile zeigen">'
+                    f'{marke}</div>'
                     f'<div class="pblink"><a href="https://archive.org/details/{item}/page/n{s["leaf"]}"'
                     f' onclick="event.stopPropagation()">Blatt {s["leaf"]} bei archive.org</a></div>'
                     f'{koerper}')
+    # Kopfzeile: Druckseiten, wo belegt, sonst die Blattspanne des Scans.
+    if seiten[0].get("seite") and seiten[-1].get("seite"):
+        spanne = (f'S. {seiten[0]["seite"]}–{seiten[-1]["seite"]} '
+                  f'<span class="lc">(Blatt {seiten[0]["leaf"]}–{seiten[-1]["leaf"]} im Scan)</span>')
+    else:
+        spanne = (f'Blatt {seiten[0]["leaf"]}–{seiten[-1]["leaf"]} im Scan '
+                  f'<span class="lc">(Druckseiten in diesem Band nicht am Kolumnentitel belegbar)</span>')
     gliederung = ""
     if alle_kopfe:
         gliederung = ('<details class="inhalt"><summary>Gliederung des Berichts '
@@ -4180,7 +4207,7 @@ def jahresbericht_reader(b):
                                 for lab, aid in alle_kopfe) + '</ul></details>')
     head = '<script src="../assets/openseadragon.min.js"></script>'
     body = f"""<h1>Bericht der Reichs-Limeskommission {b['jahrgang']}</h1>
-<p class="meta">Jahrbuch des Kaiserlich Deutschen Archäologischen Instituts, Band {b['band']}: Archäologischer Anzeiger, Blatt {seiten[0]['leaf']}–{seiten[-1]['leaf']} ·
+<p class="meta">Jahrbuch des Kaiserlich Deutschen Archäologischen Instituts, Band {b['band']}: Archäologischer Anzeiger, {spanne} ·
 {len(seiten)} Seiten · Original-Digitalisat: <a href="https://archive.org/details/{item}/page/n{seiten[0]['leaf']}">archive.org, Bd. {b['band']}</a> ·
 Lesung: {html.escape(b.get('ocr', ''))} ·
 TEI: <a href="../tei/jahresberichte/jb{b['jahrgang']}.xml">XML</a> ·
