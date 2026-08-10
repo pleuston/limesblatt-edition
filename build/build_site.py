@@ -2759,40 +2759,12 @@ def hintzelmann_page(volumes):
     body = body.replace('href="bd', 'href="../volumes/bd').replace('href="../register/', 'href="')
     body = re.sub(r'href="#pb-', 'href="../volumes/bd8.html#pb-', body)
 
-    # FREMDER TEXT AM ANFANG. In Spalte 960 steht noch der Schluss eines Feldberichts, und die
-    # Lesereihenfolge hat den Registerkopf davorgezogen: der Bericht ist mitten im Wort
-    # zerschnitten (»Scherbenfrag-« vor dem Register, »mente nicht zu entdecken« danach). Auf
-    # der Registerseite stand dadurch eine ganze Spalte Grabungsprosa, die dort nichts zu
-    # suchen hat. Geschnitten wird an der SCHLUSSFORMEL, mit der jeder Feldbericht endet
-    # (Ort, Monat, Jahr) — nicht an einer Zeichenzahl, und nur im ersten Fünftel des Textes,
-    # damit eine Jahresangabe mitten im Register nichts abschneidet.
-    # Gesucht wird die Schlussformel (»…, April 1903.«) — der Ortsname davor steht in einem
-    # Ortslink, ein Muster über den ganzen Satz griffe deshalb nicht. Geschnitten wird von der
-    # Spaltenmarke bis hinter die Formel: die Marke bleibt stehen, damit die Spalte weiter ans
-    # Faksimile gebunden ist.
-    sig = None
-    for m in re.finditer(r",\s*(?:Januar|Februar|März|April|Mai|Juni|Juli|August|September|"
-                         r"Oktober|November|Dezember)\s+\d{4}\.", body):
-        if m.end() < len(body) // 5:
-            sig = m
-    fremd = None
-    if sig:
-        marken = [m for m in re.finditer(r'<div class="pb[^"]*"[^>]*>', body) if m.end() <= sig.start()]
-        if marken:
-            fremd = (marken[-1].end(), sig.end())
-    if fremd:
-        entfernt = len(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", body[fremd[0]:fremd[1]])).split())
-        body = body[:fremd[0]] + body[fremd[1]:]
-        fremd_hinweis = (f'<p class="meta"><b>Fremder Text stand mit auf dieser Seite</b>, und er ist entfernt '
-                         f'({entfernt} Wörter): In Spalte&#8239;960 läuft noch der Schluss eines Feldberichts, den die '
-                         f'Lesereihenfolge hinter den Registerkopf gezogen hat. Erkennbar ist das daran, dass '
-                         f'der Bericht dort <b>mitten im Wort</b> zerschnitten ist („Scherbenfrag-" endet '
-                         f'Spalte&#8239;959, „mente nicht zu entdecken waren" beginnt Spalte&#8239;960). '
-                         f'Geschnitten wurde an der Schlussformel des Berichts („Freiburg i.&#8239;Br., April '
-                         f'1903."). Vollständig und in der Reihenfolge des Drucks steht alles im '
-                         f'<a href="../volumes/bd8.html#pb-959-b">Bandtext</a>.</p>')
-    else:
-        fremd_hinweis = ""
+    # Der Registerteil beginnt jetzt dort, wo der Druck ihn beginnt. Bis zum 10.08.2026 stand
+    # hier ein Notbehelf, der die vorangehende Grabungsprosa an der Schlussformel des
+    # Feldberichts abschnitt. Er ist ersatzlos entfallen, weil die Ursache behoben ist: Bl. 959,
+    # 963 und 967 tragen ihre Abschnittsüberschriften QUER über beiden Spalten, und der Satz
+    # beginnt darunter links wieder oben. Die Spaltenrekonstruktion liest solche Seiten seither
+    # bandweise (`alto_layout._baender`), nicht Spalte für Spalte.
     n_ref = len(re.findall(r'class="ent xref"', body))
     m_start = re.search(r'data-page="(\d+)"', body)      # erste Registerseite im Faksimile
     startseite = int(m_start.group(1)) if m_start else 0
@@ -2838,16 +2810,17 @@ def hintzelmann_page(volumes):
             f'zerbrach, steht die Lesung des Drucks und die Identifikation im Link. „II et tn er" ist '
             f'Hettner, „S t e i m 1 e" ist Steimle, „Kofier" ist Kofler: Register-Lemmata wurden gesperrt '
             f'gesetzt, und daran scheitert die Schrifterkennung gerade bei den bekanntesten Namen.</p>'
-            f'<p class="meta"><b>Eine Überschrift steht an der falschen Stelle, und zwar nachweislich.</b> '
-            f'Der Kopf <i>„II. Ortsverzeichnis"</i> erscheint im Textstrom <b>hinter</b> seinen eigenen '
-            f'ersten Stichwörtern (Aalen, Aarthal, Adolfseck … bis Bulau) und <b>vor</b> den letzten '
-            f'Einträgen des Mitarbeiter-Verzeichnisses (Wolff, Zangemeister); danach setzt das '
-            f'Ortsverzeichnis bei Butzbach wieder ein. Ursache ist die Layout-Erkennung: über dem '
-            f'Bundsteg von Spalte 963 hat sie eine Spalte gefunden, die keine ist. Der Druck selbst ist '
-            f'in Ordnung, die Lesereihenfolge ist es nicht. Das Ortsverzeichnis läuft alphabetisch von '
-            f'Aalen bis Zugmantel: die Buchstabenleiste findet es deshalb über die längste aufsteigende '
-            f'Kette der Stichwörter, nicht über die Überschrift.</p>'
-            f'{fremd_hinweis}'
+            f'<p class="meta"><b>Drei Seiten dieses Registers sind nicht spaltenweise zu lesen.</b> '
+            f'Auf Blatt 959, 963 und 967 steht die Abschnittsüberschrift <b>quer über beiden '
+            f'Spalten</b>, und der Satz fängt darunter links wieder oben an. Die Lesefolge ist dort '
+            f'bandweise: oben links, oben rechts, Überschrift, unten links, unten rechts. Spalte für '
+            f'Spalte gelesen verschränkten sich die Abschnitte, und der Kopf <i>„II. Ortsverzeichnis"</i> '
+            f'stand hinter seinen eigenen ersten Stichwörtern. Belegen lässt sich die richtige Folge '
+            f'ohne die Überschrift, aus dem Text selbst: <i>„Wolff … 131,"</i> bricht oben links ab und '
+            f'läuft oben rechts mit <i>„168 (K. und Lagerdorf in Grosskrotzenburg)"</i> weiter, und '
+            f'unten bleiben die Stichwörter alphabetisch (links bis <i>Burg bei Langenhain</i>, rechts '
+            f'weiter mit <i>Butzbach</i>). Dieselbe Seite trägt darum zwei Spaltenmarken derselben '
+            f'Nummer.</p>'
             f'</div>{navbar}{azbar}'
             # Faksimile daneben, wie in der Bandlesefassung: die Spaltenmarken des übernommenen
             # Textes tragen bereits ihre Blatt-Nummer als data-page, der Betrachter versteht sie
@@ -3056,41 +3029,55 @@ def orl_toc_page(idx, bli=None, fasz=None, dseiten=None, abta=None, places=None)
             f'<ul class="toc orltoc">{"".join(zeile(r) for r in rows)}</ul>')
         sprung.append(f'<a href="#lfg-{html.escape(k)}">{html.escape(k)}<span class="lc">&#8239;·&#8239;{jahr[:4]}</span></a>')
 
-    # --- Abteilung A: die ECHTEN Faszikeltitel der RLK (K10plus), nicht die Kurzform ---
-    recs = (abta or {}).get("records", [])
-    best = {}
-    for rec in recs:
-        try:
-            sn = json.loads(str(rec.get("strecken") or "[]"))
-        except Exception:
-            sn = []
-        if not sn:
-            continue
-        # »Die Strecken 6 - 9« ist eine SPANNE (vier Abschnitte), »Die Strecken 1 und 2« eine
-        # Aufzählung (zwei). Die Zahlenliste allein sagt das nicht — der Titel sagt es.
-        if len(sn) == 2 and re.search(r"\d\s*[-–]\s*\d", str(rec.get("titel") or "")):
-            sn = list(range(min(sn), max(sn) + 1))
-        key = tuple(sn)
-        j = str(rec.get("jahr") or "")
-        if key not in best or (j and j < str(best[key].get("jahr") or "9999")):
-            best[key] = rec                     # frühestes Jahr = Erstausgabe
+    # --- Abteilung A: EINE Zeile je Strecke, und daneben, wie gebunden wurde --------------
+    # Vorher standen hier die Katalogsätze, und darin wiederholte sich jede Strecke zwei- bis
+    # viermal. Das lag nicht an den Daten, sondern an der Frage, die ihnen gestellt wurde:
+    # K10plus verzeichnet den ORL auf MEHREREN Ebenen, und alle sehen wie eigene Titel aus. Zu
+    # Strecke 3 führt der Katalog vier Sätze (den Faszikel, den Textband »Die Strecken 3-5«,
+    # dessen Tafelband und eine kürzere Ansetzung desselben Bandes), zu Strecke 12 zwei, die
+    # sich nur in der Schreibung unterscheiden (»raetisch« gegen »rätisch«). Maßgeblich ist
+    # deshalb `vergleich`: dort steht je Strecke GENAU EIN Faszikel, und wo mehrere Strecken
+    # sich einen teilen, sagt `orl_sammelfaszikel_mit`, welche.
     verlauf = {s.get("strecke"): s for s in a}
     arows = []
-    for key in sorted(best, key=lambda k: (k[0], len(k))):        # nach Strecke, Einzel vor Sammel
-        rec, sn = best[key], list(key)
-        titel = re.sub(r"\s*/.*$", "", str(rec.get("titel") or "")).strip()
-        vl = " · ".join(html.escape(str(verlauf.get(n, {}).get("verlauf") or "")) for n in sn
-                        if verlauf.get(n, {}).get("verlauf"))
-        anker = " ".join(f'<a href="orl.html#orl-a-{n}">Str.&#8239;{n}</a>' for n in sn)
-        band = str(rec.get("band") or "")
-        det = [x for x in (
+    for r in sorted((abta or {}).get("vergleich", []), key=lambda r: int(r["nr"])):
+        n = int(r["nr"])
+        titel = re.sub(r"\s*/.*$", "", str(r.get("orl_titel") or "")).strip()
+        mit = sorted(int(m) for m in (r.get("orl_sammelfaszikel_mit") or []))
+        band = str(r.get("orl_band") or "")
+        det = [t for t in (
             band if band and not band.isdigit() else "",       # »1« ist kein Bandtitel
-            str(rec.get("jahr") or ""),
-            ("<b>Sammelfaszikel</b> für %d Strecken" % len(sn)) if len(sn) > 1 else "",
-            vl) if x]
-        arows.append(f'<li><b>{anker}</b> {html.escape(titel)}'
-                     f'<br><span class="meta">{" · ".join(det)}</span></li>')
-    fehlt = sorted({s.get("strecke") for s in a} - {n for key in best for n in key})
+            str(r.get("orl_jahr") or ""),
+            ("zusammen mit " + " und ".join("Strecke&#8239;%d" % m for m in mit)) if mit else "",
+            html.escape(str(verlauf.get(n, {}).get("verlauf") or ""))) if t]
+        arows.append(f'<li><b><a href="orl.html#orl-a-{n}">Strecke&#8239;{n}</a></b> '
+                     + (html.escape(titel) if titel else '<span class="meta">ohne Titelnachweis</span>')
+                     + f'<br><span class="meta">{" · ".join(det)}</span></li>')
+    fehlt = [int(r["nr"]) for r in (abta or {}).get("vergleich", [])
+             if not (r.get("orl_titel") or "").strip()]
+
+    # Die Bindeebene, getrennt ausgewiesen statt in die Streckenliste gemischt.
+    baende, gesehen = [], set()
+    for rec in (abta or {}).get("records", []):
+        try: sn = json.loads(str(rec.get("strecken") or "[]"))
+        except Exception: sn = []
+        # »Die Strecken 6 - 9« ist eine SPANNE (vier Abschnitte), »Die Strecken 1 und 2« eine
+        # Aufzählung (zwei). Die Zahlenliste allein sagt das nicht, der Titel sagt es.
+        if len(sn) == 2 and re.search(r"\d\s*[-–]\s*\d", str(rec.get("titel") or "")):
+            sn = list(range(min(sn), max(sn) + 1))
+        if len(sn) < 2:
+            continue
+        tafel = bool(re.search(r"Tafel|Kartenbeilage", str(rec.get("titel") or ""), re.I))
+        if (tuple(sn), tafel) in gesehen:
+            continue
+        gesehen.add((tuple(sn), tafel))
+        baende.append((sn, tafel, str(rec.get("band") or ""), str(rec.get("jahr") or "")))
+    baende.sort(key=lambda t: (t[0][0], len(t[0]), t[1]))
+    brows_a = "".join(
+        '<li>Strecke&#8239;' + "&#8239;·&#8239;".join(str(n) for n in sn)
+        + '<span class="meta"> — '
+        + " · ".join(t for t in (bd, jr, "nur Tafeln und Kartenbeilagen" if tf else "") if t)
+        + '</span></li>' for sn, tf, bd, jr in baende)
 
     n_lfg = sum(1 for r in b if lfg_ok.get(r["nr"]))
     n_lief = len([k for k in grp if k is not None])
@@ -3139,14 +3126,21 @@ def orl_toc_page(idx, bli=None, fasz=None, dseiten=None, abta=None, places=None)
         f'(gekennzeichnet). Die Faszikel ohne belegte Lieferung stehen unten in einem eigenen '
         f'Block; unbelegt ist ihr Datum, nicht ihr Vorhandensein.</p></div>'
         f'<h2 id="abt-a">Abteilung A: die Strecken</h2>'
-        f'<p class="meta">Die Beschreibung der Linie selbst, erschienen 1914–1936. Gezeigt sind die '
-        f'<b>Faszikeltitel der RLK</b> (Verbundkatalog K10plus), nicht die geläufige Kurzform: '
-        f'die Kommission benannte ihre Abschnitte nach <b>Flüssen und Landschaft</b>, nicht nach '
-        f'Städten, und mehrere Strecken erschienen in <b>einem</b> Faszikel.</p>'
+        f'<p class="meta">Die Beschreibung der Linie selbst, erschienen 1914–1936. <b>Eine Zeile je '
+        f'Strecke</b>, alle fünfzehn. Gezeigt ist der <b>Faszikeltitel der RLK</b> (Verbundkatalog '
+        f'K10plus), nicht die geläufige Kurzform: die Kommission benannte ihre Abschnitte nach '
+        f'<b>Flüssen und Landschaft</b>, nicht nach Städten. Wo mehrere Strecken sich einen '
+        f'Faszikel teilen, steht derselbe Titel mehrfach, und die Zeile sagt, mit welchen.</p>'
         f'<ul class="toc orltoc">{"".join(arows)}</ul>'
         + (f'<p class="meta">Ohne eigenen Titelnachweis in K10plus: '
-           f'{", ".join("Strecke&#8239;%s" % n for n in fehlt)}: sie stecken in den Sammelfaszikeln '
-           f'oben oder liefert der Katalog mit dieser Abfrage nicht.</p>' if fehlt else "")
+           f'{", ".join("Strecke&#8239;%s" % n for n in fehlt)}.</p>' if fehlt else "")
+        + (f'<h3>Wie diese Faszikel gebunden wurden</h3>'
+           f'<p class="meta">Der ORL erschien in Lieferungen und wurde später zu Bänden gebunden. '
+           f'Der Verbundkatalog verzeichnet <b>beide Ebenen</b> als eigene Titel, bei Abteilung A '
+           f'zusätzlich den Tafelteil getrennt vom Text. Deshalb steht die Bindeebene hier für '
+           f'sich: in der Streckenliste ließe sie jede Strecke mehrfach erscheinen, ohne dass es '
+           f'mehr Texte wären.</p>'
+           f'<ul class="toc orltoc">{brows_a}</ul>' if brows_a else "")
         + f'<h2 id="abt-b">Abteilung B: die Kastelle, nach Lieferungen</h2>'
         f'<p class="meta">Springen zu: {" · ".join(sprung)}</p>'
         + tab_b + f'<h2>Nach Lieferung geordnet</h2>'
