@@ -57,6 +57,57 @@ def _n_jb():
     return len(v) if isinstance(v, list) else "?"
 
 
+_HZ_CACHE = {}
+
+
+def hz1903():
+    """Die Stichwörter, die Hintzelmann 1903 selbst verzeichnet hat.
+
+    Gelesen aus dem TEI von Band 8, ab dem Registerkopf: was dort als persName oder placeName
+    ausgezeichnet ist, stand im gedruckten Register. Damit lässt sich in jedem Register zeigen,
+    was die Redaktion schon 1903 für nachschlagenswert hielt und was erst diese Edition
+    aufgenommen hat.
+
+    Personen werden über den NACHNAMEN verglichen: Hintzelmann führt »Fabricius«, das
+    Personenregister »Ernst Fabricius«. Ein Vergleich der Vollformen fand 5 von 34 statt 23."""
+    if _HZ_CACHE:
+        return _HZ_CACHE
+    p, o = set(), set()
+    for f in glob.glob(os.path.join(REPO, "tei", "limesblatt-bd8-*.xml")):
+        x = open(f, encoding="utf-8").read()
+        i = x.find("Register zu Nr")
+        if i < 0:
+            continue
+        reg = x[i:]
+        def rein(s):
+            return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "", s))).strip()
+        for m in re.findall(r"<persName[^>]*>(.*?)</persName>", reg, re.S):
+            t = rein(m)
+            if t:
+                p.add(_pn(t.split()[-1]))
+        for m in re.findall(r"<placeName[^>]*>(.*?)</placeName>", reg, re.S):
+            t = rein(m)
+            if t:
+                o.add(_pn(t))
+    _HZ_CACHE.update({"personen": p, "orte": o})
+    return _HZ_CACHE
+
+
+def hz_marke(name, art="ort"):
+    """(Badge-HTML, ist_drin) für ein Stichwort. Leerer Badge, wo Hintzelmann es nicht führt."""
+    d = hz1903()
+    if not name:
+        return "", False
+    if art == "person":
+        drin = _pn(name.split()[-1]) in d["personen"] or _pn(name) in d["personen"]
+    else:
+        drin = _pn(name) in d["orte"]
+    if not drin:
+        return "", False
+    return ('<span class="hz1903" title="Steht schon in Hintzelmanns Register '
+            'zum Limesblatt (1903)">1903</span>'), True
+
+
 def _lb_spalten():
     """Wie viele Spalten das Limesblatt zählt: die Einheit, in der es sich selbst zitiert.
 
@@ -576,7 +627,8 @@ def persons_page(persons, occ, digs):
         bel = beleg_html(p["id"], occ)
         if "—" not in bel: bl.append("📄 " + bel)
         belc = "<br>".join(bl) or '<span class="meta">—</span>'
-        rows.append(f'<tr id="{p["id"]}"><td class="pn">{name}</td><td>{rolle}</td><td>{wirk}</td>'
+        badge, hz = hz_marke(p["name"], "person")
+        rows.append(f'<tr id="{p["id"]}"{" data-hz=1" if hz else ""}><td class="pn">{name}{badge}</td><td>{rolle}</td><td>{wirk}</td>'
                     f'<td class="nd">{norm}</td><td class="beleg">{belc}</td></tr>')
     return (f'<h1>Personenregister</h1><p class="meta">{len(persons)} kuratierte Personen der RLK-Forschungs'
             f'geschichte: mit Lebensdaten, Funktion, Normdaten, Korrespondenz/Nachlass, ausgegrabenen Kastellen '
@@ -824,7 +876,9 @@ def strecken_page(strecken, str_forts, persons, pname, strecke_sites, orl_idx, v
             + f'</p>'
             f'<p>Zwei Folgen daraus, die man beim Zitieren kennen muss. Erstens ist die Einteilung hier '
             f'<b>feiner als die Publikation</b>: mehrere Abschnitte teilen sich <i>einen</i> Faszikel '
-            f'({samml_txt}). Zweitens ist <b>„Rehberg" keine Grenze der RLK</b>: das Wort steht in keinem '
+            f'({samml_txt}), und einzelne reichen weiter, als der Titel hier vermuten lässt: Strecke 11 '
+            f'heißt in dieser Edition „Bad Wimpfen–Köngen", bei der RLK <i>„Die Neckarlinie von Wimpfen '
+            f'bis Rottweil und Hüfingen"</i>. Zweitens ist <b>„Rehberg" keine Grenze der RLK</b>: das Wort steht in keinem '
             f'Abt.-A-Titel und in keiner der {_lb_spalten()} Limesblatt-Spalten dieser Edition (beides '
             f'nachgezählt), auch in keinem Normdatensatz. Es ist eine Setzung dieser Edition, kein Befund. Wo die Kommission eine Grenze ohne Ortsnamen '
             f'zog, benannte sie sie über einen Bezugspunkt („Köpperner Tal <i>bei der Saalburg</i>", „Haghof '
@@ -1148,7 +1202,9 @@ def ner_index_page(items, what, tok2anchor, recon, tok2any=None):
         lc = ' lc' if it.get("cert") != "high" else ""
         eid = ("psnN_" if what == "persons" else "plcN_") + gazetteer.slug(gazetteer._primary(nm)[0])
         nbel = len(it.get("pages", []))
-        lis.append(f'<tr id="{eid}" class="ix{lc}"><td><b>{disp}</b></td><td>{em}</td>'
+        badge, hz = hz_marke(nm, "person" if what == "persons" else "ort")
+        lis.append(f'<tr id="{eid}" class="ix{lc}"{" data-hz=1" if hz else ""}>'
+                   f'<td><b>{disp}</b>{badge}</td><td>{em}</td>'
                    f'<td>{nbel or ""}</td><td>{ref}</td><td class="pgs">{pl}</td></tr>')
         rows += 1
     rec = (f'<b>{matched}</b> mit GND bzw. dem Personenregister verknüpft' if what == "persons"
@@ -3740,9 +3796,10 @@ def gesamtregister_page(ner_p, ner_pl, orl_reg, jb, persons):
             link = (f'<a href="{ziel}">{html.escape(nm)}</a>' if slug in anker else html.escape(nm))
             if art == "person" and pid.get(k):
                 link += f' <a class="meta" href="persons.html#{pid[k]}">↗ Personenregister</a>'
-            rows.append({"n": link, "sort": nm, "lb": e["lb"], "orl": e["orl"],
+            badge, hz = hz_marke(nm, "person" if art == "person" else "ort")
+            rows.append({"n": link + badge, "sort": nm, "lb": e["lb"], "orl": e["orl"],
                          "jb": sum(e["jb"].values()), "jahre": ", ".join(str(x) for x in sorted(e["jb"])),
-                         "w": werke})
+                         "w": werke, "hz": hz})
         rows.sort(key=lambda r: (-r["w"], -(r["lb"] + r["orl"] * 20 + r["jb"]), r["sort"].lower()))
         return rows
 
@@ -3751,7 +3808,7 @@ def gesamtregister_page(ner_p, ner_pl, orl_reg, jb, persons):
 
     def tab(rows, lab):
         tr = "".join(
-            f'<tr><td>{r["n"]}</td><td>{r["lb"] or "—"}</td><td>{r["orl"] or "—"}</td>'
+            f'<tr{" data-hz=1" if r.get("hz") else ""}><td>{r["n"]}</td><td>{r["lb"] or "—"}</td><td>{r["orl"] or "—"}</td>'
             f'<td>{r["jb"] or "—"}</td><td class="meta">{r["jahre"]}</td><td><b>{r["w"]}</b></td></tr>'
             for r in rows)
         return (f'<table class="reg"><thead><tr><th>{lab}</th><th>Limesblatt (Belege)</th>'

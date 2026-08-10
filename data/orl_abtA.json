@@ -2,7 +2,7 @@
  "_beschreibung": "ORL Abteilung A: die Streckentitel der RLK selbst (K10plus/SRU) gegen die Vault-Titel. Siehe Docstring — der Vault-Beleg war zirkulär.",
  "_vorbehalt": "Der Faszikeltitel BENENNT die Grenze, er verortet sie nicht. Strecke 11 und 12 liefert K10plus mit diesem Query nicht.",
  "stand": {
-  "records": 21,
+  "records": 24,
   "strecken_mit_orl_titel": 15,
   "vault_strecken": 15,
   "sammelfaszikel": [
@@ -163,24 +163,20 @@
    "nr": 11,
    "vault_notiz": "Strecke 11 – Bad Wimpfen–Köngen (Neckarlinie)",
    "vault_verlauf": "Bad Wimpfen–Köngen",
-   "orl_titel": "Die Strecken 10 und 11",
+   "orl_titel": "Die Neckarlinie von Wimpfen bis Rottweil und Hüfingen",
    "orl_jahr": "1935",
    "orl_band": "",
-   "orl_sammelfaszikel_mit": [
-    10
-   ],
+   "orl_sammelfaszikel_mit": [],
    "beleg": "k10plus"
   },
   {
    "nr": 12,
    "vault_notiz": "Strecke 12 – Haghof–Lorch–Aalen–Mönchsroth",
    "vault_verlauf": "Haghof–Lorch–Aalen–Mönchsroth",
-   "orl_titel": "Die Strecken 12 und 13",
+   "orl_titel": "Der rätische Limes vom Haghof bei Welzheim bis zu der württembergisch-bayerischen Grenze",
    "orl_jahr": "1935",
-   "orl_band": "Abt. A, Bd. 6",
-   "orl_sammelfaszikel_mit": [
-    13
-   ],
+   "orl_band": "",
+   "orl_sammelfaszikel_mit": [],
    "beleg": "k10plus"
   },
   {
@@ -242,6 +238,24 @@
    "jahr": "1935",
    "band": "Abt. A, Bd.2,1",
    "titel": "Die Limesanlagen im Taunus von der Aar bis zum Köpperner Tal bei Saalburg : Strecke 3 / bearb. von Ernst Fabricius",
+   "sammelband": false
+  },
+  {
+   "strecken": [
+    12
+   ],
+   "jahr": "1935",
+   "band": "",
+   "titel": "Der raetische Limes von Haghof bei Welzheim bis zur württembergisch-bayerischen Grenze",
+   "sammelband": false
+  },
+  {
+   "strecken": [
+    11
+   ],
+   "jahr": "1935",
+   "band": "",
+   "titel": "Die Neckarlinie von Wimpfen bis Rottweil und Hüfingen",
    "sammelband": false
   },
   {
@@ -382,6 +396,15 @@
    "band": "Abt. A, Bd. 2,1",
    "titel": "Die Strecken 3 - 5",
    "sammelband": true
+  },
+  {
+   "strecken": [
+    12
+   ],
+   "jahr": "1935",
+   "band": "",
+   "titel": "Der rätische Limes vom Haghof bei Welzheim bis zu der württembergisch-bayerischen Grenze",
+   "sammelband": false
   },
   {
    "strecken": [

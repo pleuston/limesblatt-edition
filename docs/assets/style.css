@@ -271,3 +271,9 @@ section.bandblock>p.meta{margin:.1em 0 .5em}
 
 /* Strecken: der Titel, unter dem die RLK den Abschnitt selbst publizierte */
 .x.rlktitel{background:#f6f2e6;border-left:3px solid #c9b98d;padding:.35em .6em;margin:.35em 0;border-radius:0 3px 3px 0}
+
+/* Stichwörter, die schon Hintzelmanns Register von 1903 führt */
+.hz1903{display:inline-block;margin-left:.4em;padding:.05em .34em;font-size:.7rem;line-height:1.5;
+        vertical-align:.12em;border:1px solid #c9b98d;border-radius:3px;background:#f6f2e6;color:#6b5a34}
+label.hzfilter{margin-left:.8em;font-size:.9rem;white-space:nowrap;cursor:pointer}
+label.hzfilter input{margin-right:.25em;vertical-align:-.1em}

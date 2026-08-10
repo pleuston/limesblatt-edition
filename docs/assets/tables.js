@@ -67,15 +67,32 @@
       return out;
     }
     var alle = zeilen();
+    // Zusatzfilter fuer die Stichwoerter, die schon Hintzelmanns Register von 1903 fuehrt.
+    // Er erscheint nur, wo die Tabelle solche Zeilen hat (data-hz), und nennt ihre Zahl:
+    // "0 von 4068" waere eine Falschauskunft, ein fehlender Schalter ist keine.
+    var mit1903 = alle.filter(function (r) { return r.hasAttribute("data-hz"); });
+    var nur = null;
+    if (mit1903.length) {
+      var lab = document.createElement("label");
+      lab.className = "hzfilter";
+      lab.title = "Nur Eintraege zeigen, die Prof. Hintzelmann 1903 in sein Register aufgenommen hat";
+      nur = document.createElement("input");
+      nur.type = "checkbox";
+      lab.appendChild(nur);
+      lab.appendChild(document.createTextNode(" nur Hintzelmann 1903 (" + mit1903.length + ")"));
+      box.appendChild(lab);
+    }
     function zeige() {
-      var q = inp.value.toLowerCase(), n = 0;
+      var q = inp.value.toLowerCase(), n = 0, h = nur && nur.checked;
       alle.forEach(function (r) {
-        var m = !q || (r.textContent || "").toLowerCase().indexOf(q) >= 0;
+        var m = (!q || (r.textContent || "").toLowerCase().indexOf(q) >= 0)
+                && (!h || r.hasAttribute("data-hz"));
         r.style.display = m ? "" : "none"; if (m) n++;
       });
       cnt.textContent = n + " von " + alle.length + " Zeilen";
     }
     inp.addEventListener("input", zeige);
+    if (nur) nur.addEventListener("change", zeige);
     box.appendChild(inp); box.appendChild(cnt);
     tab.parentNode.insertBefore(box, tab);
     zeige();
