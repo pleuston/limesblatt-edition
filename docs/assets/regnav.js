@@ -14,6 +14,57 @@
  *    Ueberschrift, sondern die LAENGSTE AUFSTEIGENDE KETTE von Lemmakoepfen: dieselbe
  *    Methode, mit der die Feldbericht-Nummern aus dem OCR gehoben werden.
  */
+/* Faksimile neben dem Registertext, wie in der Bandlesefassung. Die uebernommenen
+ * Spaltenmarken tragen ihr data-page bereits, der Betrachter versteht sie unveraendert;
+ * er startet nur nicht am Bandanfang, sondern auf der ersten Registerseite. */
+(function () {
+  if (typeof OpenSeadragon !== "function" || typeof tiles === "undefined") return;
+  var osd = document.getElementById("osd");
+  if (!osd) return;
+  window.viewer = OpenSeadragon({
+    id: "osd", prefixUrl: "", tileSources: tiles, sequenceMode: true,
+    showNavigationControl: false, showSequenceControl: false,
+    gestureSettingsMouse: { clickToZoom: false },
+  });
+  // `bereit` schaltet die Kopplung erst nach dem Startsprung frei. Ohne das zog der Betrachter
+  // beim Laden den Lesetext mit, und die Seite stand sofort mitten im Register statt oben.
+  var start = (typeof STARTSEITE === "number") ? STARTSEITE : 0,
+      erst = true, sperre = false, bereit = false;
+  function anzeige() {
+    var e = document.getElementById("pgind");
+    if (e) e.textContent = (viewer.currentPage() + 1) + " / " + tiles.length;
+  }
+  function folgt() {
+    var b = document.getElementById("syncscroll");
+    return bereit && (!b || b.checked);
+  }
+  viewer.addHandler("open", function () {
+    // goHome nach dem Oeffnen: die Kachelgroesse steht erst mit der info.json fest, sonst
+    // startet der Betrachter weit ausserhalb des Blattes und die Flaeche bleibt schwarz.
+    if (erst) { erst = false; viewer.goToPage(start); }
+    anzeige(); viewer.viewport.goHome(true);
+    setTimeout(function () { bereit = true; }, 400);
+  });
+  viewer.addHandler("page", function (ev) {          // Faksimile bewegt -> Lesetext nachziehen
+    anzeige();
+    if (!folgt() || sperre) return;
+    var pb = document.querySelector('.reader .text .pb[data-page="' + ev.page + '"]');
+    if (pb) { sperre = true; pb.scrollIntoView({ block: "start" }); setTimeout(function () { sperre = false; }, 250); }
+  });
+  // Lesetext gescrollt -> Faksimile nachziehen: die oberste sichtbare Spaltenmarke gilt.
+  var txt = document.querySelector(".reader .text");
+  if (txt) txt.addEventListener("scroll", function () {
+    if (!folgt() || sperre) return;
+    var marken = txt.querySelectorAll(".pb[data-page]"), oben = null;
+    for (var i = 0; i < marken.length; i++) {
+      if (marken[i].getBoundingClientRect().top - txt.getBoundingClientRect().top <= 40) oben = marken[i];
+    }
+    if (!oben) return;
+    var s = parseInt(oben.getAttribute("data-page"), 10);
+    if (s !== viewer.currentPage()) { sperre = true; viewer.goToPage(s); setTimeout(function () { sperre = false; }, 250); }
+  }, { passive: true });
+})();
+
 (function () {
   var t1 = document.getElementById("teil-1"), bar = document.getElementById("azbar");
   if (!t1 || !bar) return;

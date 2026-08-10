@@ -3,12 +3,12 @@
 <teiHeader><fileDesc>
 <titleStmt><title>Bericht über die Thätigkeit der Reichs-Limeskommission 1904</title><author>Reichs-Limeskommission</author><respStmt><resp>Transkription (OCR, maschinell)</resp><name>RLK-digital</name></respStmt></titleStmt>
 <publicationStmt><publisher>RLK-digital</publisher><availability status="restricted"><licence target="https://creativecommons.org/licenses/by/4.0/">Transkription und Auszeichnung: CC BY 4.0.</licence><p>Seitenbilder werden nur verlinkt (IIIF), nicht nachgenutzt; die Rechte liegen bei der besitzenden Einrichtung.</p></availability></publicationStmt>
-<sourceDesc><bibl>Jahrbuch des Kaiserlich Deutschen Archäologischen Instituts, Band 19 — Archäologischer Anzeiger, Blatt 328–329 des Scans</bibl><bibl type="digitalisat"><ref target="https://archive.org/details/jahrbuchdeskaise19kaisrich">https://archive.org/details/jahrbuchdeskaise19kaisrich</ref></bibl></sourceDesc>
+<sourceDesc><bibl>Jahrbuch des Kaiserlich Deutschen Archäologischen Instituts, Band 19 — Archäologischer Anzeiger, S. 153–155</bibl><bibl type="digitalisat"><ref target="https://archive.org/details/jahrbuchdeskaise19kaisrich">https://archive.org/details/jahrbuchdeskaise19kaisrich</ref></bibl></sourceDesc>
 </fileDesc>
 <encodingDesc><projectDesc><p>Volltext am Faksimile gelesen (macOS Vision, halbseitenweise wegen des zweispaltigen Satzes); Kolumnentitel entfernt, Silbentrennung am Zeilenende aufgelöst. Die Seitenzählung ist die des Scans (Blatt), nicht die Druckseite.</p></projectDesc></encodingDesc>
 </teiHeader>
 <text><body><div>
-<pb n="328" facs="https://iiif.archive.org/iiif/jahrbuchdeskaise19kaisrich%24329/full/max/0/default.jpg"/>
+<pb n="153" facs="https://iiif.archive.org/iiif/jahrbuchdeskaise19kaisrich%24329/full/max/0/default.jpg"/>
 <p>IM JAHRE 1903.
 Nachdem im Laufe des Jahres 1902 die Reichs-
 Limes-Kommission den Verlust von Karl Zangemeister und Felix Hettner, dem Vorsitzenden des
@@ -101,7 +101,7 @@ Feststellung des Limeslaufes und die exakte Aufnahme aller Limesreste von Ems bi
 die scheinbar ganz geradlinige Tracierung der
 Grenzwehr zahlreiche Biegungen und Knicke im
 einzelnen aufweist, ein Beweis für die frühzeitige</p>
-<pb n="329" facs="https://iiif.archive.org/iiif/jahrbuchdeskaise19kaisrich%24330/full/max/0/default.jpg"/>
+<pb n="154" facs="https://iiif.archive.org/iiif/jahrbuchdeskaise19kaisrich%24330/full/max/0/default.jpg"/>
 <p>Entstehung dieses Abschnittes. In Pohl wurden
 Lage und Umfang des von Herrn Oberlehrer
 Dr. Bodewig früher festgestellten kleinen Erdkastells
@@ -186,5 +186,38 @@ ersten Strecke zunächst abgewartet werden muß.
 Von Abteilung B des Limeswerkes, den Monographien über die Hauptkastelle, hatte Herr
 Hettner 41 Abteilungen in 17 Lieferungen vollendet
 und den Druck der achtzehnten, zwei weitere Kastelle enthaltenden Lieferung begonnen. Gegen-</p>
+<pb n="155" facs="https://iiif.archive.org/iiif/jahrbuchdeskaise19kaisrich%24331/full/max/0/default.jpg"/>
+<p>wärtig liegen die Einzeldarstellungen von 48 Ka
+stellen in 20 Lieferungen fertig vor. Im Laufe des
+Jahres 1903 sind die Kastelle Oberflorstadt unc
+Echzell von Kofler, Obernburg von Conrady, Hed
+desdorf und Marienfels von Bodewig, Seckmauerr
+von Anthes und Groß-Krotzenburg von Wolff zus
+Ausgabe gelangt. Die Arbeiten für die 21. Lieferung
+haben im Dezember 1903 mit dem Druck von Kastell Walldürn in derselben Woche begonnen, ir
+der Herr Conrady, der Bearbeiter dieses Kastells
+uns durch den Tod entrissen wurde.
+Außer Walldürn sind gegenwärtig die beider
+Kastelle bei Welzheim, ferner Holzhausen, Heftrich
+und Aalen in Arbeit, Wiesbaden, Köngen, Teilen.
+hofen und Weißenburg in Vorbereitung. Wenn
+auch dem raschen Fortschreiten der Kastellpublikation sich fortgesetzt große und unvorherzusehende
+Schwierigkeiten entgegenstellen, so ist doch bei
+dem Entgegenkommen unserer Mitarbeiter zu hoffen,
+daß die Drucklegung der Abteilung B keine Unterbrechung erleiden wird.
+Das »Limesblatt« wurde durch Herausgabe
+eines letzten, des 35. Heftes, zum Abschluß gebracht. Da diese Veröffentlichung, die dazu bestimmt war, vorläufige Berichte über die Ergebnisse
+der Ausgrabungen fortlaufend zur Kenntnis der
+Mitforscher zu bringen, mit dem Abschluß der
+eigentlichen Grabungen ihren Zweck erfüllt hatte,
+so wurde das weitere Erscheinen eingestellt. Die
+letzte Nummer enthielt einen Nachruf für Karl
+Zangemeister und Felix Hettner, die von Anbeginn
+an der Spitze unseres Unternehmens
+gestanden
+hatten, Beiträge der Herren Popp, Winkelmann,
+Schuchhardt, Fabricius, Steimle und Leonhard, sowie ein Register zu der ganzen, nunmehr abgeschlossenen Zeitschrift von Herrn Hintzelmann.
+Freiburg i. B., Januar 1904.
+Fabricius.</p>
 </div></body></text>
 </TEI>

@@ -2473,7 +2473,13 @@ def hintzelmann_page(volumes):
     """
     v8 = next((v for v in volumes if v["nr"] == 8), None)
     if not v8: return None
-    import io
+    # Dieselben IIIF-Kacheln wie die Bandlesefassung, in derselben Reihenfolge: nur so passen
+    # die data-page-Werte, die im übernommenen Text schon stehen.
+    images = []
+    for p in v8["pages"]:
+        if p["img_tok"] not in images:
+            images.append(p["img_tok"])
+    tiles = [IIIF_INFO.format(slug=v8["slug"], tok=t) for t in images]
     src = os.path.join(DOCS, "volumes", "bd8.html")
     if not os.path.exists(src): return None
     h = open(src, encoding="utf-8").read()
@@ -2484,7 +2490,44 @@ def hintzelmann_page(volumes):
     body = re.sub(r'<span class="pb"[^>]*>.*?</span>', "", body, flags=re.S)   # Spaltenmarken raus
     body = body.replace('href="bd', 'href="../volumes/bd').replace('href="../register/', 'href="')
     body = re.sub(r'href="#pb-', 'href="../volumes/bd8.html#pb-', body)
+
+    # FREMDER TEXT AM ANFANG. In Spalte 960 steht noch der Schluss eines Feldberichts, und die
+    # Lesereihenfolge hat den Registerkopf davorgezogen: der Bericht ist mitten im Wort
+    # zerschnitten (»Scherbenfrag-« vor dem Register, »mente nicht zu entdecken« danach). Auf
+    # der Registerseite stand dadurch eine ganze Spalte Grabungsprosa, die dort nichts zu
+    # suchen hat. Geschnitten wird an der SCHLUSSFORMEL, mit der jeder Feldbericht endet
+    # (Ort, Monat, Jahr) — nicht an einer Zeichenzahl, und nur im ersten Fünftel des Textes,
+    # damit eine Jahresangabe mitten im Register nichts abschneidet.
+    # Gesucht wird die Schlussformel (»…, April 1903.«) — der Ortsname davor steht in einem
+    # Ortslink, ein Muster über den ganzen Satz griffe deshalb nicht. Geschnitten wird von der
+    # Spaltenmarke bis hinter die Formel: die Marke bleibt stehen, damit die Spalte weiter ans
+    # Faksimile gebunden ist.
+    sig = None
+    for m in re.finditer(r",\s*(?:Januar|Februar|März|April|Mai|Juni|Juli|August|September|"
+                         r"Oktober|November|Dezember)\s+\d{4}\.", body):
+        if m.end() < len(body) // 5:
+            sig = m
+    fremd = None
+    if sig:
+        marken = [m for m in re.finditer(r'<div class="pb[^"]*"[^>]*>', body) if m.end() <= sig.start()]
+        if marken:
+            fremd = (marken[-1].end(), sig.end())
+    if fremd:
+        entfernt = len(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", body[fremd[0]:fremd[1]])).split())
+        body = body[:fremd[0]] + body[fremd[1]:]
+        fremd_hinweis = (f'<p class="meta"><b>Fremder Text stand mit auf dieser Seite</b>, und er ist entfernt '
+                         f'({entfernt} Wörter): In Spalte&#8239;960 läuft noch der Schluss eines Feldberichts, den die '
+                         f'Lesereihenfolge hinter den Registerkopf gezogen hat. Erkennbar ist das daran, dass '
+                         f'der Bericht dort <b>mitten im Wort</b> zerschnitten ist („Scherbenfrag-" endet '
+                         f'Spalte&#8239;959, „mente nicht zu entdecken waren" beginnt Spalte&#8239;960). '
+                         f'Geschnitten wurde an der Schlussformel des Berichts („Freiburg i.&#8239;Br., April '
+                         f'1903."). Vollständig und in der Reihenfolge des Drucks steht alles im '
+                         f'<a href="../volumes/bd8.html#pb-959-b">Bandtext</a>.</p>')
+    else:
+        fremd_hinweis = ""
     n_ref = len(re.findall(r'class="ent xref"', body))
+    m_start = re.search(r'data-page="(\d+)"', body)      # erste Registerseite im Faksimile
+    startseite = int(m_start.group(1)) if m_start else 0
     # Die drei gedruckten Teile sind im OCR gewöhnliche Absätze. Ohne Überschrift läuft das
     # Register über 19.000 Zeichen ohne einen einzigen Haltepunkt: das Ortsverzeichnis, der
     # mit Abstand längste Teil, ist dann nur durch Scrollen erreichbar. Die Köpfe werden
@@ -2536,7 +2579,22 @@ def hintzelmann_page(volumes):
             f'in Ordnung, die Lesereihenfolge ist es nicht. Das Ortsverzeichnis läuft alphabetisch von '
             f'Aalen bis Zugmantel: die Buchstabenleiste findet es deshalb über die längste aufsteigende '
             f'Kette der Stichwörter, nicht über die Überschrift.</p>'
-            f'</div>{navbar}{azbar}{body}'
+            f'{fremd_hinweis}'
+            f'</div>{navbar}{azbar}'
+            # Faksimile daneben, wie in der Bandlesefassung: die Spaltenmarken des übernommenen
+            # Textes tragen bereits ihre Blatt-Nummer als data-page, der Betrachter versteht sie
+            # unverändert. Er startet auf der ersten Registerseite statt am Bandanfang.
+            f'<div class="reader"><div class="facs"><div id="osd"></div>'
+            f'<div class="osdnav">'
+            f'<button onclick="viewer.goToPage(Math.max(0,viewer.currentPage()-1))">‹ vorige</button>'
+            f'<span class="toggles"><label class="synctoggle" '
+            f'title="Das Faksimile folgt automatisch der Spalte im Lesetext">'
+            f'<input type="checkbox" id="syncscroll" checked> Faksimile folgt</label></span>'
+            f'<span id="pgind"></span>'
+            f'<button onclick="viewer.goToPage(Math.min(tiles.length-1,viewer.currentPage()+1))">nächste ›</button>'
+            f'</div></div><div class="text">{body}</div></div>'
+            f'<script src="../assets/openseadragon.min.js"></script>'
+            f'<script>var tiles = {json.dumps(tiles)}; var STARTSEITE = {startseite};</script>'
             f'<script src="../assets/regnav.js{_v("regnav.js")}" defer></script>')
 
 

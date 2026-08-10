@@ -3,12 +3,12 @@
 <teiHeader><fileDesc>
 <titleStmt><title>Bericht über die Thätigkeit der Reichs-Limeskommission 1905</title><author>Reichs-Limeskommission</author><respStmt><resp>Transkription (OCR, maschinell)</resp><name>RLK-digital</name></respStmt></titleStmt>
 <publicationStmt><publisher>RLK-digital</publisher><availability status="restricted"><licence target="https://creativecommons.org/licenses/by/4.0/">Transkription und Auszeichnung: CC BY 4.0.</licence><p>Seitenbilder werden nur verlinkt (IIIF), nicht nachgenutzt; die Rechte liegen bei der besitzenden Einrichtung.</p></availability></publicationStmt>
-<sourceDesc><bibl>Jahrbuch des Kaiserlich Deutschen Archäologischen Instituts, Band 20 — Archäologischer Anzeiger, Blatt 336–338 des Scans</bibl><bibl type="digitalisat"><ref target="https://archive.org/details/jahrbuchdeskaise20kaisrich">https://archive.org/details/jahrbuchdeskaise20kaisrich</ref></bibl></sourceDesc>
+<sourceDesc><bibl>Jahrbuch des Kaiserlich Deutschen Archäologischen Instituts, Band 20 — Archäologischer Anzeiger, S. 109–112</bibl><bibl type="digitalisat"><ref target="https://archive.org/details/jahrbuchdeskaise20kaisrich">https://archive.org/details/jahrbuchdeskaise20kaisrich</ref></bibl></sourceDesc>
 </fileDesc>
 <encodingDesc><projectDesc><p>Volltext am Faksimile gelesen (macOS Vision, halbseitenweise wegen des zweispaltigen Satzes); Kolumnentitel entfernt, Silbentrennung am Zeilenende aufgelöst. Die Seitenzählung ist die des Scans (Blatt), nicht die Druckseite.</p></projectDesc></encodingDesc>
 </teiHeader>
 <text><body><div>
-<pb n="336" facs="https://iiif.archive.org/iiif/jahrbuchdeskaise20kaisrich%24337/full/max/0/default.jpg"/>
+<pb n="109" facs="https://iiif.archive.org/iiif/jahrbuchdeskaise20kaisrich%24337/full/max/0/default.jpg"/>
 <p>BERICHT
 IM JAHRE 1904.
 Wenn auch die Arbeiten im Gelände und besonders die von der Kommission unternommenen
@@ -30,9 +30,8 @@ die durch archäologische Ausgrabungen neuerer
 Zeit bereits hinlänglich aufgeklärt schienen. Das
 Kastell Urspring, ein äußerlich sichtbares, seit langem
 bekanntes Werk, war in den Jahren 1886 und</p>
-<pb n="337" facs="https://iiif.archive.org/iiif/jahrbuchdeskaise20kaisrich%24338/full/max/0/default.jpg"/>
-<p>IIO
-1887 von dem Altertumsverein Ulm zum Gegenstand
+<pb n="110" facs="https://iiif.archive.org/iiif/jahrbuchdeskaise20kaisrich%24338/full/max/0/default.jpg"/>
+<p>von dem Altertumsverein Ulm zum Gegenstand
 erfolgreicher Untersuchung
 gemacht worden.
 Bei
@@ -116,7 +115,7 @@ Die in Westernbach noch zu erwartenden Feststellungen und Funde werden auf keine
 eine besondere Behandlung dieses Kastells in Abteilung B des Limeswerkes rechtfertigen. Es wird
 im Zusammenhang mit der Strecke, an der es
 liegt, publiziert werden. Dagegen haben wir für</p>
-<pb n="338" facs="https://iiif.archive.org/iiif/jahrbuchdeskaise20kaisrich%24339/full/max/0/default.jpg"/>
+<pb n="111" facs="https://iiif.archive.org/iiif/jahrbuchdeskaise20kaisrich%24339/full/max/0/default.jpg"/>
 <p>Re
 eine sofortige Veröffentlichung vom Kastell Urspring unter Nr. 66a Sorge getragen, um den an
 sich schon fast überwältigenden Stoff nicht immer
@@ -214,5 +213,22 @@ abzusehen.
 Das läßt sich leider nicht mit gleicher Bestimmtheit hinsichtlich der Abteilung A des Limeswerkes
 sagen, trotz aller Mühe, die auf die Beschleunigung
 der Arbeit seitens des Auschusses und der Dirigenten wie seitens der Streckenkommissare verwendet worden ist. Der Druck der ersten Strecke,</p>
+<pb n="112" facs="https://iiif.archive.org/iiif/jahrbuchdeskaise20kaisrich%24340/full/max/0/default.jpg"/>
+<p>für die bereits im vorigen Jahre 22 Tafeln in der
+Auflage fertig gestellt waren, hat keinen weiteren
+Fortschritt gemacht. Herrn Professor Dr. Löschcke,
+der die Ausgrabungen auf dieser Strecke geleitet
+hat, war bei seiner großen dienstlichen Inanspruchnahme bisher noch immer nicht imstande, den Text
+zum Abschluß zu bringen. Dagegen hat Herr Professor Dr. Wolff einen umfassenden Bericht über
+die Erforschung des Straßennetzes in der Wetterau
+und Herr Anthes die Bearbeitung des hessischen
+Teils der Odenwaldlinie geliefert. Auch die Zahl
+der druckfertigen Tafeln ist wieder um einige der
+zweiten und vierzehnten Strecke gewachsen, so daß
+nach dem Erscheinen der ersten Strecke die weiteren
+Abschnitte der Abteilung A voraussichtlich werden
+rasch folgen können.
+Freiburg i. Br.
+Fabricius.</p>
 </div></body></text>
 </TEI>

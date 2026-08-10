@@ -3,7 +3,7 @@
 <teiHeader><fileDesc>
 <titleStmt><title>Bericht über die Thätigkeit der Reichs-Limeskommission 1901</title><author>Reichs-Limeskommission</author><respStmt><resp>Transkription (OCR, maschinell)</resp><name>RLK-digital</name></respStmt></titleStmt>
 <publicationStmt><publisher>RLK-digital</publisher><availability status="restricted"><licence target="https://creativecommons.org/licenses/by/4.0/">Transkription und Auszeichnung: CC BY 4.0.</licence><p>Seitenbilder werden nur verlinkt (IIIF), nicht nachgenutzt; die Rechte liegen bei der besitzenden Einrichtung.</p></availability></publicationStmt>
-<sourceDesc><bibl>Jahrbuch des Kaiserlich Deutschen Archäologischen Instituts, Band 16 — Archäologischer Anzeiger, S. 81–91</bibl><bibl type="digitalisat"><ref target="https://archive.org/details/jahrbuchdeskaise16kaisrich">https://archive.org/details/jahrbuchdeskaise16kaisrich</ref></bibl></sourceDesc>
+<sourceDesc><bibl>Jahrbuch des Kaiserlich Deutschen Archäologischen Instituts, Band 16 — Archäologischer Anzeiger, S. 81–92</bibl><bibl type="digitalisat"><ref target="https://archive.org/details/jahrbuchdeskaise16kaisrich">https://archive.org/details/jahrbuchdeskaise16kaisrich</ref></bibl></sourceDesc>
 </fileDesc>
 <encodingDesc><projectDesc><p>Volltext am Faksimile gelesen (macOS Vision, halbseitenweise wegen des zweispaltigen Satzes); Kolumnentitel entfernt, Silbentrennung am Zeilenende aufgelöst. Die Seitenzählung ist die des Scans (Blatt), nicht die Druckseite.</p></projectDesc></encodingDesc>
 </teiHeader>
@@ -117,8 +117,7 @@ durch die Klingen hindurch.
 5. Hie und da wurden zur Feststellung des
 Limeslaufes noch kleinere Untersuchungen ausgeführt, so durch Hrn. Soldan nördlich der Lahn</p>
 <pb n="83" facs="https://iiif.archive.org/iiif/jahrbuchdeskaise16kaisrich%24289/full/max/0/default.jpg"/>
-<p>Arbeiter
-zwischen Höhr und Ems im Anschluß an die Arbeiten des Hrn. Dahm, und durch den Unterzeichneten südlich der Lahn zwischen Ems und Holzhausen, wo unter anderem durch Grabungen konstatiert wurde, daß der Pfahl im Abstand von nur
+<p>zwischen Höhr und Ems im Anschluß an die Arbeiten des Hrn. Dahm, und durch den Unterzeichneten südlich der Lahn zwischen Ems und Holzhausen, wo unter anderem durch Grabungen konstatiert wurde, daß der Pfahl im Abstand von nur
 150 m vor der Nordostfront des Kastells Hunzel
 vorüberführt.
 6. Während der Lauf der jüngeren Limeslinie
@@ -930,5 +929,44 @@ das römische Gebiet hereinführenden vorrömischen
 Wege zu berücksichtigen. Unsere Untersuchungen
 haben an einer großen Zahl von Beispielen erwiesen,
 daß Kastelle an prähistorischen Wegen liegen, die</p>
+<pb n="92" facs="https://iiif.archive.org/iiif/jahrbuchdeskaise16kaisrich%24298/full/max/0/default.jpg"/>
+<p>aus dem Auslande hereinführen und wir dürfer
+vermuten, daß Völkerwege, welche aus dem Innerr
+Germaniens kamen, stets durch Hauptkastelle über
+wacht waren. Die prähistorischen Wege waren da
+vor der Anlage der Grenzsperre Bestehende, di
+Römerstraßen mußten erst geschaffen werden unc
+fanden überdies ihre eventuelle Fortsetzung in da
+Ausland nur in vorrömischen Wegen. Hiernach
+waren die prähistorischen Wege geradezu grund
+legend bei der Aufstellung des Planes für die
+römischen Schutzeinrichtungen, von welchen die
+Römerstraßen einen der wichtigsten Bestandteile
+bilden.
+Sofern wir aber diesen bestimmenden Einfluß
+des prähistorischen
+Wegnetzes als erwiesen be
+trachten, werden wir uns nicht der Folgerung ent
+ziehen können, daß die militärische Würdigung des
+Limes-Anlage einer der wichtigsten Grundlager
+entbehrt, so lange nicht die Erforschung jener Wege
+in möglichst erschöpfender Weise durchgeführt ist
+Die geplante römisch-germanische Abteilung
+des archäologischen Instituts soll unter ihre Auf
+gaben die Erforschung des germanisch-raetischen
+Wegnetzes aufnehmen. Es darf gerade in dieser
+Blättern darauf hingewiesen werden, wie die Er
+gebnisse dieser Untersuchungen zugleich eine wesent
+liche, aber — wie gezeigt wurde - kaum zu ver
+meidende Lücke in den Arbeiten der Reichs-Limes.
+Kommission ausfüllen werden. Dies wird um sc
+vollkommener der Fall sein, wenn die geplante
+Forschung nicht grundsätzlich mit der Grenze des
+Römerreiches abschneidet, sondern die wichtigster
+Verkehrsbahnen in das Innere Germaniens — etwa
+bis zur Elbe-Linie - verfolgt.
+Der militärische Dirigent bei der R. L. K.
+v. Sarwey
+Generalleutnant z. D.</p>
 </div></body></text>
 </TEI>
