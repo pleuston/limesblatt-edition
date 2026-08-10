@@ -277,3 +277,16 @@ section.bandblock>p.meta{margin:.1em 0 .5em}
         vertical-align:.12em;border:1px solid #c9b98d;border-radius:3px;background:#f6f2e6;color:#6b5a34}
 label.hzfilter{margin-left:.8em;font-size:.9rem;white-space:nowrap;cursor:pointer}
 label.hzfilter input{margin-right:.25em;vertical-align:-.1em}
+
+/* Kastelle: Basisdaten und Literatur */
+table.kastuebersicht td{vertical-align:top}
+table.kastuebersicht td:nth-child(3),table.kastuebersicht td:nth-child(4),
+table.kastuebersicht td:nth-child(6),table.kastuebersicht td:nth-child(7){font-size:.9em;max-width:20em}
+details.kastblock{margin:.5em 0;border:1px solid #e2dccd;border-radius:4px;padding:.35em .7em;background:#fdfcf8}
+details.kastblock>summary{cursor:pointer;padding:.15em 0}
+details.kastblock[open]>summary{border-bottom:1px solid #e8e2d4;margin-bottom:.5em;padding-bottom:.35em}
+details.kastblock h4{margin:.9em 0 .3em;font-size:.95rem;color:#5a4a3a}
+table.kastdat{margin:.2em 0 .4em}
+table.kastdat th{text-align:left;white-space:nowrap;width:9em;font-weight:600;color:#6b5a44;
+                 vertical-align:top;padding-right:.8em}
+ul.nerlist.lit li{margin:.18em 0;font-size:.92rem;line-height:1.45}

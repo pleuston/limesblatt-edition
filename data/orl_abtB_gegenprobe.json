@@ -1,0 +1,66 @@
+{
+ "_beschreibung": "Gegenprobe der ORL-Abt.-B-Bandgliederung gegen drei unabhängige Quellen.",
+ "_nicht_geprueft": "Nummer→Kastellname: zirkulär, beide Seiten stammen aus derselben Wikipedia-Kastellliste. Geprüft werden Bearbeiter und Jahr.",
+ "bilanz": {
+  "gesamt": 94,
+  "prüfbar": 62,
+  "bestätigt": 58,
+  "konflikt": 4,
+  "ohne_quelle": 32,
+  "anzeige_versatz": 5,
+  "sammelband_record": 17
+ },
+ "abweichungen": [
+  {
+   "nr": "23",
+   "kastell": "Groß-Krotzenburg",
+   "band": "2a",
+   "bearbeiter": "Wolff",
+   "jahr": 1933,
+   "konflikte": [
+    "biblio: Jahr 1904 ≠ 1933"
+   ],
+   "treffer": [
+    "biblio:Bearb ✓"
+   ]
+  },
+  {
+   "nr": "46b",
+   "kastell": "Seckmauern",
+   "band": "5",
+   "bearbeiter": "Anthes",
+   "jahr": 1914,
+   "konflikte": [
+    "biblio: Jahr 1904 ≠ 1914"
+   ],
+   "treffer": [
+    "biblio:Bearb ✓"
+   ]
+  },
+  {
+   "nr": "66a",
+   "kastell": "Urspring",
+   "band": "6",
+   "bearbeiter": "Fabricius",
+   "jahr": 1904,
+   "konflikte": [
+    "k10: Jahr 1905 ≠ 1904"
+   ],
+   "treffer": []
+  },
+  {
+   "nr": "67",
+   "kastell": "Buch",
+   "band": "6",
+   "bearbeiter": "R. Herzog",
+   "jahr": 1896,
+   "konflikte": [
+    "merten: Jahr 1898 ≠ 1896",
+    "k10: Jahr 1898 ≠ 1896"
+   ],
+   "treffer": [
+    "merten:Bearb ✓"
+   ]
+  }
+ ]
+}

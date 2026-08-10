@@ -424,6 +424,7 @@ def page(title, body, depth=0, head=""):
 <li class="has"><a href="{up}register/persons.html">Register</a><ul>
 <li><a href="{up}register/persons.html">Personen</a></li>
 <li><a href="{up}register/places.html">Orte</a></li>
+<li><a href="{up}register/kastelle.html">Kastelle: Basisdaten</a></li>
 <li><a href="{up}register/strecken.html">Strecken</a></li>
 <li><a href="{up}register/fundindex.html">Fundindex</a></li>
 <li><a href="{up}register/inschriften.html">Inschriften</a></li>
@@ -2328,6 +2329,180 @@ def inscriptions_page(edh):
             f'zitiert nach CIL, die EDH ordnet nach HD-Nummer. Beides sind ohnehin verschiedene Register: '
             f'hier steht, was <i>gefunden</i> wurde, dort, worauf sich der ORL <i>beruft</i>.</p></div>'
             + tabelle + f'<h2>Nach Fundort</h2>' + "".join(secs))
+
+
+def kastelle_page(kb, idx, edh=None, volumes=None):
+    """Die Kastelle mit Basisdaten, eigenen Quellen und Literatur je Platz.
+
+    Drei Schichten, und die Reihenfolge ist die Aussage:
+
+      1. **Was diese Edition selbst hat** — die ORL-Lieferung mit belegtem Bearbeiter und die
+         Limesblatt-Vorberichte, ins Faksimile verlinkt. Erstpublikation, nicht Referat.
+      2. **Basisdaten**: Wikipedia-Infobox (Typ, Truppe, Fläche, Material, Belegung) und
+         Wikidata (Q-ID, Koordinate, Denkmalstatus, DARE-ID).
+      3. **Literatur** je Platz aus dem Artikel.
+
+    Ohne diese Trennung liest sich alles gleich zuverlässig, und das wäre falsch: die
+    Vorberichte stehen im Faksimile daneben, die Truppenangabe steht in einer Enzyklopädie."""
+    kast = (kb or {}).get("kastelle") or []
+    if not kast:
+        return None
+    vorb = {str(r.get("nr") or ""): r for r in (idx or {}).get("abteilung_B_kastelle", [])}
+    slug2nr = {v["slug"]: v["nr"] for v in (volumes or [])}
+    edh_n = {}
+    for k in (edh or {}).get("kastelle", []):
+        edh_n[_pn(re.sub(r"^(Kastell|Kleinkastell)\s+", "", k.get("label", "")))] = k
+
+    def grad(s):
+        """»50/19/25.69/N« → 50.3238: die Infobox schreibt Grad/Minute/Sekunde."""
+        m = re.match(r"^\s*(\d+)/(\d+)/([\d.]+)/([NSEWO])\s*$", s or "")
+        if m:
+            v = int(m.group(1)) + int(m.group(2)) / 60 + float(m.group(3)) / 3600
+            return round(-v if m.group(4) in "SW" else v, 5)
+        try:
+            return round(float((s or "").replace(",", ".")), 5)
+        except ValueError:
+            return None
+
+    WDLAB = [("koordinaten", "Koordinate"), ("denkmalstatus", "Denkmalstatus"),
+             ("gruendung", "Gründung"), ("verwaltungseinheit", "Verwaltungseinheit"),
+             ("dare_id", "DARE-ID"), ("gnd", "GND")]
+    zeilen, bloecke = [], []
+    for k in kast:
+        nr = k.get("orl_nr_index") or k.get("orl_nr") or ""
+        aid = "kast_" + gazetteer.slug(k["kastell"])
+        r = vorb.get(str(nr), {})
+        eig = []
+        if r.get("lfg"):
+            eig.append(f'ORL-Lieferung <b>{html.escape(str(r["lfg"]))}</b>'
+                       + (f' ({html.escape(str(r.get("jahr_lfg")))})' if r.get("jahr_lfg") else "")
+                       + (f', bearbeitet von {html.escape(r.get("bearbeiter_merten") or "")}'
+                          if r.get("bearbeiter_merten") else ""))
+        vb = r.get("vorberichte") or []
+        if vb:
+            lnk = []
+            for v in vb[:12]:
+                b = slug2nr.get(v.get("slug"))
+                s = v.get("page") or v.get("seite") or v.get("printed") or ""
+                if b and s:
+                    # Der Anker trägt die BLATTNUMMER, nicht die Druckseite: das Limesblatt
+                    # zählt zwei Spalten je Blatt, die gerade Seite steht in Spalte b des
+                    # vorigen (ungeraden) Blattes. »#pb-106-a« gibt es nicht, »#pb-105-b« schon;
+                    # 41 Verweise dieser Seite liefen deshalb ins Leere.
+                    try:
+                        sp = int(re.sub(r"\D", "", str(s)))
+                    except ValueError:
+                        sp = 0
+                    blatt, spalte = (sp, "a") if sp % 2 else (sp - 1, "b")
+                    lnk.append(f'<a href="../volumes/bd{b}.html#pb-{str(blatt).zfill(3)}-{spalte}">'
+                               f'Bd.&#160;{b}, S.&#160;{s}</a>')
+                elif b:
+                    lnk.append(f'<a href="../volumes/bd{b}.html">Bd.&#160;{b}</a>')
+            if lnk:
+                eig.append(f'<b>{len(vb)}</b> Limesblatt-Vorbericht{"e" if len(vb) != 1 else ""}: '
+                           + " · ".join(lnk) + (" …" if len(vb) > 12 else ""))
+        e = edh_n.get(_pn(re.sub(r"^(Kastell|Kleinkastell)\s+", "", k["kastell"])))
+        if e:
+            eig.append(f'<a href="inschriften.html">{e["n"]} Inschriften</a> im EDH')
+        eig_html = ('<ul class="nerlist">' + "".join(f"<li>{x}</li>" for x in eig) + "</ul>"
+                    if eig else '<p class="meta">Für diesen Platz führt die Edition keine eigene '
+                                'Lieferung und keinen zugeordneten Vorbericht.</p>')
+        lit = k.get("literatur") or []
+        lit_html = ('<ul class="nerlist lit">'
+                    + "".join(f"<li>{html.escape(t)}</li>" for t in lit) + "</ul>"
+                    if lit else '<p class="meta">Der Artikel führt keinen Literaturabschnitt.</p>')
+        wd = k.get("wd") or {}
+        q = k.get("wikidata") or ""
+        wdz = "".join(f'<tr><th>{lab}</th><td>{html.escape(str(wd[f]))}</td></tr>'
+                      for f, lab in WDLAB if wd.get(f))
+        la, lo = grad(k.get("lat")), grad(k.get("lon"))
+        quellen = [f'<a href="{html.escape(k.get("artikel", ""))}">{html.escape(k["wiki"])}</a> '
+                   f'<span class="meta">(de.wikipedia, CC&#160;BY-SA)</span>']
+        if q:
+            quellen.append(f'<a href="https://www.wikidata.org/wiki/{html.escape(q)}">'
+                           f'{html.escape(q)}</a> <span class="meta">(Wikidata, CC0)</span>')
+        if la and lo:
+            quellen.append(f'<a href="https://www.openstreetmap.org/?mlat={la}&amp;mlon={lo}'
+                           f'#map=15/{la}/{lo}">Karte</a>')
+        bloecke.append(
+            f'<details id="{aid}" class="kastblock"><summary><b>{html.escape(k["kastell"])}</b>'
+            f'{(" <span class=" + chr(34) + "meta" + chr(34) + ">auch: " + html.escape(", ".join(k["auch_als"])) + "</span>") if k.get("auch_als") else ""}'
+            f'<span class="meta"> ORL&#160;{html.escape(str(nr) or "—")}'
+            f'{" · " + html.escape(k["typ"][:60]) if k.get("typ") else ""}</span></summary>'
+            f'<h4>Was diese Edition selbst hat</h4>{eig_html}'
+            f'<h4>Basisdaten <span class="meta">(Wikipedia-Infobox, Stand '
+            f'{html.escape(kb.get("stand", ""))})</span></h4>'
+            f'<table class="reg nosort nofilter kastdat"><tbody>'
+            + "".join(f'<tr><th>{lab}</th><td>{html.escape(k.get(f) or "—")}</td></tr>'
+                      for lab, f in (("Antiker Name", "antiker_name"), ("Typ", "typ"),
+                                     ("Truppe", "truppe"), ("Fläche", "flaeche"),
+                                     ("Material", "material"), ("Belegung", "belegung"),
+                                     ("Zustand", "zustand"), ("Ort heute", "ort_heute"),
+                                     ("Strecke", "strecke")))
+            + "</tbody></table>"
+            + (f'<h4>Strukturdaten <span class="meta">(Wikidata)</span></h4>'
+               f'<table class="reg nosort nofilter kastdat"><tbody>{wdz}</tbody></table>' if wdz else "")
+            + f'<p class="meta">Quellen: ' + " · ".join(quellen) + "</p>"
+            + f'<h4>Literatur <span class="meta">({len(lit)} Titel, aus dem Artikel)</span></h4>'
+            + lit_html + "</details>")
+        zeilen.append(
+            f'<tr><td>{html.escape(str(nr) or "—")}</td>'
+            f'<td><a href="#{aid}">{html.escape(k["kastell"])}</a></td>'
+            f'<td>{html.escape(k.get("typ") or "—")}</td>'
+            f'<td>{html.escape(k.get("truppe") or "—")}</td>'
+            f'<td>{html.escape(k.get("flaeche") or "—")}</td>'
+            f'<td>{html.escape(k.get("material") or "—")}</td>'
+            f'<td>{html.escape(k.get("belegung") or "—")}</td>'
+            f'<td>{html.escape(k.get("ort_heute") or "—")}</td>'
+            f'<td>{len(lit) or "—"}</td>'
+            f'<td>{("<a href=" + chr(34) + "https://www.wikidata.org/wiki/" + html.escape(q) + chr(34) + ">" + html.escape(q) + "</a>") if q else "—"}</td></tr>')
+
+    n_lit = sum(len(k.get("literatur") or []) for k in kast)
+    n_ant = sum(1 for k in kast if k.get("antiker_name"))
+    n_q = sum(1 for k in kast if k.get("wikidata"))
+    wdp = (kb or {}).get("infobox_gegen_wikidata") or {}
+    probe = ""
+    if wdp.get("geprueft"):
+        weit = wdp.get("ueber_500m") or []
+        probe = (f'<p><b>Die beiden Quellen sind gegeneinander geprüft.</b> Für '
+                 f'{wdp["geprueft"]} Kastelle führen Infobox und Wikidata je eine Koordinate: '
+                 f'sie liegen im Median <b>4&#8239;m</b> auseinander, '
+                 + (f'{len(weit)} über 500&#8239;m ('
+                    + ", ".join(html.escape(w["kastell"]) + f' {w["abstand_m"]}&#8239;m' for w in weit[:4])
+                    + '). Welzheim ist dabei kein Fehler, sondern die bekannte Doppelanlage: '
+                      'zwei Kastelle, ein Punkt.'
+                    if weit else 'keine über 500&#8239;m.')
+                 + ' Übereinstimmung ist hier allerdings <i>schwächer</i> als bei den '
+                   '<a href="places.html">Kastellpunkten dieser Edition</a>, die gegen DARE '
+                   'geprüft sind: beide Angaben stammen aus dem Wikimedia-Umfeld.</p>')
+    return (f'<h1>Kastelle: Basisdaten und Literatur</h1>'
+            f'<p class="lede">{len(kast)} Limeskastelle mit Typ, Truppenteil, Fläche, Baumaterial '
+            f'und Belegungszeit, dazu <b>{_tausend(n_lit)} Literaturtitel</b>. Jede Angabe nennt, '
+            f'woher sie stammt.</p>'
+            f'<div class="note"><p><b>Zwei Sorten Angaben, und sie sind nicht gleich viel wert.</b> '
+            f'Was diese Edition <i>selbst</i> erschlossen hat, steht bei jedem Platz zuerst: die '
+            f'ORL-Lieferung mit belegtem Bearbeiter und die Limesblatt-Vorberichte, spaltengenau '
+            f'ins Faksimile verlinkt. Erst danach kommen die Basisdaten aus der '
+            f'<b>Wikipedia-Infobox</b> und die Strukturdaten aus <b>Wikidata</b> '
+            f'({n_q} von {len(kast)} Kastellen mit Q-ID), beide token-frei über die jeweilige API '
+            f'geholt, Stand {html.escape(kb.get("stand", ""))}. Das sind '
+            f'<b>Nachschlagewerke zweiter Hand</b>: sie referieren die Fachliteratur, sie sind '
+            f'keine Quelle. Sie beantworten „was war das für ein Platz", nicht „was hat die '
+            f'Kommission dort gefunden".</p>{probe}'
+            f'<p><b>Mehrere Bauphasen stehen in einer Zelle</b>, durch „ · " getrennt. Das ist die '
+            f'Aussage, nicht Verschmutzung: die meisten Plätze wurden mehrfach umgebaut, und die '
+            f'Saalburg trägt vier Phasen von der Schanze bis zum gemörtelten Kohortenkastell. '
+            f'<b>Nur {n_ant} der {len(kast)} Kastelle haben einen überlieferten antiken Namen</b>: '
+            f'das Feld ist in den übrigen Artikeln vorhanden und leer, es fehlt also nicht der '
+            f'Eintrag, sondern der Name. Wer nach antiken Namen sucht, findet die Lage bei den '
+            f'<a href="ortsnamen.html">Ortsnamen</a>.</p></div>'
+            f'<table class="reg kastuebersicht"><thead><tr><th>ORL</th><th>Kastell</th><th>Typ</th>'
+            f'<th>Truppe</th><th>Fläche</th><th>Material</th><th>Belegung</th><th>Ort heute</th>'
+            f'<th>Lit.</th><th>Wikidata</th></tr></thead><tbody>{"".join(zeilen)}</tbody></table>'
+            f'<h2 id="einzeln">Jedes Kastell einzeln</h2>'
+            f'<p class="meta">Aufklappen zeigt die eigenen Quellen der Edition, die Basisdaten mit '
+            f'ihrem Artikel, die Wikidata-Strukturdaten und die Literaturliste.</p>'
+            + "".join(bloecke))
 
 
 def orl_page(idx, lex, bli=None, abta=None):
@@ -5087,6 +5262,14 @@ def main():
         open(os.path.join(DOCS,"register","ortsnamen.html"),"w",encoding="utf-8").write(
             page("Ortsnamen: antik, modern, Flurname", namen_page(nm), 1))
         open(os.path.join(DOCS,"register","orl.html"),"w",encoding="utf-8").write(page("ORL", orl_page(orl_idx, orl_lex, orl_bli, _load_json_any("orl_abtA.json") or {}), 1))
+        _kb = _load_json_any("kastell_infobox.json")
+        _kseite = kastelle_page(_kb, orl_idx, edh, volumes) if _kb else None
+        if _kseite:
+            open(os.path.join(DOCS, "register", "kastelle.html"), "w", encoding="utf-8").write(
+                page("Kastelle: Basisdaten und Literatur", _kseite, 1))
+            print(f"Kastelle: {_kb.get('n', 0)} Basisdatensätze, "
+                  f"{sum(len(k.get('literatur') or []) for k in _kb.get('kastelle', []))} Literaturtitel "
+                  f"→ register/kastelle.html")
         open(os.path.join(DOCS,"register","orl-register.html"),"w",encoding="utf-8").write(page("ORL: Gesamtapparat", orl_apparatus_page(orl_reg, orl_idx, persons), 1))
         _fj = _load_json_any("orl_faszikel.json")
         _dj = _load_json_any("orl_druckseiten.json")
