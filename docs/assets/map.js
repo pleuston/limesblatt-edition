@@ -17,6 +17,10 @@
    dem Limes.md im Vault). */
 (function () {
   var BASIS = (window.MAPDATA && window.MAPDATA.basis) || "../data/";
+  // Praefix fuer die Registerseiten. Die Karte laeuft an ZWEI Orten: unter register/, wo
+  // "strecken.html" stimmt, und als eigene Seite karte.html eine Ebene hoeher, wo derselbe
+  // Verweis ins Leere zeigt. Von dort aus trugen alle Popup-Links auf tote Adressen.
+  var REG = (window.MAPDATA && window.MAPDATA.reg !== undefined) ? window.MAPDATA.reg : "";
   var F = (window.MAPDATA && MAPDATA.feats) || [];
   var palette = ["#b3331a", "#1f7a4d", "#3060c0", "#b07d20", "#7a3fae"];
   var absList = [];
@@ -78,8 +82,10 @@
   F.forEach(function (f) {
     var a = f.abschnitt || "ohne Strecke", c = color[a];
     var pop = "<b>" + f.name + "</b>" + (f.orl ? "<br>" + f.orl : "") +
-      (f.strecke ? '<br><a href="strecken.html#' + f.strecke_id + '">' + f.strecke + "</a>" : "") +
-      '<br><a href="#' + f.id + '">Details</a>';
+      (f.strecke ? '<br><a href="' + REG + 'strecken.html#' + f.strecke_id + '">' + f.strecke + "</a>" : "") +
+      // Auf der Registerseite steht die Ortskarte unter der Karte, dort genuegt der Anker;
+      // auf der eigenen Kartenseite gibt es keine Karten, also fuehrt der Verweis dorthin.
+      '<br><a href="' + (REG ? REG + 'places.html#' : '#') + f.id + '">Details</a>';
     var m = L.circleMarker([f.lat, f.lng], { radius: 6, weight: 2, color: c, fillColor: c, fillOpacity: .85 }).bindPopup(pop);
     m._sid = f.strecke_id || ""; m._ll = [f.lat, f.lng];
     markers.push(m); groups[a].addLayer(m);
@@ -99,7 +105,7 @@
     L.geoJSON(gj, {
       style: function (f) { return { color: f.properties.color, weight: 4, opacity: .85 }; },
       onEachFeature: function (f, l) {
-        l.bindPopup('<a href="strecken.html#' + f.properties.id + '">' + f.properties.name + "</a>");
+        l.bindPopup('<a href="' + REG + 'strecken.html#' + f.properties.id + '">' + f.properties.name + "</a>");
         l.bindTooltip(f.properties.name, { sticky: true });
       }
     }).addTo(strLayer);
@@ -133,7 +139,7 @@
         var pop = "<b>" + (p.name || "") + "</b>" + (p.kind ? " · " + p.kind : "") +
           (p.n ? "<br>" + p.n + " Fundstelle(n) im Text" : "") +
           (p.gazId ? '<br><a href="https://gazetteer.dainst.org/place/' + p.gazId + '">iDAI-Gazetteer</a>' : "") +
-          '<br><a href="orte-index.html">→ Volltext-Index</a>';
+          '<br><a href="' + REG + 'orte-index.html">→ Volltext-Index</a>';
         var rad = Math.min(10, 2 + Math.sqrt(p.n || 1));   // Radius ∝ Erwähnungsdichte
         return L.circleMarker(latlng, { radius: rad, weight: 1, color: "#7a3fae", fillColor: "#b388e0", fillOpacity: .55 }).bindPopup(pop);
       }
@@ -213,7 +219,7 @@
     F.forEach(function (f) { if (f.strecke_id === focus) nm = f.strecke; });
     if (pts.length) map.fitBounds(pts, { padding: [40, 40], maxZoom: 11 });
     if (fc) fc.insertAdjacentHTML("afterbegin",
-      '<div class="focusnote">Fokus: <b>' + (nm || focus) + '</b> · <a href="places.html">alle Orte zeigen</a></div>');
+      '<div class="focusnote">Fokus: <b>' + (nm || focus) + '</b> · <a href="' + REG + 'places.html">alle Orte zeigen</a></div>');
   }
   // Inline-Tag-Sprung in eine <details>-Liste: Sektion aufklappen + hinscrollen
   function openDetails() {

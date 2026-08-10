@@ -774,7 +774,9 @@ def karte_page(places, sites, feats):
             f'OpenStreetMap und über weite Strecken interpoliert: auf ihr darf nicht gemessen werden. '
             f'Zu den Einträgen: <a href="register/places.html">Ortsregister</a> · '
             f'<a href="register/strecken.html">Strecken</a>.</p>'
-            f'<script>var MAPDATA={{"basis":"data/","feats":{json.dumps(feats)}}};</script>'
+            # reg = Praefix zu den Registerseiten: die Karte liegt hier eine Ebene ueber ihnen,
+            # und ohne das zeigten alle Verweise in den Kartenpunkten ins Leere.
+            f'<script>var MAPDATA={{"basis":"data/","reg":"register/","feats":{json.dumps(feats)}}};</script>'
             f'<script src="assets/map.js{_v("map.js")}"></script>')
     return body, head
 
