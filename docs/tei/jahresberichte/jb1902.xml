@@ -3,7 +3,7 @@
 <teiHeader><fileDesc>
 <titleStmt><title>Bericht über die Thätigkeit der Reichs-Limeskommission 1902</title><author>Reichs-Limeskommission</author><respStmt><resp>Transkription (OCR, maschinell)</resp><name>RLK-digital</name></respStmt></titleStmt>
 <publicationStmt><publisher>RLK-digital</publisher><availability status="restricted"><licence target="https://creativecommons.org/licenses/by/4.0/">Transkription und Auszeichnung: CC BY 4.0.</licence><p>Seitenbilder werden nur verlinkt (IIIF), nicht nachgenutzt; die Rechte liegen bei der besitzenden Einrichtung.</p></availability></publicationStmt>
-<sourceDesc><bibl>Jahrbuch des Kaiserlich Deutschen Archäologischen Instituts, Band 17 — Archäologischer Anzeiger, S. 66–70</bibl><bibl type="digitalisat"><ref target="https://archive.org/details/jahrbuchdeskaise17kaisrich">https://archive.org/details/jahrbuchdeskaise17kaisrich</ref></bibl></sourceDesc>
+<sourceDesc><bibl>Jahrbuch des Kaiserlich Deutschen Archäologischen Instituts, Band 17 — Archäologischer Anzeiger, S. 66–71</bibl><bibl type="digitalisat"><ref target="https://archive.org/details/jahrbuchdeskaise17kaisrich">https://archive.org/details/jahrbuchdeskaise17kaisrich</ref></bibl></sourceDesc>
 </fileDesc>
 <encodingDesc><projectDesc><p>Volltext am Faksimile gelesen (macOS Vision, halbseitenweise wegen des zweispaltigen Satzes); Kolumnentitel entfernt, Silbentrennung am Zeilenende aufgelöst. Die Seitenzählung ist die des Scans (Blatt), nicht die Druckseite.</p></projectDesc></encodingDesc>
 </teiHeader>
@@ -422,5 +422,30 @@ Hr. Winkelmann glaubt nun Anhaltspunkte dafür
 gefunden zu haben, daß die in Naßenfels noch
 vorhandenen Gräben nicht, wie Archäol. Anzeiger
 1898 S. 18 angenommen wird, mittelalterlichen</p>
+<pb n="71" facs="https://iiif.archive.org/iiif/jahrbuchdeskaise17kaisrich%24227/full/max/0/default.jpg"/>
+<p>Die süd- und westdeutsc
+Ursprungs, sondern Überreste dieses Römerkastells
+sind. Er weist zunächst auf den in der That
+auffallenden Umstand hin, daß wohl das Dorf,
+aber nicht die Kirche von Naßenfels innerhalb
+dieser Verteidigungswerke liege, während bei mittelalterlichen Befestigungsanlagen in der Regel gerade
+das Umgekehrte der Fall ist. Vor allem aber fanden
+sich bei einer von Prof. Englert in Eichstätt vorgenommenen Durchgrabung des Walles weder im
+Wallkörper selbst, noch unter ihm auf dem Erdboden irgend welche Kulturreste, während zu beiden
+Seiten des Walles römische Scherben in Mengen
+angetroffen werden. Bei der Annahme der Entstehung von Wall und Graben in nachrömischer
+Zeit sei dieser Befund nicht wohl zu erklären. Es
+kommt hinzu, daß im Innern dieser Befestigung,
+die hiernach als Rest eines römischen Erdkastells
+aufzufassen wäre, der Fundamentgraben eines ausgedehnten Holzgebäudes anscheinend ähnlicher Konstruktion, wie die des Mittelgebäudes im Feldbergkastell, entdeckt wurde, in dem eine Kupfermünze
+Hadrians zum Vorschein kam, während unter den
+Lehmbrocken mit Eindrücken von Flechtwerk, den
+Überresten der Wände, zwei Kupfermünzen des
+Antoninus Pius und Marc Aurel lagen. Die Fortsetzung der Untersuchung des Gebäudes, die für
+das kommende Frühjahr in Aussicht genommen ist,
+wird darüber Aufklärung geben, ob das Gebäude
+hier wirklich, wie die Entdecker vermuten, die
+Stelle des Prätoriums in dem Erdkastell einnimmt.
+Fabricius.</p>
 </div></body></text>
 </TEI>
