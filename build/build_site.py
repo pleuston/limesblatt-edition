@@ -2350,10 +2350,19 @@ def _cil(i):
     c = i.get("cil") or []
     if not c:
         return ""
-    orl = set(i.get("orl") or [])
-    return " · ".join(
-        f'<b title="Diese Nummer zitiert der ORL">{html.escape(n)}</b>' if n in orl else html.escape(n)
-        for n in c)
+    orl = i.get("orl") or {}
+    teile = []
+    for n in c:
+        o = orl.get(n)
+        if not o:
+            teile.append(html.escape(n)); continue
+        t = html.escape(("Der ORL zitiert diese Inschrift %d\u00d7 \u00b7 %s" % (o.get("n", 1), o.get("ort", ""))).strip(" \u00b7"))
+        if o.get("htid"):
+            u = "https://babel.hathitrust.org/cgi/pt?id=%s&seq=%s" % (html.escape(o["htid"]), html.escape(str(o["seite"])))
+            teile.append(f'<b><a href="{u}" title="{t}">{html.escape(n)}</a></b>')
+        else:
+            teile.append(f'<b title="{t}">{html.escape(n)}</b>')
+    return " \u00b7 ".join(teile)
 
 
 def inscriptions_page(edh):
@@ -2405,7 +2414,19 @@ def inscriptions_page(edh):
             f'Die Spalte stellt diese Konkordanz her: sie stammt aus der Bibliographie der EDH-EpiDoc-Sätze '
             f'und liegt für <b>{edh.get("n_cil", 0)}</b> der {edh.get("total", 0)} Inschriften vor. '
             f'<b>Fett</b> gesetzt sind die <b>{edh.get("n_orl", 0)}</b> Nummern, die im '
-            f'<a href="orl-register.html">ORL-Apparat</a> tatsächlich zitiert werden.</p>'
+            f'<a href="orl-register.html">ORL-Apparat</a> tatsächlich zitiert werden; sie führen auf die '
+            f'Seite des ORL-Bandes bei HathiTrust, auf der das Zitat steht.</p>'
+            f'<p><b>Ins Limesblatt führt kein einziger dieser Links, und das ist ein Befund.</b> '
+            f'Das <a href="../volumes/bd1.html">Limesblatt</a> zitiert die Inschriftencorpora in '
+            f'267.000 Wörtern überhaupt nur 40-mal. Von diesen 40 Zitaten trifft <b>keines</b> eine der '
+            f'hier verzeichneten Inschriften: die 15 CIL-Zitate sind auswärtige Vergleichsstellen aus '
+            f'Afrika, Spanien, Britannien, Italien und Pannonien, nicht Funde vom Limes. Das Feldorgan '
+            f'meldet seine Inschriften, es zitiert sie nicht unter ihrer Korpusnummer. Der Apparat '
+            f'entstand erst bei der Endredaktion des ORL.</p>'
+            f'<p class="meta">Die übrigen 23 Limesblatt-Zitate nennen <i>Brambach</i> und <i>C.I.Rh.</i>, '
+            f'die älteren rheinischen Corpora. Sie lassen sich hier nicht auflösen, weil die EDH Brambach '
+            f'in keinem einzigen ihrer Datensätze führt: sie zitiert CIL XIII, das Brambach ablöste. Eine '
+            f'Konkordanz Brambach→CIL XIII wäre nötig und liegt nicht vor.</p>'
             f'<p class="meta">Die beiden Seiten zitieren verschieden: die EDH mit arabischer Bandzahl und '
             f'Komma (»CIL 13, 11766«), der ORL mit römischer und ohne Komma (»CIL XIII 11766«). Der Abgleich '
             f'normalisiert beide; ohne das träfe er statt 390 nur 6 Inschriften. Einstellige Nummern sind '
