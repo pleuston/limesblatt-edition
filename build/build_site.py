@@ -2341,6 +2341,21 @@ def stamp_occ(volumes):
                 if k not in seen: seen.add(k); legend[w].append((v["nr"], p["anchor"], p["printed"], w))
     return leg, coh, legend
 
+def _cil(i):
+    """CIL-Zitat(e) einer Inschrift, mit Markierung der im ORL zitierten.
+
+    Die zeitgenössischen Quellen zitieren NIE die HD-Nummer, die es 1892 nicht gab, sondern
+    CIL, Brambach oder C.I.Rh. Ohne diese Spalte lässt sich das Register nicht mit dem
+    verbinden, was Limesblatt und ORL tatsächlich schreiben."""
+    c = i.get("cil") or []
+    if not c:
+        return ""
+    orl = set(i.get("orl") or [])
+    return " · ".join(
+        f'<b title="Diese Nummer zitiert der ORL">{html.escape(n)}</b>' if n in orl else html.escape(n)
+        for n in c)
+
+
 def inscriptions_page(edh):
     secs = []
     for k in edh.get("kastelle", []):
@@ -2350,7 +2365,9 @@ def inscriptions_page(edh):
         rows = "".join(
             f'<li><a href="https://edh.ub.uni-heidelberg.de/edh/inschrift/{html.escape(i["hd"])}">{html.escape(i["hd"])}</a> '
             f'<span class="meta">{html.escape(i["art"])}{(" · " + html.escape(i["datierung"])) if i.get("datierung") else ""}</span>: '
-            f'{html.escape(i["titel"])}</li>' for i in k["inschriften"][:60])
+            f'{html.escape(i["titel"])}'
+            + (f' <span class="meta">[{_cil(i)}]</span>' if i.get("cil") else "")
+            + '</li>' for i in k["inschriften"][:60])
         more = f'<li class="lc">… +{k["n"] - 60} weitere bei EDH</li>' if k["n"] > 60 else ""
         secs.append(f'<details><summary><a href="places.html#{pid}">{html.escape(k["label"])}</a> '
                     f'<span class="meta">{k["n"]} Inschriften · {span} · {html.escape(gat)}</span></summary>'
@@ -2368,19 +2385,31 @@ def inscriptions_page(edh):
                 f'<td>{html.escape(i["art"])}</td>'
                 f'<td class="meta">{html.escape(i.get("datierung") or "—")}</td>'
                 f'<td>{html.escape(i["titel"])}</td>'
+                f'<td>{_cil(i) or "—"}</td>'
                 f'<td><a href="https://edh.ub.uni-heidelberg.de/edh/inschrift/{html.escape(i["hd"])}">'
                 f'{html.escape(i["hd"])}</a></td></tr>')
     tabelle = (f'<h2 id="tabelle">Alle Inschriften in einer Tabelle</h2>'
                f'<p class="meta">{len(alle)} Einträge, nach jeder Spalte sortierbar und über das '
                f'Suchfeld filterbar. Die Gruppen darunter zeigen dieselben Inschriften nach Fundort.</p>'
                f'<table class="reg"><thead><tr><th>Fundort</th><th>Gattung</th><th>Datierung</th>'
-               f'<th>Inschrift</th><th>EDH</th></tr></thead><tbody>{"".join(alle)}</tbody></table>')
+               f'<th>Inschrift</th><th>CIL</th><th>EDH</th></tr></thead><tbody>{"".join(alle)}</tbody></table>')
     return (f'<h1>Inschriften (EDH)</h1>'
             f'<p class="meta">{edh.get("total", 0)} Inschriften der '
             f'<a href="https://edh.ub.uni-heidelberg.de/">Epigraphic Database Heidelberg</a> von den Limes-Fundorten: '
             f'aus den EpiDoc-GitHub-Dumps (CC BY-SA), mit Gattung, Datierung und Direktlink ins EDH. '
             f'Ergänzt den <a href="fundindex.html">Fundindex</a> um die katalogisierte Epigraphik; '
             f'verknüpft mit dem <a href="places.html">Ortsregister</a>.</p>'
+            f'<div class="note"><p><b>Die CIL-Nummer ist die Nummer, unter der die Quellen zitieren.</b> '
+            f'Limesblatt und <a href="orl.html">ORL</a> nennen eine Inschrift nie über die HD-Nummer, '
+            f'die es 1892 noch nicht gab, sondern über <i>CIL</i>, <i>Brambach</i> oder <i>C.I.Rh.</i> '
+            f'Die Spalte stellt diese Konkordanz her: sie stammt aus der Bibliographie der EDH-EpiDoc-Sätze '
+            f'und liegt für <b>{edh.get("n_cil", 0)}</b> der {edh.get("total", 0)} Inschriften vor. '
+            f'<b>Fett</b> gesetzt sind die <b>{edh.get("n_orl", 0)}</b> Nummern, die im '
+            f'<a href="orl-register.html">ORL-Apparat</a> tatsächlich zitiert werden.</p>'
+            f'<p class="meta">Die beiden Seiten zitieren verschieden: die EDH mit arabischer Bandzahl und '
+            f'Komma (»CIL 13, 11766«), der ORL mit römischer und ohne Komma (»CIL XIII 11766«). Der Abgleich '
+            f'normalisiert beide; ohne das träfe er statt 390 nur 6 Inschriften. Einstellige Nummern sind '
+            f'echt und kein Lesefehler: CIL XIII 2, 3, 4 und 6 sind Meilensteine und Instrumentum.</p></div>'
             f'<div class="note"><p><b>Was diese Zahl nicht ist.</b> Sie ist <i>nicht</i> die Epigraphik des '
             f'Limes, sondern das, was die EDH zu <b>{len(edh.get("kastelle", []))} Fundorten</b> führt, und zwar '
             f'nur zu denen, für die diese Edition eine Ortsnotiz hat. Fundorte ohne Notiz fehlen hier, auch wenn '
