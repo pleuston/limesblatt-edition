@@ -511,145 +511,6 @@
    }
   ]
  },
- "CIL XIII 6": {
-  "n": 66,
-  "korpus": "CIL",
-  "orte": {
-   "Sammelband: Kastell Holzhausen, Kastell Kemel, Kastell Bendorf, Kastell Heddesdorf, Kastell Niederberg": 2,
-   "Sammelband: Kastell Saalburg, Kastell Friedberg, Kastell Butzbach, Kastell Zugmantel, Kastell Kapersburg": 10,
-   "Sammelband: Kastell Hüfingen, Kastelle von Welzheim, Kastell Wimpfen, Kastell Lorch, Kastell Aalen": 6,
-   "Kastell Saalburg": 6,
-   "Sammelband: Kastell Hainhaus, Kastell Butzbach, Kastell Kesselstadt, Kastell Kapersburg, Kastell Arnsburg": 5,
-   "Sammelband: Kastell Friedberg, Kastell Okarben, Kastell Hofheim, Kastell Zugmantel, Kastell Saalburg": 24,
-   "Kastell Hüfingen": 2,
-   "Sammelband: Kastell Saalburg, Kastell Bendorf": 2,
-   "Abt-A-Strecke": 2,
-   "Sammelband: Kastell Großkrotzenburg, Kastell Marienfels": 2,
-   "Sammelband: Kastell Hainhaus, Kastell Butzbach, Kastell Kesselstadt, Kastell Arnsburg, Kastell Kapersburg": 5
-  },
-  "belege": [
-   {
-    "ort": "Sammelband: Kastell Holzhausen, Kastell Kemel, Kastell Bendorf, Kastell Heddesdorf, Kastell Niederberg",
-    "htid": "coo.31924088444033",
-    "seite": "374",
-    "kontext": "Es handelt sich um den Stempel ⟨CIL XIII 6⟩ S. 66 Typus v¹, welcher bisher"
-   },
-   {
-    "ort": "Sammelband: Kastell Holzhausen, Kastell Kemel, Kastell Bendorf, Kastell Heddesdorf, Kastell Niederberg",
-    "htid": "coo.31924088444033",
-    "seite": "374",
-    "kontext": "der 22. Legion schon bekannt, vgl. ⟨CIL XIII 6⟩ S. 63 Typus 145 816, belegt"
-   },
-   {
-    "ort": "Sammelband: Kastell Saalburg, Kastell Friedberg, Kastell Butzbach, Kastell Zugmantel, Kastell Kapersburg",
-    "htid": "coo.31924088444041",
-    "seite": "79",
-    "kontext": "Rossel S. 100f. 1) Von den ⟨CIL XIII 6⟩ S. 94ff. Nr. 12364 verzeichneten Stempeltypen"
-   },
-   {
-    "ort": "Sammelband: Kastell Saalburg, Kastell Friedberg, Kastell Butzbach, Kastell Zugmantel, Kastell Kapersburg",
-    "htid": "coo.31924088444041",
-    "seite": "115",
-    "kontext": "31 Weiteres Vorkommen derselben Typen nach ⟨CIL XIII 6⟩ S. 69 ff. Rundstempel, sonst nicht"
-   },
-   {
-    "ort": "Sammelband: Kastell Saalburg, Kastell Friedberg, Kastell Butzbach, Kastell Zugmantel, Kastell Kapersburg",
-    "htid": "coo.31924088444041",
-    "seite": "140",
-    "kontext": "Kastellen Arzbach und Ems vor, vgl. ⟨CIL XIII 6⟩ S. 108 zu Nr. 12429 f."
-   },
-   {
-    "ort": "Sammelband: Kastell Saalburg, Kastell Friedberg, Kastell Butzbach, Kastell Zugmantel, Kastell Kapersburg",
-    "htid": "coo.31924088444041",
-    "seite": "233",
-    "kontext": "aus Ritterlings Nachlaß stammende kurze Abhandlung ⟨CIL XIII 6⟩ S. VII f. abgedruckt. Vgl. auch"
-   },
-   {
-    "ort": "Sammelband: Kastell Saalburg, Kastell Friedberg, Kastell Butzbach, Kastell Zugmantel, Kastell Kapersburg",
-    "htid": "coo.31924088444041",
-    "seite": "335",
-    "kontext": "66 f. und dazu E. Stein ⟨CIL XIII 6⟩ S. 121 sowie Die kaiserl. Beamten"
-   },
-   {
-    "ort": "Sammelband: Kastell Saalburg, Kastell Friedberg, Kastell Butzbach, Kastell Zugmantel, Kastell Kapersburg",
-    "htid": "coo.31924088444041",
-    "seite": "353",
-    "kontext": "Matrize gepreßt sein können. *) Vgl. ⟨CIL XIII 6⟩ S. 109 und Stein, Die kaiserl."
-   },
-   {
-    "ort": "Sammelband: Kastell Saalburg, Kastell Friedberg, Kastell Butzbach, Kastell Zugmantel, Kastell Kapersburg",
-    "htid": "coo.31924088444041",
-    "seite": "407",
-    "kontext": "von Typus 158 94, welche Stein ⟨CIL XIII 6⟩ S. 56 versucht. 2) Dieser Mainzer"
-   },
-   {
-    "ort": "Sammelband: Kastell Saalburg, Kastell Friedberg, Kastell Butzbach, Kastell Zugmantel, Kastell Kapersburg",
-    "htid": "coo.31924088444041",
-    "seite": "408",
-    "kontext": "mit Rest des gitterförmigen Stempelrahmens wie ⟨CIL XIII 6⟩ S. 109 Typus y¹, abgeb. a."
-   },
-   {
-    "ort": "Sammelband: Kastell Saalburg, Kastell Friedberg, Kastell Butzbach, Kastell Zugmantel, Kastell Kapersburg",
-    "htid": "coo.31924088444041",
-    "seite": "437",
-    "kontext": "Cohors I Flavia Damascenorum an. In ⟨CIL XIII 6⟩ werden diese Ziegelstempel nicht erwähnt, und"
-   },
-   {
-    "ort": "Sammelband: Kastell Saalburg, Kastell Friedberg, Kastell Butzbach, Kastell Zugmantel, Kastell Kapersburg",
-    "htid": "coo.31924088444041",
-    "seite": "475",
-    "kontext": "Die Ziegelstempel sind inzwischen von Stein ⟨CIL XIII 6⟩ S. 56ff. unter Nr. 12364 nach"
-   },
-   {
-    "ort": "Sammelband: Kastell Hüfingen, Kastelle von Welzheim, Kastell Wimpfen, Kastell Lorch, Kastell Aalen",
-    "htid": "mdp.39015039811297",
-    "seite": "41",
-    "kontext": "(Haug-Sixt² Nr. 83 f, fehlen im ⟨CIL XIII 6⟩ S. 38), ein Ziegelstempel der Bituriger-"
-   },
-   {
-    "ort": "Sammelband: Kastell Hüfingen, Kastelle von Welzheim, Kastell Wimpfen, Kastell Lorch, Kastell Aalen",
-    "htid": "mdp.39015039811297",
-    "seite": "41",
-    "kontext": "49, Haug-Sixt2 Nr. 84d, fehlt im ⟨CIL XIII 6⟩ S. 107), und im ganzen vierzehn"
-   },
-   {
-    "ort": "Sammelband: Kastell Hüfingen, Kastelle von Welzheim, Kastell Wimpfen, Kastell Lorch, Kastell Aalen",
-    "htid": "mdp.39015039811297",
-    "seite": "50",
-    "kontext": "Sp. 1656, 1658 und 1696 und ⟨CIL XIII 6⟩ S. 31f. und 38. Stähelin, Die"
-   },
-   {
-    "ort": "Kastell Saalburg",
-    "htid": "mdp.39015039811305",
-    "seite": "81",
-    "kontext": "Rossel S. 100f. 1) Von den ⟨CIL XIII 6⟩ S. 94ff. Nr. 12364 verzeichneten Stempeltypen"
-   },
-   {
-    "ort": "Kastell Saalburg",
-    "htid": "mdp.39015039811305",
-    "seite": "117",
-    "kontext": "12350 Weiteres Vorkommen derselben Typen nach ⟨CIL XIII 6⟩ S. 69 ff. Nr. Typ. Fig."
-   },
-   {
-    "ort": "Kastell Saalburg",
-    "htid": "mdp.39015039811305",
-    "seite": "148",
-    "kontext": "Kastellen Arzbach und Ems vor, vgl. ⟨CIL XIII 6⟩ S. 108 zu Nr. 12429 f."
-   },
-   {
-    "ort": "Sammelband: Kastell Hainhaus, Kastell Butzbach, Kastell Kesselstadt, Kastell Kapersburg, Kastell Arnsburg",
-    "htid": "mdp.39015039811313",
-    "seite": "49",
-    "kontext": "aus Ritterlings Nachlaß stammende kurze Abhandlung ⟨CIL XIII 6⟩ S. VII f. abgedruckt. Vgl. auch"
-   },
-   {
-    "ort": "Sammelband: Kastell Hainhaus, Kastell Butzbach, Kastell Kesselstadt, Kastell Kapersburg, Kastell Arnsburg",
-    "htid": "mdp.39015039811313",
-    "seite": "151",
-    "kontext": "66 f. und dazu E. Stein ⟨CIL XIII 6⟩ S. 121 sowie Die kaiserl. Beamten"
-   }
-  ]
- },
  "CIL XIII 12350": {
   "n": 15,
   "korpus": "CIL",
@@ -866,155 +727,6 @@
     "htid": "uc1.c2605103",
     "seite": "82",
     "kontext": "Fig. 23). Die Saalburginschrift lautete nach ⟨CIL XIII 7465⟩ wie folgt: [Im]p. Caes. M. [A]urel./[Antonino"
-   }
-  ]
- },
- "CIL XIII 2": {
-  "n": 65,
-  "korpus": "CIL",
-  "orte": {
-   "Sammelband: Kastell Saalburg, Kastell Friedberg, Kastell Butzbach, Kastell Zugmantel, Kastell Kapersburg": 2,
-   "Kastell Altenstadt": 15,
-   "Kastell Friedberg": 1,
-   "Sammelband: Kastell Oberdorf, Kastell Seligenstadt": 4,
-   "Sammelband: Kastell Nida, Kastell Hofheim, Kastell Okarben, Kastell Saalburg": 1,
-   "Sammelband: Kastell Wörth, Kastell Wimpfen, Kastell Schloßau, Kastelle von Neckarburken": 1,
-   "Sammelband: Kastelle von Welzheim, Kastell Miltenberg-Altstadt": 12,
-   "Sammelband: Kastell Hüfingen, Kastelle von Welzheim, Kastell Wimpfen, Kastell Lorch, Kastell Aalen": 4,
-   "Kastell Saalburg": 2,
-   "Sammelband: Kastell Hainhaus, Kastell Butzbach, Kastell Kesselstadt, Kastell Kapersburg, Kastell Arnsburg": 1,
-   "Sammelband: Kastell Friedberg, Kastell Okarben, Kastell Hofheim, Kastell Zugmantel, Kastell Saalburg": 8,
-   "Kastell Hüfingen": 2,
-   "Sammelband: Kastell Stockstadt, Kastell Miltenberg-Altstadt, Kastell Obernburg": 2,
-   "Sammelband: Kastell Jagsthausen, Kastell Osterburken, Kastell Öhringen-West": 2,
-   "Sammelband: Kastelle von Welzheim, Kastell Walldürn": 1,
-   "Kastell Stuttgart-Bad Cannstatt": 1,
-   "Kastell Zugmantel": 1,
-   "Kastell Miltenberg-Altstadt": 1,
-   "Sammelband: Kastell Wörth, Kastell Wimpfen, Kastell Schloßau, Kastelle von Neckarburken, Kastell Hesselbach": 1,
-   "Sammelband: Kastell Stockstadt, Kastell Miltenberg-Altstadt, Kastell Seligenstadt, Kastell Großkrotzenburg": 2,
-   "Sammelband: Kastell Hainhaus, Kastell Butzbach, Kastell Kesselstadt, Kastell Arnsburg, Kastell Kapersburg": 1
-  },
-  "belege": [
-   {
-    "ort": "Sammelband: Kastell Saalburg, Kastell Friedberg, Kastell Butzbach, Kastell Zugmantel, Kastell Kapersburg",
-    "htid": "coo.31924088444041",
-    "seite": "12",
-    "kontext": "G. Ph. Kraus 1778 Wisbadii, vgl. ⟨CIL XIII 2⟩ S. 478f. und Nr. 7613, Abt."
-   },
-   {
-    "ort": "Sammelband: Kastell Saalburg, Kastell Friedberg, Kastell Butzbach, Kastell Zugmantel, Kastell Kapersburg",
-    "htid": "coo.31924088444041",
-    "seite": "233",
-    "kontext": "Kastell Langenhain und die von Zangemeister ⟨CIL XIII 2⟩ S. 264 zusammengestellten Zeugnisse über die"
-   },
-   {
-    "ort": "Kastell Altenstadt",
-    "htid": "mdp.39015039811149",
-    "seite": "35",
-    "kontext": "1901 S. 9 f. a) Literatur ⟨CIL XIII 2⟩ , 1 S. 298 Anm. 8"
-   },
-   {
-    "ort": "Kastell Altenstadt",
-    "htid": "mdp.39015039811149",
-    "seite": "36",
-    "kontext": "einzelnes auch i) Der von Zangemeister ⟨CIL XIII 2⟩ , l S. 407, II zitierte"
-   },
-   {
-    "ort": "Kastell Altenstadt",
-    "htid": "mdp.39015039811149",
-    "seite": "44",
-    "kontext": "nach der Steinernen Strasse (vgl. Zangemeister ⟨CIL XIII 2⟩ , l S. 407), aber auch"
-   },
-   {
-    "ort": "Kastell Altenstadt",
-    "htid": "mdp.39015039811149",
-    "seite": "53",
-    "kontext": "dem Vorgang anderer auch Zangemeister im ⟨CIL XIII 2⟩ , 1 S. 302 zur Datierung"
-   },
-   {
-    "ort": "Kastell Altenstadt",
-    "htid": "mdp.39015039811149",
-    "seite": "54",
-    "kontext": "noch nicht aufgeklärt. Zangemeister vermutet ( ⟨CIL XIII 2⟩ , l S. 407), dass Kastel"
-   },
-   {
-    "ort": "Kastell Altenstadt",
-    "htid": "mdp.39015039811149",
-    "seite": "56",
-    "kontext": "von Mainz, Mainz 1771 f. (vgl. ⟨CIL XIII 2⟩ , l S. 308 f.) I"
-   },
-   {
-    "ort": "Kastell Altenstadt",
-    "htid": "mdp.39015039811149",
-    "seite": "57",
-    "kontext": "Archaolog. Anzeiger 1896 S. 194. Zangemeister, ⟨CIL XIII 2⟩ , 1 S. 301 f.; 406"
-   },
-   {
-    "ort": "Kastell Friedberg",
-    "htid": "mdp.39015039811164",
-    "seite": "25",
-    "kontext": "Westd. Zeitschr. XXI 1902 S. 199, ⟨CIL XIII 2⟩ S. 440. 2) Zu a und"
-   },
-   {
-    "ort": "Sammelband: Kastell Oberdorf, Kastell Seligenstadt",
-    "htid": "mdp.39015039811198",
-    "seite": "11",
-    "kontext": "scheint ³). ¹) Vgl. insbesondere Zangemeister, ⟨CIL XIII 2⟩ , 1 S. 294. 2) Joh."
-   },
-   {
-    "ort": "Sammelband: Kastell Oberdorf, Kastell Seligenstadt",
-    "htid": "mdp.39015039811198",
-    "seite": "21",
-    "kontext": "¹) Vgl. über den Verfasser Zangemeister ⟨CIL XIII 2⟩ S. 208 f., Haug, Die röm."
-   },
-   {
-    "ort": "Sammelband: Kastell Nida, Kastell Hofheim, Kastell Okarben, Kastell Saalburg",
-    "htid": "mdp.39015039811206",
-    "seite": "51",
-    "kontext": "seiner Entwicke- 1) Vgl. darüber Zangemeister ⟨CIL XIII 2⟩ S. 308 f. 2) Vgl. unsere"
-   },
-   {
-    "ort": "Sammelband: Kastell Wörth, Kastell Wimpfen, Kastell Schloßau, Kastelle von Neckarburken",
-    "htid": "mdp.39015039811222",
-    "seite": "12",
-    "kontext": "auch Morneweg S. 58 und Zangemeister ⟨CIL XIII 2⟩ S. 259. - 2) Unter den"
-   },
-   {
-    "ort": "Sammelband: Kastelle von Welzheim, Kastell Miltenberg-Altstadt",
-    "htid": "mdp.39015039811263",
-    "seite": "73",
-    "kontext": "CIL XI 3104 (Dessau 2765, auch ⟨CIL XIII 2⟩ S. 281), Inschrift vom Greinberg S."
-   },
-   {
-    "ort": "Sammelband: Kastelle von Welzheim, Kastell Miltenberg-Altstadt",
-    "htid": "mdp.39015039811263",
-    "seite": "73",
-    "kontext": "nach der Abschrift von Michaelis, die ⟨CIL XIII 2⟩ S. 281 in Faksimile wiedergegeben ist,"
-   },
-   {
-    "ort": "Sammelband: Kastelle von Welzheim, Kastell Miltenberg-Altstadt",
-    "htid": "mdp.39015039811263",
-    "seite": "116",
-    "kontext": "gefundenen Inschriften stehen, von Zangemeister bearbeitet, ⟨CIL XIII 2⟩ S. 275 ff. Nr. 6566 6589a,"
-   },
-   {
-    "ort": "Sammelband: Kastelle von Welzheim, Kastell Miltenberg-Altstadt",
-    "htid": "mdp.39015039811263",
-    "seite": "133",
-    "kontext": "benachbarten Olnhausen gefundenen Inschriften stehen auch ⟨CIL XIII 2⟩ S. 273 und 4 S. 101"
-   },
-   {
-    "ort": "Sammelband: Kastelle von Welzheim, Kastell Miltenberg-Altstadt",
-    "htid": "mdp.39015039811263",
-    "seite": "153",
-    "kontext": "V 1930 S. 80 f. *) ⟨CIL XIII 2⟩ S. 269 ff. Nr. 6540-6551 und"
-   },
-   {
-    "ort": "Sammelband: Kastelle von Welzheim, Kastell Miltenberg-Altstadt",
-    "htid": "mdp.39015039811263",
-    "seite": "206",
-    "kontext": "aus Lorcher Ton sind, vermutet Zangemeister ⟨CIL XIII 2⟩ S. 265, daß die Brittones) Cr."
    }
   ]
  },
@@ -2151,146 +1863,6 @@
     "htid": "uc1.c2605079",
     "seite": "116",
     "kontext": "Wahrscheinlichere (auf Jaumanns Stempellesung Janus f ⟨CIL XIII 10010⟩ 1003 с -"
-   }
-  ]
- },
- "CIL XIII 3": {
-  "n": 29,
-  "korpus": "CIL",
-  "orte": {
-   "Kastell Altenstadt": 2,
-   "Sammelband: Kastell Kösching, Kastell Rückingen, Kastell Pfünz": 4,
-   "Sammelband: Kastell Stuttgart-Bad Cannstatt, Kastell Pfünz, Kastell Zugmantel, Kastell Köngen, Kastell Westernbach": 4,
-   "Sammelband: Kastell Stockstadt, Kastell Miltenberg-Altstadt, Kastell Obernburg": 3,
-   "Sammelband: Kastell Pfünz, Kastell Weißenburg": 2,
-   "Kastell Stuttgart-Bad Cannstatt": 1,
-   "Kastell Hofheim": 1,
-   "Kastell Zugmantel": 3,
-   "Kastell Stockstadt": 1,
-   "Sammelband: Kastell Pfünz, Kastell Zugmantel, Kastell Stuttgart-Bad Cannstatt": 2,
-   "Sammelband: Kastell Stuttgart-Bad Cannstatt, Kastell Zugmantel, Kastell Pfünz, Kastell Westernbach, Kastell Köngen": 4,
-   "Sammelband: Kastell Stockstadt, Kastell Miltenberg-Altstadt, Kastell Seligenstadt, Kastell Großkrotzenburg": 2
-  },
-  "belege": [
-   {
-    "ort": "Kastell Altenstadt",
-    "htid": "mdp.39015039811149",
-    "seite": "28",
-    "kontext": "49; Suchier, ebenda Sp. 53 f.; ⟨CIL XIII 3⟩ , 10009 4?p, *3zz« und 23'."
-   },
-   {
-    "ort": "Sammelband: Kastell Kösching, Kastell Rückingen, Kastell Pfünz",
-    "htid": "mdp.39015039811156",
-    "seite": "83",
-    "kontext": "Ware einer Töpferei in Banassac, vgl. ⟨CIL XIII 3⟩ Nr. 10010 997. 4. Ma us"
-   },
-   {
-    "ort": "Sammelband: Kastell Kösching, Kastell Rückingen, Kastell Pfünz",
-    "htid": "mdp.39015039811156",
-    "seite": "83",
-    "kontext": "III 2 Nr. 6010 184. Nach ⟨CIL XIII 3⟩ Nr. 10010 1647 töpferte ein Romanus"
-   },
-   {
-    "ort": "Sammelband: Kastell Stuttgart-Bad Cannstatt, Kastell Pfünz, Kastell Zugmantel, Kastell Köngen, Kastell Westernbach",
-    "htid": "mdp.39015039811248",
-    "seite": "18",
-    "kontext": "zu urteilen in Ostgallien gearbeitet, vgl. ⟨CIL XIII 3⟩ , 1, 10010, 688. 4. Jassus"
-   },
-   {
-    "ort": "Sammelband: Kastell Stuttgart-Bad Cannstatt, Kastell Pfünz, Kastell Zugmantel, Kastell Köngen, Kastell Westernbach",
-    "htid": "mdp.39015039811248",
-    "seite": "19",
-    "kontext": "Solus hat nach seinem Verbreitungskreis ( ⟨CIL XIII 3⟩ , 1, 10010, 1834) in Ostgallien"
-   },
-   {
-    "ort": "Sammelband: Kastell Stuttgart-Bad Cannstatt, Kastell Pfünz, Kastell Zugmantel, Kastell Köngen, Kastell Westernbach",
-    "htid": "mdp.39015039811248",
-    "seite": "75",
-    "kontext": "Töpferstempel. Die Verweisungen beziehen sich auf ⟨CIL XIII 3⟩ , 1, 10010. Die verbrannten Stempel"
-   },
-   {
-    "ort": "Sammelband: Kastell Stuttgart-Bad Cannstatt, Kastell Pfünz, Kastell Zugmantel, Kastell Köngen, Kastell Westernbach",
-    "htid": "mdp.39015039811248",
-    "seite": "89",
-    "kontext": "Ton geraten. Zur Stempel- gattung vgl. ⟨CIL XIII 3⟩ S. 77. Nach Drexel, Nr. 66"
-   },
-   {
-    "ort": "Sammelband: Kastell Stockstadt, Kastell Miltenberg-Altstadt, Kastell Obernburg",
-    "htid": "njp.32101076455177",
-    "seite": "70",
-    "kontext": "Die Endung -u ist keltisch, vgl. ⟨CIL XIII 3⟩ S. 119."
-   },
-   {
-    "ort": "Sammelband: Kastell Stockstadt, Kastell Miltenberg-Altstadt, Kastell Obernburg",
-    "htid": "njp.32101076455177",
-    "seite": "396",
-    "kontext": "zu urteilen in Ostgallien gearbeitet, vgl. ⟨CIL XIII 3⟩ , 1, 10010, 688. 4. Jassus"
-   },
-   {
-    "ort": "Sammelband: Kastell Stockstadt, Kastell Miltenberg-Altstadt, Kastell Obernburg",
-    "htid": "njp.32101076455177",
-    "seite": "397",
-    "kontext": "Solus hat nach seinem Verbreitungskreis ( ⟨CIL XIII 3⟩ , 1, 10010, 1834) in Ostgallien"
-   },
-   {
-    "ort": "Sammelband: Kastell Pfünz, Kastell Weißenburg",
-    "htid": "njp.32101076455219",
-    "seite": "317",
-    "kontext": "Ware einer Töpferei in Banassac, vgl. ⟨CIL XIII 3⟩ Nr. 10010 997. 4. Ma.......us.o, wahrscheinlich"
-   },
-   {
-    "ort": "Sammelband: Kastell Pfünz, Kastell Weißenburg",
-    "htid": "njp.32101076455219",
-    "seite": "317",
-    "kontext": "III 2 Nr. 6010 184. Nach ⟨CIL XIII 3⟩ Nr. 10010 1647 töpferte ein Romanus"
-   },
-   {
-    "ort": "Kastell Stuttgart-Bad Cannstatt",
-    "htid": "uc1.c2605075",
-    "seite": "56",
-    "kontext": "an Medi(omatrici) gedacht (s. Echzell und ⟨CIL XIII 3⟩ , 1 S. 120). Vielleicht gehört"
-   },
-   {
-    "ort": "Kastell Hofheim",
-    "htid": "uc1.c2605078",
-    "seite": "118",
-    "kontext": "das Gewicht des Gefässes anzeigend (vergl. ⟨CIL XIII 3⟩ S. 90 Nr. 10008, 43 ff.)."
-   },
-   {
-    "ort": "Kastell Zugmantel",
-    "htid": "uc1.c2605079",
-    "seite": "158",
-    "kontext": "des s vgl. die Bemerkungen Bohns ⟨CIL XIII 3⟩ S. 120 über analoge Schreibungen bei"
-   },
-   {
-    "ort": "Kastell Zugmantel",
-    "htid": "uc1.c2605079",
-    "seite": "167",
-    "kontext": "Koenen, Gefässkunde S. 109 ff. `und ⟨CIL XIII 3⟩ S. 532f. Bei Fig. 18 hat"
-   },
-   {
-    "ort": "Kastell Zugmantel",
-    "htid": "uc1.c2605079",
-    "seite": "202",
-    "kontext": "auch Vitto für wohl möglich, vgl. ⟨CIL XIII 3⟩ S. 119 Sp. 2. Z 1829."
-   },
-   {
-    "ort": "Kastell Stockstadt",
-    "htid": "uc1.c2605080",
-    "seite": "54",
-    "kontext": "Die Endung -u ist keltisch, vgl. ⟨CIL XIII 3⟩ S. 119."
-   },
-   {
-    "ort": "Sammelband: Kastell Pfünz, Kastell Zugmantel, Kastell Stuttgart-Bad Cannstatt",
-    "htid": "uc1.c2605082",
-    "seite": "102",
-    "kontext": "10: Reibschalenstempel. Zu dieser Stempelgattung vgl. ⟨CIL XIII 3⟩ S. 77. Die Stempel stehen auf"
-   },
-   {
-    "ort": "Sammelband: Kastell Pfünz, Kastell Zugmantel, Kastell Stuttgart-Bad Cannstatt",
-    "htid": "uc1.c2605082",
-    "seite": "109",
-    "kontext": "XXIII (1904) S. 1 ff. und ⟨CIL XIII 3⟩ S. 657. Bruchstücke ähnlicher Flaschen wurden"
    }
   ]
  },
@@ -3619,34 +3191,6 @@
    }
   ]
  },
- "CIL III 2": {
-  "n": 3,
-  "korpus": "CIL",
-  "orte": {
-   "Sammelband: Kastell Kösching, Kastell Rückingen, Kastell Pfünz": 2,
-   "Sammelband: Kastell Pfünz, Kastell Weißenburg": 1
-  },
-  "belege": [
-   {
-    "ort": "Sammelband: Kastell Kösching, Kastell Rückingen, Kastell Pfünz",
-    "htid": "mdp.39015039811156",
-    "seite": "83",
-    "kontext": "Abbildung Taf. VI 75), jetzt verschollen. ⟨CIL III 2⟩ Nr. 6010 184. Nach CIL XIII"
-   },
-   {
-    "ort": "Sammelband: Kastell Pfünz, Kastell Weißenburg",
-    "htid": "njp.32101076455219",
-    "seite": "317",
-    "kontext": "Abbildung Taf. VI 75), jetzt verschollen. ⟨CIL III 2⟩ Nr. 6010 184. Nach CIL XIII"
-   },
-   {
-    "ort": "Sammelband: Kastell Kösching, Kastell Rückingen, Kastell Pfünz",
-    "htid": "uc1.c2605085",
-    "seite": "83",
-    "kontext": "Abbildung Taf. VI 75), jetzt verschollen. ⟨CIL III 2⟩ Nr. 6010 184. Nach CIL XIII"
-   }
-  ]
- },
  "CIL XIII 10027": {
   "n": 8,
   "korpus": "CIL",
@@ -4795,35 +4339,6 @@
    }
   ]
  },
- "CIL XV 2": {
-  "n": 3,
-  "korpus": "CIL",
-  "orte": {
-   "Sammelband: Kastell Stuttgart-Bad Cannstatt, Kastell Pfünz, Kastell Zugmantel, Kastell Köngen, Kastell Westernbach": 1,
-   "Sammelband: Kastell Stuttgart-Bad Cannstatt, Kastell Zugmantel, Kastell Pfünz, Kastell Westernbach, Kastell Köngen": 1,
-   "Sammelband: Kastell Stockstadt, Kastell Miltenberg-Altstadt, Kastell Seligenstadt, Kastell Großkrotzenburg": 1
-  },
-  "belege": [
-   {
-    "ort": "Sammelband: Kastell Stuttgart-Bad Cannstatt, Kastell Pfünz, Kastell Zugmantel, Kastell Köngen, Kastell Westernbach",
-    "htid": "mdp.39015039811248",
-    "seite": "89",
-    "kontext": "lederbraunem Ton, weiß überzogen. Vgl. besonders ⟨CIL XV 2⟩ , 1, 2934p (in hortis Torlonia)"
-   },
-   {
-    "ort": "Sammelband: Kastell Stuttgart-Bad Cannstatt, Kastell Zugmantel, Kastell Pfünz, Kastell Westernbach, Kastell Köngen",
-    "htid": "uc1.c2605093",
-    "seite": "87",
-    "kontext": "lederbraunem Ton, weiß überzogen. Vgl. besonders ⟨CIL XV 2⟩ , 1, 2934p (in hortis Torlonia)"
-   },
-   {
-    "ort": "Sammelband: Kastell Stockstadt, Kastell Miltenberg-Altstadt, Kastell Seligenstadt, Kastell Großkrotzenburg",
-    "htid": "uc1.c2605096",
-    "seite": "68",
-    "kontext": "(identische?) von Monte Testaccio bei Rom ⟨CIL XV 2⟩ , 1, 2791 als Cor- (neli)"
-   }
-  ]
- },
  "CIL VI 31": {
   "n": 1,
   "korpus": "CIL",
@@ -4927,77 +4442,6 @@
     "htid": "uc1.c2605102",
     "seite": "5",
     "kontext": "oder Novia der Inschrift aus Urbino ⟨CIL XI 6053⟩ aus der Zeit des Commodus in"
-   }
-  ]
- },
- "CIL XIII 4": {
-  "n": 10,
-  "korpus": "CIL",
-  "orte": {
-   "Sammelband: Kastelle von Welzheim, Kastell Miltenberg-Altstadt": 2,
-   "Kastell Hüfingen": 4,
-   "Sammelband: Kastell Stockstadt, Kastell Miltenberg-Altstadt, Kastell Seligenstadt, Kastell Großkrotzenburg": 4
-  },
-  "belege": [
-   {
-    "ort": "Sammelband: Kastelle von Welzheim, Kastell Miltenberg-Altstadt",
-    "htid": "mdp.39015039811263",
-    "seite": "72",
-    "kontext": "6609), Ziegelstempel S. 68, 23 ( ⟨CIL XIII 4⟩ S. 102 und unten zu Wp."
-   },
-   {
-    "ort": "Kastell Hüfingen",
-    "htid": "mdp.39015039811339",
-    "seite": "30",
-    "kontext": "7752, die nach Ritterlings Berichtigung ( ⟨CIL XIII 4⟩ S. 132) lautet: Genio tabulari n(umeri)"
-   },
-   {
-    "ort": "Kastell Hüfingen",
-    "htid": "mdp.39015039811339",
-    "seite": "157",
-    "kontext": "Vindonissa nicht gefunden worden, fehlt auch ⟨CIL XIII 4⟩ S. 36; die hier unter Nr."
-   },
-   {
-    "ort": "Sammelband: Kastelle von Welzheim, Kastell Miltenberg-Altstadt",
-    "htid": "uc1.c2605095",
-    "seite": "72",
-    "kontext": "6609), Ziegelstempel S. 68, 23 ( ⟨CIL XIII 4⟩ S. 102 und unten zu Wp."
-   },
-   {
-    "ort": "Sammelband: Kastell Stockstadt, Kastell Miltenberg-Altstadt, Kastell Seligenstadt, Kastell Großkrotzenburg",
-    "htid": "uc1.c2605096",
-    "seite": "11",
-    "kontext": "bis 1916 sind in den Nachträgen ⟨CIL XIII 4⟩ S. 102 1) So Conrady 1897"
-   },
-   {
-    "ort": "Sammelband: Kastell Stockstadt, Kastell Miltenberg-Altstadt, Kastell Seligenstadt, Kastell Großkrotzenburg",
-    "htid": "uc1.c2605096",
-    "seite": "18",
-    "kontext": "Scherben Taf. 2 Fig. 25f. 3) ⟨CIL XIII 4⟩ , 11771 vom 23. December 231."
-   },
-   {
-    "ort": "Sammelband: Kastell Stockstadt, Kastell Miltenberg-Altstadt, Kastell Seligenstadt, Kastell Großkrotzenburg",
-    "htid": "uc1.c2605096",
-    "seite": "27",
-    "kontext": "124f. berichtigend erwähnt hatte (vgl. auch ⟨CIL XIII 4⟩ S. 103). 2) Der Typ der"
-   },
-   {
-    "ort": "Sammelband: Kastell Stockstadt, Kastell Miltenberg-Altstadt, Kastell Seligenstadt, Kastell Großkrotzenburg",
-    "htid": "uc1.c2605096",
-    "seite": "51",
-    "kontext": "gedeutet ist das Bruchstück eines Militärdiploms ⟨CIL XIII 4⟩ , 11796a. Der Meinung Dessaus, daß"
-   },
-   {
-    "ort": "Kastell Hüfingen",
-    "htid": "uc1.c2605102",
-    "seite": "24",
-    "kontext": "7752, die nach Ritterlings Berichtigung ( ⟨CIL XIII 4⟩ S. 132) lautet: Genio tabulari n(umeri)"
-   },
-   {
-    "ort": "Kastell Hüfingen",
-    "htid": "uc1.c2605102",
-    "seite": "151",
-    "kontext": "Vindonissa nicht gefunden worden, fehlt auch ⟨CIL XIII 4⟩ S. 36; die hier unter Nr."
    }
   ]
  },
@@ -8087,28 +7531,6 @@
    }
   ]
  },
- "CIL XII 2": {
-  "n": 2,
-  "korpus": "CIL",
-  "orte": {
-   "Sammelband: Kastell Stockstadt, Kastell Miltenberg-Altstadt, Kastell Obernburg": 1,
-   "Kastell Miltenberg-Altstadt": 1
-  },
-  "belege": [
-   {
-    "ort": "Sammelband: Kastell Stockstadt, Kastell Miltenberg-Altstadt, Kastell Obernburg",
-    "htid": "njp.32101076455177",
-    "seite": "361",
-    "kontext": "hält er auch num(eri) explor(ato- aus ⟨CIL XII 2⟩ S. 282. 8. Inschrift C¹ 7*"
-   },
-   {
-    "ort": "Kastell Miltenberg-Altstadt",
-    "htid": "uc1.c2605081",
-    "seite": "53",
-    "kontext": "hält er auch numeri) explorato- aus ⟨CIL XII 2⟩ S. 282. 8. Inschrift C¹ 7*"
-   }
-  ]
- },
  "CIRh 266": {
   "n": 2,
   "korpus": "CIRh",
@@ -10023,21 +9445,6 @@
     "htid": "njp.32101076455219",
     "seite": "180",
     "kontext": "auf flachem Tassenboden, vgl. Schuerm. 201; ⟨CIL III 85⟩ ; gef. in Nr. 76. Ammo"
-   }
-  ]
- },
- "CIL III 4": {
-  "n": 1,
-  "korpus": "CIL",
-  "orte": {
-   "Sammelband: Kastell Pfünz, Kastell Weißenburg": 1
-  },
-  "belege": [
-   {
-    "ort": "Sammelband: Kastell Pfünz, Kastell Weißenburg",
-    "htid": "njp.32101076455219",
-    "seite": "180",
-    "kontext": "spitzem Tellerboden, vgl. Jacobi S. 317; ⟨CIL III 4⟩ . Abgeb. Taf. VIIIa, Nr. 5."
    }
   ]
  },
@@ -12644,21 +12051,6 @@
    }
   ]
  },
- "CIL IX, 2": {
-  "n": 1,
-  "korpus": "CIL",
-  "orte": {
-   "Sammelband: Kastell Heldenbergen, Kastell Wimpfen, Kastell Heidenheim, Kastell Saalburg": 1
-  },
-  "belege": [
-   {
-    "ort": "Sammelband: Kastell Heldenbergen, Kastell Wimpfen, Kastell Heidenheim, Kastell Saalburg",
-    "htid": "uc1.c2605060",
-    "seite": "69",
-    "kontext": "ob mit oder ohne Kranz vgl. ⟨CIL IX, 2⟩ . CAMPILI von Paulus, Schriften des"
-   }
-  ]
- },
  "CIL IX, 6081": {
   "n": 1,
   "korpus": "CIL",
@@ -12686,21 +12078,6 @@
     "htid": "uc1.c2605060",
     "seite": "70",
     "kontext": "XV, 6583. Vetti, vgl. Schuermans 5678; ⟨CIL III, 10⟩ . (Stempel oben abgeb., Form wie"
-   }
-  ]
- },
- "CIL III 3": {
-  "n": 1,
-  "korpus": "CIL",
-  "orte": {
-   "Kastell Pfünz": 1
-  },
-  "belege": [
-   {
-    "ort": "Kastell Pfünz",
-    "htid": "uc1.c2605061",
-    "seite": "48",
-    "kontext": "spitzem Tellerboden, vgl. Jacobi S. 317; ⟨CIL III 3⟩ . Abgeb. Taf. VIIIa, Nr. 4."
    }
   ]
  },
@@ -17627,21 +17004,6 @@
     "htid": "uc1.c2605078",
     "seite": "118",
     "kontext": "wiedergegebene Gewichtsangabe P(ondo) IIII S(emis) (vergl. ⟨CIL XIII 10008⟩ , 62). Sie stammt, wie die"
-   }
-  ]
- },
- "CIL VI 1": {
-  "n": 1,
-  "korpus": "CIL",
-  "orte": {
-   "Kastell Hofheim": 1
-  },
-  "belege": [
-   {
-    "ort": "Kastell Hofheim",
-    "htid": "uc1.c2605078",
-    "seite": "123",
-    "kontext": "städtischen Truppen inschriftlich bezeugt ist ( ⟨CIL VI 1⟩ , 1063 und 1064). Der hier"
    }
   ]
  },
