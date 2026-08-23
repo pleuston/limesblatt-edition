@@ -2429,8 +2429,9 @@ def inscriptions_page(edh):
             f'Kurzzitat, sondern als volle Titelangabe mit nachgestellter Nummer; deshalb bleibt die Spalte '
             f'meist leer. Beim Abgleich mit dem ORL sind die Zitierweisen zu vereinheitlichen, weil die EDH '
             f'arabisch mit Komma zählt (CIL 13, 11766) und der ORL römisch ohne Komma (CIL XIII 11766). '
-            f'Einstellige Nummern sind korrekt: CIL XIII 2, 3, 4 und 6 sind Meilensteine und '
-            f'Instrumentum.</p></div>'
+            f'CIL XIII und XVII erschienen zudem in Teilen, die die EDH mitzitiert: '
+            f'»CIL 13, 04, 06548« meint Band 13, Teil 4, Nummer 6548. Wer nur zwei Glieder liest, '
+            f'nimmt die Teilnummer für die Inschrift.</p></div>'
             + tabelle + f'<h2>Nach Fundort</h2>' + "".join(secs))
 
 
