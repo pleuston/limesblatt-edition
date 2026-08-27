@@ -3,12 +3,12 @@
  "_nicht_geprueft": "Nummer→Kastellname: zirkulär, beide Seiten stammen aus derselben Wikipedia-Kastellliste. Geprüft werden Bearbeiter und Jahr.",
  "bilanz": {
   "gesamt": 94,
-  "prüfbar": 62,
-  "bestätigt": 58,
+  "prüfbar": 59,
+  "bestätigt": 55,
   "konflikt": 4,
-  "ohne_quelle": 32,
+  "ohne_quelle": 35,
   "anzeige_versatz": 5,
-  "sammelband_record": 17
+  "namensform": 5
  },
  "abweichungen": [
   {
