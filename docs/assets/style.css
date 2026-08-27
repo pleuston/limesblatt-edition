@@ -67,6 +67,7 @@ ul.vols{columns:2;gap:2rem} ul.vols li{margin:.2rem 0}
 table.reg{width:100%;border-collapse:collapse;font-size:.95rem}
 table.reg th,table.reg td{text-align:left;padding:.35rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}
 table.reg th{font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+table.reg td.dat{white-space:nowrap}
 #map{height:60vh;border:1px solid var(--line);margin:.5rem 0 1rem}
 #facets{font-size:.88rem;margin:.3rem 0;display:flex;flex-wrap:wrap;gap:.3rem 1rem;align-items:center}
 #facets label{cursor:pointer;white-space:nowrap} #facets .dot{font-size:1.1em}

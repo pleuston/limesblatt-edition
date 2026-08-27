@@ -11,6 +11,12 @@
 
   function zellwert(td) {
     if (!td) return "";
+    /* Eine Zelle darf ihren Sortierschluessel selbst mitbringen (data-v). Noetig ueberall dort,
+       wo die lesbare Form nicht in ihrer eigenen Reihenfolge steht: "Okt. 1900" sortiert
+       alphabetisch zwischen "Nov." und "Sept.", als Schluessel "190010" dagegen chronologisch.
+       Der Filter sucht weiterhin im sichtbaren Text, nicht im Schluessel. */
+    var v = td.getAttribute ? td.getAttribute("data-v") : null;
+    if (v !== null && v !== "") return v;
     return (td.textContent || "").replace(/\s+/g, " ").trim();
   }
   function zahl(s) {
