@@ -68,6 +68,13 @@ table.reg{width:100%;border-collapse:collapse;font-size:.95rem}
 table.reg th,table.reg td{text-align:left;padding:.35rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}
 table.reg th{font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
 table.reg td.dat{white-space:nowrap}
+/* Auf schmalen Fenstern scrollt eine breite Registertabelle IN SICH, nicht die ganze Seite.
+   Ohne das schiebt der ORL-Bandindex (acht Spalten) den Fliesstext mit nach rechts, und
+   der Leser scrollt am Text vorbei statt an der Tabelle entlang. Auf breiten Fenstern
+   bleibt alles wie zuvor: die Regel gilt nur unterhalb von 900px. */
+@media (max-width:900px){
+  table.reg{display:block;width:max-content;max-width:100%;overflow-x:auto}
+}
 #map{height:60vh;border:1px solid var(--line);margin:.5rem 0 1rem}
 #facets{font-size:.88rem;margin:.3rem 0;display:flex;flex-wrap:wrap;gap:.3rem 1rem;align-items:center}
 #facets label{cursor:pointer;white-space:nowrap} #facets .dot{font-size:1.1em}
