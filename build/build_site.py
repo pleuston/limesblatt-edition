@@ -965,7 +965,7 @@ def quellen_page(volumes, toc, idx, jb, bibls, zs, rez, edh, artliste=None):
                ("↗ Original-Digitalisat (UB Heidelberg)",
                 "https://digi.ub.uni-heidelberg.de/diglit/limesblatt1892_1893")]),
         block("orl", "Obergermanisch-Raetischer Limes (ORL)", "1894–1937 · Endpublikation",
-              "Das Werk, in das die Feldarbeit mündete: in 14 Mappen über 45 Jahre erschienen und deshalb nie "
+              "Das Werk, in das die Feldarbeit mündete: über 43 Jahre in 56 Lieferungen erschienen und deshalb nie "
               "als Ganzes erschlossen. Hier token-frei über HathiTrust aufgeschlüsselt: Inhalt, Apparat, "
               "Binnenverweise und die Schichten seiner Entstehung.",
               [f"<b>{len(b)} Kastell-Faszikel</b> und <b>{len(a)} Streckenbände</b>, nach Lieferung geordnet",
@@ -2766,7 +2766,10 @@ def orl_page(idx, lex, bli=None, abta=None, bgl=None):
             f'(Abt. B): das Standardwerk, in das die laufenden Feldberichte des '
             f'<a href="../index.html">Limesblatt</a> mündeten. Für <b>{n_lfg} Kastelle</b> ist die '
             f'<b>Lieferung</b> quellenmäßig belegt ({n_scharf} kastellscharf), dazu ein konsolidierter '
-            f'<a href="orl-register.html">Gesamtapparat</a>, den die in 14 Mappen erschienene Reihe nie besaß.</p>'
+            f'<a href="orl-register.html">Gesamtapparat</a>, den die Reihe selbst nie besaß. Genauer: '
+            f'einen <b>Fundindex</b> bekam sie 1982 nachgereicht, fünfundvierzig Jahre nach Abschluss, '
+            f'bearbeitet von Jürgen Oldenstein. Ein Register der Namen und ein Apparat der Zitate '
+            f'fehlen ihr bis heute.</p>'
             f'{keyn}'
             f'<h2>Abteilung A: die Strecken (Trassierung)</h2>'
             f'<p class="meta">Die Spalte <b>Verlauf</b> benennt den Abschnitt von Ort zu Ort, so wie diese '
@@ -3489,7 +3492,7 @@ def orl_verweise_page(bl, bv):
     r = (bv.get("richtung") or {}).get("Binnenverweise (ORL→ORL)", {})
     return (
         f'<h1>ORL-Binnenverweise</h1>'
-        f'<p class="lede">Der ORL erschien 45 Jahre lang in 14 Mappen und hatte nie ein Register, aber seine '
+        f'<p class="lede">Der ORL erschien 43 Jahre lang in 56 Lieferungen und hatte nie ein Namensregister, aber seine '
         f'Faszikel <b>verweisen aufeinander</b> (»Abt.&nbsp;B Bd.&nbsp;II Nr.&nbsp;8 Kastell Zugmantel '
         f'S.&nbsp;107&nbsp;ff.«). Für <b>{bilanz.get("verlinkt", 0)} der {bilanz.get("binnenverweise", 0)}</b> '
         f'werkinternen Verweise ist die zitierte Stelle im Digitalisat aufgelöst (Ziel-Nummer aus dem Verweis, '
@@ -3599,7 +3602,7 @@ def orl_apparatus_page(reg, idx, persons=None):
     return (f'<h1>ORL-Gesamtapparat</h1>'
             f'<p class="meta">Register, Apparate und Konkordanzen über <b>alle</b> ORL-Bände: token-frei aus '
             f'HathiTrust-NER und Extracted Features aggregiert (<a href="hathitrust.html">Methode</a>); '
-            f'das Generalwerkzeug, das die 14-Mappen-Reihe nie hatte. Zurück zum '
+            f'das Generalwerkzeug, das die Reihe selbst nie hatte. Zurück zum '
             f'<a href="orl.html">ORL-Bandindex</a>; die zugrunde liegenden Scans stehen mit '
             f'Direktlink in der <a href="hathitrust.html#workset">Bandliste</a>. Die Bandangaben '
             f'unten sind Zählnummern des Worksets und werden hier <b>nicht</b> einzeln auf Scans '
@@ -3762,7 +3765,8 @@ def kapsel_auswertungen():
      ("Apparate: was der ORL nie hatte", [
       ("orl_register.json", "Wer und was kommt über alle Bände vor?",
        f"Ein Generalregister mit {Z['rg_pers']} Personen und {Z['rg_orte']} Orten, gegen den Gazetteer der Edition "
-       "geerdet: das Werk erschien in 14 Mappen über 45 Jahre und besaß deshalb nie eines.",
+       "geerdet: das Werk erschien über 45 Jahre in Einzelfaszikeln und besaß deshalb nie eines. "
+       "Nachgereicht wurde ihm 1982 ein Fundindex (Oldenstein), der die Objekte erschließt, nicht die Namen.",
        "Die Bandangaben zählen richtig, WIE VIELE Bände einen Namen führen; welche Bände es sind, "
        "hing an der korrigierten Zuordnung. Diachrone Lesarten des Registers bleiben gesperrt."),
       ("orl_register_kastell.json", "Welche Person erscheint bei welchem Kastell?",
@@ -3948,8 +3952,10 @@ def hathitrust_page(idx, reg, lex):
             f'<p>Aus diesen offenen Schichten entstand der konsolidierte <a href="orl-register.html">Gesamtapparat</a>: '
             f'ein <b>{np}-Personen-</b> und <b>{npl}-Orte-Generalregister</b>, die '
             f'<a href="orl-register.html#sigillata">Sigillata-Konkordanz</a>, die '
-            f'<a href="orl-register.html#konkordanz">Vorbericht-Konkordanz</a> und die Wortschatz-Gegenprobe: '
-            f'Apparate, die der in 14 Mappen über 40 Jahre erschienene ORL selbst nie besaß.</p>')
+            f'<a href="orl-register.html#konkordanz">Vorbericht-Konkordanz</a> und die Wortschatz-Gegenprobe. '
+            f'Der ORL selbst besaß davon nichts. Nachgereicht wurde ihm allein ein <b>Fundindex</b>, 1982 '
+            f'bei von Zabern, bearbeitet von Jürgen Oldenstein im Auftrag des Deutschen Archäologischen '
+            f'Instituts: ein Register der Objekte, nicht der Namen und nicht der Zitate.</p>')
 
 def _rlk_paragraphs(text):
     paras = re.split(r"\n\s*\n", text.strip())
