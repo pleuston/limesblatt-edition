@@ -2636,29 +2636,22 @@ def _orl_datum(j):
 
 
 def _bandgliederung(bgl):
-    """nr → (Band, Jahr des Faszikels) und Band → Jahr, in dem der Band frühestens vollständig war.
+    """nr → (Band, Erscheinungsjahr des gebundenen Bandes), aus dem Verbundkatalog.
 
-    Ein Sammelband ist nicht datierbar wie ein Heft: er war fertig, als sein LETZTER Faszikel
-    erschien, gebunden wurde danach. Genommen wird deshalb das Maximum der Faszikeljahre seines
-    Bandes: ein frühestmögliches Datum, keine Bindebescheinigung."""
-    nr2band, fertig = {}, {}
-    for band, rows in (bgl or {}).get("baende", {}).items():
-        for eintrag in rows:
-            nr, _kastell, _bearb, jahr = (list(eintrag) + [None] * 4)[:4]
-            if not jahr:
-                continue
-            nr2band[str(nr)] = (band, int(jahr))
-            fertig[band] = max(fertig.get(band, 0), int(jahr))
-    return nr2band, fertig
+    Der gebundene Band ist ein verlegtes Buch mit eigenem Jahr; K10plus führt für die zehn
+    Einheiten der Abteilung B genau diese Sätze (`orl_baende.py`). Vorher stand hier das
+    Maximum der Faszikeljahre einer gröberen Gliederung: eine Näherung, die 27 von 90 Zeilen
+    um bis zu 23 Jahre zu spät datierte, weil sie Bd. 2,1 und Bd. 2,2 in einen Topf warf."""
+    zu = (bgl or {}).get("kastell_zu_band") or {}
+    return {str(k): (v["band"], int(v["jahr"])) for k, v in zu.items()}, {}
 
 
-def _orl_band_td(nr, nr2band, fertig):
+def _orl_band_td(nr, nr2band, _unbenutzt=None):
     b = nr2band.get(str(nr))
     if not b:
         return '<td class="dat">—</td>'
     band, jahr = b
-    j = fertig.get(band, jahr)
-    return (f'<td class="dat" data-v="{j}">{j} '
+    return (f'<td class="dat" data-v="{jahr}">{jahr} '
             f'<span class="lc">Bd.&#8239;{html.escape(str(band))}</span></td>')
 
 
@@ -2688,12 +2681,17 @@ def orl_page(idx, lex, bli=None, abta=None, bgl=None):
     n_monat = sum(1 for r in b if re.fullmatch(r"\d{4}-\d{2}", str((lfg_ok.get(r["nr"]) or {}).get("jahr", ""))))
     n_kat = sum(1 for r in b if not lfg_ok.get(r["nr"]) and r.get("year_k10"))
     n_band = sum(1 for r in b if nr2band.get(str(r["nr"])))
-    # Die weiteste Spanne zwischen Lieferung und fertigem Band: das Argument der Spalte.
-    spannen = [(band_fertig.get(nr2band[str(r["nr"])][0], 0) - nr2band[str(r["nr"])][1], r)
-               for r in b if nr2band.get(str(r["nr"]))]
-    max_spanne, max_row = max(spannen, key=lambda x: x[0]) if spannen else (0, None)
-    max_band = nr2band.get(str(max_row["nr"]))[0] if max_row else ""
-    max_jahr = nr2band.get(str(max_row["nr"]))[1] if max_row else 0
+    # Wie lange ein Heft auf seinen Band wartete. Gerechnet nur, wo BEIDE Daten belegt sind.
+    spannen = []
+    for r in b:
+        bd = nr2band.get(str(r["nr"]))
+        d = (lfg_ok.get(r["nr"]) or {}).get("jahr") or r.get("year_k10")
+        m = re.match(r"(\d{4})", str(d or ""))
+        if bd and m:
+            spannen.append((bd[1] - int(m.group(1)), r, bd, int(m.group(1))))
+    spannen.sort(key=lambda x: -x[0])
+    max_spanne, max_row, max_bd, max_jahr = spannen[0] if spannen else (0, None, ("", 0), 0)
+    median_spanne = sorted(x[0] for x in spannen)[len(spannen) // 2] if spannen else 0
     # Der Faszikeltitel der RLK gehört in die Tabelle: die Spalte „Verlauf" ist die Benennung
     # dieser Edition (von Ort zu Ort), die Kommission benannte nach Flüssen und Landschaft.
     atitel = {int(r["nr"]): r for r in (abta or {}).get("vergleich", [])
@@ -2795,20 +2793,24 @@ def orl_page(idx, lex, bli=None, abta=None, bgl=None):
             f'Lieferung.</p></div>'
             f'<div class="note"><p><b>Zwei Daten, und sie liegen weit auseinander.</b> Die Spalte '
             f'<b>Lieferung</b> nennt, wann das einzelne Heft ausgegeben wurde. Die Spalte '
-            f'<b>Sammelband</b> nennt den Band, in dem es heute steht, und das Jahr, in dem dieser '
-            f'Band <i>frühestens</i> vollständig war: das Jahr seines letzten Faszikels. Gebunden '
-            f'wurde danach, ein Bindedatum überliefert keine der Quellen. Die Spanne ist erheblich: '
-            f'{html.escape(max_row["kastell"]) if max_row else ""} erschien {max_jahr}, sein '
-            f'Band&#8239;{html.escape(str(max_band))} war erst {band_fertig.get(max_band, 0)} '
-            f'beisammen, <b>{max_spanne} Jahre später</b>. Wer den ORL nach Bänden liest, liest '
-            f'eine Ordnung, die es zur Zeit der Grabung noch nicht gab.</p></div>'
+            f'<b>Sammelband</b> nennt den Band, zu dem es später gebunden wurde, und dessen '
+            f'Erscheinungsjahr nach dem Verbundkatalog. Dazwischen liegen im Mittel '
+            f'<b>{median_spanne} Jahre</b>, im Höchstfall {max_spanne}: '
+            f'{html.escape(max_row["kastell"]) if max_row else ""} erschien {max_jahr} als Heft und '
+            f'kam erst {max_bd[1]} in Band&#8239;{html.escape(str(max_bd[0]))}.</p>'
+            f'<p>Dass die Hefte vorher selbständig umliefen, sagen die Bände selbst: ihr '
+            f'Umfangsvermerk lautet durchweg <i>»in getrennter Paginierung«</i>. Beim Binden wurde '
+            f'die Seitenzählung nicht durchgezogen, jedes Faszikel beginnt wieder bei Seite&#8239;1. '
+            f'Wer den ORL nach Bänden liest, liest eine Ordnung, die es zur Zeit der Grabung noch '
+            f'nicht gab.</p></div>'
             f'<p class="meta"><b>Lieferung</b> ist so genau angegeben, wie die Quelle es hergibt: '
             f'Merten nennt für die Lieferungen 1 bis 18 den <b>Monat</b> ({n_monat} Kastelle), die '
             f'Bibliographie des Jahrbuchs und die RLK-Jahresberichte nur das Jahr; für {n_kat} '
             f'weitere Kastelle datiert allein der Verbundkatalog, dessen Satz dem Einzelfaszikel '
             f'gilt und in allen acht vergleichbaren Fällen Mertens Jahr trifft. Wo nichts belegt '
-            f'ist, steht nichts. · <b>Sammelband</b> steht für {n_band} Kastelle, aus der '
-            f'Bandgliederung der Abteilung&#8201;B. · Die Spalte <b>Beleg</b> nennt die Quelle des '
+            f'ist, steht nichts. · <b>Sammelband</b> steht für alle {n_band} Kastelle, aus den '
+            f'Katalogsätzen der zehn gebundenen Einheiten der Abteilung&#8201;B. · Die Spalte '
+            f'<b>Beleg</b> nennt die Quelle des '
             f'Lieferungsdatums und ob die Zuordnung kastellscharf ist oder '
             f'nur eine Spanne (dann nennt die Quelle die Lieferungen und die Kastelle, ordnet sie aber '
             f'nicht einander zu: das wird nicht geraten). · Vorb. = Anzahl Limesblatt-Vorberichte '
@@ -5493,7 +5495,7 @@ def main():
         open(os.path.join(DOCS,"register","ortsnamen.html"),"w",encoding="utf-8").write(
             page("Ortsnamen: antik, modern, Flurname", namen_page(nm), 1))
         open(os.path.join(DOCS,"register","orl.html"),"w",encoding="utf-8").write(page("ORL", orl_page(orl_idx, orl_lex, orl_bli, _load_json_any("orl_abtA.json") or {},
-                             _load_json_any("orl_abtB_bandgliederung.json") or {}), 1))
+                             _load_json_any("orl_baende.json") or {}), 1))
         _kb = _load_json_any("kastell_infobox.json")
         _kseite = kastelle_page(_kb, orl_idx, edh, volumes) if _kb else None
         if _kseite:
@@ -5508,7 +5510,7 @@ def main():
         _aj = _load_json_any("orl_abtA.json")
         open(os.path.join(DOCS,"register","orl-inhalt.html"),"w",encoding="utf-8").write(
             page("ORL: Inhaltsverzeichnis", orl_toc_page(orl_idx, orl_bli, _fj, _dj, _aj, places,
-                                       _load_json_any("orl_abtB_bandgliederung.json") or {}), 1))
+                                       _load_json_any("orl_baende.json") or {}), 1))
         _blj = _load_json_any("orl_binnenlinks.json")
         _bvj = _load_json_any("orl_binnenverweise.json")
         if _blj.get("links"):
