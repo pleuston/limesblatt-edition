@@ -2673,6 +2673,8 @@ def orl_page(idx, lex, bli=None, abta=None, bgl=None):
     # entfernt; an ihre Stelle tritt die belegte Lieferung. Details: Vault-Notiz „ORL-Index Band, Lieferung, Kastell".
     bli = bli or {}
     nr2band, band_fertig = _bandgliederung(bgl)
+    str2band = {str(k): (v["band"], int(v["jahr"]))
+                for k, v in ((bgl or {}).get("strecke_zu_band") or {}).items()}
     lfg_ok = bli.get("kastell_nr_zu_lieferung") or {}
     htid_ok = bli.get("kastell_nr_zu_htids") or {}
     a = idx.get("abteilung_A_strecken", []); b = idx.get("abteilung_B_kastelle", []); c = idx.get("counts", {})
@@ -2702,8 +2704,9 @@ def orl_page(idx, lex, bli=None, abta=None, bgl=None):
         rt = (html.escape(r["orl_titel"]) if r
               else '<span class="meta">kein Titel im Verbundkatalog</span>')
         aj = _orl_datum_td(r.get("orl_jahr")) if r else '<td class="dat">—</td>'
+        ab = _orl_band_td(nr, str2band)
         return (f'<tr id="orl-a-{nr}"><td>{nr}</td><td>{html.escape(s.get("verlauf",""))}</td>'
-                f'<td>{html.escape(s.get("region",""))}</td><td>{rt}</td>{aj}</tr>')
+                f'<td>{html.escape(s.get("region",""))}</td><td>{rt}</td>{aj}{ab}</tr>')
     arows = "".join(arow(s) for s in a)
     QUELLE = {"merten": "Merten 2002", "bibliographie": "Bibliographie des Jahrbuchs",
               "jahresbericht": "RLK-Jahresbericht"}
@@ -2769,12 +2772,17 @@ def orl_page(idx, lex, bli=None, abta=None, bgl=None):
             f'<p class="meta">Die Spalte <b>Verlauf</b> benennt den Abschnitt von Ort zu Ort, so wie diese '
             f'Edition ihn führt. Die Spalte <b>Titel der RLK</b> nennt ihn so, wie er erschien: nach Flüssen '
             f'und Landschaft, und teils zu zweit oder zu dritt in einem Faszikel. Wo zwei Strecken in '
-            f'einem Faszikel stehen, tragen beide Zeilen dasselbe Datum. Das Erscheinungsjahr stammt hier '
-            f'aus dem Verbundkatalog: die Streckenbände erschienen spät, zwischen 1915 und 1937, und sind '
-            f'anders als die Kastell-Lieferungen bei Merten nicht verzeichnet. Mehr dazu bei den '
-            f'<a href="strecken.html">Strecken</a>.</p>'
+            f'einem Faszikel stehen, tragen beide Zeilen dasselbe Datum. Beide Jahresangaben stammen '
+            f'aus dem Verbundkatalog; die Streckenfaszikel sind anders als die Kastell-Lieferungen bei '
+            f'Merten nicht verzeichnet. Mehr dazu bei den <a href="strecken.html">Strecken</a>.</p>'
+            f'<p class="meta"><b>Abteilung A wurde anders gebunden als Abteilung B.</b> Dort lagen '
+            f'zwischen Heft und Band im Mittel 18 Jahre, hier <b>keines</b>: die meisten Streckenfaszikel '
+            f'kamen im Jahr ihres Erscheinens in ihren Band. Nur die beiden ersten warten lange, '
+            f'Strecke&#8239;1 von 1915 und Strecke&#8239;2 von 1916 bis 1936. Abteilung A begann 1915, '
+            f'brach dann ab und wurde zwischen 1926 und 1936 in einem Zug fertiggestellt.</p>'
             f'<table class="reg"><thead><tr><th>Str.</th><th>Verlauf</th><th>Region</th>'
-            f'<th>Titel der RLK (Verbundkatalog)</th><th>Erschienen</th></tr></thead>'
+            f'<th>Titel der RLK (Verbundkatalog)</th><th>Lieferung</th>'
+            f'<th>Sammelband</th></tr></thead>'
             f'<tbody>{arows}</tbody></table>'
             f'<h2>Abteilung B: Kastell-Lieferungen</h2>'
             f'<div class="note"><p><b>Zwei Zählungen, die man nicht verwechseln darf.</b> Die '

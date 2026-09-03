@@ -1,5 +1,5 @@
 {
- "_quelle": "K10plus (SRU, MARC-XML): die Sammelband-Records der ORL-Abteilung B",
+ "_quelle": "K10plus (SRU, MARC-XML): die Sammelband-Records der ORL-Abteilungen A und B",
  "_methode": "Bandjahr = häufigstes EINZELjahr der Katalogsätze; Jahresspannen sind Bestandsangaben und datieren den Band nicht. Zuordnung Kastell→Band über die Nummernspanne im Titel, Buchstabensuffixe als eigener Sortierrang.",
  "_getrennte_paginierung": "Jeder Band trägt im Umfangsvermerk »getr. Pag.« oder »Getr. Zählung«: die Faszikel behalten im Band ihre eigene Seitenzählung.",
  "baende": [
@@ -533,6 +533,149 @@
   }
  },
  "ohne_band": [],
+ "baende_a": [
+  {
+   "von": 1,
+   "bis": 2,
+   "jahre": [
+    1936
+   ],
+   "band": "1",
+   "umfang": "Getr. Zählung",
+   "titel": "Abt. A, Bd. 1 Die Strecken 1 und 2",
+   "jahr": 1936
+  },
+  {
+   "von": 3,
+   "bis": 5,
+   "jahre": [
+    1936
+   ],
+   "band": "2,1",
+   "umfang": "IV, 183, 287 S",
+   "titel": "Die Strecken 3 - 5 : (Tafeln und Kartenbeilagen) : hrsg. von Ernst Fabricius ...",
+   "jahr": 1936
+  },
+  {
+   "von": 6,
+   "bis": 9,
+   "jahre": [
+    1933
+   ],
+   "band": "3/4",
+   "umfang": "239 S., [16] Bl",
+   "titel": "Die Strecken 6 - 9",
+   "jahr": 1933
+  },
+  {
+   "von": 7,
+   "bis": 9,
+   "jahre": [
+    1933
+   ],
+   "band": "4",
+   "umfang": "239 S",
+   "titel": "Abt. A, Bd. 4 Die Strecken 7 - 9",
+   "jahr": 1933
+  },
+  {
+   "von": 10,
+   "bis": 11,
+   "jahre": [
+    1935
+   ],
+   "band": "5",
+   "umfang": "IV, 128, 45 S. mit Abb., 19, 2 Taf., 3 Kt",
+   "titel": "Die Strecken 10 und 11",
+   "jahr": 1935,
+   "band_kuratiert": true
+  },
+  {
+   "von": 12,
+   "bis": 13,
+   "jahre": [
+    1935
+   ],
+   "band": "6",
+   "umfang": "95, 99 S",
+   "titel": "Abt. A, Bd. 6 Die Strecken 12 und 13",
+   "jahr": 1935
+  },
+  {
+   "von": 14,
+   "bis": 15,
+   "jahre": [
+    1933
+   ],
+   "band": "7",
+   "umfang": "141, 75 S., 16, 6 Taf., 3 Kt",
+   "titel": "Die Strecken 14 - 15",
+   "jahr": 1933
+  }
+ ],
+ "strecke_zu_band": {
+  "1": {
+   "band": "1",
+   "jahr": 1936
+  },
+  "2": {
+   "band": "1",
+   "jahr": 1936
+  },
+  "3": {
+   "band": "2,1",
+   "jahr": 1936
+  },
+  "4": {
+   "band": "2,1",
+   "jahr": 1936
+  },
+  "5": {
+   "band": "2,1",
+   "jahr": 1936
+  },
+  "6": {
+   "band": "3/4",
+   "jahr": 1933
+  },
+  "7": {
+   "band": "4",
+   "jahr": 1933
+  },
+  "8": {
+   "band": "4",
+   "jahr": 1933
+  },
+  "9": {
+   "band": "4",
+   "jahr": 1933
+  },
+  "10": {
+   "band": "5",
+   "jahr": 1935
+  },
+  "11": {
+   "band": "5",
+   "jahr": 1935
+  },
+  "12": {
+   "band": "6",
+   "jahr": 1935
+  },
+  "13": {
+   "band": "6",
+   "jahr": 1935
+  },
+  "14": {
+   "band": "7",
+   "jahr": 1933
+  },
+  "15": {
+   "band": "7",
+   "jahr": 1933
+  }
+ },
+ "ohne_band_a": [],
  "abweichungen_vault": [
   {
    "nr": "12",
