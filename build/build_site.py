@@ -5115,6 +5115,11 @@ def organigramm_page(persons, pname):
         return f'<a href="{href}">{inner}</a>' if href else inner
     def line(x1, y1, x2, y2): return f'<line x1="{x1:.0f}" y1="{y1:.0f}" x2="{x2:.0f}" y2="{y2:.0f}" stroke="#b9b3a6"/>'
     cx = Wd / 2
+    # Die Ebenen sind die Aemter des Statuts von 1892. Jede traegt darum ihren Paragraphen:
+    # das Bild behauptet keine Hierarchie, es gibt eine wieder.
+    def stufe(y, txt):
+        return f'<text x="{startx}" y="{y}" font-size="11" fill="#888">{html.escape(txt)}</text>'
+    S.append(stufe(12, "§ 1 · Gesamt-Kommission: 16 Mitglieder, 7 Stimmen, Ehrenamt"))
     # Ebene 0: Kommission
     S.append(box(cx - 175, 16, 350, 54, ["Reichs-Limeskommission", "1892–1937"], "#e7eef6", fs=16))
     # Ebene 1a: Initiator
@@ -5122,11 +5127,13 @@ def organigramm_page(persons, pname):
         p = byname.get(name)
         return f'persons.html#{p["id"]}' if p else None
     S.append(line(cx, 70, cx, 96))
+    S.append(stufe(90, "§ 3 · Vorsitz, von der Kommission selbst gewählt"))
     S.append(box(cx - 150, 96, 300, 52, ["Theodor Mommsen", "Initiator"], "#e7eef6",
                  href=phref("Theodor Mommsen"), fs=15))
     # Ebene 1b: Leitung und Herausgeber, je Person ein Kasten
     lby, lbw, lbh = 186, 236, 56
     lstartx = (Wd - (len(LEITUNG) * lbw + (len(LEITUNG) - 1) * gx)) // 2
+    S.append(stufe(lby - 24, "§ 6 · die zwei Dirigenten, archäologisch und militärisch; dazu die Herausgeber"))
     S.append(line(cx, 148, cx, lby - 18))
     S.append(line(lstartx + lbw / 2, lby - 18, lstartx + (len(LEITUNG) - 1) * (lbw + gx) + lbw / 2, lby - 18))
     for i, (n, rolle) in enumerate(LEITUNG):
@@ -5139,6 +5146,7 @@ def organigramm_page(persons, pname):
     firstx = startx + bw / 2; lastx = startx + (min(per, len(order)) - 1) * (bw + gx) + bw / 2
     S.append(line(firstx, busy, lastx, busy))
     # Ebene 2: Streckenkommissare
+    S.append(stufe(gridy - 8, "§ 7 · Streckenkommissare, ernannt von der LANDESregierung, Ehrenamt"))
     for i, n in enumerate(order):
         col, row = i % per, i // per
         x = startx + col * (bw + gx); y = gridy + row * (bh + gy)
@@ -5151,6 +5159,7 @@ def organigramm_page(persons, pname):
         S.append(box(x, y, bw, bh, blines, "#f4efe4", href=href, fs=13))
     # Ebene 3: Ausgräber (Sammelhinweis)
     S.append(line(cx, grid_bottom, cx, ausy))
+    S.append(stufe(ausy - 8, "§ 7 Abs. 2 · technische Beihülfe, vom Kommissar selbst beschafft"))
     S.append(box(cx - 300, ausy, 600, 40,
                  ["Ausgräber der Kastelle → im Personenregister und je Strecke"], "#f4efe4",
                  href="persons.html", fs=13))
@@ -5167,20 +5176,28 @@ def organigramm_page(persons, pname):
     S.append('</svg>')
     return (f'<h1>Organigramm der Reichs-Limeskommission</h1>'
             f'<p class="meta">Die Struktur des ersten länderübergreifenden Großforschungs-Unternehmens des '
-            f'Kaiserreichs: initiiert von Theodor Mommsen, geleitet von wenigen Herausgebern, getragen von den '
+            f'Kaiserreichs. <b>Die Ebenen sind nicht gezeichnet, sondern verordnet:</b> jede entspricht einem '
+            f'Paragraphen des <b>Statuts von 1892</b>, und ihr Paragraph steht am linken Rand. § 1 setzt die '
+            f'Gesamt-Kommission ein, 16 Mitglieder mit nur <b>sieben Stimmen</b>, je eine für die fünf '
+            f'beteiligten Staaten und die zwei Akademien; § 3 lässt sie ihren Vorsitzenden selbst wählen; '
+            f'§ 7 lässt die <b>Streckenkommissare</b> nicht vom Reich, sondern von der jeweiligen '
+            f'<b>Landesregierung</b> ernennen, und zwar als Ehrenamt. Initiiert von Theodor Mommsen, '
+            f'geleitet von wenigen Herausgebern, getragen von den '
             f'<b>Streckenkommissaren</b>, die je einen oder mehrere der 15 Abschnitte verantworteten und unter '
             f'denen die Ausgräber vor Ort arbeiteten. <b>Jeder Namenskasten führt ins '
             f'<a href="persons.html">Personenregister</a></b>, auch die Leitungsebene (die Strecken selbst stehen '
             f'bei den <a href="strecken.html">Strecken</a>). Die Doppelspitze ist keine Verlegenheit der '
             f'Darstellung, sondern Verfassung: die RLK hatte einen <b>militärischen</b> und einen '
-            f'<b>archäologischen Dirigenten</b> nebeneinander. Unter jedem Kommissar steht seine <b>institutionelle '
+            f'<b>archäologischen Dirigenten</b> nebeneinander, weil § 6 es so vorschreibt. Unter jedem Kommissar steht seine <b>institutionelle '
             f'Verankerung</b> (Museum, Akademie oder Universität): so wird sichtbar, aus welchem Netz von '
             f'Provinzialmuseen und Universitäten sich das Unternehmen speiste. Leitungs-, Institutions- und '
             f'Affiliations-Ebene sind kuratiert; die Kommissar→Strecken-Zuordnung ist datengetrieben.</p>'
             f'<div style="overflow-x:auto">{"".join(S)}</div>'
             f'<div class="note"><p><b>Ein Organigramm zeigt Ämter, nicht Arbeit.</b> Die Kästen geben die '
             f'Zuständigkeit wieder, wie das Statut und die Jahresberichte sie beschreiben; wer tatsächlich mit '
-            f'wem korrespondierte, grub und schrieb, steht nicht darin. Die unterste Ebene ist bewusst ein '
+            f'wem korrespondierte, grub und schrieb, steht nicht darin. Eine Stufe fehlt hier ganz, obwohl das Statut '
+            f'sie kennt: die <b>Bureauhülfe</b> nach § 5, die der Ausschussvorsitzende »gegen angemessene '
+            f'Vergütung« annahm. Sie war keine Planstelle und hinterließ deshalb auch keinen Kasten. Die unterste Ebene ist bewusst ein '
             f'Sammelkasten: die <b>Ausgräber vor Ort</b> waren die Mehrzahl der Beteiligten, sie erscheinen '
             f'aber nicht als eigene Amtsstufe, sondern namentlich im '
             f'<a href="persons.html">Personenregister</a> und bei ihrer '
